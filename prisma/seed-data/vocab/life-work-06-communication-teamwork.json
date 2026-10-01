@@ -1,0 +1,262 @@
+{
+  "slug": "life-work-06-communication-teamwork",
+  "order": 6,
+  "title": "Life & Work 6 · Giao tiếp & làm việc nhóm",
+  "description": "Từ vựng cấp độ B1–B2 về hợp tác, phản hồi, xử lý bất đồng và làm rõ vấn đề. Dùng khi trả lời HR câu hỏi hành vi hoặc trao đổi với đồng nghiệp nước ngoài.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "collaborate",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəˈlæbəreɪt/",
+      "answer": "hợp tác, cộng tác",
+      "explanation": "I collaborate closely with designers and testers.\n→ Tôi hợp tác chặt chẽ với designer và tester.\nLưu ý: collaborate with + người; danh từ: collaboration."
+    },
+    {
+      "question": "conflict",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːnflɪkt/",
+      "answer": "xung đột, bất đồng",
+      "explanation": "We had a conflict about priorities, but we solved it by talking.\n→ Chúng tôi từng xung đột về thứ tự ưu tiên nhưng đã giải quyết bằng cách trao đổi.\nLưu ý: Động từ /kənˈflɪkt/ (mâu thuẫn)."
+    },
+    {
+      "question": "compromise",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːmprəmaɪz/",
+      "answer": "sự thỏa hiệp, nhượng bộ",
+      "explanation": "We reached a compromise: half the features now, the rest next month.\n→ Chúng tôi đạt được thỏa hiệp: một nửa tính năng bây giờ, phần còn lại tháng sau.\nLưu ý: Cũng là động từ: compromise on something."
+    },
+    {
+      "question": "feedback",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfiːdbæk/",
+      "answer": "phản hồi, góp ý",
+      "explanation": "I welcome feedback because it helps me improve.\n→ Tôi hoan nghênh phản hồi vì nó giúp tôi tiến bộ.\nLưu ý: Không đếm được: some feedback, không nói \"a feedback\"."
+    },
+    {
+      "question": "clarify",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈklerəfaɪ/",
+      "answer": "làm rõ",
+      "explanation": "Could you clarify what you mean by \"soon\"?\n→ Bạn có thể làm rõ ý \"sớm\" là khi nào không?\nLưu ý: Danh từ: clarification."
+    },
+    {
+      "question": "misunderstanding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmɪsʌndərˈstændɪŋ/",
+      "answer": "sự hiểu lầm",
+      "explanation": "It was just a misunderstanding, and we sorted it out quickly.\n→ Đó chỉ là một sự hiểu lầm và chúng tôi đã giải quyết nhanh chóng."
+    },
+    {
+      "question": "align",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈlaɪn/",
+      "answer": "thống nhất, đồng bộ (quan điểm, mục tiêu)",
+      "explanation": "We need to align our goals before starting the project.\n→ Chúng ta cần thống nhất mục tiêu trước khi bắt đầu dự án.\nLưu ý: align with = phù hợp, đồng bộ với."
+    },
+    {
+      "question": "support",
+      "partOfSpeech": "verb",
+      "phonetic": "/səˈpɔːrt/",
+      "answer": "hỗ trợ, ủng hộ",
+      "explanation": "My team supported me when I took on a difficult task.\n→ Nhóm đã hỗ trợ tôi khi tôi nhận một nhiệm vụ khó.\nLưu ý: Cũng là danh từ: team support."
+    },
+    {
+      "question": "persuade",
+      "partOfSpeech": "verb",
+      "phonetic": "/pərˈsweɪd/",
+      "answer": "thuyết phục",
+      "explanation": "I persuaded my manager to try a different approach.\n→ Tôi đã thuyết phục quản lý thử một cách tiếp cận khác.\nLưu ý: persuade someone to do something."
+    },
+    {
+      "question": "cross-functional",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌkrɔːs ˈfʌŋkʃənəl/",
+      "answer": "liên phòng ban, đa chức năng",
+      "explanation": "I worked in a cross-functional team of developers, designers and marketers.\n→ Tôi từng làm trong nhóm liên phòng ban gồm lập trình viên, designer và marketer."
+    },
+    {
+      "question": "communicate",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəˈmjuːnɪkeɪt/",
+      "answer": "giao tiếp, truyền đạt",
+      "explanation": "I try to communicate clearly and keep everyone updated.\n→ Tôi cố gắng truyền đạt rõ ràng và cập nhật cho mọi người."
+    },
+    {
+      "question": "cooperate",
+      "partOfSpeech": "verb",
+      "phonetic": "/koʊˈɑːpəreɪt/",
+      "answer": "phối hợp, hợp tác",
+      "explanation": "Both teams cooperated to fix the problem quickly.\n→ Cả hai nhóm đã phối hợp để xử lý vấn đề nhanh chóng."
+    },
+    {
+      "question": "disagree",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌdɪsəˈɡriː/",
+      "answer": "không đồng ý",
+      "explanation": "I disagreed with the plan, so I explained my concerns politely.\n→ Tôi không đồng ý với kế hoạch nên đã lịch sự giải thích mối lo ngại.\nLưu ý: disagree with someone / about something."
+    },
+    {
+      "question": "constructive criticism",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈstrʌktɪv ˈkrɪtəsɪzəm/",
+      "answer": "góp ý mang tính xây dựng",
+      "explanation": "I appreciate constructive criticism from my teammates.\n→ Tôi trân trọng những góp ý xây dựng từ đồng đội."
+    },
+    {
+      "question": "miscommunication",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmɪskəmjuːnɪˈkeɪʃən/",
+      "answer": "sự truyền đạt sai, thiếu thông tin",
+      "explanation": "Most of our delays came from miscommunication, not from technical issues.\n→ Phần lớn sự chậm trễ do truyền đạt sai chứ không phải do vấn đề kỹ thuật."
+    },
+    {
+      "question": "express",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪkˈspres/",
+      "answer": "bày tỏ, diễn đạt",
+      "explanation": "I find it hard to express my ideas in a second language.\n→ Tôi thấy khó diễn đạt ý tưởng bằng ngoại ngữ.\nLưu ý: express an opinion = nêu ý kiến."
+    },
+    {
+      "question": "suggest",
+      "partOfSpeech": "verb",
+      "phonetic": "/səɡˈdʒest/",
+      "answer": "gợi ý, đề xuất",
+      "explanation": "I suggested that we hold a short daily meeting.\n→ Tôi đề xuất chúng ta tổ chức một cuộc họp ngắn hằng ngày.\nLưu ý: suggest + V-ing hoặc suggest (that) + S + V."
+    },
+    {
+      "question": "interrupt",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌɪntəˈrʌpt/",
+      "answer": "ngắt lời, làm gián đoạn",
+      "explanation": "Sorry to interrupt, but could I add something?\n→ Xin lỗi vì ngắt lời, nhưng tôi bổ sung một chút được không?"
+    },
+    {
+      "question": "listen actively",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˈlɪsən ˈæktɪvli/",
+      "answer": "lắng nghe chủ động",
+      "explanation": "I try to listen actively and ask questions to confirm I understand.\n→ Tôi cố gắng lắng nghe chủ động và đặt câu hỏi để xác nhận mình hiểu đúng."
+    },
+    {
+      "question": "common ground",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkɑːmən ˈɡraʊnd/",
+      "answer": "điểm chung, tiếng nói chung",
+      "explanation": "We found common ground and agreed on a plan.\n→ Chúng tôi tìm được tiếng nói chung và thống nhất một kế hoạch.\nLưu ý: find / reach common ground."
+    },
+    {
+      "question": "reach a consensus",
+      "partOfSpeech": "collocation",
+      "phonetic": "/riːtʃ ə kənˈsensəs/",
+      "answer": "đạt được sự đồng thuận",
+      "explanation": "After a long discussion, the team reached a consensus.\n→ Sau một cuộc thảo luận dài, cả nhóm đã đạt được sự đồng thuận."
+    },
+    {
+      "question": "point of view",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɔɪnt əv vjuː/",
+      "answer": "quan điểm, góc nhìn",
+      "explanation": "I understand your point of view, but I see it differently.\n→ Tôi hiểu quan điểm của bạn nhưng tôi nhìn nhận khác.\nLưu ý: Cũng nói: viewpoint, perspective."
+    },
+    {
+      "question": "rely on",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/rɪˈlaɪ ɑːn/",
+      "answer": "dựa vào, tin cậy vào",
+      "explanation": "I can rely on my teammates to review my work.\n→ Tôi có thể tin cậy đồng đội sẽ xem lại công việc của mình."
+    },
+    {
+      "question": "delegate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈdelɪɡeɪt/",
+      "answer": "ủy quyền, giao việc",
+      "explanation": "A good leader knows how to delegate tasks.\n→ Một người lãnh đạo giỏi biết cách giao việc.\nLưu ý: Danh từ /ˈdelɪɡət/ nghĩa là đại biểu."
+    },
+    {
+      "question": "transparent",
+      "partOfSpeech": "adjective",
+      "phonetic": "/trænsˈperənt/",
+      "answer": "minh bạch, cởi mở",
+      "explanation": "Our manager is transparent about project risks.\n→ Quản lý của chúng tôi minh bạch về các rủi ro của dự án."
+    },
+    {
+      "question": "respectful",
+      "partOfSpeech": "adjective",
+      "phonetic": "/rɪˈspektfəl/",
+      "answer": "tôn trọng, lịch sự",
+      "explanation": "Even when we disagree, we stay respectful.\n→ Kể cả khi bất đồng, chúng tôi vẫn giữ sự tôn trọng."
+    },
+    {
+      "question": "approachable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əˈproʊtʃəbəl/",
+      "answer": "dễ gần, dễ tiếp cận",
+      "explanation": "My manager is approachable, so I can ask questions anytime.\n→ Quản lý của tôi dễ gần nên tôi có thể hỏi bất cứ lúc nào."
+    },
+    {
+      "question": "bring up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/brɪŋ ʌp/",
+      "answer": "nêu ra, đề cập (vấn đề)",
+      "explanation": "I brought up the issue in our retrospective.\n→ Tôi đã nêu vấn đề đó trong buổi tổng kết của nhóm.\nLưu ý: bring up còn nghĩa là nuôi dạy (a child)."
+    },
+    {
+      "question": "speak up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/spiːk ʌp/",
+      "answer": "lên tiếng, nói to ý kiến",
+      "explanation": "Please speak up if you see a problem.\n→ Hãy lên tiếng nếu bạn thấy có vấn đề."
+    },
+    {
+      "question": "walk someone through",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/wɔːk ˈsʌmwʌn θruː/",
+      "answer": "hướng dẫn ai từng bước",
+      "explanation": "Could you walk me through the process?\n→ Bạn có thể hướng dẫn tôi từng bước của quy trình không?"
+    },
+    {
+      "question": "tension",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtenʃən/",
+      "answer": "sự căng thẳng, bất hòa",
+      "explanation": "There was some tension between the two teams.\n→ Có chút căng thẳng giữa hai nhóm."
+    },
+    {
+      "question": "misinterpret",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌmɪsɪnˈtɜːrprɪt/",
+      "answer": "hiểu sai, diễn giải sai",
+      "explanation": "I think you misinterpreted my message; I meant next week.\n→ Tôi nghĩ bạn hiểu sai tin nhắn của tôi; ý tôi là tuần sau."
+    },
+    {
+      "question": "acknowledge",
+      "partOfSpeech": "verb",
+      "phonetic": "/əkˈnɑːlɪdʒ/",
+      "answer": "ghi nhận, thừa nhận",
+      "explanation": "I acknowledged my mistake and apologized to the team.\n→ Tôi thừa nhận lỗi của mình và xin lỗi cả nhóm."
+    },
+    {
+      "question": "agree to disagree",
+      "partOfSpeech": "idiom",
+      "phonetic": "/əˈɡriː tə ˌdɪsəˈɡriː/",
+      "answer": "đồng ý là không đồng ý (giữ quan điểm riêng)",
+      "explanation": "We couldn't agree, so we agreed to disagree and moved on.\n→ Chúng tôi không thống nhất được nên chấp nhận bất đồng và tiếp tục công việc."
+    },
+    {
+      "question": "see eye to eye",
+      "partOfSpeech": "idiom",
+      "phonetic": "/siː aɪ tuː aɪ/",
+      "answer": "nhất trí, cùng quan điểm",
+      "explanation": "My manager and I don't always see eye to eye, but we respect each other.\n→ Tôi và quản lý không phải lúc nào cũng cùng quan điểm nhưng chúng tôi tôn trọng nhau.\nLưu ý: Thường dùng ở dạng phủ định."
+    },
+    {
+      "question": "mediate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈmiːdieɪt/",
+      "answer": "hòa giải, làm trung gian",
+      "explanation": "I mediated between two teammates who disagreed.\n→ Tôi đã hòa giải giữa hai đồng đội đang bất đồng."
+    }
+  ]
+}

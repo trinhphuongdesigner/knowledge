@@ -1,0 +1,269 @@
+{
+  "slug": "it-english-07-git-collaboration",
+  "order": 27,
+  "title": "IT English 7 · Git & cộng tác code",
+  "description": "Thuật ngữ Git và quy trình cộng tác code (CEFR B1–B2). Dùng khi viết commit message, mở pull request, review code và thảo luận xử lý conflict với đồng đội nước ngoài.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "version control",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvɜːrʒən kənˌtroʊl/",
+      "answer": "quản lý phiên bản",
+      "explanation": "Git is the most popular version control system.\n→ Git là hệ thống quản lý phiên bản phổ biến nhất."
+    },
+    {
+      "question": "repository",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈpɑːzətɔːri/",
+      "answer": "kho mã nguồn (repository)",
+      "explanation": "Clone the repository and run the install command.\n→ Hãy clone repository và chạy lệnh cài đặt.\nLưu ý: thường gọi tắt là \"repo\" /ˈriːpoʊ/."
+    },
+    {
+      "question": "clone",
+      "partOfSpeech": "verb",
+      "phonetic": "/kloʊn/",
+      "answer": "sao chép repository về máy",
+      "explanation": "Clone the repo to your local machine first.\n→ Trước tiên hãy clone repo về máy của bạn."
+    },
+    {
+      "question": "fork",
+      "partOfSpeech": "verb",
+      "phonetic": "/fɔːrk/",
+      "answer": "tạo bản sao repository dưới tài khoản của mình",
+      "explanation": "Fork the repository and send us a pull request.\n→ Hãy fork repository và gửi cho chúng tôi một pull request.\nLưu ý: cũng là danh từ: \"a fork of the project\"."
+    },
+    {
+      "question": "branch",
+      "partOfSpeech": "noun",
+      "phonetic": "/bræntʃ/",
+      "answer": "nhánh",
+      "explanation": "I created a new branch for the login feature.\n→ Tôi đã tạo một nhánh mới cho tính năng đăng nhập.\nLưu ý: \"create / switch to a branch\"."
+    },
+    {
+      "question": "feature branch",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfiːtʃər bræntʃ/",
+      "answer": "nhánh tính năng",
+      "explanation": "Don't push directly to main; use a feature branch.\n→ Đừng push trực tiếp lên main; hãy dùng một feature branch."
+    },
+    {
+      "question": "checkout",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtʃekaʊt/",
+      "answer": "chuyển sang nhánh/commit khác (checkout)",
+      "explanation": "Checkout the develop branch and pull the latest changes.\n→ Hãy checkout nhánh develop và pull các thay đổi mới nhất.\nLưu ý: trong lệnh là \"git checkout\"; cụm \"check out\" (hai từ, động từ) nghĩa thường là xem thử."
+    },
+    {
+      "question": "staging area",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsteɪdʒɪŋ ˌeriə/",
+      "answer": "vùng chuẩn bị commit (staging area)",
+      "explanation": "Add the file to the staging area before you commit.\n→ Hãy thêm tệp vào staging area trước khi commit."
+    },
+    {
+      "question": "commit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːmɪt/",
+      "answer": "bản ghi thay đổi (commit)",
+      "explanation": "Please keep each commit small and focused.\n→ Hãy giữ mỗi commit nhỏ và tập trung vào một việc.\nLưu ý: động từ \"commit\" nhấn âm hai /kəˈmɪt/: \"commit your changes\"."
+    },
+    {
+      "question": "commit message",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈmɪt ˌmesɪdʒ/",
+      "answer": "nội dung mô tả commit",
+      "explanation": "Write a clear commit message that explains why you made the change.\n→ Hãy viết commit message rõ ràng giải thích vì sao bạn thay đổi."
+    },
+    {
+      "question": "push",
+      "partOfSpeech": "verb",
+      "phonetic": "/pʊʃ/",
+      "answer": "đẩy commit lên remote",
+      "explanation": "I'll push my changes to the remote branch.\n→ Tôi sẽ push các thay đổi lên nhánh remote.\nLưu ý: \"push a commit\", \"push to origin\"."
+    },
+    {
+      "question": "pull",
+      "partOfSpeech": "verb",
+      "phonetic": "/pʊl/",
+      "answer": "kéo thay đổi từ remote về",
+      "explanation": "Pull the latest changes before you start working.\n→ Hãy pull các thay đổi mới nhất trước khi bắt đầu làm."
+    },
+    {
+      "question": "fetch",
+      "partOfSpeech": "verb",
+      "phonetic": "/fetʃ/",
+      "answer": "tải thay đổi từ remote mà chưa gộp",
+      "explanation": "Fetch first to see what changed on the remote.\n→ Hãy fetch trước để xem remote có gì thay đổi.\nLưu ý: fetch chỉ tải về, còn pull = fetch + merge."
+    },
+    {
+      "question": "git remote",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌgɪt rɪˈmoʊt/",
+      "answer": "kho từ xa (remote)",
+      "explanation": "Add the company repo as a remote.\n→ Hãy thêm repo của công ty làm remote.\nLưu ý: \"origin\" là tên remote mặc định."
+    },
+    {
+      "question": "upstream",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌʌpˈstriːm/",
+      "answer": "kho gốc phía trên (upstream)",
+      "explanation": "Sync your fork with the upstream repository.\n→ Hãy đồng bộ fork của bạn với repository upstream.\nLưu ý: cũng dùng như trạng từ/tính từ: \"push upstream\"."
+    },
+    {
+      "question": "merge",
+      "partOfSpeech": "verb",
+      "phonetic": "/mɜːrdʒ/",
+      "answer": "gộp (nhánh)",
+      "explanation": "Merge the feature branch into main after the review.\n→ Gộp feature branch vào main sau khi review.\nLưu ý: danh từ \"merge\" giống hệt."
+    },
+    {
+      "question": "rebase",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈbeɪs/",
+      "answer": "đặt lại nền của nhánh lên commit mới hơn (rebase)",
+      "explanation": "I'll rebase my branch onto main to get the latest changes.\n→ Tôi sẽ rebase nhánh của mình lên main để lấy các thay đổi mới nhất.\nLưu ý: \"rebase onto main\"."
+    },
+    {
+      "question": "squash",
+      "partOfSpeech": "verb",
+      "phonetic": "/skwɑːʃ/",
+      "answer": "gộp nhiều commit thành một",
+      "explanation": "Please squash your commits before merging.\n→ Vui lòng squash các commit trước khi merge."
+    },
+    {
+      "question": "merge conflict",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɝːdʒ ˌkɑːnflɪkt/",
+      "answer": "xung đột khi merge",
+      "explanation": "I have a conflict in the config file.\n→ Tôi bị xung đột ở tệp cấu hình.\nLưu ý: \"resolve a conflict\" là giải quyết xung đột; động từ \"conflict\" nhấn âm hai /kənˈflɪkt/."
+    },
+    {
+      "question": "pull request",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʊl rɪˌkwest/",
+      "answer": "yêu cầu gộp code (pull request)",
+      "explanation": "I opened a pull request for the bug fix.\n→ Tôi đã mở một pull request cho bản sửa lỗi.\nLưu ý: \"open / create a pull request\"; viết tắt PR."
+    },
+    {
+      "question": "code review",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkoʊd rɪˌvjuː/",
+      "answer": "đánh giá code",
+      "explanation": "Thanks for the quick code review!\n→ Cảm ơn bạn đã review code nhanh!\nLưu ý: \"review code\" là động từ; \"do a code review\"."
+    },
+    {
+      "question": "reviewer",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈvjuːər/",
+      "answer": "người review code",
+      "explanation": "Please add Anna as a reviewer.\n→ Vui lòng thêm Anna làm người review."
+    },
+    {
+      "question": "approve",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈpruːv/",
+      "answer": "chấp thuận (pull request)",
+      "explanation": "I approved your pull request; you can merge it.\n→ Tôi đã duyệt pull request của bạn; bạn có thể merge."
+    },
+    {
+      "question": "LGTM",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌel ɡiː tiː ˈem/",
+      "answer": "\"Có vẻ ổn\" (LGTM, dùng khi duyệt PR)",
+      "explanation": "LGTM, ready to merge.\n→ LGTM, sẵn sàng để merge.\nLưu ý: viết tắt của \"looks good to me\"."
+    },
+    {
+      "question": "nit",
+      "partOfSpeech": "noun",
+      "phonetic": "/nɪt/",
+      "answer": "nhận xét nhỏ không quan trọng (nit)",
+      "explanation": "Nit: please rename this variable to something clearer.\n→ Nit: hãy đổi tên biến này thành tên rõ ràng hơn.\nLưu ý: thường viết \"nit:\" ở đầu comment nhỏ trong PR."
+    },
+    {
+      "question": "WIP",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdʌbljuː aɪ ˈpiː/",
+      "answer": "đang làm dở (work in progress)",
+      "explanation": "I marked the pull request as WIP because it's not finished.\n→ Tôi đánh dấu pull request là WIP vì nó chưa xong."
+    },
+    {
+      "question": "revert",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈvɜːrt/",
+      "answer": "hoàn tác (một commit)",
+      "explanation": "Let's revert the last commit because it broke the build.\n→ Hãy revert commit cuối cùng vì nó làm hỏng bản build.\nLưu ý: git revert tạo commit mới để hoàn tác, không xóa lịch sử."
+    },
+    {
+      "question": "cherry-pick",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtʃeri pɪk/",
+      "answer": "chọn lấy một commit cụ thể áp vào nhánh khác",
+      "explanation": "Cherry-pick the fix into the release branch.\n→ Hãy cherry-pick bản sửa lỗi vào nhánh release."
+    },
+    {
+      "question": "stash",
+      "partOfSpeech": "verb",
+      "phonetic": "/stæʃ/",
+      "answer": "cất tạm thay đổi chưa commit",
+      "explanation": "Stash your changes before you switch branches.\n→ Hãy stash các thay đổi trước khi chuyển nhánh.\nLưu ý: danh từ \"stash\" là chỗ cất tạm; \"git stash pop\" lấy lại."
+    },
+    {
+      "question": "diff",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪf/",
+      "answer": "sự khác biệt giữa hai phiên bản code (diff)",
+      "explanation": "The diff is too big to review in one go.\n→ Diff quá lớn để review một lần."
+    },
+    {
+      "question": "force push",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈfɔːrs pʊʃ/",
+      "answer": "push ép, ghi đè lịch sử trên remote",
+      "explanation": "Never force push to the main branch.\n→ Đừng bao giờ force push lên nhánh main.\nLưu ý: dùng khi đã rebase; rất nguy hiểm trên nhánh dùng chung."
+    },
+    {
+      "question": "hotfix",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːtfɪks/",
+      "answer": "bản vá nóng (sửa khẩn cấp)",
+      "explanation": "We shipped a hotfix to production last night.\n→ Chúng tôi đã đưa một bản vá nóng lên production tối qua."
+    },
+    {
+      "question": "tag",
+      "partOfSpeech": "noun",
+      "phonetic": "/tæɡ/",
+      "answer": "nhãn đánh dấu phiên bản (tag)",
+      "explanation": "We created a tag for version 1.2.0.\n→ Chúng tôi đã tạo một tag cho phiên bản 1.2.0."
+    },
+    {
+      "question": "blame",
+      "partOfSpeech": "noun",
+      "phonetic": "/bleɪm/",
+      "answer": "xem ai sửa dòng code nào (git blame)",
+      "explanation": "I used git blame to find out who changed this line.\n→ Tôi dùng git blame để biết ai đã sửa dòng này.\nLưu ý: nghĩa thường là \"đổ lỗi\"; trong Git chỉ để truy vết thay đổi."
+    },
+    {
+      "question": "open source",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌoʊpən ˈsɔːrs/",
+      "answer": "mã nguồn mở",
+      "explanation": "The library is open source, so you can read the code.\n→ Thư viện này là mã nguồn mở, nên bạn có thể đọc code."
+    },
+    {
+      "question": "maintainer",
+      "partOfSpeech": "noun",
+      "phonetic": "/meɪnˈteɪnər/",
+      "answer": "người duy trì dự án",
+      "explanation": "The maintainer replied to my issue within a day.\n→ Người duy trì dự án đã phản hồi issue của tôi trong vòng một ngày."
+    },
+    {
+      "question": "contributor",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈtrɪbjətər/",
+      "answer": "người đóng góp",
+      "explanation": "We welcome new contributors to the project.\n→ Chúng tôi chào đón những người đóng góp mới cho dự án."
+    }
+  ]
+}

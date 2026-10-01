@@ -1,0 +1,255 @@
+{
+  "slug": "life-work-01-personal-family",
+  "order": 1,
+  "title": "Life & Work 1 · Bản thân & gia đình",
+  "description": "Từ vựng cấp độ A1–A2 để giới thiệu bản thân, quê quán, gia đình và học vấn. Dùng khi trả lời HR, nhà tuyển dụng hoặc làm quen với đồng nghiệp nước ngoài.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "introduce",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌɪntrəˈduːs/",
+      "answer": "giới thiệu",
+      "explanation": "Let me introduce myself. I'm Linh, a backend developer.\n→ Để tôi tự giới thiệu. Tôi là Linh, một lập trình viên backend.\nLưu ý: introduce myself = tự giới thiệu; introduce A to B = giới thiệu A với B."
+    },
+    {
+      "question": "hometown",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhoʊmˌtaʊn/",
+      "answer": "quê quán, quê nhà",
+      "explanation": "My hometown is Da Nang, but I live in Ho Chi Minh City now.\n→ Quê tôi ở Đà Nẵng, nhưng bây giờ tôi sống ở TP. Hồ Chí Minh."
+    },
+    {
+      "question": "grow up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ɡroʊ ʌp/",
+      "answer": "lớn lên, trưởng thành",
+      "explanation": "I grew up in a small town near Hue.\n→ Tôi lớn lên ở một thị trấn nhỏ gần Huế."
+    },
+    {
+      "question": "sibling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪblɪŋ/",
+      "answer": "anh chị em ruột",
+      "explanation": "Do you have any siblings? — Yes, one younger sister.\n→ Bạn có anh chị em không? — Có, một em gái.\nLưu ý: Dùng chung cho cả anh, chị, em; không phân biệt giới tính."
+    },
+    {
+      "question": "married",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈmærid/",
+      "answer": "đã kết hôn",
+      "explanation": "I've been married for three years.\n→ Tôi đã kết hôn được ba năm."
+    },
+    {
+      "question": "single",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈsɪŋɡəl/",
+      "answer": "độc thân",
+      "explanation": "I'm single, so I can work flexible hours.\n→ Tôi độc thân nên có thể làm việc giờ giấc linh hoạt."
+    },
+    {
+      "question": "live with",
+      "partOfSpeech": "collocation",
+      "phonetic": "/lɪv wɪð/",
+      "answer": "sống cùng",
+      "explanation": "I live with my parents to save money.\n→ Tôi sống cùng bố mẹ để tiết kiệm tiền."
+    },
+    {
+      "question": "graduate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈɡrædʒueɪt/",
+      "answer": "tốt nghiệp",
+      "explanation": "I graduated from the University of Science in 2021.\n→ Tôi tốt nghiệp Đại học Khoa học Tự nhiên năm 2021.\nLưu ý: graduate from + trường; danh từ \"graduate\" đọc /ˈɡrædʒuət/."
+    },
+    {
+      "question": "major",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmeɪdʒər/",
+      "answer": "chuyên ngành",
+      "explanation": "My major was Computer Science.\n→ Chuyên ngành của tôi là Khoa học Máy tính.\nLưu ý: Động từ: major in + ngành (I majored in Math)."
+    },
+    {
+      "question": "background",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækɡraʊnd/",
+      "answer": "xuất thân, nền tảng (học vấn, kinh nghiệm)",
+      "explanation": "I have a background in mobile development.\n→ Tôi có nền tảng về phát triển ứng dụng di động."
+    },
+    {
+      "question": "only child",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈoʊnli tʃaɪld/",
+      "answer": "con một",
+      "explanation": "I'm an only child, so I'm used to working independently.\n→ Tôi là con một nên quen với việc làm việc độc lập."
+    },
+    {
+      "question": "be born in",
+      "partOfSpeech": "phrase",
+      "phonetic": "/bi bɔːrn ɪn/",
+      "answer": "sinh ra ở / vào năm",
+      "explanation": "I was born in 1999 in Hanoi.\n→ Tôi sinh năm 1999 ở Hà Nội."
+    },
+    {
+      "question": "twin",
+      "partOfSpeech": "noun",
+      "phonetic": "/twɪn/",
+      "answer": "anh/chị/em sinh đôi",
+      "explanation": "I have a twin sister who also works in IT.\n→ Tôi có một chị/em gái sinh đôi cũng làm trong ngành IT.\nLưu ý: identical twins = sinh đôi cùng trứng."
+    },
+    {
+      "question": "parents",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈperənts/",
+      "answer": "bố mẹ, cha mẹ",
+      "explanation": "My parents are both teachers.\n→ Bố mẹ tôi đều là giáo viên.\nLưu ý: Không nhầm với \"relatives\" (họ hàng)."
+    },
+    {
+      "question": "grandparents",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡrænˌperənts/",
+      "answer": "ông bà",
+      "explanation": "I visit my grandparents every Tet holiday.\n→ Tôi về thăm ông bà mỗi dịp Tết."
+    },
+    {
+      "question": "cousin",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌzən/",
+      "answer": "anh chị em họ",
+      "explanation": "My cousin works for a software company in Singapore.\n→ Anh họ tôi làm cho một công ty phần mềm ở Singapore."
+    },
+    {
+      "question": "relative",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrelətɪv/",
+      "answer": "họ hàng, người thân",
+      "explanation": "Most of my relatives live in the countryside.\n→ Phần lớn họ hàng của tôi sống ở quê."
+    },
+    {
+      "question": "husband",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhʌzbənd/",
+      "answer": "chồng",
+      "explanation": "My husband is an accountant.\n→ Chồng tôi là kế toán."
+    },
+    {
+      "question": "wife",
+      "partOfSpeech": "noun",
+      "phonetic": "/waɪf/",
+      "answer": "vợ",
+      "explanation": "My wife supports my decision to change jobs.\n→ Vợ tôi ủng hộ quyết định đổi việc của tôi.\nLưu ý: Số nhiều: wives /waɪvz/."
+    },
+    {
+      "question": "engaged",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪnˈɡeɪdʒd/",
+      "answer": "đã đính hôn",
+      "explanation": "I'm engaged, and we're getting married next spring.\n→ Tôi đã đính hôn và chúng tôi sẽ cưới vào mùa xuân tới."
+    },
+    {
+      "question": "in a relationship",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɪn ə rɪˈleɪʃənʃɪp/",
+      "answer": "đang có người yêu",
+      "explanation": "I'm in a relationship with a designer from my old company.\n→ Tôi đang yêu một bạn designer ở công ty cũ."
+    },
+    {
+      "question": "nationality",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌnæʃəˈnæləti/",
+      "answer": "quốc tịch",
+      "explanation": "What's your nationality? — I'm Vietnamese.\n→ Quốc tịch của bạn là gì? — Tôi là người Việt Nam."
+    },
+    {
+      "question": "originally",
+      "partOfSpeech": "adverb",
+      "phonetic": "/əˈrɪdʒənəli/",
+      "answer": "vốn dĩ, ban đầu (quê gốc)",
+      "explanation": "I'm originally from Can Tho, but I moved to Saigon for work.\n→ Tôi vốn ở Cần Thơ nhưng chuyển lên Sài Gòn để làm việc."
+    },
+    {
+      "question": "currently",
+      "partOfSpeech": "adverb",
+      "phonetic": "/ˈkɜːrəntli/",
+      "answer": "hiện tại, hiện nay",
+      "explanation": "I'm currently working as a freelance developer.\n→ Hiện tại tôi đang làm lập trình viên tự do.\nLưu ý: \"currently\" thường đi với thì hiện tại tiếp diễn."
+    },
+    {
+      "question": "move to",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/muːv tuː/",
+      "answer": "chuyển đến",
+      "explanation": "I moved to Ho Chi Minh City after graduating.\n→ Tôi chuyển đến TP. Hồ Chí Minh sau khi tốt nghiệp."
+    },
+    {
+      "question": "be from",
+      "partOfSpeech": "phrase",
+      "phonetic": "/bi frʌm/",
+      "answer": "đến từ, quê ở",
+      "explanation": "Where are you from? — I'm from Hai Phong.\n→ Bạn đến từ đâu? — Tôi đến từ Hải Phòng."
+    },
+    {
+      "question": "neighborhood",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈneɪbərˌhʊd/",
+      "answer": "khu phố, khu dân cư",
+      "explanation": "I live in a quiet neighborhood close to the office.\n→ Tôi sống trong một khu phố yên tĩnh gần văn phòng.\nLưu ý: Anh-Anh viết \"neighbourhood\"."
+    },
+    {
+      "question": "degree",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈɡriː/",
+      "answer": "bằng cấp, bằng đại học",
+      "explanation": "I have a degree in Information Technology.\n→ Tôi có bằng đại học ngành Công nghệ Thông tin.\nLưu ý: have a degree in + ngành."
+    },
+    {
+      "question": "look after",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/lʊk ˈæftər/",
+      "answer": "chăm sóc, trông nom",
+      "explanation": "I look after my younger brother when my parents are away.\n→ Tôi chăm sóc em trai khi bố mẹ đi vắng."
+    },
+    {
+      "question": "get along with",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ɡet əˈlɔːŋ wɪð/",
+      "answer": "hòa thuận với",
+      "explanation": "I get along well with my coworkers.\n→ Tôi hòa thuận với các đồng nghiệp."
+    },
+    {
+      "question": "take after",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/teɪk ˈæftər/",
+      "answer": "giống (bố/mẹ) về tính cách hoặc ngoại hình",
+      "explanation": "I take after my mother; we're both very organized.\n→ Tôi giống mẹ; cả hai chúng tôi đều rất ngăn nắp."
+    },
+    {
+      "question": "nickname",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnɪkneɪm/",
+      "answer": "biệt danh, tên gọi thân mật",
+      "explanation": "My nickname is Bin, so you can call me that.\n→ Biệt danh của tôi là Bin nên bạn có thể gọi tôi như vậy."
+    },
+    {
+      "question": "eldest",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈeldəst/",
+      "answer": "lớn tuổi nhất (trong anh chị em)",
+      "explanation": "I'm the eldest of three, so I feel responsible for my family.\n→ Tôi là con cả trong ba anh chị em nên cảm thấy có trách nhiệm với gia đình.\nLưu ý: the eldest son/daughter = con trai/gái cả."
+    },
+    {
+      "question": "youngest",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈjʌŋɡəst/",
+      "answer": "nhỏ tuổi nhất (trong anh chị em)",
+      "explanation": "I'm the youngest in my family, so I'm a bit spoiled.\n→ Tôi là út trong nhà nên hơi được chiều."
+    },
+    {
+      "question": "close-knit",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌkloʊs ˈnɪt/",
+      "answer": "gắn bó, thân thiết (gia đình, nhóm)",
+      "explanation": "We're a close-knit family and have dinner together every night.\n→ Gia đình tôi rất gắn bó và tối nào cũng ăn cơm cùng nhau."
+    }
+  ]
+}

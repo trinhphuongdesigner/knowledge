@@ -1,0 +1,269 @@
+{
+  "slug": "it-english-06-backend-api-database",
+  "order": 26,
+  "title": "IT English 6 · Backend, API & Database",
+  "description": "Thuật ngữ backend, API và cơ sở dữ liệu (CEFR B1–B2). Dùng khi đọc tài liệu API, mô tả vấn đề hiệu năng trong ticket và thảo luận thiết kế với đồng nghiệp nước ngoài.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "API",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌeɪ piː ˈaɪ/",
+      "answer": "giao diện lập trình ứng dụng (API)",
+      "explanation": "The mobile app calls our API to get the product list.\n→ Ứng dụng di động gọi API của chúng ta để lấy danh sách sản phẩm."
+    },
+    {
+      "question": "REST",
+      "partOfSpeech": "noun",
+      "phonetic": "/rest/",
+      "answer": "kiến trúc REST (kiểu thiết kế API)",
+      "explanation": "Our backend exposes a REST API.\n→ Backend của chúng tôi cung cấp một REST API.\nLưu ý: đọc như từ \"rest\" (nghỉ ngơi)."
+    },
+    {
+      "question": "endpoint",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈendpɔɪnt/",
+      "answer": "điểm cuối API (endpoint)",
+      "explanation": "The /users endpoint returns a list of users.\n→ Endpoint /users trả về danh sách người dùng."
+    },
+    {
+      "question": "route",
+      "partOfSpeech": "noun",
+      "phonetic": "/ruːt/",
+      "answer": "đường dẫn xử lý (route)",
+      "explanation": "Add a new route for the payment callback.\n→ Hãy thêm một route mới cho callback thanh toán.\nLưu ý: trong tiếng Anh Mỹ, \"route\" cũng có thể đọc /raʊt/ khi nói về đường đi."
+    },
+    {
+      "question": "request body",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈkwest ˌbɑːdi/",
+      "answer": "phần thân của yêu cầu",
+      "explanation": "Send the user data in the request body as JSON.\n→ Hãy gửi dữ liệu người dùng trong request body dưới dạng JSON."
+    },
+    {
+      "question": "payload",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪloʊd/",
+      "answer": "dữ liệu gửi kèm (payload)",
+      "explanation": "The payload is too large, so the server rejects it.\n→ Payload quá lớn nên máy chủ từ chối nó."
+    },
+    {
+      "question": "header",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedər/",
+      "answer": "phần đầu yêu cầu/phản hồi (header)",
+      "explanation": "Add the token to the Authorization header.\n→ Hãy thêm token vào header Authorization."
+    },
+    {
+      "question": "authentication",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɔːˌθentɪˈkeɪʃən/",
+      "answer": "xác thực (bạn là ai)",
+      "explanation": "Authentication fails when the password is wrong.\n→ Xác thực thất bại khi mật khẩu sai.\nLưu ý: authentication = xác thực danh tính; authorization = cấp quyền truy cập."
+    },
+    {
+      "question": "authorization",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɔːθərəˈzeɪʃən/",
+      "answer": "phân quyền (được làm gì)",
+      "explanation": "The user is logged in but lacks authorization to delete this record.\n→ Người dùng đã đăng nhập nhưng không có quyền xóa bản ghi này."
+    },
+    {
+      "question": "database",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtəbeɪs/",
+      "answer": "cơ sở dữ liệu",
+      "explanation": "We store all orders in a database.\n→ Chúng tôi lưu mọi đơn hàng trong một cơ sở dữ liệu."
+    },
+    {
+      "question": "table",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈteɪbəl/",
+      "answer": "bảng (trong cơ sở dữ liệu)",
+      "explanation": "Add a new column to the users table.\n→ Hãy thêm một cột mới vào bảng users."
+    },
+    {
+      "question": "record",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrekərd/",
+      "answer": "bản ghi",
+      "explanation": "The query returns only one record.\n→ Truy vấn chỉ trả về một bản ghi.\nLưu ý: danh từ nhấn âm đầu; động từ \"record\" /rɪˈkɔːrd/ nghĩa là ghi lại."
+    },
+    {
+      "question": "query",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkwɪri/",
+      "answer": "truy vấn",
+      "explanation": "This query is slow because the table is huge.\n→ Truy vấn này chậm vì bảng quá lớn.\nLưu ý: cũng là động từ: \"query the database\"."
+    },
+    {
+      "question": "SQL",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes kjuː ˈel/",
+      "answer": "ngôn ngữ truy vấn SQL",
+      "explanation": "I wrote a SQL query to find duplicate emails.\n→ Tôi đã viết một truy vấn SQL để tìm email trùng.\nLưu ý: cũng có người đọc là /ˈsiːkwəl/."
+    },
+    {
+      "question": "schema",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskiːmə/",
+      "answer": "lược đồ (cấu trúc cơ sở dữ liệu)",
+      "explanation": "Please check the database schema before you change the model.\n→ Vui lòng kiểm tra schema cơ sở dữ liệu trước khi đổi model.\nLưu ý: schema mô tả bảng, cột và quan hệ."
+    },
+    {
+      "question": "index",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪndeks/",
+      "answer": "chỉ mục (giúp truy vấn nhanh)",
+      "explanation": "Adding an index on the email column made the query much faster.\n→ Thêm chỉ mục cho cột email giúp truy vấn nhanh hơn nhiều.\nLưu ý: số nhiều là \"indexes\" (database) hoặc \"indices\"."
+    },
+    {
+      "question": "primary key",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpraɪmeri ˈkiː/",
+      "answer": "khóa chính",
+      "explanation": "Each row has a unique primary key.\n→ Mỗi dòng có một khóa chính duy nhất."
+    },
+    {
+      "question": "foreign key",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌfɔːrən ˈkiː/",
+      "answer": "khóa ngoại",
+      "explanation": "The orders table has a foreign key that points to users.\n→ Bảng orders có một khóa ngoại trỏ đến bảng users."
+    },
+    {
+      "question": "join",
+      "partOfSpeech": "noun",
+      "phonetic": "/dʒɔɪn/",
+      "answer": "phép nối bảng (join)",
+      "explanation": "The query uses a join to combine orders and customers.\n→ Truy vấn dùng phép nối để kết hợp đơn hàng và khách hàng.\nLưu ý: cũng là động từ: \"join two tables\"."
+    },
+    {
+      "question": "migration",
+      "partOfSpeech": "noun",
+      "phonetic": "/maɪˈɡreɪʃən/",
+      "answer": "migration (thay đổi cấu trúc cơ sở dữ liệu)",
+      "explanation": "I'll write a migration to add the new column.\n→ Tôi sẽ viết một migration để thêm cột mới.\nLưu ý: \"run a migration\" là chạy migration."
+    },
+    {
+      "question": "transaction",
+      "partOfSpeech": "noun",
+      "phonetic": "/trænˈzækʃən/",
+      "answer": "giao dịch (trong cơ sở dữ liệu)",
+      "explanation": "Wrap both updates in a transaction so they succeed or fail together.\n→ Hãy gói cả hai lần cập nhật trong một transaction để chúng cùng thành công hoặc cùng thất bại."
+    },
+    {
+      "question": "CRUD",
+      "partOfSpeech": "noun",
+      "phonetic": "/krʌd/",
+      "answer": "các thao tác tạo, đọc, sửa, xóa (CRUD)",
+      "explanation": "This endpoint supports basic CRUD operations.\n→ Endpoint này hỗ trợ các thao tác CRUD cơ bản.\nLưu ý: CRUD = create, read, update, delete."
+    },
+    {
+      "question": "ORM",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌoʊ ɑːr ˈem/",
+      "answer": "công cụ ánh xạ đối tượng - quan hệ (ORM)",
+      "explanation": "We use an ORM instead of writing raw SQL.\n→ Chúng tôi dùng ORM thay vì viết SQL thuần."
+    },
+    {
+      "question": "middleware",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɪdlwer/",
+      "answer": "phần mềm trung gian (middleware)",
+      "explanation": "The authentication middleware checks the token on every request.\n→ Middleware xác thực kiểm tra token trên mọi yêu cầu."
+    },
+    {
+      "question": "latency",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleɪtənsi/",
+      "answer": "độ trễ",
+      "explanation": "The API latency increased after the last deploy.\n→ Độ trễ của API tăng lên sau lần deploy gần nhất."
+    },
+    {
+      "question": "throughput",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈθruːpʊt/",
+      "answer": "thông lượng (số yêu cầu xử lý mỗi giây)",
+      "explanation": "The new server doubled our throughput.\n→ Máy chủ mới đã tăng gấp đôi thông lượng của chúng ta.\nLưu ý: latency là thời gian chờ một yêu cầu; throughput là số lượng xử lý trong một đơn vị thời gian."
+    },
+    {
+      "question": "rate limit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈreɪt ˌlɪmɪt/",
+      "answer": "giới hạn tần suất gọi API",
+      "explanation": "We hit the rate limit of the third-party API.\n→ Chúng tôi đã chạm giới hạn tần suất của API bên thứ ba.\nLưu ý: động từ \"rate-limit\"; lỗi thường gặp 429 Too Many Requests."
+    },
+    {
+      "question": "pagination",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpædʒɪˈneɪʃən/",
+      "answer": "phân trang",
+      "explanation": "The endpoint needs pagination because it returns thousands of items.\n→ Endpoint này cần phân trang vì nó trả về hàng nghìn mục."
+    },
+    {
+      "question": "queue",
+      "partOfSpeech": "noun",
+      "phonetic": "/kjuː/",
+      "answer": "hàng đợi",
+      "explanation": "Emails are sent through a queue in the background.\n→ Email được gửi qua một hàng đợi chạy ngầm.\nLưu ý: đọc /kjuː/, giống chữ \"Q\"."
+    },
+    {
+      "question": "retry",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈtraɪ/",
+      "answer": "thử lại",
+      "explanation": "The client will retry the request three times.\n→ Client sẽ thử lại yêu cầu ba lần."
+    },
+    {
+      "question": "webhook",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwebhʊk/",
+      "answer": "webhook (server tự động gọi về khi có sự kiện)",
+      "explanation": "The payment provider calls our webhook when a payment succeeds.\n→ Nhà cung cấp thanh toán gọi webhook của chúng ta khi thanh toán thành công."
+    },
+    {
+      "question": "concurrent",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kənˈkɜːrənt/",
+      "answer": "đồng thời",
+      "explanation": "The server can handle a thousand concurrent users.\n→ Máy chủ có thể xử lý một nghìn người dùng đồng thời."
+    },
+    {
+      "question": "connection pool",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈnekʃən puːl/",
+      "answer": "nhóm kết nối cơ sở dữ liệu",
+      "explanation": "Increase the connection pool size to avoid timeouts.\n→ Hãy tăng kích thước connection pool để tránh bị timeout."
+    },
+    {
+      "question": "serialize",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈsɪriəlaɪz/",
+      "answer": "tuần tự hóa (chuyển object thành chuỗi như JSON)",
+      "explanation": "We serialize the object to JSON before sending it.\n→ Chúng tôi tuần tự hóa object thành JSON trước khi gửi."
+    },
+    {
+      "question": "deprecated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdeprəkeɪtɪd/",
+      "answer": "không còn khuyến khích, sắp bị loại bỏ",
+      "explanation": "This endpoint is deprecated; please use the v2 API.\n→ Endpoint này đã lỗi thời; vui lòng dùng API v2.\nLưu ý: động từ \"deprecate\" /ˈdeprəkeɪt/."
+    },
+    {
+      "question": "logging",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɔːɡɪŋ/",
+      "answer": "việc ghi log",
+      "explanation": "Add more logging to find out why the job fails.\n→ Hãy thêm ghi log để tìm hiểu vì sao job bị lỗi."
+    },
+    {
+      "question": "stack trace",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstæk treɪs/",
+      "answer": "dấu vết ngăn xếp (stack trace)",
+      "explanation": "Please paste the full stack trace in the ticket.\n→ Vui lòng dán toàn bộ stack trace vào ticket."
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "slug": "it-english-09-security",
+  "order": 29,
+  "title": "IT English 9 · Bảo mật",
+  "description": "Từ vựng bảo mật thông tin ở mức B2: lỗ hổng, mã hóa, tấn công, khắc phục. Dùng trong security review, báo cáo sự cố và trao đổi với đội bảo mật nước ngoài.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "vulnerability",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌvʌlnərəˈbɪləti/",
+      "answer": "lỗ hổng bảo mật (vulnerability)",
+      "explanation": "The scan found a critical vulnerability in an outdated library.\n→ Bản quét phát hiện một lỗ hổng nghiêm trọng trong thư viện đã cũ.\nLưu ý: CVE là mã định danh lỗ hổng công khai."
+    },
+    {
+      "question": "exploit",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪkˈsplɔɪt/",
+      "answer": "khai thác (lỗ hổng) để tấn công",
+      "explanation": "An attacker could exploit this endpoint to read other users' data.\n→ Kẻ tấn công có thể khai thác endpoint này để đọc dữ liệu người dùng khác.\nLưu ý: danh từ /ˈeksplɔɪt/: đoạn mã khai thác; nhấn âm khác nhau."
+    },
+    {
+      "question": "attack surface",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈtæk ˌsɜːrfɪs/",
+      "answer": "bề mặt tấn công",
+      "explanation": "Every public endpoint increases our attack surface.\n→ Mỗi endpoint công khai làm tăng bề mặt tấn công của chúng ta.\nLưu ý: reduce/minimize the attack surface."
+    },
+    {
+      "question": "threat model",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈθret ˌmɑːdəl/",
+      "answer": "mô hình hóa mối đe dọa (threat model)",
+      "explanation": "Let's write a threat model before we expose this API.\n→ Hãy viết threat model trước khi mở API này ra ngoài.\nLưu ý: threat modeling = quá trình làm; STRIDE là một phương pháp."
+    },
+    {
+      "question": "encryption",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈkrɪpʃən/",
+      "answer": "mã hóa (encryption)",
+      "explanation": "All backups are protected with encryption at rest.\n→ Mọi bản backup đều được bảo vệ bằng mã hóa khi lưu trữ.\nLưu ý: encryption at rest (khi lưu) vs. in transit (khi truyền)."
+    },
+    {
+      "question": "decrypt",
+      "partOfSpeech": "verb",
+      "phonetic": "/diːˈkrɪpt/",
+      "answer": "giải mã",
+      "explanation": "Only the billing service can decrypt these fields.\n→ Chỉ service billing mới giải mã được các trường này.\nLưu ý: encrypt ↔ decrypt."
+    },
+    {
+      "question": "hash",
+      "partOfSpeech": "verb",
+      "phonetic": "/hæʃ/",
+      "answer": "băm (hash) dữ liệu một chiều",
+      "explanation": "Never store passwords in plain text; hash them with bcrypt.\n→ Đừng bao giờ lưu mật khẩu dạng văn bản thuần; hãy băm bằng bcrypt.\nLưu ý: hash khác encrypt: hash không giải ngược được; thường dùng thêm salt."
+    },
+    {
+      "question": "salt",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɔːlt/",
+      "answer": "salt (chuỗi ngẫu nhiên thêm vào trước khi băm)",
+      "explanation": "Each password gets a unique salt before hashing.\n→ Mỗi mật khẩu được thêm một salt riêng trước khi băm.\nLưu ý: salt chống rainbow table."
+    },
+    {
+      "question": "credential",
+      "partOfSpeech": "noun",
+      "phonetic": "/krɪˈdentʃəl/",
+      "answer": "thông tin xác thực (tài khoản, mật khẩu, khóa)",
+      "explanation": "Rotate the credentials if they were ever committed to Git.\n→ Hãy thay mới thông tin xác thực nếu chúng từng bị commit lên Git.\nLưu ý: thường dùng số nhiều: credentials; leaked/stolen credentials."
+    },
+    {
+      "question": "multi-factor authentication",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmʌlti ˈfæktər ɔːˌθentɪˈkeɪʃən/",
+      "answer": "xác thực đa yếu tố (MFA)",
+      "explanation": "We enforced multi-factor authentication for all admin accounts.\n→ Chúng tôi bắt buộc xác thực đa yếu tố cho mọi tài khoản admin.\nLưu ý: viết tắt MFA; 2FA là trường hợp hai yếu tố."
+    },
+    {
+      "question": "SQL injection",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes kjuː ˈel ɪnˈdʒekʃən/",
+      "answer": "tấn công chèn SQL (SQL injection)",
+      "explanation": "Parameterized queries prevent SQL injection.\n→ Truy vấn có tham số giúp ngăn chặn SQL injection.\nLưu ý: injection còn có command injection, XSS (cross-site scripting)."
+    },
+    {
+      "question": "cross-site scripting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkrɔːs saɪt ˈskrɪptɪŋ/",
+      "answer": "tấn công chèn script chéo trang (XSS)",
+      "explanation": "Unescaped user input led to a cross-site scripting bug.\n→ Dữ liệu người dùng không được escape gây ra lỗi XSS.\nLưu ý: viết tắt XSS /ˌeks es ˈes/."
+    },
+    {
+      "question": "sanitize",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈsænətaɪz/",
+      "answer": "làm sạch (dữ liệu đầu vào)",
+      "explanation": "Always sanitize user input before rendering it as HTML.\n→ Luôn làm sạch dữ liệu người dùng trước khi render thành HTML.\nLưu ý: sanitize vs. validate: validate kiểm tra hợp lệ, sanitize loại bỏ phần nguy hiểm."
+    },
+    {
+      "question": "breach",
+      "partOfSpeech": "noun",
+      "phonetic": "/briːtʃ/",
+      "answer": "vụ rò rỉ/xâm phạm dữ liệu (breach)",
+      "explanation": "The breach exposed email addresses of about ten thousand users.\n→ Vụ rò rỉ làm lộ địa chỉ email của khoảng mười nghìn người dùng.\nLưu ý: data breach; động từ: breach a system."
+    },
+    {
+      "question": "leak",
+      "partOfSpeech": "verb",
+      "phonetic": "/liːk/",
+      "answer": "làm rò rỉ",
+      "explanation": "Someone leaked the API key in a public repository.\n→ Ai đó đã làm lộ API key trong một repository công khai.\nLưu ý: leak a secret/credentials; danh từ: a leak."
+    },
+    {
+      "question": "mitigate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈmɪtɪɡeɪt/",
+      "answer": "giảm thiểu, khắc phục tạm thời rủi ro",
+      "explanation": "We mitigated the issue by blocking the offending IP range.\n→ Chúng tôi đã giảm thiểu vấn đề bằng cách chặn dải IP gây hại.\nLưu ý: mitigate a risk/an attack; mitigation ≠ fix hoàn toàn."
+    },
+    {
+      "question": "patch",
+      "partOfSpeech": "noun",
+      "phonetic": "/pætʃ/",
+      "answer": "bản vá lỗi (patch)",
+      "explanation": "A security patch was released this morning.\n→ Một bản vá bảo mật vừa được phát hành sáng nay.\nLưu ý: động từ: patch a server/vulnerability; apply a patch."
+    },
+    {
+      "question": "zero-day",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈziroʊ ˌdeɪ/",
+      "answer": "lỗ hổng zero-day (chưa có bản vá)",
+      "explanation": "The attackers used a zero-day in the VPN appliance.\n→ Kẻ tấn công đã dùng một lỗ hổng zero-day trên thiết bị VPN."
+    },
+    {
+      "question": "least privilege",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌliːst ˈprɪvəlɪdʒ/",
+      "answer": "nguyên tắc đặc quyền tối thiểu",
+      "explanation": "Follow least privilege: give the job read-only access.\n→ Hãy theo nguyên tắc đặc quyền tối thiểu: chỉ cấp cho job quyền đọc.\nLưu ý: principle of least privilege."
+    },
+    {
+      "question": "privilege escalation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɪvəlɪdʒ ˌeskəˈleɪʃən/",
+      "answer": "leo thang đặc quyền",
+      "explanation": "A misconfigured role allowed privilege escalation.\n→ Một role cấu hình sai đã cho phép leo thang đặc quyền."
+    },
+    {
+      "question": "access control",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈækses kənˌtroʊl/",
+      "answer": "kiểm soát truy cập",
+      "explanation": "We use role-based access control for the admin panel.\n→ Chúng tôi dùng kiểm soát truy cập theo vai trò cho trang quản trị.\nLưu ý: RBAC = role-based access control."
+    },
+    {
+      "question": "token",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtoʊkən/",
+      "answer": "token (chuỗi định danh/xác thực)",
+      "explanation": "The access token expires after fifteen minutes.\n→ Access token hết hạn sau mười lăm phút.\nLưu ý: access token, refresh token, revoke a token."
+    },
+    {
+      "question": "revoke",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈvoʊk/",
+      "answer": "thu hồi (quyền, token, chứng chỉ)",
+      "explanation": "Revoke the compromised key immediately.\n→ Hãy thu hồi khóa bị lộ ngay lập tức.\nLưu ý: revoke access/a certificate."
+    },
+    {
+      "question": "rotate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈroʊteɪt/",
+      "answer": "xoay vòng, thay mới định kỳ (khóa, mật khẩu)",
+      "explanation": "We rotate database credentials every ninety days.\n→ Chúng tôi thay mới thông tin đăng nhập database mỗi chín mươi ngày.\nLưu ý: rotate secrets/keys; secret rotation."
+    },
+    {
+      "question": "secret",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsiːkrət/",
+      "answer": "thông tin bí mật (khóa API, mật khẩu cấu hình)",
+      "explanation": "Never commit secrets to the repository.\n→ Đừng bao giờ commit secret lên repository.\nLưu ý: secrets manager, hard-coded secret."
+    },
+    {
+      "question": "phishing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪʃɪŋ/",
+      "answer": "lừa đảo qua email/tin nhắn giả mạo (phishing)",
+      "explanation": "The phishing email pretended to be from our IT department.\n→ Email lừa đảo giả danh phòng IT của chúng ta.\nLưu ý: phishing attack/email; spear phishing nhắm vào cá nhân cụ thể."
+    },
+    {
+      "question": "social engineering",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsoʊʃəl ˌendʒɪˈnɪrɪŋ/",
+      "answer": "tấn công bằng thao túng tâm lý",
+      "explanation": "Most breaches start with social engineering, not clever code.\n→ Hầu hết các vụ rò rỉ bắt đầu từ thao túng tâm lý, không phải code tinh vi."
+    },
+    {
+      "question": "brute force",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌbruːt ˈfɔːrs/",
+      "answer": "tấn công vét cạn (thử mọi khả năng)",
+      "explanation": "Rate limiting slows down brute force attacks on the login form.\n→ Giới hạn tần suất làm chậm các cuộc tấn công vét cạn vào form đăng nhập.\nLưu ý: brute-force attack."
+    },
+    {
+      "question": "denial of service",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˌnaɪəl əv ˈsɜːrvɪs/",
+      "answer": "tấn công từ chối dịch vụ (DoS)",
+      "explanation": "A denial of service attack saturated our bandwidth.\n→ Một cuộc tấn công từ chối dịch vụ đã làm nghẽn băng thông của chúng ta.\nLưu ý: DoS; DDoS = distributed, từ nhiều nguồn."
+    },
+    {
+      "question": "man-in-the-middle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmæn ɪn ðə ˈmɪdəl/",
+      "answer": "tấn công xen giữa (MITM)",
+      "explanation": "HTTPS protects users from man-in-the-middle attacks.\n→ HTTPS bảo vệ người dùng khỏi tấn công xen giữa.\nLưu ý: viết tắt MITM."
+    },
+    {
+      "question": "penetration test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpenəˈtreɪʃən ˌtest/",
+      "answer": "kiểm thử xâm nhập (pentest)",
+      "explanation": "An external team ran a penetration test last month.\n→ Một đội bên ngoài đã chạy pentest vào tháng trước.\nLưu ý: pentest; red team = đội đóng vai kẻ tấn công."
+    },
+    {
+      "question": "audit log",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːdɪt ˌlɔːɡ/",
+      "answer": "nhật ký kiểm toán (ghi lại ai làm gì)",
+      "explanation": "The audit log shows who changed the permissions.\n→ Audit log cho thấy ai đã thay đổi quyền."
+    },
+    {
+      "question": "compliance",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəmˈplaɪəns/",
+      "answer": "tuân thủ (quy định, tiêu chuẩn)",
+      "explanation": "SOC 2 compliance requires us to log all admin actions.\n→ Việc tuân thủ SOC 2 yêu cầu chúng tôi ghi log mọi hành động của admin.\nLưu ý: comply with; GDPR compliance."
+    },
+    {
+      "question": "defense in depth",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈfens ɪn ˈdepθ/",
+      "answer": "phòng thủ nhiều lớp",
+      "explanation": "We rely on defense in depth, not a single firewall.\n→ Chúng tôi dựa vào phòng thủ nhiều lớp, không chỉ một firewall."
+    }
+  ]
+}

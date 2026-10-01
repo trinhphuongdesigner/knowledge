@@ -1,0 +1,255 @@
+{
+  "slug": "life-work-05-career-goals",
+  "order": 5,
+  "title": "Life & Work 5 · Sự nghiệp & mục tiêu",
+  "description": "Từ vựng cấp độ B1 về lộ trình nghề nghiệp, mục tiêu, kinh nghiệm và phát triển bản thân. Dùng khi trả lời HR \"Where do you see yourself in 5 years?\" hoặc chia sẻ định hướng với quản lý.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "career path",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈrɪr pæθ/",
+      "answer": "lộ trình sự nghiệp",
+      "explanation": "I'd like to follow a career path from developer to tech lead.\n→ Tôi muốn đi theo lộ trình từ lập trình viên lên trưởng nhóm kỹ thuật."
+    },
+    {
+      "question": "promotion",
+      "partOfSpeech": "noun",
+      "phonetic": "/prəˈmoʊʃən/",
+      "answer": "sự thăng chức",
+      "explanation": "I got a promotion after two years at the company.\n→ Tôi được thăng chức sau hai năm làm ở công ty.\nLưu ý: get a promotion; động từ: be promoted."
+    },
+    {
+      "question": "ambition",
+      "partOfSpeech": "noun",
+      "phonetic": "/æmˈbɪʃən/",
+      "answer": "tham vọng, hoài bão",
+      "explanation": "My ambition is to lead a product team one day.\n→ Hoài bão của tôi là một ngày nào đó dẫn dắt một nhóm sản phẩm."
+    },
+    {
+      "question": "goal",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡoʊl/",
+      "answer": "mục tiêu",
+      "explanation": "My main goal this year is to improve my English.\n→ Mục tiêu chính của tôi năm nay là cải thiện tiếng Anh.\nLưu ý: set / achieve a goal."
+    },
+    {
+      "question": "responsibility",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˌspɑːnsəˈbɪləti/",
+      "answer": "trách nhiệm, nhiệm vụ",
+      "explanation": "In my current role, I have more responsibility for client projects.\n→ Ở vai trò hiện tại, tôi chịu trách nhiệm nhiều hơn về các dự án khách hàng.\nLưu ý: take responsibility for = nhận trách nhiệm về."
+    },
+    {
+      "question": "skill set",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskɪl set/",
+      "answer": "bộ kỹ năng",
+      "explanation": "My skill set includes teamwork, planning and public speaking.\n→ Bộ kỹ năng của tôi gồm làm việc nhóm, lập kế hoạch và thuyết trình."
+    },
+    {
+      "question": "experience",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪkˈspɪriəns/",
+      "answer": "kinh nghiệm",
+      "explanation": "I have five years of experience in software development.\n→ Tôi có năm năm kinh nghiệm phát triển phần mềm.\nLưu ý: Danh từ không đếm được khi nói về kinh nghiệm làm việc."
+    },
+    {
+      "question": "switch jobs",
+      "partOfSpeech": "collocation",
+      "phonetic": "/swɪtʃ dʒɑːbz/",
+      "answer": "đổi việc",
+      "explanation": "I decided to switch jobs to learn from a bigger team.\n→ Tôi quyết định đổi việc để học hỏi từ một nhóm lớn hơn.\nLưu ý: Cũng nói change jobs."
+    },
+    {
+      "question": "long-term",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌlɔːŋ ˈtɜːrm/",
+      "answer": "dài hạn",
+      "explanation": "My long-term plan is to become a technical manager.\n→ Kế hoạch dài hạn của tôi là trở thành quản lý kỹ thuật."
+    },
+    {
+      "question": "growth",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡroʊθ/",
+      "answer": "sự phát triển, tăng trưởng",
+      "explanation": "I'm looking for a company that supports personal growth.\n→ Tôi đang tìm một công ty hỗ trợ sự phát triển cá nhân."
+    },
+    {
+      "question": "mentor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmentɔːr/",
+      "answer": "người cố vấn, người hướng dẫn",
+      "explanation": "My first manager was a great mentor to me.\n→ Người quản lý đầu tiên của tôi là một người cố vấn tuyệt vời.\nLưu ý: Cũng là động từ: mentor junior staff."
+    },
+    {
+      "question": "ambitious",
+      "partOfSpeech": "adjective",
+      "phonetic": "/æmˈbɪʃəs/",
+      "answer": "có tham vọng",
+      "explanation": "I'm ambitious, but I'm also realistic about my goals.\n→ Tôi có tham vọng nhưng cũng thực tế về mục tiêu của mình."
+    },
+    {
+      "question": "career change",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈrɪr tʃeɪndʒ/",
+      "answer": "chuyển đổi nghề nghiệp",
+      "explanation": "I made a career change from teaching to programming.\n→ Tôi đã chuyển nghề từ dạy học sang lập trình."
+    },
+    {
+      "question": "aim to",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/eɪm tuː/",
+      "answer": "đặt mục tiêu, nhắm tới",
+      "explanation": "I aim to become a senior developer within three years.\n→ Tôi đặt mục tiêu trở thành lập trình viên cấp cao trong ba năm."
+    },
+    {
+      "question": "achieve",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈtʃiːv/",
+      "answer": "đạt được",
+      "explanation": "I want to achieve more in my next role.\n→ Tôi muốn đạt được nhiều hơn ở vị trí tiếp theo.\nLưu ý: achieve a goal; achievement = thành tựu."
+    },
+    {
+      "question": "leadership",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈliːdərʃɪp/",
+      "answer": "khả năng lãnh đạo",
+      "explanation": "I want to develop my leadership skills.\n→ Tôi muốn phát triển kỹ năng lãnh đạo."
+    },
+    {
+      "question": "senior",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈsiːnjər/",
+      "answer": "cấp cao, nhiều kinh nghiệm",
+      "explanation": "She was promoted to senior engineer last year.\n→ Cô ấy được thăng lên kỹ sư cấp cao năm ngoái."
+    },
+    {
+      "question": "junior",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdʒuːnjər/",
+      "answer": "cấp dưới, ít kinh nghiệm",
+      "explanation": "I started as a junior developer five years ago.\n→ Tôi bắt đầu với vị trí lập trình viên junior cách đây năm năm."
+    },
+    {
+      "question": "expertise",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌekspɜːrˈtiːz/",
+      "answer": "chuyên môn sâu",
+      "explanation": "I'd like to build expertise in cloud architecture.\n→ Tôi muốn xây dựng chuyên môn sâu về kiến trúc đám mây.\nLưu ý: expertise in + lĩnh vực."
+    },
+    {
+      "question": "qualification",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkwɑːləfɪˈkeɪʃən/",
+      "answer": "trình độ, bằng cấp, chứng chỉ",
+      "explanation": "I have the right qualifications for this position.\n→ Tôi có trình độ phù hợp với vị trí này.\nLưu ý: Thường dùng số nhiều: qualifications."
+    },
+    {
+      "question": "professional development",
+      "partOfSpeech": "noun",
+      "phonetic": "/prəˈfeʃənəl dɪˈveləpmənt/",
+      "answer": "phát triển chuyên môn",
+      "explanation": "The company offers a budget for professional development.\n→ Công ty có ngân sách cho việc phát triển chuyên môn.\nLưu ý: Gồm khóa học, chứng chỉ, hội thảo…"
+    },
+    {
+      "question": "challenge",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃælɪndʒ/",
+      "answer": "thử thách",
+      "explanation": "I'm looking for a new challenge in my career.\n→ Tôi đang tìm một thử thách mới trong sự nghiệp.\nLưu ý: Dạng tính từ: challenging = đầy thử thách."
+    },
+    {
+      "question": "opportunity",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɑːpərˈtuːnəti/",
+      "answer": "cơ hội",
+      "explanation": "This role is a great opportunity to learn from experts.\n→ Vị trí này là cơ hội tuyệt vời để học từ các chuyên gia."
+    },
+    {
+      "question": "motivation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmoʊtɪˈveɪʃən/",
+      "answer": "động lực",
+      "explanation": "My motivation is to solve real problems for users.\n→ Động lực của tôi là giải quyết những vấn đề thực tế cho người dùng."
+    },
+    {
+      "question": "short-term",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌʃɔːrt ˈtɜːrm/",
+      "answer": "ngắn hạn",
+      "explanation": "My short-term goal is to master the team's workflow.\n→ Mục tiêu ngắn hạn của tôi là nắm vững quy trình làm việc của nhóm."
+    },
+    {
+      "question": "take on",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/teɪk ɑːn/",
+      "answer": "đảm nhận (việc, trách nhiệm)",
+      "explanation": "I'm ready to take on more responsibility.\n→ Tôi sẵn sàng đảm nhận nhiều trách nhiệm hơn."
+    },
+    {
+      "question": "move up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/muːv ʌp/",
+      "answer": "thăng tiến, lên vị trí cao hơn",
+      "explanation": "I want to move up to a management position.\n→ Tôi muốn thăng tiến lên vị trí quản lý."
+    },
+    {
+      "question": "resign",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈzaɪn/",
+      "answer": "từ chức, xin nghỉ việc",
+      "explanation": "I resigned because I wanted to try a new field.\n→ Tôi nghỉ việc vì muốn thử sức ở một lĩnh vực mới.\nLưu ý: resign from + công ty/chức vụ; danh từ: resignation."
+    },
+    {
+      "question": "work-life balance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌwɜːrk laɪf ˈbæləns/",
+      "answer": "cân bằng giữa công việc và cuộc sống",
+      "explanation": "Work-life balance is important to me.\n→ Cân bằng công việc và cuộc sống rất quan trọng với tôi."
+    },
+    {
+      "question": "job satisfaction",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʒɑːb ˌsætɪsˈfækʃən/",
+      "answer": "sự hài lòng với công việc",
+      "explanation": "Good teamwork gives me a lot of job satisfaction.\n→ Làm việc nhóm tốt mang lại cho tôi nhiều sự hài lòng với công việc."
+    },
+    {
+      "question": "fresh graduate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌfreʃ ˈɡrædʒuət/",
+      "answer": "sinh viên mới ra trường",
+      "explanation": "As a fresh graduate, I'm eager to learn from experienced colleagues.\n→ Là sinh viên mới ra trường, tôi rất muốn học hỏi từ các đồng nghiệp có kinh nghiệm."
+    },
+    {
+      "question": "climb the corporate ladder",
+      "partOfSpeech": "idiom",
+      "phonetic": "/klaɪm ðə ˈkɔːrpərət ˈlædər/",
+      "answer": "thăng tiến trong công ty",
+      "explanation": "I'm not only focused on climbing the corporate ladder; I want to enjoy my work too.\n→ Tôi không chỉ tập trung vào việc thăng tiến mà còn muốn tận hưởng công việc."
+    },
+    {
+      "question": "make a difference",
+      "partOfSpeech": "idiom",
+      "phonetic": "/meɪk ə ˈdɪfrəns/",
+      "answer": "tạo ra sự khác biệt, đóng góp tích cực",
+      "explanation": "I want a job where I can make a difference.\n→ Tôi muốn một công việc mà tôi có thể tạo ra sự khác biệt."
+    },
+    {
+      "question": "reach your potential",
+      "partOfSpeech": "collocation",
+      "phonetic": "/riːtʃ jʊr pəˈtenʃəl/",
+      "answer": "phát huy hết tiềm năng",
+      "explanation": "A good mentor helps you reach your potential.\n→ Một người cố vấn tốt giúp bạn phát huy hết tiềm năng."
+    },
+    {
+      "question": "hands-on experience",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˌhændz ɑːn ɪkˈspɪriəns/",
+      "answer": "kinh nghiệm thực tế",
+      "explanation": "I gained hands-on experience during my internship.\n→ Tôi có được kinh nghiệm thực tế trong kỳ thực tập.\nLưu ý: hands-on = thực hành trực tiếp."
+    }
+  ]
+}

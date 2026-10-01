@@ -1,0 +1,248 @@
+{
+  "slug": "life-work-02-habits-hobbies",
+  "order": 2,
+  "title": "Life & Work 2 · Thói quen & sở thích",
+  "description": "Từ vựng cấp độ A1–A2 về thói quen hằng ngày, đi lại, sở thích và cuối tuần. Hữu ích khi trò chuyện xã giao với đồng nghiệp hoặc trả lời HR về cuộc sống ngoài công việc.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "routine",
+      "partOfSpeech": "noun",
+      "phonetic": "/ruːˈtiːn/",
+      "answer": "thói quen hằng ngày, lịch sinh hoạt",
+      "explanation": "My morning routine is simple: coffee, a short walk, then work.\n→ Thói quen buổi sáng của tôi rất đơn giản: cà phê, đi bộ một chút rồi làm việc.\nLưu ý: daily routine = sinh hoạt hằng ngày."
+    },
+    {
+      "question": "commute",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəˈmjuːt/",
+      "answer": "đi lại từ nhà đến chỗ làm",
+      "explanation": "I commute to the office by bus for about 40 minutes.\n→ Tôi đi xe buýt đến văn phòng mất khoảng 40 phút.\nLưu ý: Cũng là danh từ: a long commute = quãng đường đi làm dài."
+    },
+    {
+      "question": "hobby",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːbi/",
+      "answer": "sở thích",
+      "explanation": "My hobby is photography, especially on weekends.\n→ Sở thích của tôi là chụp ảnh, nhất là vào cuối tuần."
+    },
+    {
+      "question": "work out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/wɜːrk aʊt/",
+      "answer": "tập thể dục",
+      "explanation": "I work out at the gym three times a week.\n→ Tôi tập gym ba lần một tuần.\nLưu ý: \"work out\" còn có nghĩa là giải quyết được (a problem)."
+    },
+    {
+      "question": "hang out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/hæŋ aʊt/",
+      "answer": "đi chơi, tụ tập với bạn bè",
+      "explanation": "My teammates and I often hang out after work.\n→ Tôi và các đồng đội thường đi chơi sau giờ làm."
+    },
+    {
+      "question": "travel",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtrævəl/",
+      "answer": "đi du lịch, di chuyển",
+      "explanation": "I love to travel, so I save money for one trip a year.\n→ Tôi thích đi du lịch nên tiết kiệm tiền cho một chuyến đi mỗi năm."
+    },
+    {
+      "question": "cook",
+      "partOfSpeech": "verb",
+      "phonetic": "/kʊk/",
+      "answer": "nấu ăn",
+      "explanation": "I usually cook dinner at home to save money.\n→ Tôi thường nấu bữa tối ở nhà để tiết kiệm tiền."
+    },
+    {
+      "question": "weekend",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwiːkend/",
+      "answer": "cuối tuần",
+      "explanation": "What do you usually do on weekends?\n→ Bạn thường làm gì vào cuối tuần?\nLưu ý: on weekends / at the weekend (Anh-Anh)."
+    },
+    {
+      "question": "relax",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈlæks/",
+      "answer": "thư giãn",
+      "explanation": "I relax by listening to music after a long day.\n→ Tôi thư giãn bằng cách nghe nhạc sau một ngày dài."
+    },
+    {
+      "question": "volunteer",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌvɑːlənˈtɪr/",
+      "answer": "làm tình nguyện",
+      "explanation": "I volunteer at an animal shelter once a month.\n→ Mỗi tháng một lần tôi làm tình nguyện ở trạm cứu hộ động vật.\nLưu ý: Cũng là danh từ: a volunteer = tình nguyện viên."
+    },
+    {
+      "question": "wake up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/weɪk ʌp/",
+      "answer": "thức dậy",
+      "explanation": "I wake up at six every morning.\n→ Tôi thức dậy lúc sáu giờ mỗi sáng.\nLưu ý: wake up = tỉnh giấc; get up = rời khỏi giường."
+    },
+    {
+      "question": "sleep in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/sliːp ɪn/",
+      "answer": "ngủ nướng, dậy muộn",
+      "explanation": "I like to sleep in on Sundays.\n→ Tôi thích ngủ nướng vào Chủ nhật."
+    },
+    {
+      "question": "stay up late",
+      "partOfSpeech": "phrase",
+      "phonetic": "/steɪ ʌp leɪt/",
+      "answer": "thức khuya",
+      "explanation": "I try not to stay up late on weekdays.\n→ Tôi cố gắng không thức khuya vào các ngày trong tuần."
+    },
+    {
+      "question": "take a nap",
+      "partOfSpeech": "collocation",
+      "phonetic": "/teɪk ə næp/",
+      "answer": "chợp mắt, ngủ trưa",
+      "explanation": "I often take a short nap after lunch.\n→ Tôi thường chợp mắt một lát sau bữa trưa."
+    },
+    {
+      "question": "jog",
+      "partOfSpeech": "verb",
+      "phonetic": "/dʒɑːɡ/",
+      "answer": "chạy bộ (nhẹ nhàng)",
+      "explanation": "I jog around the lake every morning.\n→ Sáng nào tôi cũng chạy bộ quanh hồ.\nLưu ý: go jogging = đi chạy bộ."
+    },
+    {
+      "question": "go hiking",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ɡoʊ ˈhaɪkɪŋ/",
+      "answer": "đi bộ đường dài, leo núi nhẹ",
+      "explanation": "We went hiking in Sapa last month.\n→ Tháng trước chúng tôi đi bộ đường dài ở Sa Pa."
+    },
+    {
+      "question": "meditate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈmedɪteɪt/",
+      "answer": "thiền",
+      "explanation": "I meditate for ten minutes before work to clear my mind.\n→ Tôi thiền mười phút trước giờ làm để đầu óc thư thái."
+    },
+    {
+      "question": "cycling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaɪklɪŋ/",
+      "answer": "đạp xe",
+      "explanation": "Cycling is my favorite way to stay fit.\n→ Đạp xe là cách yêu thích của tôi để giữ dáng."
+    },
+    {
+      "question": "photography",
+      "partOfSpeech": "noun",
+      "phonetic": "/fəˈtɑːɡrəfi/",
+      "answer": "nhiếp ảnh, chụp ảnh",
+      "explanation": "I got into photography during the pandemic.\n→ Tôi bắt đầu mê nhiếp ảnh trong thời gian đại dịch."
+    },
+    {
+      "question": "gardening",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡɑːrdnɪŋ/",
+      "answer": "làm vườn, trồng cây",
+      "explanation": "Gardening helps me forget about work stress.\n→ Làm vườn giúp tôi quên đi áp lực công việc."
+    },
+    {
+      "question": "unwind",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʌnˈwaɪnd/",
+      "answer": "xả hơi, thư giãn sau căng thẳng",
+      "explanation": "I play guitar to unwind after a busy day.\n→ Tôi chơi guitar để xả hơi sau một ngày bận rộn."
+    },
+    {
+      "question": "chill out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/tʃɪl aʊt/",
+      "answer": "thư giãn, nghỉ ngơi (thân mật)",
+      "explanation": "On Sundays I just chill out at home.\n→ Chủ nhật tôi chỉ nghỉ ngơi ở nhà.\nLưu ý: Thân mật, hợp với bạn bè hơn là văn bản trang trọng."
+    },
+    {
+      "question": "be into",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/bi ˈɪntuː/",
+      "answer": "thích, đam mê (thân mật)",
+      "explanation": "I'm really into hiking these days.\n→ Dạo này tôi rất mê đi bộ đường dài."
+    },
+    {
+      "question": "keep fit",
+      "partOfSpeech": "collocation",
+      "phonetic": "/kiːp fɪt/",
+      "answer": "giữ dáng, giữ sức khỏe",
+      "explanation": "I swim twice a week to keep fit.\n→ Tôi bơi hai lần một tuần để giữ sức khỏe."
+    },
+    {
+      "question": "spare time",
+      "partOfSpeech": "noun",
+      "phonetic": "/sper taɪm/",
+      "answer": "thời gian rảnh",
+      "explanation": "In my spare time, I read novels and play badminton.\n→ Lúc rảnh, tôi đọc tiểu thuyết và chơi cầu lông.\nLưu ý: Cũng nói free time; câu hỏi quen thuộc: \"What do you do in your spare time?\""
+    },
+    {
+      "question": "rush hour",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrʌʃ aʊər/",
+      "answer": "giờ cao điểm",
+      "explanation": "I leave early to avoid the rush hour.\n→ Tôi ra khỏi nhà sớm để tránh giờ cao điểm."
+    },
+    {
+      "question": "traffic jam",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtræfɪk dʒæm/",
+      "answer": "kẹt xe",
+      "explanation": "I was late because of a terrible traffic jam.\n→ Tôi đến muộn vì kẹt xe khủng khiếp.\nLưu ý: be stuck in a traffic jam = bị kẹt xe."
+    },
+    {
+      "question": "motorbike",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmoʊtərbaɪk/",
+      "answer": "xe máy",
+      "explanation": "Most people in Vietnam commute by motorbike.\n→ Phần lớn người Việt đi làm bằng xe máy."
+    },
+    {
+      "question": "public transport",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʌblɪk ˈtrænspɔːrt/",
+      "answer": "phương tiện công cộng",
+      "explanation": "I take public transport because parking is expensive.\n→ Tôi đi phương tiện công cộng vì chỗ đỗ xe đắt.\nLưu ý: Anh-Mỹ cũng hay nói public transportation."
+    },
+    {
+      "question": "take up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/teɪk ʌp/",
+      "answer": "bắt đầu theo đuổi (sở thích mới)",
+      "explanation": "I took up running last year to stay healthy.\n→ Năm ngoái tôi bắt đầu chạy bộ để giữ sức khỏe."
+    },
+    {
+      "question": "catch up with",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/kætʃ ʌp wɪð/",
+      "answer": "gặp gỡ, trò chuyện để cập nhật tin tức",
+      "explanation": "I'm catching up with some old friends on Saturday.\n→ Thứ Bảy này tôi gặp vài người bạn cũ để hàn huyên."
+    },
+    {
+      "question": "binge-watch",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈbɪndʒ wɑːtʃ/",
+      "answer": "cày phim liên tục",
+      "explanation": "I sometimes binge-watch series on weekends.\n→ Thỉnh thoảng cuối tuần tôi cày phim nhiều tập liền."
+    },
+    {
+      "question": "go for a walk",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ɡoʊ fər ə wɔːk/",
+      "answer": "đi dạo",
+      "explanation": "I go for a walk during my lunch break to clear my head.\n→ Tôi đi dạo trong giờ nghỉ trưa để đầu óc thoải mái."
+    },
+    {
+      "question": "board game",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɔːrd ɡeɪm/",
+      "answer": "trò chơi cờ bàn (cờ tỷ phú, ma sói…)",
+      "explanation": "Our team plays board games together on Friday evenings.\n→ Cả nhóm tôi chơi board game cùng nhau vào tối thứ Sáu."
+    }
+  ]
+}

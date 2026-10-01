@@ -1,0 +1,255 @@
+{
+  "slug": "life-work-10-idioms-workplace",
+  "order": 10,
+  "title": "Life & Work 10 · Thành ngữ & cụm từ công sở",
+  "description": "Thành ngữ và cụm từ công sở trình độ C1 mà đồng nghiệp, quản lý và HR nói hằng ngày trong họp, chat và phỏng vấn.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "on the same page",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɑːn ðə seɪm peɪdʒ/",
+      "answer": "cùng hiểu và đồng thuận",
+      "explanation": "Let's have a quick call to make sure we're on the same page about the scope.\n→ Hãy gọi nhanh để chắc chắn chúng ta hiểu giống nhau về phạm vi."
+    },
+    {
+      "question": "touch base",
+      "partOfSpeech": "idiom",
+      "phonetic": "/tʌtʃ beɪs/",
+      "answer": "liên lạc nhanh để cập nhật",
+      "explanation": "I'll touch base with the design team tomorrow morning.\n→ Sáng mai tôi sẽ liên lạc nhanh với nhóm thiết kế để cập nhật."
+    },
+    {
+      "question": "circle back",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˈsɜːrkəl bæk/",
+      "answer": "quay lại bàn sau",
+      "explanation": "Let's park this issue and circle back after the demo.\n→ Hãy tạm gác vấn đề này và quay lại bàn sau buổi demo."
+    },
+    {
+      "question": "go the extra mile",
+      "partOfSpeech": "idiom",
+      "phonetic": "/goʊ ði ˈɛkstrə maɪl/",
+      "answer": "nỗ lực hơn mức yêu cầu",
+      "explanation": "She always goes the extra mile to help new hires settle in.\n→ Cô ấy luôn nỗ lực hơn mức yêu cầu để giúp nhân viên mới hòa nhập."
+    },
+    {
+      "question": "hit the ground running",
+      "partOfSpeech": "idiom",
+      "phonetic": "/hɪt ðə graʊnd ˈrʌnɪŋ/",
+      "answer": "bắt tay vào việc hiệu quả ngay",
+      "explanation": "I'm confident I can hit the ground running with your React codebase.\n→ Tôi tự tin có thể bắt tay vào việc ngay với codebase React của anh chị."
+    },
+    {
+      "question": "wear many hats",
+      "partOfSpeech": "idiom",
+      "phonetic": "/wɛr ˈmɛni hæts/",
+      "answer": "kiêm nhiều vai trò",
+      "explanation": "At a small startup, you often wear many hats.\n→ Ở một startup nhỏ, bạn thường kiêm nhiều vai trò."
+    },
+    {
+      "question": "steep learning curve",
+      "partOfSpeech": "collocation",
+      "phonetic": "/stiːp ˈlɜːrnɪŋ kɜːrv/",
+      "answer": "giai đoạn học rất dốc, khó",
+      "explanation": "The first month had a steep learning curve, but I adapted fast.\n→ Tháng đầu tiên học rất dốc, nhưng tôi thích nghi nhanh."
+    },
+    {
+      "question": "have the bandwidth",
+      "partOfSpeech": "collocation",
+      "phonetic": "/hæv ðə ˈbændwɪdθ/",
+      "answer": "đủ sức/đủ thời gian nhận thêm việc",
+      "explanation": "I don't have the bandwidth to take on another project this sprint.\n→ Tôi không đủ sức nhận thêm dự án nào trong sprint này.\nLưu ý: nghĩa gốc của bandwidth là băng thông mạng."
+    },
+    {
+      "question": "heads-up",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɛdz ʌp/",
+      "answer": "lời báo trước",
+      "explanation": "Thanks for the heads-up about the server maintenance.\n→ Cảm ơn bạn đã báo trước về đợt bảo trì máy chủ.\nLưu ý: thường dùng give someone a heads-up."
+    },
+    {
+      "question": "think outside the box",
+      "partOfSpeech": "idiom",
+      "phonetic": "/θɪŋk ˌaʊtˈsaɪd ðə bɑːks/",
+      "answer": "suy nghĩ sáng tạo, khác lối mòn",
+      "explanation": "We need to think outside the box to cut the loading time.\n→ Chúng ta cần nghĩ khác lối mòn để giảm thời gian tải."
+    },
+    {
+      "question": "ballpark",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɔːlpɑːrk/",
+      "answer": "ước chừng (con số)",
+      "explanation": "Can you give me a ballpark estimate for this feature?\n→ Bạn có thể ước chừng thời gian làm tính năng này không?\nLưu ý: dùng trong cụm in the ballpark (xấp xỉ)."
+    },
+    {
+      "question": "low-hanging fruit",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˌloʊ ˈhæŋɪŋ fruːt/",
+      "answer": "việc dễ làm mà có hiệu quả",
+      "explanation": "Let's start with the low-hanging fruit and fix the quick bugs first.\n→ Hãy bắt đầu từ những việc dễ làm và sửa các lỗi nhanh trước."
+    },
+    {
+      "question": "move the needle",
+      "partOfSpeech": "idiom",
+      "phonetic": "/muːv ðə ˈniːdl/",
+      "answer": "tạo ra thay đổi đáng kể",
+      "explanation": "This refactor won't move the needle on performance.\n→ Lần tái cấu trúc này sẽ không tạo thay đổi đáng kể về hiệu năng."
+    },
+    {
+      "question": "get the ball rolling",
+      "partOfSpeech": "idiom",
+      "phonetic": "/gɛt ðə bɔːl ˈroʊlɪŋ/",
+      "answer": "bắt đầu triển khai",
+      "explanation": "Let's get the ball rolling with a kickoff meeting on Monday.\n→ Hãy bắt đầu bằng buổi họp khởi động vào thứ Hai."
+    },
+    {
+      "question": "keep me in the loop",
+      "partOfSpeech": "idiom",
+      "phonetic": "/kiːp mi ɪn ðə luːp/",
+      "answer": "nhớ cập nhật cho tôi",
+      "explanation": "Please keep me in the loop on the deployment.\n→ Vui lòng cập nhật cho tôi về việc triển khai nhé.\nLưu ý: trái nghĩa là out of the loop (không được biết)."
+    },
+    {
+      "question": "drop the ball",
+      "partOfSpeech": "idiom",
+      "phonetic": "/drɑːp ðə bɔːl/",
+      "answer": "làm hỏng, bỏ sót việc",
+      "explanation": "I dropped the ball on that email, and I apologize.\n→ Tôi đã bỏ sót email đó và xin lỗi."
+    },
+    {
+      "question": "bite the bullet",
+      "partOfSpeech": "idiom",
+      "phonetic": "/baɪt ðə ˈbʊlɪt/",
+      "answer": "cắn răng làm việc khó chịu",
+      "explanation": "We had to bite the bullet and rewrite the legacy module.\n→ Chúng tôi phải cắn răng viết lại module cũ."
+    },
+    {
+      "question": "back to the drawing board",
+      "partOfSpeech": "idiom",
+      "phonetic": "/bæk tu ðə ˈdrɔːɪŋ bɔːrd/",
+      "answer": "làm lại từ đầu",
+      "explanation": "The prototype failed, so it's back to the drawing board.\n→ Bản mẫu thất bại nên phải làm lại từ đầu."
+    },
+    {
+      "question": "take it offline",
+      "partOfSpeech": "idiom",
+      "phonetic": "/teɪk ɪt ˌɔːfˈlaɪn/",
+      "answer": "bàn riêng sau cuộc họp",
+      "explanation": "Let's take this offline so we don't waste everyone's time.\n→ Hãy bàn riêng việc này để khỏi mất thời gian của mọi người."
+    },
+    {
+      "question": "ping",
+      "partOfSpeech": "verb",
+      "phonetic": "/pɪŋ/",
+      "answer": "nhắn nhanh, nhắc ai đó",
+      "explanation": "Just ping me on Slack if you get stuck.\n→ Cứ nhắn tôi trên Slack nếu bạn bị kẹt."
+    },
+    {
+      "question": "loop in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/luːp ɪn/",
+      "answer": "thêm ai vào luồng trao đổi",
+      "explanation": "I'll loop in the product manager on this thread.\n→ Tôi sẽ thêm quản lý sản phẩm vào luồng trao đổi này."
+    },
+    {
+      "question": "push back",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/pʊʃ bæk/",
+      "answer": "phản đối, đề nghị lùi lại",
+      "explanation": "I pushed back on the deadline because the scope had grown.\n→ Tôi phản đối hạn chót vì phạm vi công việc đã tăng."
+    },
+    {
+      "question": "ramp up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ræmp ʌp/",
+      "answer": "tăng tốc, làm quen dần",
+      "explanation": "It took me two weeks to ramp up on the new codebase.\n→ Tôi mất hai tuần để làm quen với codebase mới.\nLưu ý: danh từ là ramp-up time."
+    },
+    {
+      "question": "wrap up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ræp ʌp/",
+      "answer": "kết thúc, hoàn tất",
+      "explanation": "Let's wrap up the meeting and start coding.\n→ Hãy kết thúc buổi họp và bắt đầu code."
+    },
+    {
+      "question": "call it a day",
+      "partOfSpeech": "idiom",
+      "phonetic": "/kɔːl ɪt ə deɪ/",
+      "answer": "kết thúc ngày làm việc",
+      "explanation": "The bug can wait until tomorrow, so let's call it a day.\n→ Lỗi này để mai xử lý cũng được, nên hôm nay nghỉ thôi."
+    },
+    {
+      "question": "burn the midnight oil",
+      "partOfSpeech": "idiom",
+      "phonetic": "/bɜːrn ðə ˈmɪdnaɪt ɔɪl/",
+      "answer": "thức khuya làm việc",
+      "explanation": "We burned the midnight oil to meet the release date.\n→ Chúng tôi thức khuya làm việc để kịp ngày phát hành."
+    },
+    {
+      "question": "under the radar",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˈʌndər ðə ˈreɪdɑːr/",
+      "answer": "không gây chú ý",
+      "explanation": "The bug stayed under the radar for months.\n→ Lỗi đó không bị ai chú ý suốt nhiều tháng."
+    },
+    {
+      "question": "in the pipeline",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɪn ðə ˈpaɪplaɪn/",
+      "answer": "đang được chuẩn bị, sắp tới",
+      "explanation": "We have several new features in the pipeline.\n→ Chúng tôi có vài tính năng mới đang được chuẩn bị."
+    },
+    {
+      "question": "a win-win",
+      "partOfSpeech": "noun",
+      "phonetic": "/ə ˈwɪn wɪn/",
+      "answer": "đôi bên cùng có lợi",
+      "explanation": "A four-day week could be a win-win for staff and the company.\n→ Tuần làm việc bốn ngày có thể đôi bên cùng có lợi cho nhân viên và công ty."
+    },
+    {
+      "question": "take it with a grain of salt",
+      "partOfSpeech": "idiom",
+      "phonetic": "/teɪk ɪt wɪð ə greɪn əv sɔːlt/",
+      "answer": "đừng tin hoàn toàn",
+      "explanation": "Take his estimate with a grain of salt; he's always optimistic.\n→ Đừng tin hoàn toàn ước tính của anh ấy; anh ấy luôn lạc quan."
+    },
+    {
+      "question": "raise a red flag",
+      "partOfSpeech": "idiom",
+      "phonetic": "/reɪz ə rɛd flæg/",
+      "answer": "cảnh báo vấn đề",
+      "explanation": "The sudden spike in errors raised a red flag.\n→ Việc lỗi tăng vọt đột ngột đã gióng lên hồi chuông cảnh báo."
+    },
+    {
+      "question": "cut corners",
+      "partOfSpeech": "idiom",
+      "phonetic": "/kʌt ˈkɔːrnərz/",
+      "answer": "làm ẩu, bỏ bước để nhanh",
+      "explanation": "We never cut corners on security testing.\n→ Chúng tôi không bao giờ làm ẩu khâu kiểm thử bảo mật."
+    },
+    {
+      "question": "learn the ropes",
+      "partOfSpeech": "idiom",
+      "phonetic": "/lɜːrn ðə roʊps/",
+      "answer": "học cách làm việc",
+      "explanation": "My mentor helped me learn the ropes in my first month.\n→ Người hướng dẫn giúp tôi học cách làm việc trong tháng đầu."
+    },
+    {
+      "question": "a piece of cake",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ə piːs əv keɪk/",
+      "answer": "việc rất dễ",
+      "explanation": "Fixing that typo was a piece of cake.\n→ Sửa lỗi chính tả đó dễ như ăn kẹo."
+    },
+    {
+      "question": "in the same boat",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɪn ðə seɪm boʊt/",
+      "answer": "cùng cảnh ngộ",
+      "explanation": "We're all in the same boat with this tight deadline.\n→ Tất cả chúng ta đều cùng cảnh ngộ với hạn chót gấp này."
+    }
+  ]
+}

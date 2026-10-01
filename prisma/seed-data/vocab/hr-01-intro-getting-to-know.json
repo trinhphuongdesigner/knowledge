@@ -1,0 +1,164 @@
+{
+  "slug": "hr-01-intro-getting-to-know",
+  "order": 11,
+  "title": "Câu hỏi HR 1 · Làm quen & giới thiệu",
+  "description": "Các câu hỏi mở đầu buổi phỏng vấn với HR ở mức B1–B2: giới thiệu bản thân, động lực xin việc và sự hiểu biết về công ty.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "Tell me about yourself.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy giới thiệu về bản thân bạn.\nÝ nhà tuyển dụng: họ muốn nghe tóm tắt ngắn gọn về nền tảng, kinh nghiệm và lý do bạn phù hợp, đồng thời đánh giá khả năng giao tiếp.",
+      "explanation": "Gợi ý trả lời:\nI'm a frontend developer with three years of experience building web apps with React and TypeScript. At my current company, I work on a dashboard used by about 20,000 customers. I enjoy turning complicated requirements into simple interfaces, and I'm now looking for a team where I can take on more responsibility.\n→ Tôi là lập trình viên frontend 3 năm kinh nghiệm với React và TypeScript, hiện làm dashboard cho khoảng 20.000 khách hàng và muốn nhận thêm trách nhiệm.\nMẹo: Giữ trong khoảng 1–2 phút theo thứ tự hiện tại, quá khứ, tương lai; đừng đọc lại CV hoặc kể chuyện gia đình dài dòng."
+    },
+    {
+      "question": "Why are you looking for a new job?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Tại sao bạn muốn tìm công việc mới?\nÝ nhà tuyển dụng: họ muốn biết động lực thật và xem bạn có phàn nàn về công ty cũ hay không.",
+      "explanation": "Gợi ý trả lời:\nI've learned a lot in my current role, but the product is stable and I'm not getting many new technical challenges. I'd like to work on a larger system with more users. I'm also interested in a team with stronger mentoring.\n→ Tôi đã học được nhiều nhưng công việc hiện tại ít thử thách mới; tôi muốn làm hệ thống lớn hơn và có người hướng dẫn tốt hơn.\nMẹo: Nói về điều bạn muốn tìm kiếm thay vì chê công ty cũ."
+    },
+    {
+      "question": "Why do you want to work here?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Tại sao bạn muốn làm việc ở đây?\nÝ nhà tuyển dụng: họ muốn biết bạn có tìm hiểu về công ty và có động lực thật sự hay chỉ đi xin việc đại trà.",
+      "explanation": "Gợi ý trả lời:\nI've used your product for a side project, and I like how fast the UI feels. I also read your engineering blog about moving to micro-frontends, which is exactly the kind of problem I want to work on. And the values you describe, like ownership and learning, match how I like to work.\n→ Tôi từng dùng sản phẩm của công ty, đọc blog kỹ thuật về micro-frontends và thấy giá trị công ty hợp với cách làm việc của mình.\nMẹo: Nêu một chi tiết cụ thể về công ty (sản phẩm, blog, công nghệ); tránh những câu chung chung như công ty lớn và nổi tiếng."
+    },
+    {
+      "question": "What do you know about our company?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn biết gì về công ty chúng tôi?\nÝ nhà tuyển dụng: họ kiểm tra bạn có chuẩn bị trước buổi phỏng vấn và có quan tâm thực sự hay không.",
+      "explanation": "Gợi ý trả lời:\nI know you build logistics software for small businesses in Southeast Asia, and you recently launched a mobile app for drivers. I also saw that you raised a new funding round last year. I'd love to hear more about how the engineering team supports that growth.\n→ Tôi biết công ty làm phần mềm logistics cho doanh nghiệp nhỏ ở Đông Nam Á, vừa ra mắt app cho tài xế và gọi vốn năm ngoái.\nMẹo: Tìm hiểu website, LinkedIn và tin tức trước; kết thúc bằng một câu hỏi để thể hiện sự quan tâm."
+    },
+    {
+      "question": "How did you hear about this position?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn biết đến vị trí này bằng cách nào?\nÝ nhà tuyển dụng: họ muốn biết kênh tuyển dụng hiệu quả và xem bạn có được giới thiệu hay chủ động tìm đến.",
+      "explanation": "Gợi ý trả lời:\nA former colleague who works here told me about the opening, and then I checked the job description on your careers page. The tech stack and the remote-friendly policy caught my attention. So I applied right away.\n→ Một đồng nghiệp cũ giới thiệu, tôi đọc mô tả công việc và thấy công nghệ cùng chính sách làm việc từ xa rất phù hợp.\nMẹo: Trung thực; nếu có người giới thiệu thì nhắc tên nhưng đừng nói quá nhiều về người đó."
+    },
+    {
+      "question": "What do you do in your free time?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn làm gì vào thời gian rảnh?\nÝ nhà tuyển dụng: họ muốn hiểu tính cách, sự cân bằng cuộc sống và xem bạn có phù hợp văn hóa đội nhóm hay không.",
+      "explanation": "Gợi ý trả lời:\nI usually play football with friends on weekends, and I read a lot about game design. Sometimes I build small side projects, like a browser game I made last month. It helps me relax and learn new things at the same time.\n→ Cuối tuần tôi đá bóng với bạn bè, đọc về thiết kế game và thỉnh thoảng làm dự án nhỏ để vừa thư giãn vừa học.\nMẹo: Chọn sở thích thật và dễ kể chuyện; không cần cố tỏ ra là người làm việc 24/7."
+    },
+    {
+      "question": "Are you open to a hybrid work arrangement?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn có sẵn sàng làm việc theo mô hình hybrid không?\nÝ nhà tuyển dụng: họ muốn biết bạn có chấp nhận lịch lên văn phòng của công ty hay không.",
+      "explanation": "Gợi ý trả lời:\nYes, I'm comfortable with hybrid work. I'm productive at home for focused coding, and I also enjoy being in the office for planning and pair programming. Three days in the office would work for me.\n→ Có, tôi thoải mái với hybrid: ở nhà để tập trung code, lên văn phòng để lên kế hoạch và làm việc nhóm.\nMẹo: Nếu có hạn chế (ví dụ khoảng cách), hãy nói rõ và đề xuất giải pháp thay vì từ chối thẳng."
+    },
+    {
+      "question": "Are you willing to relocate?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn có sẵn sàng chuyển nơi ở không?\nÝ nhà tuyển dụng: họ muốn biết bạn có đáp ứng được yêu cầu địa điểm của vị trí hay không.",
+      "explanation": "Gợi ý trả lời:\nI'm open to relocating for the right opportunity. I'd just need about two months to organize my move and finish my current project properly. Could you tell me whether the company offers any relocation support?\n→ Tôi sẵn sàng chuyển nơi ở nếu cơ hội phù hợp, cần khoảng hai tháng sắp xếp, và muốn biết công ty có hỗ trợ chuyển chỗ ở không.\nMẹo: Trả lời thật; nếu chưa chắc chắn, đừng hứa rồi từ chối sau khi nhận offer."
+    },
+    {
+      "question": "Can you walk me through your resume?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn có thể trình bày lần lượt về CV của mình không?\nÝ nhà tuyển dụng: họ muốn hiểu hành trình nghề nghiệp, lý do chuyển việc và mức độ phát triển của bạn.",
+      "explanation": "Gợi ý trả lời:\nI studied computer science at university and joined a small agency as a junior developer. After two years, I moved to a product company where I started working with React at scale. Each move gave me bigger responsibilities, and now I'm ready for a role with more ownership.\n→ Tôi học khoa học máy tính, làm junior ở agency rồi chuyển sang công ty sản phẩm, mỗi bước đều nhận thêm trách nhiệm.\nMẹo: Làm nổi bật các bước phát triển và lý do chuyển việc; không đọc từng dòng trong CV."
+    },
+    {
+      "question": "What are you looking for in your next role?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn mong muốn điều gì ở công việc tiếp theo?\nÝ nhà tuyển dụng: họ muốn biết kỳ vọng của bạn có khớp với những gì vị trí và công ty có thể cung cấp.",
+      "explanation": "Gợi ý trả lời:\nI'm looking for a role where I can work on a product with real users and grow into a technical leader. I'd like a team that does code reviews seriously, because I learn a lot from feedback. A healthy balance between work and life is also important to me.\n→ Tôi muốn làm sản phẩm có người dùng thật, phát triển lên vai trò kỹ thuật, trong một đội coi trọng code review và cân bằng công việc.\nMẹo: Gắn mong muốn của bạn với điều công ty đang có, đừng chỉ nói về lương hoặc phúc lợi."
+    },
+    {
+      "question": "Why did you choose software development as a career?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Tại sao bạn chọn nghề lập trình?\nÝ nhà tuyển dụng: họ muốn biết niềm đam mê thật của bạn với nghề, thứ ảnh hưởng đến mức độ gắn bó lâu dài.",
+      "explanation": "Gợi ý trả lời:\nI built my first website in high school for my school's club, and I loved seeing people actually use it. Since then I've enjoyed solving problems with code and learning something new every month. Seeing my work make people's lives easier still motivates me.\n→ Tôi làm website đầu tiên hồi cấp ba và thích việc có người dùng thật; từ đó tôi yêu việc giải quyết vấn đề bằng code.\nMẹo: Kể một câu chuyện nhỏ và thật; đừng chỉ nói vì lương cao."
+    },
+    {
+      "question": "Where are you from, and where do you live now?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn đến từ đâu và hiện đang sống ở đâu?\nÝ nhà tuyển dụng: họ muốn làm quen nhẹ nhàng và kiểm tra khoảng cách đi làm hoặc khả năng làm việc tại văn phòng.",
+      "explanation": "Gợi ý trả lời:\nI grew up in Da Nang and moved to Ho Chi Minh City four years ago for work. I live in District 7 now, about 30 minutes from your office by motorbike. I really like the energy of the city.\n→ Tôi lớn lên ở Đà Nẵng, chuyển vào TP.HCM bốn năm trước, hiện ở Quận 7 cách văn phòng khoảng 30 phút.\nMẹo: Đây là câu hỏi mở màn thân thiện; trả lời ngắn, tự nhiên và mỉm cười."
+    },
+    {
+      "question": "What was your role in your last job?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Vai trò của bạn ở công việc gần nhất là gì?\nÝ nhà tuyển dụng: họ muốn biết phạm vi trách nhiệm và mức độ cấp bậc thực tế của bạn.",
+      "explanation": "Gợi ý trả lời:\nI was a frontend developer in a team of eight, working on the customer portal. I built new features, reviewed pull requests, and helped interns with their first tasks. I also joined sprint planning to estimate work with the product manager.\n→ Tôi là frontend developer trong nhóm 8 người, xây tính năng, review pull request, hướng dẫn thực tập sinh và tham gia lên kế hoạch sprint.\nMẹo: Nêu trách nhiệm cụ thể và quy mô nhóm; tránh dùng cụm mơ hồ như tôi làm đủ thứ."
+    },
+    {
+      "question": "What is your current employment status?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Tình trạng công việc hiện tại của bạn như thế nào?\nÝ nhà tuyển dụng: họ muốn biết bạn đang đi làm hay thất nghiệp, thời điểm có thể bắt đầu và mức độ khẩn cấp của việc tìm việc.",
+      "explanation": "Gợi ý trả lời:\nI'm currently working full-time as a frontend developer. I'm not in a hurry to leave, but I'm actively looking for a better fit. My notice period is 30 days.\n→ Tôi đang làm toàn thời gian, không vội rời đi nhưng chủ động tìm nơi phù hợp hơn, báo trước 30 ngày.\nMẹo: Nếu đang thất nghiệp, hãy trả lời thẳng và nói rõ bạn đang học hoặc làm gì trong thời gian đó."
+    },
+    {
+      "question": "What's your notice period?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Thời gian báo trước khi nghỉ việc của bạn là bao lâu?\nÝ nhà tuyển dụng: họ muốn lên kế hoạch ngày nhận việc và xem bạn có kết thúc công việc cũ có trách nhiệm hay không.",
+      "explanation": "Gợi ý trả lời:\nMy contract requires 30 days' notice, and I'd like to use that time to hand over my tasks properly. I could start around the first of next month. If it's urgent, I can talk to my manager about a shorter handover.\n→ Hợp đồng yêu cầu báo trước 30 ngày, tôi muốn bàn giao cẩn thận và có thể bắt đầu đầu tháng sau.\nMẹo: Đừng hứa nghỉ ngay nếu hợp đồng không cho phép; sự có trách nhiệm với chỗ cũ cũng là điểm cộng."
+    },
+    {
+      "question": "How would your colleagues describe you?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Đồng nghiệp sẽ mô tả bạn như thế nào?\nÝ nhà tuyển dụng: họ muốn biết cách bạn làm việc với người khác và mức độ tự nhận thức của bạn.",
+      "explanation": "Gợi ý trả lời:\nI think they'd say I'm dependable and calm under pressure. People often come to me when they're stuck on a bug, and I enjoy explaining things clearly. One teammate once called me the person who always has a backup plan.\n→ Họ sẽ nói tôi đáng tin cậy, bình tĩnh khi áp lực và hay giúp người khác gỡ lỗi.\nMẹo: Dẫn một ví dụ cụ thể để câu trả lời đáng tin hơn các tính từ chung chung."
+    },
+    {
+      "question": "What motivates you at work?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Điều gì tạo động lực cho bạn trong công việc?\nÝ nhà tuyển dụng: họ muốn biết điều gì khiến bạn gắn bó và liệu động lực đó phù hợp với công việc và văn hóa công ty.",
+      "explanation": "Gợi ý trả lời:\nI'm motivated by solving hard problems and seeing the result in the hands of real users. Learning new things also keeps me excited, especially when a teammate shows me a better way to do something. Recognition from the team is nice, but the product working well matters most to me.\n→ Tôi có động lực từ việc giải bài toán khó, thấy người dùng thật dùng sản phẩm và học điều mới từ đồng nghiệp.\nMẹo: Nói động lực thật và liên quan đến công việc; đừng chỉ nói là tiền."
+    },
+    {
+      "question": "Do you prefer working alone or in a team?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn thích làm việc một mình hay theo nhóm?\nÝ nhà tuyển dụng: họ muốn biết phong cách làm việc của bạn có hợp với cách tổ chức của đội hay không.",
+      "explanation": "Gợi ý trả lời:\nI like both. I do my best deep work alone, like designing a component or fixing a tricky bug. But I value teamwork for planning, code reviews, and brainstorming, because other people often see problems I miss.\n→ Tôi thích cả hai: làm một mình khi cần tập trung sâu, làm nhóm khi lên kế hoạch, review và động não.\nMẹo: Đừng chọn cực đoan; cho thấy bạn linh hoạt và biết khi nào cần phối hợp."
+    },
+    {
+      "question": "How do you handle stress?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn xử lý căng thẳng như thế nào?\nÝ nhà tuyển dụng: họ muốn biết bạn có giữ được hiệu suất và thái độ tích cực khi áp lực công việc tăng.",
+      "explanation": "Gợi ý trả lời:\nWhen a deadline is close, I first break the work into small tasks and decide what must ship first. I also tell my manager early if something is at risk. Outside work, I play football twice a week, which clears my head.\n→ Khi gần deadline, tôi chia nhỏ việc, báo sớm cho quản lý nếu có rủi ro, và chơi thể thao để xả stress.\nMẹo: Trình bày cách làm thực tế; tránh nói rằng bạn không bao giờ bị căng thẳng."
+    },
+    {
+      "question": "How do you keep your skills up to date?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn cập nhật kỹ năng của mình bằng cách nào?\nÝ nhà tuyển dụng: họ muốn biết bạn có tự học và chủ động theo kịp công nghệ hay không.",
+      "explanation": "Gợi ý trả lời:\nI follow a few engineering newsletters and read the release notes of the tools I use at work. Every quarter I pick one topic to study in depth, and last quarter it was testing with Playwright. I also build small side projects to try new ideas.\n→ Tôi đọc newsletter kỹ thuật, theo dõi release notes và mỗi quý học sâu một chủ đề, đồng thời làm dự án nhỏ để thử ý tưởng.\nMẹo: Nêu nguồn học và ví dụ gần đây thật; tránh liệt kê quá nhiều thứ."
+    },
+    {
+      "question": "Tell me about a project you're proud of.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về một dự án bạn tự hào.\nÝ nhà tuyển dụng: họ muốn nghe cách bạn mô tả đóng góp, kết quả và những điều bạn coi trọng.",
+      "explanation": "Gợi ý trả lời:\nI'm proud of a checkout redesign I led last year. The old flow lost many users on mobile, so I simplified it from five steps to three. After launch, the conversion rate went up by 12 percent, and the support tickets dropped.\n→ Tôi tự hào về việc thiết kế lại luồng thanh toán từ 5 bước còn 3 bước, tăng tỷ lệ chuyển đổi 12 phần trăm.\nMẹo: Dùng cấu trúc vấn đề, hành động, kết quả và có số liệu; nói rõ phần việc của chính bạn."
+    },
+    {
+      "question": "Is there anything else you'd like us to know about you?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn còn điều gì muốn chúng tôi biết thêm về bạn không?\nÝ nhà tuyển dụng: họ cho bạn cơ hội bổ sung điểm mạnh hoặc làm rõ điều chưa nói trong buổi phỏng vấn.",
+      "explanation": "Gợi ý trả lời:\nI'd just like to add that I learn quickly, and I'm not afraid to ask questions when I don't know something. I'm also really excited about this role, and I'd be happy to complete a small coding task if that helps you evaluate me.\n→ Tôi học nhanh, không ngại hỏi khi chưa biết, rất hào hứng với vị trí này và sẵn sàng làm bài test nhỏ.\nMẹo: Đừng chỉ nói không có gì; hãy dùng cơ hội này để chốt lại một điểm mạnh quan trọng."
+    }
+  ]
+}

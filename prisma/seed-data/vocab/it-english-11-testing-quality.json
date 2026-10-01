@@ -1,0 +1,241 @@
+{
+  "slug": "it-english-11-testing-quality",
+  "order": 31,
+  "title": "IT English 11 · Testing & chất lượng",
+  "description": "Từ vựng kiểm thử và đảm bảo chất lượng ở mức B2: loại test, tái hiện lỗi, test không ổn định. Dùng khi review PR, họp QA và báo cáo bug với đội nước ngoài.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "unit test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjuːnɪt ˌtest/",
+      "answer": "kiểm thử đơn vị (unit test)",
+      "explanation": "Please add a unit test that covers the null case.\n→ Hãy thêm một unit test bao phủ trường hợp null.\nLưu ý: write/add/run a unit test."
+    },
+    {
+      "question": "integration test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɪntɪˈɡreɪʃən ˌtest/",
+      "answer": "kiểm thử tích hợp",
+      "explanation": "The integration test spins up a real database in a container.\n→ Integration test dựng một database thật trong container.\nLưu ý: integration test kiểm tra nhiều thành phần chạy cùng nhau."
+    },
+    {
+      "question": "end-to-end test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌend tə ˈend ˌtest/",
+      "answer": "kiểm thử đầu cuối (E2E)",
+      "explanation": "Our end-to-end tests click through the whole checkout flow.\n→ Các end-to-end test của chúng tôi bấm qua toàn bộ luồng thanh toán.\nLưu ý: viết tắt E2E; chạy chậm, nên ít hơn unit test."
+    },
+    {
+      "question": "test suite",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtest ˌswiːt/",
+      "answer": "bộ test",
+      "explanation": "The full test suite takes twelve minutes to run.\n→ Toàn bộ bộ test chạy mất mười hai phút.\nLưu ý: suite phát âm /swiːt/, không phải /suːt/."
+    },
+    {
+      "question": "test case",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtest ˌkeɪs/",
+      "answer": "ca kiểm thử",
+      "explanation": "Each test case should check exactly one behavior.\n→ Mỗi test case nên kiểm tra đúng một hành vi."
+    },
+    {
+      "question": "regression",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈɡreʃən/",
+      "answer": "lỗi hồi quy (tính năng cũ bị hỏng do thay đổi mới)",
+      "explanation": "This release introduced a regression in the export feature.\n→ Bản phát hành này gây ra một lỗi hồi quy ở tính năng xuất file.\nLưu ý: regression test, regression bug."
+    },
+    {
+      "question": "coverage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌvərɪdʒ/",
+      "answer": "độ bao phủ test (coverage)",
+      "explanation": "Coverage is 85%, but the critical paths are still untested.\n→ Độ bao phủ là 85%, nhưng các luồng quan trọng vẫn chưa được test.\nLưu ý: code coverage; coverage cao chưa chắc test tốt."
+    },
+    {
+      "question": "edge case",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈedʒ ˌkeɪs/",
+      "answer": "trường hợp biên, tình huống hiếm",
+      "explanation": "Did you handle the edge case where the list is empty?\n→ Bạn đã xử lý trường hợp biên khi danh sách rỗng chưa?\nLưu ý: corner case gần nghĩa."
+    },
+    {
+      "question": "flaky",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfleɪki/",
+      "answer": "không ổn định (lúc pass lúc fail)",
+      "explanation": "This flaky test fails once in every ten runs.\n→ Test không ổn định này fail khoảng một trong mười lần chạy.\nLưu ý: flaky test; flakiness (n)."
+    },
+    {
+      "question": "mock",
+      "partOfSpeech": "verb",
+      "phonetic": "/mɑːk/",
+      "answer": "giả lập (dependency) trong test",
+      "explanation": "We mock the payment gateway so tests don't call the real API.\n→ Chúng tôi giả lập cổng thanh toán để test không gọi API thật.\nLưu ý: danh từ: a mock; mock vs. stub vs. spy."
+    },
+    {
+      "question": "stub",
+      "partOfSpeech": "noun",
+      "phonetic": "/stʌb/",
+      "answer": "stub (bản giả trả kết quả cố định)",
+      "explanation": "Use a stub that always returns a successful response.\n→ Hãy dùng một stub luôn trả về phản hồi thành công.\nLưu ý: stub trả dữ liệu cố định; mock còn kiểm tra cách được gọi."
+    },
+    {
+      "question": "fixture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪkstʃər/",
+      "answer": "dữ liệu/trạng thái dựng sẵn cho test (fixture)",
+      "explanation": "Load the fixture before each test to get a clean state.\n→ Hãy nạp fixture trước mỗi test để có trạng thái sạch.\nLưu ý: test fixture, seed data."
+    },
+    {
+      "question": "assertion",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈsɜːrʃən/",
+      "answer": "câu khẳng định kiểm tra kết quả (assertion)",
+      "explanation": "The assertion fails because the date is in a different timezone.\n→ Assertion fail vì ngày nằm ở múi giờ khác.\nLưu ý: assert (v) /əˈsɜːrt/."
+    },
+    {
+      "question": "reproduce",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːprəˈduːs/",
+      "answer": "tái hiện (lỗi)",
+      "explanation": "I can't reproduce the bug on my machine.\n→ Tôi không tái hiện được lỗi trên máy mình.\nLưu ý: reproduce an issue; steps to reproduce; danh từ: repro."
+    },
+    {
+      "question": "steps to reproduce",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsteps tə ˈriːprəduːs/",
+      "answer": "các bước tái hiện lỗi",
+      "explanation": "Please add steps to reproduce so QA can verify the fix.\n→ Hãy thêm các bước tái hiện để QA xác minh bản sửa.\nLưu ý: thường ghi tắt: STR hoặc repro steps."
+    },
+    {
+      "question": "smoke test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsmoʊk ˌtest/",
+      "answer": "kiểm tra nhanh các chức năng sống còn",
+      "explanation": "Run a smoke test right after each deployment.\n→ Hãy chạy smoke test ngay sau mỗi lần deploy.\nLưu ý: sanity check: kiểm tra nhanh một thay đổi cụ thể."
+    },
+    {
+      "question": "acceptance test",
+      "partOfSpeech": "noun",
+      "phonetic": "/əkˈseptəns ˌtest/",
+      "answer": "kiểm thử nghiệm thu",
+      "explanation": "The acceptance test confirms the story meets its criteria.\n→ Acceptance test xác nhận story đáp ứng tiêu chí của nó.\nLưu ý: UAT = user acceptance testing."
+    },
+    {
+      "question": "test-driven development",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌtest ˌdrɪvən dɪˈveləpmənt/",
+      "answer": "phát triển hướng kiểm thử (TDD)",
+      "explanation": "With test-driven development, I write the failing test first.\n→ Với TDD, tôi viết test fail trước.\nLưu ý: viết tắt TDD /ˌtiː diː ˈdiː/; red, green, refactor."
+    },
+    {
+      "question": "test environment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtest ɪnˌvaɪrənmənt/",
+      "answer": "môi trường kiểm thử",
+      "explanation": "The test environment is out of sync with production.\n→ Môi trường kiểm thử không đồng bộ với production."
+    },
+    {
+      "question": "false positive",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌfɔːls ˈpɑːzətɪv/",
+      "answer": "báo động giả (báo lỗi nhưng không có lỗi)",
+      "explanation": "The scanner reported a vulnerability, but it's a false positive.\n→ Công cụ quét báo một lỗ hổng, nhưng đó là báo động giả.\nLưu ý: false negative: bỏ sót lỗi thật."
+    },
+    {
+      "question": "performance test",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈfɔːrməns ˌtest/",
+      "answer": "kiểm thử hiệu năng",
+      "explanation": "A performance test showed the endpoint slowing down at 500 users.\n→ Performance test cho thấy endpoint chậm dần khi có 500 người dùng.\nLưu ý: load test, stress test là các dạng."
+    },
+    {
+      "question": "load test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈloʊd ˌtest/",
+      "answer": "kiểm thử chịu tải",
+      "explanation": "We ran a load test before the Black Friday sale.\n→ Chúng tôi chạy load test trước đợt giảm giá Black Friday.\nLưu ý: động từ: load-test the service."
+    },
+    {
+      "question": "snapshot test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsnæpʃɑːt ˌtest/",
+      "answer": "test so sánh với bản chụp kết quả cũ",
+      "explanation": "The snapshot test failed because the markup changed.\n→ Snapshot test fail vì markup đã thay đổi.\nLưu ý: cập nhật snapshot chỉ khi thay đổi là chủ ý."
+    },
+    {
+      "question": "test pyramid",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtest ˌpɪrəmɪd/",
+      "answer": "kim tự tháp kiểm thử (nhiều unit, ít E2E)",
+      "explanation": "Our test pyramid is upside down: too many slow E2E tests.\n→ Kim tự tháp test của chúng tôi bị ngược: quá nhiều E2E chậm."
+    },
+    {
+      "question": "manual testing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmænjuəl ˈtestɪŋ/",
+      "answer": "kiểm thử thủ công",
+      "explanation": "Some visual changes still need manual testing.\n→ Một số thay đổi giao diện vẫn cần kiểm thử thủ công.\nLưu ý: trái nghĩa: automated testing."
+    },
+    {
+      "question": "exploratory testing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪkˈsplɔːrəˌtɔːri ˈtestɪŋ/",
+      "answer": "kiểm thử khám phá (không theo kịch bản)",
+      "explanation": "Exploratory testing found three bugs our scripts missed.\n→ Kiểm thử khám phá tìm ra ba lỗi mà các script bỏ sót."
+    },
+    {
+      "question": "bug report",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʌɡ rɪˌpɔːrt/",
+      "answer": "báo cáo lỗi",
+      "explanation": "A good bug report includes expected and actual behavior.\n→ Một báo cáo lỗi tốt gồm hành vi mong đợi và hành vi thực tế.\nLưu ý: file/raise a bug report; expected vs. actual behavior."
+    },
+    {
+      "question": "severity",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɪˈverəti/",
+      "answer": "mức độ nghiêm trọng của lỗi",
+      "explanation": "We marked it as high severity because it blocks login.\n→ Chúng tôi đánh dấu mức nghiêm trọng cao vì nó chặn đăng nhập.\nLưu ý: severity (mức hỏng) vs. priority (mức ưu tiên sửa)."
+    },
+    {
+      "question": "quality gate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkwɑːləti ˌɡeɪt/",
+      "answer": "cổng chất lượng (điều kiện bắt buộc trước khi merge/release)",
+      "explanation": "The quality gate blocks merges when coverage drops below 80%.\n→ Quality gate chặn merge khi coverage xuống dưới 80%."
+    },
+    {
+      "question": "test data",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtest ˌdeɪtə/",
+      "answer": "dữ liệu phục vụ kiểm thử",
+      "explanation": "Never copy real customer records into test data.\n→ Đừng bao giờ sao chép hồ sơ khách hàng thật vào dữ liệu test."
+    },
+    {
+      "question": "race condition",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈreɪs kənˌdɪʃən/",
+      "answer": "lỗi tranh chấp (kết quả phụ thuộc thứ tự thực thi)",
+      "explanation": "The flaky test is caused by a race condition in the setup.\n→ Test không ổn định này do một race condition trong phần setup.\nLưu ý: thường là nguyên nhân của flaky test."
+    },
+    {
+      "question": "verify",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈverɪfaɪ/",
+      "answer": "xác minh (bản sửa lỗi)",
+      "explanation": "QA will verify the fix on staging tomorrow.\n→ QA sẽ xác minh bản sửa trên staging vào ngày mai.\nLưu ý: verify vs. validate: verify = làm đúng cách; validate = làm đúng thứ cần."
+    },
+    {
+      "question": "sign-off",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaɪn ɔːf/",
+      "answer": "sự chấp thuận cuối cùng (trước khi phát hành)",
+      "explanation": "We can't release without QA sign-off.\n→ Chúng ta không thể phát hành nếu thiếu sự chấp thuận của QA.\nLưu ý: sign-off (n); sign off on something (v)."
+    }
+  ]
+}

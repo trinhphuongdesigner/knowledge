@@ -1,0 +1,262 @@
+{
+  "slug": "life-work-04-personality-strengths",
+  "order": 4,
+  "title": "Life & Work 4 · Tính cách, điểm mạnh & điểm yếu",
+  "description": "Từ vựng cấp độ B1 để mô tả tính cách, điểm mạnh và điểm yếu của bản thân. Dùng khi trả lời HR câu hỏi \"What are your strengths and weaknesses?\" hoặc nói về đồng nghiệp.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "reliable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/rɪˈlaɪəbəl/",
+      "answer": "đáng tin cậy",
+      "explanation": "My teammates know I'm reliable and always deliver on time.\n→ Đồng đội biết tôi đáng tin cậy và luôn giao việc đúng hạn."
+    },
+    {
+      "question": "proactive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/proʊˈæktɪv/",
+      "answer": "chủ động",
+      "explanation": "I'm proactive: I look for problems before they become serious.\n→ Tôi là người chủ động: tôi tìm ra vấn đề trước khi chúng trở nên nghiêm trọng.\nLưu ý: Trái nghĩa: reactive (bị động)."
+    },
+    {
+      "question": "detail-oriented",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdiːteɪl ˌɔːrientɪd/",
+      "answer": "tỉ mỉ, chú trọng chi tiết",
+      "explanation": "I'm detail-oriented, so I rarely miss small mistakes in my work.\n→ Tôi tỉ mỉ nên hiếm khi bỏ sót lỗi nhỏ trong công việc."
+    },
+    {
+      "question": "adaptable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əˈdæptəbəl/",
+      "answer": "dễ thích nghi",
+      "explanation": "I'm adaptable and can quickly adjust to new teams and tools.\n→ Tôi dễ thích nghi và có thể nhanh chóng làm quen với nhóm và công cụ mới."
+    },
+    {
+      "question": "self-motivated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌself ˈmoʊtɪveɪtɪd/",
+      "answer": "tự có động lực, tự giác",
+      "explanation": "I'm self-motivated and don't need close supervision.\n→ Tôi tự giác và không cần ai giám sát sát sao."
+    },
+    {
+      "question": "curious",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkjʊriəs/",
+      "answer": "ham học hỏi, tò mò",
+      "explanation": "I'm curious by nature, so I enjoy learning new things.\n→ Bản tính tôi ham tìm hiểu nên tôi thích học điều mới.\nLưu ý: Trong ngữ cảnh tích cực: curious = ham học hỏi."
+    },
+    {
+      "question": "patient",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈpeɪʃənt/",
+      "answer": "kiên nhẫn",
+      "explanation": "I'm patient when I explain things to new team members.\n→ Tôi kiên nhẫn khi giải thích cho các thành viên mới."
+    },
+    {
+      "question": "perfectionist",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈfekʃənɪst/",
+      "answer": "người cầu toàn",
+      "explanation": "I'm a bit of a perfectionist, so I sometimes spend too long on details.\n→ Tôi hơi cầu toàn nên đôi khi dành quá nhiều thời gian cho chi tiết.\nLưu ý: Thường dùng làm \"điểm yếu\" khi phỏng vấn."
+    },
+    {
+      "question": "impatient",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪmˈpeɪʃənt/",
+      "answer": "thiếu kiên nhẫn, nóng vội",
+      "explanation": "I used to be impatient with slow progress, but I'm learning to plan better.\n→ Trước đây tôi hay nóng vội khi tiến độ chậm, nhưng tôi đang học cách lên kế hoạch tốt hơn."
+    },
+    {
+      "question": "introverted",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈɪntrəvɜːrtɪd/",
+      "answer": "hướng nội",
+      "explanation": "I'm introverted, but I communicate well in small groups.\n→ Tôi hướng nội nhưng giao tiếp tốt trong nhóm nhỏ.\nLưu ý: Danh từ: introvert."
+    },
+    {
+      "question": "open-minded",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌoʊpən ˈmaɪndɪd/",
+      "answer": "cởi mở, sẵn sàng đón nhận ý kiến khác",
+      "explanation": "I'm open-minded and always willing to hear different opinions.\n→ Tôi cởi mở và luôn sẵn lòng lắng nghe ý kiến khác."
+    },
+    {
+      "question": "extroverted",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈekstrəvɜːrtɪd/",
+      "answer": "hướng ngoại",
+      "explanation": "My manager is extroverted and loves talking to everyone.\n→ Quản lý của tôi hướng ngoại và thích nói chuyện với mọi người.\nLưu ý: Cũng viết \"extraverted\"."
+    },
+    {
+      "question": "responsible",
+      "partOfSpeech": "adjective",
+      "phonetic": "/rɪˈspɑːnsəbəl/",
+      "answer": "có trách nhiệm",
+      "explanation": "I'm responsible and I always finish what I start.\n→ Tôi có trách nhiệm và luôn hoàn thành việc đã bắt đầu."
+    },
+    {
+      "question": "hard-working",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌhɑːrd ˈwɜːrkɪŋ/",
+      "answer": "chăm chỉ",
+      "explanation": "My colleagues describe me as hard-working and honest.\n→ Đồng nghiệp mô tả tôi là người chăm chỉ và trung thực."
+    },
+    {
+      "question": "creative",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kriˈeɪtɪv/",
+      "answer": "sáng tạo",
+      "explanation": "I'm creative when it comes to solving problems.\n→ Tôi sáng tạo khi giải quyết vấn đề."
+    },
+    {
+      "question": "organized",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈɔːrɡənaɪzd/",
+      "answer": "ngăn nắp, có tổ chức",
+      "explanation": "I'm very organized: I plan my week every Monday morning.\n→ Tôi rất ngăn nắp: tôi lên kế hoạch tuần vào sáng thứ Hai.\nLưu ý: Anh-Anh viết \"organised\"."
+    },
+    {
+      "question": "flexible",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfleksəbəl/",
+      "answer": "linh hoạt",
+      "explanation": "I'm flexible about working hours when the team needs help.\n→ Tôi linh hoạt về giờ làm khi nhóm cần hỗ trợ."
+    },
+    {
+      "question": "honest",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈɑːnɪst/",
+      "answer": "trung thực",
+      "explanation": "I try to be honest, even when the news is bad.\n→ Tôi cố gắng trung thực, kể cả khi tin không tốt.\nLưu ý: Chữ \"h\" câm."
+    },
+    {
+      "question": "easygoing",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌiːziˈɡoʊɪŋ/",
+      "answer": "dễ tính, thoải mái",
+      "explanation": "I'm easygoing, so it's easy to work with me.\n→ Tôi dễ tính nên làm việc với tôi khá dễ chịu."
+    },
+    {
+      "question": "analytical",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌænəˈlɪtɪkəl/",
+      "answer": "có tư duy phân tích",
+      "explanation": "I have an analytical mind and enjoy breaking down problems.\n→ Tôi có tư duy phân tích và thích chia nhỏ vấn đề."
+    },
+    {
+      "question": "calm",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kɑːm/",
+      "answer": "bình tĩnh",
+      "explanation": "I stay calm when things go wrong.\n→ Tôi giữ bình tĩnh khi mọi chuyện không suôn sẻ.\nLưu ý: Chữ \"l\" câm; calm under pressure = bình tĩnh dưới áp lực."
+    },
+    {
+      "question": "stubborn",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈstʌbərn/",
+      "answer": "bướng bỉnh, cứng đầu",
+      "explanation": "I can be stubborn when I believe my idea is right.\n→ Tôi có thể bướng khi tin ý tưởng của mình đúng."
+    },
+    {
+      "question": "shy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ʃaɪ/",
+      "answer": "nhút nhát, e dè",
+      "explanation": "I was shy at first, but now I speak up in meetings.\n→ Lúc đầu tôi nhút nhát nhưng giờ tôi phát biểu trong các cuộc họp."
+    },
+    {
+      "question": "sensitive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈsensətɪv/",
+      "answer": "nhạy cảm, dễ tổn thương",
+      "explanation": "I'm quite sensitive to criticism, but I'm working on it.\n→ Tôi khá nhạy cảm với lời chê nhưng đang cải thiện."
+    },
+    {
+      "question": "overthink",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌoʊvərˈθɪŋk/",
+      "answer": "suy nghĩ quá nhiều",
+      "explanation": "I tend to overthink decisions, so I set a time limit now.\n→ Tôi hay suy nghĩ quá nhiều khi quyết định nên giờ tôi đặt giới hạn thời gian."
+    },
+    {
+      "question": "procrastinate",
+      "partOfSpeech": "verb",
+      "phonetic": "/proʊˈkræstəneɪt/",
+      "answer": "trì hoãn, để việc dồn lại",
+      "explanation": "I used to procrastinate, but a daily to-do list helps me a lot.\n→ Trước đây tôi hay trì hoãn nhưng danh sách việc cần làm hằng ngày giúp tôi rất nhiều."
+    },
+    {
+      "question": "strength",
+      "partOfSpeech": "noun",
+      "phonetic": "/streŋkθ/",
+      "answer": "điểm mạnh, sức mạnh",
+      "explanation": "My greatest strength is communication.\n→ Điểm mạnh lớn nhất của tôi là giao tiếp.\nLưu ý: Đọc kết thúc /ŋkθ/; số nhiều strengths."
+    },
+    {
+      "question": "weakness",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwiːknəs/",
+      "answer": "điểm yếu",
+      "explanation": "One weakness is that I find it hard to say no.\n→ Một điểm yếu của tôi là khó từ chối người khác."
+    },
+    {
+      "question": "team player",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtiːm ˌpleɪər/",
+      "answer": "người làm việc nhóm tốt",
+      "explanation": "I'm a team player who puts the team's goals first.\n→ Tôi là người biết làm việc nhóm và đặt mục tiêu chung lên trước."
+    },
+    {
+      "question": "fast learner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌfæst ˈlɜːrnər/",
+      "answer": "người học nhanh",
+      "explanation": "I'm a fast learner, and I picked up the new framework in two weeks.\n→ Tôi học nhanh và đã nắm được framework mới trong hai tuần."
+    },
+    {
+      "question": "outgoing",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈaʊtɡoʊɪŋ/",
+      "answer": "cởi mở, hòa đồng",
+      "explanation": "She's outgoing and makes friends easily.\n→ Cô ấy hòa đồng và dễ kết bạn."
+    },
+    {
+      "question": "work on",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/wɜːrk ɑːn/",
+      "answer": "cải thiện, trau dồi",
+      "explanation": "I'm working on my public speaking skills.\n→ Tôi đang trau dồi kỹ năng nói trước đám đông.\nLưu ý: work on my weakness = đang cải thiện điểm yếu."
+    },
+    {
+      "question": "self-aware",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌself əˈwer/",
+      "answer": "hiểu rõ bản thân",
+      "explanation": "I'm self-aware enough to know when I need help.\n→ Tôi đủ hiểu bản thân để biết khi nào cần giúp đỡ."
+    },
+    {
+      "question": "assertive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əˈsɜːrtɪv/",
+      "answer": "quyết đoán, tự tin bày tỏ",
+      "explanation": "I'm learning to be more assertive in meetings.\n→ Tôi đang học cách quyết đoán hơn trong các cuộc họp.\nLưu ý: assertive khác \"aggressive\" (hung hăng)."
+    },
+    {
+      "question": "tend to",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˈtend tuː/",
+      "answer": "có xu hướng, thường hay",
+      "explanation": "I tend to take on too many tasks at once.\n→ Tôi có xu hướng nhận quá nhiều việc cùng lúc."
+    },
+    {
+      "question": "diplomatic",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌdɪpləˈmætɪk/",
+      "answer": "khéo léo, tế nhị",
+      "explanation": "I try to be diplomatic when I disagree with someone.\n→ Tôi cố gắng khéo léo khi không đồng ý với ai đó."
+    }
+  ]
+}

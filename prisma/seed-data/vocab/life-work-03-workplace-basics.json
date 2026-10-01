@@ -1,0 +1,269 @@
+{
+  "slug": "life-work-03-workplace-basics",
+  "order": 3,
+  "title": "Life & Work 3 · Nơi làm việc cơ bản",
+  "description": "Từ vựng cấp độ A2 về công sở: đồng nghiệp, lịch làm việc, hạn chót, lương và nghỉ phép. Dùng khi nói chuyện với HR, quản lý hoặc đồng nghiệp nước ngoài hằng ngày.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "colleague",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːliːɡ/",
+      "answer": "đồng nghiệp",
+      "explanation": "My colleagues are friendly and always willing to help.\n→ Các đồng nghiệp của tôi thân thiện và luôn sẵn lòng giúp đỡ."
+    },
+    {
+      "question": "manager",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmænɪdʒər/",
+      "answer": "quản lý",
+      "explanation": "My manager gives me clear feedback every week.\n→ Quản lý của tôi cho tôi phản hồi rõ ràng mỗi tuần."
+    },
+    {
+      "question": "office",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːfɪs/",
+      "answer": "văn phòng",
+      "explanation": "Our office is on the fifth floor.\n→ Văn phòng của chúng tôi ở tầng năm."
+    },
+    {
+      "question": "meeting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmiːtɪŋ/",
+      "answer": "cuộc họp",
+      "explanation": "I have a meeting with the client at 10 a.m.\n→ Tôi có cuộc họp với khách hàng lúc 10 giờ sáng.\nLưu ý: have / attend / hold a meeting."
+    },
+    {
+      "question": "schedule",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskedʒuːl/",
+      "answer": "lịch trình, thời gian biểu",
+      "explanation": "My schedule is full on Monday, but I'm free on Tuesday.\n→ Thứ Hai lịch của tôi kín nhưng thứ Ba tôi rảnh.\nLưu ý: Động từ: schedule a meeting = lên lịch họp. Anh-Anh đọc /ˈʃedjuːl/."
+    },
+    {
+      "question": "deadline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdedlaɪn/",
+      "answer": "hạn chót",
+      "explanation": "We must finish the project before the deadline on Friday.\n→ Chúng ta phải hoàn thành dự án trước hạn chót vào thứ Sáu.\nLưu ý: meet / miss a deadline = kịp / trễ hạn."
+    },
+    {
+      "question": "task",
+      "partOfSpeech": "noun",
+      "phonetic": "/tæsk/",
+      "answer": "nhiệm vụ, công việc cụ thể",
+      "explanation": "My first task is to review the documentation.\n→ Nhiệm vụ đầu tiên của tôi là xem lại tài liệu."
+    },
+    {
+      "question": "report",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈpɔːrt/",
+      "answer": "báo cáo",
+      "explanation": "I need to send a weekly report to my manager.\n→ Tôi cần gửi báo cáo hằng tuần cho quản lý.\nLưu ý: Cũng là động từ: report to someone = báo cáo cho / trực thuộc ai."
+    },
+    {
+      "question": "day off",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdeɪ ˈɔːf/",
+      "answer": "ngày nghỉ",
+      "explanation": "Can I take a day off next Monday?\n→ Tôi nghỉ một ngày vào thứ Hai tuần sau được không?\nLưu ý: take a day off = xin nghỉ một ngày."
+    },
+    {
+      "question": "overtime",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈoʊvərtaɪm/",
+      "answer": "giờ làm thêm, tăng ca",
+      "explanation": "We worked overtime to finish the project on time.\n→ Chúng tôi làm thêm giờ để hoàn thành dự án đúng hạn.\nLưu ý: work overtime; overtime pay = tiền làm thêm giờ."
+    },
+    {
+      "question": "full-time",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌfʊl ˈtaɪm/",
+      "answer": "toàn thời gian",
+      "explanation": "I'm looking for a full-time position.\n→ Tôi đang tìm một vị trí toàn thời gian."
+    },
+    {
+      "question": "part-time",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌpɑːrt ˈtaɪm/",
+      "answer": "bán thời gian",
+      "explanation": "I worked part-time while I was studying.\n→ Tôi làm bán thời gian khi còn đi học."
+    },
+    {
+      "question": "salary",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsæləri/",
+      "answer": "lương (theo tháng/năm)",
+      "explanation": "The salary is paid on the 5th of every month.\n→ Lương được trả vào ngày 5 hằng tháng.\nLưu ý: salary = lương cố định tháng/năm; wage = lương theo giờ/tuần."
+    },
+    {
+      "question": "team",
+      "partOfSpeech": "noun",
+      "phonetic": "/tiːm/",
+      "answer": "nhóm, đội",
+      "explanation": "I work in a team of eight people.\n→ Tôi làm việc trong một nhóm tám người."
+    },
+    {
+      "question": "team leader",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtiːm ˌliːdər/",
+      "answer": "trưởng nhóm",
+      "explanation": "Our team leader runs a short meeting every morning.\n→ Trưởng nhóm của chúng tôi tổ chức một buổi họp ngắn mỗi sáng."
+    },
+    {
+      "question": "boss",
+      "partOfSpeech": "noun",
+      "phonetic": "/bɔːs/",
+      "answer": "sếp",
+      "explanation": "My boss is very supportive.\n→ Sếp của tôi rất ủng hộ nhân viên.\nLưu ý: Thân mật hơn \"manager\"; nên dùng \"manager\" trong phỏng vấn."
+    },
+    {
+      "question": "coworker",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkoʊˌwɜːrkər/",
+      "answer": "đồng nghiệp (cùng làm việc)",
+      "explanation": "One of my coworkers recommended this company to me.\n→ Một đồng nghiệp của tôi đã giới thiệu công ty này cho tôi.\nLưu ý: Nghĩa gần như \"colleague\"; \"coworker\" thân mật hơn."
+    },
+    {
+      "question": "employee",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪmˈplɔɪiː/",
+      "answer": "nhân viên",
+      "explanation": "The company has about 200 employees.\n→ Công ty có khoảng 200 nhân viên."
+    },
+    {
+      "question": "employer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪmˈplɔɪər/",
+      "answer": "nhà tuyển dụng, chủ doanh nghiệp",
+      "explanation": "My current employer offers flexible working hours.\n→ Công ty hiện tại của tôi cho phép giờ làm việc linh hoạt."
+    },
+    {
+      "question": "department",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈpɑːrtmənt/",
+      "answer": "phòng ban",
+      "explanation": "I work in the engineering department.\n→ Tôi làm ở phòng kỹ thuật."
+    },
+    {
+      "question": "desk",
+      "partOfSpeech": "noun",
+      "phonetic": "/desk/",
+      "answer": "bàn làm việc",
+      "explanation": "You can sit at the desk next to the window.\n→ Bạn có thể ngồi ở bàn cạnh cửa sổ."
+    },
+    {
+      "question": "work from home",
+      "partOfSpeech": "phrase",
+      "phonetic": "/wɜːrk frʌm hoʊm/",
+      "answer": "làm việc tại nhà",
+      "explanation": "We work from home on Wednesdays and Fridays.\n→ Chúng tôi làm việc tại nhà vào thứ Tư và thứ Sáu.\nLưu ý: Viết tắt phổ biến: WFH."
+    },
+    {
+      "question": "business trip",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɪznəs trɪp/",
+      "answer": "chuyến công tác",
+      "explanation": "I'm going on a business trip to Tokyo next week.\n→ Tuần sau tôi đi công tác ở Tokyo.\nLưu ý: go on a business trip."
+    },
+    {
+      "question": "lunch break",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlʌntʃ breɪk/",
+      "answer": "giờ nghỉ trưa",
+      "explanation": "Our lunch break is from 12 to 1 p.m.\n→ Giờ nghỉ trưa của chúng tôi từ 12 đến 1 giờ chiều."
+    },
+    {
+      "question": "working hours",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɜːrkɪŋ aʊərz/",
+      "answer": "giờ làm việc",
+      "explanation": "Our working hours are from 9 a.m. to 6 p.m.\n→ Giờ làm việc của chúng tôi từ 9 giờ sáng đến 6 giờ chiều."
+    },
+    {
+      "question": "shift",
+      "partOfSpeech": "noun",
+      "phonetic": "/ʃɪft/",
+      "answer": "ca làm việc",
+      "explanation": "I'm on the night shift this week.\n→ Tuần này tôi làm ca đêm."
+    },
+    {
+      "question": "paid leave",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpeɪd ˈliːv/",
+      "answer": "nghỉ phép có lương",
+      "explanation": "We get 12 days of paid leave per year.\n→ Chúng tôi có 12 ngày nghỉ phép có lương mỗi năm."
+    },
+    {
+      "question": "sick leave",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪk liːv/",
+      "answer": "nghỉ ốm",
+      "explanation": "I took two days of sick leave last week.\n→ Tuần trước tôi nghỉ ốm hai ngày."
+    },
+    {
+      "question": "appointment",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈpɔɪntmənt/",
+      "answer": "cuộc hẹn",
+      "explanation": "I have a doctor's appointment, so I'll be late.\n→ Tôi có hẹn với bác sĩ nên sẽ đến muộn.\nLưu ý: appointment = hẹn gặp theo giờ (bác sĩ, khách hàng)."
+    },
+    {
+      "question": "contract",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːntrækt/",
+      "answer": "hợp đồng",
+      "explanation": "I signed a one-year contract with the company.\n→ Tôi đã ký hợp đồng một năm với công ty.\nLưu ý: Động từ /kənˈtrækt/ nghĩa là co lại hoặc ký kết (ít dùng)."
+    },
+    {
+      "question": "teammate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtiːmmeɪt/",
+      "answer": "đồng đội, thành viên cùng nhóm",
+      "explanation": "My teammates helped me finish the report on time.\n→ Các đồng đội đã giúp tôi hoàn thành báo cáo đúng hạn.\nLưu ý: teammate là người cùng nhóm; coworker là người cùng công ty."
+    },
+    {
+      "question": "submit",
+      "partOfSpeech": "verb",
+      "phonetic": "/səbˈmɪt/",
+      "answer": "nộp, gửi (báo cáo, hồ sơ)",
+      "explanation": "Please submit your report by Friday afternoon.\n→ Vui lòng nộp báo cáo trước chiều thứ Sáu."
+    },
+    {
+      "question": "attend",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈtend/",
+      "answer": "tham dự",
+      "explanation": "All employees must attend the monthly meeting.\n→ Tất cả nhân viên phải tham dự cuộc họp hằng tháng.\nLưu ý: attend a meeting (không có giới từ \"to\")."
+    },
+    {
+      "question": "reschedule",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈskedʒuːl/",
+      "answer": "dời lịch, sắp xếp lại lịch",
+      "explanation": "Could we reschedule the meeting to Thursday?\n→ Chúng ta dời cuộc họp sang thứ Năm được không?"
+    },
+    {
+      "question": "workload",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɜːrkloʊd/",
+      "answer": "khối lượng công việc",
+      "explanation": "My workload is heavy at the end of the quarter.\n→ Khối lượng công việc của tôi rất nặng vào cuối quý.\nLưu ý: heavy / light workload."
+    },
+    {
+      "question": "be in charge of",
+      "partOfSpeech": "phrase",
+      "phonetic": "/bi ɪn tʃɑːrdʒ əv/",
+      "answer": "phụ trách, chịu trách nhiệm về",
+      "explanation": "I'm in charge of onboarding new team members.\n→ Tôi phụ trách việc hướng dẫn thành viên mới của nhóm."
+    },
+    {
+      "question": "work late",
+      "partOfSpeech": "collocation",
+      "phonetic": "/wɜːrk leɪt/",
+      "answer": "làm việc muộn, ở lại làm muộn",
+      "explanation": "Sorry, I have to work late tonight, so I can't join dinner.\n→ Xin lỗi, tối nay tôi phải làm muộn nên không đi ăn tối được."
+    }
+  ]
+}

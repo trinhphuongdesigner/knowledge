@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* Book page-flip loader (ported from the resume project's PDF loader). */
+.book-loader {
+  display: flex;
+  min-height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  animation: book-loader-fade-in 0.25s ease;
+}
+@keyframes book-loader-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.book-loader-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  filter: drop-shadow(0 4px 14px rgba(37, 99, 235, 0.25));
+}
+.book-loader-flip {
+  width: 72px;
+  height: 50px;
+  position: relative;
+  perspective: 220px;
+  /* Vanishing point sits on the page's rotation axis (spine's right edge). */
+  perspective-origin: calc(50% + 2.5px) 50%;
+  /* Spine is centered on purpose: pages land flat on the left half. */
+  overflow: hidden;
+}
+.book-loader-flip-spine {
+  position: absolute;
+  left: 50%;
+  top: 1px;
+  bottom: 1px;
+  width: 5px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  border-radius: 3px;
+}
+.book-loader-flip-base {
+  position: absolute;
+  left: calc(50% + 2.5px);
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #f1f5f9;
+  border: 1px solid #93c5fd;
+  border-radius: 0 6px 6px 0;
+}
+.book-loader-flip-page {
+  position: absolute;
+  left: calc(50% + 2.5px);
+  right: 0.5px;
+  top: 0.5px;
+  bottom: 0.5px;
+  background: #ffffff;
+  border: 1px solid #93c5fd;
+  border-radius: 0 6px 6px 0;
+  transform-origin: left center;
+  box-shadow: 1px 0 4px rgba(37, 99, 235, 0.15);
+  animation: book-loader-page-turn 2.6s infinite cubic-bezier(0.5, 0.05, 0.4, 0.95);
+}
+.book-loader-flip-page:nth-child(3) {
+  animation-delay: -0.65s;
+}
+.book-loader-flip-page:nth-child(4) {
+  animation-delay: -1.3s;
+}
+@keyframes book-loader-page-turn {
+  0% {
+    transform: rotateY(0deg) skewY(0deg);
+    opacity: 1;
+    z-index: 3;
+  }
+  24% {
+    transform: rotateY(-70deg) skewY(-5deg) scaleX(0.96);
+    opacity: 1;
+    z-index: 3;
+  }
+  50% {
+    transform: rotateY(-140deg) skewY(5deg) scaleX(0.94);
+    opacity: 1;
+    z-index: 2;
+  }
+  74% {
+    transform: rotateY(-180deg) skewY(0deg);
+    opacity: 1;
+    z-index: 1;
+  }
+  88% {
+    opacity: 0;
+    transform: rotateY(-180deg);
+  }
+  88.1%,
+  100% {
+    opacity: 0;
+    transform: rotateY(0deg);
+    z-index: 0;
+  }
+}
+.book-loader-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .book-loader {
+    animation: none;
+  }
+  /* Static open book: no page turn, keep one page resting on the right. */
+  .book-loader-flip-page {
+    animation: none;
+  }
+  .book-loader-flip-page:nth-child(3),
+  .book-loader-flip-page:nth-child(4) {
+    display: none;
+  }
+}

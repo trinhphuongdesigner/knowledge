@@ -1,0 +1,262 @@
+{
+  "slug": "life-work-07-hiring-interview",
+  "order": 7,
+  "title": "Life & Work 7 · Tuyển dụng & phỏng vấn",
+  "description": "Từ vựng cấp độ B2 về quy trình tuyển dụng: hồ sơ, vòng phỏng vấn, thời gian báo trước, thử việc và offer. Dùng khi trao đổi với recruiter, HR và đàm phán điều kiện nhận việc.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "recruiter",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈkruːtər/",
+      "answer": "chuyên viên tuyển dụng",
+      "explanation": "A recruiter contacted me on LinkedIn about this position.\n→ Một chuyên viên tuyển dụng đã liên hệ tôi qua LinkedIn về vị trí này."
+    },
+    {
+      "question": "job description",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʒɑːb dɪˌskrɪpʃən/",
+      "answer": "bản mô tả công việc (JD)",
+      "explanation": "The job description says the role involves leading a small team.\n→ Bản mô tả công việc nói vị trí này liên quan đến dẫn dắt một nhóm nhỏ.\nLưu ý: Viết tắt: JD."
+    },
+    {
+      "question": "shortlist",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈʃɔːrtlɪst/",
+      "answer": "đưa vào danh sách rút gọn",
+      "explanation": "I was shortlisted for the final interview.\n→ Tôi được đưa vào danh sách rút gọn cho vòng phỏng vấn cuối.\nLưu ý: Cũng là danh từ: be on the shortlist."
+    },
+    {
+      "question": "notice period",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnoʊtɪs ˌpɪriəd/",
+      "answer": "thời gian báo trước khi nghỉ việc",
+      "explanation": "My notice period is 30 days.\n→ Thời gian báo trước nghỉ việc của tôi là 30 ngày.\nLưu ý: serve / work out your notice period."
+    },
+    {
+      "question": "probation",
+      "partOfSpeech": "noun",
+      "phonetic": "/proʊˈbeɪʃən/",
+      "answer": "thời gian thử việc",
+      "explanation": "The probation period lasts two months.\n→ Thời gian thử việc kéo dài hai tháng.\nLưu ý: be on probation; probation period."
+    },
+    {
+      "question": "onboarding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːnˌbɔːrdɪŋ/",
+      "answer": "quy trình đón và hướng dẫn nhân viên mới",
+      "explanation": "The onboarding process takes about a week.\n→ Quy trình hướng dẫn nhân viên mới mất khoảng một tuần.\nLưu ý: Động từ: onboard."
+    },
+    {
+      "question": "offer letter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːfər ˌletər/",
+      "answer": "thư mời nhận việc",
+      "explanation": "I received the offer letter yesterday and I'm reviewing it.\n→ Hôm qua tôi nhận được thư mời nhận việc và đang xem xét."
+    },
+    {
+      "question": "headhunter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedhʌntər/",
+      "answer": "người săn đầu người, chuyên viên tuyển dụng cao cấp",
+      "explanation": "A headhunter contacted me about a senior backend role.\n→ Một headhunter đã liên hệ tôi về vị trí backend cấp cao.\nLưu ý: thường làm việc cho công ty tuyển dụng, không phải công ty bạn ứng tuyển."
+    },
+    {
+      "question": "reference check",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrefrəns tʃek/",
+      "answer": "kiểm tra thông tin tham chiếu",
+      "explanation": "They will do a reference check with my previous manager.\n→ Họ sẽ kiểm tra thông tin tham chiếu với quản lý cũ của tôi.\nLưu ý: reference = người đứng ra xác nhận về bạn."
+    },
+    {
+      "question": "culture fit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌltʃər fɪt/",
+      "answer": "sự phù hợp về văn hóa công ty",
+      "explanation": "We look for culture fit as well as technical skills.\n→ Chúng tôi tìm sự phù hợp về văn hóa bên cạnh kỹ năng chuyên môn."
+    },
+    {
+      "question": "hybrid",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈhaɪbrɪd/",
+      "answer": "kết hợp (làm tại văn phòng và từ xa)",
+      "explanation": "We offer a hybrid model: three days in the office, two days at home.\n→ Chúng tôi áp dụng mô hình kết hợp: ba ngày ở văn phòng, hai ngày ở nhà."
+    },
+    {
+      "question": "relocate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈloʊkeɪt/",
+      "answer": "chuyển chỗ ở (để làm việc)",
+      "explanation": "Would you be willing to relocate to Hanoi?\n→ Bạn có sẵn sàng chuyển ra Hà Nội làm việc không?\nLưu ý: Danh từ: relocation (hỗ trợ chuyển chỗ ở)."
+    },
+    {
+      "question": "vacancy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈveɪkənsi/",
+      "answer": "vị trí đang tuyển",
+      "explanation": "We have a vacancy for a project coordinator.\n→ Chúng tôi đang tuyển một vị trí điều phối dự án."
+    },
+    {
+      "question": "applicant",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæplɪkənt/",
+      "answer": "người nộp đơn ứng tuyển",
+      "explanation": "We received over 100 applicants for this position.\n→ Chúng tôi nhận được hơn 100 hồ sơ ứng tuyển cho vị trí này."
+    },
+    {
+      "question": "candidate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkændɪdeɪt/",
+      "answer": "ứng viên",
+      "explanation": "You are one of our strongest candidates.\n→ Bạn là một trong những ứng viên mạnh nhất của chúng tôi.\nLưu ý: candidate thường chỉ người đã vào vòng tuyển; applicant là người mới nộp hồ sơ."
+    },
+    {
+      "question": "résumé",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrezəmeɪ/",
+      "answer": "sơ yếu lý lịch, CV",
+      "explanation": "Please send me your updated résumé.\n→ Vui lòng gửi cho tôi bản CV mới nhất của bạn.\nLưu ý: Anh-Anh thường dùng \"CV\" (curriculum vitae); viết \"resume\" không dấu cũng được."
+    },
+    {
+      "question": "cover letter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌvər ˌletər/",
+      "answer": "thư xin việc",
+      "explanation": "I attached a short cover letter to my application.\n→ Tôi đính kèm một thư xin việc ngắn trong hồ sơ."
+    },
+    {
+      "question": "apply for",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/əˈplaɪ fɔːr/",
+      "answer": "ứng tuyển vào",
+      "explanation": "I'd like to apply for the project manager position.\n→ Tôi muốn ứng tuyển vào vị trí quản lý dự án.\nLưu ý: apply for + vị trí; apply to + công ty."
+    },
+    {
+      "question": "job opening",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʒɑːb ˌoʊpənɪŋ/",
+      "answer": "vị trí tuyển dụng đang mở",
+      "explanation": "I saw your job opening on the company website.\n→ Tôi thấy tin tuyển dụng của bạn trên website công ty."
+    },
+    {
+      "question": "screening call",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskriːnɪŋ kɔːl/",
+      "answer": "cuộc gọi sàng lọc ban đầu",
+      "explanation": "The HR team scheduled a screening call for Monday.\n→ Bộ phận nhân sự đã hẹn một cuộc gọi sàng lọc vào thứ Hai."
+    },
+    {
+      "question": "background check",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækɡraʊnd tʃek/",
+      "answer": "kiểm tra lý lịch",
+      "explanation": "The offer is subject to a background check.\n→ Thư mời này phụ thuộc vào việc kiểm tra lý lịch.\nLưu ý: subject to = tùy thuộc vào, có điều kiện."
+    },
+    {
+      "question": "requirements",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈkwaɪərmənts/",
+      "answer": "yêu cầu (của vị trí)",
+      "explanation": "I meet most of the requirements listed in the job post.\n→ Tôi đáp ứng hầu hết các yêu cầu nêu trong tin tuyển dụng.\nLưu ý: meet the requirements = đáp ứng yêu cầu."
+    },
+    {
+      "question": "qualified",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkwɑːləfaɪd/",
+      "answer": "đủ điều kiện, đủ năng lực",
+      "explanation": "I believe I'm qualified for this position.\n→ Tôi tin mình đủ năng lực cho vị trí này."
+    },
+    {
+      "question": "overqualified",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌoʊvərˈkwɑːləfaɪd/",
+      "answer": "quá trình độ so với vị trí",
+      "explanation": "They worried I was overqualified for a junior role.\n→ Họ lo tôi quá trình độ so với vị trí junior."
+    },
+    {
+      "question": "hiring manager",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhaɪərɪŋ ˈmænɪdʒər/",
+      "answer": "quản lý tuyển dụng (người trực tiếp cần nhân sự)",
+      "explanation": "The hiring manager will join the second interview.\n→ Quản lý tuyển dụng sẽ tham gia buổi phỏng vấn thứ hai."
+    },
+    {
+      "question": "start date",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstɑːrt deɪt/",
+      "answer": "ngày bắt đầu làm việc",
+      "explanation": "Is the start date flexible?\n→ Ngày bắt đầu làm việc có linh hoạt không?"
+    },
+    {
+      "question": "work permit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɜːrk ˌpɜːrmɪt/",
+      "answer": "giấy phép lao động",
+      "explanation": "I need a work permit to work in Singapore.\n→ Tôi cần giấy phép lao động để làm việc ở Singapore."
+    },
+    {
+      "question": "remote",
+      "partOfSpeech": "adjective",
+      "phonetic": "/rɪˈmoʊt/",
+      "answer": "làm việc từ xa",
+      "explanation": "This is a fully remote position.\n→ Đây là vị trí làm việc hoàn toàn từ xa.\nLưu ý: Cũng dùng: remote work, work remotely."
+    },
+    {
+      "question": "turn down",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/tɜːrn daʊn/",
+      "answer": "từ chối (lời mời, đề nghị)",
+      "explanation": "I turned down another offer because I prefer your company.\n→ Tôi đã từ chối một lời mời khác vì tôi thích công ty của anh/chị hơn."
+    },
+    {
+      "question": "accept an offer",
+      "partOfSpeech": "collocation",
+      "phonetic": "/əkˈsept ən ˈɔːfər/",
+      "answer": "chấp nhận lời mời nhận việc",
+      "explanation": "I'm happy to accept the offer.\n→ Tôi rất vui được chấp nhận lời mời nhận việc.\nLưu ý: accept ≠ except; accept an offer / decline an offer."
+    },
+    {
+      "question": "get back to",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ɡet ˈbæk tuː/",
+      "answer": "phản hồi lại, liên lạc lại sau",
+      "explanation": "Thank you for your time. I'll get back to you by Friday.\n→ Cảm ơn thời gian của bạn. Tôi sẽ phản hồi lại cho bạn trước thứ Sáu.\nLưu ý: We'll get back to you = câu nhà tuyển dụng hay nói sau phỏng vấn."
+    },
+    {
+      "question": "follow up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˈfɑːloʊ ʌp/",
+      "answer": "theo dõi, nhắn hỏi lại tiến độ",
+      "explanation": "I'm following up on my application from last week.\n→ Tôi nhắn hỏi lại về hồ sơ ứng tuyển của mình từ tuần trước.\nLưu ý: Danh từ: a follow-up email."
+    },
+    {
+      "question": "second round",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsekənd raʊnd/",
+      "answer": "vòng phỏng vấn thứ hai",
+      "explanation": "I've been invited to the second round of interviews.\n→ Tôi được mời vào vòng phỏng vấn thứ hai."
+    },
+    {
+      "question": "job offer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʒɑːb ˌɔːfər/",
+      "answer": "lời mời nhận việc",
+      "explanation": "I got a job offer from a startup last week.\n→ Tuần trước tôi nhận được lời mời làm việc từ một startup.\nLưu ý: receive / accept / decline a job offer."
+    },
+    {
+      "question": "dress code",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdres koʊd/",
+      "answer": "quy định về trang phục",
+      "explanation": "What's the dress code for the interview?\n→ Quy định trang phục cho buổi phỏng vấn là gì?"
+    },
+    {
+      "question": "make a good impression",
+      "partOfSpeech": "collocation",
+      "phonetic": "/meɪk ə ɡʊd ɪmˈpreʃən/",
+      "answer": "tạo ấn tượng tốt",
+      "explanation": "I arrived early to make a good impression.\n→ Tôi đến sớm để tạo ấn tượng tốt.\nLưu ý: make an impression on someone."
+    }
+  ]
+}

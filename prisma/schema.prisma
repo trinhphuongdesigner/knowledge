@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Category {
+  IT
+  ENGLISH
+}
+
+enum Level {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+}
+
+model StudySet {            // "Chương trình học"
+  id          String   @id @default(uuid(7)) @db.Uuid
+  title       String
+  description String?
+  category    Category
+  level       Level?
+  cards       Card[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Card {                // Câu hỏi / trả lời
+  id          String   @id @default(uuid(7)) @db.Uuid
+  setId       String   @db.Uuid
+  set         StudySet @relation(fields: [setId], references: [id], onDelete: Cascade)
+  question    String   // mặt trước (thuật ngữ / câu hỏi)
+  answer      String   // mặt sau (định nghĩa / đáp án)
+  explanation String?  // giải thích / ví dụ (tuỳ chọn)
+  phonetic    String?  // phiên âm IPA (chỉ bộ ENGLISH)
+  partOfSpeech String? // từ loại
+  audioUrl    String?  // link audio phát âm
+  position    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([setId, position])
+}

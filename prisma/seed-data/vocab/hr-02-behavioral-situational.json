@@ -1,0 +1,171 @@
+{
+  "slug": "hr-02-behavioral-situational",
+  "order": 12,
+  "title": "Câu hỏi HR 2 · Hành vi & tình huống (STAR)",
+  "description": "Các câu hỏi hành vi và tình huống trình độ B2–C1 mà HR hay hỏi, kèm cách trả lời theo cấu trúc STAR (Situation, Task, Action, Result).",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "What are your greatest strengths?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Điểm mạnh lớn nhất của bạn là gì?\nÝ nhà tuyển dụng: họ muốn biết điểm mạnh của bạn có liên quan đến công việc và có bằng chứng thực tế hay không.",
+      "explanation": "Gợi ý trả lời:\nMy biggest strength is debugging complex problems calmly. Last year, our app crashed for some users, and I traced it to a memory leak in a third-party library within two hours. I then wrote a short guide so the team could spot similar issues faster.\n→ Điểm mạnh của tôi là gỡ lỗi phức tạp một cách bình tĩnh; tôi đã tìm ra lỗi rò rỉ bộ nhớ trong hai giờ và viết hướng dẫn cho nhóm.\nMẹo: Chọn 1–2 điểm mạnh liên quan đến vị trí và đi kèm ví dụ cụ thể."
+    },
+    {
+      "question": "What is your greatest weakness?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Điểm yếu lớn nhất của bạn là gì?\nÝ nhà tuyển dụng: họ muốn xem bạn có tự nhận thức và có chủ động cải thiện hay không.",
+      "explanation": "Gợi ý trả lời:\nI used to take on too much work because I found it hard to say no. It led to a stressful sprint last year, so I started estimating my capacity honestly and discussing priorities with my manager. I'm much better at it now, though I still need to remind myself sometimes.\n→ Trước đây tôi hay nhận quá nhiều việc; sau một sprint căng thẳng, tôi bắt đầu ước tính năng lực thật và bàn ưu tiên với quản lý.\nMẹo: Chọn điểm yếu thật nhưng không phải kỹ năng cốt lõi, và luôn nói cách bạn đang cải thiện; tránh câu sáo như tôi quá cầu toàn."
+    },
+    {
+      "question": "Tell me about a time you disagreed with a teammate.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn bất đồng ý kiến với đồng nghiệp.\nÝ nhà tuyển dụng: họ muốn biết bạn xử lý xung đột một cách chuyên nghiệp và tôn trọng như thế nào.",
+      "explanation": "Gợi ý trả lời:\nA teammate and I disagreed about whether to use a new state management library for our app. I suggested we compare both options with a small prototype and measure complexity. We ended up choosing his idea for one module and keeping the old approach for the rest, and we stayed on good terms.\n→ Chúng tôi bất đồng về thư viện quản lý state, nên làm thử nghiệm nhỏ để so sánh và cuối cùng chọn giải pháp kết hợp.\nMẹo: Tập trung vào dữ kiện và kết quả, không nói xấu đồng nghiệp hay tỏ ra bạn luôn đúng."
+    },
+    {
+      "question": "Tell me about a time you worked under a tight deadline.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn làm việc với hạn chót gấp.\nÝ nhà tuyển dụng: họ muốn biết cách bạn sắp xếp ưu tiên, giao tiếp và giữ chất lượng khi áp lực.",
+      "explanation": "Gợi ý trả lời:\nTwo weeks before a client demo, we found that a key feature was only half done. I split the remaining work into small tasks, cut two nice-to-have items with the product manager's approval, and gave short daily updates. We delivered the core feature on time, and the demo went well.\n→ Trước demo hai tuần, tôi chia nhỏ việc, cắt bớt hai mục không cần thiết và cập nhật hằng ngày, nhờ vậy giao đúng hạn.\nMẹo: Nhấn mạnh việc ưu tiên và giao tiếp, đừng khoe làm việc thâu đêm như thành tích."
+    },
+    {
+      "question": "Tell me about a time you made a mistake at work.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn mắc lỗi trong công việc.\nÝ nhà tuyển dụng: họ muốn biết bạn có nhận trách nhiệm và rút kinh nghiệm hay đổ lỗi cho người khác.",
+      "explanation": "Gợi ý trả lời:\nOnce I deployed a change without checking the staging environment, and it broke the login page for ten minutes. I rolled it back immediately, told my manager what happened, and wrote a post-mortem. Since then, I always use a deployment checklist, and we've had no similar issues.\n→ Tôi từng triển khai mà không kiểm tra staging làm hỏng trang đăng nhập 10 phút; tôi rollback, báo ngay và thêm checklist triển khai.\nMẹo: Chọn lỗi thật nhưng không quá nghiêm trọng, dành phần lớn câu trả lời cho bài học và thay đổi sau đó."
+    },
+    {
+      "question": "How do you handle criticism?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn xử lý lời phê bình như thế nào?\nÝ nhà tuyển dụng: họ muốn biết bạn có cởi mở với phản hồi và biết cải thiện từ đó hay không.",
+      "explanation": "Gợi ý trả lời:\nI try to listen first without defending myself, then ask for specific examples. Last year a reviewer told me my pull requests were too large, so I started splitting them into smaller changes. The reviews got faster, and I'm grateful for that feedback.\n→ Tôi lắng nghe trước, hỏi ví dụ cụ thể; khi được nhận xét pull request quá lớn, tôi chia nhỏ và review nhanh hơn.\nMẹo: Cho thấy bạn đã thay đổi hành vi sau phản hồi, đừng nói rằng bạn hiếm khi bị phê bình."
+    },
+    {
+      "question": "Where do you see yourself in five years?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn thấy mình ở đâu sau năm năm nữa?\nÝ nhà tuyển dụng: họ muốn biết tham vọng của bạn và liệu bạn có gắn bó lâu dài với công ty hay không.",
+      "explanation": "Gợi ý trả lời:\nIn five years, I'd like to be a senior engineer who mentors others and helps make technical decisions. I want to deepen my skills in system design along the way. I hope to do that here, if the company offers room to grow.\n→ Sau năm năm, tôi muốn là kỹ sư senior biết hướng dẫn người khác và tham gia quyết định kỹ thuật, ưu tiên phát triển tại đây.\nMẹo: Nêu mục tiêu thực tế và liên quan đến công ty; không nói bạn muốn làm CEO hay khởi nghiệp riêng."
+    },
+    {
+      "question": "Why should we hire you?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Tại sao chúng tôi nên tuyển bạn?\nÝ nhà tuyển dụng: họ muốn bạn tóm tắt giá trị cụ thể mình mang lại cho đội so với các ứng viên khác.",
+      "explanation": "Gợi ý trả lời:\nYou're looking for someone who can improve your web performance, and that's what I've done for the past two years. I reduced our load time by 40 percent, and I enjoy working with designers to get the details right. I also learn fast, so I can contribute from the first month.\n→ Tôi đã giảm thời gian tải 40 phần trăm, hợp tác tốt với designer và học nhanh nên có thể đóng góp ngay từ tháng đầu.\nMẹo: Bám sát nhu cầu trong mô tả công việc; đừng so sánh hay chê ứng viên khác."
+    },
+    {
+      "question": "What are your salary expectations?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Mức lương mong muốn của bạn là bao nhiêu?\nÝ nhà tuyển dụng: họ muốn biết kỳ vọng của bạn có phù hợp ngân sách và bạn có hiểu giá trị thị trường hay không.",
+      "explanation": "Gợi ý trả lời:\nBased on my research and my experience, I'm looking for a range of 2,000 to 2,500 dollars net per month. I'm flexible depending on the full package, like bonus and growth opportunities. Could you share the budget for this position?\n→ Dựa trên khảo sát và kinh nghiệm, tôi mong muốn 2.000–2.500 đô la thực nhận mỗi tháng và linh hoạt theo tổng gói; xin cho biết ngân sách của vị trí.\nMẹo: Đưa ra một khoảng thay vì một con số cố định, và nói rõ gross hay net."
+    },
+    {
+      "question": "Why did you leave your last job?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Tại sao bạn rời công việc trước?\nÝ nhà tuyển dụng: họ muốn biết lý do thật và xem bạn có thái độ chuyên nghiệp với công ty cũ hay không.",
+      "explanation": "Gợi ý trả lời:\nI enjoyed my time there, but the team was small and there wasn't a path for me to grow into a senior role. I wanted to join a bigger engineering team where I could learn from experienced people. I left on good terms and helped with the handover.\n→ Tôi thích làm ở đó nhưng không có lộ trình lên senior; tôi muốn học từ đội ngũ kỹ sư lớn hơn và đã bàn giao đầy đủ.\nMẹo: Nói tích cực, đừng nói xấu quản lý hay đồng nghiệp cũ."
+    },
+    {
+      "question": "Tell me about a time you had to learn something quickly.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn phải học điều gì đó thật nhanh.\nÝ nhà tuyển dụng: họ muốn đánh giá khả năng thích nghi và tự học của bạn.",
+      "explanation": "Gợi ý trả lời:\nMy team switched to a new framework, and I had two weeks to become productive. I followed the official tutorial, built a small demo, and asked a senior colleague to review my code. By the end of the sprint, I was delivering real features.\n→ Nhóm đổi framework mới, tôi có hai tuần: làm theo tutorial, xây bản demo, nhờ senior review và giao tính năng thật cuối sprint.\nMẹo: Nêu cách học cụ thể và kết quả đo được, không chỉ nói rằng tôi học rất nhanh."
+    },
+    {
+      "question": "Describe a situation where you took the initiative.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy mô tả một tình huống bạn đã chủ động làm việc.\nÝ nhà tuyển dụng: họ muốn biết bạn có tự nhận thấy vấn đề và hành động mà không cần được giao hay không.",
+      "explanation": "Gợi ý trả lời:\nI noticed that new developers took about a week to set up their local environment. Nobody had asked me to, but I wrote a setup script and updated the README. Now new hires get started in under an hour.\n→ Tôi thấy dev mới mất một tuần cài môi trường nên tự viết script và cập nhật README; giờ chỉ mất chưa đến một giờ.\nMẹo: Chọn ví dụ có lợi ích cho cả nhóm và có kết quả cụ thể."
+    },
+    {
+      "question": "How do you prioritize your tasks?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn sắp xếp thứ tự ưu tiên công việc như thế nào?\nÝ nhà tuyển dụng: họ muốn biết cách bạn quản lý thời gian và quyết định khi có nhiều việc cùng lúc.",
+      "explanation": "Gợi ý trả lời:\nI look at two things: business impact and deadlines. Every morning I list my tasks and check with the product manager if anything seems unclear. If two tasks conflict, I explain the trade-off and let the team decide what comes first.\n→ Tôi xét tác động kinh doanh và hạn chót, kiểm tra với PM mỗi sáng và bàn đánh đổi khi hai việc xung đột.\nMẹo: Đưa ra phương pháp rõ ràng và nhắc đến việc giao tiếp, đừng nói rằng bạn làm mọi thứ cùng lúc."
+    },
+    {
+      "question": "Tell me about a time you helped a struggling teammate.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn giúp một đồng nghiệp đang gặp khó khăn.\nÝ nhà tuyển dụng: họ muốn biết tinh thần đồng đội và khả năng hỗ trợ người khác của bạn.",
+      "explanation": "Gợi ý trả lời:\nA junior developer on my team was stuck on an async bug for two days and didn't want to ask for help. I offered to pair program for an hour and explained how to debug promises step by step. He fixed it himself afterward, and he now asks questions much earlier.\n→ Một junior bị kẹt lỗi bất đồng bộ hai ngày; tôi pair programming một giờ và hướng dẫn cách debug, giờ bạn ấy hỏi sớm hơn.\nMẹo: Cho thấy bạn hướng dẫn chứ không làm hộ, và đừng nói nghe như đang khoe hơn người khác."
+    },
+    {
+      "question": "Tell me about a time you had a conflict with your manager.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn có xung đột với quản lý.\nÝ nhà tuyển dụng: họ muốn biết bạn có thể bất đồng một cách tôn trọng và giải quyết vấn đề mang tính xây dựng không.",
+      "explanation": "Gợi ý trả lời:\nMy manager wanted to ship a feature before it was properly tested. I explained my concern about the risk, showed two bugs I had found, and proposed a smaller release first. He agreed, and we avoided a bad launch.\n→ Quản lý muốn phát hành khi chưa test kỹ; tôi trình bày rủi ro, đưa bằng chứng và đề xuất bản nhỏ hơn, cuối cùng chúng tôi đồng ý.\nMẹo: Dùng dữ kiện và đề xuất thay vì phàn nàn; tránh miêu tả quản lý theo hướng tiêu cực."
+    },
+    {
+      "question": "How do you deal with a difficult coworker?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn làm việc thế nào với một đồng nghiệp khó tính?\nÝ nhà tuyển dụng: họ muốn đánh giá sự trưởng thành cảm xúc và kỹ năng giao tiếp của bạn.",
+      "explanation": "Gợi ý trả lời:\nI try to understand their point of view first, because often there's pressure I don't see. With one colleague who was always short in code reviews, I asked him for a quick chat and learned he was overloaded. We agreed on clearer review guidelines, and our work improved.\n→ Tôi tìm hiểu quan điểm của họ trước; với một đồng nghiệp hay gắt gỏng khi review, tôi nói chuyện riêng, hiểu họ quá tải và cùng đặt quy tắc review rõ hơn.\nMẹo: Tập trung vào hành vi chứ không phán xét con người, và nhấn mạnh kết quả tích cực."
+    },
+    {
+      "question": "Tell me about a time you failed to meet a goal.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn không đạt được mục tiêu.\nÝ nhà tuyển dụng: họ muốn xem bạn xử lý thất bại, trách nhiệm và cách học từ thất bại như thế nào.",
+      "explanation": "Gợi ý trả lời:\nI once promised to finish a new reporting module in one sprint, but I underestimated the data work, and we needed two sprints. I told my manager early, adjusted the plan, and delivered a first version for the main users. Since then, I add a buffer to my estimates.\n→ Tôi từng ước tính sai thời gian module báo cáo, báo sớm cho quản lý, điều chỉnh kế hoạch và từ đó luôn thêm thời gian dự phòng.\nMẹo: Nhận trách nhiệm rõ ràng và kết thúc bằng bài học; không đổ lỗi cho hoàn cảnh."
+    },
+    {
+      "question": "Describe a time you had to adapt to a big change.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy mô tả lần bạn phải thích nghi với thay đổi lớn.\nÝ nhà tuyển dụng: họ muốn biết bạn có linh hoạt khi công ty hoặc dự án thay đổi hay không.",
+      "explanation": "Gợi ý trả lời:\nOur company reorganized, and my team moved from web to a new mobile product. I was nervous about the change, so I spent a few evenings learning React Native. Within two months, I was contributing to the main features.\n→ Công ty tái cơ cấu, nhóm chuyển sang sản phẩm mobile; tôi học React Native buổi tối và hai tháng sau đã đóng góp vào tính năng chính.\nMẹo: Thừa nhận lo lắng ban đầu là bình thường, rồi nhấn mạnh hành động cụ thể của bạn."
+    },
+    {
+      "question": "Tell me about a time you convinced someone to see things your way.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn thuyết phục người khác đồng ý với quan điểm của mình.\nÝ nhà tuyển dụng: họ muốn biết bạn có khả năng thuyết phục bằng lý lẽ và dữ liệu, không bằng áp đặt.",
+      "explanation": "Gợi ý trả lời:\nI wanted to add automated tests to our project, but the team thought it would slow us down. I showed data from the last three bugs and proposed starting with just the checkout flow. After one month, we caught two regressions, and the team supported adding more tests.\n→ Tôi muốn thêm test tự động, đưa dữ liệu từ ba lỗi gần đây và đề xuất bắt đầu nhỏ; sau một tháng test bắt được hai lỗi nên cả nhóm ủng hộ.\nMẹo: Dùng dữ liệu và đề xuất thử nghiệm nhỏ, tránh nghe giống như bạn ép mọi người."
+    },
+    {
+      "question": "How do you make decisions when you don't have all the information?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn đưa ra quyết định thế nào khi thiếu thông tin?\nÝ nhà tuyển dụng: họ muốn biết bạn xử lý sự mơ hồ và rủi ro như thế nào.",
+      "explanation": "Gợi ý trả lời:\nI first clarify what I can, usually by asking the product manager or looking at existing data. Then I choose the option that's easiest to change later and write down my assumptions. That way, if I'm wrong, we can adjust quickly.\n→ Tôi hỏi làm rõ trước, chọn phương án dễ thay đổi sau này và ghi lại các giả định để điều chỉnh nhanh nếu sai.\nMẹo: Cho thấy bạn vừa dám quyết định vừa quản lý rủi ro."
+    },
+    {
+      "question": "What would you do if you disagreed with a technical decision?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Bạn sẽ làm gì nếu không đồng ý với một quyết định kỹ thuật?\nÝ nhà tuyển dụng: họ muốn biết bạn có đưa ra ý kiến một cách tôn trọng và chấp nhận quyết định của nhóm hay không.",
+      "explanation": "Gợi ý trả lời:\nI'd share my concerns with examples and, if possible, a small proof of concept. If the team still chose a different direction, I'd respect the decision and help make it successful. I would also suggest we review the result after a few weeks.\n→ Tôi sẽ nêu lo ngại kèm ví dụ hoặc bản thử nghiệm; nếu nhóm vẫn chọn hướng khác, tôi tôn trọng và giúp nó thành công.\nMẹo: Cho thấy bạn dám góp ý nhưng không cố chấp."
+    },
+    {
+      "question": "Tell me about a time you went above and beyond.",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Hãy kể về lần bạn làm vượt mức yêu cầu.\nÝ nhà tuyển dụng: họ muốn biết bạn có tinh thần trách nhiệm và quan tâm đến kết quả thật hay không.",
+      "explanation": "Gợi ý trả lời:\nA customer reported a payment bug on a Friday evening. Although it wasn't my area, I stayed to investigate and found the issue was a timezone mismatch. I fixed it and informed support, so the customer could pay before the weekend.\n→ Khách báo lỗi thanh toán tối thứ Sáu, dù không thuộc phạm vi của tôi, tôi ở lại tìm ra lỗi lệch múi giờ và sửa kịp trước cuối tuần.\nMẹo: Chọn ví dụ có lý do chính đáng, đừng mô tả như bạn thường xuyên phải hy sinh thời gian cá nhân."
+    },
+    {
+      "question": "Is there anything that would make you leave this job?",
+      "partOfSpeech": null,
+      "phonetic": null,
+      "answer": "Có điều gì khiến bạn rời khỏi công việc này không?\nÝ nhà tuyển dụng: họ muốn biết điều bạn không thể chấp nhận và mức độ phù hợp với văn hóa công ty.",
+      "explanation": "Gợi ý trả lời:\nI'd probably leave if I stopped learning or if the team culture became very blaming. Those are the two things that matter most to me. I'd always try to raise any issue first, before thinking about leaving.\n→ Tôi sẽ cân nhắc rời đi nếu không còn được học hỏi hoặc văn hóa đổ lỗi nặng; tôi luôn nêu vấn đề trước khi nghĩ đến nghỉ việc.\nMẹo: Nêu điều thật nhưng hợp lý; tránh những lý do nhỏ như vị trí chỗ ngồi hay lương tăng chậm vài tháng."
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "slug": "it-english-10-architecture",
+  "order": 30,
+  "title": "IT English 10 · Kiến trúc & System design",
+  "description": "Từ vựng thiết kế hệ thống ở mức B2–C1: đánh đổi, mở rộng, nhất quán, chịu lỗi. Dùng trong design review, thảo luận kiến trúc và phỏng vấn system design.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "trade-off",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtreɪd ɔːf/",
+      "answer": "sự đánh đổi (được cái này mất cái kia)",
+      "explanation": "There's a trade-off between consistency and latency here.\n→ Ở đây có sự đánh đổi giữa tính nhất quán và độ trễ.\nLưu ý: a trade-off between A and B; make a trade-off."
+    },
+    {
+      "question": "bottleneck",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːtlnek/",
+      "answer": "điểm nghẽn cổ chai",
+      "explanation": "The database is the main bottleneck under heavy load.\n→ Database là điểm nghẽn chính khi tải nặng.\nLưu ý: identify/remove a bottleneck."
+    },
+    {
+      "question": "decouple",
+      "partOfSpeech": "verb",
+      "phonetic": "/diːˈkʌpəl/",
+      "answer": "tách rời, giảm phụ thuộc giữa các thành phần",
+      "explanation": "We introduced a queue to decouple the order service from billing.\n→ Chúng tôi thêm hàng đợi để tách service đơn hàng khỏi billing.\nLưu ý: decouple A from B; loose coupling vs. tight coupling."
+    },
+    {
+      "question": "coupling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌplɪŋ/",
+      "answer": "mức độ phụ thuộc giữa các module",
+      "explanation": "High coupling makes every change risky.\n→ Mức phụ thuộc cao làm mọi thay đổi đều rủi ro.\nLưu ý: thường đi với cohesion (độ gắn kết nội bộ)."
+    },
+    {
+      "question": "monolith",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːnəlɪθ/",
+      "answer": "ứng dụng nguyên khối (monolith)",
+      "explanation": "We're keeping the monolith for now and extracting services later.\n→ Hiện tại chúng tôi giữ monolith và tách service sau.\nLưu ý: tính từ: monolithic."
+    },
+    {
+      "question": "microservice",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmaɪkroʊˌsɜːrvɪs/",
+      "answer": "microservice (dịch vụ nhỏ độc lập)",
+      "explanation": "Splitting into microservices added a lot of operational overhead.\n→ Việc tách thành microservice làm tăng nhiều chi phí vận hành.\nLưu ý: microservices architecture."
+    },
+    {
+      "question": "consistency",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈsɪstənsi/",
+      "answer": "tính nhất quán (dữ liệu)",
+      "explanation": "Strong consistency would slow down every write.\n→ Nhất quán mạnh sẽ làm chậm mọi thao tác ghi.\nLưu ý: strong vs. eventual consistency."
+    },
+    {
+      "question": "eventual consistency",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˌventʃuəl kənˈsɪstənsi/",
+      "answer": "nhất quán cuối cùng",
+      "explanation": "Eventual consistency is fine for the activity feed.\n→ Nhất quán cuối cùng là đủ cho activity feed.\nLưu ý: dữ liệu đồng bộ sau một khoảng trễ."
+    },
+    {
+      "question": "availability",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˌveɪləˈbɪləti/",
+      "answer": "tính sẵn sàng của hệ thống",
+      "explanation": "For a payment API, availability matters more than speed.\n→ Với API thanh toán, tính sẵn sàng quan trọng hơn tốc độ.\nLưu ý: CAP theorem: consistency, availability, partition tolerance."
+    },
+    {
+      "question": "partition tolerance",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɑːrˈtɪʃən ˈtɑːlərəns/",
+      "answer": "khả năng chịu phân mảnh mạng",
+      "explanation": "Under the CAP theorem, we can't give up partition tolerance.\n→ Theo định lý CAP, chúng ta không thể bỏ khả năng chịu phân mảnh mạng."
+    },
+    {
+      "question": "redundancy",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈdʌndənsi/",
+      "answer": "dự phòng, dư thừa có chủ đích",
+      "explanation": "We added redundancy by running two instances in separate zones.\n→ Chúng tôi thêm dự phòng bằng cách chạy hai instance ở hai zone riêng.\nLưu ý: trong đời thường redundant còn nghĩa là thừa; ở đây là tích cực."
+    },
+    {
+      "question": "single point of failure",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsɪŋɡəl ˌpɔɪnt əv ˈfeɪljər/",
+      "answer": "điểm lỗi duy nhất (SPOF)",
+      "explanation": "The cache is a single point of failure right now.\n→ Hiện tại cache là điểm lỗi duy nhất.\nLưu ý: viết tắt SPOF."
+    },
+    {
+      "question": "fault-tolerant",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌfɔːlt ˈtɑːlərənt/",
+      "answer": "chịu lỗi (vẫn chạy khi một phần hỏng)",
+      "explanation": "The consumer must be fault-tolerant and retry on failure.\n→ Consumer phải chịu lỗi và retry khi thất bại.\nLưu ý: danh từ: fault tolerance."
+    },
+    {
+      "question": "resilient",
+      "partOfSpeech": "adjective",
+      "phonetic": "/rɪˈzɪliənt/",
+      "answer": "bền bỉ, phục hồi tốt sau sự cố",
+      "explanation": "We want a resilient system that degrades gracefully.\n→ Chúng tôi muốn một hệ thống bền bỉ và suy giảm một cách êm.\nLưu ý: resilience (n); graceful degradation."
+    },
+    {
+      "question": "sharding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃɑːrdɪŋ/",
+      "answer": "phân mảnh dữ liệu ngang (sharding)",
+      "explanation": "We'll need sharding once the table passes a billion rows.\n→ Chúng ta sẽ cần sharding khi bảng vượt một tỷ dòng.\nLưu ý: shard (n/v); shard key."
+    },
+    {
+      "question": "replication",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌreplɪˈkeɪʃən/",
+      "answer": "sao chép dữ liệu giữa các node (replication)",
+      "explanation": "Replication lag caused stale reads on the replica.\n→ Độ trễ replication gây ra việc đọc dữ liệu cũ trên replica.\nLưu ý: replica, primary/leader, follower."
+    },
+    {
+      "question": "horizontal scaling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌhɔːrəˈzɑːntl ˈskeɪlɪŋ/",
+      "answer": "mở rộng ngang (thêm máy)",
+      "explanation": "Horizontal scaling only works if the service is stateless.\n→ Mở rộng ngang chỉ hiệu quả nếu service không giữ trạng thái.\nLưu ý: vs. vertical scaling (nâng cấu hình một máy)."
+    },
+    {
+      "question": "stateless",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈsteɪtləs/",
+      "answer": "không lưu trạng thái",
+      "explanation": "Keep the API stateless so any instance can handle any request.\n→ Hãy giữ API stateless để instance nào cũng xử lý được mọi request.\nLưu ý: trái nghĩa: stateful."
+    },
+    {
+      "question": "idempotent",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌaɪdəmˈpoʊtənt/",
+      "answer": "idempotent (gọi nhiều lần cho cùng kết quả)",
+      "explanation": "Make the payment endpoint idempotent so retries are safe.\n→ Hãy làm endpoint thanh toán idempotent để retry an toàn.\nLưu ý: danh từ: idempotency /ˌaɪdəmˈpoʊtənsi/; idempotency key."
+    },
+    {
+      "question": "capacity planning",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈpæsəti ˌplænɪŋ/",
+      "answer": "lập kế hoạch năng lực hệ thống",
+      "explanation": "Capacity planning shows we need twice the storage by next year.\n→ Việc lập kế hoạch năng lực cho thấy chúng ta cần gấp đôi dung lượng lưu trữ vào năm sau.\nLưu ý: capacity (n): sức chứa/tải tối đa."
+    },
+    {
+      "question": "caching strategy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæʃɪŋ ˌstrætədʒi/",
+      "answer": "chiến lược cache",
+      "explanation": "Our caching strategy relies on a short TTL and explicit invalidation.\n→ Chiến lược cache của chúng tôi dựa trên TTL ngắn và vô hiệu hóa chủ động.\nLưu ý: cache invalidation nổi tiếng là khó."
+    },
+    {
+      "question": "message queue",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmesɪdʒ ˌkjuː/",
+      "answer": "hàng đợi thông điệp (message queue)",
+      "explanation": "A message queue absorbs the traffic spikes.\n→ Hàng đợi thông điệp hấp thụ các đợt tăng đột biến lưu lượng.\nLưu ý: ví dụ: Kafka, RabbitMQ, SQS."
+    },
+    {
+      "question": "event-driven",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪˈvent ˌdrɪvən/",
+      "answer": "hướng sự kiện",
+      "explanation": "We moved to an event-driven design to reduce direct dependencies.\n→ Chúng tôi chuyển sang thiết kế hướng sự kiện để giảm phụ thuộc trực tiếp.\nLưu ý: event-driven architecture."
+    },
+    {
+      "question": "asynchronous",
+      "partOfSpeech": "adjective",
+      "phonetic": "/eɪˈsɪŋkrənəs/",
+      "answer": "bất đồng bộ",
+      "explanation": "Email sending should be asynchronous, not part of the request.\n→ Việc gửi email nên bất đồng bộ, không nằm trong request.\nLưu ý: viết tắt: async; trái nghĩa: synchronous."
+    },
+    {
+      "question": "backpressure",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækˌpreʃər/",
+      "answer": "cơ chế báo ngược để giảm tải producer",
+      "explanation": "Without backpressure, the queue grows until memory runs out.\n→ Không có backpressure, hàng đợi lớn dần cho đến khi hết bộ nhớ."
+    },
+    {
+      "question": "rate limiting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈreɪt ˌlɪmɪtɪŋ/",
+      "answer": "giới hạn tần suất truy cập",
+      "explanation": "Rate limiting protects the API from abusive clients.\n→ Giới hạn tần suất bảo vệ API khỏi client lạm dụng.\nLưu ý: rate limit (n): the rate limit is 100 requests per minute."
+    },
+    {
+      "question": "circuit breaker",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrkɪt ˌbreɪkər/",
+      "answer": "circuit breaker (ngắt gọi dịch vụ đang lỗi)",
+      "explanation": "A circuit breaker stops us from hammering a failing dependency.\n→ Circuit breaker ngăn chúng ta dồn dập gọi một dependency đang lỗi."
+    },
+    {
+      "question": "graceful degradation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɡreɪsfəl ˌdeɡrəˈdeɪʃən/",
+      "answer": "suy giảm êm (vẫn chạy với chức năng hạn chế)",
+      "explanation": "Graceful degradation means search still works if recommendations fail.\n→ Suy giảm êm nghĩa là tìm kiếm vẫn chạy nếu phần gợi ý bị lỗi."
+    },
+    {
+      "question": "API gateway",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌeɪ piː ˈaɪ ˈɡeɪtweɪ/",
+      "answer": "cổng API (điểm vào duy nhất)",
+      "explanation": "The API gateway handles authentication and rate limiting.\n→ API gateway lo xác thực và giới hạn tần suất."
+    },
+    {
+      "question": "separation of concerns",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsepəˈreɪʃən əv ˈkɑːnsɜːrnz/",
+      "answer": "tách biệt mối quan tâm",
+      "explanation": "This module breaks separation of concerns by mixing UI and data access.\n→ Module này vi phạm tách biệt mối quan tâm khi trộn UI và truy cập dữ liệu."
+    },
+    {
+      "question": "extensible",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪkˈstensəbəl/",
+      "answer": "dễ mở rộng chức năng",
+      "explanation": "We want an extensible design so new providers are easy to add.\n→ Chúng tôi muốn thiết kế dễ mở rộng để thêm nhà cung cấp mới dễ dàng.\nLưu ý: extensible (thêm tính năng) khác scalable (chịu tải lớn)."
+    },
+    {
+      "question": "over-engineering",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌoʊvər endʒɪˈnɪrɪŋ/",
+      "answer": "thiết kế quá mức cần thiết",
+      "explanation": "Introducing Kubernetes for one small app is over-engineering.\n→ Dùng Kubernetes cho một ứng dụng nhỏ là thiết kế quá mức.\nLưu ý: over-engineered (adj); YAGNI."
+    },
+    {
+      "question": "source of truth",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsɔːrs əv ˈtruːθ/",
+      "answer": "nguồn dữ liệu chuẩn duy nhất",
+      "explanation": "The billing database is the source of truth for subscriptions.\n→ Database billing là nguồn dữ liệu chuẩn cho các gói đăng ký.\nLưu ý: single source of truth."
+    }
+  ]
+}

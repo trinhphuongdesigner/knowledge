@@ -1,0 +1,269 @@
+{
+  "slug": "it-english-05-frontend-uiux",
+  "order": 25,
+  "title": "IT English 5 · Frontend & UI/UX",
+  "description": "Thuật ngữ frontend và thiết kế UI/UX (CEFR B1). Dùng khi đọc tài liệu framework, nhận feedback từ designer, viết ticket giao diện và bình luận trong pull request.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "UI",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌjuː ˈaɪ/",
+      "answer": "giao diện người dùng (UI)",
+      "explanation": "The UI looks clean, but the buttons are too small.\n→ Giao diện trông gọn gàng, nhưng các nút quá nhỏ.\nLưu ý: UI = user interface."
+    },
+    {
+      "question": "UX",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌjuː ˈeks/",
+      "answer": "trải nghiệm người dùng (UX)",
+      "explanation": "We need to improve the UX of the checkout page.\n→ Chúng ta cần cải thiện trải nghiệm người dùng của trang thanh toán.\nLưu ý: UX = user experience; UI là thứ người dùng nhìn thấy, UX là cảm giác khi dùng."
+    },
+    {
+      "question": "responsive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/rɪˈspɑːnsɪv/",
+      "answer": "đáp ứng nhiều kích thước màn hình (responsive)",
+      "explanation": "The new layout is fully responsive on mobile.\n→ Bố cục mới hoàn toàn responsive trên điện thoại.\nLưu ý: \"responsive design\" là thiết kế tự thích ứng với kích thước màn hình."
+    },
+    {
+      "question": "mobile-first",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌmoʊbəl ˈfɜːrst/",
+      "answer": "ưu tiên thiết kế cho di động trước",
+      "explanation": "We take a mobile-first approach to the design.\n→ Chúng tôi tiếp cận thiết kế theo hướng ưu tiên di động."
+    },
+    {
+      "question": "layout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleɪaʊt/",
+      "answer": "bố cục",
+      "explanation": "The layout breaks on small screens.\n→ Bố cục bị vỡ trên màn hình nhỏ."
+    },
+    {
+      "question": "viewport",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvjuːpɔːrt/",
+      "answer": "vùng hiển thị (viewport)",
+      "explanation": "The sidebar is hidden when the viewport is narrow.\n→ Thanh bên bị ẩn khi viewport hẹp."
+    },
+    {
+      "question": "breakpoint",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbreɪkpɔɪnt/",
+      "answer": "điểm ngắt (kích thước màn hình đổi layout)",
+      "explanation": "We use a breakpoint at 768 pixels for tablets.\n→ Chúng tôi dùng điểm ngắt ở 768 pixel cho máy tính bảng.\nLưu ý: trong debug, breakpoint còn là điểm dừng khi chạy code."
+    },
+    {
+      "question": "component",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəmˈpoʊnənt/",
+      "answer": "thành phần (component)",
+      "explanation": "Let's make the card a reusable component.\n→ Hãy biến thẻ này thành một component tái sử dụng được.\nLưu ý: \"reusable component\" là cụm rất hay gặp."
+    },
+    {
+      "question": "props",
+      "partOfSpeech": "noun",
+      "phonetic": "/prɑːps/",
+      "answer": "props (dữ liệu truyền vào component)",
+      "explanation": "Pass the title to the component as a prop.\n→ Hãy truyền tiêu đề vào component dưới dạng một prop.\nLưu ý: viết tắt của \"properties\"; thường dùng số nhiều."
+    },
+    {
+      "question": "state",
+      "partOfSpeech": "noun",
+      "phonetic": "/steɪt/",
+      "answer": "trạng thái (state)",
+      "explanation": "The component updates when the state changes.\n→ Component cập nhật khi state thay đổi."
+    },
+    {
+      "question": "render",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈrendər/",
+      "answer": "hiển thị, kết xuất giao diện",
+      "explanation": "The list doesn't render when the data is empty.\n→ Danh sách không hiển thị khi dữ liệu rỗng.\nLưu ý: \"re-render\" là hiển thị lại khi state thay đổi."
+    },
+    {
+      "question": "event handler",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈvent ˌhændlər/",
+      "answer": "hàm xử lý sự kiện",
+      "explanation": "Add an event handler to the submit button.\n→ Hãy thêm hàm xử lý sự kiện cho nút gửi."
+    },
+    {
+      "question": "button",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʌtn/",
+      "answer": "nút bấm",
+      "explanation": "Disable the button while the form is submitting.\n→ Hãy vô hiệu hóa nút khi biểu mẫu đang gửi."
+    },
+    {
+      "question": "form",
+      "partOfSpeech": "noun",
+      "phonetic": "/fɔːrm/",
+      "answer": "biểu mẫu",
+      "explanation": "The form has three required fields.\n→ Biểu mẫu có ba trường bắt buộc."
+    },
+    {
+      "question": "input field",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnpʊt fiːld/",
+      "answer": "ô nhập liệu",
+      "explanation": "The input field accepts only numbers.\n→ Ô nhập liệu chỉ chấp nhận số."
+    },
+    {
+      "question": "placeholder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpleɪshoʊldər/",
+      "answer": "chữ gợi ý mờ trong ô nhập (placeholder)",
+      "explanation": "Add a placeholder to show the expected email format.\n→ Hãy thêm placeholder để cho thấy định dạng email mong muốn."
+    },
+    {
+      "question": "validation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌvælɪˈdeɪʃən/",
+      "answer": "kiểm tra tính hợp lệ (validation)",
+      "explanation": "We need better validation for the phone number field.\n→ Chúng ta cần kiểm tra hợp lệ tốt hơn cho trường số điện thoại.\nLưu ý: động từ là \"validate\" /ˈvælɪdeɪt/."
+    },
+    {
+      "question": "dropdown",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdrɑːpdaʊn/",
+      "answer": "danh sách thả xuống (dropdown)",
+      "explanation": "Select your country from the dropdown.\n→ Hãy chọn quốc gia của bạn trong danh sách thả xuống.\nLưu ý: còn gọi là \"dropdown menu\"."
+    },
+    {
+      "question": "modal",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmoʊdl/",
+      "answer": "hộp thoại nổi (modal)",
+      "explanation": "A modal appears when the user clicks delete.\n→ Một hộp thoại nổi xuất hiện khi người dùng bấm xóa."
+    },
+    {
+      "question": "tooltip",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtuːltɪp/",
+      "answer": "chú thích nổi khi rê chuột (tooltip)",
+      "explanation": "Add a tooltip to explain what this icon does.\n→ Hãy thêm tooltip để giải thích biểu tượng này làm gì."
+    },
+    {
+      "question": "navigation bar",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌnævɪˈɡeɪʃən bɑːr/",
+      "answer": "thanh điều hướng",
+      "explanation": "The navigation bar stays at the top when you scroll.\n→ Thanh điều hướng luôn nằm ở trên cùng khi bạn cuộn trang.\nLưu ý: thường gọi tắt là \"navbar\"."
+    },
+    {
+      "question": "sidebar",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaɪdbɑːr/",
+      "answer": "thanh bên",
+      "explanation": "The sidebar collapses on mobile.\n→ Thanh bên được thu gọn trên điện thoại."
+    },
+    {
+      "question": "hover",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈhʌvər/",
+      "answer": "rê chuột lên (hover)",
+      "explanation": "The menu opens when you hover over the icon.\n→ Menu mở ra khi bạn rê chuột lên biểu tượng."
+    },
+    {
+      "question": "scroll",
+      "partOfSpeech": "verb",
+      "phonetic": "/skroʊl/",
+      "answer": "cuộn (trang)",
+      "explanation": "The user has to scroll a lot to find the button.\n→ Người dùng phải cuộn nhiều mới tìm thấy nút."
+    },
+    {
+      "question": "toggle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtɑːɡl/",
+      "answer": "nút bật/tắt (toggle)",
+      "explanation": "Add a toggle to switch between light and dark mode.\n→ Hãy thêm nút bật/tắt để chuyển giữa chế độ sáng và tối.\nLưu ý: cũng là động từ: \"toggle the menu\"."
+    },
+    {
+      "question": "padding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpædɪŋ/",
+      "answer": "khoảng đệm bên trong (padding)",
+      "explanation": "Add more padding inside the button.\n→ Hãy thêm khoảng đệm bên trong nút.\nLưu ý: padding là khoảng trong viền, margin là khoảng ngoài viền."
+    },
+    {
+      "question": "margin",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːrdʒɪn/",
+      "answer": "khoảng cách bên ngoài (margin)",
+      "explanation": "The margin between the cards is too small.\n→ Khoảng cách giữa các thẻ quá nhỏ."
+    },
+    {
+      "question": "typography",
+      "partOfSpeech": "noun",
+      "phonetic": "/taɪˈpɑːɡrəfi/",
+      "answer": "kiểu chữ, cách trình bày chữ",
+      "explanation": "Good typography makes the text easier to read.\n→ Kiểu chữ tốt giúp văn bản dễ đọc hơn."
+    },
+    {
+      "question": "accessibility",
+      "partOfSpeech": "noun",
+      "phonetic": "/əkˌsesəˈbɪləti/",
+      "answer": "khả năng truy cập (cho người khuyết tật)",
+      "explanation": "We should improve accessibility for screen reader users.\n→ Chúng ta nên cải thiện khả năng truy cập cho người dùng trình đọc màn hình.\nLưu ý: viết tắt a11y."
+    },
+    {
+      "question": "contrast",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːntræst/",
+      "answer": "độ tương phản",
+      "explanation": "The text has low contrast against the background.\n→ Chữ có độ tương phản thấp so với nền."
+    },
+    {
+      "question": "usability",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌjuːzəˈbɪləti/",
+      "answer": "tính dễ sử dụng",
+      "explanation": "We ran a usability test with five users.\n→ Chúng tôi chạy một bài kiểm tra tính dễ sử dụng với năm người dùng."
+    },
+    {
+      "question": "wireframe",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwaɪərfreɪm/",
+      "answer": "bản phác thảo bố cục (wireframe)",
+      "explanation": "The designer shared a wireframe of the dashboard.\n→ Designer đã chia sẻ bản wireframe của dashboard."
+    },
+    {
+      "question": "mockup",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːkʌp/",
+      "answer": "bản thiết kế mô phỏng chi tiết (mockup)",
+      "explanation": "The mockup shows the final colors and fonts.\n→ Bản mockup cho thấy màu sắc và phông chữ cuối cùng."
+    },
+    {
+      "question": "prototype",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈproʊtətaɪp/",
+      "answer": "bản mẫu thử (prototype)",
+      "explanation": "Click through the prototype to see the flow.\n→ Hãy bấm thử qua prototype để xem luồng sử dụng."
+    },
+    {
+      "question": "user flow",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjuːzər floʊ/",
+      "answer": "luồng người dùng",
+      "explanation": "The user flow for signing up has too many steps.\n→ Luồng người dùng khi đăng ký có quá nhiều bước."
+    },
+    {
+      "question": "design system",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈzaɪn ˌsɪstəm/",
+      "answer": "hệ thống thiết kế (design system)",
+      "explanation": "Please use the colors from our design system.\n→ Vui lòng dùng các màu từ design system của chúng ta."
+    },
+    {
+      "question": "loading spinner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈloʊdɪŋ ˌspɪnər/",
+      "answer": "biểu tượng xoay báo đang tải",
+      "explanation": "Show a loading spinner while the data is loading.\n→ Hãy hiển thị biểu tượng xoay khi dữ liệu đang tải."
+    }
+  ]
+}

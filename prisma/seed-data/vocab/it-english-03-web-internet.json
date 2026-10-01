@@ -1,0 +1,241 @@
+{
+  "slug": "it-english-03-web-internet",
+  "order": 23,
+  "title": "IT English 3 · Web & Internet",
+  "description": "Từ vựng về website, mạng và cách trình duyệt giao tiếp với máy chủ (CEFR A2–B1). Hữu ích khi đọc tài liệu web, mô tả sự cố truy cập trong ticket và trao đổi với đội ngũ vận hành.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "website",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwebsaɪt/",
+      "answer": "trang web, website",
+      "explanation": "Our website is down again.\n→ Website của chúng ta lại bị sập rồi."
+    },
+    {
+      "question": "web page",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈweb peɪdʒ/",
+      "answer": "trang web (một trang đơn lẻ)",
+      "explanation": "This web page takes too long to load.\n→ Trang web này tải quá lâu.\nLưu ý: website là cả trang gồm nhiều web page."
+    },
+    {
+      "question": "link",
+      "partOfSpeech": "noun",
+      "phonetic": "/lɪŋk/",
+      "answer": "đường dẫn, liên kết",
+      "explanation": "The link in the email is broken.\n→ Đường dẫn trong email bị hỏng."
+    },
+    {
+      "question": "domain",
+      "partOfSpeech": "noun",
+      "phonetic": "/doʊˈmeɪn/",
+      "answer": "tên miền",
+      "explanation": "We need to renew the domain before it expires.\n→ Chúng ta cần gia hạn tên miền trước khi nó hết hạn.\nLưu ý: \"domain name\" là tên miền đầy đủ."
+    },
+    {
+      "question": "subdomain",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌbdoʊmeɪn/",
+      "answer": "tên miền phụ",
+      "explanation": "The staging site runs on a subdomain.\n→ Trang staging chạy trên một tên miền phụ.\nLưu ý: ví dụ blog.example.com là subdomain của example.com."
+    },
+    {
+      "question": "server",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrvər/",
+      "answer": "máy chủ",
+      "explanation": "The server is not responding.\n→ Máy chủ không phản hồi."
+    },
+    {
+      "question": "client",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈklaɪənt/",
+      "answer": "máy khách, phía client",
+      "explanation": "The client sends a request to the server.\n→ Client gửi một yêu cầu đến máy chủ.\nLưu ý: \"client\" còn nghĩa là khách hàng trong giao tiếp công việc."
+    },
+    {
+      "question": "request",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈkwest/",
+      "answer": "yêu cầu (gửi đến server)",
+      "explanation": "The request failed with a timeout.\n→ Yêu cầu bị lỗi do hết thời gian chờ.\nLưu ý: động từ \"request\" nhấn âm thứ hai như danh từ; \"send/make a request\"."
+    },
+    {
+      "question": "response",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈspɑːns/",
+      "answer": "phản hồi (từ server)",
+      "explanation": "The server's response contains the user's data.\n→ Phản hồi của máy chủ chứa dữ liệu người dùng."
+    },
+    {
+      "question": "URL",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌjuː ɑːr ˈel/",
+      "answer": "địa chỉ trang web (URL)",
+      "explanation": "Please paste the URL of the page with the problem.\n→ Vui lòng dán URL của trang gặp sự cố."
+    },
+    {
+      "question": "HTTP",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌeɪtʃ tiː tiː ˈpiː/",
+      "answer": "giao thức HTTP",
+      "explanation": "This API only accepts HTTP requests.\n→ API này chỉ nhận các yêu cầu HTTP."
+    },
+    {
+      "question": "HTTPS",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌeɪtʃ tiː tiː piː ˈes/",
+      "answer": "HTTP bảo mật (HTTPS)",
+      "explanation": "The site must use HTTPS to protect user data.\n→ Trang web phải dùng HTTPS để bảo vệ dữ liệu người dùng."
+    },
+    {
+      "question": "host",
+      "partOfSpeech": "noun",
+      "phonetic": "/hoʊst/",
+      "answer": "máy chủ lưu trữ; địa chỉ host",
+      "explanation": "The database host is not reachable from here.\n→ Không thể truy cập host của cơ sở dữ liệu từ đây.\nLưu ý: cũng là động từ: \"host a website\" là lưu trữ website."
+    },
+    {
+      "question": "hosting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhoʊstɪŋ/",
+      "answer": "dịch vụ lưu trữ website",
+      "explanation": "We moved our hosting to a cheaper provider.\n→ Chúng tôi chuyển dịch vụ lưu trữ sang nhà cung cấp rẻ hơn."
+    },
+    {
+      "question": "IP address",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌaɪ ˈpiː ˈædres/",
+      "answer": "địa chỉ IP",
+      "explanation": "Send me your IP address so I can add it to the whitelist.\n→ Gửi cho tôi địa chỉ IP của bạn để tôi thêm vào danh sách cho phép."
+    },
+    {
+      "question": "DNS",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdiː en ˈes/",
+      "answer": "hệ thống tên miền (DNS)",
+      "explanation": "The site is down because of a DNS problem.\n→ Trang web sập vì sự cố DNS.\nLưu ý: DNS dịch tên miền thành địa chỉ IP."
+    },
+    {
+      "question": "port",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɔːrt/",
+      "answer": "cổng (mạng)",
+      "explanation": "The app is running on port 3000.\n→ Ứng dụng đang chạy ở cổng 3000."
+    },
+    {
+      "question": "localhost",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈloʊkəl hoʊst/",
+      "answer": "máy cục bộ (localhost)",
+      "explanation": "Open localhost:3000 to see the app on your machine.\n→ Mở localhost:3000 để xem ứng dụng trên máy của bạn."
+    },
+    {
+      "question": "protocol",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈproʊtəkɔːl/",
+      "answer": "giao thức",
+      "explanation": "HTTP is the protocol used to load web pages.\n→ HTTP là giao thức dùng để tải trang web."
+    },
+    {
+      "question": "status code",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsteɪtəs koʊd/",
+      "answer": "mã trạng thái (HTTP)",
+      "explanation": "The server returned status code 404.\n→ Máy chủ trả về mã trạng thái 404.\nLưu ý: 404 not found, 500 internal server error."
+    },
+    {
+      "question": "cookie",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʊki/",
+      "answer": "cookie (tệp nhỏ lưu trong trình duyệt)",
+      "explanation": "The site stores a cookie to remember your login.\n→ Trang web lưu một cookie để ghi nhớ đăng nhập của bạn."
+    },
+    {
+      "question": "session",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈseʃən/",
+      "answer": "phiên làm việc",
+      "explanation": "Your session has expired, please log in again.\n→ Phiên đăng nhập của bạn đã hết hạn, vui lòng đăng nhập lại."
+    },
+    {
+      "question": "cache",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæʃ/",
+      "answer": "bộ nhớ đệm (cache)",
+      "explanation": "Clear your browser cache and try again.\n→ Hãy xóa cache trình duyệt rồi thử lại.\nLưu ý: đọc là /kæʃ/ (giống \"cash\"), không phải \"ca-chê\"."
+    },
+    {
+      "question": "bandwidth",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbændwɪtθ/",
+      "answer": "băng thông",
+      "explanation": "Video streaming uses a lot of bandwidth.\n→ Phát video trực tuyến tốn nhiều băng thông."
+    },
+    {
+      "question": "traffic",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtræfɪk/",
+      "answer": "lưu lượng truy cập",
+      "explanation": "The site gets heavy traffic on Monday mornings.\n→ Trang web có lưu lượng truy cập lớn vào sáng thứ Hai.\nLưu ý: danh từ không đếm được."
+    },
+    {
+      "question": "load",
+      "partOfSpeech": "verb",
+      "phonetic": "/loʊd/",
+      "answer": "tải (trang, dữ liệu)",
+      "explanation": "The page takes five seconds to load.\n→ Trang mất năm giây để tải.\nLưu ý: \"load time\" là thời gian tải trang."
+    },
+    {
+      "question": "timeout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtaɪmaʊt/",
+      "answer": "hết thời gian chờ",
+      "explanation": "I keep getting a timeout when I open the dashboard.\n→ Tôi liên tục bị hết thời gian chờ khi mở dashboard.\nLưu ý: \"the request timed out\" là động từ \"time out\"."
+    },
+    {
+      "question": "redirect",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːdəˈrekt/",
+      "answer": "chuyển hướng",
+      "explanation": "The old URL redirects to the new homepage.\n→ URL cũ chuyển hướng đến trang chủ mới.\nLưu ý: danh từ \"redirect\" nhấn âm đầu /ˈriːdaɪrekt/."
+    },
+    {
+      "question": "search engine",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrtʃ ˌendʒɪn/",
+      "answer": "công cụ tìm kiếm",
+      "explanation": "Search engines like Google index our pages.\n→ Các công cụ tìm kiếm như Google lập chỉ mục các trang của chúng ta."
+    },
+    {
+      "question": "SSL certificate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes es ˈel sərˈtɪfɪkət/",
+      "answer": "chứng chỉ SSL",
+      "explanation": "The SSL certificate expired yesterday.\n→ Chứng chỉ SSL đã hết hạn hôm qua."
+    },
+    {
+      "question": "CDN",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsiː diː ˈen/",
+      "answer": "mạng phân phối nội dung (CDN)",
+      "explanation": "We serve images through a CDN to make pages faster.\n→ Chúng tôi phân phối hình ảnh qua CDN để trang nhanh hơn.\nLưu ý: CDN = content delivery network."
+    },
+    {
+      "question": "HTML",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌeɪtʃ tiː em ˈel/",
+      "answer": "ngôn ngữ đánh dấu HTML",
+      "explanation": "Every web page is built with HTML.\n→ Mọi trang web đều được xây dựng bằng HTML."
+    },
+    {
+      "question": "CSS",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsiː es ˈes/",
+      "answer": "CSS (ngôn ngữ định dạng giao diện)",
+      "explanation": "We use CSS to change the colors and fonts.\n→ Chúng tôi dùng CSS để thay đổi màu sắc và phông chữ."
+    }
+  ]
+}

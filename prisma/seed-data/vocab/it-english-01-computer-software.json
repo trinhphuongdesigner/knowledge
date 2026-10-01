@@ -1,0 +1,248 @@
+{
+  "slug": "it-english-01-computer-software",
+  "order": 21,
+  "title": "IT English 1 · Máy tính & phần mềm",
+  "description": "Từ vựng nền tảng về máy tính, phần mềm và thao tác hằng ngày (CEFR A2). Dùng khi đọc hướng dẫn cài đặt, viết ticket báo lỗi đơn giản và hỏi đồng nghiệp nước ngoài về thiết bị.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "hardware",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːrdwer/",
+      "answer": "phần cứng",
+      "explanation": "The new server has better hardware than the old one.\n→ Máy chủ mới có phần cứng tốt hơn máy cũ."
+    },
+    {
+      "question": "software",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɔːftwer/",
+      "answer": "phần mềm",
+      "explanation": "We need to update the software on all laptops.\n→ Chúng ta cần cập nhật phần mềm trên tất cả laptop.\nLưu ý: software là danh từ không đếm được, không nói \"softwares\"."
+    },
+    {
+      "question": "install",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈstɔːl/",
+      "answer": "cài đặt",
+      "explanation": "Please install the latest version before the demo.\n→ Hãy cài đặt phiên bản mới nhất trước buổi demo."
+    },
+    {
+      "question": "update",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌʌpˈdeɪt/",
+      "answer": "cập nhật",
+      "explanation": "I need to update my browser to open this page.\n→ Tôi cần cập nhật trình duyệt để mở trang này.\nLưu ý: danh từ \"update\" đọc nhấn âm đầu /ˈʌpdeɪt/ (a security update)."
+    },
+    {
+      "question": "file",
+      "partOfSpeech": "noun",
+      "phonetic": "/faɪl/",
+      "answer": "tệp, tập tin",
+      "explanation": "I attached the log file to the ticket.\n→ Tôi đã đính kèm tệp log vào ticket."
+    },
+    {
+      "question": "folder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfoʊldər/",
+      "answer": "thư mục",
+      "explanation": "Put the images in the assets folder.\n→ Hãy để các hình ảnh trong thư mục assets."
+    },
+    {
+      "question": "browser",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbraʊzər/",
+      "answer": "trình duyệt",
+      "explanation": "The page looks different in every browser.\n→ Trang này hiển thị khác nhau trên mỗi trình duyệt."
+    },
+    {
+      "question": "download",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌdaʊnˈloʊd/",
+      "answer": "tải xuống",
+      "explanation": "You can download the installer from our website.\n→ Bạn có thể tải trình cài đặt từ website của chúng tôi.\nLưu ý: danh từ \"download\" nhấn âm đầu /ˈdaʊnloʊd/."
+    },
+    {
+      "question": "upload",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌʌpˈloʊd/",
+      "answer": "tải lên",
+      "explanation": "Upload the screenshot so I can see the error.\n→ Hãy tải ảnh chụp màn hình lên để tôi xem lỗi."
+    },
+    {
+      "question": "password",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpæswɜːrd/",
+      "answer": "mật khẩu",
+      "explanation": "I forgot my password, so I can't log in.\n→ Tôi quên mật khẩu nên không đăng nhập được."
+    },
+    {
+      "question": "username",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjuːzərneɪm/",
+      "answer": "tên đăng nhập",
+      "explanation": "Enter your username and password to continue.\n→ Nhập tên đăng nhập và mật khẩu để tiếp tục."
+    },
+    {
+      "question": "log in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌlɔːɡ ˈɪn/",
+      "answer": "đăng nhập",
+      "explanation": "I can't log in to the admin panel.\n→ Tôi không thể đăng nhập vào trang quản trị.\nLưu ý: động từ là \"log in\" (hai từ), danh từ/tính từ là \"login\" (the login page). Dùng \"log in to\" một hệ thống."
+    },
+    {
+      "question": "log out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌlɔːɡ ˈaʊt/",
+      "answer": "đăng xuất",
+      "explanation": "Remember to log out when you use a shared computer.\n→ Nhớ đăng xuất khi dùng máy tính dùng chung.\nLưu ý: cũng nói \"sign out\"; \"sign in\" tương đương \"log in\"."
+    },
+    {
+      "question": "account",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈkaʊnt/",
+      "answer": "tài khoản",
+      "explanation": "Please create an account to access the documentation.\n→ Vui lòng tạo tài khoản để truy cập tài liệu."
+    },
+    {
+      "question": "settings",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsetɪŋz/",
+      "answer": "cài đặt",
+      "explanation": "Go to Settings and turn on dark mode.\n→ Vào phần Cài đặt và bật chế độ tối.\nLưu ý: thường dùng dạng số nhiều \"settings\"; động từ tương ứng là \"configure\"."
+    },
+    {
+      "question": "crash",
+      "partOfSpeech": "verb",
+      "phonetic": "/kræʃ/",
+      "answer": "bị treo, sập (ứng dụng)",
+      "explanation": "The app crashes every time I open the camera.\n→ Ứng dụng bị sập mỗi lần tôi mở camera.\nLưu ý: cũng là danh từ: \"a crash report\"."
+    },
+    {
+      "question": "freeze",
+      "partOfSpeech": "verb",
+      "phonetic": "/friːz/",
+      "answer": "bị đơ, đứng hình",
+      "explanation": "My screen froze while I was coding.\n→ Màn hình của tôi bị đơ khi tôi đang code.\nLưu ý: quá khứ \"froze\", phân từ \"frozen\"."
+    },
+    {
+      "question": "operating system",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːpəreɪtɪŋ ˌsɪstəm/",
+      "answer": "hệ điều hành",
+      "explanation": "Which operating system do you use, Windows or macOS?\n→ Bạn dùng hệ điều hành nào, Windows hay macOS?\nLưu ý: viết tắt là OS."
+    },
+    {
+      "question": "application",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌæplɪˈkeɪʃən/",
+      "answer": "ứng dụng, phần mềm ứng dụng",
+      "explanation": "This application only runs on Windows.\n→ Ứng dụng này chỉ chạy trên Windows.\nLưu ý: viết tắt \"app\" /æp/ rất phổ biến trong giao tiếp."
+    },
+    {
+      "question": "device",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈvaɪs/",
+      "answer": "thiết bị",
+      "explanation": "The bug only happens on mobile devices.\n→ Lỗi này chỉ xảy ra trên thiết bị di động.\nLưu ý: \"device\" là danh từ, \"devise\" /dɪˈvaɪz/ là động từ (nghĩ ra)."
+    },
+    {
+      "question": "laptop",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlæptɑːp/",
+      "answer": "máy tính xách tay",
+      "explanation": "The company gave me a new laptop on my first day.\n→ Công ty đã cấp cho tôi một chiếc laptop mới vào ngày đầu tiên."
+    },
+    {
+      "question": "screen",
+      "partOfSpeech": "noun",
+      "phonetic": "/skriːn/",
+      "answer": "màn hình",
+      "explanation": "Can you share your screen so we can see the error?\n→ Bạn chia sẻ màn hình để chúng tôi xem lỗi được không?\nLưu ý: \"share your screen\", \"take a screenshot\"."
+    },
+    {
+      "question": "keyboard",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkiːbɔːrd/",
+      "answer": "bàn phím",
+      "explanation": "My keyboard stopped working this morning.\n→ Bàn phím của tôi bị hỏng sáng nay."
+    },
+    {
+      "question": "icon",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaɪkɑːn/",
+      "answer": "biểu tượng",
+      "explanation": "Click the gear icon to open the settings.\n→ Bấm vào biểu tượng bánh răng để mở cài đặt."
+    },
+    {
+      "question": "storage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstɔːrɪdʒ/",
+      "answer": "dung lượng lưu trữ, bộ nhớ lưu trữ",
+      "explanation": "I can't install the update because I'm out of storage.\n→ Tôi không cài được bản cập nhật vì hết dung lượng lưu trữ."
+    },
+    {
+      "question": "memory",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmeməri/",
+      "answer": "bộ nhớ (RAM)",
+      "explanation": "The app uses too much memory and slows down my computer.\n→ Ứng dụng dùng quá nhiều bộ nhớ và làm máy chậm đi.\nLưu ý: memory (RAM) là bộ nhớ tạm khi chạy; storage là nơi lưu dữ liệu lâu dài."
+    },
+    {
+      "question": "restart",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈstɑːrt/",
+      "answer": "khởi động lại",
+      "explanation": "Try restarting your computer first.\n→ Hãy thử khởi động lại máy tính trước."
+    },
+    {
+      "question": "shut down",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌʃʌt ˈdaʊn/",
+      "answer": "tắt máy",
+      "explanation": "Please shut down your computer before you leave the office.\n→ Vui lòng tắt máy tính trước khi rời văn phòng."
+    },
+    {
+      "question": "delete",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪˈliːt/",
+      "answer": "xóa",
+      "explanation": "Don't delete this file; the build needs it.\n→ Đừng xóa tệp này; bản build cần nó."
+    },
+    {
+      "question": "save",
+      "partOfSpeech": "verb",
+      "phonetic": "/seɪv/",
+      "answer": "lưu",
+      "explanation": "Save your work before you close the editor.\n→ Hãy lưu công việc trước khi đóng trình soạn thảo."
+    },
+    {
+      "question": "back up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌbæk ˈʌp/",
+      "answer": "sao lưu",
+      "explanation": "I back up my project files to the cloud every night.\n→ Tôi sao lưu tệp dự án lên cloud mỗi đêm.\nLưu ý: danh từ/tính từ viết liền \"backup\" /ˈbækʌp/ (a backup copy)."
+    },
+    {
+      "question": "error message",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈerər ˌmesɪdʒ/",
+      "answer": "thông báo lỗi",
+      "explanation": "I got an error message saying \"File not found\".\n→ Tôi nhận được thông báo lỗi \"File not found\".\nLưu ý: khi báo lỗi nên copy nguyên văn error message vào ticket."
+    },
+    {
+      "question": "version",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvɜːrʒən/",
+      "answer": "phiên bản",
+      "explanation": "Which version of Node.js are you using?\n→ Bạn đang dùng phiên bản Node.js nào?"
+    },
+    {
+      "question": "compatible",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kəmˈpætəbəl/",
+      "answer": "tương thích",
+      "explanation": "This plugin is not compatible with the latest version.\n→ Plugin này không tương thích với phiên bản mới nhất.\nLưu ý: dùng \"compatible with\"."
+    }
+  ]
+}

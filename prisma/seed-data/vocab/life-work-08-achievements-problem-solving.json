@@ -1,0 +1,248 @@
+{
+  "slug": "life-work-08-achievements-problem-solving",
+  "order": 8,
+  "title": "Life & Work 8 · Thành tựu & giải quyết vấn đề",
+  "description": "Từ vựng trình độ B2–C1 để kể về thành tựu, cách xử lý vấn đề và bài học rút ra khi trả lời phỏng vấn với HR và quản lý.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "accomplish",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈkɑːmplɪʃ/",
+      "answer": "hoàn thành, đạt được",
+      "explanation": "I accomplished all my sprint goals ahead of schedule.\n→ Tôi đã hoàn thành mọi mục tiêu sprint trước thời hạn.\nLưu ý: accomplish thường đi với goal, task, mission."
+    },
+    {
+      "question": "achievement",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈtʃiːvmənt/",
+      "answer": "thành tựu",
+      "explanation": "My biggest achievement was cutting page load time in half.\n→ Thành tựu lớn nhất của tôi là giảm một nửa thời gian tải trang."
+    },
+    {
+      "question": "spearhead",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈspɪrhɛd/",
+      "answer": "dẫn dắt, đi đầu (một dự án)",
+      "explanation": "I spearheaded the migration from JavaScript to TypeScript.\n→ Tôi đã dẫn đầu việc chuyển đổi từ JavaScript sang TypeScript."
+    },
+    {
+      "question": "streamline",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈstriːmlaɪn/",
+      "answer": "tinh gọn, tối ưu quy trình",
+      "explanation": "We streamlined the release process to deploy twice a day.\n→ Chúng tôi đã tinh gọn quy trình phát hành để triển khai hai lần mỗi ngày."
+    },
+    {
+      "question": "overcome",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌoʊvərˈkʌm/",
+      "answer": "vượt qua (khó khăn)",
+      "explanation": "I overcame my fear of public speaking by presenting at team demos.\n→ Tôi vượt qua nỗi sợ nói trước đám đông bằng cách thuyết trình trong các buổi demo."
+    },
+    {
+      "question": "take the initiative",
+      "partOfSpeech": "idiom",
+      "phonetic": "/teɪk ði ɪˈnɪʃətɪv/",
+      "answer": "chủ động làm (không chờ được giao)",
+      "explanation": "I took the initiative to write documentation nobody had asked for.\n→ Tôi chủ động viết tài liệu dù không ai yêu cầu.\nLưu ý: cũng nói take the lead (đứng ra dẫn dắt)."
+    },
+    {
+      "question": "prioritize",
+      "partOfSpeech": "verb",
+      "phonetic": "/praɪˈɔːrətaɪz/",
+      "answer": "ưu tiên, sắp xếp thứ tự ưu tiên",
+      "explanation": "When everything is urgent, I prioritize tasks by business impact.\n→ Khi mọi thứ đều gấp, tôi ưu tiên công việc theo tác động kinh doanh."
+    },
+    {
+      "question": "resolve",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈzɑːlv/",
+      "answer": "giải quyết (vấn đề, xung đột)",
+      "explanation": "We resolved the outage within thirty minutes.\n→ Chúng tôi đã giải quyết sự cố ngừng hoạt động trong vòng ba mươi phút."
+    },
+    {
+      "question": "setback",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɛtbæk/",
+      "answer": "trở ngại, thất bại tạm thời",
+      "explanation": "Losing our lead developer was a setback, but we recovered quickly.\n→ Mất lập trình viên chính là một trở ngại, nhưng chúng tôi phục hồi nhanh."
+    },
+    {
+      "question": "measurable impact",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˈmɛʒərəbəl ˈɪmpækt/",
+      "answer": "tác động đo lường được",
+      "explanation": "I like projects that have a measurable impact on user retention.\n→ Tôi thích những dự án có tác động đo lường được lên tỷ lệ giữ chân người dùng."
+    },
+    {
+      "question": "lessons learned",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˈlɛsənz lɜːrnd/",
+      "answer": "bài học kinh nghiệm",
+      "explanation": "After the incident, we wrote up the lessons learned for the whole team.\n→ Sau sự cố, chúng tôi viết lại các bài học kinh nghiệm cho cả nhóm."
+    },
+    {
+      "question": "tackle",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtækəl/",
+      "answer": "giải quyết, xử lý (vấn đề khó)",
+      "explanation": "I like to tackle the hardest bug first thing in the morning.\n→ Tôi thích xử lý lỗi khó nhất ngay đầu buổi sáng."
+    },
+    {
+      "question": "pivot",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈpɪvət/",
+      "answer": "chuyển hướng (chiến lược, cách làm)",
+      "explanation": "We pivoted to a simpler design after the first user tests.\n→ Chúng tôi chuyển sang thiết kế đơn giản hơn sau các buổi thử nghiệm đầu tiên.\nLưu ý: pivot to/from something; danh từ: a pivot."
+    },
+    {
+      "question": "hurdle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɜːrdl/",
+      "answer": "trở ngại, rào cản",
+      "explanation": "The biggest hurdle was migrating the data without any downtime.\n→ Trở ngại lớn nhất là chuyển dữ liệu mà không có thời gian ngừng hoạt động.\nLưu ý: overcome/clear a hurdle."
+    },
+    {
+      "question": "deliver",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪˈlɪvər/",
+      "answer": "giao (sản phẩm), mang lại kết quả",
+      "explanation": "Our team delivered the feature two weeks early.\n→ Nhóm chúng tôi đã giao tính năng sớm hai tuần."
+    },
+    {
+      "question": "exceed expectations",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ɪkˈsiːd ˌɛkspɛkˈteɪʃənz/",
+      "answer": "vượt kỳ vọng",
+      "explanation": "The client said our prototype exceeded expectations.\n→ Khách hàng nói bản mẫu của chúng tôi vượt kỳ vọng."
+    },
+    {
+      "question": "boost",
+      "partOfSpeech": "verb",
+      "phonetic": "/buːst/",
+      "answer": "tăng, thúc đẩy",
+      "explanation": "The new caching layer boosted performance by 40 percent.\n→ Lớp cache mới đã tăng hiệu năng thêm 40 phần trăm."
+    },
+    {
+      "question": "reduce",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈduːs/",
+      "answer": "giảm",
+      "explanation": "I reduced our cloud costs by optimizing idle servers.\n→ Tôi giảm chi phí đám mây bằng cách tối ưu các máy chủ nhàn rỗi."
+    },
+    {
+      "question": "initiative",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈnɪʃətɪv/",
+      "answer": "sáng kiến, dự án chủ động",
+      "explanation": "She led an initiative to improve code review practices.\n→ Cô ấy dẫn dắt một sáng kiến cải thiện cách review code."
+    },
+    {
+      "question": "turn around",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/tɜːrn əˈraʊnd/",
+      "answer": "xoay chuyển (tình hình)",
+      "explanation": "We turned the failing project around in three months.\n→ Chúng tôi đã xoay chuyển dự án đang thất bại chỉ trong ba tháng."
+    },
+    {
+      "question": "contingency plan",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈtɪndʒənsi ˌplæn/",
+      "answer": "kế hoạch dự phòng",
+      "explanation": "I prepared a contingency plan in case the vendor missed the deadline.\n→ Tôi chuẩn bị kế hoạch dự phòng phòng khi nhà cung cấp trễ hạn.\nLưu ý: have a contingency plan; plan B là cách nói thân mật."
+    },
+    {
+      "question": "troubleshoot",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtrʌbəlʃuːt/",
+      "answer": "dò lỗi, khắc phục sự cố",
+      "explanation": "I troubleshoot production issues by checking logs first.\n→ Tôi khắc phục sự cố trên production bằng cách kiểm tra log trước."
+    },
+    {
+      "question": "under pressure",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˈʌndər ˈprɛʃər/",
+      "answer": "dưới áp lực",
+      "explanation": "I stay calm and focused when working under pressure.\n→ Tôi giữ bình tĩnh và tập trung khi làm việc dưới áp lực."
+    },
+    {
+      "question": "take ownership",
+      "partOfSpeech": "idiom",
+      "phonetic": "/teɪk ˈoʊnərʃɪp/",
+      "answer": "nhận trách nhiệm, làm chủ",
+      "explanation": "When the bug reached production, I took ownership and led the fix.\n→ Khi lỗi lên production, tôi nhận trách nhiệm và dẫn dắt việc sửa."
+    },
+    {
+      "question": "go beyond",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/goʊ biˈɑːnd/",
+      "answer": "làm vượt mức yêu cầu",
+      "explanation": "I went beyond the ticket and refactored the whole module.\n→ Tôi làm vượt yêu cầu của ticket và tái cấu trúc cả module."
+    },
+    {
+      "question": "implement",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈɪmpləmɛnt/",
+      "answer": "triển khai, hiện thực hóa",
+      "explanation": "I implemented a new search feature using Elasticsearch.\n→ Tôi triển khai tính năng tìm kiếm mới bằng Elasticsearch."
+    },
+    {
+      "question": "recognition",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌrɛkəgˈnɪʃən/",
+      "answer": "sự ghi nhận, khen thưởng",
+      "explanation": "I received recognition from leadership for the performance fix.\n→ Tôi nhận được sự ghi nhận từ ban lãnh đạo nhờ bản sửa hiệu năng."
+    },
+    {
+      "question": "constraint",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈstreɪnt/",
+      "answer": "ràng buộc, giới hạn",
+      "explanation": "We delivered on time despite tight budget constraints.\n→ Chúng tôi giao đúng hạn dù ngân sách bị ràng buộc chặt."
+    },
+    {
+      "question": "pinpoint",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈpɪnpɔɪnt/",
+      "answer": "xác định chính xác",
+      "explanation": "I pinpointed the cause of the crash in under an hour.\n→ Tôi xác định chính xác nguyên nhân gây crash trong chưa đầy một giờ.\nLưu ý: pinpoint the cause/source of something."
+    },
+    {
+      "question": "learn from",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/lɜːrn frʌm/",
+      "answer": "rút kinh nghiệm từ",
+      "explanation": "I learned a lot from my mistakes on that first project.\n→ Tôi học được rất nhiều từ những sai lầm ở dự án đầu tiên."
+    },
+    {
+      "question": "in hindsight",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɪn ˈhaɪndsaɪt/",
+      "answer": "nhìn lại thì",
+      "explanation": "In hindsight, I should have asked for help sooner.\n→ Nhìn lại thì lẽ ra tôi nên nhờ giúp đỡ sớm hơn."
+    },
+    {
+      "question": "rise to the challenge",
+      "partOfSpeech": "idiom",
+      "phonetic": "/raɪz tu ðə ˈtʃælɪndʒ/",
+      "answer": "đương đầu và làm tốt thử thách",
+      "explanation": "When we lost two engineers, the team rose to the challenge.\n→ Khi mất hai kỹ sư, cả nhóm đã đương đầu và vượt qua thử thách."
+    },
+    {
+      "question": "ahead of schedule",
+      "partOfSpeech": "phrase",
+      "phonetic": "/əˈhɛd əv ˈskɛdʒuːl/",
+      "answer": "sớm hơn kế hoạch",
+      "explanation": "We finished the migration ahead of schedule.\n→ Chúng tôi hoàn tất việc di chuyển dữ liệu sớm hơn kế hoạch.\nLưu ý: trái nghĩa là behind schedule (trễ tiến độ)."
+    },
+    {
+      "question": "overhaul",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌoʊvərˈhɔːl/",
+      "answer": "cải tổ toàn diện",
+      "explanation": "We overhauled the onboarding flow and cut drop-off by 30%.\n→ Chúng tôi cải tổ toàn bộ luồng onboarding và giảm 30% số người bỏ giữa chừng.\nLưu ý: danh từ /ˈoʊvərhɔːl/: a complete overhaul."
+    }
+  ]
+}

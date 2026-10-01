@@ -1,0 +1,255 @@
+{
+  "slug": "it-english-04-agile-scrum",
+  "order": 24,
+  "title": "IT English 4 · Quy trình Agile/Scrum",
+  "description": "Từ vựng và cụm từ về Agile/Scrum (CEFR B1). Dùng trong stand-up, sprint planning, retrospective và khi viết ticket, cập nhật tiến độ cho đội ngũ nước ngoài.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "Agile",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈædʒaɪl/",
+      "answer": "phương pháp Agile (phát triển linh hoạt)",
+      "explanation": "We follow Agile, so we release small changes often.\n→ Chúng tôi theo Agile, nên phát hành các thay đổi nhỏ thường xuyên.\nLưu ý: cũng là tính từ \"agile\" nghĩa là nhanh nhẹn, linh hoạt."
+    },
+    {
+      "question": "Scrum",
+      "partOfSpeech": "noun",
+      "phonetic": "/skrʌm/",
+      "answer": "Scrum (khung làm việc Agile)",
+      "explanation": "Our team uses Scrum with two-week sprints.\n→ Nhóm chúng tôi dùng Scrum với các sprint hai tuần."
+    },
+    {
+      "question": "Kanban",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːnbɑːn/",
+      "answer": "Kanban (bảng công việc trực quan)",
+      "explanation": "The support team uses a Kanban board instead of sprints.\n→ Nhóm hỗ trợ dùng bảng Kanban thay vì sprint."
+    },
+    {
+      "question": "sprint",
+      "partOfSpeech": "noun",
+      "phonetic": "/sprɪnt/",
+      "answer": "sprint (chu kỳ làm việc ngắn)",
+      "explanation": "We will finish this feature by the end of the sprint.\n→ Chúng ta sẽ hoàn thành tính năng này trước khi sprint kết thúc."
+    },
+    {
+      "question": "sprint planning",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsprɪnt ˌplænɪŋ/",
+      "answer": "buổi lập kế hoạch sprint",
+      "explanation": "We decide the sprint goal in sprint planning.\n→ Chúng ta quyết định mục tiêu sprint trong buổi sprint planning."
+    },
+    {
+      "question": "backlog",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbæklɔːɡ/",
+      "answer": "danh sách việc cần làm (backlog)",
+      "explanation": "I added the new idea to the backlog.\n→ Tôi đã thêm ý tưởng mới vào backlog."
+    },
+    {
+      "question": "backlog refinement",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbæklɔːɡ rɪˈfaɪnmənt/",
+      "answer": "buổi làm rõ và chi tiết hóa backlog",
+      "explanation": "Let's discuss this story in backlog refinement tomorrow.\n→ Hãy thảo luận story này trong buổi backlog refinement ngày mai.\nLưu ý: trước đây còn gọi là \"backlog grooming\"."
+    },
+    {
+      "question": "user story",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjuːzər ˌstɔːri/",
+      "answer": "câu chuyện người dùng (user story)",
+      "explanation": "As a user, I want to reset my password so that I can log in again.\n→ Là một người dùng, tôi muốn đặt lại mật khẩu để có thể đăng nhập lại.\nLưu ý: mẫu quen thuộc: \"As a …, I want …, so that …\"."
+    },
+    {
+      "question": "epic",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈepɪk/",
+      "answer": "epic (nhóm lớn các user story)",
+      "explanation": "This epic covers the whole checkout flow.\n→ Epic này bao gồm toàn bộ luồng thanh toán."
+    },
+    {
+      "question": "ticket",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtɪkɪt/",
+      "answer": "ticket (đầu việc, phiếu công việc)",
+      "explanation": "I'll create a ticket for this bug.\n→ Tôi sẽ tạo một ticket cho lỗi này."
+    },
+    {
+      "question": "stand-up",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstænd ʌp/",
+      "answer": "buổi họp đứng hằng ngày (stand-up)",
+      "explanation": "Yesterday I fixed the login bug; today I'm working on the API.\n→ Hôm qua tôi đã sửa lỗi đăng nhập; hôm nay tôi làm API.\nLưu ý: còn gọi là \"daily stand-up\" hoặc \"daily scrum\"."
+    },
+    {
+      "question": "retrospective",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌretrəˈspektɪv/",
+      "answer": "buổi nhìn lại sprint (retro)",
+      "explanation": "In the retrospective, we talked about what went well.\n→ Trong buổi retrospective, chúng tôi nói về những điều đã làm tốt.\nLưu ý: thường gọi tắt là \"retro\"."
+    },
+    {
+      "question": "demo",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdemoʊ/",
+      "answer": "buổi trình diễn sản phẩm (demo)",
+      "explanation": "We'll show the new feature in the sprint demo on Friday.\n→ Chúng tôi sẽ trình diễn tính năng mới trong buổi demo sprint vào thứ Sáu.\nLưu ý: cũng là động từ: \"demo a feature\"."
+    },
+    {
+      "question": "estimate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈestɪmeɪt/",
+      "answer": "ước lượng",
+      "explanation": "Can you estimate how long this task will take?\n→ Bạn có thể ước lượng nhiệm vụ này mất bao lâu không?\nLưu ý: danh từ \"estimate\" đọc /ˈestɪmət/."
+    },
+    {
+      "question": "story point",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstɔːri pɔɪnt/",
+      "answer": "điểm story (đơn vị ước lượng độ phức tạp)",
+      "explanation": "We gave this story five story points.\n→ Chúng tôi chấm story này năm điểm."
+    },
+    {
+      "question": "velocity",
+      "partOfSpeech": "noun",
+      "phonetic": "/vəˈlɑːsəti/",
+      "answer": "vận tốc của nhóm (số điểm hoàn thành mỗi sprint)",
+      "explanation": "Our velocity is about thirty points per sprint.\n→ Vận tốc của nhóm chúng tôi khoảng ba mươi điểm mỗi sprint."
+    },
+    {
+      "question": "requirement",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈkwaɪərmənt/",
+      "answer": "yêu cầu",
+      "explanation": "The client changed the requirements again.\n→ Khách hàng lại thay đổi yêu cầu."
+    },
+    {
+      "question": "acceptance criteria",
+      "partOfSpeech": "noun",
+      "phonetic": "/əkˈseptəns kraɪˌtɪriə/",
+      "answer": "tiêu chí chấp nhận",
+      "explanation": "Please check the acceptance criteria before you start.\n→ Vui lòng kiểm tra tiêu chí chấp nhận trước khi bắt đầu.\nLưu ý: \"criteria\" là số nhiều, số ít là \"criterion\"."
+    },
+    {
+      "question": "definition of done",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdefɪˈnɪʃən əv ˈdʌn/",
+      "answer": "định nghĩa hoàn thành (definition of done)",
+      "explanation": "According to our definition of done, the code must be reviewed and tested.\n→ Theo định nghĩa hoàn thành của chúng ta, code phải được review và kiểm thử.\nLưu ý: viết tắt DoD."
+    },
+    {
+      "question": "stakeholder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsteɪkhoʊldər/",
+      "answer": "bên liên quan",
+      "explanation": "We need to inform all stakeholders about the delay.\n→ Chúng ta cần thông báo cho tất cả các bên liên quan về sự chậm trễ."
+    },
+    {
+      "question": "product owner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːdʌkt ˌoʊnər/",
+      "answer": "chủ sản phẩm (product owner)",
+      "explanation": "The product owner decides which features come first.\n→ Product owner quyết định tính năng nào làm trước.\nLưu ý: viết tắt PO."
+    },
+    {
+      "question": "Scrum Master",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskrʌm ˌmæstər/",
+      "answer": "Scrum Master (người điều phối quy trình Scrum)",
+      "explanation": "The Scrum Master helps the team remove obstacles.\n→ Scrum Master giúp nhóm gỡ bỏ các trở ngại."
+    },
+    {
+      "question": "priority",
+      "partOfSpeech": "noun",
+      "phonetic": "/praɪˈɔːrəti/",
+      "answer": "mức độ ưu tiên",
+      "explanation": "This bug is high priority, so please fix it today.\n→ Lỗi này có độ ưu tiên cao, nên hãy sửa ngay hôm nay.\nLưu ý: \"high / low priority\"."
+    },
+    {
+      "question": "assignee",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˌsaɪˈniː/",
+      "answer": "người được giao việc",
+      "explanation": "I'm the assignee of this ticket.\n→ Tôi là người được giao ticket này."
+    },
+    {
+      "question": "release",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈliːs/",
+      "answer": "bản phát hành; việc phát hành",
+      "explanation": "The next release is scheduled for Friday.\n→ Bản phát hành tiếp theo được lên lịch vào thứ Sáu.\nLưu ý: cũng là động từ: \"release a new version\"."
+    },
+    {
+      "question": "milestone",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmaɪlstoʊn/",
+      "answer": "cột mốc",
+      "explanation": "We reached an important milestone this week.\n→ Tuần này chúng tôi đã đạt một cột mốc quan trọng."
+    },
+    {
+      "question": "blocker",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈblɑːkər/",
+      "answer": "vật cản, vấn đề chặn tiến độ",
+      "explanation": "I have a blocker: I can't access the test server.\n→ Tôi gặp vấn đề chặn tiến độ: tôi không truy cập được máy chủ test.\nLưu ý: động từ tương ứng \"I'm blocked by …\" (tôi đang bị chặn bởi …)."
+    },
+    {
+      "question": "dependency",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈpendənsi/",
+      "answer": "sự phụ thuộc",
+      "explanation": "This task has a dependency on the backend team.\n→ Nhiệm vụ này phụ thuộc vào nhóm backend.\nLưu ý: trong code, \"dependency\" còn là thư viện mà dự án cần dùng."
+    },
+    {
+      "question": "action item",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈækʃən ˌaɪtəm/",
+      "answer": "đầu việc cần làm sau cuộc họp",
+      "explanation": "The only action item for me is to update the docs.\n→ Đầu việc duy nhất của tôi là cập nhật tài liệu."
+    },
+    {
+      "question": "timebox",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtaɪmbɑːks/",
+      "answer": "giới hạn thời gian cho một việc",
+      "explanation": "Let's timebox this investigation to two hours.\n→ Hãy giới hạn việc điều tra này trong hai giờ."
+    },
+    {
+      "question": "on track",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɑːn ˈtræk/",
+      "answer": "đúng tiến độ",
+      "explanation": "We're on track to finish the sprint on time.\n→ Chúng tôi đang đúng tiến độ để hoàn thành sprint đúng hạn.\nLưu ý: trái nghĩa: \"behind schedule\" (chậm tiến độ)."
+    },
+    {
+      "question": "behind schedule",
+      "partOfSpeech": "phrase",
+      "phonetic": "/bɪˌhaɪnd ˈskedʒuːl/",
+      "answer": "chậm tiến độ",
+      "explanation": "We're two days behind schedule because of the bug.\n→ Chúng tôi chậm tiến độ hai ngày vì lỗi này."
+    },
+    {
+      "question": "kick off",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌkɪk ˈɔːf/",
+      "answer": "bắt đầu, khởi động (dự án, cuộc họp)",
+      "explanation": "We'll kick off the project next Monday.\n→ Chúng ta sẽ khởi động dự án vào thứ Hai tới.\nLưu ý: danh từ \"kickoff meeting\" là buổi họp khởi động."
+    },
+    {
+      "question": "sign off",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌsaɪn ˈɔːf/",
+      "answer": "chính thức duyệt, đồng ý",
+      "explanation": "The product owner needs to sign off on the design.\n→ Product owner cần chính thức duyệt thiết kế.\nLưu ý: dùng \"sign off on\" something; danh từ \"sign-off\"."
+    },
+    {
+      "question": "deliverable",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈlɪvərəbəl/",
+      "answer": "sản phẩm bàn giao",
+      "explanation": "The main deliverable for this sprint is the payment page.\n→ Sản phẩm bàn giao chính của sprint này là trang thanh toán."
+    }
+  ]
+}

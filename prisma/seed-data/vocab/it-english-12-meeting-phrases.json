@@ -1,0 +1,262 @@
+{
+  "slug": "it-english-12-meeting-phrases",
+  "order": 32,
+  "title": "IT English 12 · Cụm từ trong meeting kỹ thuật",
+  "description": "Cụm từ và thành ngữ ở mức C1 mà dân kỹ thuật hay dùng trong họp: planning, design review, post-mortem. Giúp bạn nghe hiểu và nói tự nhiên hơn khi họp với đội nước ngoài.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "technical debt",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈteknɪkəl ˈdet/",
+      "answer": "nợ kỹ thuật (technical debt)",
+      "explanation": "We've been accumulating technical debt to hit every deadline.\n→ Chúng ta tích lũy nợ kỹ thuật để kịp mọi deadline.\nLưu ý: pay down/tackle technical debt; tech debt (nói tắt)."
+    },
+    {
+      "question": "scope creep",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskoʊp ˌkriːp/",
+      "answer": "phạm vi dự án phình dần ngoài kế hoạch",
+      "explanation": "Let's avoid scope creep and stick to the original requirements.\n→ Hãy tránh phình phạm vi và bám theo yêu cầu ban đầu.\nLưu ý: creep = lấn dần từng chút."
+    },
+    {
+      "question": "out of scope",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˌaʊt əv ˈskoʊp/",
+      "answer": "nằm ngoài phạm vi",
+      "explanation": "Performance tuning is out of scope for this release.\n→ Tối ưu hiệu năng nằm ngoài phạm vi của bản phát hành này.\nLưu ý: trái nghĩa: in scope."
+    },
+    {
+      "question": "ship",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʃɪp/",
+      "answer": "phát hành sản phẩm/tính năng",
+      "explanation": "We want to ship the beta by the end of the month.\n→ Chúng tôi muốn phát hành bản beta trước cuối tháng.\nLưu ý: ship it; ship a feature; shipping date."
+    },
+    {
+      "question": "roll out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌroʊl ˈaʊt/",
+      "answer": "triển khai dần ra người dùng",
+      "explanation": "We'll roll out the new dashboard to ten percent of users first.\n→ Chúng tôi sẽ triển khai dashboard mới cho mười phần trăm người dùng trước.\nLưu ý: danh từ: rollout; roll out ≠ roll back."
+    },
+    {
+      "question": "sanity check",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsænəti ˌtʃek/",
+      "answer": "kiểm tra nhanh xem có hợp lý không",
+      "explanation": "Can you do a quick sanity check on these numbers?\n→ Bạn xem nhanh giúp mấy con số này có hợp lý không?\nLưu ý: do/run a sanity check."
+    },
+    {
+      "question": "ballpark estimate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɔːlpɑːrk ˈestəmət/",
+      "answer": "ước lượng sơ bộ, đại khái",
+      "explanation": "Can you give me a ballpark estimate for the migration?\n→ Bạn cho tôi một ước lượng sơ bộ cho việc migrate được không?\nLưu ý: in the ballpark = xấp xỉ; ballpark figure."
+    },
+    {
+      "question": "deep dive",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdiːp ˌdaɪv/",
+      "answer": "buổi/phần đi sâu chi tiết",
+      "explanation": "Let's schedule a deep dive on the caching layer next week.\n→ Hãy đặt lịch một buổi đi sâu về tầng cache vào tuần sau.\nLưu ý: động từ: dive deep into; do a deep dive."
+    },
+    {
+      "question": "workaround",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɜːrkəˌraʊnd/",
+      "answer": "giải pháp tạm thời để lách vấn đề",
+      "explanation": "There's a workaround, but we need a proper fix.\n→ Có một cách lách tạm, nhưng chúng ta cần bản sửa đúng nghĩa.\nLưu ý: a workaround for something; động từ: work around."
+    },
+    {
+      "question": "root cause",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈruːt ˌkɔːz/",
+      "answer": "nguyên nhân gốc rễ",
+      "explanation": "We still haven't found the root cause of the memory leak.\n→ Chúng ta vẫn chưa tìm ra nguyên nhân gốc của lỗi rò rỉ bộ nhớ.\nLưu ý: root cause analysis (RCA)."
+    },
+    {
+      "question": "post-mortem",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpoʊst ˈmɔːrtəm/",
+      "answer": "buổi/báo cáo rà soát sau sự cố",
+      "explanation": "We'll hold a blameless post-mortem on Thursday.\n→ Chúng tôi sẽ họp post-mortem không đổ lỗi vào thứ Năm.\nLưu ý: blameless post-mortem; còn gọi retrospective/incident review."
+    },
+    {
+      "question": "nice-to-have",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnaɪs tə ˌhæv/",
+      "answer": "thứ tốt nếu có, không bắt buộc",
+      "explanation": "Dark mode is a nice-to-have, not a must-have.\n→ Chế độ tối là thứ có thì tốt, không bắt buộc.\nLưu ý: must-have: bắt buộc."
+    },
+    {
+      "question": "let's take this offline",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˌlets ˌteɪk ðɪs ˌɔːfˈlaɪn/",
+      "answer": "mình bàn riêng chuyện này sau cuộc họp",
+      "explanation": "This is getting too detailed, so let's take this offline.\n→ Chuyện này đang quá chi tiết, nên mình bàn riêng sau nhé.\nLưu ý: lịch sự ngắt một chủ đề lan man."
+    },
+    {
+      "question": "what's the blast radius",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˌwʌts ðə ˈblæst ˌreɪdiəs/",
+      "answer": "phạm vi ảnh hưởng nếu có sự cố là gì?",
+      "explanation": "Before we change the config, what's the blast radius if it fails?\n→ Trước khi đổi cấu hình, nếu hỏng thì phạm vi ảnh hưởng là gì?\nLưu ý: blast radius (n) = phạm vi tác động của một thay đổi/sự cố."
+    },
+    {
+      "question": "punt",
+      "partOfSpeech": "verb",
+      "phonetic": "/pʌnt/",
+      "answer": "hoãn lại (vấn đề) để xử lý sau",
+      "explanation": "Let's punt on the retry logic and revisit it next sprint.\n→ Hãy hoãn phần retry và xem lại ở sprint sau.\nLưu ý: punt on something; punt it to later."
+    },
+    {
+      "question": "pain point",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪn ˌpɔɪnt/",
+      "answer": "điểm gây khó chịu, vấn đề nhức nhối",
+      "explanation": "Slow deployments are our biggest pain point right now.\n→ Việc deploy chậm là điểm nhức nhối lớn nhất của chúng ta lúc này.\nLưu ý: user pain point = vấn đề người dùng gặp phải."
+    },
+    {
+      "question": "go/no-go",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌgoʊ noʊ ˈgoʊ/",
+      "answer": "quyết định tiến hành hay dừng",
+      "explanation": "We have a go/no-go meeting for the release on Thursday.\n→ Chúng ta có buổi họp quyết định có phát hành hay không vào thứ Năm.\nLưu ý: a go/no-go decision."
+    },
+    {
+      "question": "bikeshedding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbaɪkˌʃedɪŋ/",
+      "answer": "tranh cãi mất thời gian về chuyện vặt",
+      "explanation": "We're bikeshedding about variable names instead of the design.\n→ Chúng ta đang cãi nhau về tên biến thay vì thiết kế.\nLưu ý: động từ: bikeshed."
+    },
+    {
+      "question": "rabbit hole",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˈræbɪt ˌhoʊl/",
+      "answer": "đào sâu vấn đề mất rất nhiều thời gian",
+      "explanation": "I went down a rabbit hole trying to debug that build error.\n→ Tôi sa vào hố sâu khi cố debug lỗi build đó.\nLưu ý: go down a rabbit hole."
+    },
+    {
+      "question": "yak shaving",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjæk ˌʃeɪvɪŋ/",
+      "answer": "chuỗi việc phụ phải làm trước khi làm được việc chính",
+      "explanation": "I started fixing a typo and ended up in yak shaving with the build tool.\n→ Tôi bắt đầu sửa một lỗi chính tả và rốt cuộc sa vào chuỗi việc phụ với công cụ build."
+    },
+    {
+      "question": "table this",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˈteɪbəl ˈðɪs/",
+      "answer": "gác lại chủ đề này (Mỹ); lưu ý Anh-Anh nghĩa ngược lại",
+      "explanation": "Let's table this until we have the performance numbers.\n→ Hãy gác chuyện này lại cho đến khi có số liệu hiệu năng.\nLưu ý: Mỹ: table = hoãn; Anh: table = đưa ra bàn luận."
+    },
+    {
+      "question": "dogfooding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɔːgˌfuːdɪŋ/",
+      "answer": "tự dùng sản phẩm của chính mình để thử",
+      "explanation": "Our team is dogfooding the new app before the public launch.\n→ Nhóm chúng tôi đang tự dùng thử ứng dụng mới trước khi ra mắt công chúng.\nLưu ý: động từ: dogfood; eat your own dog food."
+    },
+    {
+      "question": "boil the ocean",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˌbɔɪl ði ˈoʊʃən/",
+      "answer": "ôm đồm làm quá nhiều việc không thực tế",
+      "explanation": "Let's not boil the ocean; we'll ship a small version first.\n→ Đừng ôm đồm quá; chúng ta sẽ ra bản nhỏ trước.\nLưu ý: thường dùng ở dạng phủ định."
+    },
+    {
+      "question": "bus factor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʌs ˌfæktər/",
+      "answer": "số người tối thiểu mà nếu mất đi thì dự án đổ vỡ",
+      "explanation": "Our bus factor is one, because only Linh knows the billing code.\n→ Bus factor của chúng ta là một, vì chỉ có Linh hiểu code thanh toán.\nLưu ý: a low bus factor là rủi ro phụ thuộc vào ít người."
+    },
+    {
+      "question": "sync up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌsɪŋk ˈʌp/",
+      "answer": "họp nhanh/cập nhật để thống nhất với nhau",
+      "explanation": "Can we sync up for ten minutes after stand-up?\n→ Mình họp nhanh mười phút sau stand-up được không?\nLưu ý: danh từ: a sync; let's sync."
+    },
+    {
+      "question": "show-stopper",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃoʊ ˌstɑːpər/",
+      "answer": "vấn đề chặn đứng việc phát hành",
+      "explanation": "Is this bug a show-stopper for the release?\n→ Lỗi này có chặn việc phát hành không?\nLưu ý: blocker gần nghĩa."
+    },
+    {
+      "question": "spike",
+      "partOfSpeech": "noun",
+      "phonetic": "/spaɪk/",
+      "answer": "nhiệm vụ khảo sát ngắn để tìm hiểu giải pháp",
+      "explanation": "Let's do a two-day spike to see if this library is viable.\n→ Hãy làm một spike hai ngày xem thư viện này có khả thi không.\nLưu ý: a spike cũng là đợt tăng đột biến (a traffic spike)."
+    },
+    {
+      "question": "rubber-stamp",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈrʌbɚ ˌstæmp/",
+      "answer": "duyệt qua loa, đóng dấu cho có",
+      "explanation": "I don't want to rubber-stamp this pull request without testing it.\n→ Tôi không muốn duyệt qua loa pull request này mà không test.\nLưu ý: thường mang nghĩa chê."
+    },
+    {
+      "question": "buy-in",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbaɪ ˌɪn/",
+      "answer": "sự đồng thuận, ủng hộ",
+      "explanation": "We need buy-in from the product team before we change the API.\n→ Chúng ta cần sự đồng thuận của nhóm sản phẩm trước khi đổi API.\nLưu ý: get/secure buy-in from someone."
+    },
+    {
+      "question": "kick the can down the road",
+      "partOfSpeech": "idiom",
+      "phonetic": null,
+      "answer": "trì hoãn vấn đề thay vì giải quyết",
+      "explanation": "If we skip the refactor now, we're just kicking the can down the road.\n→ Nếu bây giờ bỏ qua việc refactor thì chúng ta chỉ đang trì hoãn vấn đề.\nLưu ý: cụm này thường mang nghĩa phê phán."
+    },
+    {
+      "question": "parking lot",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːrkɪŋ ˌlɑːt/",
+      "answer": "danh sách việc để bàn sau",
+      "explanation": "Let's put that in the parking lot and finish the agenda first.\n→ Hãy ghi việc đó vào danh sách bàn sau và xong chương trình họp trước.\nLưu ý: put something in the parking lot."
+    },
+    {
+      "question": "hard stop",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːrd ˌstɑːp/",
+      "answer": "giờ phải kết thúc cứng (không kéo dài được)",
+      "explanation": "I have a hard stop at noon, so let's start with the blockers.\n→ Tôi phải rời lúc trưa, nên mình bắt đầu bằng các blocker.\nLưu ý: have a hard stop at 3."
+    },
+    {
+      "question": "time-box",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtaɪm ˌbɑːks/",
+      "answer": "giới hạn thời gian cho một việc",
+      "explanation": "Let's time-box the investigation to two days.\n→ Hãy giới hạn việc điều tra trong hai ngày.\nLưu ý: timebox (n/v)."
+    },
+    {
+      "question": "long pole",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɔːŋ ˌpoʊl/",
+      "answer": "phần việc dài nhất quyết định tiến độ",
+      "explanation": "The data migration is the long pole in this project.\n→ Việc migrate dữ liệu là phần quyết định tiến độ của dự án.\nLưu ý: long pole in the tent."
+    },
+    {
+      "question": "to be fair",
+      "partOfSpeech": "phrase",
+      "phonetic": "/tə bi ˈfer/",
+      "answer": "công bằng mà nói (nhẹ nhàng đưa ý kiến ngược)",
+      "explanation": "To be fair, the old design handled that case better.\n→ Công bằng mà nói, thiết kế cũ xử lý trường hợp đó tốt hơn."
+    },
+    {
+      "question": "let me play devil's advocate",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˌlet mi ˌpleɪ ˈdevəlz ˌædvəkət/",
+      "answer": "để tôi đóng vai phản biện nhé",
+      "explanation": "Let me play devil's advocate: what if the vendor changes pricing?\n→ Để tôi phản biện nhé: nếu nhà cung cấp đổi giá thì sao?\nLưu ý: devil's advocate = người cố tình phản biện."
+    }
+  ]
+}

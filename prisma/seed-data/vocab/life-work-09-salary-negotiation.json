@@ -1,0 +1,248 @@
+{
+  "slug": "life-work-09-salary-negotiation",
+  "order": 9,
+  "title": "Life & Work 9 · Đàm phán lương & phúc lợi",
+  "description": "Từ vựng trình độ C1 để thảo luận mức lương, thưởng, cổ phần và phúc lợi khi nhận offer hoặc đàm phán với HR.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "negotiate",
+      "partOfSpeech": "verb",
+      "phonetic": "/nɪˈgoʊʃieɪt/",
+      "answer": "đàm phán, thương lượng",
+      "explanation": "I'd like to negotiate the base salary before I accept.\n→ Tôi muốn thương lượng mức lương cơ bản trước khi nhận lời."
+    },
+    {
+      "question": "negotiation",
+      "partOfSpeech": "noun",
+      "phonetic": "/nɪˌgoʊʃiˈeɪʃən/",
+      "answer": "cuộc đàm phán",
+      "explanation": "The negotiation went smoothly, and we agreed on a fair offer.\n→ Cuộc đàm phán diễn ra suôn sẻ và chúng tôi thống nhất một offer hợp lý."
+    },
+    {
+      "question": "compensation package",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˌkɑːmpənˈseɪʃən ˈpækɪdʒ/",
+      "answer": "gói đãi ngộ tổng thể",
+      "explanation": "The compensation package includes salary, bonus, and stock options.\n→ Gói đãi ngộ gồm lương, thưởng và quyền chọn cổ phiếu."
+    },
+    {
+      "question": "salary expectation",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˈsæləri ˌɛkspɛkˈteɪʃən/",
+      "answer": "mức lương mong muốn",
+      "explanation": "My salary expectation is between 2,500 and 3,000 dollars a month.\n→ Mức lương mong muốn của tôi là từ 2.500 đến 3.000 đô la mỗi tháng.\nLưu ý: số nhiều salary expectations cũng phổ biến."
+    },
+    {
+      "question": "gross",
+      "partOfSpeech": "adjective",
+      "phonetic": "/groʊs/",
+      "answer": "tổng (trước thuế)",
+      "explanation": "The offer is 3,000 dollars gross per month.\n→ Offer là 3.000 đô la mỗi tháng trước thuế.\nLưu ý: gross còn có nghĩa là ghê tởm trong văn nói."
+    },
+    {
+      "question": "net",
+      "partOfSpeech": "adjective",
+      "phonetic": "/nɛt/",
+      "answer": "thực nhận (sau thuế)",
+      "explanation": "What is the net amount I would receive each month?\n→ Số tiền thực nhận mỗi tháng của tôi là bao nhiêu?"
+    },
+    {
+      "question": "bonus",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈboʊnəs/",
+      "answer": "tiền thưởng",
+      "explanation": "Is the annual bonus guaranteed or performance-based?\n→ Thưởng hằng năm là cố định hay dựa trên hiệu suất?"
+    },
+    {
+      "question": "equity",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɛkwəti/",
+      "answer": "cổ phần, quyền sở hữu",
+      "explanation": "Startups often offer equity to make up for lower salaries.\n→ Các startup thường cho cổ phần để bù cho mức lương thấp hơn.\nLưu ý: ở ngữ cảnh khác, equity còn nghĩa là sự công bằng."
+    },
+    {
+      "question": "counteroffer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkaʊntərɔːfər/",
+      "answer": "đề nghị đáp lại, offer ngược",
+      "explanation": "I made a counteroffer of 10 percent above their initial number.\n→ Tôi đưa ra đề nghị đáp lại cao hơn con số ban đầu 10 phần trăm."
+    },
+    {
+      "question": "competitive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kəmˈpɛtətɪv/",
+      "answer": "cạnh tranh (so với thị trường)",
+      "explanation": "They offered a competitive salary for the Hanoi market.\n→ Họ đưa ra mức lương cạnh tranh so với thị trường Hà Nội."
+    },
+    {
+      "question": "perk",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɜːrk/",
+      "answer": "đặc quyền, phúc lợi phụ",
+      "explanation": "Free lunch and a gym membership are nice perks.\n→ Bữa trưa miễn phí và thẻ phòng gym là những phúc lợi phụ đáng quý."
+    },
+    {
+      "question": "raise",
+      "partOfSpeech": "noun",
+      "phonetic": "/reɪz/",
+      "answer": "tăng lương",
+      "explanation": "I'm hoping to get a raise after my annual review.\n→ Tôi hy vọng được tăng lương sau buổi đánh giá hằng năm.\nLưu ý: tiếng Anh Anh thường nói pay rise."
+    },
+    {
+      "question": "benefits",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɛnəfɪts/",
+      "answer": "phúc lợi",
+      "explanation": "The benefits include health insurance and 15 days of paid leave.\n→ Phúc lợi gồm bảo hiểm sức khỏe và 15 ngày nghỉ phép có lương."
+    },
+    {
+      "question": "base salary",
+      "partOfSpeech": "collocation",
+      "phonetic": "/beɪs ˈsæləri/",
+      "answer": "lương cơ bản",
+      "explanation": "My base salary is fixed, and the bonus is on top.\n→ Lương cơ bản của tôi cố định, còn thưởng được cộng thêm."
+    },
+    {
+      "question": "stock options",
+      "partOfSpeech": "collocation",
+      "phonetic": "/stɑːk ˈɑːpʃənz/",
+      "answer": "quyền chọn mua cổ phiếu",
+      "explanation": "The company grants stock options that vest over four years.\n→ Công ty cấp quyền chọn mua cổ phiếu được trao dần trong bốn năm."
+    },
+    {
+      "question": "vest",
+      "partOfSpeech": "verb",
+      "phonetic": "/vɛst/",
+      "answer": "được trao quyền (dần theo thời gian)",
+      "explanation": "My shares vest monthly over four years.\n→ Cổ phần của tôi được trao dần hằng tháng trong bốn năm."
+    },
+    {
+      "question": "thirteenth-month salary",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˌθɜːrˈtiːnθ mʌnθ ˈsæləri/",
+      "answer": "lương tháng thứ 13",
+      "explanation": "Does the offer include a thirteenth-month salary?\n→ Offer này có bao gồm lương tháng thứ 13 không?"
+    },
+    {
+      "question": "pension",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpenʃən/",
+      "answer": "lương hưu, quỹ hưu trí",
+      "explanation": "The company contributes 5% of my salary to my pension.\n→ Công ty đóng 5% lương của tôi vào quỹ hưu trí.\nLưu ý: pension plan = chương trình hưu trí; ở Mỹ thường là 401(k)."
+    },
+    {
+      "question": "health insurance",
+      "partOfSpeech": "collocation",
+      "phonetic": "/hɛlθ ɪnˈʃʊrəns/",
+      "answer": "bảo hiểm sức khỏe",
+      "explanation": "They cover health insurance for me and my family.\n→ Họ chi trả bảo hiểm sức khỏe cho tôi và gia đình."
+    },
+    {
+      "question": "remote allowance",
+      "partOfSpeech": "collocation",
+      "phonetic": "/rɪˈmoʊt əˈlaʊəns/",
+      "answer": "phụ cấp làm việc từ xa",
+      "explanation": "The company gives a monthly remote allowance for internet costs.\n→ Công ty cấp phụ cấp làm việc từ xa hằng tháng để trả tiền internet."
+    },
+    {
+      "question": "allowance",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈlaʊəns/",
+      "answer": "phụ cấp",
+      "explanation": "There is a lunch allowance on top of the salary.\n→ Có phụ cấp ăn trưa ngoài tiền lương."
+    },
+    {
+      "question": "reimburse",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːɪmˈbɜːrs/",
+      "answer": "hoàn tiền (chi phí)",
+      "explanation": "The company will reimburse my training expenses.\n→ Công ty sẽ hoàn lại chi phí đào tạo của tôi."
+    },
+    {
+      "question": "ballpark figure",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˈbɔːlpɑːrk ˈfɪgjər/",
+      "answer": "con số ước chừng",
+      "explanation": "Could you give me a ballpark figure for the salary range?\n→ Anh chị có thể cho tôi con số ước chừng về khung lương không?"
+    },
+    {
+      "question": "salary range",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˈsæləri reɪndʒ/",
+      "answer": "khung lương",
+      "explanation": "What is the salary range for this position?\n→ Khung lương cho vị trí này là bao nhiêu?"
+    },
+    {
+      "question": "market rate",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˈmɑːrkɪt reɪt/",
+      "answer": "mức lương thị trường",
+      "explanation": "I researched the market rate for senior developers.\n→ Tôi đã tìm hiểu mức lương thị trường cho lập trình viên senior."
+    },
+    {
+      "question": "profit sharing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːfɪt ˌʃerɪŋ/",
+      "answer": "chia sẻ lợi nhuận",
+      "explanation": "They offer profit sharing in addition to the base salary.\n→ Họ có chia sẻ lợi nhuận bên cạnh lương cơ bản.\nLưu ý: a profit-sharing plan."
+    },
+    {
+      "question": "sign-on bonus",
+      "partOfSpeech": "collocation",
+      "phonetic": "/saɪn ɑːn ˈboʊnəs/",
+      "answer": "thưởng ký hợp đồng",
+      "explanation": "They offered a sign-on bonus to cover my lost year-end bonus.\n→ Họ đưa thưởng ký hợp đồng để bù khoản thưởng cuối năm tôi mất."
+    },
+    {
+      "question": "performance review",
+      "partOfSpeech": "collocation",
+      "phonetic": "/pərˈfɔːrməns rɪˈvjuː/",
+      "answer": "đánh giá hiệu suất",
+      "explanation": "Salary adjustments are discussed during the performance review.\n→ Việc điều chỉnh lương được bàn trong buổi đánh giá hiệu suất."
+    },
+    {
+      "question": "take-home pay",
+      "partOfSpeech": "collocation",
+      "phonetic": "/ˈteɪk hoʊm peɪ/",
+      "answer": "lương thực lĩnh",
+      "explanation": "After tax and insurance, my take-home pay is lower.\n→ Sau thuế và bảo hiểm, lương thực lĩnh của tôi thấp hơn."
+    },
+    {
+      "question": "worth",
+      "partOfSpeech": "adjective",
+      "phonetic": "/wɜːrθ/",
+      "answer": "xứng đáng với",
+      "explanation": "I believe my skills are worth a higher salary.\n→ Tôi tin kỹ năng của mình xứng đáng với mức lương cao hơn.\nLưu ý: be worth + danh từ/V-ing."
+    },
+    {
+      "question": "meet in the middle",
+      "partOfSpeech": "idiom",
+      "phonetic": "/miːt ɪn ðə ˈmɪdl/",
+      "answer": "nhượng bộ lẫn nhau, chọn mức giữa",
+      "explanation": "If we meet in the middle, I can accept that number.\n→ Nếu hai bên cùng nhượng bộ ở mức giữa, tôi có thể chấp nhận con số đó."
+    },
+    {
+      "question": "non-negotiable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌnɑːn nɪˈgoʊʃiəbəl/",
+      "answer": "không thể thương lượng",
+      "explanation": "Remote work two days a week is non-negotiable for me.\n→ Làm việc từ xa hai ngày mỗi tuần là điều không thể thương lượng với tôi."
+    },
+    {
+      "question": "severance package",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsevərəns ˌpækɪdʒ/",
+      "answer": "gói trợ cấp thôi việc",
+      "explanation": "I asked what severance package applies if the company lays me off.\n→ Tôi hỏi gói trợ cấp thôi việc nào được áp dụng nếu công ty cho tôi nghỉ.\nLưu ý: severance pay = tiền trợ cấp thôi việc."
+    },
+    {
+      "question": "decline",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪˈklaɪn/",
+      "answer": "từ chối (lịch sự)",
+      "explanation": "I had to decline the offer because of the relocation requirement.\n→ Tôi buộc phải từ chối offer vì yêu cầu chuyển nơi ở."
+    }
+  ]
+}

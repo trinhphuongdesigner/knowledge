@@ -1,0 +1,255 @@
+{
+  "slug": "it-english-13-ai-data",
+  "order": 33,
+  "title": "IT English 13 · AI & Dữ liệu",
+  "description": "Từ vựng AI, machine learning và dữ liệu ở mức B2–C1: huấn luyện, suy luận, LLM, pipeline dữ liệu. Dùng khi thảo luận mô hình, prompt và phân tích dữ liệu với đội nước ngoài.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "dataset",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtəˌset/",
+      "answer": "tập dữ liệu (dataset)",
+      "explanation": "We built a labeled dataset of ten thousand support tickets.\n→ Chúng tôi xây dựng một tập dữ liệu có gán nhãn gồm mười nghìn ticket hỗ trợ.\nLưu ý: training/test dataset; labeled dataset."
+    },
+    {
+      "question": "model",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːdl/",
+      "answer": "mô hình (AI/ML)",
+      "explanation": "The new model outperforms the baseline on every metric.\n→ Mô hình mới vượt qua baseline ở mọi chỉ số.\nLưu ý: train/deploy/evaluate a model."
+    },
+    {
+      "question": "train",
+      "partOfSpeech": "verb",
+      "phonetic": "/treɪn/",
+      "answer": "huấn luyện (mô hình)",
+      "explanation": "We trained the classifier on three months of data.\n→ Chúng tôi huấn luyện bộ phân loại bằng dữ liệu của ba tháng.\nLưu ý: training (n); training data."
+    },
+    {
+      "question": "inference",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnfərəns/",
+      "answer": "suy luận (dùng mô hình đã huấn luyện để dự đoán)",
+      "explanation": "Inference costs more than training for this product.\n→ Với sản phẩm này, chi phí suy luận cao hơn huấn luyện.\nLưu ý: inference latency; run inference."
+    },
+    {
+      "question": "prompt",
+      "partOfSpeech": "noun",
+      "phonetic": "/prɑːmpt/",
+      "answer": "câu lệnh/đầu vào gửi cho mô hình (prompt)",
+      "explanation": "A clear prompt with examples improves the output a lot.\n→ Một prompt rõ ràng kèm ví dụ cải thiện kết quả rất nhiều.\nLưu ý: prompt engineering; system prompt."
+    },
+    {
+      "question": "LLM",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌel el ˈem/",
+      "answer": "mô hình ngôn ngữ lớn (LLM)",
+      "explanation": "We use an LLM to summarize long customer emails.\n→ Chúng tôi dùng một LLM để tóm tắt các email dài của khách hàng.\nLưu ý: large language model."
+    },
+    {
+      "question": "accuracy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈækjərəsi/",
+      "answer": "độ chính xác (accuracy)",
+      "explanation": "Accuracy looks high, but the classes are heavily imbalanced.\n→ Độ chính xác trông cao, nhưng các lớp dữ liệu mất cân bằng nặng.\nLưu ý: accuracy vs. precision vs. recall."
+    },
+    {
+      "question": "precision",
+      "partOfSpeech": "noun",
+      "phonetic": "/prɪˈsɪʒən/",
+      "answer": "độ chính xác của các dự đoán dương (precision)",
+      "explanation": "High precision means few false alarms.\n→ Precision cao nghĩa là ít báo động giả.\nLưu ý: precision: trong số dự đoán dương, bao nhiêu đúng."
+    },
+    {
+      "question": "recall",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈriːkɔːl/",
+      "answer": "độ phủ (recall): tỷ lệ bắt được mẫu dương thật",
+      "explanation": "For fraud detection, we care more about recall than precision.\n→ Với phát hiện gian lận, chúng tôi quan tâm recall hơn precision.\nLưu ý: danh từ /ˈriːkɔːl/; động từ recall /rɪˈkɔːl/ = nhớ lại."
+    },
+    {
+      "question": "bias",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbaɪəs/",
+      "answer": "thiên lệch (trong dữ liệu hoặc mô hình)",
+      "explanation": "The training data has a strong bias toward English speakers.\n→ Dữ liệu huấn luyện thiên lệch mạnh về người nói tiếng Anh.\nLưu ý: bias in data/model; algorithmic bias."
+    },
+    {
+      "question": "overfitting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌoʊvərˈfɪtɪŋ/",
+      "answer": "quá khớp (học thuộc dữ liệu huấn luyện)",
+      "explanation": "The gap between training and test scores points to overfitting.\n→ Khoảng cách giữa điểm train và test cho thấy mô hình bị quá khớp.\nLưu ý: overfit (v); trái nghĩa: underfitting."
+    },
+    {
+      "question": "hallucination",
+      "partOfSpeech": "noun",
+      "phonetic": "/həˌluːsɪˈneɪʃən/",
+      "answer": "ảo giác (mô hình bịa thông tin sai nghe rất thuyết phục)",
+      "explanation": "Hallucination is a risk when the model has no source to cite.\n→ Ảo giác là rủi ro khi mô hình không có nguồn để trích dẫn.\nLưu ý: hallucinate (v) /həˈluːsɪneɪt/."
+    },
+    {
+      "question": "fine-tune",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌfaɪn ˈtuːn/",
+      "answer": "tinh chỉnh (mô hình có sẵn bằng dữ liệu riêng)",
+      "explanation": "We fine-tuned the model on our internal support tickets.\n→ Chúng tôi tinh chỉnh mô hình bằng các ticket hỗ trợ nội bộ.\nLưu ý: fine-tuning (n); fine-tune vs. train from scratch."
+    },
+    {
+      "question": "embedding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪmˈbedɪŋ/",
+      "answer": "embedding (vector biểu diễn ngữ nghĩa)",
+      "explanation": "We store the embedding of each document in a vector database.\n→ Chúng tôi lưu embedding của từng tài liệu trong cơ sở dữ liệu vector.\nLưu ý: embed (v); semantic similarity."
+    },
+    {
+      "question": "retrieval-augmented generation",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈtriːvəl ɔːɡˈmentɪd ˌdʒenəˈreɪʃən/",
+      "answer": "sinh nội dung có truy xuất dữ liệu bổ trợ (RAG)",
+      "explanation": "Retrieval-augmented generation reduces hallucination by grounding answers in our docs.\n→ RAG giảm ảo giác bằng cách bám câu trả lời vào tài liệu của chúng ta.\nLưu ý: viết tắt RAG /ræɡ/."
+    },
+    {
+      "question": "token limit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtoʊkən ˌlɪmɪt/",
+      "answer": "giới hạn số token (đơn vị văn bản mô hình xử lý)",
+      "explanation": "Long prompts hit the token limit and cost more because pricing is per token.\n→ Prompt dài chạm giới hạn token và tốn tiền hơn vì giá tính theo token.\nLưu ý: context window = số token tối đa mô hình đọc được."
+    },
+    {
+      "question": "context window",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːntekst ˌwɪndoʊ/",
+      "answer": "cửa sổ ngữ cảnh (lượng văn bản mô hình xử lý một lần)",
+      "explanation": "The document is too long for the model's context window.\n→ Tài liệu quá dài so với cửa sổ ngữ cảnh của mô hình."
+    },
+    {
+      "question": "feature",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfiːtʃər/",
+      "answer": "đặc trưng đầu vào của mô hình (feature)",
+      "explanation": "We added the user's last login date as a new feature.\n→ Chúng tôi thêm ngày đăng nhập gần nhất của người dùng làm một feature mới.\nLưu ý: feature engineering; trong ML khác nghĩa 'tính năng' của sản phẩm."
+    },
+    {
+      "question": "label",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleɪbəl/",
+      "answer": "nhãn (đáp án đúng của mẫu dữ liệu)",
+      "explanation": "Poor labels will limit how good the model can get.\n→ Nhãn kém sẽ giới hạn mức độ tốt của mô hình.\nLưu ý: động từ: label data; annotation."
+    },
+    {
+      "question": "data pipeline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə ˌpaɪplaɪn/",
+      "answer": "pipeline dữ liệu (chuỗi bước thu thập, xử lý, lưu)",
+      "explanation": "The nightly data pipeline failed because the schema changed.\n→ Data pipeline chạy hằng đêm thất bại vì schema đã thay đổi.\nLưu ý: ETL: extract, transform, load."
+    },
+    {
+      "question": "ETL",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌiː tiː ˈel/",
+      "answer": "trích xuất, biến đổi, nạp dữ liệu (ETL)",
+      "explanation": "The ETL job loads yesterday's orders into the warehouse.\n→ Job ETL nạp các đơn hàng hôm qua vào kho dữ liệu.\nLưu ý: ELT: nạp trước rồi biến đổi trong kho."
+    },
+    {
+      "question": "data warehouse",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə ˌwerhaʊs/",
+      "answer": "kho dữ liệu phân tích",
+      "explanation": "Analysts query the data warehouse, not the production database.\n→ Các nhà phân tích truy vấn kho dữ liệu, không phải database production.\nLưu ý: data lake: lưu dữ liệu thô."
+    },
+    {
+      "question": "data cleaning",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə ˌkliːnɪŋ/",
+      "answer": "làm sạch dữ liệu",
+      "explanation": "Most of the project time went into data cleaning.\n→ Phần lớn thời gian dự án dành cho làm sạch dữ liệu.\nLưu ý: data wrangling gần nghĩa."
+    },
+    {
+      "question": "outlier",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtlaɪər/",
+      "answer": "giá trị ngoại lai",
+      "explanation": "One outlier skewed the average response time.\n→ Một giá trị ngoại lai làm lệch thời gian phản hồi trung bình.\nLưu ý: remove/detect outliers."
+    },
+    {
+      "question": "missing value",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmɪsɪŋ ˈvæljuː/",
+      "answer": "giá trị bị thiếu",
+      "explanation": "We fill each missing value with the median.\n→ Chúng tôi điền mỗi giá trị bị thiếu bằng trung vị.\nLưu ý: impute = điền giá trị thiếu."
+    },
+    {
+      "question": "correlation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkɔːrəˈleɪʃən/",
+      "answer": "mối tương quan",
+      "explanation": "Correlation doesn't imply causation.\n→ Tương quan không có nghĩa là nhân quả.\nLưu ý: a correlation between A and B."
+    },
+    {
+      "question": "visualization",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌvɪʒuələˈzeɪʃən/",
+      "answer": "trực quan hóa dữ liệu",
+      "explanation": "A simple visualization made the trend obvious.\n→ Một biểu đồ đơn giản làm xu hướng trở nên rõ ràng.\nLưu ý: data visualization; visualize (v); dashboard."
+    },
+    {
+      "question": "dashboard",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdæʃbɔːrd/",
+      "answer": "bảng điều khiển hiển thị số liệu (dashboard)",
+      "explanation": "The dashboard shows revenue by region in real time.\n→ Dashboard hiển thị doanh thu theo khu vực theo thời gian thực.\nLưu ý: build/open a dashboard."
+    },
+    {
+      "question": "metric",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmetrɪk/",
+      "answer": "chỉ số đo lường",
+      "explanation": "Which metric will we use to decide if the model is better?\n→ Chúng ta sẽ dùng chỉ số nào để quyết định mô hình có tốt hơn không?\nLưu ý: evaluation metric; success metric."
+    },
+    {
+      "question": "baseline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbeɪslaɪn/",
+      "answer": "mức cơ sở để so sánh (baseline)",
+      "explanation": "A simple rule-based system is our baseline.\n→ Một hệ thống dựa trên luật đơn giản là baseline của chúng tôi.\nLưu ý: beat/outperform the baseline."
+    },
+    {
+      "question": "ground truth",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɡraʊnd ˈtruːθ/",
+      "answer": "dữ liệu chuẩn đã xác minh để so sánh",
+      "explanation": "We compare the predictions against human-labeled ground truth.\n→ Chúng tôi so sánh dự đoán với dữ liệu chuẩn do con người gán nhãn."
+    },
+    {
+      "question": "agent",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈeɪdʒənt/",
+      "answer": "agent AI (hệ thống tự gọi công cụ, thực hiện nhiều bước)",
+      "explanation": "The agent calls our search API and then summarizes the results.\n→ Agent gọi API tìm kiếm của chúng ta rồi tóm tắt kết quả.\nLưu ý: agentic workflow; tool calling."
+    },
+    {
+      "question": "guardrail",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡɑːrdreɪl/",
+      "answer": "rào chắn an toàn kiểm soát đầu ra AI",
+      "explanation": "We added a guardrail that blocks answers containing personal data.\n→ Chúng tôi thêm một guardrail chặn các câu trả lời chứa dữ liệu cá nhân."
+    },
+    {
+      "question": "evaluate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪˈvæljueɪt/",
+      "answer": "đánh giá (chất lượng mô hình)",
+      "explanation": "We evaluate each model on a held-out test set.\n→ Chúng tôi đánh giá mỗi mô hình trên một tập test được giữ riêng.\nLưu ý: evaluation (n) /ɪˌvæljuˈeɪʃən/."
+    },
+    {
+      "question": "deploy a model",
+      "partOfSpeech": "phrase",
+      "phonetic": "/dɪˈplɔɪ ə ˈmɑːdl/",
+      "answer": "đưa mô hình vào chạy thực tế",
+      "explanation": "Before we deploy a model, we run a shadow test against live traffic.\n→ Trước khi đưa mô hình vào chạy thực tế, chúng tôi chạy shadow test với traffic thật.\nLưu ý: model serving, MLOps."
+    }
+  ]
+}

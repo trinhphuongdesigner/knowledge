@@ -1,0 +1,255 @@
+{
+  "slug": "it-english-02-programming-basics",
+  "order": 22,
+  "title": "IT English 2 · Lập trình cơ bản",
+  "description": "Thuật ngữ lập trình nền tảng (CEFR A2–B1) như biến, hàm, vòng lặp, kiểu dữ liệu. Giúp bạn đọc tài liệu ngôn ngữ lập trình và mô tả lỗi rõ ràng khi viết ticket hay trao đổi trong stand-up.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "variable",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈveriəbəl/",
+      "answer": "biến",
+      "explanation": "Declare a variable to store the user's name.\n→ Hãy khai báo một biến để lưu tên người dùng."
+    },
+    {
+      "question": "function",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfʌŋkʃən/",
+      "answer": "hàm",
+      "explanation": "This function calculates the total price.\n→ Hàm này tính tổng giá."
+    },
+    {
+      "question": "loop",
+      "partOfSpeech": "noun",
+      "phonetic": "/luːp/",
+      "answer": "vòng lặp",
+      "explanation": "The loop runs ten times and then stops.\n→ Vòng lặp chạy mười lần rồi dừng.\nLưu ý: \"for loop\", \"while loop\"; \"infinite loop\" là vòng lặp vô hạn."
+    },
+    {
+      "question": "condition",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈdɪʃən/",
+      "answer": "điều kiện",
+      "explanation": "The code runs only if the condition is true.\n→ Đoạn code chỉ chạy nếu điều kiện đúng."
+    },
+    {
+      "question": "if statement",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪf ˌsteɪtmənt/",
+      "answer": "câu lệnh if (rẽ nhánh)",
+      "explanation": "Add an if statement to check if the list is empty.\n→ Hãy thêm câu lệnh if để kiểm tra danh sách có rỗng không."
+    },
+    {
+      "question": "array",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈreɪ/",
+      "answer": "mảng",
+      "explanation": "Store the scores in an array.\n→ Hãy lưu các điểm số trong một mảng.\nLưu ý: trọng âm ở âm thứ hai, giống \"away\"."
+    },
+    {
+      "question": "string",
+      "partOfSpeech": "noun",
+      "phonetic": "/strɪŋ/",
+      "answer": "chuỗi (ký tự)",
+      "explanation": "The name field must be a string.\n→ Trường name phải là một chuỗi."
+    },
+    {
+      "question": "integer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪntɪdʒər/",
+      "answer": "số nguyên",
+      "explanation": "The age should be an integer, not a decimal.\n→ Tuổi phải là số nguyên, không phải số thập phân."
+    },
+    {
+      "question": "boolean",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbuːliən/",
+      "answer": "kiểu boolean (đúng/sai)",
+      "explanation": "The function returns a boolean: true or false.\n→ Hàm trả về một giá trị boolean: true hoặc false."
+    },
+    {
+      "question": "data type",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə taɪp/",
+      "answer": "kiểu dữ liệu",
+      "explanation": "What data type should we use for the price?\n→ Chúng ta nên dùng kiểu dữ liệu nào cho giá?"
+    },
+    {
+      "question": "value",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvæljuː/",
+      "answer": "giá trị",
+      "explanation": "The default value of this field is zero.\n→ Giá trị mặc định của trường này là không."
+    },
+    {
+      "question": "syntax",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪntæks/",
+      "answer": "cú pháp",
+      "explanation": "I got a syntax error because I forgot a bracket.\n→ Tôi bị lỗi cú pháp vì quên một dấu ngoặc."
+    },
+    {
+      "question": "compile",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəmˈpaɪl/",
+      "answer": "biên dịch",
+      "explanation": "The code doesn't compile because of a type error.\n→ Code không biên dịch được vì lỗi kiểu dữ liệu."
+    },
+    {
+      "question": "execute",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈeksɪkjuːt/",
+      "answer": "thực thi, chạy",
+      "explanation": "The script executes every night at midnight.\n→ Script được thực thi vào mỗi nửa đêm.\nLưu ý: \"run\" thông dụng hơn trong nói chuyện; \"execute\" trang trọng hơn."
+    },
+    {
+      "question": "bug",
+      "partOfSpeech": "noun",
+      "phonetic": "/bʌɡ/",
+      "answer": "lỗi (trong phần mềm)",
+      "explanation": "I found a bug in the login page.\n→ Tôi tìm thấy một lỗi ở trang đăng nhập.\nLưu ý: \"fix a bug\", \"report a bug\"."
+    },
+    {
+      "question": "debug",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌdiːˈbʌɡ/",
+      "answer": "gỡ lỗi",
+      "explanation": "I spent two hours debugging this function.\n→ Tôi mất hai giờ để gỡ lỗi hàm này."
+    },
+    {
+      "question": "return",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈtɜːrn/",
+      "answer": "trả về",
+      "explanation": "The function returns null if the user is not found.\n→ Hàm trả về null nếu không tìm thấy người dùng.\nLưu ý: danh từ \"return value\" là giá trị trả về."
+    },
+    {
+      "question": "parameter",
+      "partOfSpeech": "noun",
+      "phonetic": "/pəˈræmɪtər/",
+      "answer": "tham số",
+      "explanation": "This function takes two parameters: width and height.\n→ Hàm này nhận hai tham số: width và height.\nLưu ý: parameter là tên trong định nghĩa hàm; argument là giá trị thực truyền vào."
+    },
+    {
+      "question": "argument",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːrɡjumənt/",
+      "answer": "đối số",
+      "explanation": "Pass the user ID as an argument.\n→ Hãy truyền ID người dùng làm đối số."
+    },
+    {
+      "question": "declare",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪˈkler/",
+      "answer": "khai báo",
+      "explanation": "You must declare the variable before you use it.\n→ Bạn phải khai báo biến trước khi sử dụng."
+    },
+    {
+      "question": "assign",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈsaɪn/",
+      "answer": "gán",
+      "explanation": "Assign the result to a new variable.\n→ Hãy gán kết quả cho một biến mới.\nLưu ý: cũng dùng trong ticket: \"assign a ticket to someone\"."
+    },
+    {
+      "question": "operator",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːpəreɪtər/",
+      "answer": "toán tử",
+      "explanation": "Use the equals operator to compare two values.\n→ Dùng toán tử bằng để so sánh hai giá trị."
+    },
+    {
+      "question": "object",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːbdʒekt/",
+      "answer": "đối tượng",
+      "explanation": "Each user is stored as an object with a name and an email.\n→ Mỗi người dùng được lưu dưới dạng đối tượng có tên và email."
+    },
+    {
+      "question": "class",
+      "partOfSpeech": "noun",
+      "phonetic": "/klæs/",
+      "answer": "lớp (trong lập trình hướng đối tượng)",
+      "explanation": "Create a class called Order.\n→ Hãy tạo một lớp tên là Order."
+    },
+    {
+      "question": "method",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmeθəd/",
+      "answer": "phương thức",
+      "explanation": "Call the save method after you update the data.\n→ Hãy gọi phương thức save sau khi cập nhật dữ liệu.\nLưu ý: method là hàm thuộc về một object hoặc class."
+    },
+    {
+      "question": "library",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪbreri/",
+      "answer": "thư viện (code)",
+      "explanation": "We use a small library to format dates.\n→ Chúng tôi dùng một thư viện nhỏ để định dạng ngày."
+    },
+    {
+      "question": "comment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːment/",
+      "answer": "chú thích (trong code)",
+      "explanation": "Add a comment to explain why we need this check.\n→ Hãy thêm chú thích để giải thích vì sao cần kiểm tra này.\nLưu ý: cũng có nghĩa \"bình luận\" trong code review: \"leave a comment\"."
+    },
+    {
+      "question": "source code",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɔːrs koʊd/",
+      "answer": "mã nguồn",
+      "explanation": "The source code is available on GitHub.\n→ Mã nguồn có sẵn trên GitHub."
+    },
+    {
+      "question": "input",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnpʊt/",
+      "answer": "dữ liệu đầu vào",
+      "explanation": "Always validate the user input.\n→ Luôn kiểm tra dữ liệu đầu vào của người dùng."
+    },
+    {
+      "question": "output",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtpʊt/",
+      "answer": "kết quả đầu ra",
+      "explanation": "The output is different from what I expected.\n→ Kết quả đầu ra khác với những gì tôi mong đợi."
+    },
+    {
+      "question": "exception",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪkˈsepʃən/",
+      "answer": "ngoại lệ (lỗi runtime)",
+      "explanation": "The program throws an exception when the file is missing.\n→ Chương trình ném ra một ngoại lệ khi thiếu tệp.\nLưu ý: \"throw / catch an exception\"."
+    },
+    {
+      "question": "null",
+      "partOfSpeech": "noun",
+      "phonetic": "/nʌl/",
+      "answer": "giá trị null (rỗng, không có giá trị)",
+      "explanation": "The API returns null when there is no result.\n→ API trả về null khi không có kết quả."
+    },
+    {
+      "question": "undefined",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌʌndɪˈfaɪnd/",
+      "answer": "chưa được định nghĩa (undefined)",
+      "explanation": "I get \"undefined\" because the property doesn't exist.\n→ Tôi nhận được \"undefined\" vì thuộc tính này không tồn tại.\nLưu ý: trong JavaScript, undefined và null là hai giá trị khác nhau."
+    },
+    {
+      "question": "iterate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈɪtəreɪt/",
+      "answer": "lặp qua (từng phần tử)",
+      "explanation": "Iterate over the array and print each item.\n→ Hãy lặp qua mảng và in từng phần tử.\nLưu ý: dùng \"iterate over/through\" a list."
+    },
+    {
+      "question": "runtime",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrʌntaɪm/",
+      "answer": "thời gian chạy; môi trường chạy",
+      "explanation": "This error only appears at runtime, not during compile time.\n→ Lỗi này chỉ xuất hiện khi chạy, không phải lúc biên dịch.\nLưu ý: \"runtime error\" là lỗi xảy ra khi chương trình đang chạy."
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "slug": "it-english-08-devops-cloud",
+  "order": 28,
+  "title": "IT English 8 · DevOps & Cloud",
+  "description": "Từ vựng DevOps và hạ tầng đám mây ở mức B2: triển khai, container, giám sát, sự cố. Dùng trong incident call, design review hạ tầng và trao đổi với đội SRE nước ngoài.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "deploy",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪˈplɔɪ/",
+      "answer": "triển khai (đưa bản build lên môi trường chạy)",
+      "explanation": "We'll deploy the hotfix to production right after the approval.\n→ Chúng tôi sẽ triển khai bản hotfix lên production ngay sau khi được duyệt.\nLưu ý: deploy to staging/production; danh từ: deployment."
+    },
+    {
+      "question": "pipeline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpaɪplaɪn/",
+      "answer": "pipeline (chuỗi bước tự động build, test, deploy)",
+      "explanation": "The pipeline fails at the lint step on every commit.\n→ Pipeline bị fail ở bước lint trong mọi commit.\nLưu ý: CI pipeline, deployment pipeline."
+    },
+    {
+      "question": "CI/CD",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsiː aɪ ˌsiː ˈdiː/",
+      "answer": "CI/CD (tích hợp và phân phối/triển khai liên tục)",
+      "explanation": "Our CI/CD runs the full test suite before anything is merged.\n→ CI/CD của chúng tôi chạy toàn bộ test trước khi merge bất cứ thứ gì.\nLưu ý: CI = continuous integration; CD = continuous delivery hoặc deployment."
+    },
+    {
+      "question": "container",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈteɪnər/",
+      "answer": "container (đóng gói ứng dụng cùng môi trường chạy)",
+      "explanation": "Each service runs in its own container with a fixed memory limit.\n→ Mỗi service chạy trong container riêng với giới hạn bộ nhớ cố định.\nLưu ý: container khác virtual machine: dùng chung kernel của host."
+    },
+    {
+      "question": "image",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪmɪdʒ/",
+      "answer": "image (bản đóng gói bất biến dùng để tạo container)",
+      "explanation": "Please tag the image with the commit SHA before pushing it to the registry.\n→ Hãy gắn tag image bằng commit SHA trước khi push lên registry.\nLưu ý: Docker image, base image, build an image."
+    },
+    {
+      "question": "orchestration",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɔːrkɪˈstreɪʃən/",
+      "answer": "điều phối container (orchestration)",
+      "explanation": "Kubernetes handles orchestration, so we don't restart pods by hand.\n→ Kubernetes lo việc điều phối, nên chúng tôi không restart pod thủ công.\nLưu ý: orchestrate (v) /ˈɔːrkɪstreɪt/; container orchestration."
+    },
+    {
+      "question": "cluster",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈklʌstər/",
+      "answer": "cụm máy chủ (cluster)",
+      "explanation": "We're migrating the workloads to a new Kubernetes cluster next quarter.\n→ Chúng tôi sẽ chuyển các workload sang cluster Kubernetes mới vào quý sau."
+    },
+    {
+      "question": "provision",
+      "partOfSpeech": "verb",
+      "phonetic": "/prəˈvɪʒən/",
+      "answer": "cấp phát, khởi tạo tài nguyên hạ tầng",
+      "explanation": "Terraform provisions the database and the network in a few minutes.\n→ Terraform khởi tạo database và mạng chỉ trong vài phút.\nLưu ý: provision resources/servers; danh từ: provisioning."
+    },
+    {
+      "question": "infrastructure as code",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnfrəˌstrʌktʃər æz ˈkoʊd/",
+      "answer": "hạ tầng dưới dạng code (IaC)",
+      "explanation": "With infrastructure as code, every change goes through a pull request.\n→ Với infrastructure as code, mọi thay đổi đều qua pull request.\nLưu ý: viết tắt IaC; ví dụ: Terraform, Pulumi."
+    },
+    {
+      "question": "scalability",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌskeɪləˈbɪləti/",
+      "answer": "khả năng mở rộng (scalability)",
+      "explanation": "Scalability is our main concern for the checkout service.\n→ Khả năng mở rộng là mối quan tâm chính của chúng tôi với service thanh toán.\nLưu ý: scalable (adj); scale up/out."
+    },
+    {
+      "question": "scale out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌskeɪl ˈaʊt/",
+      "answer": "mở rộng theo chiều ngang (thêm instance)",
+      "explanation": "We can scale out to ten replicas when traffic spikes.\n→ Chúng tôi có thể scale out lên mười replica khi lưu lượng tăng đột biến.\nLưu ý: scale out (horizontal) vs. scale up (nâng cấu hình máy: vertical)."
+    },
+    {
+      "question": "autoscaling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɔːtoʊˈskeɪlɪŋ/",
+      "answer": "tự động co giãn tài nguyên (autoscaling)",
+      "explanation": "Autoscaling kicked in after CPU stayed above 70% for five minutes.\n→ Autoscaling được kích hoạt sau khi CPU ở trên 70% trong năm phút.\nLưu ý: autoscaling group, autoscaling policy."
+    },
+    {
+      "question": "load balancer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈloʊd ˌbælənsər/",
+      "answer": "bộ cân bằng tải (load balancer)",
+      "explanation": "The load balancer stops sending traffic to unhealthy instances.\n→ Load balancer ngừng gửi traffic đến các instance không khỏe.\nLưu ý: health check quyết định instance nào còn nhận traffic."
+    },
+    {
+      "question": "high availability",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌhaɪ əˌveɪləˈbɪləti/",
+      "answer": "tính sẵn sàng cao (HA)",
+      "explanation": "We run across three zones to achieve high availability.\n→ Chúng tôi chạy trên ba zone để đạt tính sẵn sàng cao.\nLưu ý: viết tắt HA."
+    },
+    {
+      "question": "failover",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfeɪloʊvər/",
+      "answer": "chuyển dự phòng tự động (failover)",
+      "explanation": "The failover to the replica took about thirty seconds.\n→ Việc failover sang replica mất khoảng ba mươi giây.\nLưu ý: động từ: fail over (hai từ): the database failed over."
+    },
+    {
+      "question": "downtime",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdaʊntaɪm/",
+      "answer": "thời gian ngừng hoạt động (downtime)",
+      "explanation": "The migration should happen with zero downtime.\n→ Việc migrate nên diễn ra mà không có downtime.\nLưu ý: zero downtime, planned/unplanned downtime; không đếm được."
+    },
+    {
+      "question": "outage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtɪdʒ/",
+      "answer": "sự cố gián đoạn dịch vụ (outage)",
+      "explanation": "The outage lasted forty minutes and affected all EU customers.\n→ Sự cố kéo dài bốn mươi phút và ảnh hưởng toàn bộ khách hàng EU.\nLưu ý: outage nghiêm trọng hơn degradation (chỉ chậm/lỗi một phần)."
+    },
+    {
+      "question": "roll back",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌroʊl ˈbæk/",
+      "answer": "quay lui về phiên bản trước",
+      "explanation": "Let's roll back the deployment and investigate in staging.\n→ Hãy rollback bản deploy rồi điều tra trên staging.\nLưu ý: roll back a deployment; danh từ: rollback /ˈroʊlbæk/."
+    },
+    {
+      "question": "blue-green deployment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌbluː ˈɡriːn dɪˈplɔɪmənt/",
+      "answer": "triển khai blue-green (hai môi trường song song, chuyển traffic)",
+      "explanation": "Blue-green deployment lets us switch back instantly if something breaks.\n→ Blue-green deployment cho phép chuyển ngược ngay lập tức nếu có gì hỏng."
+    },
+    {
+      "question": "canary release",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkəneri rɪˈliːs/",
+      "answer": "phát hành canary (cho một phần nhỏ người dùng dùng trước)",
+      "explanation": "We ship it as a canary release to five percent of users first.\n→ Chúng tôi phát hành dạng canary cho năm phần trăm người dùng trước.\nLưu ý: canary deployment cũng dùng."
+    },
+    {
+      "question": "environment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈvaɪrənmənt/",
+      "answer": "môi trường (dev, staging, production)",
+      "explanation": "The bug only reproduces in the staging environment.\n→ Lỗi chỉ tái hiện được trên môi trường staging.\nLưu ý: environment variable = biến môi trường."
+    },
+    {
+      "question": "monitoring",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːnɪtərɪŋ/",
+      "answer": "giám sát hệ thống (monitoring)",
+      "explanation": "We need better monitoring around the payment queue.\n→ Chúng tôi cần giám sát tốt hơn quanh hàng đợi thanh toán.\nLưu ý: monitoring theo dõi vấn đề đã biết; observability giúp tìm hiểu vấn đề chưa biết."
+    },
+    {
+      "question": "observability",
+      "partOfSpeech": "noun",
+      "phonetic": "/əbˌzɜːrvəˈbɪləti/",
+      "answer": "khả năng quan sát hệ thống (log, metric, trace)",
+      "explanation": "Poor observability made the root cause hard to find.\n→ Khả năng quan sát kém khiến việc tìm nguyên nhân gốc rất khó.\nLưu ý: ba trụ cột: logs, metrics, traces."
+    },
+    {
+      "question": "alert",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈlɜːrt/",
+      "answer": "cảnh báo tự động (alert)",
+      "explanation": "The alert fires when the error rate exceeds two percent.\n→ Cảnh báo được kích hoạt khi tỷ lệ lỗi vượt quá hai phần trăm.\nLưu ý: an alert fires/triggers; alert fatigue = mệt mỏi vì quá nhiều cảnh báo."
+    },
+    {
+      "question": "SLA",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes el ˈeɪ/",
+      "answer": "cam kết mức dịch vụ với khách hàng (SLA)",
+      "explanation": "Our SLA guarantees 99.9% uptime per month.\n→ SLA của chúng tôi đảm bảo uptime 99,9% mỗi tháng.\nLưu ý: SLA (hợp đồng với khách), SLO (mục tiêu nội bộ), SLI (chỉ số đo)."
+    },
+    {
+      "question": "uptime",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʌptaɪm/",
+      "answer": "thời gian hoạt động liên tục (uptime)",
+      "explanation": "Uptime was 99.95% last month.\n→ Uptime tháng trước là 99,95%.\nLưu ý: trái nghĩa: downtime."
+    },
+    {
+      "question": "incident",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnsɪdənt/",
+      "answer": "sự cố (incident)",
+      "explanation": "We declared a Sev-1 incident at 2 a.m.\n→ Chúng tôi tuyên bố sự cố Sev-1 lúc 2 giờ sáng.\nLưu ý: declare/open/close an incident; incident commander."
+    },
+    {
+      "question": "on-call",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌɑːn ˈkɔːl/",
+      "answer": "trực (sẵn sàng xử lý sự cố ngoài giờ)",
+      "explanation": "I'm on-call this weekend, so ping me if production breaks.\n→ Cuối tuần này tôi trực, nên cứ ping tôi nếu production hỏng.\nLưu ý: be on-call; on-call rotation = lịch trực luân phiên."
+    },
+    {
+      "question": "escalate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈeskəleɪt/",
+      "answer": "báo lên cấp cao hơn, leo thang xử lý",
+      "explanation": "If it isn't fixed in thirty minutes, escalate to the platform team.\n→ Nếu sau ba mươi phút chưa sửa xong, hãy escalate cho đội platform.\nLưu ý: escalate an issue to someone; danh từ: escalation."
+    },
+    {
+      "question": "runbook",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrʌnbʊk/",
+      "answer": "tài liệu hướng dẫn xử lý vận hành (runbook)",
+      "explanation": "Follow the runbook to restart the consumer safely.\n→ Hãy làm theo runbook để restart consumer một cách an toàn.\nLưu ý: playbook gần nghĩa."
+    },
+    {
+      "question": "spin up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˌspɪn ˈʌp/",
+      "answer": "khởi chạy nhanh (máy ảo, môi trường)",
+      "explanation": "I'll spin up a temporary environment for the demo.\n→ Tôi sẽ dựng nhanh một môi trường tạm cho buổi demo.\nLưu ý: trái nghĩa: spin down / tear down."
+    },
+    {
+      "question": "serverless",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈsɜːrvərləs/",
+      "answer": "serverless (không quản lý server, trả tiền theo lần chạy)",
+      "explanation": "We moved the image resizing job to a serverless function.\n→ Chúng tôi chuyển job resize ảnh sang một hàm serverless.\nLưu ý: vẫn có server, chỉ là nhà cung cấp lo; cold start là nhược điểm."
+    },
+    {
+      "question": "cold start",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkoʊld ˌstɑːrt/",
+      "answer": "độ trễ khởi động lần đầu (cold start)",
+      "explanation": "The cold start adds about two seconds to the first request.\n→ Cold start làm yêu cầu đầu tiên chậm thêm khoảng hai giây."
+    },
+    {
+      "question": "configuration drift",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˌfɪɡjəˈreɪʃən drɪft/",
+      "answer": "lệch cấu hình giữa các môi trường",
+      "explanation": "Manual edits on the servers caused configuration drift.\n→ Việc sửa tay trên server gây ra lệch cấu hình."
+    }
+  ]
+}
