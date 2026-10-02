@@ -1,4 +1,4 @@
-import { FileUp, Pencil, Play } from "lucide-react";
+import { FileUp, ListChecks, Pencil, Play } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CardList } from "@/components/cards/CardList";
@@ -60,6 +60,12 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
               <ButtonLink href={`/sets/${set.id}/study`}>
                 <Play className="size-4" aria-hidden />
                 Học ngay
+              </ButtonLink>
+            )}
+            {set.cardCount >= 2 && (
+              <ButtonLink href={`/sets/${set.id}/quiz`} variant="secondary">
+                <ListChecks className="size-4" aria-hidden />
+                Kiểm tra
               </ButtonLink>
             )}
             <ButtonLink href={`/sets/${set.id}/import`} variant="secondary">

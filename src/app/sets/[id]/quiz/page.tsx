@@ -1,16 +1,18 @@
+import { ListChecks } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { QuizSession } from "@/components/quiz/QuizSession";
+import { ButtonLink, EmptyState } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { isUuid } from "@/lib/ids";
 import { toCardDTO } from "@/lib/dto";
-import { StudySession } from "@/components/study/StudySession";
+import { isUuid } from "@/lib/ids";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Học thẻ — Knowledge" };
+export const metadata: Metadata = { title: "Kiểm tra — Knowledge" };
 
-export default async function StudyPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function QuizPage({ params }: { params: Promise<{ id: string }> }) {
   const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
@@ -19,10 +21,6 @@ export default async function StudyPage({ params }: { params: Promise<{ id: stri
     include: { category: true, cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
   });
   if (!set) notFound();
-  const progress = await db.studyProgress.findUnique({
-    where: { userId_setId: { userId: user.id, setId: set.id } },
-    select: { known: true, unknown: true, order: true, index: true, shuffle: true, swap: true },
-  });
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
@@ -32,13 +30,16 @@ export default async function StudyPage({ params }: { params: Promise<{ id: stri
       >
         <span className="truncate">← {set.title}</span>
       </Link>
-      <StudySession
-        setId={set.id}
-        title={set.title}
-        cards={set.cards.map(toCardDTO)}
-        english={set.category.isEnglish}
-        initialProgress={progress}
-      />
+      {set.cards.length < 2 ? (
+        <EmptyState
+          icon={ListChecks}
+          title="Cần ít nhất 2 thẻ để kiểm tra"
+          description="Thêm thêm thẻ vào nhóm này rồi quay lại nhé."
+          action={<ButtonLink href={`/sets/${set.id}`}>Về nhóm thẻ</ButtonLink>}
+        />
+      ) : (
+        <QuizSession cards={set.cards.map(toCardDTO)} english={set.category.isEnglish} />
+      )}
     </div>
   );
 }

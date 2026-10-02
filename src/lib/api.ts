@@ -9,6 +9,7 @@ import type {
   Level,
   SetInput,
   StudySetDTO,
+  StudyProgressInput,
   StudySetDetailDTO,
 } from "./validators";
 
@@ -95,4 +96,13 @@ export async function enrichSetFully(
   } catch {
     return { updated, notFound, remaining, interrupted: true };
   }
+}
+
+/** Saves study progress. `keepalive` lets the request outlive the page (pagehide). */
+export async function saveStudyProgress(
+  setId: string,
+  input: StudyProgressInput,
+  opts: { keepalive?: boolean } = {},
+): Promise<void> {
+  await request<{ ok: true }>(`/api/sets/${setId}/progress`, { ...send("PUT", input), keepalive: opts.keepalive });
 }

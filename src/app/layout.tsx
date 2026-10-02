@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import { Header } from "@/components/layout/Header";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 import "./globals.css";
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -12,6 +13,18 @@ const beVietnamPro = Be_Vietnam_Pro({
 export const metadata: Metadata = {
   title: "Knowledge — Học bằng flashcard",
   description: "Ôn tập IT và Tiếng Anh với flashcard.",
+  applicationName: "Knowledge",
+  appleWebApp: {
+    capable: true,
+    title: "Knowledge",
+    statusBarStyle: "default",
+  },
+  icons: { apple: "/icons/apple-touch-icon.png" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#2563eb",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -20,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full bg-slate-50 font-sans text-slate-900">
         <Header />
         {children}
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

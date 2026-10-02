@@ -42,7 +42,7 @@ export function StudyControls({ canPrev, onPrev, onNext, onFlip, onKnown, onUnkn
   return (
     <div
       className={cn(
-        "sticky bottom-0 z-10 -mx-4 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0",
+        "sticky bottom-0 z-10 -mx-4 border-t border-slate-200 bg-white/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0",
         className,
       )}
     >

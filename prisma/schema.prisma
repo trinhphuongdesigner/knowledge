@@ -36,6 +36,7 @@ model User {
   sets         StudySet[]
   categories   Category[]
   sessions     Session[]
+  progress     StudyProgress[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -85,6 +86,7 @@ model StudySet {            // "Chương trình học"
   category    Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   level       Level?
   cards       Card[]
+  progress    StudyProgress[]
   userId      String   @db.Uuid
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
@@ -108,4 +110,23 @@ model Card {                // Câu hỏi / trả lời
   updatedAt   DateTime @updatedAt
 
   @@index([setId, position])
+}
+
+model StudyProgress {       // Tiến trình lật thẻ của 1 user trên 1 nhóm thẻ (1 dòng / user / set)
+  userId      String    @db.Uuid
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  setId       String    @db.Uuid
+  set         StudySet  @relation(fields: [setId], references: [id], onDelete: Cascade)
+  known       String[]  // card ids đã thuộc (có thể chứa id thẻ đã xoá → lọc khi đọc)
+  unknown     String[]  // card ids chưa thuộc
+  order       String[]  // thứ tự thẻ của phiên hiện tại
+  index       Int       @default(0)
+  shuffle     Boolean   @default(false)
+  swap        Boolean   @default(false)
+  completedAt DateTime? // lần gần nhất học hết phiên
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@id([userId, setId])
+  @@index([userId, updatedAt])
 }

@@ -108,16 +108,10 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
           <span className="px-5 pt-4 text-xs font-medium uppercase tracking-wide text-blue-600">{backLabel}</span>
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-5 pb-5">
             <Markdown className={cn(text, sizeClass(back))}>{back}</Markdown>
-            {speech && (
+            {speech?.side === "back" && (
               <div className="mt-2 flex shrink-0 items-center justify-center gap-1">
-                <PhoneticLine
-                  phonetic={speech.phonetic}
-                  partOfSpeech={speech.partOfSpeech}
-                  className={speech.side === "front" ? "text-xs" : undefined}
-                />
-                {speech.side === "back" && (
-                  <SpeakButton text={speech.text} audioUrl={speech.audioUrl} tabIndex={flipped ? 0 : -1} />
-                )}
+                <PhoneticLine phonetic={speech.phonetic} partOfSpeech={speech.partOfSpeech} />
+                <SpeakButton text={speech.text} audioUrl={speech.audioUrl} tabIndex={flipped ? 0 : -1} />
               </div>
             )}
             {explanation && (

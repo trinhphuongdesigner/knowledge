@@ -7,8 +7,6 @@ export type StoredStudyState = {
   swap: boolean;
 };
 
-export const storageKey = (setId: string) => `knowledge:study:${setId}`;
-
 /** Fisher–Yates shuffle (returns a new array). */
 export function shuffleArray<T>(items: readonly T[]): T[] {
   const arr = [...items];
@@ -21,42 +19,22 @@ export function shuffleArray<T>(items: readonly T[]): T[] {
 
 const isStringArray = (v: unknown): v is string[] => Array.isArray(v) && v.every((x) => typeof x === "string");
 
-export function readRaw(setId: string): string | null {
-  try {
-    return window.localStorage.getItem(storageKey(setId));
-  } catch {
-    return null;
-  }
-}
-
-/** Parse saved state, dropping card ids that no longer exist. Returns null if nothing usable. */
-export function parseStudyState(raw: string | null, validIds: readonly string[]): StoredStudyState | null {
-  try {
-    if (!raw) return null;
-    const data = JSON.parse(raw) as Partial<StoredStudyState>;
-    const valid = new Set(validIds);
-    const keep = (v: unknown) => (isStringArray(v) ? v.filter((id) => valid.has(id)) : []);
-    const order = keep(data.order);
-    if (order.length === 0) return null;
-    const known = keep(data.known);
-    const knownSet = new Set(known);
-    return {
-      order,
-      known,
-      unknown: keep(data.unknown).filter((id) => !knownSet.has(id)),
-      index: Math.min(Math.max(0, Number.isInteger(data.index) ? (data.index as number) : 0), order.length),
-      shuffle: data.shuffle === true,
-      swap: data.swap === true,
-    };
-  } catch {
-    return null;
-  }
-}
-
-export function saveStudyState(setId: string, state: StoredStudyState) {
-  try {
-    window.localStorage.setItem(storageKey(setId), JSON.stringify(state));
-  } catch {
-    // storage unavailable — ignore
-  }
+/** Normalise saved progress (DB row), dropping card ids that no longer exist. Returns null if nothing usable. */
+export function parseStudyState(data: unknown, validIds: readonly string[]): StoredStudyState | null {
+  if (!data || typeof data !== "object") return null;
+  const d = data as Partial<StoredStudyState>;
+  const valid = new Set(validIds);
+  const keep = (v: unknown) => (isStringArray(v) ? v.filter((id) => valid.has(id)) : []);
+  const order = keep(d.order);
+  if (order.length === 0) return null;
+  const known = keep(d.known);
+  const knownSet = new Set(known);
+  return {
+    order,
+    known,
+    unknown: keep(d.unknown).filter((id) => !knownSet.has(id)),
+    index: Math.min(Math.max(0, Number.isInteger(d.index) ? (d.index as number) : 0), order.length),
+    shuffle: d.shuffle === true,
+    swap: d.swap === true,
+  };
 }

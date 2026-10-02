@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export type AccountTab = "profile" | "password";
+export type AccountTab = "history" | "profile" | "password";
 
 const TABS: { id: AccountTab; label: string }[] = [
+  { id: "history", label: "Lịch sử học" },
   { id: "profile", label: "Thông tin" },
   { id: "password", label: "Mật khẩu" },
 ];

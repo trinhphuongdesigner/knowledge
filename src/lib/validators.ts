@@ -159,3 +159,19 @@ export const changePasswordSchema = z
     path: ["newPassword"],
     message: "Mật khẩu mới phải khác mật khẩu hiện tại",
   });
+
+// ── Study progress ────────────────────────────────────────────────────────
+const STUDY_IDS_MAX = 5000;
+const studyIds = z.array(z.string().uuid()).max(STUDY_IDS_MAX);
+
+export const studyProgressInputSchema = z.object({
+  known: studyIds,
+  unknown: studyIds,
+  order: studyIds,
+  index: z.number().int().min(0).max(STUDY_IDS_MAX),
+  shuffle: z.boolean(),
+  swap: z.boolean(),
+  /** True when the user just finished a full pass: sets completedAt = now. */
+  completed: z.boolean().optional(),
+});
+export type StudyProgressInput = z.infer<typeof studyProgressInputSchema>;

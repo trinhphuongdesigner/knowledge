@@ -1,39 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type PointerEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { PartyPopper, Plus } from "lucide-react";
-import { Button, ButtonLink, EmptyState, PageLoader } from "@/components/ui";
+import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
+import { saveStudyProgress } from "@/lib/api";
 import type { CardDTO } from "@/lib/validators";
 import { Flashcard } from "./Flashcard";
 import { StudyControls, StudyToolbar } from "./StudyControls";
 import { StudyProgress } from "./StudyProgress";
-import { parseStudyState, readRaw, saveStudyState, shuffleArray } from "./utils";
+import { parseStudyState, shuffleArray, type StoredStudyState } from "./utils";
 
-type Props = { setId: string; title: string; cards: CardDTO[]; english?: boolean };
+type Props = {
+  setId: string;
+  title: string;
+  cards: CardDTO[];
+  english?: boolean;
+  /** Progress saved in the DB for this user + set (null when none). */
+  initialProgress?: StoredStudyState | null;
+};
 
 const SWIPE_THRESHOLD = 60;
-const noopSubscribe = () => () => {};
+const SAVE_DEBOUNCE_MS = 800;
 
-/** Reads saved progress from localStorage (client only) before mounting the session. */
-export function StudySession(props: Props) {
-  const raw = useSyncExternalStore(
-    noopSubscribe,
-    () => readRaw(props.setId),
-    () => undefined,
-  );
-  if (raw === undefined) {
-    return <PageLoader label="Đang chuẩn bị thẻ học…" />;
-  }
-  return <Session {...props} saved={raw} />;
-}
-
-function Session({ setId, title, cards, english = false, saved: savedRaw }: Props & { saved: string | null }) {
+export function StudySession({ setId, title, cards, english = false, initialProgress = null }: Props) {
   const allIds = useMemo(() => cards.map((c) => c.id), [cards]);
   const byId = useMemo(() => new Map(cards.map((c) => [c.id, c])), [cards]);
   const position = useMemo(() => new Map(allIds.map((id, i) => [id, i])), [allIds]);
 
-  const [initial] = useState(() => parseStudyState(savedRaw, allIds));
+  const [initial] = useState(() => parseStudyState(initialProgress, allIds));
   const [order, setOrder] = useState<string[]>(initial?.order ?? allIds);
   const [index, setIndex] = useState(initial?.index ?? 0);
   const [flipped, setFlipped] = useState(false);
@@ -41,17 +36,75 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
   const [unknown, setUnknown] = useState<Set<string>>(() => new Set(initial?.unknown));
   const [shuffle, setShuffle] = useState(initial?.shuffle ?? false);
   const [swap, setSwap] = useState(initial?.swap ?? false);
+  const [confirmRestart, setConfirmRestart] = useState(false);
+  const [saveFailed, setSaveFailed] = useState(false);
 
-  useEffect(() => {
-    saveStudyState(setId, { known: [...known], unknown: [...unknown], order, index, shuffle, swap });
-  }, [setId, known, unknown, order, index, shuffle, swap]);
+  // Latest state for the unload flush; `dirty` = changes not yet sent.
+  const latest = useRef<StoredStudyState>({ known: [], unknown: [], order, index, shuffle, swap });
+  const dirty = useRef(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const wasFinished = useRef(false);
+  const mounted = useRef(false);
+
+  const flush = useCallback(
+    (opts: { keepalive?: boolean; completed?: boolean } = {}) => {
+      clearTimeout(timer.current);
+      if (!dirty.current && !opts.completed) return;
+      dirty.current = false;
+      saveStudyProgress(setId, { ...latest.current, completed: opts.completed }, { keepalive: opts.keepalive })
+        .then(() => setSaveFailed(false))
+        .catch(() => {
+          dirty.current = true;
+          setSaveFailed(true);
+        });
+    },
+    [setId],
+  );
 
   const total = order.length;
   const finished = total > 0 && index >= total;
+
+  useEffect(() => {
+    latest.current = { known: [...known], unknown: [...unknown], order, index, shuffle, swap };
+    if (cards.length === 0) return;
+    // Skip the initial render: nothing changed yet, so there is nothing to save.
+    if (!mounted.current) {
+      mounted.current = true;
+      wasFinished.current = finished;
+      return;
+    }
+    dirty.current = true;
+    if (finished && !wasFinished.current) {
+      wasFinished.current = true;
+      flush({ completed: true });
+      return;
+    }
+    if (!finished) wasFinished.current = false;
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => flush(), SAVE_DEBOUNCE_MS);
+    return () => clearTimeout(timer.current);
+  }, [known, unknown, order, index, shuffle, swap, finished, cards.length, flush]);
+
+  // Flush pending changes when the page is hidden or closed.
+  useEffect(() => {
+    const onHide = () => flush({ keepalive: true });
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") onHide();
+    };
+    window.addEventListener("pagehide", onHide);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("pagehide", onHide);
+      document.removeEventListener("visibilitychange", onVisibility);
+      flush({ keepalive: true });
+    };
+  }, [flush]);
+
   const card = !finished ? byId.get(order[index]) : undefined;
 
-  const goTo = useCallback((i: number) => {
-    setFlipped(false);
+  // Moving between cards keeps the current face (study in reverse); resets only pass reset=true.
+  const goTo = useCallback((i: number, reset = false) => {
+    if (reset) setFlipped(false);
     setIndex(i);
   }, []);
 
@@ -84,21 +137,22 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
     const on = !shuffle;
     setShuffle(on);
     setOrder((o) => (on ? shuffleArray(o) : [...o].sort((a, b) => (position.get(a) ?? 0) - (position.get(b) ?? 0))));
-    goTo(0);
+    goTo(0, true);
   }
 
   function restartAll() {
+    setConfirmRestart(false);
     setKnown(new Set());
     setUnknown(new Set());
     setOrder(shuffle ? shuffleArray(allIds) : allIds);
-    goTo(0);
+    goTo(0, true);
   }
 
   function restartUnknown() {
     const ids = allIds.filter((id) => !known.has(id));
     setUnknown(new Set());
     setOrder(shuffle ? shuffleArray(ids) : ids);
-    goTo(0);
+    goTo(0, true);
   }
 
   // Keyboard shortcuts
@@ -110,7 +164,7 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
         // Let focused controls handle Space/Enter themselves; arrows and J/K still work.
         if (e.key === " " || e.key === "Enter") return;
       }
-      if (finished || !card) return;
+      if (finished || !card || confirmRestart) return;
       switch (e.key) {
         case "ArrowLeft":
           prev();
@@ -136,7 +190,7 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [finished, card, prev, next, flip, mark]);
+  }, [finished, card, confirmRestart, prev, next, flip, mark]);
 
   // Swipe (pointer events)
   const start = useRef<{ x: number; y: number } | null>(null);
@@ -231,6 +285,7 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
         }}
       >
         <Flashcard
+          key={card.id}
           front={swap ? card.answer : card.question}
           back={swap ? card.question : card.answer}
           explanation={card.explanation}
@@ -256,8 +311,13 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
         swap={swap}
         onToggleShuffle={toggleShuffle}
         onToggleSwap={() => setSwap((s) => !s)}
-        onRestart={restartAll}
+        onRestart={() => setConfirmRestart(true)}
       />
+      {saveFailed && (
+        <p role="status" className="text-center text-xs text-slate-500">
+          Chưa lưu được tiến trình, sẽ thử lại sau.
+        </p>
+      )}
       <StudyControls
         canPrev={index > 0}
         onPrev={prev}
@@ -266,6 +326,17 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
         onKnown={() => mark("known")}
         onUnknown={() => mark("unknown")}
       />
+      <Modal open={confirmRestart} onClose={() => setConfirmRestart(false)} title="Bắt đầu lại từ đầu?">
+        <p className="text-sm text-slate-600">
+          Tiến trình đã thuộc/chưa thuộc của nhóm thẻ này sẽ bị xoá.
+        </p>
+        <div className="mt-5 flex justify-end gap-2">
+          <Button variant="secondary" onClick={() => setConfirmRestart(false)}>
+            Huỷ
+          </Button>
+          <Button onClick={restartAll}>Bắt đầu lại</Button>
+        </div>
+      </Modal>
     </div>
   );
 }
