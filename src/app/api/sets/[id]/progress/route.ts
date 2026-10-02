@@ -2,7 +2,7 @@ import { requireApiUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { json, notFound, readJson, serverError, validationError } from "@/lib/http";
-import { studyProgressInputSchema } from "@/lib/validators";
+import { quizResultInputSchema, studyProgressInputSchema } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +24,40 @@ export async function PUT(req: Request, { params }: Ctx) {
       create: { userId: user.id, setId: id, ...state, completedAt: completed ? new Date() : null },
       // Only touch completedAt when finishing; a later partial save keeps the last completion time.
       update: { ...state, ...(completed ? { completedAt: new Date() } : {}) },
+    });
+    return json({ ok: true });
+  } catch (e) {
+    return serverError(e);
+  }
+}
+
+/** Merge a quiz result into known/unknown without touching the flashcard session (order, index, …). */
+export async function PATCH(req: Request, { params }: Ctx) {
+  try {
+    const user = await requireApiUser(req);
+    if (user instanceof Response) return user;
+    const { id } = await params;
+    if (!isUuid(id)) return notFound();
+    const parsed = quizResultInputSchema.safeParse(await readJson(req));
+    if (!parsed.success) return validationError(parsed.error);
+    const owned = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
+    if (!owned) return notFound("Không tìm thấy nhóm thẻ");
+
+    const wanted = [...new Set([...parsed.data.passed, ...parsed.data.failed])];
+    const valid = new Set(
+      (await db.card.findMany({ where: { setId: id, id: { in: wanted } }, select: { id: true } })).map((c) => c.id),
+    );
+    const passed = new Set(parsed.data.passed.filter((c) => valid.has(c)));
+    const failed = new Set(parsed.data.failed.filter((c) => valid.has(c) && !passed.has(c)));
+
+    const key = { userId_setId: { userId: user.id, setId: id } };
+    const current = await db.studyProgress.findUnique({ where: key, select: { known: true, unknown: true } });
+    const known = [...new Set([...(current?.known ?? []).filter((c) => !failed.has(c)), ...passed])];
+    const unknown = [...new Set([...(current?.unknown ?? []).filter((c) => !passed.has(c)), ...failed])];
+    await db.studyProgress.upsert({
+      where: key,
+      create: { userId: user.id, setId: id, known, unknown },
+      update: { known, unknown },
     });
     return json({ ok: true });
   } catch (e) {

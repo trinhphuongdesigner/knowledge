@@ -1,7 +1,7 @@
 "use client";
 
 import { RotateCcw, Timer, XCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { shuffleArray } from "@/components/study/utils";
 import { Button } from "@/components/ui";
 import { buildRounds, buildTiles, formatTime, isMatch, type QuizTile } from "@/lib/quiz";
@@ -15,7 +15,14 @@ function newGame(cards: CardDTO[]): Game {
   return { rounds, round: 0, tiles: buildTiles(rounds[0], shuffleArray) };
 }
 
-export function MatchingGame({ cards }: { cards: CardDTO[] }) {
+export function MatchingGame({
+  cards,
+  onComplete,
+}: {
+  cards: CardDTO[];
+  /** Called once all rounds are cleared: cards matched without any wrong pick pass. */
+  onComplete?: (passedIds: string[], failedIds: string[]) => void;
+}) {
   const [game, setGame] = useState(() => newGame(cards));
   const [matched, setMatched] = useState<string[]>([]); // card ids cleared in this round
   const [selected, setSelected] = useState<string | null>(null);
@@ -23,6 +30,7 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
   const [mistakes, setMistakes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [finished, setFinished] = useState(false);
+  const missed = useRef(new Set<string>()); // card ids involved in a wrong pair
 
   const roundSize = game.tiles.length / 2;
   const roundCleared = matched.length === roundSize;
@@ -37,7 +45,7 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
   // Clear the red flash shortly after a wrong pair.
   useEffect(() => {
     if (!wrong) return;
-    const t = setTimeout(() => setWrong(null), 600);
+    const t = setTimeout(() => setWrong(null), 500);
     return () => clearTimeout(t);
   }, [wrong]);
 
@@ -49,12 +57,17 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
       setSelected(null);
       if (game.round + 1 >= game.rounds.length) {
         setFinished(true);
+        onComplete?.(
+          cards.filter((c) => !missed.current.has(c.id)).map((c) => c.id),
+          cards.filter((c) => missed.current.has(c.id)).map((c) => c.id),
+        );
       } else {
         const round = game.round + 1;
         setGame({ ...game, round, tiles: buildTiles(game.rounds[round], shuffleArray) });
       }
     }, 500);
     return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- onComplete/cards are stable for a game run
   }, [roundCleared, game]);
 
   function restart() {
@@ -62,6 +75,7 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
     setMatched([]);
     setSelected(null);
     setWrong(null);
+    missed.current = new Set();
     setMistakes(0);
     setSeconds(0);
     setFinished(false);
@@ -78,6 +92,7 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
       setSelected(null);
     } else {
       setMistakes((n) => n + 1);
+      missed.current.add(first.cardId).add(tile.cardId);
       setWrong([first.key, tile.key]);
       setSelected(null);
     }
@@ -141,7 +156,7 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
                   "flex min-h-20 w-full items-center justify-center rounded-xl border px-3 py-2 text-center text-sm font-medium transition-colors",
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
                   done && "border-green-300 bg-green-50 text-green-700 opacity-60",
-                  isWrong && "border-red-300 bg-red-50 text-red-700",
+                  isWrong && "animate-shake border-red-500 bg-red-100 text-red-700 ring-2 ring-red-400 motion-reduce:animate-none",
                   isSel && "border-brand-600 bg-brand-50 text-brand-700 ring-2 ring-brand-600",
                   !done && !isWrong && !isSel && "border-ink-200 bg-white text-ink-900 shadow-sm hover:bg-ink-50",
                 )}

@@ -24,6 +24,11 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
   });
   if (!row) notFound();
   const set = toSetDetailDTO(row);
+  const progress = await db.studyProgress.findUnique({
+    where: { userId_setId: { userId: user.id, setId: row.id } },
+    select: { known: true },
+  });
+  const knownIds = progress?.known ?? [];
   const empty = set.cardCount === 0;
 
   return (
@@ -32,6 +37,7 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
         setId={set.id}
         initialCards={set.cards}
         english={set.category.isEnglish}
+        knownIds={knownIds}
         info={
           <div className="min-w-0">
             <div className="mb-2 flex flex-wrap items-center gap-2">

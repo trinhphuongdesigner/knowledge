@@ -175,3 +175,10 @@ export const studyProgressInputSchema = z.object({
   completed: z.boolean().optional(),
 });
 export type StudyProgressInput = z.infer<typeof studyProgressInputSchema>;
+
+/** Result of a finished quiz: cards answered right the first time become "known", the rest "unknown". */
+export const quizResultInputSchema = z.object({
+  passed: studyIds,
+  failed: studyIds,
+});
+export type QuizResultInput = z.infer<typeof quizResultInputSchema>;

@@ -25,15 +25,28 @@ export function parseStudyState(data: unknown, validIds: readonly string[]): Sto
   const d = data as Partial<StoredStudyState>;
   const valid = new Set(validIds);
   const keep = (v: unknown) => (isStringArray(v) ? v.filter((id) => valid.has(id)) : []);
-  const order = keep(d.order);
-  if (order.length === 0) return null;
+  const savedOrder = keep(d.order);
   const known = keep(d.known);
   const knownSet = new Set(known);
+  const unknown = keep(d.unknown).filter((id) => !knownSet.has(id));
+  // A quiz can save known/unknown before any flashcard session exists: keep them and start the session fresh.
+  if (savedOrder.length === 0 && known.length === 0 && unknown.length === 0) return null;
+  let order = savedOrder.length > 0 ? savedOrder : [...validIds];
+  if (savedOrder.length > 0) {
+    // Cards added (e.g. imported) after this session started: queue them at the end. A finished session
+    // (index === old length) then resumes right at the first new card instead of the "Hoàn thành" screen.
+    const seen = new Set([...savedOrder, ...known, ...unknown]);
+    const added = validIds.filter((id) => !seen.has(id));
+    if (added.length > 0) order = [...savedOrder, ...added];
+  }
   return {
     order,
     known,
-    unknown: keep(d.unknown).filter((id) => !knownSet.has(id)),
-    index: Math.min(Math.max(0, Number.isInteger(d.index) ? (d.index as number) : 0), order.length),
+    unknown,
+    index:
+      savedOrder.length > 0
+        ? Math.min(Math.max(0, Number.isInteger(d.index) ? (d.index as number) : 0), savedOrder.length)
+        : 0,
     shuffle: d.shuffle === true,
     swap: d.swap === true,
   };

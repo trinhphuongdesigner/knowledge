@@ -8,20 +8,22 @@ export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-[color,background-color,box-shadow,transform] duration-150 " +
-  "active:translate-y-[2px] motion-reduce:active:translate-y-0 " +
+  "active:translate-y-[2px] motion-reduce:hover:translate-y-0 motion-reduce:active:translate-y-0 " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 " +
   "disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-brand-600 text-white shadow-[0_3px_0_var(--color-brand-800)] hover:bg-brand-500 active:shadow-[0_1px_0_var(--color-brand-800)]",
+  primary:
+    "bg-brand-600 text-white shadow-[0_3px_0_var(--color-brand-800)] hover:-translate-y-0.5 hover:bg-brand-500 hover:shadow-[0_5px_0_var(--color-brand-800)] active:shadow-[0_1px_0_var(--color-brand-800)]",
   secondary:
-    "border border-ink-200 bg-white text-ink-900 shadow-[0_3px_0_var(--color-ink-200)] hover:border-ink-300 hover:bg-ink-50 active:shadow-[0_1px_0_var(--color-ink-200)]",
+    "border border-ink-200 bg-white text-ink-900 shadow-[0_3px_0_var(--color-ink-200)] hover:-translate-y-0.5 hover:border-ink-300 hover:bg-ink-50 hover:shadow-[0_5px_0_var(--color-ink-200)] active:shadow-[0_1px_0_var(--color-ink-200)]",
   ghost: "text-ink-600 hover:bg-ink-100 hover:text-ink-900 active:translate-y-0",
-  danger: "bg-red-600 text-white shadow-[0_3px_0_var(--color-red-800)] hover:bg-red-500 active:shadow-[0_1px_0_var(--color-red-800)]",
+  danger:
+    "bg-red-600 text-white shadow-[0_3px_0_var(--color-red-800)] hover:-translate-y-0.5 hover:bg-red-500 hover:shadow-[0_5px_0_var(--color-red-800)] active:shadow-[0_1px_0_var(--color-red-800)]",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "min-h-9 px-3 text-sm",
+  sm: "min-h-11 px-3 text-sm sm:min-h-9",
   md: "min-h-11 px-4 text-sm",
   lg: "min-h-12 px-6 text-base",
 };

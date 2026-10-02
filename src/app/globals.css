@@ -39,6 +39,61 @@
 
   --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 
+  --animate-shake: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+
+  --animate-fade: fade 0.2s ease-out both;
+
+  --animate-pop: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translateX(-2px);
+    }
+    20%,
+    80% {
+      transform: translateX(4px);
+    }
+    30%,
+    50%,
+    70% {
+      transform: translateX(-7px);
+    }
+    40%,
+    60% {
+      transform: translateX(7px);
+    }
+  }
+
   @keyframes rise {
     from {
       opacity: 0;
@@ -60,6 +115,23 @@ body {
 }
 
 @layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Bỏ độ trễ chạm đúp-để-zoom và tránh cuộn ngang trên mobile */
+  button,
+  a,
+  [role="tab"],
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+  body {
+    overflow-x: clip;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
   h1,
   h2,
   h3 {
@@ -72,12 +144,33 @@ body {
   }
 }
 
-/* Gạch chân kiểu bút dạ quang cho chữ quan trọng */
+/* Gạch chân kiểu bút dạ quang cho chữ quan trọng; vạch vàng quét ra khi xuất hiện */
 .highlight {
-  background: linear-gradient(transparent 58%, var(--color-sun-300) 58%, var(--color-sun-300) 92%, transparent 92%);
+  background: linear-gradient(var(--color-sun-300), var(--color-sun-300)) 0 92% / 100% 34% no-repeat;
   padding: 0 0.15em;
   margin: 0 -0.15em;
   box-decoration-break: clone;
+  animation: highlight-sweep 0.7s 0.25s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes highlight-sweep {
+  from {
+    background-size: 0% 34%;
+  }
+  to {
+    background-size: 100% 34%;
+  }
+}
+
+/* Thanh tiến độ: vệt sáng quét một lần mỗi khi tiến độ tăng (phần tử được remount bằng key) */
+.progress-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.55), transparent);
+  animation: shimmer 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* Mặt thẻ kiểu thẻ ghi nhớ giấy: một vạch đỏ trên cùng + dòng kẻ ngang mờ */
@@ -106,8 +199,16 @@ body {
   animation-delay: calc(min(var(--i, 0), 12) * 45ms);
 }
 @media (prefers-reduced-motion: reduce) {
-  .stagger > * {
+  .stagger > *,
+  .highlight,
+  .progress-shine {
     animation: none;
+  }
+  .progress-shine {
+    display: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }
 

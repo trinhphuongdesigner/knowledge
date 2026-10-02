@@ -1,6 +1,6 @@
 "use client";
 
-import { Pencil, Trash2 } from "lucide-react";
+import { Check, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button, Card, Markdown, Modal } from "@/components/ui";
 import { api } from "@/lib/api";
@@ -11,12 +11,14 @@ export function CardItem({
   card,
   index,
   english = false,
+  known = false,
   onEdit,
   onDeleted,
 }: {
   card: CardDTO;
   index: number;
   english?: boolean;
+  known?: boolean;
   onEdit: (card: CardDTO) => void;
   onDeleted: (id: string) => void;
 }) {
@@ -37,14 +39,33 @@ export function CardItem({
   }
 
   return (
-    <Card>
+    <Card
+      className={
+        "transition-[transform,box-shadow,border-color,background-color] duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0 " +
+        (known ? "border-green-200 bg-green-50/40" : "")
+      }
+    >
       <div className="flex items-start gap-3">
-        <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-xs font-semibold text-brand-700">
-          {index}
+        <span
+          className={
+            "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold " +
+            (known ? "bg-green-100 text-green-700" : "bg-brand-50 text-brand-700")
+          }
+        >
+          {known ? <Check className="size-4 animate-pop motion-reduce:animate-none" aria-hidden /> : index}
+          {known && <span className="sr-only">Thẻ {index}, đã thuộc</span>}
         </span>
         <div className="grid min-w-0 flex-1 gap-3 sm:grid-cols-2">
           <div className="min-w-0">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">Câu hỏi</p>
+            <p className="mb-1 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-ink-400">
+              Câu hỏi
+              {known && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-[11px] normal-case tracking-normal text-green-700">
+                  <Check className="size-3" aria-hidden />
+                  Đã thuộc
+                </span>
+              )}
+            </p>
             <div className="flex items-start gap-1">
               <div className="min-w-0 flex-1">
                 <Markdown className="text-ink-900">{card.question}</Markdown>

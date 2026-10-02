@@ -67,7 +67,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-ink-950/40 p-0 backdrop-blur-[2px] sm:items-center sm:p-4"
+      className="fixed inset-0 z-50 flex animate-fade items-end justify-center bg-ink-950/40 p-0 backdrop-blur-[2px] motion-reduce:animate-none sm:items-center sm:p-4"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -78,7 +78,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="max-h-[92dvh] w-full animate-rise overflow-y-auto overscroll-contain rounded-t-3xl bg-white p-5 shadow-2xl focus:outline-none motion-reduce:animate-none sm:max-h-[90dvh] sm:max-w-lg sm:rounded-3xl"
+        className="max-h-[92dvh] w-full animate-pop overflow-y-auto overscroll-contain rounded-t-3xl bg-white p-5 shadow-2xl focus:outline-none motion-reduce:animate-none sm:max-h-[90dvh] sm:max-w-lg sm:rounded-3xl"
       >
         <div className="sticky -top-5 z-10 -mx-5 -mt-5 mb-4 flex items-start justify-between gap-4 bg-white px-5 pb-2 pt-5">
           <h2 id={titleId} className="text-lg font-semibold text-ink-900">

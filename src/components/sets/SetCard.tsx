@@ -17,7 +17,7 @@ export function SetCard({
   return (
     <Link
       href={`/sets/${set.id}`}
-      className="group relative block h-full rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+      className="group relative block h-full rounded-2xl transition-transform duration-200 active:scale-[0.985] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
     >
       {/* Xấp thẻ phía sau: lộ ra khi hover */}
       <span

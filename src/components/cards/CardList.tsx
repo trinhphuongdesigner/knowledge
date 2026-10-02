@@ -2,7 +2,7 @@
 
 import { FileUp, Languages, Layers, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
 import { api, enrichSetFully } from "@/lib/api";
 import type { CardDTO } from "@/lib/validators";
@@ -13,12 +13,15 @@ export function CardList({
   setId,
   initialCards,
   english = false,
+  knownIds = [],
   info,
   actions,
 }: {
   setId: string;
   initialCards: CardDTO[];
   english?: boolean;
+  /** Card ids the user has marked "đã thuộc" (flashcards or quiz). */
+  knownIds?: string[];
   /** Server-rendered title block of the set header. */
   info?: ReactNode;
   /** Server-rendered action links (study / import / edit) shown next to "Thêm thẻ". */
@@ -29,6 +32,8 @@ export function CardList({
   const [modal, setModal] = useState<{ card?: CardDTO } | null>(null);
   const [enriching, setEnriching] = useState(false);
   const [enrichNote, setEnrichNote] = useState("");
+  const known = useMemo(() => new Set(knownIds), [knownIds]);
+  const knownCount = cards.filter((c) => known.has(c.id)).length;
 
   async function enrich() {
     setEnriching(true);
@@ -83,7 +88,12 @@ export function CardList({
 
       <section className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-lg font-semibold text-ink-900">Danh sách thẻ ({cards.length})</h2>
+          <h2 className="text-lg font-semibold text-ink-900">
+            Danh sách thẻ ({cards.length})
+            {knownCount > 0 && (
+              <span className="ml-2 text-sm font-medium text-green-700">· Đã thuộc {knownCount}</span>
+            )}
+          </h2>
           {english && cards.length > 0 && (
             <Button variant="secondary" size="sm" onClick={() => void enrich()} loading={enriching}>
               <Languages className="size-4" aria-hidden />
@@ -122,6 +132,7 @@ export function CardList({
                   card={card}
                   index={i + 1}
                   english={english}
+                  known={known.has(card.id)}
                   onEdit={(c) => setModal({ card: c })}
                   onDeleted={(id) => {
                     setCards((prev) => prev.filter((c) => c.id !== id));

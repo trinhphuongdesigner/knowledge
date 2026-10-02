@@ -7,6 +7,7 @@ import type {
   DictionaryEntryDTO,
   EnrichResultDTO,
   Level,
+  QuizResultInput,
   SetInput,
   StudySetDTO,
   StudyProgressInput,
@@ -105,4 +106,8 @@ export async function saveStudyProgress(
   opts: { keepalive?: boolean } = {},
 ): Promise<void> {
   await request<{ ok: true }>(`/api/sets/${setId}/progress`, { ...send("PUT", input), keepalive: opts.keepalive });
+}
+
+export async function saveQuizResult(setId: string, input: QuizResultInput): Promise<void> {
+  await request<{ ok: true }>(`/api/sets/${setId}/progress`, send("PATCH", input));
 }

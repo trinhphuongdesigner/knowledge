@@ -9,9 +9,20 @@ import { hintText, isCorrectAnswer, stripMarkdown } from "@/lib/quiz";
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
 
-type Result = { card: CardDTO; correct: boolean };
+const AUTO_NEXT_MS = 1500;
 
-export function TypingGame({ cards, english }: { cards: CardDTO[]; english: boolean }) {
+type Result ={ card: CardDTO; correct: boolean };
+
+export function TypingGame({
+  cards,
+  english,
+  onComplete,
+}: {
+  cards: CardDTO[];
+  english: boolean;
+  /** Called each time a run ends: correct cards pass, wrong/skipped ones fail. */
+  onComplete?: (passedIds: string[], failedIds: string[]) => void;
+}) {
   // A new run id remounts the run, so restarting (all or only wrong cards) resets its state.
   const [run, setRun] = useState<{ id: number; cards: CardDTO[] }>(() => ({ id: 0, cards: shuffleArray(cards) }));
   const [results, setResults] = useState<Result[]>([]);
@@ -70,6 +81,10 @@ export function TypingGame({ cards, english }: { cards: CardDTO[]; english: bool
       cards={run.cards}
       english={english}
       onFinish={(r) => {
+        onComplete?.(
+          r.filter((x) => x.correct).map((x) => x.card.id),
+          r.filter((x) => !x.correct).map((x) => x.card.id),
+        );
         setResults(r);
         setDone(true);
       }}
@@ -102,6 +117,14 @@ function TypingRun({
   useEffect(() => {
     if (checked) nextRef.current?.focus();
     else inputRef.current?.focus();
+  }, [checked, index]);
+
+  // Correct answers move on by themselves; wrong ones wait so the user can read the expected answer.
+  useEffect(() => {
+    if (!checked?.correct) return;
+    const timer = setTimeout(next, AUTO_NEXT_MS);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `next` is fresh whenever `checked`/`index` change
   }, [checked, index]);
 
   function check(correct: boolean) {
@@ -196,7 +219,7 @@ function TypingRun({
 
       <div className="mt-5 flex flex-wrap gap-2">
         {checked ? (
-          <button ref={nextRef} type="submit" className={buttonStyles()}>
+          <button ref={nextRef} type="submit" className={buttonStyles("primary", "md", "w-full")}>
             {index + 1 >= cards.length ? "Xem kết quả" : "Tiếp"}
           </button>
         ) : (

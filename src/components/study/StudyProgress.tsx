@@ -31,7 +31,12 @@ export function StudyProgress({ current, total, known, unknown }: StudyProgressP
         aria-label="Tiến độ học"
         className="mt-2 h-2.5 overflow-hidden rounded-full bg-ink-200/70"
       >
-        <div className="h-full rounded-full bg-linear-to-r from-brand-500 to-brand-400 transition-[width] duration-500 ease-out" style={{ width: `${pct}%` }} />
+        <div
+          className="relative h-full overflow-hidden rounded-full bg-linear-to-r from-brand-500 to-brand-400 transition-[width] duration-500 ease-out"
+          style={{ width: `${pct}%` }}
+        >
+          <span key={pct} className="progress-shine" aria-hidden />
+        </div>
       </div>
     </div>
   );

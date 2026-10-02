@@ -75,7 +75,7 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
         onClick={onFlip}
         onKeyDown={onKeyDown}
         className={cn(
-          "relative h-full w-full cursor-pointer rounded-2xl transition-transform duration-500 [transform-style:preserve-3d]",
+          "relative h-full w-full cursor-pointer rounded-2xl transition-transform duration-600 ease-[cubic-bezier(0.34,1.3,0.5,1)] [transform-style:preserve-3d]",
           "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600",
           "motion-reduce:transform-none motion-reduce:transition-none",
           flipped && "[transform:rotateY(180deg)]",

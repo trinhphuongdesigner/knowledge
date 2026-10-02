@@ -1,7 +1,8 @@
 "use client";
 
 import { Keyboard, Link2 } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { saveQuizResult } from "@/lib/api";
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
 import { MatchingGame } from "./MatchingGame";
@@ -14,8 +15,39 @@ const MODES: { id: Mode; label: string; icon: typeof Link2 }[] = [
   { id: "typing", label: "Điền từ", icon: Keyboard },
 ];
 
-export function QuizSession({ cards, english }: { cards: CardDTO[]; english: boolean }) {
+export function QuizSession({
+  setId,
+  cards,
+  english,
+  knownIds = [],
+}: {
+  setId: string;
+  cards: CardDTO[];
+  english: boolean;
+  /** Cards already marked "đã thuộc" when the quiz page was opened. */
+  knownIds?: string[];
+}) {
   const [mode, setMode] = useState<Mode>(english ? "typing" : "matching");
+  const [skipKnown, setSkipKnown] = useState(false);
+  const [saveFailed, setSaveFailed] = useState(false);
+
+  // Based on the ids known at page load (not live results) so the card pool stays stable mid-quiz.
+  const pending = useMemo(() => {
+    const known = new Set(knownIds);
+    return cards.filter((c) => !known.has(c.id));
+  }, [cards, knownIds]);
+  const knownCount = cards.length - pending.length;
+  const canSkip = knownCount > 0 && pending.length >= 2;
+  const pool = skipKnown && canSkip ? pending : cards;
+
+  const report = useCallback(
+    (passed: string[], failed: string[]) => {
+      saveQuizResult(setId, { passed, failed })
+        .then(() => setSaveFailed(false))
+        .catch(() => setSaveFailed(true));
+    },
+    [setId],
+  );
 
   return (
     <div>
@@ -40,13 +72,37 @@ export function QuizSession({ cards, english }: { cards: CardDTO[]; english: boo
           </button>
         ))}
       </div>
+      {knownCount > 0 && (
+        <label
+          className={cn(
+            "mb-4 flex min-h-11 items-center gap-3 rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-700",
+            canSkip ? "cursor-pointer" : "opacity-60",
+          )}
+        >
+          <input
+            type="checkbox"
+            checked={skipKnown && canSkip}
+            disabled={!canSkip}
+            onChange={(e) => setSkipKnown(e.target.checked)}
+            className="size-5 accent-brand-600"
+          />
+          <span>
+            Bỏ qua thẻ đã thuộc <span className="text-ink-500">({knownCount}/{cards.length})</span>
+          </span>
+        </label>
+      )}
       <div id="quiz-panel" role="tabpanel" aria-labelledby={`quiz-tab-${mode}`}>
         {mode === "matching" ? (
-          <MatchingGame key="matching" cards={cards} />
+          <MatchingGame key={`matching-${pool.length}`} cards={pool} onComplete={report} />
         ) : (
-          <TypingGame key="typing" cards={cards} english={english} />
+          <TypingGame key={`typing-${pool.length}`} cards={pool} english={english} onComplete={report} />
         )}
       </div>
+      {saveFailed && (
+        <p role="status" className="mt-3 text-center text-xs text-ink-500">
+          Chưa lưu được kết quả kiểm tra.
+        </p>
+      )}
     </div>
   );
 }

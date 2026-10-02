@@ -21,6 +21,12 @@ export default async function QuizPage({ params }: { params: Promise<{ id: strin
     include: { category: true, cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
   });
   if (!set) notFound();
+  const progress = await db.studyProgress.findUnique({
+    where: { userId_setId: { userId: user.id, setId: set.id } },
+    select: { known: true },
+  });
+  const cardIds = new Set(set.cards.map((c) => c.id));
+  const knownIds = (progress?.known ?? []).filter((cid) => cardIds.has(cid));
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
@@ -38,7 +44,12 @@ export default async function QuizPage({ params }: { params: Promise<{ id: strin
           action={<ButtonLink href={`/sets/${set.id}`}>Về nhóm thẻ</ButtonLink>}
         />
       ) : (
-        <QuizSession cards={set.cards.map(toCardDTO)} english={set.category.isEnglish} />
+        <QuizSession
+          setId={set.id}
+          cards={set.cards.map(toCardDTO)}
+          english={set.category.isEnglish}
+          knownIds={knownIds}
+        />
       )}
     </div>
   );
