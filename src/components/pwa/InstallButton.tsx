@@ -82,11 +82,11 @@ export function InstallButton() {
             role="dialog"
             aria-modal="true"
             aria-label="Hướng dẫn cài ứng dụng trên iPhone"
-            className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] sm:items-center"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
             onClick={() => setShowIosHelp(false)}
           >
             <div
-              className="w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl"
+              className="w-full max-w-sm rounded-2xl border border-ink-200 bg-surface p-5 shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-start justify-between gap-3">
