@@ -27,6 +27,9 @@ export function proxy(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
   const hasCookie = !!req.cookies.get(SESSION_COOKIE)?.value;
 
+  // Vercel Cron has no session cookie; the route authenticates itself with CRON_SECRET.
+  if (pathname.startsWith("/api/cron/")) return NextResponse.next();
+
   if (pathname.startsWith("/api/")) {
     if (!hasCookie) return NextResponse.json({ error: "Chưa đăng nhập" }, { status: 401 });
     return withSlidingCookie(req, NextResponse.next());

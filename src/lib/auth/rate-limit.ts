@@ -5,7 +5,7 @@ export const WINDOW_REGISTER_MS = 60 * 60 * 1000;
 export const MAX_EMAIL_FAILURES = 5;
 export const MAX_IP_FAILURES = 20;
 export const MAX_REGISTER_PER_IP = 5;
-const CLEANUP_AFTER_MS = 24 * 60 * 60 * 1000;
+const CLEANUP_AFTER_MS = 24 * 60 * 60 * 1000; // opportunistic; the daily cron (lib/cleanup.ts) is the 30-day backstop
 /** Marker stored in LoginAttempt.email for registration attempts. */
 const REGISTER_MARKER = "register:attempt";
 
