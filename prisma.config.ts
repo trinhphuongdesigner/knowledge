@@ -8,6 +8,8 @@ export default defineConfig({
     seed: "tsx prisma/seed.ts",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    // Prisma CLI (migrate/seed) needs a session connection. On Supabase the app's
+    // DATABASE_URL is the transaction pooler, so DIRECT_URL takes precedence.
+    url: process.env.DIRECT_URL || env("DATABASE_URL"),
   },
 });

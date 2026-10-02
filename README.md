@@ -67,6 +67,15 @@ npm run db:seed
 
 (Khi đã có migration, `npx prisma migrate reset --force` xoá DB, áp dụng lại migration và chạy seed.)
 
+### Dùng Supabase thay Docker
+
+Trong `.env`, comment `DATABASE_URL` local rồi bỏ comment khối Supabase, thay `[YOUR-PASSWORD]` (URL-encode nếu có ký tự đặc biệt):
+
+- `DATABASE_URL`: Transaction pooler (cổng **6543**), dùng cho app lúc chạy (phù hợp serverless).
+- `DIRECT_URL`: Session pooler (cổng **5432**), dùng cho Prisma CLI (`migrate`, `db seed`). `prisma.config.ts` ưu tiên `DIRECT_URL` nếu có.
+
+Sau đó chạy `npx prisma migrate deploy` và `npm run db:seed` như bình thường (bỏ qua bước `npm run db:up`).
+
 ### Seed
 
 `npm run db:seed` **xoá hết** bộ học/thẻ rồi tạo lại (chạy lại bao nhiêu lần cũng được). Nguồn dữ liệu:

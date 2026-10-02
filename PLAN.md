@@ -317,4 +317,4 @@ Phân công: V1 = Life & Work 1–7 · V2 = Life & Work 8–10 + Câu hỏi HR 1
 - [x] V2 Life & Work 8–10 + HR 1–3
 - [x] V3 IT English 1–7
 - [x] V4 IT English 8–13 ✅ (V5: khử 24 câu trùng; 26 bộ / 875 thẻ)
-- [ ] W3-QA
+- [x] W3-QA ✅ (lint/tsc/37 test/build OK; E2E 1280 + 375 OK; DB 36 bộ / 994 thẻ, id UUID v7)
