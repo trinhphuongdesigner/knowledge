@@ -22,7 +22,7 @@ export default async function ImportPage({ params }: PageProps<"/sets/[id]/impor
     <Container className="py-6 sm:py-8">
       <Link
         href={`/sets/${set.id}`}
-        className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-brand-700 hover:underline"
+        className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent-strong hover:underline"
       >
         <ArrowLeft className="size-4" aria-hidden /> Quay lại nhóm thẻ
       </Link>

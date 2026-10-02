@@ -27,7 +27,7 @@ export function PasswordInput({ label, error, className, id, ...props }: Props) 
           onClick={() => setVisible((v) => !v)}
           aria-label={visible ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
           aria-pressed={visible}
-          className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-xl text-ink-500 hover:text-brand-600 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600"
+          className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-xl text-ink-500 hover:text-accent focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600"
         >
           {visible ? <EyeOff className="size-5" aria-hidden /> : <Eye className="size-5" aria-hidden />}
         </button>

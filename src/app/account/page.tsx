@@ -1,11 +1,15 @@
+import { Download } from "lucide-react";
 import type { Metadata } from "next";
-import { AccountTabs, type AccountTab } from "@/components/account/AccountTabs";
+import { ACCOUNT_TABS, AccountTabs, type AccountTab } from "@/components/account/AccountTabs";
 import { PasswordForm } from "@/components/account/PasswordForm";
-import { StudyHistory } from "@/components/account/StudyHistory";
 import { ProfileForm } from "@/components/account/ProfileForm";
+import { StudyHistory } from "@/components/account/StudyHistory";
+import { StudySettingsForm } from "@/components/account/StudySettingsForm";
 import { Container } from "@/components/layout/Container";
+import { StatsPanel } from "@/components/stats/StatsPanel";
 import { Card } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
+import { db } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Quản lý tài khoản — Knowledge" };
@@ -14,17 +18,50 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
   const user = await requireUser();
   const { tab } = await searchParams;
   const raw = Array.isArray(tab) ? tab[0] : tab;
-  const active: AccountTab = raw === "password" || raw === "profile" ? raw : "history";
+  const active: AccountTab = ACCOUNT_TABS.find((t) => t === raw) ?? "history";
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
       <h1 className="mb-6 text-2xl font-bold text-ink-900">Quản lý tài khoản</h1>
       <AccountTabs active={active} />
-      {active === "history" ? (
-        <StudyHistory userId={user.id} />
-      ) : (
-        <Card>{active === "profile" ? <ProfileForm name={user.name} email={user.email} /> : <PasswordForm />}</Card>
+      {active === "history" && <StudyHistory userId={user.id} />}
+      {active === "stats" && <StatsPanel userId={user.id} />}
+      {active === "settings" && <SettingsTab userId={user.id} />}
+      {active === "profile" && (
+        <div className="space-y-4">
+          <Card>
+            <ProfileForm name={user.name} email={user.email} />
+          </Card>
+          <Card className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="font-semibold text-ink-900">Tải dữ liệu của tôi</h2>
+              <p className="text-sm text-ink-600">Hồ sơ, danh mục, bộ thẻ, tiến độ và thống kê dạng JSON.</p>
+            </div>
+            <a
+              href="/api/account/export"
+              download
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-ink-200 bg-surface px-4 text-sm font-semibold text-ink-900 shadow-[0_3px_0_var(--color-ink-200)] hover:bg-ink-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+            >
+              <Download className="size-4" aria-hidden />
+              Tải xuống
+            </a>
+          </Card>
+        </div>
+      )}
+      {active === "password" && (
+        <Card>
+          <PasswordForm />
+        </Card>
       )}
     </Container>
+  );
+}
+
+async function SettingsTab({ userId }: { userId: string }) {
+  const u = await db.user.findUnique({ where: { id: userId }, select: { dailyGoal: true, pushReminders: true } });
+  return (
+    <Card>
+      <StudySettingsForm dailyGoal={u?.dailyGoal ?? 20} pushReminders={u?.pushReminders ?? false} />
+    </Card>
   );
 }

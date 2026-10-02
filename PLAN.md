@@ -471,3 +471,143 @@ enum CategoryColor { BLUE GREEN AMBER PURPLE ROSE SLATE }
 - [x] W6-B dropdown + quản lý danh mục UI ✅
 - [x] W6-QA
 - [x] Supabase: migrate deploy `add_categories` (đã chạy: 36 set/994 thẻ giữ nguyên, 0 orphan)
+
+---
+
+## 14. Đợt 7 — Học hiệu quả, thư viện chung, quota, thống kê, tiện ích, vận hành
+
+Mục tiêu: triển khai 15 đề xuất: SRS, thư viện dùng chung, quota, thống kê/streak, mục tiêu ngày + nhắc nhở, chế độ nghe, cloze, đánh dấu sao/từ khó, tìm kiếm toàn cục, xuất dữ liệu, gợi ý AI, dark mode + offline, chia sẻ link, quên mật khẩu + xuất dữ liệu tài khoản, trang admin.
+
+Nguyên tắc chung (mọi agent):
+- **DB phát triển: chỉ Docker local** `postgresql://knowledge:knowledge@localhost:5433/knowledge`. Đặt `DATABASE_URL` và `DIRECT_URL` inline trên từng lệnh (dotenv không ghi đè biến đã có). **Không** sửa `.env`, **không** chạm Supabase. Orchestrator chạy `migrate deploy` lên Supabase cuối đợt (có xin phép user).
+- **Một migration duy nhất** `learning_features`, chỉ thêm (additive), không mất dữ liệu. Chỉ W7-A sửa `schema.prisma` và migration.
+- Chỉ sửa file mình sở hữu (bảng 14.3). Cần thay đổi file của người khác → ghi vào báo cáo, không tự sửa.
+- Đợt song song (W2) **không** chạy `next dev`/`next build` (khoá `.next`). Kiểm bằng `npx tsc --noEmit`, `npx eslint <file của mình>`, `npx vitest run <test của mình>`. Lỗi tsc ở file người khác (đang làm dở) thì bỏ qua.
+- Next 16: đọc `node_modules/next/dist/docs/` trước khi dùng API lạ; `params`/`searchParams` là Promise; middleware tên là `proxy`.
+- Giữ phong cách code hiện có: route handler dùng `requireApiUser` + helpers `src/lib/http.ts`, thông báo lỗi tiếng Việt, test vitest cho logic thuần trong `__tests__`.
+- Tiết kiệm dung lượng: không lưu log thô từng lượt ôn; dùng bảng tổng hợp theo ngày.
+- "Hôm nay" tính theo `Asia/Ho_Chi_Minh` (`src/lib/dates.ts`).
+
+### 14.1 Data model (W7-A)
+```prisma
+enum Visibility { PRIVATE LINK PUBLIC }   // LINK: ai có link xem được; PUBLIC: hiện ở thư viện khi approved
+enum ReviewMode { FLASHCARD QUIZ TYPING MATCHING LISTEN CLOZE REVIEW }
+
+// User: thêm
+  dailyGoal       Int       @default(20)   // số thẻ/ngày, 5–500
+  emailReminders  Boolean   @default(false)
+  lastReminderAt  DateTime?
+
+// StudySet: thêm
+  visibility  Visibility @default(PRIVATE)
+  shareToken  String?    @unique           // base64url ngẫu nhiên 22 ký tự, tạo khi bật LINK/PUBLIC
+  approved    Boolean    @default(false)   // admin duyệt mới hiện ở /library
+  publishedAt DateTime?
+  @@index([visibility, approved, publishedAt])
+
+model SetSubscription {   // "Thêm vào thư viện của tôi" = tham chiếu, không sao chép
+  userId, setId (Cascade cả hai), createdAt
+  @@id([userId, setId]) @@index([setId])
+}
+
+model CardReview {        // trạng thái SRS + sao của 1 user trên 1 thẻ (chỉ tạo khi user ôn/đánh sao)
+  userId, cardId, setId (Cascade cả ba)
+  ease Float @default(2.5); interval Int @default(0) /* ngày */; reps Int @default(0); lapses Int @default(0)
+  due DateTime @default(now()); lastReviewedAt DateTime?; starred Boolean @default(false)
+  @@id([userId, cardId]) @@index([userId, due]) @@index([userId, setId])
+}
+
+model StudyDay {          // tổng hợp theo ngày → thống kê, streak, mục tiêu
+  userId (Cascade); day DateTime @db.Date; reviewed Int @default(0); correct Int @default(0); newCards Int @default(0)
+  @@id([userId, day])
+}
+
+model PasswordResetToken { // id = sha256(token) hex; TTL 30 phút; dùng 1 lần
+  id String @id; userId (Cascade); expiresAt DateTime; usedAt DateTime?; createdAt DateTime @default(now())
+  @@index([userId])
+}
+
+model AiUsage { userId (Cascade); day DateTime @db.Date; count Int @default(0); @@id([userId, day]) }
+
+model JobRun  { name String @id; lastRunAt DateTime; ok Boolean; result Json? }
+```
+
+### 14.2 Hợp đồng chung (W7-A tạo, các agent khác dùng)
+- `src/lib/dates.ts`: `todayVN(now?) → Date` (UTC 00:00 của ngày VN, dùng cho cột `@db.Date`), `addDays`, `dayKey(date) → "YYYY-MM-DD"`.
+- `src/lib/srs.ts` (thuần + test): `type Grade = 0|1|2|3` (Lại / Khó / Được / Dễ). `nextReview(state, grade, now) → { ease, interval, reps, lapses, due }` kiểu SM-2: grade 0 → lapses+1, reps=0, interval=0, due = now + 10 phút, ease −0.2 (tối thiểu 1.3); grade ≥ 1 → interval 1 → 3 → round(interval·ease·hệ số), hệ số 1.2 cho Dễ và 0.8 cho Khó, ease ±0.15 cho Dễ/Khó. `isHard(state)` = lapses ≥ 2 hoặc ease < 2.0. `gradeFromCorrect(correct) → Grade` (đúng → 2, sai → 0).
+- `src/lib/quota.ts`: `QUOTA = { setsPerUser: 100, cardsPerUser: 5000, cardsPerSet: 2000, subscriptionsPerUser: 200, aiPerDay: 50 }` (ghi đè bằng env `QUOTA_*`), `getUsage(userId) → { sets, cards, subscriptions }`, `checkQuota(user, { sets?, cards?, setId?, subscriptions? }) → string | null` (thông báo lỗi tiếng Việt). ADMIN không bị giới hạn.
+- `src/lib/access.ts`: `getOwnedSet(userId, setId)`, `getReadableSet(userId, setId) → { set, isOwner, subscribed } | null` (chủ sở hữu, hoặc đã subscribe một set PUBLIC+approved hay LINK), `getSetByShareToken(token)`. Route học (progress, reviews, star, export, trang study/quiz) dùng `getReadableSet`; route sửa dùng `getOwnedSet`.
+- `src/lib/validators.ts` thêm: `VISIBILITIES`, `REVIEW_MODES`, `reviewInputSchema = { setId: uuid, mode, items: [{ cardId: uuid, grade: 0..3 }] (1..500) }`, `starInputSchema = { starred }`, `visibilityInputSchema = { visibility }`, `studySettingsSchema = { dailyGoal 5..500, emailReminders }`, `forgotPasswordSchema`, `resetPasswordSchema`, `aiSuggestInputSchema = { term 1..200, english }`, `searchQuerySchema`. DTO: `StudySetDTO` thêm `visibility`, `isOwner`, `ownerName?`, `shareToken?` (chỉ khi isOwner); `ReviewStateDTO = { cardId, due, interval, starred, hard }`; `DueSummaryDTO = { dueCount, newCount, goal, doneToday }`; `StudyStatsDTO = { streak, longestStreak, days: { day, reviewed, correct }[] (90 ngày), totalReviewed, accuracy }`; `SearchResultDTO = { cardId, setId, setTitle, question, answer }`; `AiSuggestionDTO = { answer, explanation, partOfSpeech, phonetic? }`; `PublicSetDTO = StudySetDTO & { ownerName, subscriberCount }`.
+- `src/lib/api.ts` thêm client: `recordReviews(input)`, `starCard(cardId, starred)`, `getDue()`, `setVisibility(setId, v)`, `subscribe(setId)`, `unsubscribe(setId)`, `copySet(setId)`, `search(q)`, `aiStatus()`, `aiSuggest(input)`, `updateStudySettings(input)`. Đường dẫn API: `/api/reviews`, `/api/reviews/due`, `/api/cards/[id]/star`, `/api/sets/[id]/visibility`, `/api/sets/[id]/subscription` (POST/DELETE), `/api/sets/[id]/copy`, `/api/search?q=`, `/api/ai/suggest` (GET trạng thái, POST gợi ý), `/api/account/settings`.
+- `src/proxy.ts`: cho qua không cần cookie `/api/cron/`, `/s/`, `/api/share/`; thêm `/forgot-password`, `/reset-password` vào nhóm trang auth (chưa đăng nhập vào được).
+- **Stub** (W7-A tạo, chủ sở hữu viết thật): `src/components/review/DueTodayCard.tsx` (server, `{ userId }`, tạm `return null`), `src/components/stats/StreakCard.tsx` (server, `{ userId }`), `src/components/layout/ThemeToggle.tsx` (client, tạm `return null`).
+- `CardList` thêm prop tuỳ chọn `starredIds?: string[]`, `hardIds?: string[]`, `readOnly?: boolean` (W7-A chỉ thêm vào kiểu props, W7-B cài đặt hành vi).
+- `.env.example`: thêm `RESEND_API_KEY`, `EMAIL_FROM`, `ANTHROPIC_API_KEY`, `AI_MODEL` (mặc định `claude-haiku-4-5`), `QUOTA_*` (comment).
+
+### 14.3 Phân công (file ownership)
+| Agent | Tính năng | Sở hữu |
+|---|---|---|
+| **W7-A** foundation (chạy trước, chặn) | schema, migration, seed vẫn chạy được, hợp đồng 14.2 | `prisma/**`, `src/lib/{validators,dto,api,dates,srs,quota,access}.ts` + test, `src/proxy.ts`, `.env.example`, stub ở 14.2, kiểu props `CardList` |
+| **W7-B** SRS & từ khó | #1 lặp lại ngắt quãng, #8 đánh dấu sao/từ khó, #5 (trang ôn theo mục tiêu ngày) | `src/app/api/reviews/**`, `src/app/api/cards/[id]/star/**`, `src/app/review/**`, `src/components/review/**`, `src/components/study/**`, `src/app/sets/[id]/study/**`, `src/app/api/sets/[id]/progress/**`, `src/components/cards/{CardList,CardItem}.tsx` |
+| **W7-C** chế độ kiểm tra mới | #6 nghe rồi chọn/gõ, #7 điền chỗ trống (cloze), mọi chế độ quiz gửi kết quả vào SRS | `src/components/quiz/**`, `src/app/sets/[id]/quiz/**`, `src/lib/quiz.ts` + test |
+| **W7-D** thư viện, chia sẻ, quota, xuất | #2 thư viện dùng chung (publish, subscribe, copy), #13 link chỉ xem `/s/[token]`, #3 áp quota ở mọi route tạo set/thẻ/import/subscribe, #10 xuất CSV/XLSX | `src/app/api/sets/**` (trừ `progress`), `src/app/api/cards/**` (trừ `star`), `src/app/api/share/**`, `src/app/api/library/**`, `src/app/page.tsx`, `src/app/sets/[id]/{page.tsx,edit/**,import/**}`, `src/app/sets/new/**` nếu có, `src/app/library/**`, `src/app/s/**`, `src/components/sets/**`, `src/components/library/**`, `src/components/import/**` |
+| **W7-E** tài khoản, thống kê, vận hành | #4 thống kê + streak, #5 (cài đặt mục tiêu + email nhắc hằng ngày), #9 tìm kiếm toàn cục, #14 quên mật khẩu + xuất toàn bộ dữ liệu, #15 trang admin (user, dung lượng DB, JobRun, duyệt set PUBLIC) | `src/app/account/**`, `src/components/account/**`, `src/components/stats/**`, `src/app/(auth)/**`, `src/components/auth/**`, `src/app/admin/**`, `src/app/api/admin/**`, `src/app/api/account/**`, `src/app/api/search/**`, `src/app/search/**`, `src/components/search/**`, `src/app/api/cron/**`, `src/lib/{cleanup,email,stats}.ts` + test, `src/lib/auth/**`, `src/components/layout/{Header,UserMenu}.tsx`, `vercel.json` |
+| **W7-F** gợi ý AI | #11 thêm từ nhanh: tra từ điển + Claude gợi ý nghĩa tiếng Việt, ví dụ, từ loại; giới hạn `QUOTA.aiPerDay` qua `AiUsage`; tắt êm khi thiếu `ANTHROPIC_API_KEY` | `src/lib/ai.ts` + test, `src/app/api/ai/**`, `src/components/cards/{CardForm.tsx,useWordLookup.ts}` |
+| **W7-G** (đợt 3, sau W2) | #12 dark mode (token CSS, không nháy khi tải, `ThemeToggle` trong menu) + offline (SW cache trang/API của set đã mở, network-first) | `src/app/globals.css`, `src/app/layout.tsx`, `src/components/layout/ThemeToggle.tsx`, `src/components/pwa/**`, `public/sw.js`, `public/offline.html`; được sửa class màu ở mọi component (đợt này chạy một mình) |
+| **W7-QA** (đợt 4, chạy ngầm) | tsc, lint, vitest, build, E2E Playwright trên prod build + DB local; sửa lỗi nhỏ, báo lỗi lớn; cập nhật README | toàn repo |
+
+Ghép nối giữa các agent:
+- D đặt `<DueTodayCard userId>` (B) và `<StreakCard userId>` (E) vào trang chủ; set đã subscribe hiện thành nhóm "Thư viện đã lưu" (chỉ đọc).
+- D truyền `starredIds`, `hardIds`, `readOnly={!isOwner}` cho `CardList` ở trang chi tiết set (đọc `CardReview` của user, dùng `isHard`).
+- C gọi `api.recordReviews({ setId, mode, items })` khi xong mỗi lượt quiz (ngoài `saveQuizResult` cũ). B làm `POST /api/reviews`: cập nhật `CardReview` theo `nextReview` và cộng `StudyDay` (reviewed; correct = grade ≥ 2; newCards = thẻ ôn lần đầu) trong một transaction.
+- Flashcard (B): Đã thuộc → grade 2, Chưa thuộc → grade 0. Trang `/review` có 4 nút Lại/Khó/Được/Dễ, gom thẻ đến hạn từ mọi set đọc được, thêm thẻ mới tới khi đạt `dailyGoal`.
+- E: `UserMenu` thêm `ThemeToggle` (stub, G làm thật), link "Ôn hôm nay" `/review`, "Thư viện" `/library`, "Tìm kiếm" `/search`, "Quản trị" (role ADMIN). Cron `cleanup` thêm: xoá `PasswordResetToken` hết hạn, `AiUsage` > 30 ngày, `StudyDay` > 400 ngày, ghi `JobRun`. Cron mới `reminders` (12:00 UTC = 19:00 VN) gửi email cho user bật nhắc nhở và còn thẻ đến hạn, tối đa 1 lần/ngày. Email gửi qua Resend bằng `fetch` (không thêm thư viện); thiếu `RESEND_API_KEY` → log link ra console. Trang quên mật khẩu luôn báo "Nếu email tồn tại, bạn sẽ nhận được link" (không lộ email có tồn tại hay không) và có rate limit.
+- F: gọi Claude theo skill `claude-api`; model mặc định `claude-haiku-4-5`, timeout 10 s, kiểm JSON trả về bằng zod; không có key → `GET /api/ai/suggest` trả `{ enabled: false }` và CardForm ẩn nút.
+
+### 14.4 Thứ tự chạy
+1. W1: **W7-A** (chặn).
+2. W2 song song: **B, C, D, E, F**.
+3. W3: **W7-G**.
+4. W4: **W7-QA** chạy ngầm; orchestrator xin phép rồi `migrate deploy` lên Supabase, nhắc user đặt env mới trên Vercel.
+
+### Tiến độ đợt 7
+- [x] W7-A foundation ✅ — migration `20261002200000_learning_features` (additive, đã deploy lên DB local), 181 test xanh (+25 mới: dates/srs/quota); tsc + eslint sạch
+  - Ghi chú W7-A:
+    - Phần thuần của quota nằm ở `src/lib/quota-limits.ts` (`QUOTA`, `DEFAULT_QUOTA`, `parseQuota`, `evaluateQuota`, kiểu `QuotaLimits/QuotaUsage/QuotaRequest`); `src/lib/quota.ts` re-export tất cả + thêm `getUsage(userId)`, `checkQuota(user:{id,role}, {sets?,cards?,setId?,subscriptions?})`. Import từ `@/lib/quota` như hợp đồng. `QUOTA.aiPerDay` dùng cho W7-F. Vitest không có alias `@/` nên test logic thuần không được import file kéo theo `db.ts`.
+    - `checkQuota`: `cards` = số thẻ sắp thêm; truyền `setId` để kiểm thêm giới hạn mỗi bộ.
+    - `src/lib/srs.ts` xuất: `Grade`, `SrsState {ease,interval,reps,lapses}`, `SrsResult` (= state + `due`), `nextReview(state, grade, now?)`, `isHard(state)`, `gradeFromCorrect(bool)`, `INITIAL_SRS_STATE`, `MIN_EASE`, `DEFAULT_EASE`. Interval dùng ease MỚI; luôn tăng ít nhất +1 ngày khi đạt; làm tròn ease 2 chữ số.
+    - `src/lib/dates.ts`: `todayVN(now?)`, `addDays(date, n)`, `dayKey(date)` (YYYY-MM-DD theo UTC của giá trị Date).
+    - `src/lib/access.ts`: `getOwnedSet(userId,setId)` (kèm category); `getReadableSet(userId,setId) → {set(+category,+user.name),isOwner,subscribed}|null` (không chủ sở hữu thì phải đã subscribe VÀ set là LINK hoặc PUBLIC+approved); `getSetByShareToken(token)` trả set + category + user.name + cards, hoặc null nếu PRIVATE (PUBLIC chưa duyệt vẫn xem được bằng link; approved chỉ quyết định hiện ở /library).
+    - `toSetDTO(set, cardCount, opts?: {isOwner?, ownerName?})` và `toSetDetailDTO(set, opts?)`; shareToken chỉ được đưa vào DTO khi isOwner. `set` phải có đủ cột mới (Prisma type đã có).
+    - validators: thêm `Visibility`, `ReviewModeValue` (kiểu), `ReviewInput`, `StudySettingsInput`, `AiSuggestInput`, `DAILY_GOAL_MIN/MAX`; `resetPasswordSchema = { token, password, confirmPassword }`; `forgotPasswordSchema = { email }`; `searchQuerySchema = { q }`.
+    - api client: `recordReviews → {ok,recorded}`, `starCard` dùng PUT `/api/cards/[id]/star` body `{starred}` → `{ok,starred}`, `setVisibility` dùng PUT body `{visibility}` → StudySetDTO, `subscribe` POST / `unsubscribe` DELETE → `{ok}`, `copySet` POST → StudySetDTO, `aiStatus` GET → `{enabled, remaining?}`, `updateStudySettings` PUT `/api/account/settings` → `{dailyGoal,emailReminders}`, `getDue` → DueSummaryDTO, `search` → SearchResultDTO[]. Route handler của các agent khác phải khớp method/response này.
+    - proxy: `/s/` và `/api/share/` bỏ qua kiểm cookie; `/reset-password` cho qua kể cả khi đã đăng nhập; `/forgot-password` chuyển về / khi đã đăng nhập.
+    - Seed đã chạy lại trên DB local (36 bộ, 994 thẻ). Migration được tạo bằng `prisma migrate diff` (migrate dev không chạy được ở môi trường không tương tác).
+- [x] W7-B SRS & từ khó ✅ — POST /api/reviews, GET /api/reviews/due, PUT cards/[id]/star, trang /review, DueTodayCard, study ?only=, CardList sao/khó/readOnly; +9 test (session.ts); tsc + eslint sạch
+- [x] W7-C chế độ kiểm tra mới ✅ — Nghe (chọn/gõ) + Điền chỗ trống (cloze), mọi chế độ gửi kết quả vào SRS (`recordReviews`, batch ≤500); trang quiz dùng `getReadableSet`; helper + 26 test trong `src/lib/quiz.ts`
+- [x] W7-D thư viện / chia sẻ / quota / xuất ✅ — quota ở mọi route tạo, visibility/subscription/copy/library/share/export API, trang /library /s/[token], modal Chia sẻ, nhóm "Thư viện đã lưu", export CSV/XLSX + test round-trip
+- [x] W7-E tài khoản / thống kê / vận hành ✅ — stats+streak, cài đặt học + cron reminders, cleanup mở rộng + JobRun, tìm kiếm, quên/đặt lại mật khẩu, export dữ liệu, /admin, UserMenu; 247 test xanh
+- [x] W7-F gợi ý AI ✅ — `lib/ai.ts` + `ai-core.ts` (thuần, 11 test), `GET/POST /api/ai/suggest` (fetch Messages API, không thêm dependency, hoàn lượt khi lỗi), nút "✨ Gợi ý bằng AI" trong CardForm
+- [x] W7-G dark mode + offline ✅ — token CSS dark (data-theme + prefers-color-scheme, cookie kn_theme + script chống nháy), ThemeToggle 3 chế độ trong UserMenu, SW v2 (cache pages/api network-first, xoá khi đăng xuất), OfflineBanner
+- [x] W7-QA ✅ (tsc/eslint/vitest/build sạch; E2E 15 tính năng đạt; sửa shareToken, layout StreakCard, hydration quiz, số "Mới")
+- [x] Supabase: migrate deploy `learning_features` + `single_admin_publish_sets` (2026-10-03: 37 set/994 thẻ giữ nguyên; 1 ADMIN; mọi set PUBLIC + approved)
+
+## 15. Đợt 8 — Thông báo đẩy thay email
+
+Bỏ hoàn toàn email (Resend). Thay bằng Web Push (VAPID, thư viện `web-push`) + trung tâm thông báo trong app (chuông ở header).
+
+- Env mới: `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` (mặc định `mailto:admin@example.com`); tạo key: `npm run push:keys`. Bỏ `RESEND_API_KEY`, `EMAIL_FROM`.
+- Migration `20261003100000_notifications`: đổi tên `User.emailReminders` → `pushReminders` (giữ dữ liệu), thêm `Notification` (enum `NotificationType`) và `PushSubscription`.
+- `src/lib/notify.ts`: `notify()` (lưu + push) và `sendPushOnly()` (chỉ push, dùng cho link đặt lại mật khẩu); 404/410 xoá subscription; lỗi push không ném ra ngoài.
+
+### Tiến độ đợt 8
+- [x] Migration + schema (`pushReminders`, `Notification`, `PushSubscription`)
+- [x] `notify.ts`, `site.ts` (`siteUrl`), xoá `email.ts`
+- [x] Cron nhắc học dùng `notify`; cleanup xoá thông báo cũ (đã đọc > 30 ngày, tất cả > 90 ngày)
+- [x] Quên mật khẩu gửi link qua push; admin tạo link đặt lại mật khẩu ở `/admin` (hiệu lực 30 phút)
+- [x] Thông báo khi admin duyệt/từ chối bộ, và khi có người lưu bộ của bạn (chống spam 24 giờ)
+- [x] API: `/api/push/subscribe`, `/api/notifications` (+ `unread-count`, `[id]/read`, `read-all`)
+- [x] UI: `NotificationBell` (poll 60 giây, focus, SW postMessage), trang `/notifications`, điều khiển push trong cài đặt học
+- [x] Service worker v3: `push` + `notificationclick`
+- [x] Supabase: migrate deploy `notifications` (2026-10-03)
+- [ ] Đặt biến VAPID trên Vercel + redeploy, thử push thật trên thiết bị

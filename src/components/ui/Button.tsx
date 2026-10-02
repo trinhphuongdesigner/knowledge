@@ -16,10 +16,10 @@ const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-brand-600 text-white shadow-[0_3px_0_var(--color-brand-800)] hover:-translate-y-0.5 hover:bg-brand-500 hover:shadow-[0_5px_0_var(--color-brand-800)] active:shadow-[0_1px_0_var(--color-brand-800)]",
   secondary:
-    "border border-ink-200 bg-white text-ink-900 shadow-[0_3px_0_var(--color-ink-200)] hover:-translate-y-0.5 hover:border-ink-300 hover:bg-ink-50 hover:shadow-[0_5px_0_var(--color-ink-200)] active:shadow-[0_1px_0_var(--color-ink-200)]",
+    "border border-ink-200 bg-surface text-ink-900 shadow-[0_3px_0_var(--color-ink-200)] hover:-translate-y-0.5 hover:border-ink-300 hover:bg-ink-50 hover:shadow-[0_5px_0_var(--color-ink-200)] active:shadow-[0_1px_0_var(--color-ink-200)]",
   ghost: "text-ink-600 hover:bg-ink-100 hover:text-ink-900 active:translate-y-0",
   danger:
-    "bg-red-600 text-white shadow-[0_3px_0_var(--color-red-800)] hover:-translate-y-0.5 hover:bg-red-500 hover:shadow-[0_5px_0_var(--color-red-800)] active:shadow-[0_1px_0_var(--color-red-800)]",
+    "bg-danger text-white shadow-[0_3px_0_var(--color-danger-deep)] hover:-translate-y-0.5 hover:bg-danger-hover hover:shadow-[0_5px_0_var(--color-danger-deep)] active:shadow-[0_1px_0_var(--color-danger-deep)]",
 };
 
 const sizes: Record<ButtonSize, string> = {

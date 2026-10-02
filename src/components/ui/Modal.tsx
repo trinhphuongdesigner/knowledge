@@ -2,19 +2,23 @@
 
 import { X } from "lucide-react";
 import { useEffect, useId, useRef, type ReactNode } from "react";
+import { createPortal } from "react-dom";
+import { cn } from "@/lib/utils";
 
 export type ModalProps = {
   open: boolean;
   onClose: () => void;
   title: string;
   children: ReactNode;
+  /** Luôn căn giữa màn hình (kể cả mobile) thay vì bottom sheet — dùng cho hộp thoại xác nhận. */
+  centered?: boolean;
 };
 
 const FOCUSABLE =
   "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
 
 /** Accessible dialog: Esc / overlay click closes, focus moves in on open and is restored on close. */
-export function Modal({ open, onClose, title, children }: ModalProps) {
+export function Modal({ open, onClose, title, children, centered = false }: ModalProps) {
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
@@ -63,11 +67,16 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
     };
   }, [open]);
 
-  if (!open) return null;
+  if (!open || typeof document === "undefined") return null;
 
-  return (
+  // Portal ra <body>: tổ tiên có transform/animation (thẻ, danh sách) làm `fixed` định vị theo chính nó
+  // thay vì viewport → popup hiện ngay tại vị trí trigger thay vì giữa màn hình.
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex animate-fade items-end justify-center bg-ink-950/40 p-0 backdrop-blur-[2px] motion-reduce:animate-none sm:items-center sm:p-4"
+      className={cn(
+        "fixed inset-0 z-50 flex animate-fade justify-center bg-scrim backdrop-blur-[2px] motion-reduce:animate-none",
+        centered ? "items-center p-4" : "items-end p-0 sm:items-center sm:p-4",
+      )}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -78,9 +87,12 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="max-h-[92dvh] w-full animate-pop overflow-y-auto overscroll-contain rounded-t-3xl bg-white p-5 shadow-2xl focus:outline-none motion-reduce:animate-none sm:max-h-[90dvh] sm:max-w-lg sm:rounded-3xl"
+        className={cn(
+          "w-full animate-pop overflow-y-auto overscroll-contain bg-surface p-5 shadow-2xl focus:outline-none motion-reduce:animate-none sm:max-h-[90dvh] sm:max-w-lg sm:rounded-3xl",
+          centered ? "max-h-[90dvh] max-w-md rounded-3xl" : "max-h-[92dvh] rounded-t-3xl",
+        )}
       >
-        <div className="sticky -top-5 z-10 -mx-5 -mt-5 mb-4 flex items-start justify-between gap-4 bg-white px-5 pb-2 pt-5">
+        <div className="sticky -top-5 z-10 -mx-5 -mt-5 mb-4 flex items-start justify-between gap-4 bg-surface px-5 pb-2 pt-5">
           <h2 id={titleId} className="text-lg font-semibold text-ink-900">
             {title}
           </h2>
@@ -95,6 +107,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

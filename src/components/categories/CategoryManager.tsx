@@ -135,7 +135,7 @@ export function CategoryManager({ initialCategories }: { initialCategories: Cate
         onSubmit={save}
       />
 
-      <Modal open={!!toDelete} onClose={() => !deleting && setToDelete(null)} title="Xoá danh mục?">
+      <Modal open={!!toDelete} onClose={() => !deleting && setToDelete(null)} title="Xoá danh mục?" centered>
         {toDelete && (
           <>
             <p className="text-sm text-ink-600">

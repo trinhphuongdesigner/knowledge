@@ -3,7 +3,8 @@ import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { toCardDTO } from "@/lib/dto";
 import { lookupWordDetailed } from "@/lib/dictionary";
-import { json, notFound, readJson, serverError, validationError } from "@/lib/http";
+import { checkQuota } from "@/lib/quota";
+import { badRequest, json, notFound, readJson, serverError, validationError } from "@/lib/http";
 import { cardInputSchema } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,9 @@ export async function POST(req: Request, { params }: Ctx) {
 
     const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true, category: { select: { isEnglish: true } } } });
     if (!set) return notFound("Không tìm thấy nhóm thẻ");
+
+    const quotaError = await checkQuota(user, { cards: 1, setId: id });
+    if (quotaError) return badRequest(quotaError);
 
     const { question, answer, explanation } = parsed.data;
     let phonetic = parsed.data.phonetic || null;

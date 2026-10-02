@@ -59,3 +59,32 @@ export async function recordRegisterAttempt(ip: string | null): Promise<void> {
   await db.loginAttempt.create({ data: { email: REGISTER_MARKER, ip, success: true } });
   if (Math.random() < 0.05) await cleanup().catch(() => undefined);
 }
+
+// ── Quên mật khẩu ─────────────────────────────────────────────────────────
+export const WINDOW_RESET_MS = 60 * 60 * 1000;
+export const MAX_RESET_PER_EMAIL = 3;
+export const MAX_RESET_PER_IP = 10;
+const RESET_PREFIX = "reset:";
+
+export function isResetBlocked(counts: { emailRequests: number; ipRequests: number | null }): boolean {
+  return counts.emailRequests >= MAX_RESET_PER_EMAIL || (counts.ipRequests ?? 0) >= MAX_RESET_PER_IP;
+}
+
+/** ≥ 3 yêu cầu / giờ / email hoặc ≥ 10 / giờ / IP → chặn (dùng lại bảng LoginAttempt với marker `reset:<email>`). */
+export async function checkResetAllowed(email: string, ip: string | null): Promise<boolean> {
+  const since = new Date(Date.now() - WINDOW_RESET_MS);
+  const [emailRequests, ipRequests] = await Promise.all([
+    db.loginAttempt.count({ where: { email: RESET_PREFIX + email, createdAt: { gte: since } } }),
+    ip
+      ? db.loginAttempt.count({
+          where: { ip, email: { startsWith: RESET_PREFIX }, createdAt: { gte: since } },
+        })
+      : Promise.resolve(null),
+  ]);
+  return !isResetBlocked({ emailRequests, ipRequests });
+}
+
+export async function recordResetRequest(email: string, ip: string | null): Promise<void> {
+  await db.loginAttempt.create({ data: { email: RESET_PREFIX + email, ip, success: true } });
+  if (Math.random() < 0.05) await cleanup().catch(() => undefined);
+}

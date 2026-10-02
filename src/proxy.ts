@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const SESSION_COOKIE = "kn_session";
-const AUTH_PAGES = new Set(["/login", "/register"]);
+const AUTH_PAGES = new Set(["/login", "/register", "/forgot-password", "/reset-password"]);
 const SESSION_MAX_AGE_S = 30 * 24 * 60 * 60;
 
 /** Re-set the cookie (same value) so the browser-side expiry slides too. DB expiry stays the authority. */
@@ -30,12 +30,20 @@ export function proxy(req: NextRequest) {
   // Vercel Cron has no session cookie; the route authenticates itself with CRON_SECRET.
   if (pathname.startsWith("/api/cron/")) return NextResponse.next();
 
+  // Public share links (viewable anonymously): pages /s/<token> and API /api/share/*.
+  // Trang giới thiệu: ai cũng xem được.
+  if (pathname === "/about") return NextResponse.next();
+
+  if (pathname.startsWith("/s/") || pathname.startsWith("/api/share/")) return NextResponse.next();
+
   if (pathname.startsWith("/api/")) {
     if (!hasCookie) return NextResponse.json({ error: "Chưa đăng nhập" }, { status: 401 });
     return withSlidingCookie(req, NextResponse.next());
   }
 
   if (AUTH_PAGES.has(pathname)) {
+    // The reset link works whether or not the visitor is logged in.
+    if (pathname === "/reset-password") return NextResponse.next();
     if (hasCookie) {
       // requireUser() sends users with a stale/invalid cookie to /login?expired=1: clear it (no redirect loop).
       if (req.nextUrl.searchParams.get("expired") === "1") {

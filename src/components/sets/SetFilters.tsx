@@ -60,7 +60,7 @@ export function SetFilters({ categories }: { categories: CategoryDTO[] }) {
                     "min-h-11 max-w-56 shrink-0 truncate rounded-full border px-4 text-sm font-medium transition-colors",
                     active
                       ? "border-brand-600 bg-brand-600 text-white"
-                      : "border-ink-200 bg-white text-ink-700 hover:bg-ink-50",
+                      : "border-ink-200 bg-surface text-ink-700 hover:bg-ink-50",
                   )}
                 >
                   {t.label}
@@ -80,7 +80,7 @@ export function SetFilters({ categories }: { categories: CategoryDTO[] }) {
           </div>
           <Link
             href="/categories"
-            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-ink-600 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-ink-600 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
           >
             <Settings2 className="size-4" aria-hidden />
             Quản lý<span className="sr-only"> danh mục</span>
@@ -95,7 +95,7 @@ export function SetFilters({ categories }: { categories: CategoryDTO[] }) {
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Tìm nhóm thẻ..."
           aria-label="Tìm nhóm thẻ"
-          className="min-h-11 w-full rounded-xl border border-ink-300 bg-white pl-9 pr-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-2 focus:outline-brand-600/30"
+          className="min-h-11 w-full rounded-xl border border-ink-300 bg-surface pl-9 pr-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-2 focus:outline-brand-600/30"
         />
       </div>
     </div>

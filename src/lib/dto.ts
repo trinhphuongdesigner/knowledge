@@ -26,7 +26,18 @@ export function toCategoryDTO(c: Category, setCount: number): CategoryDTO {
   return { ...toCategoryRefDTO(c), setCount, createdAt: c.createdAt.toISOString() };
 }
 
-export function toSetDTO(set: StudySet & { category: Category }, cardCount: number): StudySetDTO {
+export type SetDTOOptions = {
+  /** default true */
+  isOwner?: boolean;
+  ownerName?: string | null;
+};
+
+export function toSetDTO(
+  set: StudySet & { category: Category },
+  cardCount: number,
+  opts: SetDTOOptions = {},
+): StudySetDTO {
+  const isOwner = opts.isOwner ?? true;
   return {
     id: set.id,
     title: set.title,
@@ -34,11 +45,19 @@ export function toSetDTO(set: StudySet & { category: Category }, cardCount: numb
     category: toCategoryRefDTO(set.category),
     level: set.level,
     cardCount,
+    visibility: set.visibility,
+    isOwner,
+    ownerName: opts.ownerName,
+    // shareToken only ever leaves the server for the owner
+    shareToken: isOwner ? set.shareToken : undefined,
     createdAt: set.createdAt.toISOString(),
     updatedAt: set.updatedAt.toISOString(),
   };
 }
 
-export function toSetDetailDTO(set: StudySet & { category: Category; cards: Card[] }): StudySetDetailDTO {
-  return { ...toSetDTO(set, set.cards.length), cards: set.cards.map(toCardDTO) };
+export function toSetDetailDTO(
+  set: StudySet & { category: Category; cards: Card[] },
+  opts: SetDTOOptions = {},
+): StudySetDetailDTO {
+  return { ...toSetDTO(set, set.cards.length, opts), cards: set.cards.map(toCardDTO) };
 }

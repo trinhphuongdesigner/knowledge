@@ -38,10 +38,10 @@ export function TypingGame({
     const wrongCards = results.filter((r) => !r.correct).map((r) => r.card);
     const score = results.length - wrongCards.length;
     return (
-      <div className="rounded-xl border border-ink-200 bg-white p-6 shadow-sm">
+      <div className="rounded-xl border border-ink-200 bg-surface p-6 shadow-sm">
         <div className="text-center">
           <h2 className="text-xl font-bold text-ink-900">Kết quả</h2>
-          <p className="mt-2 text-3xl font-bold text-brand-700">
+          <p className="mt-2 text-3xl font-bold text-accent-strong">
             {score}/{results.length}
           </p>
           <p className="text-sm text-ink-600">câu đúng</p>
@@ -148,7 +148,7 @@ function TypingRun({
   }
 
   return (
-    <form onSubmit={submit} className="rounded-xl border border-ink-200 bg-white p-4 shadow-sm sm:p-6">
+    <form onSubmit={submit} className="rounded-xl border border-ink-200 bg-surface p-4 shadow-sm sm:p-6">
       <div className="mb-3 text-sm text-ink-500">
         Câu {index + 1}/{cards.length}
       </div>
@@ -180,14 +180,14 @@ function TypingRun({
         className={cn(
           "mt-1 min-h-11 w-full rounded-xl border px-3 text-base text-ink-900 outline-none",
           "focus-visible:ring-2 focus-visible:ring-brand-600",
-          !checked && "border-ink-300 bg-white",
+          !checked && "border-ink-300 bg-surface",
           checked?.correct && "border-green-400 bg-green-50",
           checked && !checked.correct && "border-red-300 bg-red-50",
         )}
       />
 
       {!checked && hint > 0 && (
-        <p className="mt-2 font-mono text-sm tracking-wider text-brand-700" aria-live="polite">
+        <p className="mt-2 font-mono text-sm tracking-wider text-accent-strong" aria-live="polite">
           Gợi ý: {hintText(expected, hint)}
         </p>
       )}

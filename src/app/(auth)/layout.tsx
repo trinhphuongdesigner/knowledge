@@ -19,7 +19,7 @@ export default function AuthLayout({ children }: LayoutProps<"/">) {
         </span>
         Knowledge
       </Link>
-      <div className="relative z-10 w-full max-w-sm animate-rise rounded-3xl border border-ink-200 bg-white p-6 shadow-[0_2px_4px_rgb(70_63_53/0.06),0_24px_48px_-24px_rgb(70_63_53/0.35)] motion-reduce:animate-none sm:p-8">
+      <div className="relative z-10 w-full max-w-sm animate-rise rounded-3xl border border-ink-200 bg-surface p-6 shadow-[0_2px_4px_rgb(70_63_53/0.06),0_24px_48px_-24px_rgb(70_63_53/0.35)] motion-reduce:animate-none sm:p-8">
         {children}
       </div>
     </main>

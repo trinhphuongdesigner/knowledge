@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
 import { badRequest, json, readJson, serverError, validationError } from "@/lib/http";
 import { isUuid } from "@/lib/ids";
+import { checkQuota } from "@/lib/quota";
 import { LEVELS, setInputSchema } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
@@ -49,6 +50,8 @@ export async function POST(req: Request) {
     if (!parsed.success) return validationError(parsed.error);
     const { title, description, categoryId, level } = parsed.data;
     if (!(await userOwnsCategory(user.id, categoryId))) return badRequest("Danh mục không hợp lệ");
+    const quotaError = await checkQuota(user, { sets: 1 });
+    if (quotaError) return badRequest(quotaError);
     const set = await db.studySet.create({
       data: { title, description: description || null, categoryId, level: level ?? null, userId: user.id },
       include: { category: true },

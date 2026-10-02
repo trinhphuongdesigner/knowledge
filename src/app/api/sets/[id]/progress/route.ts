@@ -1,5 +1,6 @@
 import { requireApiUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { getReadableSet } from "@/lib/access";
 import { isUuid } from "@/lib/ids";
 import { json, notFound, readJson, serverError, validationError } from "@/lib/http";
 import { quizResultInputSchema, studyProgressInputSchema } from "@/lib/validators";
@@ -16,8 +17,7 @@ export async function PUT(req: Request, { params }: Ctx) {
     if (!isUuid(id)) return notFound();
     const parsed = studyProgressInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
-    const owned = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
-    if (!owned) return notFound("Không tìm thấy nhóm thẻ");
+    if (!(await getReadableSet(user.id, id))) return notFound("Không tìm thấy nhóm thẻ");
     const { completed, ...state } = parsed.data;
     await db.studyProgress.upsert({
       where: { userId_setId: { userId: user.id, setId: id } },
@@ -40,8 +40,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
     if (!isUuid(id)) return notFound();
     const parsed = quizResultInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
-    const owned = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
-    if (!owned) return notFound("Không tìm thấy nhóm thẻ");
+    if (!(await getReadableSet(user.id, id))) return notFound("Không tìm thấy nhóm thẻ");
 
     const wanted = [...new Set([...parsed.data.passed, ...parsed.data.failed])];
     const valid = new Set(

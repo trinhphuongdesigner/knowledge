@@ -3,7 +3,7 @@
 import { ArrowLeft, Download, Save } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Card, Select, Textarea } from "@/components/ui";
+import { Button, Card, Modal, Select, Textarea } from "@/components/ui";
 import { api, enrichSetFully } from "@/lib/api";
 import { parseCsv, parseFile, parseMarkdown, type ParseError, type ParseResult } from "@/lib/import";
 import { cn } from "@/lib/utils";
@@ -25,6 +25,7 @@ const TEMPLATES = [
 export function ImportWizard({ setId, english = false }: { setId: string; english?: boolean }) {
   const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
+  const [confirmReplace, setConfirmReplace] = useState(false);
   const [tab, setTab] = useState<Tab>("file");
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
@@ -93,9 +94,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
   const handleSave = async () => {
     if (!canSave) return;
-    if (mode === "replace" && !window.confirm("Thay thế toàn bộ sẽ xoá tất cả thẻ hiện có trong nhóm thẻ này. Tiếp tục?")) {
-      return;
-    }
+    setConfirmReplace(false);
     setSaving(true);
     setSaveError(null);
     try {
@@ -168,7 +167,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
                 }}
                 className={cn(
                   "min-h-11 rounded-lg text-sm font-medium transition-colors",
-                  tab === key ? "bg-white text-brand-700 shadow-sm" : "text-ink-600 hover:text-ink-900",
+                  tab === key ? "bg-surface text-accent-strong shadow-sm" : "text-ink-600 hover:text-ink-900",
                 )}
               >
                 {label}
@@ -217,7 +216,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
                   key={t.href}
                   href={t.href}
                   download
-                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 text-sm font-medium text-brand-700 hover:bg-brand-50"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-ink-200 bg-surface px-3 text-sm font-medium text-accent-strong hover:bg-brand-50"
                 >
                   <Download className="size-4" aria-hidden />
                   {t.label}
@@ -273,7 +272,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
                   key={value}
                   className={cn(
                     "flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border p-3",
-                    mode === value ? "border-brand-600 bg-brand-50" : "border-ink-200 bg-white",
+                    mode === value ? "border-brand-600 bg-brand-50" : "border-ink-200 bg-surface",
                   )}
                 >
                   <input
@@ -309,7 +308,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
             </p>
           )}
           {saveNote && (
-            <p role="status" className="rounded-xl border border-brand-200 bg-brand-50 px-3 py-2 text-sm text-brand-800">
+            <p role="status" className="rounded-xl border border-brand-200 bg-brand-50 px-3 py-2 text-sm text-accent-strong">
               {saveNote}
             </p>
           )}
@@ -323,13 +322,27 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
             <Button variant="secondary" onClick={() => setStep(1)} disabled={saving}>
               <ArrowLeft className="size-4" aria-hidden /> Quay lại
             </Button>
-            <Button onClick={handleSave} loading={saving} disabled={!canSave}>
+            <Button onClick={() => (mode === "replace" ? setConfirmReplace(true) : handleSave())} loading={saving} disabled={!canSave}>
               <Save className="size-4" aria-hidden />
               {saving ? (saveNote ?? "Đang lưu...") : `Lưu ${cards.length} thẻ`}
             </Button>
           </div>
         </div>
       )}
+
+      <Modal open={confirmReplace} onClose={() => setConfirmReplace(false)} title="Thay thế toàn bộ thẻ?" centered>
+        <p className="text-sm text-ink-600">
+          Tất cả thẻ hiện có trong nhóm thẻ này sẽ bị xoá vĩnh viễn và thay bằng {cards.length} thẻ vừa nhập.
+        </p>
+        <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+          <Button variant="secondary" onClick={() => setConfirmReplace(false)}>
+            Huỷ
+          </Button>
+          <Button variant="danger" onClick={handleSave}>
+            Thay thế
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }

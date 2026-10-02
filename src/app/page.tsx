@@ -1,10 +1,13 @@
-import { BookOpen } from "lucide-react";
-import { Suspense } from "react";
+import { BookOpen, Library } from "lucide-react";
+import { Suspense, type CSSProperties } from "react";
 import { Container } from "@/components/layout/Container";
+import { DueTodayCard } from "@/components/review/DueTodayCard";
+import { StreakCard } from "@/components/stats/StreakCard";
+import { SetCard } from "@/components/sets/SetCard";
 import { CreateSetButton } from "@/components/sets/CreateSetButton";
 import { SetGroups } from "@/components/sets/SetGroups";
 import { SetFilters } from "@/components/sets/SetFilters";
-import { EmptyState } from "@/components/ui";
+import { ButtonLink, EmptyState } from "@/components/ui";
 import type { Prisma } from "@/generated/prisma/client";
 import { requireUser } from "@/lib/auth/dal";
 import { listCategories } from "@/lib/categories";
@@ -42,14 +45,44 @@ export default async function Home({ searchParams }: PageProps<"/">) {
     }),
     listCategories(user.id),
   ]);
-  const sets = rows.map((s) => toSetDTO(s, s._count.cards));
+  const sets = rows.map((s) => toSetDTO(s, s._count.cards, { isOwner: true }));
   const filtering = !!(where.categoryId || where.level || q);
+
+  // Bộ đã lưu từ thư viện: danh mục thuộc người khác nên lọc theo tên danh mục đang chọn.
+  const selectedCategory = category ? categories.find((c) => c.id === category) : undefined;
+  const subWhere: Prisma.StudySetWhereInput = {
+    subscribers: { some: { userId: user.id } },
+    OR: [{ visibility: "LINK" }, { visibility: "PUBLIC", approved: true }],
+  };
+  const and: Prisma.StudySetWhereInput[] = [];
+  if (where.level) subWhere.level = where.level;
+  if (category) {
+    and.push({ category: { name: { equals: selectedCategory?.name ?? "\u0000", mode: "insensitive" } } });
+  }
+  if (q) {
+    and.push({
+      OR: [
+        { title: { contains: q, mode: "insensitive" } },
+        { description: { contains: q, mode: "insensitive" } },
+      ],
+    });
+  }
+  if (and.length) subWhere.AND = and;
+  const savedRows = await db.studySet.findMany({
+    where: subWhere,
+    orderBy: { createdAt: "desc" },
+    take: 60,
+    include: { category: true, user: { select: { name: true } }, _count: { select: { cards: true } } },
+  });
+  const savedSets = savedRows.map((s) =>
+    toSetDTO(s, s._count.cards, { isOwner: false, ownerName: s.user.name }),
+  );
 
   return (
     <Container className="py-6 sm:py-8">
       <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <div className="animate-rise motion-reduce:animate-none">
-          <p className="mb-1 text-sm font-medium text-brand-700">
+          <p className="mb-1 text-sm font-medium text-accent-strong">
             Xin chào{user.name ? `, ${user.name}` : ""} 👋
           </p>
           <h1 className="text-3xl font-bold text-ink-900 sm:text-4xl">
@@ -59,12 +92,26 @@ export default async function Home({ searchParams }: PageProps<"/">) {
         </div>
         <CreateSetButton categories={categories} className="shrink-0" />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 grid gap-4 empty:hidden md:grid-cols-2">
         <Suspense fallback={null}>
-          <SetFilters categories={categories} />
+          <DueTodayCard userId={user.id} />
+        </Suspense>
+        <Suspense fallback={null}>
+          <StreakCard userId={user.id} />
         </Suspense>
       </div>
-      {sets.length === 0 ? (
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="min-w-0 flex-1">
+          <Suspense fallback={null}>
+            <SetFilters categories={categories} />
+          </Suspense>
+        </div>
+        <ButtonLink href="/library" variant="secondary" className="shrink-0">
+          <Library className="size-4" aria-hidden />
+          Khám phá thư viện
+        </ButtonLink>
+      </div>
+      {sets.length === 0 && savedSets.length > 0 ? null : sets.length === 0 ? (
         <EmptyState
           icon={BookOpen}
           title={filtering ? "Không tìm thấy nhóm thẻ phù hợp" : "Chưa có nhóm thẻ nào"}
@@ -74,7 +121,21 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           action={filtering ? undefined : <CreateSetButton categories={categories} />}
         />
       ) : (
-        <SetGroups categories={categories} sets={sets} showEmpty={!filtering} />
+        <SetGroups categories={categories} sets={sets} showEmpty={!filtering && savedSets.length === 0} />
+      )}
+      {savedSets.length > 0 && (
+        <section aria-labelledby="saved-heading" className="mt-10">
+          <h2 id="saved-heading" className="mb-4 text-lg font-semibold text-ink-900">
+            Thư viện đã lưu <span className="text-sm font-normal text-ink-500">· {savedSets.length}</span>
+          </h2>
+          <div className="stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {savedSets.map((s, i) => (
+              <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
+                <SetCard set={s} />
+              </div>
+            ))}
+          </div>
+        </section>
       )}
     </Container>
   );

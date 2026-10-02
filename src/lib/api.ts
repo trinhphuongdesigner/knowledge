@@ -1,13 +1,22 @@
 import type {
+  AiSuggestInput,
+  AiSuggestionDTO,
   BulkCardsInput,
   CardDTO,
   CardInput,
   CategoryDTO,
   CategoryInput,
   DictionaryEntryDTO,
+  DueSummaryDTO,
   EnrichResultDTO,
   Level,
+  NotificationsPageDTO,
+  PushSubscribeInput,
   QuizResultInput,
+  ReviewInput,
+  SearchResultDTO,
+  StudySettingsInput,
+  Visibility,
   SetInput,
   StudySetDTO,
   StudyProgressInput,
@@ -60,6 +69,30 @@ export const api = {
   lookupWord: (word: string) =>
     request<DictionaryEntryDTO>(`/api/dictionary?word=${encodeURIComponent(word)}`),
   enrichSet: (setId: string) => request<EnrichResultDTO>(`/api/sets/${setId}/enrich`, send("POST")),
+
+  // ── Đợt 7 ──
+  /** Ghi kết quả ôn (cập nhật SRS + thống kê ngày). */
+  recordReviews: (input: ReviewInput) => request<{ ok: true; recorded: number }>("/api/reviews", send("POST", input)),
+  starCard: (cardId: string, starred: boolean) =>
+    request<{ ok: true; starred: boolean }>(`/api/cards/${cardId}/star`, send("PUT", { starred })),
+  getDue: () => request<DueSummaryDTO>("/api/reviews/due"),
+  setVisibility: (setId: string, visibility: Visibility) =>
+    request<StudySetDTO>(`/api/sets/${setId}/visibility`, send("PUT", { visibility })),
+  subscribe: (setId: string) => request<{ ok: true }>(`/api/sets/${setId}/subscription`, send("POST")),
+  unsubscribe: (setId: string) => request<{ ok: true }>(`/api/sets/${setId}/subscription`, send("DELETE")),
+  copySet: (setId: string) => request<StudySetDTO>(`/api/sets/${setId}/copy`, send("POST")),
+  search: (q: string) => request<SearchResultDTO[]>(`/api/search?q=${encodeURIComponent(q)}`),
+  aiStatus: () => request<{ enabled: boolean; remaining?: number }>("/api/ai/suggest"),
+  aiSuggest: (input: AiSuggestInput) => request<AiSuggestionDTO>("/api/ai/suggest", send("POST", input)),
+  updateStudySettings: (input: StudySettingsInput) =>
+    request<StudySettingsInput>("/api/account/settings", send("PUT", input)),
+  listNotifications: (cursor?: string | null) =>
+    request<NotificationsPageDTO>(`/api/notifications${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ""}`),
+  unreadNotificationCount: () => request<{ unreadCount: number }>("/api/notifications/unread-count"),
+  markNotificationRead: (id: string) => request<{ ok: true }>(`/api/notifications/${id}/read`, send("POST")),
+  markAllNotificationsRead: () => request<{ ok: true; updated: number }>("/api/notifications/read-all", send("POST")),
+  pushSubscribe: (sub: PushSubscribeInput) => request<{ ok: true }>("/api/push/subscribe", send("POST", sub)),
+  pushUnsubscribe: (endpoint: string) => request<{ ok: true }>("/api/push/subscribe", send("DELETE", { endpoint })),
 };
 
 export type EnrichSummary = {

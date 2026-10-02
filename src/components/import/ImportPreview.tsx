@@ -57,11 +57,11 @@ export function ImportPreview({
       )}
 
       {cards.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-ink-300 bg-white p-6 text-center text-sm text-ink-600">
+        <p className="rounded-xl border border-dashed border-ink-300 bg-surface p-6 text-center text-sm text-ink-600">
           Không còn thẻ nào để import.
         </p>
       ) : (
-        <div className="rounded-xl border border-ink-200 bg-white shadow-sm">
+        <div className="rounded-xl border border-ink-200 bg-surface shadow-sm">
           <div className="hidden grid-cols-[2.5rem_1fr_1fr_1fr_2.75rem] gap-3 border-b border-ink-200 bg-ink-50 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-ink-600 md:grid">
             <span>#</span>
             <span>{LABELS.question}</span>

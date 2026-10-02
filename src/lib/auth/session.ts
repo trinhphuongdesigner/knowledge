@@ -1,6 +1,7 @@
 import "server-only";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
+import { roleForEmail } from "./admin";
 import { generateToken, hashToken, SESSION_TTL_MS, shouldRefreshSession } from "./token";
 import { SESSION_COOKIE, type SessionUser } from "./types";
 
@@ -52,7 +53,8 @@ export async function validateSession(token: string | undefined): Promise<Sessio
     // (the DB row is already extended; the cookie is refreshed on the next write-capable request).
     await setSessionCookie(token, expiresAt).catch(() => undefined);
   }
-  return session.user;
+  // Role luôn suy ra từ email: chỉ đúng một tài khoản là admin, không tin cột `role` trong DB.
+  return { ...session.user, role: roleForEmail(session.user.email) };
 }
 
 export async function deleteSession(token: string | undefined): Promise<void> {

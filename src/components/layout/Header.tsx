@@ -1,6 +1,7 @@
-import { BookOpen, CircleUserRound } from "lucide-react";
+import { BookOpen, CircleUserRound, Search } from "lucide-react";
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth/dal";
+import { NotificationBell } from "@/components/notifications/NotificationBell";
 import { InstallButton } from "@/components/pwa/InstallButton";
 import { Container } from "./Container";
 import { HideOnAuthRoutes } from "./HideOnAuthRoutes";
@@ -23,12 +24,31 @@ export async function Header() {
           </Link>
           <div className="flex items-center gap-1">
             <InstallButton />
+            {user && (
+              <Link
+                href="/search"
+                aria-label="Tìm kiếm"
+                title="Tìm kiếm (/)"
+                className="flex size-11 items-center justify-center rounded-full text-ink-600 transition-colors hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+              >
+                <Search className="size-5" aria-hidden />
+              </Link>
+            )}
+            {!user && (
+              <Link
+                href="/about"
+                className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+              >
+                Giới thiệu
+              </Link>
+            )}
+            {user && <NotificationBell />}
             {user ? (
-              <UserMenu name={user.name} email={user.email} />
+              <UserMenu name={user.name} email={user.email} role={user.role} />
             ) : (
               <Link
                 href="/login"
-                className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
                 <CircleUserRound className="size-5" aria-hidden />
                 Đăng nhập

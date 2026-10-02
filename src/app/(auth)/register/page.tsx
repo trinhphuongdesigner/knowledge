@@ -12,7 +12,7 @@ export default function RegisterPage() {
         <p className="mb-6 text-sm text-ink-600">
           Hiện chưa mở đăng ký tài khoản mới. Vui lòng quay lại sau.
         </p>
-        <Link href="/login" className="text-sm font-medium text-brand-600 hover:underline">
+        <Link href="/login" className="text-sm font-medium text-accent hover:underline">
           Quay lại đăng nhập
         </Link>
       </>

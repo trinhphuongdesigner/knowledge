@@ -13,9 +13,9 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center rounded-2xl border-2 border-dashed border-ink-300 bg-white/70 px-6 py-12 text-center">
+    <div className="flex flex-col items-center rounded-2xl border-2 border-dashed border-ink-300 bg-surface/70 px-6 py-12 text-center">
       {Icon && (
-        <div className="mb-4 flex size-14 -rotate-6 items-center justify-center rounded-2xl bg-sun-200 text-brand-700 shadow-[0_3px_0_var(--color-sun-400)]">
+        <div className="mb-4 flex size-14 -rotate-6 items-center justify-center rounded-2xl bg-sun-200 text-accent-strong shadow-[0_3px_0_var(--color-sun-400)]">
           <Icon className="size-6" aria-hidden />
         </div>
       )}

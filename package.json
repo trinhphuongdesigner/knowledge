@@ -14,6 +14,7 @@
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
     "auth:hash": "tsx scripts/hash-password.ts",
+    "push:keys": "tsx scripts/vapid-keys.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -32,6 +33,7 @@
     "remark-gfm": "^4.0.1",
     "server-only": "^0.0.1",
     "tailwind-merge": "^3.7.0",
+    "web-push": "^3.6.7",
     "xlsx": "^0.18.5",
     "zod": "^4.6.5"
   },
@@ -42,6 +44,7 @@
     "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/web-push": "^3.6.4",
     "babel-plugin-react-compiler": "1.0.0",
     "dotenv": "^18.0.5",
     "eslint": "^9",

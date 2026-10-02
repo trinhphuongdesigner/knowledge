@@ -1,6 +1,7 @@
 "use client";
 
 import { FileUp, Languages, Layers, Plus } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type ReactNode } from "react";
 import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
@@ -16,6 +17,9 @@ export function CardList({
   knownIds = [],
   info,
   actions,
+  starredIds = [],
+  hardIds = [],
+  readOnly = false,
 }: {
   setId: string;
   initialCards: CardDTO[];
@@ -26,6 +30,12 @@ export function CardList({
   info?: ReactNode;
   /** Server-rendered action links (study / import / edit) shown next to "Thêm thẻ". */
   actions?: ReactNode;
+  /** Card ids the user starred (W7-B implements behaviour). */
+  starredIds?: string[];
+  /** Card ids flagged as hard by SRS (W7-B implements behaviour). */
+  hardIds?: string[];
+  /** Hide edit controls for sets the user does not own (W7-B implements behaviour). */
+  readOnly?: boolean;
 }) {
   const router = useRouter();
   const [cards, setCards] = useState(initialCards);
@@ -34,6 +44,32 @@ export function CardList({
   const [enrichNote, setEnrichNote] = useState("");
   const known = useMemo(() => new Set(knownIds), [knownIds]);
   const knownCount = cards.filter((c) => known.has(c.id)).length;
+  const [starredSet, setStarredSet] = useState(() => new Set(starredIds));
+  const hard = useMemo(() => new Set(hardIds), [hardIds]);
+  const [filter, setFilter] = useState<"all" | "starred" | "hard">("all");
+  const [starError, setStarError] = useState("");
+  const hardCount = cards.filter((c) => hard.has(c.id)).length;
+  const starCount = cards.filter((c) => starredSet.has(c.id)).length;
+  const visible = cards.filter((c) =>
+    filter === "starred" ? starredSet.has(c.id) : filter === "hard" ? hard.has(c.id) : true,
+  );
+
+  function toggleStar(card: CardDTO) {
+    const next = !starredSet.has(card.id);
+    const apply = (on: boolean) =>
+      setStarredSet((prev) => {
+        const s = new Set(prev);
+        if (on) s.add(card.id);
+        else s.delete(card.id);
+        return s;
+      });
+    apply(next);
+    setStarError("");
+    api.starCard(card.id, next).catch(() => {
+      apply(!next);
+      setStarError("Không thể cập nhật đánh sao, hãy thử lại.");
+    });
+  }
 
   async function enrich() {
     setEnriching(true);
@@ -63,10 +99,12 @@ export function CardList({
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         {info}
         <div className="grid shrink-0 grid-cols-2 gap-2 sm:flex">
-          <Button onClick={() => setModal({})}>
-            <Plus className="size-4" aria-hidden />
-            Thêm thẻ
-          </Button>
+          {!readOnly && (
+            <Button onClick={() => setModal({})}>
+              <Plus className="size-4" aria-hidden />
+              Thêm thẻ
+            </Button>
+          )}
           {actions}
         </div>
       </div>
@@ -94,13 +132,44 @@ export function CardList({
               <span className="ml-2 text-sm font-medium text-green-700">· Đã thuộc {knownCount}</span>
             )}
           </h2>
-          {english && cards.length > 0 && (
+          {!readOnly && english && cards.length > 0 && (
             <Button variant="secondary" size="sm" onClick={() => void enrich()} loading={enriching}>
               <Languages className="size-4" aria-hidden />
               Tra phiên âm
             </Button>
           )}
         </div>
+        {(starCount > 0 || hardCount > 0) && (
+          <div role="group" aria-label="Lọc thẻ" className="-mt-1 flex flex-wrap gap-2">
+            {(
+              [
+                ["all", "Tất cả", cards.length],
+                ["starred", "Đánh sao", starCount],
+                ["hard", "Từ khó", hardCount],
+              ] as const
+            ).map(([key, label, n]) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setFilter(key)}
+                aria-pressed={filter === key}
+                className={cn(
+                  "inline-flex min-h-11 items-center rounded-full border px-4 text-sm font-medium",
+                  filter === key
+                    ? "border-brand-600 bg-brand-600 text-white"
+                    : "border-ink-200 bg-surface text-ink-700 hover:bg-ink-50",
+                )}
+              >
+                {label} ({n})
+              </button>
+            ))}
+          </div>
+        )}
+        {starError && (
+          <p role="alert" className="text-sm text-red-700">
+            {starError}
+          </p>
+        )}
         {enrichNote && (
           <p role="status" className="-mt-2 text-sm text-ink-600">
             {enrichNote}
@@ -110,8 +179,11 @@ export function CardList({
           <EmptyState
             icon={Layers}
             title="Nhóm thẻ chưa có thẻ nào"
-            description='Nhấn "Thêm thẻ" ở trên, hoặc import nhanh từ file CSV, Excel hoặc Markdown.'
+            description={
+              readOnly ? "Bộ thẻ này chưa có thẻ nào." : 'Nhấn "Thêm thẻ" ở trên, hoặc import nhanh từ file CSV, Excel hoặc Markdown.'
+            }
             action={
+              readOnly ? undefined : (
               <div className="flex flex-wrap justify-center gap-2">
                 <Button onClick={() => setModal({})}>
                   <Plus className="size-4" aria-hidden />
@@ -122,17 +194,22 @@ export function CardList({
                   Import thẻ
                 </ButtonLink>
               </div>
+              )
             }
           />
         ) : (
           <ul className="flex flex-col gap-3">
-            {cards.map((card, i) => (
+            {visible.map((card) => (
               <li key={card.id}>
                 <CardItem
                   card={card}
-                  index={i + 1}
+                  index={cards.indexOf(card) + 1}
                   english={english}
                   known={known.has(card.id)}
+                  starred={starredSet.has(card.id)}
+                  hard={hard.has(card.id)}
+                  readOnly={readOnly}
+                  onToggleStar={toggleStar}
                   onEdit={(c) => setModal({ card: c })}
                   onDeleted={(id) => {
                     setCards((prev) => prev.filter((c) => c.id !== id));

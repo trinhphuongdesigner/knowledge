@@ -36,6 +36,16 @@
   --color-sun-400: #ffd43b;
 
   --color-paper: #fdfbf6;
+  --color-surface: #ffffff;
+  /* Chữ/viền nhấn màu brand (sáng hơn ở chế độ tối để đạt tương phản AA) */
+  --color-accent: #0f7c66;
+  --color-accent-strong: #0c6454;
+  --color-code: #211d18;
+  --color-code-fg: #f4f0e7;
+  --color-scrim: rgb(20 17 13 / 0.4);
+  --color-danger: #dc2626;
+  --color-danger-hover: #ef4444;
+  --color-danger-deep: #991b1b;
 
   --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 
@@ -106,6 +116,175 @@
   }
 }
 
+:root {
+  color-scheme: light;
+  --index-card-front: #fffefb;
+  --index-card-rule: #f4a3a3;
+  --index-card-line: #e3eef0;
+  --index-card-back: #f4fbf8;
+  --index-card-back-rule: #74cfb7;
+  --index-card-back-line: #dcefe8;
+  --loader-page: #ffffff;
+  --loader-base: #f4f0e7;
+  --loader-label: #5c5447;
+}
+
+/* Chế độ tối: định nghĩa lại token màu. Hai khối giống nhau: chọn tay (data-theme="dark") và theo hệ thống. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #14110d;
+  --color-surface: #1f1c17;
+  --color-accent: #5cc9ae;
+  --color-accent-strong: #7ad8c0;
+  --color-code: #0b0907;
+  --color-code-fg: #e8e3d6;
+  --color-scrim: rgb(0 0 0 / 0.6);
+  --color-ink-50: #2a2620;
+  --color-ink-100: #302b24;
+  --color-ink-200: #3d372e;
+  --color-ink-300: #4f4839;
+  --color-ink-400: #8f8774;
+  --color-ink-500: #a8a08d;
+  --color-ink-600: #c0b9a8;
+  --color-ink-700: #d6d0c1;
+  --color-ink-800: #e8e3d6;
+  --color-ink-900: #f3efe6;
+  --color-ink-950: #fbf9f4;
+  --color-brand-50: #0d2b25;
+  --color-brand-100: #0f3a31;
+  --color-brand-200: #12493f;
+  --color-brand-300: #1a6b5a;
+  --color-brand-400: #2f9d84;
+  --color-sun-200: #5a4b12;
+  --color-sun-300: #7a6417;
+  --color-sun-400: #a88a1c;
+  --color-red-50: #2b1214;
+  --color-red-100: #3a1a1d;
+  --color-red-200: #5a262b;
+  --color-red-300: #7f343b;
+  --color-red-400: #b4474f;
+  --color-red-600: #f87171;
+  --color-red-700: #fca5a5;
+  --color-red-800: #fecaca;
+  --color-red-900: #fee2e2;
+  --color-green-50: #0f2a1b;
+  --color-green-100: #143a25;
+  --color-green-200: #1c4f33;
+  --color-green-300: #2a6d47;
+  --color-green-400: #3f9a66;
+  --color-green-600: #4ade80;
+  --color-green-700: #86efac;
+  --color-green-800: #bbf7d0;
+  --color-green-900: #dcfce7;
+  --color-amber-50: #2c2208;
+  --color-amber-100: #3b2d0a;
+  --color-amber-200: #58420d;
+  --color-amber-300: #7a5c10;
+  --color-amber-400: #b8860b;
+  --color-amber-600: #fbbf24;
+  --color-amber-700: #fcd34d;
+  --color-amber-800: #fde68a;
+  --color-amber-900: #fef3c7;
+  --color-blue-50: #101f35;
+  --color-blue-700: #93c5fd;
+  --color-purple-50: #241539;
+  --color-purple-700: #d8b4fe;
+  --color-rose-50: #2d141d;
+  --color-rose-700: #fda4af;
+  --color-slate-100: #25282e;
+  --color-slate-700: #cbd5e1;
+  --color-orange-100: #3a2210;
+  --color-orange-500: #fb923c;
+  --color-emerald-600: #34d399;
+  --index-card-front: #1f1c17;
+  --index-card-rule: #7f343b;
+  --index-card-line: #2c2924;
+  --index-card-back: #14231f;
+  --index-card-back-rule: #1f7a66;
+  --index-card-back-line: #1f332d;
+  --loader-page: #2a2620;
+  --loader-base: #1f1c17;
+  --loader-label: #c0b9a8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+    --color-paper: #14110d;
+    --color-surface: #1f1c17;
+    --color-accent: #5cc9ae;
+    --color-accent-strong: #7ad8c0;
+    --color-code: #0b0907;
+    --color-code-fg: #e8e3d6;
+    --color-scrim: rgb(0 0 0 / 0.6);
+    --color-ink-50: #2a2620;
+    --color-ink-100: #302b24;
+    --color-ink-200: #3d372e;
+    --color-ink-300: #4f4839;
+    --color-ink-400: #8f8774;
+    --color-ink-500: #a8a08d;
+    --color-ink-600: #c0b9a8;
+    --color-ink-700: #d6d0c1;
+    --color-ink-800: #e8e3d6;
+    --color-ink-900: #f3efe6;
+    --color-ink-950: #fbf9f4;
+    --color-brand-50: #0d2b25;
+    --color-brand-100: #0f3a31;
+    --color-brand-200: #12493f;
+    --color-brand-300: #1a6b5a;
+    --color-brand-400: #2f9d84;
+    --color-sun-200: #5a4b12;
+    --color-sun-300: #7a6417;
+    --color-sun-400: #a88a1c;
+    --color-red-50: #2b1214;
+    --color-red-100: #3a1a1d;
+    --color-red-200: #5a262b;
+    --color-red-300: #7f343b;
+    --color-red-400: #b4474f;
+    --color-red-600: #f87171;
+    --color-red-700: #fca5a5;
+    --color-red-800: #fecaca;
+    --color-red-900: #fee2e2;
+    --color-green-50: #0f2a1b;
+    --color-green-100: #143a25;
+    --color-green-200: #1c4f33;
+    --color-green-300: #2a6d47;
+    --color-green-400: #3f9a66;
+    --color-green-600: #4ade80;
+    --color-green-700: #86efac;
+    --color-green-800: #bbf7d0;
+    --color-green-900: #dcfce7;
+    --color-amber-50: #2c2208;
+    --color-amber-100: #3b2d0a;
+    --color-amber-200: #58420d;
+    --color-amber-300: #7a5c10;
+    --color-amber-400: #b8860b;
+    --color-amber-600: #fbbf24;
+    --color-amber-700: #fcd34d;
+    --color-amber-800: #fde68a;
+    --color-amber-900: #fef3c7;
+    --color-blue-50: #101f35;
+    --color-blue-700: #93c5fd;
+    --color-purple-50: #241539;
+    --color-purple-700: #d8b4fe;
+    --color-rose-50: #2d141d;
+    --color-rose-700: #fda4af;
+    --color-slate-100: #25282e;
+    --color-slate-700: #cbd5e1;
+    --color-orange-100: #3a2210;
+    --color-orange-500: #fb923c;
+    --color-emerald-600: #34d399;
+    --index-card-front: #1f1c17;
+    --index-card-rule: #7f343b;
+    --index-card-line: #2c2924;
+    --index-card-back: #14231f;
+    --index-card-back-rule: #1f7a66;
+    --index-card-back-line: #1f332d;
+    --loader-page: #2a2620;
+    --loader-base: #1f1c17;
+    --loader-label: #c0b9a8;
+  }
+}
+
 body {
   background-color: var(--color-paper);
   /* Giấy chấm lưới rất nhạt */
@@ -140,7 +319,7 @@ body {
   }
   ::selection {
     background: var(--color-sun-300);
-    color: var(--color-ink-950);
+    color: #14110d;
   }
 }
 
@@ -175,20 +354,20 @@ html {
 
 /* Mặt thẻ kiểu thẻ ghi nhớ giấy: một vạch đỏ trên cùng + dòng kẻ ngang mờ */
 .index-card {
-  background-color: #fffefb;
+  background-color: var(--index-card-front);
   background-image:
-    linear-gradient(to bottom, transparent 3.25rem, #f4a3a3 3.25rem, #f4a3a3 calc(3.25rem + 1.5px), transparent calc(3.25rem + 1.5px)),
-    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), #e3eef0 calc(2rem - 1px), #e3eef0 2rem);
+    linear-gradient(to bottom, transparent 3.25rem, var(--index-card-rule) 3.25rem, var(--index-card-rule) calc(3.25rem + 1.5px), transparent calc(3.25rem + 1.5px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--index-card-line) calc(2rem - 1px), var(--index-card-line) 2rem);
   background-position: 0 0, 0 3.25rem;
   background-repeat: no-repeat, repeat;
 }
 
 /* Mặt sau: nền bạc hà, vạch trên màu brand để phân biệt với mặt trước */
 .index-card-back {
-  background-color: #f4fbf8;
+  background-color: var(--index-card-back);
   background-image:
-    linear-gradient(to bottom, transparent 3.25rem, #74cfb7 3.25rem, #74cfb7 calc(3.25rem + 1.5px), transparent calc(3.25rem + 1.5px)),
-    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), #dcefe8 calc(2rem - 1px), #dcefe8 2rem);
+    linear-gradient(to bottom, transparent 3.25rem, var(--index-card-back-rule) 3.25rem, var(--index-card-back-rule) calc(3.25rem + 1.5px), transparent calc(3.25rem + 1.5px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--index-card-back-line) calc(2rem - 1px), var(--index-card-back-line) 2rem);
   background-position: 0 0, 0 3.25rem;
   background-repeat: no-repeat, repeat;
 }
@@ -264,7 +443,7 @@ html {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #f4f0e7;
+  background: var(--loader-base);
   border: 1px solid #74cfb7;
   border-radius: 0 6px 6px 0;
 }
@@ -274,7 +453,7 @@ html {
   right: 0.5px;
   top: 0.5px;
   bottom: 0.5px;
-  background: #ffffff;
+  background: var(--loader-page);
   border: 1px solid #74cfb7;
   border-radius: 0 6px 6px 0;
   transform-origin: left center;
@@ -322,7 +501,7 @@ html {
 .book-loader-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #5c5447;
+  color: var(--loader-label);
   letter-spacing: 0.2px;
   text-align: center;
 }

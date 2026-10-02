@@ -63,13 +63,13 @@ export function FileDropzone({
         className={cn(
           "flex min-h-40 cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-4 py-8 text-center transition-colors",
           "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
-          dragging ? "border-brand-600 bg-brand-50" : "border-ink-300 bg-white hover:border-brand-400 hover:bg-brand-50/50",
+          dragging ? "border-brand-600 bg-brand-50" : "border-ink-300 bg-surface hover:border-brand-400 hover:bg-brand-50/50",
           disabled && "cursor-not-allowed opacity-60",
         )}
       >
-        <UploadCloud className="size-9 text-brand-600" aria-hidden />
+        <UploadCloud className="size-9 text-accent" aria-hidden />
         <p className="text-sm font-medium text-ink-900">
-          Kéo thả file vào đây hoặc <span className="text-brand-600 underline">bấm để chọn file</span>
+          Kéo thả file vào đây hoặc <span className="text-accent underline">bấm để chọn file</span>
         </p>
         <p className="text-xs text-ink-600">Hỗ trợ .csv, .xlsx, .xls, .md, .markdown, .txt</p>
         <input
@@ -89,7 +89,7 @@ export function FileDropzone({
 
       {file && (
         <div className="flex items-center gap-3 rounded-xl border border-ink-200 bg-ink-50 px-3 py-2.5">
-          <FileSpreadsheet className="size-5 shrink-0 text-brand-600" aria-hidden />
+          <FileSpreadsheet className="size-5 shrink-0 text-accent" aria-hidden />
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium text-ink-900">{file.name}</p>
             <p className="text-xs text-ink-600">{formatSize(file.size)}</p>

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { PartyPopper, Plus } from "lucide-react";
 import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
-import { saveStudyProgress } from "@/lib/api";
+import { api, saveStudyProgress } from "@/lib/api";
+import type { Grade } from "@/lib/srs";
 import type { CardDTO } from "@/lib/validators";
 import { Flashcard } from "./Flashcard";
 import { StudyControls, StudyToolbar } from "./StudyControls";
@@ -18,12 +19,16 @@ type Props = {
   english?: boolean;
   /** Progress saved in the DB for this user + set (null when none). */
   initialProgress?: StoredStudyState | null;
+  /** false for filtered sessions (?only=): do not overwrite the set's saved progress. */
+  persist?: boolean;
 };
 
 const SWIPE_THRESHOLD = 60;
 const SAVE_DEBOUNCE_MS = 800;
+const REVIEW_DEBOUNCE_MS = 2000;
+const REVIEW_MAX_BATCH = 50;
 
-export function StudySession({ setId, title, cards, english = false, initialProgress = null }: Props) {
+export function StudySession({ setId, title, cards, english = false, initialProgress = null, persist = true }: Props) {
   const allIds = useMemo(() => cards.map((c) => c.id), [cards]);
   const byId = useMemo(() => new Map(cards.map((c) => [c.id, c])), [cards]);
   const position = useMemo(() => new Map(allIds.map((id, i) => [id, i])), [allIds]);
@@ -49,6 +54,7 @@ export function StudySession({ setId, title, cards, english = false, initialProg
   const flush = useCallback(
     (opts: { keepalive?: boolean; completed?: boolean } = {}) => {
       clearTimeout(timer.current);
+      if (!persist) return;
       if (!dirty.current && !opts.completed) return;
       dirty.current = false;
       saveStudyProgress(setId, { ...latest.current, completed: opts.completed }, { keepalive: opts.keepalive })
@@ -58,7 +64,43 @@ export function StudySession({ setId, title, cards, english = false, initialProg
           setSaveFailed(true);
         });
     },
+    [setId, persist],
+  );
+
+  // SRS: queue grade 2 (Đã thuộc) / 0 (Chưa thuộc), sent fire-and-forget in small batches.
+  const reviewQueue = useRef<{ cardId: string; grade: Grade }[]>([]);
+  const reviewTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const flushReviews = useCallback(
+    (opts: { keepalive?: boolean } = {}) => {
+      clearTimeout(reviewTimer.current);
+      while (reviewQueue.current.length > 0) {
+        const items = reviewQueue.current.splice(0, REVIEW_MAX_BATCH);
+        const body = { setId, mode: "FLASHCARD" as const, items };
+        const done = opts.keepalive
+          ? fetch("/api/reviews", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+              keepalive: true,
+            }).then((r) => {
+              if (!r.ok) throw new Error("review failed");
+            })
+          : api.recordReviews(body);
+        done.catch(() => {
+          reviewQueue.current.unshift(...items); // retry with the next flush
+        });
+      }
+    },
     [setId],
+  );
+  const queueReview = useCallback(
+    (cardId: string, grade: Grade) => {
+      reviewQueue.current.push({ cardId, grade });
+      clearTimeout(reviewTimer.current);
+      if (reviewQueue.current.length >= REVIEW_MAX_BATCH) flushReviews();
+      else reviewTimer.current = setTimeout(() => flushReviews(), REVIEW_DEBOUNCE_MS);
+    },
+    [flushReviews],
   );
 
   const total = order.length;
@@ -85,9 +127,16 @@ export function StudySession({ setId, title, cards, english = false, initialProg
     return () => clearTimeout(timer.current);
   }, [known, unknown, order, index, shuffle, swap, finished, cards.length, flush]);
 
+  useEffect(() => {
+    if (finished) flushReviews();
+  }, [finished, flushReviews]);
+
   // Flush pending changes when the page is hidden or closed.
   useEffect(() => {
-    const onHide = () => flush({ keepalive: true });
+    const onHide = () => {
+      flush({ keepalive: true });
+      flushReviews({ keepalive: true });
+    };
     const onVisibility = () => {
       if (document.visibilityState === "hidden") onHide();
     };
@@ -97,8 +146,9 @@ export function StudySession({ setId, title, cards, english = false, initialProg
       window.removeEventListener("pagehide", onHide);
       document.removeEventListener("visibilitychange", onVisibility);
       flush({ keepalive: true });
+      flushReviews({ keepalive: true });
     };
-  }, [flush]);
+  }, [flush, flushReviews]);
 
   const card = !finished ? byId.get(order[index]) : undefined;
 
@@ -128,9 +178,10 @@ export function StudySession({ setId, title, cards, english = false, initialProg
         n.delete(id);
         return n;
       });
+      queueReview(id, kind === "known" ? 2 : 0);
       goTo(index + 1);
     },
-    [order, index, goTo],
+    [order, index, goTo, queueReview],
   );
 
   function toggleShuffle() {
@@ -258,7 +309,7 @@ export function StudySession({ setId, title, cards, english = false, initialProg
           </Button>
           <Link
             href={`/sets/${setId}`}
-            className="inline-flex min-h-11 items-center justify-center rounded-xl text-sm font-medium text-brand-600 hover:underline"
+            className="inline-flex min-h-11 items-center justify-center rounded-xl text-sm font-medium text-accent hover:underline"
           >
             Quay lại nhóm thẻ
           </Link>
@@ -326,7 +377,7 @@ export function StudySession({ setId, title, cards, english = false, initialProg
         onKnown={() => mark("known")}
         onUnknown={() => mark("unknown")}
       />
-      <Modal open={confirmRestart} onClose={() => setConfirmRestart(false)} title="Bắt đầu lại từ đầu?">
+      <Modal open={confirmRestart} onClose={() => setConfirmRestart(false)} title="Bắt đầu lại từ đầu?" centered>
         <p className="text-sm text-ink-600">
           Tiến trình đã thuộc/chưa thuộc của nhóm thẻ này sẽ bị xoá.
         </p>

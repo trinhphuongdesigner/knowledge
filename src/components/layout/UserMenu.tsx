@@ -1,11 +1,24 @@
 "use client";
 
-import { CircleUserRound, FolderCog, LogOut, Settings } from "lucide-react";
+import { CircleUserRound, Info, FolderCog, Library, LogOut, RotateCw, Search, Settings, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { logout } from "@/app/(auth)/actions";
+import { ThemeToggle } from "./ThemeToggle";
 
-export function UserMenu({ name, email }: { name: string | null; email: string }) {
+/** Xoá cache trang/API riêng của người dùng trong service worker trước khi đăng xuất. */
+function clearUserCache() {
+  try {
+    navigator.serviceWorker?.controller?.postMessage({ type: "CLEAR_USER_CACHE" });
+  } catch {
+    // không có service worker
+  }
+}
+
+const ITEM =
+  "flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-sm font-medium text-ink-700 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600";
+
+export function UserMenu({ name, email, role }: { name: string | null; email: string; role?: "USER" | "ADMIN" }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -40,38 +53,57 @@ export function UserMenu({ name, email }: { name: string | null; email: string }
         aria-expanded={open}
         aria-controls={menuId}
         onClick={() => setOpen((o) => !o)}
-        className="flex size-11 items-center justify-center rounded-full text-ink-600 transition-colors hover:bg-ink-100 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+        className="flex size-11 items-center justify-center rounded-full text-ink-600 transition-colors hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
       >
         <CircleUserRound className="size-7" aria-hidden />
       </button>
       {open && (
         <div
           id={menuId}
-          className="absolute right-0 top-full z-50 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-xl border border-ink-200 bg-white p-2 shadow-lg"
+          className="absolute right-0 top-full z-50 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-xl border border-ink-200 bg-surface p-2 shadow-lg"
         >
           <div className="px-3 py-2">
             <p className="truncate text-sm font-semibold text-ink-900">{name || email}</p>
             {name && <p className="truncate text-sm text-ink-500">{email}</p>}
           </div>
           <div className="border-t border-ink-100 pt-1">
-            <Link
-              href="/categories"
-              onClick={() => setOpen(false)}
-              className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-sm font-medium text-ink-700 hover:bg-ink-100 hover:text-brand-600 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600"
-            >
+            <Link href="/review" onClick={() => setOpen(false)} className={ITEM}>
+              <RotateCw className="size-4" aria-hidden />
+              Ôn hôm nay
+            </Link>
+            <Link href="/library" onClick={() => setOpen(false)} className={ITEM}>
+              <Library className="size-4" aria-hidden />
+              Thư viện
+            </Link>
+            <Link href="/search" onClick={() => setOpen(false)} className={ITEM}>
+              <Search className="size-4" aria-hidden />
+              Tìm kiếm
+            </Link>
+            <Link href="/about" onClick={() => setOpen(false)} className={ITEM}>
+              <Info className="size-4" aria-hidden />
+              Giới thiệu
+            </Link>
+          </div>
+          <div className="border-t border-ink-100 pt-1">
+            <Link href="/categories" onClick={() => setOpen(false)} className={ITEM}>
               <FolderCog className="size-4" aria-hidden />
               Quản lý danh mục
             </Link>
-            <Link
-              href="/account"
-              onClick={() => setOpen(false)}
-              className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-sm font-medium text-ink-700 hover:bg-ink-100 hover:text-brand-600 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600"
-            >
+            <Link href="/account" onClick={() => setOpen(false)} className={ITEM}>
               <Settings className="size-4" aria-hidden />
               Quản lý tài khoản
             </Link>
+            {role === "ADMIN" && (
+              <Link href="/admin" onClick={() => setOpen(false)} className={ITEM}>
+                <ShieldCheck className="size-4" aria-hidden />
+                Quản trị
+              </Link>
+            )}
           </div>
-          <form action={logout}>
+          <div className="border-t border-ink-100 pt-1">
+            <ThemeToggle />
+          </div>
+          <form action={logout} onSubmit={clearUserCache}>
             <button
               type="submit"
               className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-sm font-medium text-ink-700 hover:bg-ink-100 hover:text-red-600 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600"

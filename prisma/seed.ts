@@ -1,6 +1,8 @@
 import "dotenv/config";
+import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { ADMIN_EMAIL } from "../src/lib/auth/admin";
 import { hashPassword, isPasswordHash } from "../src/lib/auth/password";
 import { PrismaClient, type Level } from "../src/generated/prisma/client";
 import { loadHandbook } from "./seed-data/handbook-loader";
@@ -41,8 +43,8 @@ async function main() {
   const email = process.env.ADMIN_EMAIL?.trim().toLowerCase();
   const hashEnv = process.env.ADMIN_PASSWORD_HASH?.trim();
   const password = process.env.ADMIN_PASSWORD;
-  if (!email) {
-    throw new Error("Seed cần ADMIN_EMAIL trong env. Ví dụ: ADMIN_EMAIL=admin@example.com ADMIN_PASSWORD=... npm run db:seed");
+  if (email !== ADMIN_EMAIL) {
+    throw new Error(`Seed cần ADMIN_EMAIL=${ADMIN_EMAIL} (tài khoản admin duy nhất). Ví dụ: ADMIN_EMAIL=${ADMIN_EMAIL} ADMIN_PASSWORD=... npm run db:seed`);
   }
   if (hashEnv && !isPasswordHash(hashEnv)) {
     throw new Error(
@@ -116,6 +118,11 @@ async function main() {
           categoryId: categoryIds.get(s.category)!,
           level: s.level ?? null,
           userId: admin.id,
+          // Bộ mẫu được xuất bản sẵn: hiện ở /library để mọi người lưu / sao chép.
+          visibility: "PUBLIC",
+          approved: true,
+          publishedAt: createdAt,
+          shareToken: randomBytes(16).toString("base64url"),
           createdAt,
           updatedAt: createdAt,
         },

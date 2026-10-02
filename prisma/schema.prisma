@@ -22,6 +22,30 @@ enum Level {
   ADVANCED
 }
 
+enum Visibility {
+  PRIVATE
+  LINK    // ai có link xem được
+  PUBLIC  // hiện ở thư viện khi approved
+}
+
+enum ReviewMode {
+  FLASHCARD
+  QUIZ
+  TYPING
+  MATCHING
+  LISTEN
+  CLOZE
+  REVIEW
+}
+
+enum NotificationType {
+  REVIEW_REMINDER
+  SET_APPROVED
+  SET_REJECTED
+  SET_SUBSCRIBED
+  SYSTEM
+}
+
 enum Role {
   USER
   ADMIN
@@ -37,6 +61,16 @@ model User {
   categories   Category[]
   sessions     Session[]
   progress     StudyProgress[]
+  dailyGoal      Int       @default(20) // số thẻ/ngày, 5–500
+  pushReminders  Boolean   @default(false)
+  lastReminderAt DateTime?
+  subscriptions  SetSubscription[]
+  cardReviews    CardReview[]
+  studyDays      StudyDay[]
+  resetTokens    PasswordResetToken[]
+  aiUsage        AiUsage[]
+  notifications  Notification[]
+  pushSubscriptions PushSubscription[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -89,10 +123,17 @@ model StudySet {            // "Chương trình học"
   progress    StudyProgress[]
   userId      String   @db.Uuid
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  visibility  Visibility @default(PRIVATE)
+  shareToken  String?    @unique // base64url ngẫu nhiên 22 ký tự, tạo khi bật LINK/PUBLIC
+  approved    Boolean    @default(false) // admin duyệt mới hiện ở /library
+  publishedAt DateTime?
+  subscribers SetSubscription[]
+  cardReviews CardReview[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@index([userId, createdAt])
+  @@index([visibility, approved, publishedAt])
 }
 
 model Card {                // Câu hỏi / trả lời
@@ -106,6 +147,7 @@ model Card {                // Câu hỏi / trả lời
   partOfSpeech String? // từ loại
   audioUrl    String?  // link audio phát âm
   position    Int      @default(0)
+  reviews     CardReview[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -129,4 +171,103 @@ model StudyProgress {       // Tiến trình lật thẻ của 1 user trên 1 nh
 
   @@id([userId, setId])
   @@index([userId, updatedAt])
+}
+
+model SetSubscription {     // "Thêm vào thư viện của tôi" = tham chiếu, không sao chép
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  setId     String   @db.Uuid
+  set       StudySet @relation(fields: [setId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([userId, setId])
+  @@index([setId])
+}
+
+model CardReview {          // Trạng thái SRS + sao của 1 user trên 1 thẻ (chỉ tạo khi ôn/đánh sao)
+  userId         String    @db.Uuid
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cardId         String    @db.Uuid
+  card           Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  setId          String    @db.Uuid
+  set            StudySet  @relation(fields: [setId], references: [id], onDelete: Cascade)
+  ease           Float     @default(2.5)
+  interval       Int       @default(0) // ngày
+  reps           Int       @default(0)
+  lapses         Int       @default(0)
+  due            DateTime  @default(now())
+  lastReviewedAt DateTime?
+  starred        Boolean   @default(false)
+
+  @@id([userId, cardId])
+  @@index([userId, due])
+  @@index([userId, setId])
+}
+
+model StudyDay {            // Tổng hợp theo ngày → thống kê, streak, mục tiêu
+  userId   String   @db.Uuid
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  day      DateTime @db.Date
+  reviewed Int      @default(0)
+  correct  Int      @default(0)
+  newCards Int      @default(0)
+
+  @@id([userId, day])
+}
+
+model PasswordResetToken {  // id = sha256(token) hex; TTL 30 phút; dùng 1 lần
+  id        String    @id
+  userId    String    @db.Uuid
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model AiUsage {
+  userId String   @db.Uuid
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  day    DateTime @db.Date
+  count  Int      @default(0)
+
+  @@id([userId, day])
+}
+
+model JobRun {
+  name      String   @id
+  lastRunAt DateTime
+  ok        Boolean
+  result    Json?
+}
+
+/// Thông báo trong ứng dụng (chuông ở header); đồng thời được đẩy tới các thiết bị đã đăng ký.
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String           @db.Uuid
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  title     String
+  body      String
+  href      String // đường dẫn tương đối trong app, vd "/review"
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+
+  @@index([userId, readAt, createdAt])
+}
+
+/// Một thiết bị/trình duyệt đã bật Web Push.
+model PushSubscription {
+  id         String    @id @default(cuid())
+  userId     String    @db.Uuid
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  endpoint   String    @unique
+  p256dh     String
+  auth       String
+  userAgent  String?
+  createdAt  DateTime  @default(now())
+  lastUsedAt DateTime?
+
+  @@index([userId])
 }

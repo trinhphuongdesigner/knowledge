@@ -100,17 +100,17 @@ export function MatchingGame({
 
   if (finished) {
     return (
-      <div className="rounded-xl border border-ink-200 bg-white p-6 text-center shadow-sm">
+      <div className="rounded-xl border border-ink-200 bg-surface p-6 text-center shadow-sm">
         <h2 className="text-xl font-bold text-ink-900">Hoàn thành!</h2>
         <p className="mt-1 text-sm text-ink-600">Bạn đã ghép đúng {cards.length} thẻ.</p>
         <dl className="mx-auto mt-5 grid max-w-xs grid-cols-2 gap-3">
           <div className="rounded-xl bg-brand-50 p-3">
             <dt className="text-xs text-ink-500">Thời gian</dt>
-            <dd className="text-2xl font-bold text-brand-700">{formatTime(seconds)}</dd>
+            <dd className="text-2xl font-bold text-accent-strong">{formatTime(seconds)}</dd>
           </div>
           <div className="rounded-xl bg-brand-50 p-3">
             <dt className="text-xs text-ink-500">Số lần sai</dt>
-            <dd className="text-2xl font-bold text-brand-700">{mistakes}</dd>
+            <dd className="text-2xl font-bold text-accent-strong">{mistakes}</dd>
           </div>
         </dl>
         <Button className="mt-6" onClick={restart}>
@@ -157,8 +157,8 @@ export function MatchingGame({
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
                   done && "border-green-300 bg-green-50 text-green-700 opacity-60",
                   isWrong && "animate-shake border-red-500 bg-red-100 text-red-700 ring-2 ring-red-400 motion-reduce:animate-none",
-                  isSel && "border-brand-600 bg-brand-50 text-brand-700 ring-2 ring-brand-600",
-                  !done && !isWrong && !isSel && "border-ink-200 bg-white text-ink-900 shadow-sm hover:bg-ink-50",
+                  isSel && "border-brand-600 bg-brand-50 text-accent-strong ring-2 ring-brand-600",
+                  !done && !isWrong && !isSel && "border-ink-200 bg-surface text-ink-900 shadow-sm hover:bg-ink-50",
                 )}
               >
                 <span className="line-clamp-4 break-words">{tile.text}</span>

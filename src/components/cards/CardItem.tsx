@@ -1,10 +1,11 @@
 "use client";
 
-import { Check, Pencil, Trash2 } from "lucide-react";
+import { Check, Flame, Pencil, Star, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button, Card, Markdown, Modal } from "@/components/ui";
 import { api } from "@/lib/api";
 import type { CardDTO } from "@/lib/validators";
+import { cn } from "@/lib/utils";
 import { PhoneticLine, SpeakButton } from "./SpeakButton";
 
 export function CardItem({
@@ -12,6 +13,10 @@ export function CardItem({
   index,
   english = false,
   known = false,
+  starred = false,
+  hard = false,
+  readOnly = false,
+  onToggleStar,
   onEdit,
   onDeleted,
 }: {
@@ -19,6 +24,11 @@ export function CardItem({
   index: number;
   english?: boolean;
   known?: boolean;
+  starred?: boolean;
+  hard?: boolean;
+  /** Hide edit/delete (sets the user does not own). Star stays available. */
+  readOnly?: boolean;
+  onToggleStar?: (card: CardDTO) => void;
   onEdit: (card: CardDTO) => void;
   onDeleted: (id: string) => void;
 }) {
@@ -49,7 +59,7 @@ export function CardItem({
         <span
           className={
             "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold " +
-            (known ? "bg-green-100 text-green-700" : "bg-brand-50 text-brand-700")
+            (known ? "bg-green-100 text-green-700" : "bg-brand-50 text-accent-strong")
           }
         >
           {known ? <Check className="size-4 animate-pop motion-reduce:animate-none" aria-hidden /> : index}
@@ -59,6 +69,12 @@ export function CardItem({
           <div className="min-w-0">
             <p className="mb-1 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-ink-400">
               Câu hỏi
+              {hard && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-[11px] normal-case tracking-normal text-red-700">
+                  <Flame className="size-3" aria-hidden />
+                  Từ khó
+                </span>
+              )}
               {known && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-[11px] normal-case tracking-normal text-green-700">
                   <Check className="size-3" aria-hidden />
@@ -83,6 +99,22 @@ export function CardItem({
           </div>
         </div>
         <div className="-mr-2 -mt-2 flex shrink-0 flex-col sm:flex-row">
+          {onToggleStar && (
+            <button
+              type="button"
+              onClick={() => onToggleStar(card)}
+              aria-pressed={starred}
+              aria-label={`${starred ? "Bỏ đánh sao" : "Đánh sao"} thẻ ${index}`}
+              className={cn(
+                "flex size-11 items-center justify-center rounded-xl hover:bg-ink-100",
+                starred ? "text-amber-500" : "text-ink-500 hover:text-ink-900",
+              )}
+            >
+              <Star className={cn("size-4", starred && "fill-current")} aria-hidden />
+            </button>
+          )}
+          {!readOnly && (
+            <>
           <button
             type="button"
             onClick={() => onEdit(card)}
@@ -99,9 +131,11 @@ export function CardItem({
           >
             <Trash2 className="size-4" aria-hidden />
           </button>
+            </>
+          )}
         </div>
       </div>
-      <Modal open={confirmOpen} onClose={() => !deleting && setConfirmOpen(false)} title="Xoá thẻ?">
+      <Modal open={confirmOpen} onClose={() => !deleting && setConfirmOpen(false)} title="Xoá thẻ?" centered>
         <p className="text-sm text-ink-600">Thẻ này sẽ bị xoá vĩnh viễn và không thể hoàn tác.</p>
         {deleteError && (
           <p role="alert" className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">

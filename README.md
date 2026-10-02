@@ -10,6 +10,18 @@
 - **Import** thẻ từ CSV, Excel (.xlsx/.xls), Markdown hoặc dán văn bản; xem trước, sửa/xoá từng dòng rồi mới lưu; chế độ *Thêm vào cuối* hoặc *Thay thế toàn bộ*.
 - **Học flashcard**: lật thẻ 3D, xáo trộn, đổi mặt hiển thị, đánh dấu Đã thuộc / Chưa thuộc, thanh tiến độ, màn hình kết thúc, học lại thẻ chưa thuộc. Tiến độ lưu trong `localStorage` theo từng nhóm thẻ.
 - **Phiên âm + phát âm (bộ Tiếng Anh)**: thẻ có thêm phiên âm IPA, từ loại và audio, hiển thị dạng `able (adjective) /ˈeɪbl/` kèm nút loa. Dữ liệu tra tự động từ [dictionaryapi.dev](https://dictionaryapi.dev) (miễn phí, không cần key) khi thêm thẻ, khi import, hoặc bấm **Tra phiên âm** ở trang nhóm thẻ; có nút **Tự tra** trong biểu mẫu thẻ. Không có audio thì dùng giọng đọc của trình duyệt (en-US).
+- **Ôn tập ngắt quãng (SRS)**: trang `/review` ("Ôn hôm nay") gom thẻ đến hạn từ mọi nhóm, chấm Lại / Khó / Được / Dễ (phím 1-4 sau khi lật thẻ). Thẻ mới mỗi ngày bị giới hạn theo mục tiêu ngày.
+- **Đánh sao / từ khó**: gắn sao thẻ quan trọng, tự đánh dấu thẻ hay sai để ôn riêng.
+- **Quiz đa chế độ**: Ghép từ – nghĩa, Điền từ, **Nghe** (bộ Tiếng Anh) và **Chỗ trống** (điền từ vào câu ví dụ); kết quả quiz cập nhật SRS.
+- **Thư viện + chia sẻ**: mỗi nhóm thẻ có chế độ Riêng tư / Chia sẻ bằng link / Công khai (Công khai cần admin duyệt, trang `/admin`). Đặt lại Riêng tư sẽ huỷ link và các lượt đăng ký. Người khác có thể "Khám phá thư viện" và đăng ký học bộ thẻ của bạn.
+- **Quota** theo user (số nhóm thẻ, số thẻ, số lượt đăng ký, lượt AI/ngày), cấu hình bằng `QUOTA_*`.
+- **Thống kê / streak / mục tiêu ngày**: heatmap, chuỗi ngày học liên tiếp, mục tiêu thẻ mỗi ngày (tab Thống kê ở `/account`) và **nhắc học bằng thông báo đẩy** hằng ngày qua cron.
+- **Tìm kiếm** toàn bộ thẻ của bạn tại `/search`.
+- **Xuất dữ liệu**: xuất nhóm thẻ ra CSV / XLSX; xuất toàn bộ dữ liệu tài khoản dạng JSON.
+- **Gợi ý AI** (ví dụ, nghĩa, câu cloze) bằng Anthropic API, tuỳ chọn.
+- **Dark mode + offline (PWA)**: giao diện sáng/tối (cookie `kn_theme`), service worker cache trang, hiện banner "Đang ngoại tuyến".
+- **Thông báo**: chuông ở header (huy hiệu chưa đọc, trang `/notifications`) + Web Push tới thiết bị đã bật (nhắc học, duyệt/từ chối bộ PUBLIC, có người lưu bộ của bạn). Bật push ở `/account` → Cài đặt học → "Thông báo trên thiết bị này" (iPhone cần thêm app vào Màn hình chính trước; chỉ hoạt động ở bản production vì cần service worker).
+- **Quên mật khẩu** qua thông báo đẩy tới thiết bị đã bật thông báo (link dùng một lần, hiệu lực 30 phút; vô hiệu mọi phiên cũ sau khi đổi).
 
 > **Lưu ý:** chỉ tính năng tra phiên âm cần internet (server gọi dictionaryapi.dev, timeout 5 giây). Khi mất mạng hoặc từ không có trong từ điển, thẻ vẫn được tạo/import bình thường — bạn có thể nhập phiên âm thủ công. Phần còn lại của ứng dụng chạy hoàn toàn offline.
 
@@ -39,7 +51,7 @@ cp .env.example .env
 # 3. Khởi động PostgreSQL (cổng 5433)
 npm run db:up
 
-# 4. Tạo bảng (áp dụng các migration: `init`, `add_categories`)
+# 4. Tạo bảng (áp dụng các migration: `init`, `add_categories`, `add_study_progress`, `learning_features`)
 npx prisma migrate deploy      # hoặc: npm run db:migrate (prisma migrate dev)
 
 # 5. Nạp dữ liệu mẫu (bộ từ vựng Tiếng Anh + bộ câu hỏi phỏng vấn Frontend)
@@ -232,9 +244,30 @@ Mọi endpoint yêu cầu đăng nhập (cookie `kn_session`) và chỉ thao tá
 | PATCH | `/api/cards/:id` | Một phần của dữ liệu thẻ | Thẻ đã cập nhật |
 | DELETE | `/api/cards/:id` | – | `{ ok: true }` |
 
+
+## Đợt 7: tính năng học tập (migration `learning_features`)
+
+Migration `prisma/migrations/20261002200000_learning_features` thêm bảng SRS (`CardReview`), `StudyDay`, đăng ký bộ thẻ (`SetSubscription`), `JobRun`, cột chia sẻ/duyệt của nhóm thẻ, mục tiêu ngày của user... Migration chỉ **thêm**, không reset dữ liệu. Triển khai lên Supabase (DB đang có dữ liệu):
+
+```bash
+DIRECT_URL="<Session pooler, cổng 5432>" DATABASE_URL="<cùng URL>" npx prisma migrate deploy
+```
+
+### Biến môi trường mới
+
+| Biến | Ý nghĩa |
+|---|---|
+| `CRON_SECRET` | Bí mật cho `/api/cron/*` (Vercel gửi `Authorization: Bearer ...`) |
+| `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | Web Push (VAPID). Tạo cặp key bằng `npm run push:keys`; `VAPID_SUBJECT` mặc định `mailto:admin@example.com`. Thiếu key thì không gửi push, thông báo trong app vẫn lưu |
+| `NEXT_PUBLIC_SITE_URL` | URL gốc của site, dùng trong link chia sẻ / đặt lại mật khẩu |
+| `ANTHROPIC_API_KEY`, `AI_MODEL` | Gợi ý AI (tuỳ chọn) |
+| `QUOTA_SETS_PER_USER`, `QUOTA_CARDS_PER_USER`, `QUOTA_CARDS_PER_SET`, `QUOTA_SUBSCRIPTIONS_PER_USER`, `QUOTA_AI_PER_DAY` | Giới hạn mỗi user (tuỳ chọn) |
+
+### Cron (vercel.json)
+
+- `/api/cron/cleanup`: 03:00 UTC hằng ngày, dọn dữ liệu cũ (gồm thông báo đã đọc > 30 ngày, mọi thông báo > 90 ngày).
+- `/api/cron/reminders`: 12:00 UTC hằng ngày, gửi thông báo nhắc học (cho user bật `pushReminders`).
+
 ## Hướng phát triển
 
-- Đăng nhập / tài khoản người dùng (hiện tiến độ học chỉ lưu trên trình duyệt)
-- Lặp lại ngắt quãng (spaced repetition)
-- Chế độ quiz (trắc nghiệm, điền từ)
 - Dockerfile cho ứng dụng để triển khai trọn gói cùng PostgreSQL

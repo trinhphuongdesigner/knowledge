@@ -35,7 +35,7 @@ export function InstallButton() {
         await promptEvent.userChoice;
         setPromptEvent(null);
       }}
-      className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+      className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
     >
       <Download className="size-5" aria-hidden />
       <span className="hidden sm:inline">Cài ứng dụng</span>

@@ -47,7 +47,7 @@ export function SetGroups({
           <details
             key={category.id}
             open
-            className="group rounded-3xl border border-ink-200 bg-white/80 shadow-[0_1px_2px_rgb(70_63_53/0.05)] backdrop-blur-sm"
+            className="group rounded-3xl border border-ink-200 bg-surface/80 shadow-[0_1px_2px_rgb(70_63_53/0.05)] backdrop-blur-sm"
           >
             <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 rounded-2xl px-4 py-3 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 [&::-webkit-details-marker]:hidden">
               <span className={`size-3.5 shrink-0 rounded-md rotate-12 ${colorClasses(category.color).dot}`} aria-hidden />

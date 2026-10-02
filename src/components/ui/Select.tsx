@@ -322,7 +322,7 @@ export function Select({
               bottom: pos.bottom,
               maxHeight: pos.maxHeight,
             }}
-            className="z-70 overflow-y-auto overscroll-contain rounded-xl border border-ink-200 bg-white p-1 shadow-lg"
+            className="z-70 overflow-y-auto overscroll-contain rounded-xl border border-ink-200 bg-surface p-1 shadow-lg"
           >
             {opts.map((o, i) => {
               const isSel = i === selectedIndex;
@@ -338,14 +338,14 @@ export function Select({
                   className={cn(
                     "flex min-h-11 cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm",
                     o.disabled && "cursor-not-allowed opacity-50",
-                    isSel ? "bg-brand-50 font-medium text-brand-700" : "text-ink-800",
+                    isSel ? "bg-brand-50 font-medium text-accent-strong" : "text-ink-800",
                     i === active && !isSel && "bg-brand-50/70",
                     i === active && isSel && "bg-brand-100",
                   )}
                 >
                   {dot(o.color)}
                   <span className="min-w-0 flex-1 break-words">{o.label}</span>
-                  {isSel && <Check className="size-4 shrink-0 text-brand-600" aria-hidden />}
+                  {isSel && <Check className="size-4 shrink-0 text-accent" aria-hidden />}
                 </li>
               );
             })}

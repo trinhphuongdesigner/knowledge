@@ -102,7 +102,7 @@ export function SetForm({
         />
         <Link
           href="/categories"
-          className="self-start text-sm font-medium text-brand-600 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+          className="self-start text-sm font-medium text-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
         >
           Quản lý danh mục
         </Link>

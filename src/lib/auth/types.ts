@@ -26,3 +26,12 @@ export type AccountFormState =
       values?: { name?: string; email?: string };
     }
   | undefined;
+
+export type ResetFormState =
+  | {
+      error?: string;
+      success?: string;
+      fieldErrors?: Partial<Record<"email" | "password" | "confirmPassword", string[]>>;
+      values?: { email?: string };
+    }
+  | undefined;

@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import { Be_Vietnam_Pro, Lexend } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { OfflineBanner } from "@/components/pwa/OfflineBanner";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 import "./globals.css";
 
@@ -43,16 +45,34 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0f7c66",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0f7c66" },
+    { media: "(prefers-color-scheme: dark)", color: "#14110d" },
+  ],
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+/** Chạy đồng bộ trước khi vẽ: áp theme đã lưu (localStorage, rồi cookie); "system" thì để CSS theo prefers-color-scheme. */
+const THEME_SCRIPT = `(function(){try{var d=document.documentElement,t=null;try{t=localStorage.getItem("knowledge:theme")}catch(e){}if(t!=="light"&&t!=="dark"&&t!=="system"){var m=document.cookie.match(/(?:^|; )kn_theme=([^;]*)/);t=m?decodeURIComponent(m[1]):"system"}var k=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(t==="light"||t==="dark")d.setAttribute("data-theme",t);else d.removeAttribute("data-theme");d.classList.toggle("dark",k);d.style.colorScheme=k?"dark":"light"}catch(e){}})()`;
+
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const saved = (await cookies()).get("kn_theme")?.value;
+  const theme = saved === "light" || saved === "dark" ? saved : undefined;
   return (
-    <html lang="vi" className={`${beVietnamPro.variable} ${lexend.variable} h-full antialiased`}>
+    <html
+      lang="vi"
+      data-theme={theme}
+      suppressHydrationWarning
+      className={`${beVietnamPro.variable} ${lexend.variable} h-full antialiased${theme === "dark" ? " dark" : ""}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="flex min-h-full flex-col font-sans text-ink-900">
+        <OfflineBanner />
         <Header />
         {children}
         <Footer />

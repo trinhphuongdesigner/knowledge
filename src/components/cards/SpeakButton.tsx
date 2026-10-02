@@ -54,7 +54,7 @@ export function SpeakButton({
       // Study cards flip on pointer/click; keep the press from reaching them (and the swipe handler).
       onPointerDown={(e) => e.stopPropagation()}
       className={cn(
-        "flex size-11 shrink-0 items-center justify-center rounded-xl text-brand-600 hover:bg-brand-50",
+        "flex size-11 shrink-0 items-center justify-center rounded-xl text-accent hover:bg-brand-50",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
         className,
       )}
@@ -79,7 +79,7 @@ export function PhoneticLine({
     <span className={cn("break-words text-sm text-ink-500", className)}>
       {partOfSpeech && <span className="italic">({partOfSpeech})</span>}
       {partOfSpeech && phonetic && " "}
-      {phonetic && <span className="font-medium text-brand-700">{phonetic}</span>}
+      {phonetic && <span className="font-medium text-accent-strong">{phonetic}</span>}
     </span>
   );
 }

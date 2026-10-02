@@ -85,7 +85,7 @@ function HistoryRow({ item }: { item: HistoryItem }) {
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <Link
             href={`/sets/${item.setId}`}
-            className="min-w-0 truncate font-semibold text-ink-900 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-brand-600"
+            className="min-w-0 truncate font-semibold text-ink-900 hover:text-accent focus-visible:outline-2 focus-visible:outline-brand-600"
           >
             {item.title}
           </Link>
@@ -93,7 +93,7 @@ function HistoryRow({ item }: { item: HistoryItem }) {
         </div>
         <div>
           <div className="mb-1 flex items-center justify-between text-xs text-ink-600">
-            <span className={cn("font-medium", done ? "text-emerald-600" : "text-brand-600")}>
+            <span className={cn("font-medium", done ? "text-emerald-600" : "text-accent")}>
               {done ? "Hoàn thành" : "Đang học"}
             </span>
             <span>

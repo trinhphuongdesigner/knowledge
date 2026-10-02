@@ -31,7 +31,7 @@ export function DeleteSetButton({ id, title }: { id: string; title: string }) {
         <Trash2 className="size-4" aria-hidden />
         Xoá nhóm thẻ
       </Button>
-      <Modal open={open} onClose={() => !loading && setOpen(false)} title="Xoá nhóm thẻ?">
+      <Modal open={open} onClose={() => !loading && setOpen(false)} title="Xoá nhóm thẻ?" centered>
         <p className="text-sm text-ink-600">
           Nhóm thẻ <strong className="break-words text-ink-900">{title}</strong> và toàn bộ thẻ bên trong sẽ bị xoá vĩnh
           viễn. Hành động này không thể hoàn tác.

@@ -1,7 +1,8 @@
 import { requireApiUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
-import { json, notFound, readJson, serverError, validationError } from "@/lib/http";
+import { checkQuota } from "@/lib/quota";
+import { badRequest, json, notFound, readJson, serverError, validationError } from "@/lib/http";
 import { bulkCardsSchema } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,13 @@ export async function POST(req: Request, { params }: Ctx) {
     if (!set) return notFound("Không tìm thấy nhóm thẻ");
 
     const { mode, cards } = parsed.data;
+    // "replace" xoá thẻ cũ nên chỉ tính phần tăng thêm (setId + phần tăng = tổng số thẻ sau khi lưu).
+    const existing = mode === "replace" ? await db.card.count({ where: { setId: id } }) : 0;
+    const added = mode === "replace" ? cards.length - existing : cards.length;
+    if (added > 0) {
+      const quotaError = await checkQuota(user, { cards: added, setId: id });
+      if (quotaError) return badRequest(quotaError);
+    }
     const created = await db.$transaction(async (tx) => {
       if (mode === "replace") await tx.card.deleteMany({ where: { setId: id } });
       const max = await tx.card.aggregate({ where: { setId: id }, _max: { position: true } });

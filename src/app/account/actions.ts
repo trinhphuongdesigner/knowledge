@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
+import { roleForEmail } from "@/lib/auth/admin";
 import { requireUser } from "@/lib/auth/dal";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { RATE_LIMIT_MESSAGE, checkLoginAllowed, getClientIp, recordLoginAttempt } from "@/lib/auth/rate-limit";
@@ -44,6 +45,7 @@ export async function updateProfile(_prev: AccountFormState, formData: FormData)
     const err = await checkCurrentPassword(user.email, currentPassword, record.passwordHash);
     if (err === WRONG_CURRENT) return { fieldErrors: { currentPassword: [err] }, values };
     if (err) return { error: err, values };
+    if (roleForEmail(email) === "ADMIN") return { fieldErrors: { email: [EMAIL_TAKEN] }, values };
     const taken = await db.user.findUnique({ where: { email }, select: { id: true } });
     if (taken) return { fieldErrors: { email: [EMAIL_TAKEN] }, values };
   }

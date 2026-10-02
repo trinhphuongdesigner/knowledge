@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { QuizSession } from "@/components/quiz/QuizSession";
 import { ButtonLink, EmptyState } from "@/components/ui";
+import { getReadableSet } from "@/lib/access";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { toCardDTO } from "@/lib/dto";
@@ -16,27 +17,29 @@ export default async function QuizPage({ params }: { params: Promise<{ id: strin
   const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
-  const set = await db.studySet.findFirst({
-    where: { id, userId: user.id },
-    include: { category: true, cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
+  const readable = await getReadableSet(user.id, id);
+  if (!readable) notFound();
+  const { set } = readable;
+  const cards = await db.card.findMany({
+    where: { setId: set.id },
+    orderBy: [{ position: "asc" }, { createdAt: "asc" }],
   });
-  if (!set) notFound();
   const progress = await db.studyProgress.findUnique({
     where: { userId_setId: { userId: user.id, setId: set.id } },
     select: { known: true },
   });
-  const cardIds = new Set(set.cards.map((c) => c.id));
+  const cardIds = new Set(cards.map((c) => c.id));
   const knownIds = (progress?.known ?? []).filter((cid) => cardIds.has(cid));
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
       <Link
         href={`/sets/${set.id}`}
-        className="mb-4 inline-flex min-h-11 max-w-full items-center text-sm font-medium text-brand-600 hover:underline"
+        className="mb-4 inline-flex min-h-11 max-w-full items-center text-sm font-medium text-accent hover:underline"
       >
         <span className="truncate">← {set.title}</span>
       </Link>
-      {set.cards.length < 2 ? (
+      {cards.length < 2 ? (
         <EmptyState
           icon={ListChecks}
           title="Cần ít nhất 2 thẻ để kiểm tra"
@@ -46,7 +49,7 @@ export default async function QuizPage({ params }: { params: Promise<{ id: strin
       ) : (
         <QuizSession
           setId={set.id}
-          cards={set.cards.map(toCardDTO)}
+          cards={cards.map(toCardDTO)}
           english={set.category.isEnglish}
           knownIds={knownIds}
         />

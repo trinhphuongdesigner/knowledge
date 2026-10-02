@@ -50,7 +50,7 @@ export function RegisterForm() {
       </Button>
       <p className="text-center text-sm text-ink-600">
         Đã có tài khoản?{" "}
-        <Link href="/login" className="font-medium text-brand-600 hover:underline">
+        <Link href="/login" className="font-medium text-accent hover:underline">
           Đăng nhập
         </Link>
       </p>

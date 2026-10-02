@@ -85,6 +85,12 @@ export type StudySetDTO = {
   category: CategoryRefDTO;
   level: Level | null;
   cardCount: number;
+  visibility: Visibility;
+  /** false khi đây là bộ của người khác (đã lưu từ thư viện / xem qua link) */
+  isOwner: boolean;
+  ownerName?: string | null;
+  /** chỉ có khi isOwner và đã bật chia sẻ */
+  shareToken?: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -182,3 +188,90 @@ export const quizResultInputSchema = z.object({
   failed: studyIds,
 });
 export type QuizResultInput = z.infer<typeof quizResultInputSchema>;
+
+// ── Học hiệu quả / thư viện / tiện ích (đợt 7) ────────────────────────────
+export const VISIBILITIES = ["PRIVATE", "LINK", "PUBLIC"] as const;
+export type Visibility = (typeof VISIBILITIES)[number];
+
+export const REVIEW_MODES = ["FLASHCARD", "QUIZ", "TYPING", "MATCHING", "LISTEN", "CLOZE", "REVIEW"] as const;
+export type ReviewModeValue = (typeof REVIEW_MODES)[number];
+
+export const reviewInputSchema = z.object({
+  setId: z.string().uuid(),
+  mode: z.enum(REVIEW_MODES),
+  items: z
+    .array(
+      z.object({
+        cardId: z.string().uuid(),
+        grade: z.number().int().min(0).max(3),
+      }),
+    )
+    .min(1)
+    .max(500),
+});
+export type ReviewInput = z.infer<typeof reviewInputSchema>;
+
+export const starInputSchema = z.object({ starred: z.boolean() });
+export const visibilityInputSchema = z.object({ visibility: z.enum(VISIBILITIES) });
+
+export const DAILY_GOAL_MIN = 5;
+export const DAILY_GOAL_MAX = 500;
+export const studySettingsSchema = z.object({
+  dailyGoal: z.number().int().min(DAILY_GOAL_MIN, "Mục tiêu tối thiểu 5 thẻ").max(DAILY_GOAL_MAX, "Mục tiêu tối đa 500 thẻ"),
+  pushReminders: z.boolean(),
+});
+export type StudySettingsInput = z.infer<typeof studySettingsSchema>;
+
+export const forgotPasswordSchema = z.object({ email: emailField });
+export const resetPasswordSchema = z
+  .object({
+    token: z.string().min(1, "Liên kết không hợp lệ").max(200),
+    password: z.string().min(8, "Mật khẩu tối thiểu 8 ký tự").max(128, "Mật khẩu tối đa 128 ký tự"),
+    confirmPassword: z.string(),
+  })
+  .refine((v) => v.password === v.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Mật khẩu nhập lại không khớp",
+  });
+
+export const aiSuggestInputSchema = z.object({
+  term: z.string().trim().min(1).max(200),
+  english: z.boolean(),
+});
+export type AiSuggestInput = z.infer<typeof aiSuggestInputSchema>;
+
+export const searchQuerySchema = z.object({ q: z.string().trim().min(1).max(100) });
+
+export type ReviewStateDTO = { cardId: string; due: string; interval: number; starred: boolean; hard: boolean };
+export type DueSummaryDTO = { dueCount: number; newCount: number; goal: number; doneToday: number };
+export type StudyStatsDTO = {
+  streak: number;
+  longestStreak: number;
+  /** 90 ngày gần nhất */
+  days: { day: string; reviewed: number; correct: number }[];
+  totalReviewed: number;
+  /** 0..1 */
+  accuracy: number;
+};
+export type SearchResultDTO = { cardId: string; setId: string; setTitle: string; question: string; answer: string };
+export type AiSuggestionDTO = { answer: string; explanation: string; partOfSpeech: string; phonetic?: string };
+export type PublicSetDTO = StudySetDTO & { ownerName: string | null; subscriberCount: number };
+
+/** PushSubscription.toJSON() từ trình duyệt. */
+export const pushSubscribeSchema = z.object({
+  endpoint: z.string().url().max(2048).refine((u) => u.startsWith("https://"), "Endpoint phải dùng https"),
+  keys: z.object({ p256dh: z.string().min(1).max(512), auth: z.string().min(1).max(512) }),
+});
+export type PushSubscribeInput = z.infer<typeof pushSubscribeSchema>;
+export const pushUnsubscribeSchema = z.object({ endpoint: z.string().min(1).max(2048) });
+
+export type NotificationDTO = {
+  id: string;
+  type: "REVIEW_REMINDER" | "SET_APPROVED" | "SET_REJECTED" | "SET_SUBSCRIBED" | "SYSTEM";
+  title: string;
+  body: string;
+  href: string;
+  read: boolean;
+  createdAt: string;
+};
+export type NotificationsPageDTO = { items: NotificationDTO[]; nextCursor: string | null; unreadCount: number };

@@ -35,8 +35,14 @@ export function SetCard({
             {set.cardCount} thẻ
           </span>
         </div>
-        <h2 className="line-clamp-2 break-words text-base font-semibold text-ink-900 group-hover:text-brand-700">{set.title}</h2>
+        <h2 className="line-clamp-2 break-words text-base font-semibold text-ink-900 group-hover:text-accent-strong">{set.title}</h2>
         {set.description && <p className="line-clamp-3 break-words text-sm text-ink-600">{set.description}</p>}
+        {!set.isOwner && (
+          <p className="mt-auto flex items-center gap-1.5 text-xs text-ink-500">
+            <span className="rounded-full bg-ink-100 px-2 py-0.5 font-medium text-ink-600">Chỉ đọc</span>
+            Của {set.ownerName ?? "người dùng khác"}
+          </p>
+        )}
       </Card>
     </Link>
   );

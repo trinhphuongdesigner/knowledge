@@ -17,7 +17,7 @@ const components: Components = {
   strong: ({ node: _n, ...props }) => <strong className="font-semibold" {...props} />,
   em: ({ node: _n, ...props }) => <em className="italic" {...props} />,
   a: ({ node: _n, ...props }) => (
-    <a className="text-brand-600 underline" target="_blank" rel="noopener noreferrer" {...props} />
+    <a className="text-accent underline" target="_blank" rel="noopener noreferrer" {...props} />
   ),
   h1: ({ node: _n, ...props }) => <p className="my-1.5 text-base font-bold first:mt-0" {...props} />,
   h2: ({ node: _n, ...props }) => <p className="my-1.5 text-base font-bold first:mt-0" {...props} />,
@@ -31,7 +31,7 @@ const components: Components = {
   hr: () => <hr className="my-3 border-ink-200" />,
   pre: ({ node: _n, ...props }) => (
     <pre
-      className="my-2 max-w-full overflow-x-auto rounded-lg bg-ink-900 p-3 text-left text-sm leading-relaxed text-ink-100 [&_code]:whitespace-pre [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit"
+      className="my-2 max-w-full overflow-x-auto rounded-lg bg-code p-3 text-left text-sm leading-relaxed text-code-fg [&_code]:whitespace-pre [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit"
       {...props}
     />
   ),
