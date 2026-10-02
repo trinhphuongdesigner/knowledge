@@ -1,24 +1,33 @@
 import { BookOpen, CircleUserRound } from "lucide-react";
 import Link from "next/link";
+import { getCurrentUser } from "@/lib/auth/dal";
 import { Container } from "./Container";
+import { HideOnAuthRoutes } from "./HideOnAuthRoutes";
+import { UserMenu } from "./UserMenu";
 
-export function Header() {
+export async function Header() {
+  const user = await getCurrentUser();
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between gap-2">
-        <Link href="/" className="flex min-h-11 items-center gap-2 text-lg font-bold text-blue-600">
-          <BookOpen className="size-6" aria-hidden />
-          Knowledge
-        </Link>
-        <button
-          type="button"
-          aria-label="Tài khoản"
-          title="Tài khoản — sắp ra mắt"
-          className="flex size-11 items-center justify-center rounded-full text-slate-600 transition-colors hover:bg-slate-100 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-        >
-          <CircleUserRound className="size-7" aria-hidden />
-        </button>
-      </Container>
-    </header>
+    <HideOnAuthRoutes>
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+        <Container className="flex h-16 items-center justify-between gap-2">
+          <Link href="/" className="flex min-h-11 items-center gap-2 text-lg font-bold text-blue-600">
+            <BookOpen className="size-6" aria-hidden />
+            Knowledge
+          </Link>
+          {user ? (
+            <UserMenu name={user.name} email={user.email} />
+          ) : (
+            <Link
+              href="/login"
+              className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            >
+              <CircleUserRound className="size-5" aria-hidden />
+              Đăng nhập
+            </Link>
+          )}
+        </Container>
+      </header>
+    </HideOnAuthRoutes>
   );
 }

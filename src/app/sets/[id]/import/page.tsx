@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ImportWizard } from "@/components/import/ImportWizard";
 import { Container } from "@/components/layout/Container";
+import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 
@@ -11,9 +12,10 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Import thẻ — Knowledge" };
 
 export default async function ImportPage({ params }: PageProps<"/sets/[id]/import">) {
+  const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
-  const set = await db.studySet.findUnique({ where: { id }, select: { id: true, title: true, category: true } });
+  const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true, title: true, category: true } });
   if (!set) notFound();
 
   return (

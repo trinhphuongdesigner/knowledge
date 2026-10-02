@@ -1,3 +1,4 @@
+import { requireApiUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { json, notFound, readJson, serverError, validationError } from "@/lib/http";
@@ -9,12 +10,14 @@ type Ctx = { params: Promise<{ id: string }> };
 
 export async function POST(req: Request, { params }: Ctx) {
   try {
+    const user = await requireApiUser(req);
+    if (user instanceof Response) return user;
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const parsed = bulkCardsSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
 
-    const set = await db.studySet.findUnique({ where: { id }, select: { id: true } });
+    const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
     if (!set) return notFound("Không tìm thấy bộ học");
 
     const { mode, cards } = parsed.data;

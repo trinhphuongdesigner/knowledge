@@ -318,3 +318,107 @@ Phân công: V1 = Life & Work 1–7 · V2 = Life & Work 8–10 + Câu hỏi HR 1
 - [x] V3 IT English 1–7
 - [x] V4 IT English 8–13 ✅ (V5: khử 24 câu trùng; 26 bộ / 875 thẻ)
 - [x] W3-QA ✅ (lint/tsc/37 test/build OK; E2E 1280 + 375 OK; DB 36 bộ / 994 thẻ, id UUID v7)
+
+## 11. Đợt 4 — Đăng nhập & dữ liệu theo user
+
+Quyết định của user: **email + mật khẩu tự xây** (không thư viện auth, không dịch vụ ngoài); **36 bộ seed thuộc về 1 tài khoản admin**, user khác bắt đầu trống. Mọi bộ học/thẻ thuộc về đúng 1 user; user chỉ thấy/sửa dữ liệu của mình.
+
+Tài liệu Next 16 bắt buộc đọc: `node_modules/next/dist/docs/01-app/02-guides/authentication.md` (Database Sessions, DAL, Proxy), `01-app/01-getting-started/16-proxy.md` (Next 16 dùng **`proxy.ts`**, không phải middleware.ts), `02-guides/data-security.md`.
+
+### 11.1 Data model (thay migration bằng **một `init` mới**, như đợt 3)
+```prisma
+enum Role { USER ADMIN }
+model User {
+  id           String   @id @default(uuid(7)) @db.Uuid
+  email        String   @unique          // luôn lưu lowercase + trim
+  name         String?
+  passwordHash String                    // "scrypt$N$r$p$saltB64$hashB64"
+  role         Role     @default(USER)
+  sets         StudySet[]
+  sessions     Session[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+model Session {
+  id        String   @id                 // sha256(token) hex — KHÔNG lưu token thô
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  userAgent String?
+  @@index([userId])
+}
+model LoginAttempt {                     // rate limit dùng DB (serverless nhiều instance)
+  id        String   @id @default(uuid(7)) @db.Uuid
+  email     String
+  ip        String?
+  success   Boolean
+  createdAt DateTime @default(now())
+  @@index([email, createdAt])
+  @@index([ip, createdAt])
+}
+// StudySet thêm:
+  userId String @db.Uuid
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
+```
+
+### 11.2 Bảo mật (bắt buộc)
+- Mật khẩu: `node:crypto` **scrypt** (N=2^15, r=8, p=1, keylen 64, `maxmem` đủ lớn), salt 16 byte, so sánh `timingSafeEqual`. Độ dài 8–128 ký tự. Email không tồn tại vẫn chạy verify với hash giả (chống dò email theo thời gian). Lỗi chung: "Email hoặc mật khẩu không đúng".
+- Session: token 32 byte random (base64url) trong cookie **`kn_session`**: `httpOnly`, `sameSite: "lax"`, `secure` khi production, `path: "/"`, 30 ngày. DB lưu `sha256(token)`. Gia hạn trượt khi còn < 15 ngày. Logout xoá session trong DB + cookie. Đăng nhập tạo session mới (không tái sử dụng).
+- Rate limit đăng nhập: thất bại ≥ 5 lần / 15 phút cho cùng email, hoặc ≥ 20 lần / 15 phút cho cùng IP (`x-forwarded-for` phần đầu, rồi `x-real-ip`) → từ chối "Thử lại sau ít phút". Đăng ký: ≥ 5 lần / giờ / IP. Dọn bản ghi > 1 ngày tùy dịp (khi ghi).
+- Đăng ký bật mặc định; `ALLOW_REGISTRATION="false"` tắt.
+- `?next=` sau login chỉ nhận đường dẫn nội bộ: bắt đầu bằng `/`, không bắt đầu bằng `//` hoặc `/\`; sai → `/`.
+- Route Handler ghi (POST/PATCH/PUT/DELETE): kiểm tra header `Origin` (nếu có) trùng `Host` → không trùng trả 403 (CSRF). Server Actions đã được Next kiểm tra sẵn.
+- Không thuộc user → **404** (không 403, tránh lộ tồn tại). Chưa đăng nhập ở API → **401** `{ error: "Chưa đăng nhập" }`.
+- `/api/dictionary` cũng yêu cầu đăng nhập.
+- `next.config.ts` headers cho mọi route: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`.
+- Không bao giờ trả `passwordHash`/session id ra client; DTO user chỉ `{ id, email, name, role }`.
+
+### 11.3 Hợp đồng chung (A và B code song song theo đây)
+- `src/lib/auth/dal.ts` (`import "server-only"`):
+  - `type SessionUser = { id: string; email: string; name: string | null; role: "USER" | "ADMIN" }`
+  - `getCurrentUser(): Promise<SessionUser | null>` (bọc `cache` của React)
+  - `requireUser(): Promise<SessionUser>`: chưa đăng nhập → `redirect("/login")`
+  - `requireApiUser(req: Request): Promise<SessionUser | Response>`: trả `Response` 401/403 (CSRF) để handler `return` ngay.
+- `src/app/(auth)/actions.ts` (`"use server"`):
+  - `type AuthFormState = { error?: string; fieldErrors?: Partial<Record<"email" | "password" | "name" | "confirmPassword", string[]>>; values?: { email?: string; name?: string } } | undefined`
+  - `login(prev: AuthFormState, formData: FormData): Promise<AuthFormState>`: fields `email`, `password`, `next` (hidden). Thành công → `redirect(next an toàn)`.
+  - `register(prev, formData)`: fields `name` (tuỳ chọn), `email`, `password`, `confirmPassword`. Thành công → tạo session + `redirect("/")`.
+  - `logout(): Promise<void>` → xoá session, `redirect("/login")`.
+  - Type `AuthFormState` export từ `src/lib/auth/types.ts` (file không "use server") để client import được.
+- `proxy.ts` (gốc project): kiểm tra **lạc quan** chỉ theo sự có mặt của cookie `kn_session`: không có cookie + trang cần login → redirect `/login?next=<path>`; có cookie + `/login` hoặc `/register` → redirect `/`; `/api/*` không cookie → 401 JSON. Bỏ qua `_next`, file tĩnh, `icon.svg`, `apple-icon.png`, `templates/`. Kiểm tra thật nằm ở DAL.
+
+### 11.4 Seed
+- Cần `ADMIN_EMAIL` và `ADMIN_PASSWORD` (≥ 8 ký tự) trong env; thiếu → seed báo lỗi rõ và dừng. `ADMIN_NAME` tuỳ chọn (mặc định "Admin").
+- Upsert admin (role ADMIN, cập nhật hash mật khẩu theo env), **chỉ xoá bộ học của admin** rồi tạo lại 36 bộ / 994 thẻ gán `userId` admin. Không động tới user khác.
+
+### 11.5 UI
+- Route group `src/app/(auth)/` với `layout.tsx` riêng: không Header app, card trắng giữa màn hình trên nền xanh nhạt, logo BookOpen "Knowledge". Trang `login/page.tsx`, `register/page.tsx`. Form dùng `useActionState`, ô có `autoComplete` đúng (`email`, `current-password`, `new-password`), nút có trạng thái pending (Spinner trong Button như cũ), hiện lỗi chung + lỗi từng ô, nút hiện/ẩn mật khẩu, link qua lại Đăng nhập ↔ Đăng ký. Trang register khi `ALLOW_REGISTRATION=false` hiện thông báo đã tắt đăng ký.
+- Header: nút user icon mở **menu nhỏ** (popover, đóng bằng Esc/click ngoài) hiện tên/email + nút "Đăng xuất" (form gọi `logout`). Header là Server Component lấy `getCurrentUser()`; phần menu là client component nhỏ.
+- Mọi trang cũ (`/`, `/sets/[id]`, edit, import, study) gọi `requireUser()` và lọc theo `userId`.
+
+### 11.6 Phân công (file ownership)
+- **W4-A (backend)**: `prisma/schema.prisma`, `prisma/migrations/*`, `prisma/seed.ts` (+ loader nếu cần), `src/lib/auth/*` (password, session, dal, rate-limit, redirect, types), `src/app/(auth)/actions.ts`, `proxy.ts`, `next.config.ts`, mọi `src/app/api/**`, phần lấy dữ liệu trong `src/app/page.tsx` và `src/app/sets/[id]/**/page.tsx` (chỉ thêm `requireUser` + lọc `userId`, không đổi JSX), `src/lib/validators.ts` (schema login/register), `.env.example`, README, test vitest `src/lib/auth/__tests__/*` (hash/verify, safe next, token hash, rate-limit logic thuần).
+- **W4-B (UI)**: `src/app/(auth)/layout.tsx`, `src/app/(auth)/login/page.tsx`, `src/app/(auth)/register/page.tsx`, `src/components/auth/*`, `src/components/layout/Header.tsx` + `UserMenu.tsx`. Import hợp đồng 11.3; nếu file của A chưa có thì tạo stub tạm **trong scratchpad của mình**, không ghi đè file của A.
+- **DB khi phát triển**: `.env` đang trỏ **Supabase**. Agent **không được** chạm Supabase: mọi lệnh prisma/seed/dev đặt env ghi đè ở đầu lệnh, ví dụ `DATABASE_URL="postgresql://knowledge:knowledge@localhost:5433/knowledge" DIRECT_URL="postgresql://knowledge:knowledge@localhost:5433/knowledge" npx prisma ...` (dotenv không ghi đè env đã có). Không sửa `.env`. Orchestrator tự reset + seed Supabase cuối đợt.
+- Không commit, không sửa PLAN.md.
+
+### Tiến độ đợt 4
+- [x] W4-A backend/auth/seed ✅ (migration 20261002024207_init, proxy ở src/proxy.ts, 89 test, build OK)
+- [x] W4-B UI login/register/header ✅
+- [x] W4-QA ✅ (E2E admin + user B chéo 404, rate limit, safeNext; sửa cookie trượt, vòng lặp redirect cookie hết hạn)
+- [ ] Supabase: reset init mới + seed admin
+
+## 12. Đợt 5 — Quản lý tài khoản & mật khẩu admin đã hash
+
+- **Seed**: nhận `ADMIN_PASSWORD_HASH` (chuỗi scrypt `scrypt$N$r$p$salt$hash`, kiểm tra định dạng) — ưu tiên hơn `ADMIN_PASSWORD`. Script `npm run auth:hash` đọc mật khẩu từ stdin (không echo khi là TTY; đọc pipe khi không phải TTY), in ra hash. Trong `.env` đặt trong nháy đơn: `ADMIN_PASSWORD_HASH='scrypt$...'`. Prisma CLI dùng dotenv (không expand `$`).
+- **Menu avatar** (UserMenu): thêm mục "Quản lý tài khoản" → `/account`, trên nút "Đăng xuất".
+- **Trang `/account`** (requireUser), 2 tab qua `?tab=profile|password` (link, aria-current, mặc định profile):
+  - *Thông tin*: sửa tên (tuỳ chọn, ≤ 80) và email. Đổi email cần nhập mật khẩu hiện tại; email lowercase + trim, trùng → lỗi "Email này đã được đăng ký".
+  - *Mật khẩu*: mật khẩu hiện tại, mật khẩu mới (8–128, khác mật khẩu cũ), xác nhận. Sai mật khẩu hiện tại tính vào rate limit (dùng lại `rate-limit.ts` theo email). Thành công: hash mới, **xoá mọi session khác** của user (giữ session hiện tại), thông báo thành công.
+- Server Actions trong `src/app/account/actions.ts` (`useActionState`), schema zod trong `src/lib/validators.ts`, test vitest cho schema mới. Không trả passwordHash ra client.
+
+### Tiến độ đợt 5
+- [ ] W5 account + seed hash
+- [ ] Supabase: reset init mới + seed admin (hash)

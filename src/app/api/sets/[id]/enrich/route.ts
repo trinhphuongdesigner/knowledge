@@ -1,3 +1,4 @@
+import { requireApiUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { lookupWordDetailed } from "@/lib/dictionary";
@@ -12,11 +13,13 @@ const BATCH = 50;
 const CONCURRENCY = 5;
 
 /** Fill phonetic / partOfSpeech / audioUrl for up to 50 cards of an ENGLISH set that have none yet. */
-export async function POST(_req: Request, { params }: Ctx) {
+export async function POST(req: Request, { params }: Ctx) {
   try {
+    const user = await requireApiUser(req);
+    if (user instanceof Response) return user;
     const { id } = await params;
     if (!isUuid(id)) return notFound();
-    const set = await db.studySet.findUnique({ where: { id }, select: { id: true, category: true } });
+    const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true, category: true } });
     if (!set) return notFound("Không tìm thấy bộ học");
     if (set.category !== "ENGLISH") return badRequest("Chỉ hỗ trợ tra phiên âm cho bộ Tiếng Anh");
 

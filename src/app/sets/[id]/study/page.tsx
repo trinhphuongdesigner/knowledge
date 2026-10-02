@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { toCardDTO } from "@/lib/dto";
@@ -10,10 +11,11 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Học thẻ — Knowledge" };
 
 export default async function StudyPage({ params }: { params: Promise<{ id: string }> }) {
+  const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
-  const set = await db.studySet.findUnique({
-    where: { id },
+  const set = await db.studySet.findFirst({
+    where: { id, userId: user.id },
     include: { cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
   });
   if (!set) notFound();

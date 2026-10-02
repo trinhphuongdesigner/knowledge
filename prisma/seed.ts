@@ -1,6 +1,7 @@
 import "dotenv/config";
 import path from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { hashPassword, isPasswordHash } from "../src/lib/auth/password";
 import { PrismaClient, type Category, type Level } from "../src/generated/prisma/client";
 import { loadHandbook } from "./seed-data/handbook-loader";
 import { loadVocabFiles } from "./seed-data/vocab-loader";
@@ -29,6 +30,23 @@ type SeedSet = {
 const DATA = path.join(__dirname, "seed-data");
 
 async function main() {
+  const email = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  const hashEnv = process.env.ADMIN_PASSWORD_HASH?.trim();
+  const password = process.env.ADMIN_PASSWORD;
+  if (!email) {
+    throw new Error("Seed cần ADMIN_EMAIL trong env. Ví dụ: ADMIN_EMAIL=admin@example.com ADMIN_PASSWORD=... npm run db:seed");
+  }
+  if (hashEnv && !isPasswordHash(hashEnv)) {
+    throw new Error(
+      "ADMIN_PASSWORD_HASH sai định dạng (cần scrypt$N$r$p$salt$hash). Tạo bằng `npm run auth:hash` và đặt trong nháy đơn '...' trong .env.",
+    );
+  }
+  if (!hashEnv && (!password || password.length < 8)) {
+    throw new Error(
+      "Seed cần ADMIN_PASSWORD_HASH (ưu tiên) hoặc ADMIN_PASSWORD (>= 8 ký tự) trong env. Tạo hash: `npm run auth:hash`.",
+    );
+  }
+  const name = process.env.ADMIN_NAME?.trim() || "Admin";
   const vocab = loadVocabFiles(path.join(DATA, "vocab"));
   const handbook = loadHandbook(path.join(DATA, "frontend-handbook.md"));
 
@@ -54,9 +72,17 @@ async function main() {
     })),
   ];
 
-  console.log("Wiping existing data...");
-  await db.card.deleteMany();
-  await db.studySet.deleteMany();
+  const passwordHash = hashEnv ?? (await hashPassword(password!));
+  const admin = await db.user.upsert({
+    where: { email },
+    create: { email, name, passwordHash, role: "ADMIN" },
+    update: { name, passwordHash, role: "ADMIN" },
+  });
+  console.log(`Admin: ${admin.email} (${admin.id})`);
+
+  // Only the admin's own sets are replaced (cards cascade). Other users are untouched.
+  console.log("Replacing admin's sets...");
+  await db.studySet.deleteMany({ where: { userId: admin.id } });
 
   const base = Date.now();
   const totals = new Map<string, { sets: number; cards: number }>();
@@ -69,6 +95,7 @@ async function main() {
           description: s.description || null,
           category: s.category,
           level: s.level ?? null,
+          userId: admin.id,
           createdAt,
           updatedAt: createdAt,
         },

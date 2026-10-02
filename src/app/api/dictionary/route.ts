@@ -1,3 +1,4 @@
+import { requireApiUser } from "@/lib/auth/dal";
 import { lookupWordDetailed } from "@/lib/dictionary";
 import { badRequest, json, notFound } from "@/lib/http";
 import { NextResponse } from "next/server";
@@ -5,6 +6,8 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
+  const user = await requireApiUser(req);
+  if (user instanceof Response) return user;
   const word = new URL(req.url).searchParams.get("word")?.trim() ?? "";
   if (!word) return badRequest("Thiếu tham số word");
   const r = await lookupWordDetailed(word);

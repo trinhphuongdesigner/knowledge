@@ -6,6 +6,7 @@ import { SetCard } from "@/components/sets/SetCard";
 import { SetFilters } from "@/components/sets/SetFilters";
 import { EmptyState } from "@/components/ui";
 import type { Prisma } from "@/generated/prisma/client";
+import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
 import { CATEGORIES, LEVELS } from "@/lib/validators";
@@ -13,13 +14,14 @@ import { CATEGORIES, LEVELS } from "@/lib/validators";
 export const dynamic = "force-dynamic";
 
 export default async function Home({ searchParams }: PageProps<"/">) {
+  const user = await requireUser();
   const sp = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
   const category = one(sp.category);
   const level = one(sp.level);
   const q = one(sp.q)?.trim();
 
-  const where: Prisma.StudySetWhereInput = {};
+  const where: Prisma.StudySetWhereInput = { userId: user.id };
   if (level && (LEVELS as readonly string[]).includes(level)) {
     where.level = level as (typeof LEVELS)[number];
   }

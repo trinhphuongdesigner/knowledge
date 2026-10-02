@@ -18,6 +18,45 @@ enum Level {
   ADVANCED
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String     @id @default(uuid(7)) @db.Uuid
+  email        String     @unique // always stored lowercase + trimmed
+  name         String?
+  passwordHash String // "scrypt$N$r$p$saltB64$hashB64"
+  role         Role       @default(USER)
+  sets         StudySet[]
+  sessions     Session[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Session {
+  id        String   @id // sha256(token) hex — the raw token is never stored
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  userAgent String?
+
+  @@index([userId])
+}
+
+model LoginAttempt { // DB-backed rate limiting (serverless, many instances)
+  id        String   @id @default(uuid(7)) @db.Uuid
+  email     String
+  ip        String?
+  success   Boolean
+  createdAt DateTime @default(now())
+
+  @@index([email, createdAt])
+  @@index([ip, createdAt])
+}
+
 model StudySet {            // "Chương trình học"
   id          String   @id @default(uuid(7)) @db.Uuid
   title       String
@@ -25,8 +64,12 @@ model StudySet {            // "Chương trình học"
   category    Category
   level       Level?
   cards       Card[]
+  userId      String   @db.Uuid
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([userId, createdAt])
 }
 
 model Card {                // Câu hỏi / trả lời

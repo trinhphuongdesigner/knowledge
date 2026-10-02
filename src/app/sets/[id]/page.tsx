@@ -5,6 +5,7 @@ import { CardList } from "@/components/cards/CardList";
 import { Container } from "@/components/layout/Container";
 import { LevelBadge } from "@/components/sets/LevelBadge";
 import { Badge, ButtonLink } from "@/components/ui";
+import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { toSetDetailDTO } from "@/lib/dto";
 import { isUuid } from "@/lib/ids";
@@ -14,10 +15,11 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Chi tiết bộ học — Knowledge" };
 
 export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">) {
+  const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
-  const row = await db.studySet.findUnique({
-    where: { id },
+  const row = await db.studySet.findFirst({
+    where: { id, userId: user.id },
     include: { cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
   });
   if (!row) notFound();

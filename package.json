@@ -13,6 +13,7 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
+    "auth:hash": "tsx scripts/hash-password.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "react-markdown": "^10.1.0",
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.1",
+    "server-only": "^0.0.1",
     "tailwind-merge": "^3.7.0",
     "xlsx": "^0.18.5",
     "zod": "^4.6.5"

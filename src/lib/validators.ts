@@ -75,3 +75,51 @@ export type DictionaryEntryDTO = {
 };
 
 export type EnrichResultDTO = { updated: number; notFound: number; remaining: number; failed?: number };
+
+// ── Auth ──────────────────────────────────────────────────────────────────
+const emailField = z
+  .string()
+  .trim()
+  .toLowerCase()
+  .min(1, "Vui lòng nhập email")
+  .max(254, "Email quá dài")
+  .email("Email không hợp lệ");
+
+export const loginSchema = z.object({
+  email: emailField,
+  password: z.string().min(1, "Vui lòng nhập mật khẩu").max(128, "Mật khẩu quá dài"),
+});
+
+export const registerSchema = z
+  .object({
+    name: z.string().trim().max(100, "Tên quá dài").optional(),
+    email: emailField,
+    password: z.string().min(8, "Mật khẩu tối thiểu 8 ký tự").max(128, "Mật khẩu tối đa 128 ký tự"),
+    confirmPassword: z.string(),
+  })
+  .refine((v) => v.password === v.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Mật khẩu nhập lại không khớp",
+  });
+
+// ── Account ───────────────────────────────────────────────────────────────
+export const updateProfileSchema = z.object({
+  name: z.string().trim().max(80, "Tên tối đa 80 ký tự").optional(),
+  email: emailField,
+  currentPassword: z.string().max(128, "Mật khẩu quá dài").optional(),
+});
+
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, "Vui lòng nhập mật khẩu hiện tại").max(128, "Mật khẩu quá dài"),
+    newPassword: z.string().min(8, "Mật khẩu tối thiểu 8 ký tự").max(128, "Mật khẩu tối đa 128 ký tự"),
+    confirmPassword: z.string(),
+  })
+  .refine((v) => v.newPassword === v.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Mật khẩu nhập lại không khớp",
+  })
+  .refine((v) => v.newPassword !== v.currentPassword, {
+    path: ["newPassword"],
+    message: "Mật khẩu mới phải khác mật khẩu hiện tại",
+  });
