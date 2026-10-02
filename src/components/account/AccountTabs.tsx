@@ -11,7 +11,7 @@ const TABS: { id: AccountTab; label: string }[] = [
 
 export function AccountTabs({ active }: { active: AccountTab }) {
   return (
-    <nav aria-label="Quản lý tài khoản" className="mb-6 flex gap-1 border-b border-slate-200">
+    <nav aria-label="Quản lý tài khoản" className="mb-6 flex gap-1 border-b border-ink-200">
       {TABS.map((t) => {
         const current = t.id === active;
         return (
@@ -20,10 +20,10 @@ export function AccountTabs({ active }: { active: AccountTab }) {
             href={`/account?tab=${t.id}`}
             aria-current={current ? "page" : undefined}
             className={cn(
-              "-mb-px flex min-h-11 items-center border-b-2 px-4 text-sm font-medium focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-600",
+              "-mb-px flex min-h-11 items-center border-b-2 px-4 text-sm font-medium focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600",
               current
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900",
+                ? "border-brand-600 text-brand-600"
+                : "border-transparent text-ink-600 hover:border-ink-300 hover:text-ink-900",
             )}
           >
             {t.label}

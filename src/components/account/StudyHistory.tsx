@@ -70,9 +70,9 @@ export async function StudyHistory({ userId }: { userId: string }) {
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <Card className="p-3 sm:p-4">
-      <p className="text-xs text-slate-600">{label}</p>
-      <p className="mt-1 text-xl font-bold text-slate-900 sm:text-2xl">{value}</p>
-      {hint && <p className="mt-0.5 text-xs text-slate-500">{hint}</p>}
+      <p className="text-xs text-ink-600">{label}</p>
+      <p className="mt-1 text-xl font-bold text-ink-900 sm:text-2xl">{value}</p>
+      {hint && <p className="mt-0.5 text-xs text-ink-500">{hint}</p>}
     </Card>
   );
 }
@@ -85,15 +85,15 @@ function HistoryRow({ item }: { item: HistoryItem }) {
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <Link
             href={`/sets/${item.setId}`}
-            className="min-w-0 truncate font-semibold text-slate-900 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-blue-600"
+            className="min-w-0 truncate font-semibold text-ink-900 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-brand-600"
           >
             {item.title}
           </Link>
           <CategoryBadge category={item.category} />
         </div>
         <div>
-          <div className="mb-1 flex items-center justify-between text-xs text-slate-600">
-            <span className={cn("font-medium", done ? "text-emerald-600" : "text-blue-600")}>
+          <div className="mb-1 flex items-center justify-between text-xs text-ink-600">
+            <span className={cn("font-medium", done ? "text-emerald-600" : "text-brand-600")}>
               {done ? "Hoàn thành" : "Đang học"}
             </span>
             <span>
@@ -106,16 +106,16 @@ function HistoryRow({ item }: { item: HistoryItem }) {
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={item.percent}
-            className="h-2 overflow-hidden rounded-full bg-slate-100"
+            className="h-2 overflow-hidden rounded-full bg-ink-100"
           >
             <div
-              className={cn("h-full rounded-full", done ? "bg-emerald-500" : "bg-blue-600")}
+              className={cn("h-full rounded-full", done ? "bg-emerald-500" : "bg-brand-600")}
               style={{ width: `${item.percent}%` }}
             />
           </div>
         </div>
         <div className="flex items-center justify-between gap-3">
-          <time dateTime={item.lastStudiedAt.toISOString()} className="text-xs text-slate-500">
+          <time dateTime={item.lastStudiedAt.toISOString()} className="text-xs text-ink-500">
             Học lần cuối: {dateFmt.format(item.lastStudiedAt)}
           </time>
           <ButtonLink href={`/sets/${item.setId}/study`} variant="secondary" size="sm">

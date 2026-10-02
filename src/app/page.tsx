@@ -47,10 +47,15 @@ export default async function Home({ searchParams }: PageProps<"/">) {
 
   return (
     <Container className="py-6 sm:py-8">
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Nhóm thẻ của bạn</h1>
-          <p className="mt-1 text-sm text-slate-600">Chọn một nhóm thẻ để ôn tập hoặc tạo nhóm thẻ mới.</p>
+      <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="animate-rise motion-reduce:animate-none">
+          <p className="mb-1 text-sm font-medium text-brand-700">
+            Xin chào{user.name ? `, ${user.name}` : ""} 👋
+          </p>
+          <h1 className="text-3xl font-bold text-ink-900 sm:text-4xl">
+            Hôm nay mình <span className="highlight">ôn gì</span> nhé?
+          </h1>
+          <p className="mt-2 text-sm text-ink-600">Chọn một nhóm thẻ để ôn tập hoặc tạo nhóm thẻ mới.</p>
         </div>
         <CreateSetButton categories={categories} className="shrink-0" />
       </div>

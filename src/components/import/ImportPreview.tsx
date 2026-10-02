@@ -57,19 +57,19 @@ export function ImportPreview({
       )}
 
       {cards.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-slate-300 bg-white p-6 text-center text-sm text-slate-600">
+        <p className="rounded-xl border border-dashed border-ink-300 bg-white p-6 text-center text-sm text-ink-600">
           Không còn thẻ nào để import.
         </p>
       ) : (
-        <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
-          <div className="hidden grid-cols-[2.5rem_1fr_1fr_1fr_2.75rem] gap-3 border-b border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-slate-600 md:grid">
+        <div className="rounded-xl border border-ink-200 bg-white shadow-sm">
+          <div className="hidden grid-cols-[2.5rem_1fr_1fr_1fr_2.75rem] gap-3 border-b border-ink-200 bg-ink-50 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-ink-600 md:grid">
             <span>#</span>
             <span>{LABELS.question}</span>
             <span>{LABELS.answer}</span>
             <span>{LABELS.explanation}</span>
             <span className="sr-only">Xoá</span>
           </div>
-          <ul className="divide-y divide-slate-200">
+          <ul className="divide-y divide-ink-200">
             {cards.map((c, i) => {
               const bad = (f: Field) => (f !== "explanation" && c[f].trim() === "" ? "Không được để trống" : undefined);
               return (
@@ -78,7 +78,7 @@ export function ImportPreview({
                   className="grid grid-cols-1 gap-2 p-3 md:grid-cols-[2.5rem_1fr_1fr_1fr_2.75rem] md:items-start md:gap-3"
                 >
                   <div className="flex items-center justify-between md:block md:pt-2.5">
-                    <span className="text-sm font-medium text-slate-600">
+                    <span className="text-sm font-medium text-ink-600">
                       <span className="md:hidden">Thẻ </span>
                       {i + 1}
                     </span>
@@ -86,14 +86,14 @@ export function ImportPreview({
                       type="button"
                       onClick={() => remove(c.id)}
                       aria-label={`Xoá thẻ ${i + 1}`}
-                      className="flex size-11 items-center justify-center rounded-lg text-slate-500 hover:bg-red-50 hover:text-red-600 md:hidden"
+                      className="flex size-11 items-center justify-center rounded-lg text-ink-500 hover:bg-red-50 hover:text-red-600 md:hidden"
                     >
                       <Trash2 className="size-4" aria-hidden />
                     </button>
                   </div>
                   {(["question", "answer", "explanation"] as Field[]).map((f) => (
                     <label key={f} className="block">
-                      <span className="mb-1 block text-xs font-medium text-slate-600 md:sr-only">{LABELS[f]}</span>
+                      <span className="mb-1 block text-xs font-medium text-ink-600 md:sr-only">{LABELS[f]}</span>
                       <textarea
                         value={c[f]}
                         rows={2}
@@ -111,7 +111,7 @@ export function ImportPreview({
                     type="button"
                     onClick={() => remove(c.id)}
                     aria-label={`Xoá thẻ ${i + 1}`}
-                    className="hidden size-11 items-center justify-center rounded-lg text-slate-500 hover:bg-red-50 hover:text-red-600 md:flex"
+                    className="hidden size-11 items-center justify-center rounded-lg text-ink-500 hover:bg-red-50 hover:text-red-600 md:flex"
                   >
                     <Trash2 className="size-4" aria-hidden />
                   </button>

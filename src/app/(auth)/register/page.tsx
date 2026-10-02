@@ -9,10 +9,10 @@ export default function RegisterPage() {
     return (
       <>
         <h1 className="mb-2 text-xl font-bold">Đăng ký đang tạm tắt</h1>
-        <p className="mb-6 text-sm text-slate-600">
+        <p className="mb-6 text-sm text-ink-600">
           Hiện chưa mở đăng ký tài khoản mới. Vui lòng quay lại sau.
         </p>
-        <Link href="/login" className="text-sm font-medium text-blue-600 hover:underline">
+        <Link href="/login" className="text-sm font-medium text-brand-600 hover:underline">
           Quay lại đăng nhập
         </Link>
       </>
@@ -21,7 +21,7 @@ export default function RegisterPage() {
   return (
     <>
       <h1 className="mb-1 text-xl font-bold">Tạo tài khoản</h1>
-      <p className="mb-6 text-sm text-slate-600">Nhóm thẻ của bạn sẽ được lưu riêng cho bạn.</p>
+      <p className="mb-6 text-sm text-ink-600">Nhóm thẻ của bạn sẽ được lưu riêng cho bạn.</p>
       <RegisterForm />
     </>
   );

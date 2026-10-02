@@ -26,7 +26,7 @@ export default async function QuizPage({ params }: { params: Promise<{ id: strin
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
       <Link
         href={`/sets/${set.id}`}
-        className="mb-4 inline-flex min-h-11 max-w-full items-center text-sm font-medium text-blue-600 hover:underline"
+        className="mb-4 inline-flex min-h-11 max-w-full items-center text-sm font-medium text-brand-600 hover:underline"
       >
         <span className="truncate">← {set.title}</span>
       </Link>

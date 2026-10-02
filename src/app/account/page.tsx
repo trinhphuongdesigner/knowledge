@@ -18,7 +18,7 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
-      <h1 className="mb-6 text-2xl font-bold text-slate-900">Quản lý tài khoản</h1>
+      <h1 className="mb-6 text-2xl font-bold text-ink-900">Quản lý tài khoản</h1>
       <AccountTabs active={active} />
       {active === "history" ? (
         <StudyHistory userId={user.id} />

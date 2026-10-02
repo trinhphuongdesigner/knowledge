@@ -8,7 +8,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   return (
     <>
       <h1 className="mb-1 text-xl font-bold">Đăng nhập</h1>
-      <p className="mb-6 text-sm text-slate-600">Chào mừng quay lại. Tiếp tục học nào!</p>
+      <p className="mb-6 text-sm text-ink-600">Chào mừng quay lại. Tiếp tục học nào!</p>
       <LoginForm next={typeof next === "string" ? next : undefined} />
     </>
   );

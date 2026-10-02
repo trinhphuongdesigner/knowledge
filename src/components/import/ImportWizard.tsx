@@ -138,13 +138,13 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
               <span
                 className={cn(
                   "flex size-7 items-center justify-center rounded-full text-xs font-semibold",
-                  active ? "bg-blue-600 text-white" : "bg-slate-200 text-slate-600",
+                  active ? "bg-brand-600 text-white" : "bg-ink-200 text-ink-600",
                 )}
               >
                 {i + 1}
               </span>
-              <span className={active ? "font-medium text-slate-900" : "text-slate-600"}>{label}</span>
-              {i === 0 && <span className="mx-1 h-px w-6 bg-slate-300" aria-hidden />}
+              <span className={active ? "font-medium text-ink-900" : "text-ink-600"}>{label}</span>
+              {i === 0 && <span className="mx-1 h-px w-6 bg-ink-300" aria-hidden />}
             </li>
           );
         })}
@@ -152,7 +152,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
       {step === 1 && (
         <Card className="space-y-5">
-          <div role="tablist" aria-label="Nguồn dữ liệu" className="grid grid-cols-2 gap-1 rounded-xl bg-slate-100 p-1">
+          <div role="tablist" aria-label="Nguồn dữ liệu" className="grid grid-cols-2 gap-1 rounded-xl bg-ink-100 p-1">
             {([
               ["file", "Tải file"],
               ["paste", "Dán văn bản"],
@@ -168,7 +168,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
                 }}
                 className={cn(
                   "min-h-11 rounded-lg text-sm font-medium transition-colors",
-                  tab === key ? "bg-white text-blue-700 shadow-sm" : "text-slate-600 hover:text-slate-900",
+                  tab === key ? "bg-white text-brand-700 shadow-sm" : "text-ink-600 hover:text-ink-900",
                 )}
               >
                 {label}
@@ -209,23 +209,23 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
             Xem trước
           </Button>
 
-          <div className="space-y-3 border-t border-slate-200 pt-4 text-sm text-slate-600">
-            <p className="font-medium text-slate-900">Tải file mẫu</p>
+          <div className="space-y-3 border-t border-ink-200 pt-4 text-sm text-ink-600">
+            <p className="font-medium text-ink-900">Tải file mẫu</p>
             <div className="flex flex-wrap gap-2">
               {TEMPLATES.map((t) => (
                 <a
                   key={t.href}
                   href={t.href}
                   download
-                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-blue-700 hover:bg-blue-50"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 text-sm font-medium text-brand-700 hover:bg-brand-50"
                 >
                   <Download className="size-4" aria-hidden />
                   {t.label}
                 </a>
               ))}
             </div>
-            <details className="rounded-xl bg-slate-50 p-3">
-              <summary className="cursor-pointer font-medium text-slate-900">Hướng dẫn định dạng</summary>
+            <details className="rounded-xl bg-ink-50 p-3">
+              <summary className="cursor-pointer font-medium text-ink-900">Hướng dẫn định dạng</summary>
               <ul className="mt-2 list-disc space-y-1.5 pl-5">
                 <li>
                   <b>CSV / Excel:</b> dòng đầu là tiêu đề (<code>question</code>/<code>Câu hỏi</code>,{" "}
@@ -262,7 +262,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
           <Card className="space-y-3">
             <fieldset className="space-y-2">
-              <legend className="mb-1 text-sm font-medium text-slate-900">Cách lưu</legend>
+              <legend className="mb-1 text-sm font-medium text-ink-900">Cách lưu</legend>
               {(
                 [
                   ["append", "Thêm vào cuối", "Giữ nguyên các thẻ hiện có, thêm thẻ mới phía sau."],
@@ -273,7 +273,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
                   key={value}
                   className={cn(
                     "flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border p-3",
-                    mode === value ? "border-blue-600 bg-blue-50" : "border-slate-200 bg-white",
+                    mode === value ? "border-brand-600 bg-brand-50" : "border-ink-200 bg-white",
                   )}
                 >
                   <input
@@ -282,11 +282,11 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
                     value={value}
                     checked={mode === value}
                     onChange={() => setMode(value)}
-                    className="mt-1 size-4 accent-blue-600"
+                    className="mt-1 size-4 accent-brand-600"
                   />
                   <span>
-                    <span className="block text-sm font-medium text-slate-900">{label}</span>
-                    <span className="block text-xs text-slate-600">{hint}</span>
+                    <span className="block text-sm font-medium text-ink-900">{label}</span>
+                    <span className="block text-xs text-ink-600">{hint}</span>
                   </span>
                 </label>
               ))}
@@ -309,7 +309,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
             </p>
           )}
           {saveNote && (
-            <p role="status" className="rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-blue-800">
+            <p role="status" className="rounded-xl border border-brand-200 bg-brand-50 px-3 py-2 text-sm text-brand-800">
               {saveNote}
             </p>
           )}

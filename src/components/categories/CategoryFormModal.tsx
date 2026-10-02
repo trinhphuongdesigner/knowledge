@@ -67,7 +67,7 @@ function CategoryForm({ category, onClose, onSubmit }: Omit<Props, "open">) {
       />
 
       <fieldset>
-        <legend className="mb-1.5 text-sm font-medium text-slate-700">Màu sắc</legend>
+        <legend className="mb-1.5 text-sm font-medium text-ink-700">Màu sắc</legend>
         <div role="radiogroup" aria-label="Màu sắc" className="flex flex-wrap gap-1">
           {CATEGORY_COLORS.map((c) => {
             const cls = CATEGORY_COLOR_CLASSES[c];
@@ -76,7 +76,7 @@ function CategoryForm({ category, onClose, onSubmit }: Omit<Props, "open">) {
               <label
                 key={c}
                 title={cls.label}
-                className="relative flex size-11 cursor-pointer items-center justify-center rounded-full has-focus-visible:outline-2 has-focus-visible:outline-offset-1 has-focus-visible:outline-blue-600"
+                className="relative flex size-11 cursor-pointer items-center justify-center rounded-full has-focus-visible:outline-2 has-focus-visible:outline-offset-1 has-focus-visible:outline-brand-600"
               >
                 <input
                   type="radio"
@@ -102,7 +102,7 @@ function CategoryForm({ category, onClose, onSubmit }: Omit<Props, "open">) {
         </div>
       </fieldset>
 
-      <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-3 hover:bg-slate-50">
+      <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border border-ink-200 p-3 hover:bg-ink-50">
         <input
           type="checkbox"
           role="switch"
@@ -112,11 +112,11 @@ function CategoryForm({ category, onClose, onSubmit }: Omit<Props, "open">) {
         />
         <span
           aria-hidden
-          className="relative mt-0.5 h-6 w-11 shrink-0 rounded-full bg-slate-300 transition-colors after:absolute after:left-0.5 after:top-0.5 after:size-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-blue-600 peer-checked:after:translate-x-5 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600"
+          className="relative mt-0.5 h-6 w-11 shrink-0 rounded-full bg-ink-300 transition-colors after:absolute after:left-0.5 after:top-0.5 after:size-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-brand-600 peer-checked:after:translate-x-5 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-600"
         />
         <span className="text-sm">
-          <span className="block font-medium text-slate-900">Bộ từ vựng tiếng Anh</span>
-          <span className="block text-slate-600">Hiện phiên âm, nút đọc và tra từ điển cho thẻ.</span>
+          <span className="block font-medium text-ink-900">Bộ từ vựng tiếng Anh</span>
+          <span className="block text-ink-600">Hiện phiên âm, nút đọc và tra từ điển cho thẻ.</span>
         </span>
       </label>
 

@@ -2,11 +2,113 @@
 
 @theme inline {
   --font-sans: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lexend), var(--font-be-vietnam-pro), ui-sans-serif, sans-serif;
+}
+
+/* "Sổ tay học tập": xanh ngọc (brand) trên nền giấy kem (ink = trung tính ngả ấm), vàng dạ quang (sun) làm điểm nhấn. */
+@theme {
+  --color-brand-50: #edfaf6;
+  --color-brand-100: #d3f2e8;
+  --color-brand-200: #a9e4d3;
+  --color-brand-300: #74cfb7;
+  --color-brand-400: #3fb396;
+  --color-brand-500: #1d977c;
+  --color-brand-600: #0f7c66;
+  --color-brand-700: #0c6454;
+  --color-brand-800: #0d4f44;
+  --color-brand-900: #0d4139;
+  --color-brand-950: #032621;
+
+  --color-ink-50: #fbf9f4;
+  --color-ink-100: #f4f0e7;
+  --color-ink-200: #e8e2d4;
+  --color-ink-300: #d4ccba;
+  --color-ink-400: #a69d8a;
+  --color-ink-500: #7a7160;
+  --color-ink-600: #5c5447;
+  --color-ink-700: #463f35;
+  --color-ink-800: #2f2a23;
+  --color-ink-900: #211d18;
+  --color-ink-950: #14110d;
+
+  --color-sun-200: #fff1a8;
+  --color-sun-300: #ffe46b;
+  --color-sun-400: #ffd43b;
+
+  --color-paper: #fdfbf6;
+
+  --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 body {
-  background: #f8fafc;
-  color: #0f172a;
+  background-color: var(--color-paper);
+  /* Giấy chấm lưới rất nhạt */
+  background-image: radial-gradient(color-mix(in oklab, var(--color-ink-300) 55%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--color-ink-900);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: var(--color-sun-300);
+    color: var(--color-ink-950);
+  }
+}
+
+/* Gạch chân kiểu bút dạ quang cho chữ quan trọng */
+.highlight {
+  background: linear-gradient(transparent 58%, var(--color-sun-300) 58%, var(--color-sun-300) 92%, transparent 92%);
+  padding: 0 0.15em;
+  margin: 0 -0.15em;
+  box-decoration-break: clone;
+}
+
+/* Mặt thẻ kiểu thẻ ghi nhớ giấy: một vạch đỏ trên cùng + dòng kẻ ngang mờ */
+.index-card {
+  background-color: #fffefb;
+  background-image:
+    linear-gradient(to bottom, transparent 3.25rem, #f4a3a3 3.25rem, #f4a3a3 calc(3.25rem + 1.5px), transparent calc(3.25rem + 1.5px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), #e3eef0 calc(2rem - 1px), #e3eef0 2rem);
+  background-position: 0 0, 0 3.25rem;
+  background-repeat: no-repeat, repeat;
+}
+
+/* Mặt sau: nền bạc hà, vạch trên màu brand để phân biệt với mặt trước */
+.index-card-back {
+  background-color: #f4fbf8;
+  background-image:
+    linear-gradient(to bottom, transparent 3.25rem, #74cfb7 3.25rem, #74cfb7 calc(3.25rem + 1.5px), transparent calc(3.25rem + 1.5px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), #dcefe8 calc(2rem - 1px), #dcefe8 2rem);
+  background-position: 0 0, 0 3.25rem;
+  background-repeat: no-repeat, repeat;
+}
+
+/* Xuất hiện lần lượt cho danh sách (đặt --i trên từng phần tử) */
+.stagger > * {
+  animation: var(--animate-rise);
+  animation-delay: calc(min(var(--i, 0), 12) * 45ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stagger > * {
+    animation: none;
+  }
 }
 
 /* Book page-flip loader (ported from the resume project's PDF loader). */
@@ -33,7 +135,7 @@ body {
   justify-content: center;
   width: 76px;
   height: 76px;
-  filter: drop-shadow(0 4px 14px rgba(37, 99, 235, 0.25));
+  filter: drop-shadow(0 4px 14px rgba(15, 124, 102, 0.25));
 }
 .book-loader-flip {
   width: 72px;
@@ -52,7 +154,7 @@ body {
   bottom: 1px;
   width: 5px;
   transform: translateX(-50%);
-  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(180deg, #1d977c, #0c6454);
   border-radius: 3px;
 }
 .book-loader-flip-base {
@@ -61,8 +163,8 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #f1f5f9;
-  border: 1px solid #93c5fd;
+  background: #f4f0e7;
+  border: 1px solid #74cfb7;
   border-radius: 0 6px 6px 0;
 }
 .book-loader-flip-page {
@@ -72,10 +174,10 @@ body {
   top: 0.5px;
   bottom: 0.5px;
   background: #ffffff;
-  border: 1px solid #93c5fd;
+  border: 1px solid #74cfb7;
   border-radius: 0 6px 6px 0;
   transform-origin: left center;
-  box-shadow: 1px 0 4px rgba(37, 99, 235, 0.15);
+  box-shadow: 1px 0 4px rgba(15, 124, 102, 0.15);
   animation: book-loader-page-turn 2.6s infinite cubic-bezier(0.5, 0.05, 0.4, 0.95);
 }
 .book-loader-flip-page:nth-child(3) {
@@ -119,7 +221,7 @@ body {
 .book-loader-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #475569;
+  color: #5c5447;
   letter-spacing: 0.2px;
   text-align: center;
 }

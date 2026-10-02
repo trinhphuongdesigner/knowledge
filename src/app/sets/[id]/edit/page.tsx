@@ -29,13 +29,13 @@ export default async function EditSetPage({ params }: PageProps<"/sets/[id]/edit
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
-      <h1 className="mb-6 text-2xl font-bold text-slate-900">Sửa nhóm thẻ</h1>
+      <h1 className="mb-6 text-2xl font-bold text-ink-900">Sửa nhóm thẻ</h1>
       <Card>
         <SetForm set={dto} categories={categories} />
       </Card>
       <Card className="mt-6 border-red-200">
-        <h2 className="text-base font-semibold text-slate-900">Vùng nguy hiểm</h2>
-        <p className="mb-4 mt-1 text-sm text-slate-600">Xoá nhóm thẻ sẽ xoá toàn bộ thẻ bên trong.</p>
+        <h2 className="text-base font-semibold text-ink-900">Vùng nguy hiểm</h2>
+        <p className="mb-4 mt-1 text-sm text-ink-600">Xoá nhóm thẻ sẽ xoá toàn bộ thẻ bên trong.</p>
         <DeleteSetButton id={dto.id} title={dto.title} />
       </Card>
     </Container>

@@ -62,16 +62,16 @@ export function FileDropzone({
         onDrop={onDrop}
         className={cn(
           "flex min-h-40 cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-4 py-8 text-center transition-colors",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-          dragging ? "border-blue-600 bg-blue-50" : "border-slate-300 bg-white hover:border-blue-400 hover:bg-blue-50/50",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
+          dragging ? "border-brand-600 bg-brand-50" : "border-ink-300 bg-white hover:border-brand-400 hover:bg-brand-50/50",
           disabled && "cursor-not-allowed opacity-60",
         )}
       >
-        <UploadCloud className="size-9 text-blue-600" aria-hidden />
-        <p className="text-sm font-medium text-slate-900">
-          Kéo thả file vào đây hoặc <span className="text-blue-600 underline">bấm để chọn file</span>
+        <UploadCloud className="size-9 text-brand-600" aria-hidden />
+        <p className="text-sm font-medium text-ink-900">
+          Kéo thả file vào đây hoặc <span className="text-brand-600 underline">bấm để chọn file</span>
         </p>
-        <p className="text-xs text-slate-600">Hỗ trợ .csv, .xlsx, .xls, .md, .markdown, .txt</p>
+        <p className="text-xs text-ink-600">Hỗ trợ .csv, .xlsx, .xls, .md, .markdown, .txt</p>
         <input
           ref={inputRef}
           type="file"
@@ -88,11 +88,11 @@ export function FileDropzone({
       </div>
 
       {file && (
-        <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
-          <FileSpreadsheet className="size-5 shrink-0 text-blue-600" aria-hidden />
+        <div className="flex items-center gap-3 rounded-xl border border-ink-200 bg-ink-50 px-3 py-2.5">
+          <FileSpreadsheet className="size-5 shrink-0 text-brand-600" aria-hidden />
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-medium text-slate-900">{file.name}</p>
-            <p className="text-xs text-slate-600">{formatSize(file.size)}</p>
+            <p className="truncate text-sm font-medium text-ink-900">{file.name}</p>
+            <p className="text-xs text-ink-600">{formatSize(file.size)}</p>
           </div>
           {onClear && (
             <button
@@ -100,7 +100,7 @@ export function FileDropzone({
               onClick={onClear}
               disabled={disabled}
               aria-label="Bỏ file đã chọn"
-              className="flex size-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-200 hover:text-slate-900"
+              className="flex size-9 items-center justify-center rounded-lg text-ink-500 hover:bg-ink-200 hover:text-ink-900"
             >
               <X className="size-4" aria-hidden />
             </button>

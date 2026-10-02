@@ -22,11 +22,11 @@ export default async function ImportPage({ params }: PageProps<"/sets/[id]/impor
     <Container className="py-6 sm:py-8">
       <Link
         href={`/sets/${set.id}`}
-        className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-blue-700 hover:underline"
+        className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-brand-700 hover:underline"
       >
         <ArrowLeft className="size-4" aria-hidden /> Quay lại nhóm thẻ
       </Link>
-      <h1 className="mb-6 mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">Import thẻ vào: {set.title}</h1>
+      <h1 className="mb-6 mt-1 text-2xl font-bold text-ink-900 sm:text-3xl">Import thẻ vào: {set.title}</h1>
       <ImportWizard setId={set.id} english={set.category.isEnglish} />
     </Container>
   );

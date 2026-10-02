@@ -83,7 +83,7 @@ export function CardList({
 
       <section className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-lg font-semibold text-slate-900">Danh sách thẻ ({cards.length})</h2>
+          <h2 className="text-lg font-semibold text-ink-900">Danh sách thẻ ({cards.length})</h2>
           {english && cards.length > 0 && (
             <Button variant="secondary" size="sm" onClick={() => void enrich()} loading={enriching}>
               <Languages className="size-4" aria-hidden />
@@ -92,7 +92,7 @@ export function CardList({
           )}
         </div>
         {enrichNote && (
-          <p role="status" className="-mt-2 text-sm text-slate-600">
+          <p role="status" className="-mt-2 text-sm text-ink-600">
             {enrichNote}
           </p>
         )}

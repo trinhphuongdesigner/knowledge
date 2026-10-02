@@ -42,15 +42,15 @@ export function StudyControls({ canPrev, onPrev, onNext, onFlip, onKnown, onUnkn
   return (
     <div
       className={cn(
-        "sticky bottom-0 z-10 -mx-4 border-t border-slate-200 bg-white/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0",
+        "sticky bottom-0 z-10 -mx-4 border-t border-ink-200 bg-paper/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0",
         className,
       )}
     >
       <div className="mx-auto grid max-w-xl grid-cols-2 gap-2">
-        <Button variant="secondary" onClick={onUnknown} className="border-amber-300 text-amber-700 hover:bg-amber-50">
+        <Button variant="secondary" onClick={onUnknown} className="border-amber-300 text-amber-700 shadow-[0_3px_0_var(--color-amber-300)] hover:border-amber-400 hover:bg-amber-50 active:shadow-[0_1px_0_var(--color-amber-300)]">
           <X className="size-4" aria-hidden /> Chưa thuộc <kbd className="hidden text-xs opacity-60 sm:inline">(J)</kbd>
         </Button>
-        <Button variant="secondary" onClick={onKnown} className="border-green-300 text-green-700 hover:bg-green-50">
+        <Button variant="secondary" onClick={onKnown} className="border-green-300 text-green-700 shadow-[0_3px_0_var(--color-green-300)] hover:border-green-400 hover:bg-green-50 active:shadow-[0_1px_0_var(--color-green-300)]">
           <Check className="size-4" aria-hidden /> Đã thuộc <kbd className="hidden text-xs opacity-60 sm:inline">(K)</kbd>
         </Button>
         <div className="col-span-2 grid grid-cols-[auto_1fr_auto] gap-2">

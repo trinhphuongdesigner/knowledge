@@ -85,17 +85,17 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
 
   if (finished) {
     return (
-      <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900">Hoàn thành!</h2>
-        <p className="mt-1 text-sm text-slate-600">Bạn đã ghép đúng {cards.length} thẻ.</p>
+      <div className="rounded-xl border border-ink-200 bg-white p-6 text-center shadow-sm">
+        <h2 className="text-xl font-bold text-ink-900">Hoàn thành!</h2>
+        <p className="mt-1 text-sm text-ink-600">Bạn đã ghép đúng {cards.length} thẻ.</p>
         <dl className="mx-auto mt-5 grid max-w-xs grid-cols-2 gap-3">
-          <div className="rounded-xl bg-blue-50 p-3">
-            <dt className="text-xs text-slate-500">Thời gian</dt>
-            <dd className="text-2xl font-bold text-blue-700">{formatTime(seconds)}</dd>
+          <div className="rounded-xl bg-brand-50 p-3">
+            <dt className="text-xs text-ink-500">Thời gian</dt>
+            <dd className="text-2xl font-bold text-brand-700">{formatTime(seconds)}</dd>
           </div>
-          <div className="rounded-xl bg-blue-50 p-3">
-            <dt className="text-xs text-slate-500">Số lần sai</dt>
-            <dd className="text-2xl font-bold text-blue-700">{mistakes}</dd>
+          <div className="rounded-xl bg-brand-50 p-3">
+            <dt className="text-xs text-ink-500">Số lần sai</dt>
+            <dd className="text-2xl font-bold text-brand-700">{mistakes}</dd>
           </div>
         </dl>
         <Button className="mt-6" onClick={restart}>
@@ -108,7 +108,7 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
 
   return (
     <div>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-600">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm text-ink-600">
         <span>
           Vòng {game.round + 1}/{game.rounds.length}
         </span>
@@ -123,7 +123,7 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
           </span>
         </span>
       </div>
-      <p className="mb-3 text-sm text-slate-500">Chọn một từ và nghĩa tương ứng của nó.</p>
+      <p className="mb-3 text-sm text-ink-500">Chọn một từ và nghĩa tương ứng của nó.</p>
       <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
         {game.tiles.map((tile) => {
           const done = matched.includes(tile.cardId);
@@ -139,11 +139,11 @@ export function MatchingGame({ cards }: { cards: CardDTO[] }) {
                 onClick={() => pick(tile)}
                 className={cn(
                   "flex min-h-20 w-full items-center justify-center rounded-xl border px-3 py-2 text-center text-sm font-medium transition-colors",
-                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
                   done && "border-green-300 bg-green-50 text-green-700 opacity-60",
                   isWrong && "border-red-300 bg-red-50 text-red-700",
-                  isSel && "border-blue-600 bg-blue-50 text-blue-700 ring-2 ring-blue-600",
-                  !done && !isWrong && !isSel && "border-slate-200 bg-white text-slate-900 shadow-sm hover:bg-slate-50",
+                  isSel && "border-brand-600 bg-brand-50 text-brand-700 ring-2 ring-brand-600",
+                  !done && !isWrong && !isSel && "border-ink-200 bg-white text-ink-900 shadow-sm hover:bg-ink-50",
                 )}
               >
                 <span className="line-clamp-4 break-words">{tile.text}</span>

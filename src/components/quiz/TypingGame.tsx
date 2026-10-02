@@ -27,22 +27,22 @@ export function TypingGame({ cards, english }: { cards: CardDTO[]; english: bool
     const wrongCards = results.filter((r) => !r.correct).map((r) => r.card);
     const score = results.length - wrongCards.length;
     return (
-      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="rounded-xl border border-ink-200 bg-white p-6 shadow-sm">
         <div className="text-center">
-          <h2 className="text-xl font-bold text-slate-900">Kết quả</h2>
-          <p className="mt-2 text-3xl font-bold text-blue-700">
+          <h2 className="text-xl font-bold text-ink-900">Kết quả</h2>
+          <p className="mt-2 text-3xl font-bold text-brand-700">
             {score}/{results.length}
           </p>
-          <p className="text-sm text-slate-600">câu đúng</p>
+          <p className="text-sm text-ink-600">câu đúng</p>
         </div>
         {wrongCards.length > 0 && (
           <div className="mt-5">
-            <h3 className="mb-2 text-sm font-semibold text-slate-900">Câu sai ({wrongCards.length})</h3>
+            <h3 className="mb-2 text-sm font-semibold text-ink-900">Câu sai ({wrongCards.length})</h3>
             <ul className="space-y-2">
               {wrongCards.map((c) => (
                 <li key={c.id} className="rounded-xl border border-red-100 bg-red-50 p-3 text-sm">
-                  <p className="break-words text-slate-600">{stripMarkdown(c.answer)}</p>
-                  <p className="mt-1 break-words font-semibold text-slate-900">{stripMarkdown(c.question)}</p>
+                  <p className="break-words text-ink-600">{stripMarkdown(c.answer)}</p>
+                  <p className="mt-1 break-words font-semibold text-ink-900">{stripMarkdown(c.question)}</p>
                 </li>
               ))}
             </ul>
@@ -125,23 +125,23 @@ function TypingRun({
   }
 
   return (
-    <form onSubmit={submit} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-      <div className="mb-3 text-sm text-slate-500">
+    <form onSubmit={submit} className="rounded-xl border border-ink-200 bg-white p-4 shadow-sm sm:p-6">
+      <div className="mb-3 text-sm text-ink-500">
         Câu {index + 1}/{cards.length}
       </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-slate-100" aria-hidden>
-        <div className="h-full bg-blue-600 transition-all" style={{ width: `${(index / cards.length) * 100}%` }} />
+      <div className="h-1.5 overflow-hidden rounded-full bg-ink-100" aria-hidden>
+        <div className="h-full bg-brand-600 transition-all" style={{ width: `${(index / cards.length) * 100}%` }} />
       </div>
 
-      <p className="mt-5 text-xs font-medium uppercase tracking-wide text-slate-500">
+      <p className="mt-5 text-xs font-medium uppercase tracking-wide text-ink-500">
         {english ? "Nghĩa" : "Đáp án"}
         {english && card.partOfSpeech && <span className="ml-1 normal-case italic">({card.partOfSpeech})</span>}
       </p>
-      <p className="mt-1 line-clamp-6 whitespace-pre-wrap break-words text-xl font-semibold text-slate-900">
+      <p className="mt-1 line-clamp-6 whitespace-pre-wrap break-words text-xl font-semibold text-ink-900">
         {stripMarkdown(card.answer)}
       </p>
 
-      <label htmlFor="quiz-typing-input" className="mt-5 block text-sm font-medium text-slate-700">
+      <label htmlFor="quiz-typing-input" className="mt-5 block text-sm font-medium text-ink-700">
         {english ? "Nhập từ tiếng Anh" : "Nhập câu hỏi / thuật ngữ"}
       </label>
       <input
@@ -155,16 +155,16 @@ function TypingRun({
         autoCorrect="off"
         spellCheck={false}
         className={cn(
-          "mt-1 min-h-11 w-full rounded-xl border px-3 text-base text-slate-900 outline-none",
-          "focus-visible:ring-2 focus-visible:ring-blue-600",
-          !checked && "border-slate-300 bg-white",
+          "mt-1 min-h-11 w-full rounded-xl border px-3 text-base text-ink-900 outline-none",
+          "focus-visible:ring-2 focus-visible:ring-brand-600",
+          !checked && "border-ink-300 bg-white",
           checked?.correct && "border-green-400 bg-green-50",
           checked && !checked.correct && "border-red-300 bg-red-50",
         )}
       />
 
       {!checked && hint > 0 && (
-        <p className="mt-2 font-mono text-sm tracking-wider text-blue-700" aria-live="polite">
+        <p className="mt-2 font-mono text-sm tracking-wider text-brand-700" aria-live="polite">
           Gợi ý: {hintText(expected, hint)}
         </p>
       )}

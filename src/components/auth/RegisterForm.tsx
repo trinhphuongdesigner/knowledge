@@ -48,9 +48,9 @@ export function RegisterForm() {
       <Button type="submit" loading={pending} className="w-full">
         {pending ? "Đang tạo tài khoản…" : "Đăng ký"}
       </Button>
-      <p className="text-center text-sm text-slate-600">
+      <p className="text-center text-sm text-ink-600">
         Đã có tài khoản?{" "}
-        <Link href="/login" className="font-medium text-blue-600 hover:underline">
+        <Link href="/login" className="font-medium text-brand-600 hover:underline">
           Đăng nhập
         </Link>
       </p>

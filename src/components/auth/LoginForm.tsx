@@ -35,9 +35,9 @@ export function LoginForm({ next }: { next?: string }) {
       <Button type="submit" loading={pending} className="w-full">
         {pending ? "Đang đăng nhập…" : "Đăng nhập"}
       </Button>
-      <p className="text-center text-sm text-slate-600">
+      <p className="text-center text-sm text-ink-600">
         Chưa có tài khoản?{" "}
-        <Link href="/register" className="font-medium text-blue-600 hover:underline">
+        <Link href="/register" className="font-medium text-brand-600 hover:underline">
           Đăng ký
         </Link>
       </p>

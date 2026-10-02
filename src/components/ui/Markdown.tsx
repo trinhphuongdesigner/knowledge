@@ -17,7 +17,7 @@ const components: Components = {
   strong: ({ node: _n, ...props }) => <strong className="font-semibold" {...props} />,
   em: ({ node: _n, ...props }) => <em className="italic" {...props} />,
   a: ({ node: _n, ...props }) => (
-    <a className="text-blue-600 underline" target="_blank" rel="noopener noreferrer" {...props} />
+    <a className="text-brand-600 underline" target="_blank" rel="noopener noreferrer" {...props} />
   ),
   h1: ({ node: _n, ...props }) => <p className="my-1.5 text-base font-bold first:mt-0" {...props} />,
   h2: ({ node: _n, ...props }) => <p className="my-1.5 text-base font-bold first:mt-0" {...props} />,
@@ -26,18 +26,18 @@ const components: Components = {
   h5: ({ node: _n, ...props }) => <p className="my-1.5 font-semibold first:mt-0" {...props} />,
   h6: ({ node: _n, ...props }) => <p className="my-1.5 font-semibold first:mt-0" {...props} />,
   blockquote: ({ node: _n, ...props }) => (
-    <blockquote className="my-1.5 border-l-4 border-slate-200 pl-3 text-left opacity-90" {...props} />
+    <blockquote className="my-1.5 border-l-4 border-ink-200 pl-3 text-left opacity-90" {...props} />
   ),
-  hr: () => <hr className="my-3 border-slate-200" />,
+  hr: () => <hr className="my-3 border-ink-200" />,
   pre: ({ node: _n, ...props }) => (
     <pre
-      className="my-2 max-w-full overflow-x-auto rounded-lg bg-slate-900 p-3 text-left text-sm leading-relaxed text-slate-100 [&_code]:whitespace-pre [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit"
+      className="my-2 max-w-full overflow-x-auto rounded-lg bg-ink-900 p-3 text-left text-sm leading-relaxed text-ink-100 [&_code]:whitespace-pre [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit"
       {...props}
     />
   ),
   code: ({ node: _n, className, ...props }) => (
     <code
-      className={cn("rounded bg-slate-100 px-1 py-0.5 font-mono text-[0.9em] text-slate-800 break-words", className)}
+      className={cn("rounded bg-ink-100 px-1 py-0.5 font-mono text-[0.9em] text-ink-800 break-words", className)}
       {...props}
     />
   ),
@@ -47,9 +47,9 @@ const components: Components = {
     </div>
   ),
   th: ({ node: _n, ...props }) => (
-    <th className="border border-slate-200 bg-slate-50 px-2 py-1 text-left font-semibold" {...props} />
+    <th className="border border-ink-200 bg-ink-50 px-2 py-1 text-left font-semibold" {...props} />
   ),
-  td: ({ node: _n, ...props }) => <td className="border border-slate-200 px-2 py-1 align-top" {...props} />,
+  td: ({ node: _n, ...props }) => <td className="border border-ink-200 px-2 py-1 align-top" {...props} />,
 };
 
 /** Compact Markdown renderer. Raw HTML is not rendered (react-markdown escapes it by default). */

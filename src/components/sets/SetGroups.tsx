@@ -1,14 +1,15 @@
 import { ChevronDown } from "lucide-react";
+import type { CSSProperties } from "react";
 import { colorClasses } from "@/components/categories/colors";
 import { LEVELS, LEVEL_LABELS, type CategoryDTO, type Level, type StudySetDTO } from "@/lib/validators";
 import { SetCard } from "./SetCard";
 
-const GRID = "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3";
+const GRID = "stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3";
 
 function Chevron() {
   return (
     <ChevronDown
-      className="size-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180"
+      className="size-5 shrink-0 text-ink-400 transition-transform group-open:rotate-180"
       aria-hidden
     />
   );
@@ -46,31 +47,35 @@ export function SetGroups({
           <details
             key={category.id}
             open
-            className="group rounded-2xl border border-slate-200 bg-white"
+            className="group rounded-3xl border border-ink-200 bg-white/80 shadow-[0_1px_2px_rgb(70_63_53/0.05)] backdrop-blur-sm"
           >
-            <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 rounded-2xl px-4 py-3 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 [&::-webkit-details-marker]:hidden">
-              <span className={`size-3 shrink-0 rounded-full ${colorClasses(category.color).dot}`} aria-hidden />
-              <h2 className="min-w-0 flex-1 truncate text-lg font-semibold text-slate-900">{category.name}</h2>
-              <span className="shrink-0 text-sm text-slate-500">{items.length} nhóm thẻ</span>
+            <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 rounded-2xl px-4 py-3 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 [&::-webkit-details-marker]:hidden">
+              <span className={`size-3.5 shrink-0 rounded-md rotate-12 ${colorClasses(category.color).dot}`} aria-hidden />
+              <h2 className="min-w-0 flex-1 truncate text-lg font-semibold text-ink-900">{category.name}</h2>
+              <span className="shrink-0 text-sm text-ink-500">{items.length} nhóm thẻ</span>
               <Chevron />
             </summary>
-            <div className="flex flex-col gap-5 border-t border-slate-100 px-4 py-4">
-              {items.length === 0 && <p className="text-sm text-slate-500">Chưa có nhóm thẻ nào trong danh mục này.</p>}
+            <div className="flex flex-col gap-6 border-t border-dashed border-ink-200 px-4 pt-4 pb-6">
+              {items.length === 0 && <p className="text-sm text-ink-500">Chưa có nhóm thẻ nào trong danh mục này.</p>}
               {levelGroups.map((g) =>
                 plain ? (
                   <div key={g.key} className={GRID}>
-                    {g.items.map((s) => (
-                      <SetCard key={s.id} set={s} hideCategory />
+                    {g.items.map((s, i) => (
+                      <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
+                        <SetCard set={s} hideCategory />
+                      </div>
                     ))}
                   </div>
                 ) : (
                   <section key={g.key} aria-label={g.label ?? "Chưa phân cấp"}>
-                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+                    <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink-500">
                       {g.label ?? "Chưa phân cấp"} <span className="font-normal normal-case">· {g.items.length}</span>
                     </h3>
                     <div className={GRID}>
-                      {g.items.map((s) => (
-                        <SetCard key={s.id} set={s} hideCategory hideLevel />
+                      {g.items.map((s, i) => (
+                        <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
+                          <SetCard set={s} hideCategory hideLevel />
+                        </div>
                       ))}
                     </div>
                   </section>

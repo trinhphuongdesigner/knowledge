@@ -36,10 +36,11 @@ function sizeClass(text: string) {
 }
 
 const face =
-  "absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md " +
+  "absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-ink-200 " +
+  "shadow-[0_2px_0_var(--color-ink-200),0_20px_40px_-20px_rgb(70_63_53/0.35)] " +
   "[backface-visibility:hidden] motion-reduce:transition-opacity motion-reduce:duration-200";
 
-const text = "m-auto w-full text-center font-semibold text-slate-900 [&_pre]:font-normal [&_table]:font-normal";
+const text = "m-auto w-full text-center font-semibold text-ink-900 [&_pre]:font-normal [&_table]:font-normal";
 
 export function Flashcard({ front, back, explanation, frontLabel, backLabel, flipped, onFlip, speech }: FlashcardProps) {
   const speechText = speech?.text;
@@ -75,7 +76,7 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
         onKeyDown={onKeyDown}
         className={cn(
           "relative h-full w-full cursor-pointer rounded-2xl transition-transform duration-500 [transform-style:preserve-3d]",
-          "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600",
+          "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600",
           "motion-reduce:transform-none motion-reduce:transition-none",
           flipped && "[transform:rotateY(180deg)]",
         )}
@@ -84,9 +85,11 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
         <div
           aria-hidden={flipped}
           aria-live={flipped ? "off" : "polite"}
-          className={cn(face, flipped && "motion-reduce:opacity-0")}
+          className={cn(face, "index-card", flipped && "motion-reduce:opacity-0")}
         >
-          <span className="px-5 pt-4 text-xs font-medium uppercase tracking-wide text-blue-600">{frontLabel}</span>
+          <span className="flex h-[3.25rem] shrink-0 items-center px-5">
+            <span className="rounded-full bg-sun-200 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-ink-800">{frontLabel}</span>
+          </span>
           <div className="flex min-h-0 flex-1 overflow-y-auto px-5 pb-3">
             <Markdown className={cn(text, sizeClass(front))}>{front}</Markdown>
           </div>
@@ -96,16 +99,18 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
               <SpeakButton text={speech.text} audioUrl={speech.audioUrl} tabIndex={flipped ? -1 : 0} />
             </div>
           )}
-          <span className="pb-3 text-center text-xs text-slate-400">Nhấn để lật</span>
+          <span className="pb-3 text-center text-xs font-medium text-ink-400">Nhấn để lật ↻</span>
         </div>
 
         {/* Back */}
         <div
           aria-hidden={!flipped}
           aria-live={flipped ? "polite" : "off"}
-          className={cn(face, "[transform:rotateY(180deg)] motion-reduce:transform-none", !flipped && "motion-reduce:opacity-0")}
+          className={cn(face, "index-card-back [transform:rotateY(180deg)] motion-reduce:transform-none", !flipped && "motion-reduce:opacity-0")}
         >
-          <span className="px-5 pt-4 text-xs font-medium uppercase tracking-wide text-blue-600">{backLabel}</span>
+          <span className="flex h-[3.25rem] shrink-0 items-center px-5">
+            <span className="rounded-full bg-brand-600 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-white">{backLabel}</span>
+          </span>
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-5 pb-5">
             <Markdown className={cn(text, sizeClass(back))}>{back}</Markdown>
             {speech?.side === "back" && (
@@ -115,8 +120,8 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
               </div>
             )}
             {explanation && (
-              <div className="mt-4 shrink-0 border-t border-slate-200 pt-3">
-                <Markdown className="text-center text-sm text-slate-500">{explanation}</Markdown>
+              <div className="mt-4 shrink-0 border-t border-ink-200 pt-3">
+                <Markdown className="text-center text-sm text-ink-500">{explanation}</Markdown>
               </div>
             )}
           </div>

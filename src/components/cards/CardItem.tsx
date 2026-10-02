@@ -39,25 +39,25 @@ export function CardItem({
   return (
     <Card>
       <div className="flex items-start gap-3">
-        <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-semibold text-blue-700">
+        <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-xs font-semibold text-brand-700">
           {index}
         </span>
         <div className="grid min-w-0 flex-1 gap-3 sm:grid-cols-2">
           <div className="min-w-0">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-400">Câu hỏi</p>
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">Câu hỏi</p>
             <div className="flex items-start gap-1">
               <div className="min-w-0 flex-1">
-                <Markdown className="text-slate-900">{card.question}</Markdown>
+                <Markdown className="text-ink-900">{card.question}</Markdown>
                 {english && <PhoneticLine phonetic={card.phonetic} partOfSpeech={card.partOfSpeech} />}
               </div>
               {english && <SpeakButton text={card.question} audioUrl={card.audioUrl} className="-my-2.5" />}
             </div>
           </div>
           <div className="min-w-0">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-400">Đáp án</p>
-            <Markdown className="text-slate-900">{card.answer}</Markdown>
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">Đáp án</p>
+            <Markdown className="text-ink-900">{card.answer}</Markdown>
             {card.explanation && (
-              <Markdown className="mt-2 text-sm text-slate-500">{card.explanation}</Markdown>
+              <Markdown className="mt-2 text-sm text-ink-500">{card.explanation}</Markdown>
             )}
           </div>
         </div>
@@ -66,7 +66,7 @@ export function CardItem({
             type="button"
             onClick={() => onEdit(card)}
             aria-label={`Sửa thẻ ${index}`}
-            className="flex size-11 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+            className="flex size-11 items-center justify-center rounded-xl text-ink-500 hover:bg-ink-100 hover:text-ink-900"
           >
             <Pencil className="size-4" aria-hidden />
           </button>
@@ -74,14 +74,14 @@ export function CardItem({
             type="button"
             onClick={() => setConfirmOpen(true)}
             aria-label={`Xoá thẻ ${index}`}
-            className="flex size-11 items-center justify-center rounded-xl text-slate-500 hover:bg-red-50 hover:text-red-600"
+            className="flex size-11 items-center justify-center rounded-xl text-ink-500 hover:bg-red-50 hover:text-red-600"
           >
             <Trash2 className="size-4" aria-hidden />
           </button>
         </div>
       </div>
       <Modal open={confirmOpen} onClose={() => !deleting && setConfirmOpen(false)} title="Xoá thẻ?">
-        <p className="text-sm text-slate-600">Thẻ này sẽ bị xoá vĩnh viễn và không thể hoàn tác.</p>
+        <p className="text-sm text-ink-600">Thẻ này sẽ bị xoá vĩnh viễn và không thể hoàn tác.</p>
         {deleteError && (
           <p role="alert" className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">
             {deleteError}

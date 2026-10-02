@@ -10,13 +10,15 @@ export async function Header() {
   const user = await getCurrentUser();
   return (
     <HideOnAuthRoutes>
-      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-ink-200/80 bg-paper/85 pt-[env(safe-area-inset-top)] backdrop-blur-md">
         <Container className="flex h-16 items-center justify-between gap-2">
           <Link
             href="/"
-            className="flex min-h-11 items-center gap-2 text-lg font-bold text-blue-600"
+            className="group flex min-h-11 items-center gap-2.5 rounded-xl font-display text-lg font-bold text-ink-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
           >
-            <BookOpen className="size-6" aria-hidden />
+            <span className="flex size-9 -rotate-6 items-center justify-center rounded-xl bg-brand-600 text-white shadow-[0_3px_0_var(--color-brand-800)] transition-transform duration-300 group-hover:rotate-3">
+              <BookOpen className="size-5" aria-hidden />
+            </span>
             Knowledge
           </Link>
           <div className="flex items-center gap-1">
@@ -26,7 +28,7 @@ export async function Header() {
             ) : (
               <Link
                 href="/login"
-                className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
                 <CircleUserRound className="size-5" aria-hidden />
                 Đăng nhập

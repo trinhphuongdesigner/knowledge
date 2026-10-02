@@ -92,9 +92,9 @@ export function CategoryManager({ initialCategories }: { initialCategories: Cate
                   <div className="flex min-w-0 items-center gap-3">
                     <span className={cn("size-3.5 shrink-0 rounded-full", colorClasses(c.color).dot)} aria-hidden />
                     <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
-                      <h2 className="break-words text-base font-semibold text-slate-900">{c.name}</h2>
+                      <h2 className="break-words text-base font-semibold text-ink-900">{c.name}</h2>
                       {c.isEnglish && <Badge tone="green">Tiếng Anh</Badge>}
-                      <span className="text-sm text-slate-500">{c.setCount} nhóm thẻ</span>
+                      <span className="text-sm text-ink-500">{c.setCount} nhóm thẻ</span>
                     </div>
                   </div>
                   <div className="flex shrink-0 gap-2">
@@ -138,15 +138,15 @@ export function CategoryManager({ initialCategories }: { initialCategories: Cate
       <Modal open={!!toDelete} onClose={() => !deleting && setToDelete(null)} title="Xoá danh mục?">
         {toDelete && (
           <>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-ink-600">
               {blocked ? (
                 <>
-                  Danh mục <strong className="break-words text-slate-900">{toDelete.name}</strong> còn {toDelete.setCount}{" "}
+                  Danh mục <strong className="break-words text-ink-900">{toDelete.name}</strong> còn {toDelete.setCount}{" "}
                   nhóm thẻ nên chưa thể xoá. Hãy chuyển hoặc xoá các nhóm thẻ đó trước.
                 </>
               ) : (
                 <>
-                  Danh mục <strong className="break-words text-slate-900">{toDelete.name}</strong> sẽ bị xoá vĩnh viễn.
+                  Danh mục <strong className="break-words text-ink-900">{toDelete.name}</strong> sẽ bị xoá vĩnh viễn.
                 </>
               )}
             </p>

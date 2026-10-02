@@ -176,7 +176,7 @@ export function CardForm({
             </Button>
           </div>
           {lookupMessage && (
-            <p role="status" className="text-sm text-slate-500">
+            <p role="status" className="text-sm text-ink-500">
               {lookupMessage}
             </p>
           )}
@@ -195,7 +195,7 @@ export function CardForm({
         <button
           type="button"
           onClick={() => setShowExplanation(true)}
-          className="min-h-11 self-start rounded-xl px-2 text-sm font-medium text-blue-600 hover:bg-blue-50"
+          className="min-h-11 self-start rounded-xl px-2 text-sm font-medium text-brand-600 hover:bg-brand-50"
         >
           + Thêm giải thích
         </button>
@@ -210,8 +210,8 @@ export function CardForm({
           {notice}
         </p>
       )}
-      <div className="sticky -bottom-5 z-10 -mx-5 -mb-5 mt-1 flex flex-col gap-2 border-t border-slate-200 bg-white px-5 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-        <p className="hidden text-xs text-slate-500 sm:block">
+      <div className="sticky -bottom-5 z-10 -mx-5 -mb-5 mt-1 flex flex-col gap-2 border-t border-ink-200 bg-white px-5 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <p className="hidden text-xs text-ink-500 sm:block">
           {card ? "Ctrl/Cmd + Enter để lưu." : "Ctrl/Cmd + Enter để thêm & tiếp tục."}
         </p>
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">

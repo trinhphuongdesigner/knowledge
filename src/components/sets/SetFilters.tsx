@@ -59,8 +59,8 @@ export function SetFilters({ categories }: { categories: CategoryDTO[] }) {
                   className={cn(
                     "min-h-11 max-w-56 shrink-0 truncate rounded-full border px-4 text-sm font-medium transition-colors",
                     active
-                      ? "border-blue-600 bg-blue-600 text-white"
-                      : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
+                      ? "border-brand-600 bg-brand-600 text-white"
+                      : "border-ink-200 bg-white text-ink-700 hover:bg-ink-50",
                   )}
                 >
                   {t.label}
@@ -80,7 +80,7 @@ export function SetFilters({ categories }: { categories: CategoryDTO[] }) {
           </div>
           <Link
             href="/categories"
-            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-slate-600 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-ink-600 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
           >
             <Settings2 className="size-4" aria-hidden />
             Quản lý<span className="sr-only"> danh mục</span>
@@ -88,14 +88,14 @@ export function SetFilters({ categories }: { categories: CategoryDTO[] }) {
         </div>
       </div>
       <div className="relative lg:w-72">
-        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" aria-hidden />
+        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400" aria-hidden />
         <input
           type="search"
           value={q}
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Tìm nhóm thẻ..."
           aria-label="Tìm nhóm thẻ"
-          className="min-h-11 w-full rounded-xl border border-slate-300 bg-white pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-2 focus:outline-blue-600/30"
+          className="min-h-11 w-full rounded-xl border border-ink-300 bg-white pl-9 pr-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-2 focus:outline-brand-600/30"
         />
       </div>
     </div>

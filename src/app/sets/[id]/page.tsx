@@ -37,11 +37,11 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
             <div className="mb-2 flex flex-wrap items-center gap-2">
               <CategoryBadge category={set.category} />
               <LevelBadge level={set.level} />
-              <span className="text-sm text-slate-500">{set.cardCount} thẻ</span>
+              <span className="text-sm text-ink-500">{set.cardCount} thẻ</span>
             </div>
-            <h1 className="break-words text-2xl font-bold text-slate-900">{set.title}</h1>
+            <h1 className="break-words text-2xl font-bold text-ink-900">{set.title}</h1>
             {set.description && (
-              <p className="mt-2 whitespace-pre-wrap break-words text-slate-600">{set.description}</p>
+              <p className="mt-2 whitespace-pre-wrap break-words text-ink-600">{set.description}</p>
             )}
           </div>
         }
@@ -51,7 +51,7 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
               <span
                 aria-disabled="true"
                 title="Thêm thẻ để bắt đầu học"
-                className="inline-flex min-h-11 cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-medium text-white opacity-50"
+                className="inline-flex min-h-11 cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 text-sm font-medium text-white opacity-50"
               >
                 <Play className="size-4" aria-hidden />
                 Học ngay

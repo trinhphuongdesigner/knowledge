@@ -12,7 +12,7 @@
  *
  * - `onChange` receives an event-like object `{ target: { value, name } }` (so `e.target.value` keeps working);
  *   `onValueChange(value)` is the plain alternative.
- * - `option.color` is a Tailwind background class (static string, e.g. "bg-blue-500") rendered as a dot.
+ * - `option.color` is a Tailwind background class (static string, e.g. "bg-brand-500") rendered as a dot.
  * - `name` renders a hidden input so plain <form> submissions work.
  * - The popover is portalled to document.body (never clipped by Modal overflow), flips up when there
  *   is no room below, and Esc closes only the dropdown (it stops propagation before the Modal sees it).
@@ -264,7 +264,7 @@ export function Select({
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label id={labelId} onClick={() => triggerRef.current?.focus()} className="text-sm font-medium text-slate-700">
+        <label id={labelId} onClick={() => triggerRef.current?.focus()} className="text-sm font-medium text-ink-700">
           {label}
         </label>
       )}
@@ -286,15 +286,15 @@ export function Select({
         onKeyDown={onKeyDown}
         className={fieldClass(
           error,
-          cn("flex min-h-11 items-center gap-2 py-2 pr-3 text-left", open && "border-blue-600 ring-2 ring-blue-600/30", className),
+          cn("flex min-h-11 items-center gap-2 py-2 pr-3 text-left", open && "border-brand-600 ring-2 ring-brand-600/30", className),
         )}
       >
         {dot(selected?.color)}
-        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-slate-400")}>
+        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-ink-400")}>
           {selected ? selected.label : (placeholder ?? "Chọn…")}
         </span>
         <ChevronDown
-          className={cn("size-4 shrink-0 text-slate-500 transition-transform", open && "rotate-180")}
+          className={cn("size-4 shrink-0 text-ink-500 transition-transform", open && "rotate-180")}
           aria-hidden
         />
       </button>
@@ -322,7 +322,7 @@ export function Select({
               bottom: pos.bottom,
               maxHeight: pos.maxHeight,
             }}
-            className="z-70 overflow-y-auto overscroll-contain rounded-xl border border-slate-200 bg-white p-1 shadow-lg"
+            className="z-70 overflow-y-auto overscroll-contain rounded-xl border border-ink-200 bg-white p-1 shadow-lg"
           >
             {opts.map((o, i) => {
               const isSel = i === selectedIndex;
@@ -338,14 +338,14 @@ export function Select({
                   className={cn(
                     "flex min-h-11 cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm",
                     o.disabled && "cursor-not-allowed opacity-50",
-                    isSel ? "bg-blue-50 font-medium text-blue-700" : "text-slate-800",
-                    i === active && !isSel && "bg-blue-50/70",
-                    i === active && isSel && "bg-blue-100",
+                    isSel ? "bg-brand-50 font-medium text-brand-700" : "text-ink-800",
+                    i === active && !isSel && "bg-brand-50/70",
+                    i === active && isSel && "bg-brand-100",
                   )}
                 >
                   {dot(o.color)}
                   <span className="min-w-0 flex-1 break-words">{o.label}</span>
-                  {isSel && <Check className="size-4 shrink-0 text-blue-600" aria-hidden />}
+                  {isSel && <Check className="size-4 shrink-0 text-brand-600" aria-hidden />}
                 </li>
               );
             })}
