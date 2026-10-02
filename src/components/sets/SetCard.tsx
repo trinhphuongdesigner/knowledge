@@ -17,14 +17,14 @@ export function SetCard({
   return (
     <Link
       href={`/sets/${set.id}`}
-      className="group relative block h-full rounded-2xl transition-transform duration-200 active:scale-[0.985] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+      className="group/card relative block h-full rounded-2xl transition-transform duration-200 active:scale-[0.985] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
     >
       {/* Xấp thẻ phía sau: lộ ra khi hover */}
       <span
         aria-hidden
-        className="absolute inset-x-2 inset-y-0 rounded-2xl border border-ink-200 bg-ink-100 transition-transform duration-300 group-hover:translate-y-2 group-hover:rotate-2 motion-reduce:transition-none"
+        className="absolute inset-x-2 inset-y-0 rounded-2xl border border-ink-200 bg-ink-100 transition-transform duration-300 group-hover/card:translate-y-2 group-hover/card:rotate-2 motion-reduce:transition-none"
       />
-      <Card className="relative flex h-full flex-col gap-3 transition-[transform,border-color] duration-300 group-hover:-translate-y-1 group-hover:border-brand-300 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
+      <Card className="relative flex h-full flex-col gap-3 transition-[transform,border-color] duration-300 group-hover/card:-translate-y-1 group-hover/card:border-brand-300 motion-reduce:transition-none motion-reduce:group-hover/card:translate-y-0">
         <div className="flex items-start justify-between gap-2">
           <div className="flex min-w-0 flex-wrap items-center gap-1.5">
             {!hideCategory && <CategoryBadge category={set.category} />}
@@ -35,7 +35,7 @@ export function SetCard({
             {set.cardCount} thẻ
           </span>
         </div>
-        <h2 className="line-clamp-2 break-words text-base font-semibold text-ink-900 group-hover:text-accent-strong">{set.title}</h2>
+        <h2 className="line-clamp-2 break-words text-base font-semibold text-ink-900 group-hover/card:text-accent-strong">{set.title}</h2>
         {set.description && <p className="line-clamp-3 break-words text-sm text-ink-600">{set.description}</p>}
         {!set.isOwner && (
           <p className="mt-auto flex items-center gap-1.5 text-xs text-ink-500">
