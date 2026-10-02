@@ -99,7 +99,7 @@ export function CardList({
         {cards.length === 0 ? (
           <EmptyState
             icon={Layers}
-            title="Bộ học chưa có thẻ nào"
+            title="Nhóm thẻ chưa có thẻ nào"
             description='Nhấn "Thêm thẻ" ở trên, hoặc import nhanh từ file CSV, Excel hoặc Markdown.'
             action={
               <div className="flex flex-wrap justify-center gap-2">

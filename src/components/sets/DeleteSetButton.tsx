@@ -20,7 +20,7 @@ export function DeleteSetButton({ id, title }: { id: string; title: string }) {
       router.push("/");
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không thể xoá bộ học.");
+      setError(e instanceof Error ? e.message : "Không thể xoá nhóm thẻ.");
       setLoading(false);
     }
   }
@@ -29,11 +29,11 @@ export function DeleteSetButton({ id, title }: { id: string; title: string }) {
     <>
       <Button variant="danger" onClick={() => setOpen(true)}>
         <Trash2 className="size-4" aria-hidden />
-        Xoá bộ học
+        Xoá nhóm thẻ
       </Button>
-      <Modal open={open} onClose={() => !loading && setOpen(false)} title="Xoá bộ học?">
+      <Modal open={open} onClose={() => !loading && setOpen(false)} title="Xoá nhóm thẻ?">
         <p className="text-sm text-slate-600">
-          Bộ học <strong className="break-words text-slate-900">{title}</strong> và toàn bộ thẻ bên trong sẽ bị xoá vĩnh
+          Nhóm thẻ <strong className="break-words text-slate-900">{title}</strong> và toàn bộ thẻ bên trong sẽ bị xoá vĩnh
           viễn. Hành động này không thể hoàn tác.
         </p>
         {error && (

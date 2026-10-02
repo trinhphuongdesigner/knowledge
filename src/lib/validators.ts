@@ -1,12 +1,28 @@
 import { z } from "zod";
 
-export const CATEGORIES = ["IT", "ENGLISH"] as const;
-export type Category = (typeof CATEGORIES)[number];
+export const CATEGORY_COLORS = ["BLUE", "GREEN", "AMBER", "PURPLE", "ROSE", "SLATE"] as const;
+export type CategoryColor = (typeof CATEGORY_COLORS)[number];
 
-export const CATEGORY_LABELS: Record<Category, string> = {
-  IT: "Công nghệ (IT)",
-  ENGLISH: "Tiếng Anh",
-};
+export const CATEGORY_NAME_MAX = 40;
+
+/** Collapse whitespace + trim: how a category name is stored. */
+export function normalizeCategoryName(name: string): string {
+  return name.replace(/\s+/g, " ").trim();
+}
+
+/** Key for case-insensitive duplicate detection. */
+export function categoryNameKey(name: string): string {
+  return normalizeCategoryName(name).toLocaleLowerCase("vi");
+}
+
+export const categoryInputSchema = z.object({
+  name: z
+    .string()
+    .transform(normalizeCategoryName)
+    .pipe(z.string().min(1, "Vui lòng nhập tên danh mục").max(CATEGORY_NAME_MAX, "Tên tối đa 40 ký tự")),
+  color: z.enum(CATEGORY_COLORS).default("BLUE"),
+  isEnglish: z.boolean().default(false),
+});
 
 export const LEVELS = ["BASIC", "INTERMEDIATE", "ADVANCED"] as const;
 export type Level = (typeof LEVELS)[number];
@@ -20,8 +36,15 @@ export const LEVEL_LABELS: Record<Level, string> = {
 export const setInputSchema = z.object({
   title: z.string().trim().min(1).max(200),
   description: z.string().trim().max(2000).optional().nullable(),
-  category: z.enum(CATEGORIES),
+  categoryId: z.string().uuid(),
   level: z.enum(LEVELS).optional().nullable(),
+});
+
+/** PATCH body: every key optional, no defaults re-applied. */
+export const categoryUpdateSchema = z.object({
+  name: categoryInputSchema.shape.name.optional(),
+  color: z.enum(CATEGORY_COLORS).optional(),
+  isEnglish: z.boolean().optional(),
 });
 
 export const cardInputSchema = z.object({
@@ -39,14 +62,27 @@ export const bulkCardsSchema = z.object({
 });
 
 export type SetInput = z.infer<typeof setInputSchema>;
+export type CategoryInput = z.input<typeof categoryInputSchema>;
 export type CardInput = z.infer<typeof cardInputSchema>;
 export type BulkCardsInput = z.input<typeof bulkCardsSchema>;
+
+export type CategoryRefDTO = {
+  id: string;
+  name: string;
+  color: CategoryColor;
+  isEnglish: boolean;
+};
+
+export type CategoryDTO = CategoryRefDTO & {
+  setCount: number;
+  createdAt: string;
+};
 
 export type StudySetDTO = {
   id: string;
   title: string;
   description: string | null;
-  category: Category;
+  category: CategoryRefDTO;
   level: Level | null;
   cardCount: number;
   createdAt: string;

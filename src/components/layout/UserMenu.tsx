@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleUserRound, LogOut, Settings } from "lucide-react";
+import { CircleUserRound, FolderCog, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { logout } from "@/app/(auth)/actions";
@@ -54,6 +54,14 @@ export function UserMenu({ name, email }: { name: string | null; email: string }
             {name && <p className="truncate text-sm text-slate-500">{email}</p>}
           </div>
           <div className="border-t border-slate-100 pt-1">
+            <Link
+              href="/categories"
+              onClick={() => setOpen(false)}
+              className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-600"
+            >
+              <FolderCog className="size-4" aria-hidden />
+              Quản lý danh mục
+            </Link>
             <Link
               href="/account"
               onClick={() => setOpen(false)}

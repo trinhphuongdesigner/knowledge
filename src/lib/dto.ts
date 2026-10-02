@@ -1,5 +1,7 @@
-import type { Card, StudySet } from "@/generated/prisma/client";
-import type { CardDTO, StudySetDTO, StudySetDetailDTO } from "./validators";
+import type { Card, Category, StudySet } from "@/generated/prisma/client";
+import type { CardDTO, CategoryDTO, CategoryRefDTO, StudySetDTO, StudySetDetailDTO } from "./validators";
+
+export type { CategoryDTO, CategoryRefDTO } from "./validators";
 
 export function toCardDTO(card: Card): CardDTO {
   return {
@@ -16,12 +18,20 @@ export function toCardDTO(card: Card): CardDTO {
   };
 }
 
-export function toSetDTO(set: StudySet, cardCount: number): StudySetDTO {
+export function toCategoryRefDTO(c: Category): CategoryRefDTO {
+  return { id: c.id, name: c.name, color: c.color, isEnglish: c.isEnglish };
+}
+
+export function toCategoryDTO(c: Category, setCount: number): CategoryDTO {
+  return { ...toCategoryRefDTO(c), setCount, createdAt: c.createdAt.toISOString() };
+}
+
+export function toSetDTO(set: StudySet & { category: Category }, cardCount: number): StudySetDTO {
   return {
     id: set.id,
     title: set.title,
     description: set.description,
-    category: set.category,
+    category: toCategoryRefDTO(set.category),
     level: set.level,
     cardCount,
     createdAt: set.createdAt.toISOString(),
@@ -29,6 +39,6 @@ export function toSetDTO(set: StudySet, cardCount: number): StudySetDTO {
   };
 }
 
-export function toSetDetailDTO(set: StudySet & { cards: Card[] }): StudySetDetailDTO {
+export function toSetDetailDTO(set: StudySet & { category: Category; cards: Card[] }): StudySetDetailDTO {
   return { ...toSetDTO(set, set.cards.length), cards: set.cards.map(toCardDTO) };
 }

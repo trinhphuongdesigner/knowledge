@@ -3,16 +3,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CardList } from "@/components/cards/CardList";
 import { Container } from "@/components/layout/Container";
+import { CategoryBadge } from "@/components/categories/CategoryBadge";
 import { LevelBadge } from "@/components/sets/LevelBadge";
-import { Badge, ButtonLink } from "@/components/ui";
+import { ButtonLink } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { toSetDetailDTO } from "@/lib/dto";
 import { isUuid } from "@/lib/ids";
-import { CATEGORY_LABELS } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Chi tiết bộ học — Knowledge" };
+export const metadata: Metadata = { title: "Chi tiết nhóm thẻ — Knowledge" };
 
 export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">) {
   const user = await requireUser();
@@ -20,7 +20,7 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
   if (!isUuid(id)) notFound();
   const row = await db.studySet.findFirst({
     where: { id, userId: user.id },
-    include: { cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
+    include: { category: true, cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
   });
   if (!row) notFound();
   const set = toSetDetailDTO(row);
@@ -31,11 +31,11 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
       <CardList
         setId={set.id}
         initialCards={set.cards}
-        english={set.category === "ENGLISH"}
+        english={set.category.isEnglish}
         info={
           <div className="min-w-0">
             <div className="mb-2 flex flex-wrap items-center gap-2">
-              <Badge tone={set.category === "IT" ? "blue" : "green"}>{CATEGORY_LABELS[set.category]}</Badge>
+              <CategoryBadge category={set.category} />
               <LevelBadge level={set.level} />
               <span className="text-sm text-slate-500">{set.cardCount} thẻ</span>
             </div>

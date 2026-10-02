@@ -163,7 +163,7 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
     return (
       <EmptyState
         icon={Plus}
-        title="Bộ học chưa có thẻ nào"
+        title="Nhóm thẻ chưa có thẻ nào"
         description="Hãy thêm thẻ hoặc nhập từ file để bắt đầu học."
         action={
           <div className="flex flex-wrap justify-center gap-2">
@@ -206,7 +206,7 @@ function Session({ setId, title, cards, english = false, saved: savedRaw }: Prop
             href={`/sets/${setId}`}
             className="inline-flex min-h-11 items-center justify-center rounded-xl text-sm font-medium text-blue-600 hover:underline"
           >
-            Quay lại bộ học
+            Quay lại nhóm thẻ
           </Link>
         </div>
       </div>

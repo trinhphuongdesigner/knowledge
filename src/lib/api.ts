@@ -2,7 +2,8 @@ import type {
   BulkCardsInput,
   CardDTO,
   CardInput,
-  Category,
+  CategoryDTO,
+  CategoryInput,
   DictionaryEntryDTO,
   EnrichResultDTO,
   Level,
@@ -29,7 +30,7 @@ const send = (method: string, body?: unknown): RequestInit => ({
 });
 
 export const api = {
-  listSets(params: { category?: Category | ""; level?: Level | ""; q?: string } = {}) {
+  listSets(params: { category?: string; level?: Level | ""; q?: string } = {}) {
     const search = new URLSearchParams();
     if (params.category) search.set("category", params.category);
     if (params.level) search.set("level", params.level);
@@ -37,6 +38,11 @@ export const api = {
     const qs = search.toString();
     return request<StudySetDTO[]>(`/api/sets${qs ? `?${qs}` : ""}`);
   },
+  listCategories: () => request<CategoryDTO[]>("/api/categories"),
+  createCategory: (input: CategoryInput) => request<CategoryDTO>("/api/categories", send("POST", input)),
+  updateCategory: (id: string, input: Partial<CategoryInput>) =>
+    request<CategoryDTO>(`/api/categories/${id}`, send("PATCH", input)),
+  deleteCategory: (id: string) => request<{ ok: true }>(`/api/categories/${id}`, send("DELETE")),
   createSet: (input: SetInput) => request<StudySetDTO>("/api/sets", send("POST", input)),
   getSet: (id: string) => request<StudySetDetailDTO>(`/api/sets/${id}`),
   updateSet: (id: string, input: Partial<SetInput>) =>

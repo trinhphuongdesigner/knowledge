@@ -1,18 +1,19 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Search, Settings2 } from "lucide-react";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Select } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import { LEVELS, LEVEL_LABELS } from "@/lib/validators";
+import { LEVELS, LEVEL_LABELS, type CategoryDTO } from "@/lib/validators";
 
-const TABS = [
-  { value: "", label: "Tất cả" },
-  { value: "IT", label: "Công nghệ (IT)" },
-  { value: "ENGLISH", label: "Tiếng Anh" },
+const LEVEL_OPTIONS = [
+  { value: "", label: "Mọi cấp độ" },
+  ...LEVELS.map((l) => ({ value: l, label: LEVEL_LABELS[l] })),
 ];
 
-export function SetFilters() {
+export function SetFilters({ categories }: { categories: CategoryDTO[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -21,6 +22,7 @@ export function SetFilters() {
   const urlQ = params.get("q") ?? "";
   const [q, setQ] = useState(urlQ);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const tabs = [{ value: "", label: "Tất cả" }, ...categories.map((c) => ({ value: c.id, label: c.name }))];
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
@@ -42,46 +44,48 @@ export function SetFilters() {
 
   return (
     <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div
-          role="tablist"
-          aria-label="Lọc theo lĩnh vực"
-          className="-mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0"
-        >
-          {TABS.map((t) => {
-            const active = category === t.value;
-            return (
-              <button
-                key={t.value}
-                type="button"
-                role="tab"
-                aria-selected={active}
-                onClick={() => push({ category: t.value })}
-                className={cn(
-                  "min-h-11 shrink-0 rounded-full border px-4 text-sm font-medium transition-colors",
-                  active
-                    ? "border-blue-600 bg-blue-600 text-white"
-                    : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
-                )}
-              >
-                {t.label}
-              </button>
-            );
-          })}
+      <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="-mx-4 flex min-w-0 items-center gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
+          <div role="tablist" aria-label="Lọc theo danh mục" className="flex gap-2">
+            {tabs.map((t) => {
+              const active = category === t.value;
+              return (
+                <button
+                  key={t.value}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => push({ category: t.value })}
+                  className={cn(
+                    "min-h-11 max-w-56 shrink-0 truncate rounded-full border px-4 text-sm font-medium transition-colors",
+                    active
+                      ? "border-blue-600 bg-blue-600 text-white"
+                      : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
+                  )}
+                >
+                  {t.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
-        <select
-          value={level}
-          onChange={(e) => push({ level: e.target.value })}
-          aria-label="Lọc theo cấp độ"
-          className="min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-900 focus:border-blue-600 focus:outline-2 focus:outline-blue-600/30 sm:w-44"
-        >
-          <option value="">Mọi cấp độ</option>
-          {LEVELS.map((l) => (
-            <option key={l} value={l}>
-              {LEVEL_LABELS[l]}
-            </option>
-          ))}
-        </select>
+        <div className="flex items-center gap-2">
+          <div className="min-w-0 flex-1 sm:w-44 sm:flex-none">
+            <Select
+              aria-label="Lọc theo cấp độ"
+              value={level}
+              onValueChange={(v) => push({ level: v })}
+              options={LEVEL_OPTIONS}
+            />
+          </div>
+          <Link
+            href="/categories"
+            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-slate-600 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            <Settings2 className="size-4" aria-hidden />
+            Quản lý<span className="sr-only"> danh mục</span>
+          </Link>
+        </div>
       </div>
       <div className="relative lg:w-72">
         <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" aria-hidden />
@@ -89,8 +93,8 @@ export function SetFilters() {
           type="search"
           value={q}
           onChange={(e) => onSearch(e.target.value)}
-          placeholder="Tìm bộ học..."
-          aria-label="Tìm bộ học"
+          placeholder="Tìm nhóm thẻ..."
+          aria-label="Tìm nhóm thẻ"
           className="min-h-11 w-full rounded-xl border border-slate-300 bg-white pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-2 focus:outline-blue-600/30"
         />
       </div>

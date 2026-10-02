@@ -1,34 +1,42 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Button, Input, Select, Textarea } from "@/components/ui";
 import { api } from "@/lib/api";
+import { colorClasses } from "@/components/categories/colors";
 import {
-  CATEGORIES,
-  CATEGORY_LABELS,
   LEVELS,
   LEVEL_LABELS,
   setInputSchema,
-  type Category,
+  type CategoryDTO,
   type Level,
   type StudySetDTO,
 } from "@/lib/validators";
 
-type Errors = Partial<Record<"title" | "description" | "category" | "level", string>>;
+type Errors = Partial<Record<"title" | "description" | "categoryId" | "level", string>>;
 
 const MESSAGES: Record<string, string> = {
-  title: "Vui lòng nhập tên bộ học (tối đa 200 ký tự).",
+  title: "Vui lòng nhập tên nhóm thẻ (tối đa 200 ký tự).",
   description: "Mô tả tối đa 2000 ký tự.",
-  category: "Vui lòng chọn lĩnh vực.",
+  categoryId: "Vui lòng chọn danh mục.",
   level: "Cấp độ không hợp lệ.",
 };
 
-export function SetForm({ set, onCancel }: { set?: StudySetDTO; onCancel?: () => void }) {
+export function SetForm({
+  categories,
+  set,
+  onCancel,
+}: {
+  categories: CategoryDTO[];
+  set?: StudySetDTO;
+  onCancel?: () => void;
+}) {
   const router = useRouter();
   const [title, setTitle] = useState(set?.title ?? "");
   const [description, setDescription] = useState(set?.description ?? "");
-  const [category, setCategory] = useState<Category>(set?.category ?? "IT");
+  const [categoryId, setCategoryId] = useState<string>(set?.category.id ?? categories[0]?.id ?? "");
   const [level, setLevel] = useState<Level | "">(set?.level ?? "");
   const [errors, setErrors] = useState<Errors>({});
   const [submitError, setSubmitError] = useState("");
@@ -37,7 +45,7 @@ export function SetForm({ set, onCancel }: { set?: StudySetDTO; onCancel?: () =>
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setSubmitError("");
-    const parsed = setInputSchema.safeParse({ title, description, category, level: level || null });
+    const parsed = setInputSchema.safeParse({ title, description, categoryId, level: level || null });
     if (!parsed.success) {
       const errs: Errors = {};
       for (const issue of parsed.error.issues) {
@@ -67,7 +75,7 @@ export function SetForm({ set, onCancel }: { set?: StudySetDTO; onCancel?: () =>
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
       <Input
-        label="Tên bộ học"
+        label="Tên nhóm thẻ"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         error={errors.title}
@@ -81,20 +89,24 @@ export function SetForm({ set, onCancel }: { set?: StudySetDTO; onCancel?: () =>
         onChange={(e) => setDescription(e.target.value)}
         error={errors.description}
         rows={4}
-        placeholder="Bộ học này nói về điều gì?"
+        placeholder="Nhóm thẻ này nói về điều gì?"
       />
-      <Select
-        label="Lĩnh vực"
-        value={category}
-        onChange={(e) => setCategory(e.target.value as Category)}
-        error={errors.category}
-      >
-        {CATEGORIES.map((c) => (
-          <option key={c} value={c}>
-            {CATEGORY_LABELS[c]}
-          </option>
-        ))}
-      </Select>
+      <div className="flex flex-col gap-1.5">
+        <Select
+          label="Danh mục"
+          value={categoryId}
+          onValueChange={setCategoryId}
+          error={errors.categoryId}
+          placeholder="Chọn danh mục"
+          options={categories.map((c) => ({ value: c.id, label: c.name, color: colorClasses(c.color).dot }))}
+        />
+        <Link
+          href="/categories"
+          className="self-start text-sm font-medium text-blue-600 hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+        >
+          Quản lý danh mục
+        </Link>
+      </div>
       <Select
         label="Cấp độ (tuỳ chọn)"
         value={level}
@@ -118,7 +130,7 @@ export function SetForm({ set, onCancel }: { set?: StudySetDTO; onCancel?: () =>
           Huỷ
         </Button>
         <Button type="submit" loading={loading}>
-          {set ? "Lưu thay đổi" : "Tạo bộ học"}
+          {set ? "Lưu thay đổi" : "Tạo nhóm thẻ"}
         </Button>
       </div>
     </form>

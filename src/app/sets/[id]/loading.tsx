@@ -4,7 +4,7 @@ import { PageLoader } from "@/components/ui";
 export default function Loading() {
   return (
     <Container className="py-6 sm:py-8">
-      <PageLoader label="Đang tải bộ học…" />
+      <PageLoader label="Đang tải nhóm thẻ…" />
     </Container>
   );
 }

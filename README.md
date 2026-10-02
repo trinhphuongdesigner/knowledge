@@ -4,11 +4,12 @@
 
 ## Tính năng
 
-- Quản lý **bộ học** (tạo, sửa, xoá) theo lĩnh vực IT / Tiếng Anh; lọc theo lĩnh vực và tìm kiếm theo tên.
-- Quản lý **thẻ** trong bộ học: thêm nhanh (Ctrl/Cmd + Enter), sửa trực tiếp, xoá có xác nhận.
+- Quản lý **nhóm thẻ** (tạo, sửa, xoá) theo **danh mục** do bạn tự tạo (mặc định có "IT" và "Tiếng Anh"); lọc theo danh mục / cấp độ và tìm kiếm theo tên.
+- **Danh mục tuỳ chỉnh**: trang `/categories` (menu avatar → "Quản lý danh mục") để tạo/sửa/xoá danh mục (tên, màu, cờ "Bộ từ vựng tiếng Anh" bật phiên âm / tra từ điển / nút đọc). Danh mục thuộc từng user, tên không trùng (không phân biệt hoa/thường), chỉ xoá được khi danh mục chưa có nhóm thẻ.
+- Quản lý **thẻ** trong nhóm thẻ: thêm nhanh (Ctrl/Cmd + Enter), sửa trực tiếp, xoá có xác nhận.
 - **Import** thẻ từ CSV, Excel (.xlsx/.xls), Markdown hoặc dán văn bản; xem trước, sửa/xoá từng dòng rồi mới lưu; chế độ *Thêm vào cuối* hoặc *Thay thế toàn bộ*.
-- **Học flashcard**: lật thẻ 3D, xáo trộn, đổi mặt hiển thị, đánh dấu Đã thuộc / Chưa thuộc, thanh tiến độ, màn hình kết thúc, học lại thẻ chưa thuộc. Tiến độ lưu trong `localStorage` theo từng bộ học.
-- **Phiên âm + phát âm (bộ Tiếng Anh)**: thẻ có thêm phiên âm IPA, từ loại và audio, hiển thị dạng `able (adjective) /ˈeɪbl/` kèm nút loa. Dữ liệu tra tự động từ [dictionaryapi.dev](https://dictionaryapi.dev) (miễn phí, không cần key) khi thêm thẻ, khi import, hoặc bấm **Tra phiên âm** ở trang bộ học; có nút **Tự tra** trong biểu mẫu thẻ. Không có audio thì dùng giọng đọc của trình duyệt (en-US).
+- **Học flashcard**: lật thẻ 3D, xáo trộn, đổi mặt hiển thị, đánh dấu Đã thuộc / Chưa thuộc, thanh tiến độ, màn hình kết thúc, học lại thẻ chưa thuộc. Tiến độ lưu trong `localStorage` theo từng nhóm thẻ.
+- **Phiên âm + phát âm (bộ Tiếng Anh)**: thẻ có thêm phiên âm IPA, từ loại và audio, hiển thị dạng `able (adjective) /ˈeɪbl/` kèm nút loa. Dữ liệu tra tự động từ [dictionaryapi.dev](https://dictionaryapi.dev) (miễn phí, không cần key) khi thêm thẻ, khi import, hoặc bấm **Tra phiên âm** ở trang nhóm thẻ; có nút **Tự tra** trong biểu mẫu thẻ. Không có audio thì dùng giọng đọc của trình duyệt (en-US).
 
 > **Lưu ý:** chỉ tính năng tra phiên âm cần internet (server gọi dictionaryapi.dev, timeout 5 giây). Khi mất mạng hoặc từ không có trong từ điển, thẻ vẫn được tạo/import bình thường — bạn có thể nhập phiên âm thủ công. Phần còn lại của ứng dụng chạy hoàn toàn offline.
 
@@ -38,7 +39,7 @@ cp .env.example .env
 # 3. Khởi động PostgreSQL (cổng 5433)
 npm run db:up
 
-# 4. Tạo bảng (áp dụng migration `init`)
+# 4. Tạo bảng (áp dụng các migration: `init`, `add_categories`)
 npx prisma migrate deploy      # hoặc: npm run db:migrate (prisma migrate dev)
 
 # 5. Nạp dữ liệu mẫu (bộ từ vựng Tiếng Anh + bộ câu hỏi phỏng vấn Frontend)
@@ -78,7 +79,7 @@ Sau đó chạy `npx prisma migrate deploy` và `npm run db:seed` như bình th�
 
 ### Seed
 
-`npm run db:seed` (cần `ADMIN_EMAIL`/`ADMIN_PASSWORD`, xem mục Đăng nhập) **xoá bộ học/thẻ của tài khoản admin** rồi tạo lại (chạy lại bao nhiêu lần cũng được). Nguồn dữ liệu:
+`npm run db:seed` (cần `ADMIN_EMAIL`/`ADMIN_PASSWORD`, xem mục Đăng nhập) **xoá nhóm thẻ/thẻ của tài khoản admin** rồi tạo lại (chạy lại bao nhiêu lần cũng được). Nguồn dữ liệu:
 
 1. `prisma/seed-data/vocab/*.json`: các bộ từ vựng / câu hỏi HR Tiếng Anh (mỗi file một bộ: `slug`, `order`, `title`, `description`, `category`, `level`, `cards[]` với `question`, `answer`, `explanation?`, `phonetic?`, `partOfSpeech?`). File không hợp lệ bị cảnh báo và bỏ qua; thư mục trống/thiếu vẫn chạy được.
 2. `prisma/seed-data/frontend-handbook.md`: chỉ lấy **PHẦN II**, mỗi mục `## N. Tên` thành một bộ IT `Phỏng vấn Frontend · <Tên>` (parser Markdown kiểu "câu hỏi in đậm", xem bên dưới).
@@ -87,116 +88,19 @@ Thứ tự hiển thị trên trang chủ (mới nhất trước): Life & Work, 
 
 ## Đăng nhập & phân quyền dữ liệu
 
-Mỗi bộ học/thẻ thuộc về đúng một user; user chỉ thấy và sửa dữ liệu của mình (bộ không thuộc user trả **404**, chưa đăng nhập ở API trả **401**).
+Mỗi nhóm thẻ/thẻ thuộc về đúng một user; user chỉ thấy và sửa dữ liệu của mình (nhóm không thuộc user trả **404**, chưa đăng nhập ở API trả **401**).
 
 - **Cách hoạt động**: email + mật khẩu tự xây (không dùng thư viện/dịch vụ auth). Mật khẩu băm bằng `node:crypto` scrypt (N=2^15, r=8, p=1) kèm salt, lưu dạng `scrypt$N$r$p$salt$hash`. Đăng nhập tạo session ngẫu nhiên 32 byte trong cookie `kn_session` (`httpOnly`, `sameSite=lax`, `secure` khi production, 30 ngày, gia hạn trượt khi còn < 15 ngày ở DB, và `src/proxy.ts` đặt lại cookie mỗi request); DB chỉ lưu `sha256(token)`. Đăng xuất xoá session trong DB và cookie.
 - **Kiểm tra 2 lớp**: `src/proxy.ts` chỉ kiểm tra lạc quan sự có mặt của cookie (redirect `/login?next=…`, API không cookie → 401); kiểm tra thật nằm ở DAL `src/lib/auth/dal.ts` (`requireUser`, `requireApiUser`).
 - **Chống lạm dụng**: rate limit lưu DB (đăng nhập sai ≥ 5 lần/15 phút theo email hoặc ≥ 20 lần theo IP; đăng ký ≥ 5 lần/giờ/IP), Route Handler ghi kiểm tra `Origin` trùng `Host` (CSRF), `?next=` chỉ nhận đường dẫn nội bộ, security headers trong `next.config.ts`.
 - **`ALLOW_REGISTRATION`**: đặt `"false"` để tắt đăng ký tài khoản mới (mặc định bật).
-- **Seed admin**: `npm run db:seed` cần `ADMIN_EMAIL` và `ADMIN_PASSWORD_HASH` (ưu tiên) hoặc `ADMIN_PASSWORD` (≥ 8 ký tự), tuỳ chọn `ADMIN_NAME` (mặc định "Admin"). Seed tạo/cập nhật tài khoản admin và **chỉ thay bộ học của admin** (36 bộ / 994 thẻ); dữ liệu user khác không bị đụng tới.
+- **Seed admin**: `npm run db:seed` cần `ADMIN_EMAIL` và `ADMIN_PASSWORD_HASH` (ưu tiên) hoặc `ADMIN_PASSWORD` (≥ 8 ký tự), tuỳ chọn `ADMIN_NAME` (mặc định "Admin"). Seed tạo/cập nhật tài khoản admin và **chỉ thay nhóm thẻ của admin** (36 bộ / 994 thẻ); dữ liệu user khác không bị đụng tới.
 
   ```bash
   ADMIN_EMAIL=admin@example.com ADMIN_PASSWORD='mat-khau-manh' npm run db:seed
   ```
 
-- **Mật khẩu admin dạng hash**: để không lưu mật khẩu thô trong `.env`, tạo hash bằng `npm run auth:hash` (nhập mật khẩu không hiện ký tự; hoặc qua pipe: `echo 'mat-khau-manh' | npm run -s auth:hash`), rồi đặt vào `.env` **trong nháy đơn** (Prisma CLI dùng dotenv, không expand `# Knowledge
-
-Ứng dụng web học tập bằng **flashcard** (lấy cảm hứng từ Quizlet) cho hai lĩnh vực **Công nghệ (IT)** và **Tiếng Anh**. Giao diện tiếng Việt, tông xanh dương / trắng, tối giản và responsive (ưu tiên mobile).
-
-## Tính năng
-
-- Quản lý **bộ học** (tạo, sửa, xoá) theo lĩnh vực IT / Tiếng Anh; lọc theo lĩnh vực và tìm kiếm theo tên.
-- Quản lý **thẻ** trong bộ học: thêm nhanh (Ctrl/Cmd + Enter), sửa trực tiếp, xoá có xác nhận.
-- **Import** thẻ từ CSV, Excel (.xlsx/.xls), Markdown hoặc dán văn bản; xem trước, sửa/xoá từng dòng rồi mới lưu; chế độ *Thêm vào cuối* hoặc *Thay thế toàn bộ*.
-- **Học flashcard**: lật thẻ 3D, xáo trộn, đổi mặt hiển thị, đánh dấu Đã thuộc / Chưa thuộc, thanh tiến độ, màn hình kết thúc, học lại thẻ chưa thuộc. Tiến độ lưu trong `localStorage` theo từng bộ học.
-- **Phiên âm + phát âm (bộ Tiếng Anh)**: thẻ có thêm phiên âm IPA, từ loại và audio, hiển thị dạng `able (adjective) /ˈeɪbl/` kèm nút loa. Dữ liệu tra tự động từ [dictionaryapi.dev](https://dictionaryapi.dev) (miễn phí, không cần key) khi thêm thẻ, khi import, hoặc bấm **Tra phiên âm** ở trang bộ học; có nút **Tự tra** trong biểu mẫu thẻ. Không có audio thì dùng giọng đọc của trình duyệt (en-US).
-
-> **Lưu ý:** chỉ tính năng tra phiên âm cần internet (server gọi dictionaryapi.dev, timeout 5 giây). Khi mất mạng hoặc từ không có trong từ điển, thẻ vẫn được tạo/import bình thường — bạn có thể nhập phiên âm thủ công. Phần còn lại của ứng dụng chạy hoàn toàn offline.
-
-## Stack
-
-- Next.js 16 (App Router, Turbopack), React 19, TypeScript strict
-- Tailwind CSS v4, `lucide-react`
-- PostgreSQL 16 (docker compose) + Prisma 7 (`@prisma/adapter-pg`)
-- `zod` 4 (validate dùng chung client + server)
-- `papaparse` (CSV), `xlsx` (SheetJS), parser Markdown tự viết
-- `vitest` cho test parser import
-
-## Yêu cầu
-
-- Node.js 20.9 trở lên (khuyến nghị bản LTS mới nhất) và npm
-- Docker + Docker Compose (để chạy PostgreSQL local)
-
-## Cài đặt
-
-```bash
-# 1. Cài dependencies (tự chạy prisma generate)
-npm install
-
-# 2. Tạo file môi trường
-cp .env.example .env
-
-# 3. Khởi động PostgreSQL (cổng 5433)
-npm run db:up
-
-# 4. Tạo bảng (áp dụng migration `init`)
-npx prisma migrate deploy      # hoặc: npm run db:migrate (prisma migrate dev)
-
-# 5. Nạp dữ liệu mẫu (bộ từ vựng Tiếng Anh + bộ câu hỏi phỏng vấn Frontend)
-npm run db:seed
-
-# 6. Chạy ứng dụng
-npm run dev
-```
-
-Mở http://localhost:3000. Chạy bản production: `npm run build` rồi `npm run start`.
-
-## Cơ sở dữ liệu
-
-- **Id là UUID v7** (`@default(uuid(7)) @db.Uuid`, sinh bởi Prisma, sắp xếp theo thời gian). Id sai định dạng ở API trả 404, ở trang trả trang 404.
-- **Cấp độ**: `StudySet.level` (tuỳ chọn) là `BASIC` (Cơ bản) / `INTERMEDIATE` (Trung cấp) / `ADVANCED` (Nâng cao). Lọc ở `GET /api/sets?level=ADVANCED`.
-- Dự án mới nên chỉ có **một migration `init`** (`prisma/migrations`). Sau khi sửa `schema.prisma` trong giai đoạn đầu, có thể xoá lại từ đầu như sau.
-
-Reset toàn bộ DB và tạo lại migration `init`:
-
-```bash
-rm -rf prisma/migrations/2*            # giữ migration_lock.toml
-docker exec knowledge-db psql -U knowledge -d knowledge -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
-npx prisma migrate dev --name init     # tạo migration mới + sinh client
-npm run db:seed
-```
-
-(Khi đã có migration, `npx prisma migrate reset --force` xoá DB, áp dụng lại migration và chạy seed.)
-
-### Dùng Supabase thay Docker
-
-Trong `.env`, comment `DATABASE_URL` local rồi bỏ comment khối Supabase, thay `[YOUR-PASSWORD]` (URL-encode nếu có ký tự đặc biệt):
-
-- `DATABASE_URL`: Transaction pooler (cổng **6543**), dùng cho app lúc chạy (phù hợp serverless).
-- `DIRECT_URL`: Session pooler (cổng **5432**), dùng cho Prisma CLI (`migrate`, `db seed`). `prisma.config.ts` ưu tiên `DIRECT_URL` nếu có.
-
-Sau đó chạy `npx prisma migrate deploy` và `npm run db:seed` như bình thường (bỏ qua bước `npm run db:up`).
-
-### Seed
-
-`npm run db:seed` (cần `ADMIN_EMAIL`/`ADMIN_PASSWORD`, xem mục Đăng nhập) **xoá bộ học/thẻ của tài khoản admin** rồi tạo lại (chạy lại bao nhiêu lần cũng được). Nguồn dữ liệu:
-
-1. `prisma/seed-data/vocab/*.json`: các bộ từ vựng / câu hỏi HR Tiếng Anh (mỗi file một bộ: `slug`, `order`, `title`, `description`, `category`, `level`, `cards[]` với `question`, `answer`, `explanation?`, `phonetic?`, `partOfSpeech?`). File không hợp lệ bị cảnh báo và bỏ qua; thư mục trống/thiếu vẫn chạy được.
-2. `prisma/seed-data/frontend-handbook.md`: chỉ lấy **PHẦN II**, mỗi mục `## N. Tên` thành một bộ IT `Phỏng vấn Frontend · <Tên>` (parser Markdown kiểu "câu hỏi in đậm", xem bên dưới).
-
-Thứ tự hiển thị trên trang chủ (mới nhất trước): Life & Work, Câu hỏi HR, IT English, Phỏng vấn Frontend (mỗi nhóm theo `order`). Seed in tổng số bộ/thẻ của từng nguồn.
-
-## Đăng nhập & phân quyền dữ liệu
-
-Mỗi bộ học/thẻ thuộc về đúng một user; user chỉ thấy và sửa dữ liệu của mình (bộ không thuộc user trả **404**, chưa đăng nhập ở API trả **401**).
-
-- **Cách hoạt động**: email + mật khẩu tự xây (không dùng thư viện/dịch vụ auth). Mật khẩu băm bằng `node:crypto` scrypt (N=2^15, r=8, p=1) kèm salt, lưu dạng `scrypt$N$r$p$salt$hash`. Đăng nhập tạo session ngẫu nhiên 32 byte trong cookie `kn_session` (`httpOnly`, `sameSite=lax`, `secure` khi production, 30 ngày, gia hạn trượt khi còn < 15 ngày ở DB, và `src/proxy.ts` đặt lại cookie mỗi request); DB chỉ lưu `sha256(token)`. Đăng xuất xoá session trong DB và cookie.
-- **Kiểm tra 2 lớp**: `src/proxy.ts` chỉ kiểm tra lạc quan sự có mặt của cookie (redirect `/login?next=…`, API không cookie → 401); kiểm tra thật nằm ở DAL `src/lib/auth/dal.ts` (`requireUser`, `requireApiUser`).
-- **Chống lạm dụng**: rate limit lưu DB (đăng nhập sai ≥ 5 lần/15 phút theo email hoặc ≥ 20 lần theo IP; đăng ký ≥ 5 lần/giờ/IP), Route Handler ghi kiểm tra `Origin` trùng `Host` (CSRF), `?next=` chỉ nhận đường dẫn nội bộ, security headers trong `next.config.ts`.
-- **`ALLOW_REGISTRATION`**: đặt `"false"` để tắt đăng ký tài khoản mới (mặc định bật).
-- **Seed admin**: `npm run db:seed` cần `ADMIN_EMAIL` và `ADMIN_PASSWORD_HASH` (ưu tiên) hoặc `ADMIN_PASSWORD` (≥ 8 ký tự), tuỳ chọn `ADMIN_NAME` (mặc định "Admin"). Seed tạo/cập nhật tài khoản admin và **chỉ thay bộ học của admin** (36 bộ / 994 thẻ); dữ liệu user khác không bị đụng tới.
-
-):
+- **Mật khẩu admin dạng hash**: để không lưu mật khẩu thô trong `.env`, tạo hash bằng `npm run auth:hash` (nhập mật khẩu không hiện ký tự; hoặc qua pipe: `echo 'mat-khau-manh' | npm run -s auth:hash`), rồi đặt vào `.env` **trong nháy đơn** (Prisma CLI dùng dotenv, không expand `$`):
 
   ```
   ADMIN_PASSWORD_HASH='scrypt$32768$8$1$...$...'
@@ -206,6 +110,10 @@ Mỗi bộ học/thẻ thuộc về đúng một user; user chỉ thấy và s�
 - **Quản lý tài khoản**: menu avatar → "Quản lý tài khoản" (`/account`): tab *Thông tin* (đổi tên, email — đổi email cần mật khẩu hiện tại) và tab *Mật khẩu* (đổi mật khẩu; các thiết bị/phiên khác bị đăng xuất, phiên hiện tại giữ nguyên). Nhập sai mật khẩu hiện tại được tính vào rate limit đăng nhập.
 
 - **Biến môi trường khi deploy (Supabase + Vercel)**: `DATABASE_URL` (Transaction pooler, 6543), `DIRECT_URL` (Session pooler, 5432; dùng cho migrate/seed), `ALLOW_REGISTRATION` (tuỳ chọn). `ADMIN_EMAIL` / `ADMIN_PASSWORD_HASH` / `ADMIN_PASSWORD` / `ADMIN_NAME` **chỉ cần khi chạy seed** (trên máy bạn), không cần đặt trên Vercel.
+
+### Migration `add_categories` (danh mục tuỳ chỉnh)
+
+`enum Category` được thay bằng bảng `Category` theo từng user. Migration `prisma/migrations/*_add_categories` **giữ nguyên dữ liệu**: mỗi user được tạo 2 danh mục "IT" (xanh dương) và "Tiếng Anh" (xanh lá, `isEnglish`), các nhóm thẻ cũ được gán theo giá trị enum cũ. Trên DB đã có dữ liệu (ví dụ Supabase) chỉ cần `npx prisma migrate deploy` — **không** reset DB. Đăng ký user mới và seed admin cũng tạo sẵn 2 danh mục này.
 
 ## Scripts
 
@@ -308,10 +216,14 @@ Mọi endpoint yêu cầu đăng nhập (cookie `kn_session`) và chỉ thao tá
 
 | Method | Path | Body | Kết quả |
 |---|---|---|---|
-| GET | `/api/sets?category=IT&level=ADVANCED&q=js` | – | Danh sách bộ học (mới nhất trước); `category`, `level`, `q` đều tuỳ chọn |
-| POST | `/api/sets` | `{ title, description?, category, level? }` | Bộ học vừa tạo (201) |
-| GET | `/api/sets/:id` | – | Bộ học kèm danh sách thẻ |
-| PATCH | `/api/sets/:id` | Một phần của dữ liệu bộ học | Bộ học đã cập nhật |
+| GET | `/api/sets?category=<categoryId>&level=ADVANCED&q=js` | – | Danh sách nhóm thẻ (mới nhất trước); `category` (id danh mục), `level`, `q` đều tuỳ chọn |
+| POST | `/api/sets` | `{ title, description?, categoryId, level? }` | Nhóm thẻ vừa tạo (201); `categoryId` không thuộc user → 400 |
+| GET | `/api/categories` | – | Danh mục của user kèm `setCount` |
+| POST | `/api/categories` | `{ name (1–40), color?, isEnglish? }` | Danh mục vừa tạo (201); trùng tên (không phân biệt hoa/thường) → 409 |
+| PATCH | `/api/categories/:id` | Một phần của dữ liệu danh mục | Danh mục đã cập nhật; trùng tên → 409 |
+| DELETE | `/api/categories/:id` | – | `{ ok: true }`; còn nhóm thẻ → 409 |
+| GET | `/api/sets/:id` | – | Nhóm thẻ kèm danh sách thẻ |
+| PATCH | `/api/sets/:id` | Một phần của dữ liệu nhóm thẻ | Nhóm thẻ đã cập nhật |
 | DELETE | `/api/sets/:id` | – | `{ ok: true }` |
 | POST | `/api/sets/:id/cards` | `{ question, answer, explanation?, phonetic?, partOfSpeech?, audioUrl? }` | Thẻ vừa tạo (201) |
 | POST | `/api/sets/:id/cards/bulk` | `{ mode: "append" \| "replace", cards: [...] }` | `{ created: number }` (201) |

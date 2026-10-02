@@ -1,9 +1,11 @@
 import type { Prisma } from "@/generated/prisma/client";
 import { requireApiUser } from "@/lib/auth/dal";
+import { userOwnsCategory } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
-import { json, readJson, serverError, validationError } from "@/lib/http";
-import { CATEGORIES, LEVELS, setInputSchema } from "@/lib/validators";
+import { badRequest, json, readJson, serverError, validationError } from "@/lib/http";
+import { isUuid } from "@/lib/ids";
+import { LEVELS, setInputSchema } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
 
@@ -17,9 +19,7 @@ export async function GET(req: Request) {
     const q = searchParams.get("q")?.trim();
 
     const where: Prisma.StudySetWhereInput = { userId: user.id };
-    if (category && (CATEGORIES as readonly string[]).includes(category)) {
-      where.category = category as (typeof CATEGORIES)[number];
-    }
+    if (category && isUuid(category)) where.categoryId = category;
     if (level && (LEVELS as readonly string[]).includes(level)) {
       where.level = level as (typeof LEVELS)[number];
     }
@@ -33,7 +33,7 @@ export async function GET(req: Request) {
     const sets = await db.studySet.findMany({
       where,
       orderBy: { createdAt: "desc" },
-      include: { _count: { select: { cards: true } } },
+      include: { category: true, _count: { select: { cards: true } } },
     });
     return json(sets.map((s) => toSetDTO(s, s._count.cards)));
   } catch (e) {
@@ -47,9 +47,11 @@ export async function POST(req: Request) {
     if (user instanceof Response) return user;
     const parsed = setInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
-    const { title, description, category, level } = parsed.data;
+    const { title, description, categoryId, level } = parsed.data;
+    if (!(await userOwnsCategory(user.id, categoryId))) return badRequest("Danh mục không hợp lệ");
     const set = await db.studySet.create({
-      data: { title, description: description || null, category, level: level ?? null, userId: user.id },
+      data: { title, description: description || null, categoryId, level: level ?? null, userId: user.id },
+      include: { category: true },
     });
     return json(toSetDTO(set, 0), 201);
   } catch (e) {

@@ -408,7 +408,7 @@ model LoginAttempt {                     // rate limit dùng DB (serverless nhi�
 - [x] W4-A backend/auth/seed ✅ (migration 20261002024207_init, proxy ở src/proxy.ts, 89 test, build OK)
 - [x] W4-B UI login/register/header ✅
 - [x] W4-QA ✅ (E2E admin + user B chéo 404, rate limit, safeNext; sửa cookie trượt, vòng lặp redirect cookie hết hạn)
-- [ ] Supabase: reset init mới + seed admin
+- [x] Supabase: reset init mới + seed admin ✅
 
 ## 12. Đợt 5 — Quản lý tài khoản & mật khẩu admin đã hash
 
@@ -420,5 +420,54 @@ model LoginAttempt {                     // rate limit dùng DB (serverless nhi�
 - Server Actions trong `src/app/account/actions.ts` (`useActionState`), schema zod trong `src/lib/validators.ts`, test vitest cho schema mới. Không trả passwordHash ra client.
 
 ### Tiến độ đợt 5
-- [ ] W5 account + seed hash
-- [ ] Supabase: reset init mới + seed admin (hash)
+- [x] W5 account + seed hash ✅ (99 test, build OK, E2E OK; .env dùng ADMIN_PASSWORD_HASH)
+- [x] Supabase: reset init mới + seed admin (hash) ✅
+
+## 13. Đợt 6 — Danh mục tuỳ chỉnh & dropdown mới
+
+Yêu cầu: (1) danh mục do user tạo/sửa/xoá, IT và Tiếng Anh là 2 danh mục có sẵn (dữ liệu hiện tại được chuyển vào đó); có màn hình quản lý danh mục; xoá chỉ được khi danh mục **chưa có bộ học nào**. (2) dropdown khi mở ra phải đồng bộ UI (hiện là `<select>` gốc của trình duyệt, thô).
+
+Quyết định: danh mục **thuộc từng user** (như bộ học). Dữ liệu hiện nằm trên Supabase nên dùng **migration thêm mới `add_categories` có chuyển đổi dữ liệu**, KHÔNG reset DB (khác đợt 3–5). `enum Category` bị bỏ.
+
+### 13.1 Data model
+```prisma
+model Category {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  userId     String   @db.Uuid
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name       String                      // 1–40 ký tự, trim
+  color      CategoryColor @default(BLUE)
+  isEnglish  Boolean  @default(false)    // true: bộ từ vựng tiếng Anh → hiện phiên âm/tra từ điển, nút phát âm
+  sets       StudySet[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([userId, name])               // trùng tên (không phân biệt hoa/thường, kiểm bằng code) → lỗi 409
+  @@index([userId])
+}
+enum CategoryColor { BLUE GREEN AMBER PURPLE ROSE SLATE }
+// StudySet: bỏ `category Category`; thêm
+  categoryId String   @db.Uuid
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+```
+- Migration SQL tự viết (dùng `prisma migrate dev --create-only` rồi sửa): tạo bảng/enum mới, với **mỗi user có bộ học** tạo 2 danh mục "IT" (BLUE, isEnglish=false) và "Tiếng Anh" (GREEN, isEnglish=true), `UPDATE StudySet` gán `categoryId` theo enum cũ, đặt NOT NULL, rồi DROP cột và enum cũ. Thêm cả cho user chưa có bộ nào (mọi user đều có 2 danh mục mặc định). Phải chạy được trên DB đã có dữ liệu (kiểm thử: local seed bằng schema cũ → migrate → kiểm tra).
+- Đăng ký mới (`register` action) và seed admin: tạo 2 danh mục mặc định "IT" và "Tiếng Anh" cho user. Seed vocab/handbook: `category` ENGLISH/IT trong JSON → tra danh mục theo `isEnglish`/tên "IT" của admin.
+- Shared contract `src/lib/validators.ts`: bỏ `CATEGORIES`/`CATEGORY_LABELS`; thêm `CATEGORY_COLORS`, `categoryInputSchema = { name, color, isEnglish }`; `setInputSchema.categoryId` (uuid) thay `category`. `src/lib/dto.ts`: `CategoryDTO = { id, name, color, isEnglish, setCount, createdAt }`; `StudySetDTO.category: { id, name, color, isEnglish }` (thay enum); `src/lib/categories.ts` (server): `listCategories(userId)`, `getCategory(userId, id)`.
+- API (đều qua `requireApiUser`, 404 khi không thuộc user, Origin check như cũ): `GET/POST /api/categories`, `PATCH/DELETE /api/categories/[id]`. DELETE khi còn bộ học → **409** `{ error: "Danh mục còn N bộ học, hãy chuyển hoặc xoá chúng trước" }`. `GET /api/sets?category=<categoryId>` (thay giá trị enum). Tạo/sửa set kiểm tra `categoryId` thuộc user (không thì 400).
+- Đổi `english` flag (trang set/study/enrich/CardList) sang `set.category.isEnglish`.
+
+### 13.2 UI
+- **Dropdown mới**: component `src/components/ui/Select.tsx` viết lại thành listbox tuỳ chỉnh (không dùng popup gốc): nút trigger giống Input (chevron cách lề phải, xoay khi mở), popover bo góc `rounded-xl border shadow-lg`, mục hover xanh nhạt, mục đang chọn có dấu ✓ + nền xanh nhạt, bàn phím đầy đủ (↑ ↓ Home End Enter Space Esc Tab, gõ ký tự để nhảy), `role="listbox"`/`option`, `aria-activedescendant`, đóng khi click ngoài, popover tự lật lên trên khi thiếu chỗ phía dưới, trên mobile vẫn dễ chạm (mục cao ≥ 44px), cuộn khi nhiều mục, hỗ trợ `label`, `error`, `disabled`, `name` (input hidden để form gửi được), `value/onChange` kiểu event-like hoặc `onValueChange`. Giữ API tương thích cho 3 chỗ dùng hiện tại (ImportWizard, SetForm ×2) và thay `<select>` ở `SetFilters`. Có thể hiện chấm màu cho mục danh mục (prop `option.color`).
+- **Quản lý danh mục**: trang `/categories` (requireUser). Danh sách thẻ: chấm màu + tên + badge "Tiếng Anh" nếu isEnglish + số bộ học; nút Sửa / Xoá. "Tạo danh mục" mở Modal (tên, màu chọn dạng swatch, switch "Bộ từ vựng tiếng Anh (hiện phiên âm, nút đọc)"); Sửa dùng cùng Modal; Xoá có confirm modal, nút Xoá bị khoá + giải thích khi còn bộ học (và hiện lỗi 409 từ server nếu có). Empty state, loading.tsx theo mẫu hiện có. Link vào trang: trong menu avatar ("Quản lý danh mục") và nút nhỏ cạnh bộ lọc danh mục ở trang chủ.
+- SetFilters: tab danh mục sinh động từ DB (Tất cả + từng danh mục, cuộn ngang trên mobile). SetForm: Select danh mục (+ link "Quản lý danh mục"). SetCard / trang chi tiết: Badge dùng màu của danh mục. Tailwind v4 cần class đầy đủ → map `CATEGORY_COLORS` sang class tĩnh trong `src/components/categories/colors.ts`.
+
+### 13.3 Phân công
+- **W6-A (backend)**: `prisma/schema.prisma`, `prisma/migrations/*`, `prisma/seed.ts`+loaders, `src/lib/{validators,dto,api,categories}.ts`, `src/app/api/**`, `src/app/(auth)/actions.ts` (2 danh mục mặc định), **toàn bộ** `src/app/page.tsx`, `src/app/sets/[id]/**/page.tsx`, `src/app/categories/page.tsx` (data + nối props), README, vitest.
+- **W6-B (UI)**: `src/components/ui/Select.tsx` (+ file con), `src/components/categories/*`, `src/components/sets/*`, `src/components/cards/*` khi đổi `english`, `src/components/study/*` nếu cần, `src/components/layout/UserMenu.tsx`, `src/app/categories/loading.tsx`.
+- **Props hợp đồng giữa A và B** (A nối trong page, B cài trong component): `SetFilters({ categories: CategoryDTO[] })` (đọc `?category=<id>` từ URL); `SetForm({ categories: CategoryDTO[], set?: StudySetDTO, onCancel? })` và `CreateSetButton({ categories })`; `CategoryManager({ initialCategories: CategoryDTO[] })` (client, tự gọi API `/api/categories`, dùng router.refresh()); `SetCard`/`LevelBadge` đọc `set.category`. Component `english` flag của `CardList` giữ nguyên prop `english: boolean` (A truyền `set.category.isEnglish`).
+- DB phát triển: chỉ Docker local (override env như đợt 4–5), KHÔNG chạm Supabase, không sửa `.env`. Orchestrator tự chạy `migrate deploy` lên Supabase cuối đợt (có xin phép user).
+
+### Tiến độ đợt 6
+- [x] W6-A backend/migration/seed ✅ (migration 20261002120000_add_categories, 107 test)
+- [x] W6-B dropdown + quản lý danh mục UI ✅
+- [x] W6-QA
+- [x] Supabase: migrate deploy `add_categories` (đã chạy: 36 set/994 thẻ giữ nguyên, 0 orphan)

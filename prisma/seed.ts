@@ -2,7 +2,7 @@ import "dotenv/config";
 import path from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { hashPassword, isPasswordHash } from "../src/lib/auth/password";
-import { PrismaClient, type Category, type Level } from "../src/generated/prisma/client";
+import { PrismaClient, type Level } from "../src/generated/prisma/client";
 import { loadHandbook } from "./seed-data/handbook-loader";
 import { loadVocabFiles } from "./seed-data/vocab-loader";
 
@@ -18,10 +18,18 @@ type SeedCard = {
   partOfSpeech?: string | null;
 };
 
+/** Category key used in the seed JSON files; mapped to the admin's own categories. */
+type SeedCategory = "IT" | "ENGLISH";
+
+const DEFAULT_CATEGORIES = [
+  { key: "IT", name: "IT", color: "BLUE", isEnglish: false },
+  { key: "ENGLISH", name: "Tiếng Anh", color: "GREEN", isEnglish: true },
+] as const;
+
 type SeedSet = {
   title: string;
   description?: string | null;
-  category: Category;
+  category: SeedCategory;
   level?: Level | null;
   source: string;
   cards: SeedCard[];
@@ -80,6 +88,18 @@ async function main() {
   });
   console.log(`Admin: ${admin.email} (${admin.id})`);
 
+  // Default categories for the admin (kept if they already exist, incl. user edits).
+  const categoryIds = new Map<SeedCategory, string>();
+  for (const c of DEFAULT_CATEGORIES) {
+    const existing = await db.category.findUnique({ where: { userId_name: { userId: admin.id, name: c.name } } });
+    const row =
+      existing ??
+      (await db.category.create({
+        data: { userId: admin.id, name: c.name, color: c.color, isEnglish: c.isEnglish },
+      }));
+    categoryIds.set(c.key, row.id);
+  }
+
   // Only the admin's own sets are replaced (cards cascade). Other users are untouched.
   console.log("Replacing admin's sets...");
   await db.studySet.deleteMany({ where: { userId: admin.id } });
@@ -93,7 +113,7 @@ async function main() {
         data: {
           title: s.title,
           description: s.description || null,
-          category: s.category,
+          categoryId: categoryIds.get(s.category)!,
           level: s.level ?? null,
           userId: admin.id,
           createdAt,

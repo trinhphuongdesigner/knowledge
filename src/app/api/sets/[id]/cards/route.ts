@@ -19,14 +19,14 @@ export async function POST(req: Request, { params }: Ctx) {
     const parsed = cardInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
 
-    const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true, category: true } });
-    if (!set) return notFound("Không tìm thấy bộ học");
+    const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true, category: { select: { isEnglish: true } } } });
+    if (!set) return notFound("Không tìm thấy nhóm thẻ");
 
     const { question, answer, explanation } = parsed.data;
     let phonetic = parsed.data.phonetic || null;
     let partOfSpeech = parsed.data.partOfSpeech || null;
     let audioUrl = parsed.data.audioUrl || null;
-    if (set.category === "ENGLISH" && !phonetic) {
+    if (set.category.isEnglish && !phonetic) {
       // Best effort: a dictionary failure must never block card creation.
       const r = await lookupWordDetailed(question);
       if (r.status === "ok") {

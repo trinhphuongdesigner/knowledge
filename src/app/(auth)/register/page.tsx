@@ -21,7 +21,7 @@ export default function RegisterPage() {
   return (
     <>
       <h1 className="mb-1 text-xl font-bold">Tạo tài khoản</h1>
-      <p className="mb-6 text-sm text-slate-600">Bộ thẻ của bạn sẽ được lưu riêng cho bạn.</p>
+      <p className="mb-6 text-sm text-slate-600">Nhóm thẻ của bạn sẽ được lưu riêng cho bạn.</p>
       <RegisterForm />
     </>
   );

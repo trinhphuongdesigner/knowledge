@@ -5,30 +5,37 @@ import { DeleteSetButton } from "@/components/sets/DeleteSetButton";
 import { SetForm } from "@/components/sets/SetForm";
 import { Card } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
+import { listCategories } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { toSetDTO } from "@/lib/dto";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Sửa bộ học — Knowledge" };
+export const metadata: Metadata = { title: "Sửa nhóm thẻ — Knowledge" };
 
 export default async function EditSetPage({ params }: PageProps<"/sets/[id]/edit">) {
   const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
-  const set = await db.studySet.findFirst({ where: { id, userId: user.id }, include: { _count: { select: { cards: true } } } });
+  const [set, categories] = await Promise.all([
+    db.studySet.findFirst({
+      where: { id, userId: user.id },
+      include: { category: true, _count: { select: { cards: true } } },
+    }),
+    listCategories(user.id),
+  ]);
   if (!set) notFound();
   const dto = toSetDTO(set, set._count.cards);
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
-      <h1 className="mb-6 text-2xl font-bold text-slate-900">Sửa bộ học</h1>
+      <h1 className="mb-6 text-2xl font-bold text-slate-900">Sửa nhóm thẻ</h1>
       <Card>
-        <SetForm set={dto} />
+        <SetForm set={dto} categories={categories} />
       </Card>
       <Card className="mt-6 border-red-200">
         <h2 className="text-base font-semibold text-slate-900">Vùng nguy hiểm</h2>
-        <p className="mb-4 mt-1 text-sm text-slate-600">Xoá bộ học sẽ xoá toàn bộ thẻ bên trong.</p>
+        <p className="mb-4 mt-1 text-sm text-slate-600">Xoá nhóm thẻ sẽ xoá toàn bộ thẻ bên trong.</p>
         <DeleteSetButton id={dto.id} title={dto.title} />
       </Card>
     </Container>

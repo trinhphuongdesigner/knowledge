@@ -2,14 +2,16 @@ import { BookOpen } from "lucide-react";
 import { Suspense } from "react";
 import { Container } from "@/components/layout/Container";
 import { CreateSetButton } from "@/components/sets/CreateSetButton";
-import { SetCard } from "@/components/sets/SetCard";
+import { SetGroups } from "@/components/sets/SetGroups";
 import { SetFilters } from "@/components/sets/SetFilters";
 import { EmptyState } from "@/components/ui";
 import type { Prisma } from "@/generated/prisma/client";
 import { requireUser } from "@/lib/auth/dal";
+import { listCategories } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
-import { CATEGORIES, LEVELS } from "@/lib/validators";
+import { isUuid } from "@/lib/ids";
+import { LEVELS } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
 
@@ -25,52 +27,49 @@ export default async function Home({ searchParams }: PageProps<"/">) {
   if (level && (LEVELS as readonly string[]).includes(level)) {
     where.level = level as (typeof LEVELS)[number];
   }
-  if (category && (CATEGORIES as readonly string[]).includes(category)) {
-    where.category = category as (typeof CATEGORIES)[number];
-  }
+  if (category && isUuid(category)) where.categoryId = category;
   if (q) {
     where.OR = [
       { title: { contains: q, mode: "insensitive" } },
       { description: { contains: q, mode: "insensitive" } },
     ];
   }
-  const rows = await db.studySet.findMany({
-    where,
-    orderBy: { createdAt: "desc" },
-    include: { _count: { select: { cards: true } } },
-  });
+  const [rows, categories] = await Promise.all([
+    db.studySet.findMany({
+      where,
+      orderBy: { createdAt: "desc" },
+      include: { category: true, _count: { select: { cards: true } } },
+    }),
+    listCategories(user.id),
+  ]);
   const sets = rows.map((s) => toSetDTO(s, s._count.cards));
-  const filtering = !!(where.category || where.level || q);
+  const filtering = !!(where.categoryId || where.level || q);
 
   return (
     <Container className="py-6 sm:py-8">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Bộ học của bạn</h1>
-          <p className="mt-1 text-sm text-slate-600">Chọn một bộ học để ôn tập hoặc tạo bộ mới.</p>
+          <h1 className="text-2xl font-bold text-slate-900">Nhóm thẻ của bạn</h1>
+          <p className="mt-1 text-sm text-slate-600">Chọn một nhóm thẻ để ôn tập hoặc tạo nhóm thẻ mới.</p>
         </div>
-        <CreateSetButton className="shrink-0" />
+        <CreateSetButton categories={categories} className="shrink-0" />
       </div>
       <div className="mb-6">
         <Suspense fallback={null}>
-          <SetFilters />
+          <SetFilters categories={categories} />
         </Suspense>
       </div>
       {sets.length === 0 ? (
         <EmptyState
           icon={BookOpen}
-          title={filtering ? "Không tìm thấy bộ học phù hợp" : "Chưa có bộ học nào"}
+          title={filtering ? "Không tìm thấy nhóm thẻ phù hợp" : "Chưa có nhóm thẻ nào"}
           description={
-            filtering ? "Thử đổi từ khoá hoặc bộ lọc khác." : "Tạo bộ học đầu tiên để bắt đầu học bằng flashcard."
+            filtering ? "Thử đổi từ khoá hoặc bộ lọc khác." : "Tạo nhóm thẻ đầu tiên để bắt đầu học bằng flashcard."
           }
-          action={filtering ? undefined : <CreateSetButton />}
+          action={filtering ? undefined : <CreateSetButton categories={categories} />}
         />
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {sets.map((s) => (
-            <SetCard key={s.id} set={s} />
-          ))}
-        </div>
+        <SetGroups categories={categories} sets={sets} showEmpty={!filtering} />
       )}
     </Container>
   );

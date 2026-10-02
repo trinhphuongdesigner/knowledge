@@ -7,9 +7,13 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Category {
-  IT
-  ENGLISH
+enum CategoryColor {
+  BLUE
+  GREEN
+  AMBER
+  PURPLE
+  ROSE
+  SLATE
 }
 
 enum Level {
@@ -30,6 +34,7 @@ model User {
   passwordHash String // "scrypt$N$r$p$saltB64$hashB64"
   role         Role       @default(USER)
   sets         StudySet[]
+  categories   Category[]
   sessions     Session[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
@@ -57,11 +62,27 @@ model LoginAttempt { // DB-backed rate limiting (serverless, many instances)
   @@index([ip, createdAt])
 }
 
+model Category {            // Danh mục do user tạo (mặc định: "IT", "Tiếng Anh")
+  id        String        @id @default(uuid(7)) @db.Uuid
+  userId    String        @db.Uuid
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String        // 1–40 ký tự, trim; trùng tên (không phân biệt hoa/thường) kiểm bằng code
+  color     CategoryColor @default(BLUE)
+  isEnglish Boolean       @default(false) // true: bộ từ vựng tiếng Anh → phiên âm / tra từ điển / phát âm
+  sets      StudySet[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@unique([userId, name])
+  @@index([userId])
+}
+
 model StudySet {            // "Chương trình học"
   id          String   @id @default(uuid(7)) @db.Uuid
   title       String
   description String?
-  category    Category
+  categoryId  String   @db.Uuid
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   level       Level?
   cards       Card[]
   userId      String   @db.Uuid

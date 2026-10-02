@@ -18,7 +18,7 @@ export async function POST(req: Request, { params }: Ctx) {
     if (!parsed.success) return validationError(parsed.error);
 
     const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
-    if (!set) return notFound("Không tìm thấy bộ học");
+    if (!set) return notFound("Không tìm thấy nhóm thẻ");
 
     const { mode, cards } = parsed.data;
     const created = await db.$transaction(async (tx) => {

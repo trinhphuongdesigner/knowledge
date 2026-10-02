@@ -16,7 +16,7 @@ export default async function StudyPage({ params }: { params: Promise<{ id: stri
   if (!isUuid(id)) notFound();
   const set = await db.studySet.findFirst({
     where: { id, userId: user.id },
-    include: { cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
+    include: { category: true, cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
   });
   if (!set) notFound();
 
@@ -31,7 +31,7 @@ export default async function StudyPage({ params }: { params: Promise<{ id: stri
       <StudySession
         setId={set.id}
         title={set.title} cards={set.cards.map(toCardDTO)}
-        english={set.category === "ENGLISH"}
+        english={set.category.isEnglish}
       />
     </div>
   );

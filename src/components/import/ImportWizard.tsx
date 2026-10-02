@@ -93,7 +93,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
   const handleSave = async () => {
     if (!canSave) return;
-    if (mode === "replace" && !window.confirm("Thay thế toàn bộ sẽ xoá tất cả thẻ hiện có trong bộ học này. Tiếp tục?")) {
+    if (mode === "replace" && !window.confirm("Thay thế toàn bộ sẽ xoá tất cả thẻ hiện có trong nhóm thẻ này. Tiếp tục?")) {
       return;
     }
     setSaving(true);
@@ -115,7 +115,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
         const summary = await enrichSetFully(setId, (done, total) => setSaveNote(`Đang tra phiên âm ${done}/${total}`));
         if (summary.interrupted) {
           window.alert(
-            "Đã lưu thẻ, nhưng không tra được phiên âm cho một số thẻ (cần có internet). Bạn có thể bấm nút Tra phiên âm ở trang bộ học sau.",
+            "Đã lưu thẻ, nhưng không tra được phiên âm cho một số thẻ (cần có internet). Bạn có thể bấm nút Tra phiên âm ở trang nhóm thẻ sau.",
           );
         }
       }
@@ -293,7 +293,7 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
             </fieldset>
             {mode === "replace" && (
               <p role="alert" className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
-                Cảnh báo: toàn bộ thẻ hiện có của bộ học này sẽ bị xoá vĩnh viễn.
+                Cảnh báo: toàn bộ thẻ hiện có của nhóm thẻ này sẽ bị xoá vĩnh viễn.
               </p>
             )}
           </Card>

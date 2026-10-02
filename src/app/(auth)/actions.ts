@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { DEFAULT_CATEGORIES } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { hashPassword, verifyDummyPassword, verifyPassword } from "@/lib/auth/password";
 import {
@@ -71,7 +72,12 @@ export async function register(_prev: AuthFormState, formData: FormData): Promis
   let userId: string;
   try {
     const user = await db.user.create({
-      data: { email, name: name || null, passwordHash: await hashPassword(password) },
+      data: {
+        email,
+        name: name || null,
+        passwordHash: await hashPassword(password),
+        categories: { create: DEFAULT_CATEGORIES.map((c) => ({ ...c })) },
+      },
       select: { id: true },
     });
     userId = user.id;
