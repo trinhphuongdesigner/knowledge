@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { PartyPopper, RotateCw, Star } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { Keyboard, PartyPopper, RotateCw, Star } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui";
 import { Flashcard } from "@/components/study/Flashcard";
 import { api } from "@/lib/api";
 import type { Grade, SrsState } from "@/lib/srs";
 import { cn } from "@/lib/utils";
 import type { CardDTO } from "@/lib/validators";
-import { GRADE_LABELS, previewLabels } from "./session";
+import { ReviewTypingCard } from "./ReviewTypingCard";
+import { GRADE_LABELS, parseReviewMode, previewLabels, REVIEW_MODE_STORAGE_KEY, type ReviewMode } from "./session";
 
 export type ReviewSessionItem = {
   card: CardDTO;
@@ -32,6 +33,38 @@ const GRADE_STYLES: Record<Grade, string> = {
 
 type Pending = { cardId: string; grade: Grade };
 
+const MODE_OPTIONS: { value: ReviewMode; label: string; Icon: typeof Keyboard }[] = [
+  { value: "typing", label: "Gõ từ", Icon: Keyboard },
+  { value: "flip", label: "Lật thẻ", Icon: RotateCw },
+];
+
+// Store nhỏ cho mode: server luôn trả mặc định, client đọc localStorage sau hydrate (không lệch markup).
+const modeListeners = new Set<() => void>();
+function subscribeMode(cb: () => void) {
+  modeListeners.add(cb);
+  window.addEventListener("storage", cb);
+  return () => {
+    modeListeners.delete(cb);
+    window.removeEventListener("storage", cb);
+  };
+}
+function readMode(): ReviewMode {
+  try {
+    return parseReviewMode(localStorage.getItem(REVIEW_MODE_STORAGE_KEY));
+  } catch {
+    return parseReviewMode(null);
+  }
+}
+const serverMode = (): ReviewMode => parseReviewMode(null);
+function writeMode(next: ReviewMode) {
+  try {
+    localStorage.setItem(REVIEW_MODE_STORAGE_KEY, next);
+  } catch {
+    // storage blocked
+  }
+  modeListeners.forEach((cb) => cb());
+}
+
 export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; only?: "starred" | "hard" }) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -40,6 +73,8 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
     Object.fromEntries(items.map((i) => [i.card.id, i.starred])),
   );
   const [saveFailed, setSaveFailed] = useState(false);
+  const mode = useSyncExternalStore(subscribeMode, readMode, serverMode);
+  const hasEnglish = useMemo(() => items.some((i) => i.english), [items]);
 
   const pending = useRef(new Map<string, Pending[]>());
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -117,10 +152,17 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
   }, [finished, flush]);
 
   const flip = useCallback(() => setFlipped((f) => !f), []);
+  const typing = mode === "typing" && !!current?.english;
+
+  function changeMode(next: ReviewMode) {
+    if (next === mode) return;
+    writeMode(next);
+    setFlipped(false);
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.metaKey || e.ctrlKey || e.altKey || finished) return;
+      if (e.metaKey || e.ctrlKey || e.altKey || finished || typing) return;
       const t = e.target as HTMLElement | null;
       if (t?.closest("input, textarea, select, button, a, [role='button'], [contenteditable='true']")) {
         if (e.key === " " || e.key === "Enter") return;
@@ -132,7 +174,7 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [finished, flipped, flip, answer]);
+  }, [finished, typing, flipped, flip, answer]);
 
   function toggleStar(cardId: string) {
     const next = !starred[cardId];
@@ -196,6 +238,27 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           </span>
           <span className="min-w-0 truncate text-xs text-ink-600">{current.setTitle}</span>
         </div>
+        {hasEnglish && (
+          <div role="group" aria-label="Chế độ ôn" className="mt-3 flex gap-2">
+            {MODE_OPTIONS.map(({ value, label, Icon }) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={mode === value}
+                onClick={() => changeMode(value)}
+                className={cn(
+                  "inline-flex min-h-11 items-center gap-1.5 rounded-full border px-4 text-sm font-medium",
+                  mode === value
+                    ? "border-brand-600 bg-brand-600 text-white"
+                    : "border-ink-200 bg-surface text-ink-700 hover:bg-ink-50",
+                )}
+              >
+                <Icon className="size-4" aria-hidden />
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
         <div
           role="progressbar"
           aria-valuemin={0}
@@ -211,27 +274,31 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
         </div>
       </div>
 
-      <Flashcard
-        key={current.card.id}
-        front={current.card.question}
-        back={current.card.answer}
-        explanation={current.card.explanation}
-        frontLabel="Câu hỏi"
-        backLabel="Đáp án"
-        flipped={flipped}
-        onFlip={flip}
-        speech={
-          current.english
-            ? {
-                text: current.card.question,
-                phonetic: current.card.phonetic,
-                partOfSpeech: current.card.partOfSpeech,
-                audioUrl: current.card.audioUrl,
-                side: "front",
-              }
-            : undefined
-        }
-      />
+      {typing ? (
+        <ReviewTypingCard key={current.card.id} card={current.card} previews={previews} onAnswer={answer} />
+      ) : (
+        <Flashcard
+          key={current.card.id}
+          front={current.card.question}
+          back={current.card.answer}
+          explanation={current.card.explanation}
+          frontLabel="Câu hỏi"
+          backLabel="Đáp án"
+          flipped={flipped}
+          onFlip={flip}
+          speech={
+            current.english
+              ? {
+                  text: current.card.question,
+                  phonetic: current.card.phonetic,
+                  partOfSpeech: current.card.partOfSpeech,
+                  audioUrl: current.card.audioUrl,
+                  side: "front",
+                }
+              : undefined
+          }
+        />
+      )}
 
       <div className="flex justify-center">
         <button
@@ -254,31 +321,33 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
         </p>
       )}
 
-      <div className="sticky bottom-0 z-10 -mx-4 border-t border-ink-200 bg-paper/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0">
-        {flipped ? (
-          <div className="mx-auto grid max-w-xl grid-cols-4 gap-2">
-            {([0, 1, 2, 3] as const).map((g) => (
-              <Button
-                key={g}
-                variant="secondary"
-                onClick={() => answer(g)}
-                aria-label={`${GRADE_LABELS[g]}, ôn lại sau ${previews[g]}`}
-                className={cn("h-auto flex-col gap-0 px-1 py-2", GRADE_STYLES[g])}
-              >
-                <span>{GRADE_LABELS[g]}</span>
-                <span className="text-xs font-normal opacity-70">{previews[g]}</span>
-                <kbd className="hidden text-[11px] opacity-50 sm:inline">({g + 1})</kbd>
+      {!typing && (
+        <div className="sticky bottom-0 z-10 -mx-4 border-t border-ink-200 bg-paper/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0">
+          {flipped ? (
+            <div className="mx-auto grid max-w-xl grid-cols-4 gap-2">
+              {([0, 1, 2, 3] as const).map((g) => (
+                <Button
+                  key={g}
+                  variant="secondary"
+                  onClick={() => answer(g)}
+                  aria-label={`${GRADE_LABELS[g]}, ôn lại sau ${previews[g]}`}
+                  className={cn("h-auto flex-col gap-0 px-1 py-2", GRADE_STYLES[g])}
+                >
+                  <span>{GRADE_LABELS[g]}</span>
+                  <span className="text-xs font-normal opacity-70">{previews[g]}</span>
+                  <kbd className="hidden text-[11px] opacity-50 sm:inline">({g + 1})</kbd>
+                </Button>
+              ))}
+            </div>
+          ) : (
+            <div className="mx-auto max-w-xl">
+              <Button onClick={flip} className="w-full">
+                <RotateCw className="size-4" aria-hidden /> Hiện đáp án <kbd className="hidden text-xs opacity-60 sm:inline">(Space)</kbd>
               </Button>
-            ))}
-          </div>
-        ) : (
-          <div className="mx-auto max-w-xl">
-            <Button onClick={flip} className="w-full">
-              <RotateCw className="size-4" aria-hidden /> Hiện đáp án <kbd className="hidden text-xs opacity-60 sm:inline">(Space)</kbd>
-            </Button>
-          </div>
-        )}
-      </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

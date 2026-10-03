@@ -42,3 +42,21 @@ export function parseOnly(v: string | string[] | undefined): ReviewOnly | undefi
   const s = Array.isArray(v) ? v[0] : v;
   return s === "starred" || s === "hard" ? s : undefined;
 }
+
+/** Cách ôn thẻ tiếng Anh: gõ từ từ nghĩa tiếng Việt, hoặc lật thẻ tự chấm. */
+export type ReviewMode = "typing" | "flip";
+
+export const REVIEW_MODE_STORAGE_KEY = "review-mode";
+
+export function parseReviewMode(v: string | null | undefined): ReviewMode {
+  return v === "flip" ? "flip" : "typing";
+}
+
+/**
+ * Điểm SRS tự chấm từ kết quả gõ: sai/bỏ qua → Lại, đúng nhờ gợi ý → Khó, đúng → Được.
+ * "Dễ" chỉ có khi người dùng chủ động bấm "Quá dễ" sau khi trả lời đúng.
+ */
+export function typingGrade(result: { correct: boolean; hintsUsed: number }): Grade {
+  if (!result.correct) return 0;
+  return result.hintsUsed > 0 ? 1 : 2;
+}

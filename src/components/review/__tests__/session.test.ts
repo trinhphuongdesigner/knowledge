@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildSession, formatDelay, parseOnly, previewLabels } from "../session";
+import { buildSession, formatDelay, parseOnly, parseReviewMode, previewLabels, typingGrade } from "../session";
 
 const MIN = 60_000;
 const DAY = 24 * 60 * MIN;
@@ -55,5 +55,23 @@ describe("parseOnly", () => {
     expect(parseOnly(["hard"])).toBe("hard");
     expect(parseOnly("x")).toBeUndefined();
     expect(parseOnly(undefined)).toBeUndefined();
+  });
+});
+
+describe("typingGrade", () => {
+  it("maps typing results to SRS grades", () => {
+    expect(typingGrade({ correct: false, hintsUsed: 0 })).toBe(0);
+    expect(typingGrade({ correct: false, hintsUsed: 3 })).toBe(0);
+    expect(typingGrade({ correct: true, hintsUsed: 1 })).toBe(1);
+    expect(typingGrade({ correct: true, hintsUsed: 0 })).toBe(2);
+  });
+});
+
+describe("parseReviewMode", () => {
+  it("defaults to typing", () => {
+    expect(parseReviewMode("flip")).toBe("flip");
+    expect(parseReviewMode("typing")).toBe("typing");
+    expect(parseReviewMode(null)).toBe("typing");
+    expect(parseReviewMode("bogus")).toBe("typing");
   });
 });

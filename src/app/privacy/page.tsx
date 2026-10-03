@@ -4,13 +4,85 @@ import { LEGAL_CONTACT_EMAIL, LegalPage, type LegalSection } from "@/components/
 
 export const metadata: Metadata = {
   title: "Chính sách quyền riêng tư — Knowledge",
-  description: "Knowledge thu thập dữ liệu gì, dùng vào việc gì, chia sẻ với ai, lưu bao lâu và quyền của bạn đối với dữ liệu cá nhân.",
+  description: "What data Knowledge collects and how it is used. Knowledge thu thập dữ liệu gì, dùng vào việc gì, chia sẻ với ai, lưu bao lâu và quyền của bạn đối với dữ liệu cá nhân.",
   alternates: { canonical: "/privacy" },
 };
 
 const mail = <a href={`mailto:${LEGAL_CONTACT_EMAIL}`}>{LEGAL_CONTACT_EMAIL}</a>;
 
 const SECTIONS: LegalSection[] = [
+  {
+    id: "english",
+    title: "English summary — Google user data",
+    body: (
+      <div lang="en" className="space-y-3">
+        <p>
+          This section summarises, in English, how Knowledge (knowledge.gutanembroidery.com), a flashcard learning web app
+          operated by Trinh Phuong, accesses, uses, stores, shares and deletes your data. The full Vietnamese policy below
+          has the same content in more detail.
+        </p>
+        <p>
+          <strong>Data we collect from your Google account.</strong> When you choose “Sign in with Google” (via Firebase
+          Authentication), Knowledge requests only the basic <code>openid</code>, <code>email</code> and{" "}
+          <code>profile</code> scopes and receives: your email address, display name, profile picture URL and Google account
+          identifier. We never receive your Google password and we do not request access to Gmail, Google Drive, Contacts,
+          Calendar or any other Google data.
+        </p>
+        <p>
+          <strong>Other data we collect.</strong> (1) Profile details you enter yourself: full name, birth year, gender,
+          native language, avatar choice, daily study goal and reminder settings. (2) Content you create: study sets, cards
+          and files you import (CSV/Excel/Markdown). (3) Learning data: review progress, spaced-repetition schedule, starred
+          cards, quiz results, daily statistics, streaks, sets saved from the library and daily AI-suggestion usage count.
+          (4) Technical data: a session cookie and browser user agent, IP address and email of sign-in attempts (for rate
+          limiting and abuse prevention), and Web Push subscription details if you enable notifications. We do not collect
+          location, contacts, biometric or payment data, and we use no third-party advertising trackers.
+        </p>
+        <p>
+          <strong>How we use your data.</strong> Your Google email and account identifier are used only to create your
+          account, sign you in and keep your session secure. Your name and profile picture are used only to display your
+          profile inside the app (and your display name next to sets you choose to publish in the public library). Other
+          data is used to provide the learning features (saving cards, scheduling reviews, statistics, sharing), to send
+          in-app and push notifications you turned on, to enforce usage limits and prevent abuse, to moderate public
+          content, and to operate and troubleshoot the service. We do <strong>not</strong> sell your data, use it for
+          advertising, or use Google user data to train AI or machine-learning models.
+        </p>
+        <p>
+          <strong>Sharing.</strong> Google user data is not shared with third parties except the infrastructure providers
+          needed to run the app: Google Firebase Authentication (sign-in), Vercel (hosting) and Supabase (PostgreSQL
+          database, Singapore). When you click an AI suggestion, only the word or term you are editing is sent to Anthropic
+          — never your email, name or account data. Your email is never shown to other users. We may disclose data if
+          required by law.
+        </p>
+        <p>
+          <strong>Storage and protection.</strong> All traffic uses HTTPS. Data is stored in a managed PostgreSQL database
+          with access restricted to the operator. Session tokens are stored only as SHA-256 hashes, cookies are{" "}
+          <code>HttpOnly</code>, sign-in attempts are rate-limited, write requests are origin-checked, and admin actions are
+          audit-logged.
+        </p>
+        <p>
+          <strong>Retention and deletion.</strong> Account, profile, sets and learning progress are kept until you delete
+          them or ask us to delete your account. Sign-in logs and AI usage counts are deleted automatically after 30 days,
+          daily statistics after about 400 days, and notifications after 30–90 days. You can export all your data as JSON
+          from the Account page, revoke Knowledge’s access at{" "}
+          <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">
+            myaccount.google.com/connections
+          </a>
+          , and request full account deletion by emailing {mail} from your sign-in address; we delete your account and all
+          associated data within 30 days.
+        </p>
+        <p>
+          <strong>Limited Use.</strong> Knowledge’s use and transfer of information received from Google APIs adheres to the{" "}
+          <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">
+            Google API Services User Data Policy
+          </a>
+          , including the Limited Use requirements.
+        </p>
+        <p>
+          <strong>Contact.</strong> Questions or data requests: {mail}. We reply within 7 business days.
+        </p>
+      </div>
+    ),
+  },
   {
     id: "pham-vi",
     title: "Phạm vi áp dụng",
@@ -92,7 +164,7 @@ const SECTIONS: LegalSection[] = [
           Knowledge chỉ yêu cầu các phạm vi cơ bản <code>openid</code>, <code>email</code> và <code>profile</code> để đăng
           nhập. Các dữ liệu này chỉ được dùng để nhận diện tài khoản và hiển thị tên, ảnh đại diện của bạn trong ứng dụng;
           không được bán, không dùng cho quảng cáo, không dùng để huấn luyện mô hình AI và không chuyển cho bên thứ ba ngoài
-          các nhà cung cấp hạ tầng nêu ở mục 5.
+          các nhà cung cấp hạ tầng nêu ở mục 6.
         </p>
         <p>
           Việc Knowledge sử dụng và chuyển giao thông tin nhận từ Google API tuân thủ{" "}
@@ -288,10 +360,16 @@ export default function PrivacyPage() {
     <LegalPage
       title="Chính sách quyền riêng tư"
       intro={
-        <p>
-          Knowledge tôn trọng quyền riêng tư của bạn. Trang này giải thích rõ chúng tôi thu thập dữ liệu gì, dùng vào việc
-          gì, chia sẻ với ai, lưu bao lâu và bạn có những quyền gì đối với dữ liệu của mình.
-        </p>
+        <>
+          <p>
+            Knowledge tôn trọng quyền riêng tư của bạn. Trang này giải thích rõ chúng tôi thu thập dữ liệu gì, dùng vào
+            việc gì, chia sẻ với ai, lưu bao lâu và bạn có những quyền gì đối với dữ liệu của mình.
+          </p>
+          <p lang="en">
+            English: see section 1 for a summary of what data Knowledge collects from your Google account and how it is
+            used.
+          </p>
+        </>
       }
       sections={SECTIONS}
     />
