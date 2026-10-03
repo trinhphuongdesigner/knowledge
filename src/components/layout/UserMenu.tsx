@@ -1,9 +1,11 @@
 "use client";
 
-import { CircleUserRound, Info, FolderCog, Library, LogOut, RotateCw, Search, Settings, ShieldCheck } from "lucide-react";
+import { Info, FolderCog, Library, LogOut, RotateCw, Search, Settings, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { logout } from "@/app/(auth)/actions";
+import { UserAvatar } from "@/components/avatar";
+import type { Gender } from "@/lib/profile";
 import { ThemeToggle } from "./ThemeToggle";
 
 /** Xoá cache trang/API riêng của người dùng trong service worker trước khi đăng xuất. */
@@ -18,7 +20,19 @@ function clearUserCache() {
 const ITEM =
   "flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-sm font-medium text-ink-700 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600";
 
-export function UserMenu({ name, email, role }: { name: string | null; email: string; role?: "USER" | "ADMIN" }) {
+export function UserMenu({
+  name,
+  email,
+  role,
+  avatarUrl,
+  gender,
+}: {
+  name: string | null;
+  email: string;
+  role?: "USER" | "ADMIN";
+  avatarUrl?: string | null;
+  gender?: Gender | null;
+}) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -53,9 +67,9 @@ export function UserMenu({ name, email, role }: { name: string | null; email: st
         aria-expanded={open}
         aria-controls={menuId}
         onClick={() => setOpen((o) => !o)}
-        className="flex size-11 items-center justify-center rounded-full text-ink-600 transition-colors hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+        className="flex size-11 items-center justify-center rounded-full transition-colors hover:bg-ink-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
       >
-        <CircleUserRound className="size-7" aria-hidden />
+        <UserAvatar src={avatarUrl} gender={gender} name={name} size={32} />
       </button>
       {open && (
         <div

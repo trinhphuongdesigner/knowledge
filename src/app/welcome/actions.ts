@@ -6,18 +6,12 @@ import { requireUser } from "@/lib/auth/dal";
 import { safeNext } from "@/lib/auth/redirect";
 import type { ProfileFormState } from "@/lib/auth/types";
 import { db } from "@/lib/db";
+import { profileValuesFromForm } from "@/lib/profile-form";
 import { onboardingSchema } from "@/lib/validators";
-
-const str = (v: FormDataEntryValue | null) => (typeof v === "string" ? v : "");
 
 export async function completeOnboarding(_prev: ProfileFormState, formData: FormData): Promise<ProfileFormState> {
   const user = await requireUser({ allowIncomplete: true });
-  const values = {
-    name: str(formData.get("name")).trim(),
-    fullName: str(formData.get("fullName")).trim(),
-    birthYear: str(formData.get("birthYear")).trim(),
-    nativeLanguage: str(formData.get("nativeLanguage")),
-  };
+  const values = profileValuesFromForm(formData);
   const parsed = onboardingSchema.safeParse(values);
   if (!parsed.success) return { fieldErrors: parsed.error.flatten().fieldErrors, values };
 

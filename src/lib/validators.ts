@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { isLanguageCode } from "./languages";
-import { MAX_AGE, MIN_AGE, isValidBirthYear } from "./profile";
+import { MAX_AGE, MIN_AGE, isGender, isValidBirthYear } from "./profile";
 
 export const CATEGORY_COLORS = ["BLUE", "GREEN", "AMBER", "PURPLE", "ROSE", "SLATE"] as const;
 export type CategoryColor = (typeof CATEGORY_COLORS)[number];
@@ -129,6 +129,8 @@ export const onboardingSchema = z.object({
     .int("Năm sinh không hợp lệ")
     .refine((y) => isValidBirthYear(y), `Năm sinh không hợp lệ (tuổi từ ${MIN_AGE} đến ${MAX_AGE})`),
   nativeLanguage: z.string().refine(isLanguageCode, "Vui lòng chọn ngôn ngữ"),
+  gender: z.string().refine(isGender, "Vui lòng chọn giới tính"),
+  useGoogleAvatar: z.boolean().default(true),
 });
 export type OnboardingInput = z.infer<typeof onboardingSchema>;
 

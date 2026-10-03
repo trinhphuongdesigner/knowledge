@@ -5,6 +5,7 @@ import { ProfileForm } from "@/components/account/ProfileForm";
 import { StudyHistory } from "@/components/account/StudyHistory";
 import { StudySettingsForm } from "@/components/account/StudySettingsForm";
 import { Container } from "@/components/layout/Container";
+import { UserAvatar } from "@/components/avatar";
 import { StatsPanel } from "@/components/stats/StatsPanel";
 import { Card } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
@@ -22,7 +23,13 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
-      <h1 className="mb-6 text-2xl font-bold text-ink-900">Quản lý tài khoản</h1>
+      <div className="mb-6 flex items-center gap-3">
+        <UserAvatar src={user.avatarUrl} gender={user.gender} name={user.name} size={48} />
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold text-ink-900">Quản lý tài khoản</h1>
+          <p className="truncate text-sm text-ink-600">{user.name ?? user.email}</p>
+        </div>
+      </div>
       <AccountTabs active={active} />
       {active === "history" && <StudyHistory userId={user.id} />}
       {active === "stats" && <StatsPanel userId={user.id} />}
@@ -55,7 +62,15 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
 async function ProfileTab({ userId, email }: { userId: string; email: string }) {
   const u = await db.user.findUnique({
     where: { id: userId },
-    select: { name: true, fullName: true, birthYear: true, nativeLanguage: true },
+    select: {
+      name: true,
+      fullName: true,
+      birthYear: true,
+      nativeLanguage: true,
+      gender: true,
+      avatarUrl: true,
+      useGoogleAvatar: true,
+    },
   });
   return (
     <ProfileForm
@@ -64,6 +79,9 @@ async function ProfileTab({ userId, email }: { userId: string; email: string }) 
       fullName={u?.fullName ?? ""}
       birthYear={u?.birthYear ? String(u.birthYear) : ""}
       nativeLanguage={u?.nativeLanguage ?? DEFAULT_NATIVE_LANGUAGE}
+      gender={u?.gender ?? ""}
+      useGoogleAvatar={u?.useGoogleAvatar ?? true}
+      googleAvatarUrl={u?.avatarUrl ?? null}
     />
   );
 }

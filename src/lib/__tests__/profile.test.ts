@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { LANGUAGE_CODES, isLanguageCode, languageOptions } from "../languages";
-import { ageFromBirthYear, isValidBirthYear } from "../profile";
+import { ageFromBirthYear, effectiveAvatarUrl, isValidBirthYear, sanitizePictureUrl } from "../profile";
 import { onboardingSchema, updateProfileSchema } from "../validators";
 
 const NOW = new Date("2026-06-15T00:00:00Z");
@@ -22,7 +22,7 @@ describe("ageFromBirthYear", () => {
 });
 
 describe("onboardingSchema", () => {
-  const ok = { name: "An", fullName: "Nguyễn Văn An", birthYear: 2000, nativeLanguage: "vi" };
+  const ok = { name: "An", fullName: "Nguyễn Văn An", birthYear: 2000, nativeLanguage: "vi", gender: "MALE" };
 
   it("accepts valid input and trims", () => {
     const r = onboardingSchema.parse({ ...ok, name: "  An  ", fullName: "  Nguyễn Văn An " });
@@ -49,8 +49,44 @@ describe("onboardingSchema", () => {
     expect(onboardingSchema.safeParse({ ...ok, nativeLanguage: "" }).success).toBe(false);
     expect(onboardingSchema.safeParse({ ...ok, nativeLanguage: "ja" }).success).toBe(true);
   });
+  it("requires a valid gender", () => {
+    for (const g of ["MALE", "FEMALE", "OTHER"]) expect(onboardingSchema.safeParse({ ...ok, gender: g }).success).toBe(true);
+    const noGender: Record<string, unknown> = { ...ok };
+    delete noGender.gender;
+    expect(onboardingSchema.safeParse(noGender).success).toBe(false);
+    for (const g of ["", "male", "UNKNOWN", null, 1]) expect(onboardingSchema.safeParse({ ...ok, gender: g }).success).toBe(false);
+  });
+  it("parses useGoogleAvatar (default true)", () => {
+    expect(onboardingSchema.parse(ok).useGoogleAvatar).toBe(true);
+    expect(onboardingSchema.parse({ ...ok, useGoogleAvatar: false }).useGoogleAvatar).toBe(false);
+    expect(onboardingSchema.safeParse({ ...ok, useGoogleAvatar: "yes" }).success).toBe(false);
+  });
   it("is reused for profile updates", () => {
     expect(updateProfileSchema.safeParse(ok).success).toBe(true);
+  });
+});
+
+describe("effectiveAvatarUrl", () => {
+  it("returns the Google photo only when enabled and present", () => {
+    expect(effectiveAvatarUrl({ avatarUrl: "https://x/a.png", useGoogleAvatar: true })).toBe("https://x/a.png");
+    expect(effectiveAvatarUrl({ avatarUrl: "https://x/a.png", useGoogleAvatar: false })).toBeNull();
+    expect(effectiveAvatarUrl({ avatarUrl: null, useGoogleAvatar: true })).toBeNull();
+    expect(effectiveAvatarUrl({ avatarUrl: "", useGoogleAvatar: true })).toBeNull();
+    expect(effectiveAvatarUrl({})).toBeNull();
+  });
+});
+
+describe("sanitizePictureUrl", () => {
+  it("accepts https URLs up to 1000 chars", () => {
+    expect(sanitizePictureUrl(" https://lh3.googleusercontent.com/a/x=s96-c ")).toBe("https://lh3.googleusercontent.com/a/x=s96-c");
+    const long = "https://a.co/" + "x".repeat(987);
+    expect(long.length).toBe(1000);
+    expect(sanitizePictureUrl(long)).toBe(long);
+    expect(sanitizePictureUrl(long + "x")).toBeNull();
+  });
+  it("rejects non-https, malformed and non-string values", () => {
+    for (const v of ["http://a.co/x.png", "javascript:alert(1)", "data:image/png;base64,AAAA", "//a.co/x", "not a url", "", undefined, null, 5])
+      expect(sanitizePictureUrl(v)).toBeNull();
   });
 });
 

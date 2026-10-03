@@ -16,6 +16,12 @@ enum CategoryColor {
   SLATE
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
 enum Level {
   BASIC
   INTERMEDIATE
@@ -60,6 +66,9 @@ model User {
   birthYear      Int?
   nativeLanguage String?  // mã ISO 639-1
   onboardedAt    DateTime? // null = phải hoàn tất hồ sơ ở /welcome
+  gender         Gender?
+  avatarUrl      String?   // ảnh Google mới nhất (https)
+  useGoogleAvatar Boolean  @default(true)
   role         Role       @default(USER)
   sets         StudySet[]
   categories   Category[]

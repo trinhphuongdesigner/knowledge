@@ -8,7 +8,17 @@ import type { ProfileFormState } from "@/lib/auth/types";
 import { DEFAULT_NATIVE_LANGUAGE } from "@/lib/languages";
 import { FormError } from "./FormError";
 
-export function OnboardingForm({ defaultName, next }: { defaultName: string; next?: string }) {
+export function OnboardingForm({
+  defaultName,
+  defaultFullName,
+  googleAvatarUrl,
+  next,
+}: {
+  defaultName: string;
+  defaultFullName: string;
+  googleAvatarUrl?: string | null;
+  next?: string;
+}) {
   const [state, action, pending] = useActionState<ProfileFormState, FormData>(completeOnboarding, undefined);
   const v = state?.values;
   return (
@@ -18,10 +28,13 @@ export function OnboardingForm({ defaultName, next }: { defaultName: string; nex
       <ProfileFields
         defaults={{
           name: v?.name ?? defaultName,
-          fullName: v?.fullName ?? "",
+          fullName: v?.fullName ?? defaultFullName,
           birthYear: v?.birthYear ?? "",
           nativeLanguage: v?.nativeLanguage ?? DEFAULT_NATIVE_LANGUAGE,
+          gender: v?.gender ?? "",
+          useGoogleAvatar: v?.useGoogleAvatar ?? true,
         }}
+        googleAvatarUrl={googleAvatarUrl}
         errors={state?.fieldErrors}
       />
       <Button type="submit" loading={pending} className="w-full">

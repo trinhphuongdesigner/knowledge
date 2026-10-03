@@ -44,7 +44,13 @@ export async function Header() {
             )}
             {user && <NotificationBell />}
             {user ? (
-              <UserMenu name={user.name} email={user.email} role={user.role} />
+              <UserMenu
+                name={user.name}
+                email={user.email}
+                role={user.role}
+                avatarUrl={user.avatarUrl}
+                gender={user.gender}
+              />
             ) : (
               <Link
                 href="/login"

@@ -13,18 +13,25 @@ export function ProfileForm({
   fullName,
   birthYear,
   nativeLanguage,
+  gender,
+  useGoogleAvatar,
+  googleAvatarUrl,
   email,
 }: {
   name: string;
   fullName: string;
   birthYear: string;
   nativeLanguage: string;
+  /** "" = chưa chọn (tài khoản cũ) */
+  gender: string;
+  useGoogleAvatar: boolean;
+  googleAvatarUrl: string | null;
   email: string;
 }) {
   const [state, action, pending] = useActionState<AccountFormState, FormData>(updateProfile, undefined);
   const v = state?.values;
   // Remount sau khi lưu thành công để các giá trị mặc định được làm mới.
-  const formKey = state?.success ? `ok-${v?.name}-${v?.fullName}-${v?.birthYear}-${v?.nativeLanguage}` : "form";
+  const formKey = state?.success ? `ok-${v?.name}-${v?.fullName}-${v?.birthYear}-${v?.nativeLanguage}-${v?.gender}-${v?.useGoogleAvatar}` : "form";
   return (
     <form key={formKey} action={action} noValidate className="flex flex-col gap-4">
       <FormError message={state?.error} />
@@ -35,7 +42,10 @@ export function ProfileForm({
           fullName: v?.fullName ?? fullName,
           birthYear: v?.birthYear ?? birthYear,
           nativeLanguage: v?.nativeLanguage ?? nativeLanguage,
+          gender: v?.gender ?? gender,
+          useGoogleAvatar: v?.useGoogleAvatar ?? useGoogleAvatar,
         }}
+        googleAvatarUrl={googleAvatarUrl}
         errors={state?.fieldErrors}
       />
       <div className="flex flex-col gap-1.5">

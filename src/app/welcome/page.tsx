@@ -17,7 +17,7 @@ export default async function WelcomePage({ searchParams }: PageProps<"/welcome"
   const dest = typeof next === "string" ? safeNext(next) : "/";
   const record = await db.user.findUnique({
     where: { id: user.id },
-    select: { name: true, fullName: true, birthYear: true, nativeLanguage: true },
+    select: { name: true, fullName: true, avatarUrl: true },
   });
   return (
     <main className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-4 py-10">
@@ -34,6 +34,8 @@ export default async function WelcomePage({ searchParams }: PageProps<"/welcome"
         </p>
         <OnboardingForm
           defaultName={record?.name ?? user.name ?? ""}
+          defaultFullName={record?.fullName ?? record?.name ?? user.name ?? ""}
+          googleAvatarUrl={record?.avatarUrl}
           next={dest === "/" ? undefined : dest}
         />
       </div>

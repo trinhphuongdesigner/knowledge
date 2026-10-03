@@ -1,6 +1,7 @@
 import "server-only";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
+import { effectiveAvatarUrl } from "@/lib/profile";
 import { roleForEmail } from "./admin";
 import { generateToken, hashToken, SESSION_TTL_MS, shouldRefreshSession } from "./token";
 import { SESSION_COOKIE, type SessionUser } from "./types";
@@ -39,7 +40,7 @@ export async function validateSession(token: string | undefined): Promise<Sessio
   const id = hashToken(token);
   const session = await db.session.findUnique({
     where: { id },
-    include: { user: { select: { id: true, email: true, name: true, role: true, onboardedAt: true } } },
+    include: { user: { select: { id: true, email: true, name: true, role: true, onboardedAt: true, gender: true, avatarUrl: true, useGoogleAvatar: true } } },
   });
   if (!session) return null;
   if (session.expiresAt.getTime() <= Date.now()) {
@@ -54,8 +55,13 @@ export async function validateSession(token: string | undefined): Promise<Sessio
     await setSessionCookie(token, expiresAt).catch(() => undefined);
   }
   // Role luôn suy ra từ email: chỉ đúng một tài khoản là admin, không tin cột `role` trong DB.
-  const { onboardedAt, ...user } = session.user;
-  return { ...user, role: roleForEmail(user.email), onboarded: onboardedAt !== null };
+  const { onboardedAt, avatarUrl, useGoogleAvatar, ...user } = session.user;
+  return {
+    ...user,
+    role: roleForEmail(user.email),
+    onboarded: onboardedAt !== null,
+    avatarUrl: effectiveAvatarUrl({ avatarUrl, useGoogleAvatar }),
+  };
 }
 
 export async function deleteSession(token: string | undefined): Promise<void> {
