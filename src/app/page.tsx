@@ -100,16 +100,18 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           <StreakCard userId={user.id} />
         </Suspense>
       </div>
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="min-w-0 flex-1">
-          <Suspense fallback={null}>
-            <SetFilters categories={categories} />
-          </Suspense>
-        </div>
-        <ButtonLink href="/library" variant="secondary" className="shrink-0">
-          <Library className="size-4" aria-hidden />
-          Khám phá thư viện
-        </ButtonLink>
+      <div className="mb-6">
+        <Suspense fallback={null}>
+          <SetFilters
+            categories={categories}
+            trailing={
+              <ButtonLink href="/library" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
+                <Library className="size-4" aria-hidden />
+                Khám phá thư viện
+              </ButtonLink>
+            }
+          />
+        </Suspense>
       </div>
       {sets.length === 0 && savedSets.length > 0 ? null : sets.length === 0 ? (
         <EmptyState

@@ -96,9 +96,9 @@ export function CardList({
 
   return (
     <>
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="mb-8 flex flex-col gap-5">
         {info}
-        <div className="grid shrink-0 grid-cols-2 gap-2 sm:flex">
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
           {!readOnly && (
             <Button onClick={() => setModal({})}>
               <Plus className="size-4" aria-hidden />

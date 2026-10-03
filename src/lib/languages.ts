@@ -55,9 +55,10 @@ export function languageOptions(locale = "vi"): LanguageOption[] {
       return code;
     }
   };
-  return LANGUAGE_CODES.map((code) => ({ code, label: label(code) })).sort((a, b) =>
-    a.label.localeCompare(b.label, "vi"),
-  );
+  const all = LANGUAGE_CODES.map((code) => ({ code, label: label(code) }));
+  // Intl trả lại chính mã ("aa", "ab"...) khi không có tên tiếng Việt cho ngôn ngữ hiếm; bỏ các mục đó.
+  const named = all.filter((o) => o.label.toLowerCase() !== o.code);
+  return (named.length > 0 ? named : all).sort((a, b) => a.label.localeCompare(b.label, "vi"));
 }
 
 /** Tên ngôn ngữ theo mã (fallback: chính mã đó). */
