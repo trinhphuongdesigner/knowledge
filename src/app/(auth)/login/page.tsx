@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { FormSuccess } from "@/components/account/FormSuccess";
-import { LoginForm } from "@/components/auth/LoginForm";
+import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 
 export const metadata: Metadata = { title: "Đăng nhập — Knowledge" };
 
 export default async function LoginPage({ searchParams }: PageProps<"/login">) {
-  const { next, reset } = await searchParams;
+  const { next, expired } = await searchParams;
   return (
     <>
       <h1 className="mb-1 text-xl font-bold">Đăng nhập</h1>
       <p className="mb-6 text-sm text-ink-600">Chào mừng quay lại. Tiếp tục học nào!</p>
-      {reset === "1" && (
-        <div className="mb-4">
-          <FormSuccess message="Đã đặt lại mật khẩu. Hãy đăng nhập bằng mật khẩu mới." />
-        </div>
+      {expired === "1" && (
+        <p role="status" className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-3.5 py-3 text-sm text-amber-800">
+          Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại.
+        </p>
       )}
-      <LoginForm next={typeof next === "string" ? next : undefined} />
+      <GoogleSignInButton next={typeof next === "string" ? next : undefined} />
+      <p className="mt-5 text-center text-sm text-ink-600">
+        Lần đầu đăng nhập, tài khoản của bạn sẽ được tạo tự động.
+      </p>
     </>
   );
 }

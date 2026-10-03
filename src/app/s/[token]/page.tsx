@@ -63,10 +63,7 @@ export default async function SharedSetPage({ params }: Props) {
             />
           ) : (
             <div className="flex flex-wrap gap-2">
-              <ButtonLink href={`/login?next=${next}`}>Đăng nhập để lưu</ButtonLink>
-              <ButtonLink href={`/register?next=${next}`} variant="secondary">
-                Đăng ký
-              </ButtonLink>
+              <ButtonLink href={`/login?next=${next}`}>Đăng nhập bằng Google để lưu</ButtonLink>
             </div>
           )}
         </div>

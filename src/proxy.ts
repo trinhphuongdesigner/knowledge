@@ -1,7 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const SESSION_COOKIE = "kn_session";
-const AUTH_PAGES = new Set(["/login", "/register", "/forgot-password", "/reset-password"]);
+const AUTH_PAGES = new Set(["/login"]);
+/** Header nội bộ để Server Components biết đường dẫn hiện tại (dùng cho /welcome?next=). */
+const PATH_HEADER = "x-kn-path";
 const SESSION_MAX_AGE_S = 30 * 24 * 60 * 60;
 
 /** Re-set the cookie (same value) so the browser-side expiry slides too. DB expiry stays the authority. */
@@ -42,8 +44,6 @@ export function proxy(req: NextRequest) {
   }
 
   if (AUTH_PAGES.has(pathname)) {
-    // The reset link works whether or not the visitor is logged in.
-    if (pathname === "/reset-password") return NextResponse.next();
     if (hasCookie) {
       // requireUser() sends users with a stale/invalid cookie to /login?expired=1: clear it (no redirect loop).
       if (req.nextUrl.searchParams.get("expired") === "1") {
@@ -61,9 +61,15 @@ export function proxy(req: NextRequest) {
     if (pathname !== "/") url.searchParams.set("next", pathname + search);
     return NextResponse.redirect(url);
   }
-  return withSlidingCookie(req, NextResponse.next());
+  // Không tin giá trị do client gửi: luôn ghi đè header đường dẫn.
+  const headers = new Headers(req.headers);
+  const sp = new URLSearchParams(search);
+  sp.delete("_rsc");
+  const qs = sp.toString();
+  headers.set(PATH_HEADER, pathname + (qs ? `?${qs}` : ""));
+  return withSlidingCookie(req, NextResponse.next({ request: { headers } }));
 }
 
 export const config = {
-  matcher: ["/((?!_next/|manifest\\.webmanifest|sw\\.js|offline\\.html|icon\\.svg|apple-icon\\.png|favicon\\.ico|templates/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|csv|xlsx|md|txt)$).*)"],
+  matcher: ["/((?!_next/|__/|manifest\\.webmanifest|sw\\.js|offline\\.html|icon\\.svg|apple-icon\\.png|favicon\\.ico|templates/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|csv|xlsx|md|txt)$).*)"],
 };

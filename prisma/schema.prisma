@@ -54,8 +54,12 @@ enum Role {
 model User {
   id           String     @id @default(uuid(7)) @db.Uuid
   email        String     @unique // always stored lowercase + trimmed
-  name         String?
-  passwordHash String // "scrypt$N$r$p$saltB64$hashB64"
+  name         String?    // tên hiển thị
+  firebaseUid  String?    @unique // thông tin tham khảo; định danh thật là email
+  fullName       String?
+  birthYear      Int?
+  nativeLanguage String?  // mã ISO 639-1
+  onboardedAt    DateTime? // null = phải hoàn tất hồ sơ ở /welcome
   role         Role       @default(USER)
   sets         StudySet[]
   categories   Category[]
@@ -67,7 +71,6 @@ model User {
   subscriptions  SetSubscription[]
   cardReviews    CardReview[]
   studyDays      StudyDay[]
-  resetTokens    PasswordResetToken[]
   aiUsage        AiUsage[]
   notifications  Notification[]
   pushSubscriptions PushSubscription[]
@@ -213,17 +216,6 @@ model StudyDay {            // Tổng hợp theo ngày → thống kê, streak, 
   newCards Int      @default(0)
 
   @@id([userId, day])
-}
-
-model PasswordResetToken {  // id = sha256(token) hex; TTL 30 phút; dùng 1 lần
-  id        String    @id
-  userId    String    @db.Uuid
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  expiresAt DateTime
-  usedAt    DateTime?
-  createdAt DateTime  @default(now())
-
-  @@index([userId])
 }
 
 model AiUsage {

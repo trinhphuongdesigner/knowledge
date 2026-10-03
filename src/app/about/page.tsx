@@ -102,7 +102,7 @@ export default async function AboutPage() {
             </>
           ) : (
             <>
-              <ButtonLink href="/register">Bắt đầu miễn phí</ButtonLink>
+              <ButtonLink href="/login">Bắt đầu miễn phí</ButtonLink>
               <ButtonLink href="/login" variant="secondary">
                 Đăng nhập
               </ButtonLink>

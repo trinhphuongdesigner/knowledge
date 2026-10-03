@@ -73,7 +73,7 @@ export async function notify(userId: string, input: NotifyInput): Promise<void> 
   await deliver(userId, buildPushPayload({ ...input, tag: input.type === "REVIEW_REMINDER" ? "review-reminder" : input.href }));
 }
 
-/** Chỉ đẩy, KHÔNG lưu (vd link đặt lại mật khẩu). Trả số thiết bị đã gửi được. */
+/** Chỉ đẩy, KHÔNG lưu. Trả số thiết bị đã gửi được. */
 export async function sendPushOnly(userId: string, payload: { title: string; body: string; href: string; tag?: string }): Promise<number> {
   return deliver(userId, buildPushPayload(payload));
 }

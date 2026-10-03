@@ -3,44 +3,45 @@
 import { useActionState } from "react";
 import { updateProfile } from "@/app/account/actions";
 import { FormError } from "@/components/auth/FormError";
-import { PasswordInput } from "@/components/auth/PasswordInput";
 import { Button, Input } from "@/components/ui";
 import type { AccountFormState } from "@/lib/auth/types";
 import { FormSuccess } from "./FormSuccess";
+import { ProfileFields } from "./ProfileFields";
 
-export function ProfileForm({ name, email }: { name: string | null; email: string }) {
+export function ProfileForm({
+  name,
+  fullName,
+  birthYear,
+  nativeLanguage,
+  email,
+}: {
+  name: string;
+  fullName: string;
+  birthYear: string;
+  nativeLanguage: string;
+  email: string;
+}) {
   const [state, action, pending] = useActionState<AccountFormState, FormData>(updateProfile, undefined);
-  const errors = state?.fieldErrors;
-  // Remount after a successful save so the password field is cleared and defaults refresh.
-  const formKey = state?.success ? `ok-${state.values?.email}-${state.values?.name}` : "form";
+  const v = state?.values;
+  // Remount sau khi lưu thành công để các giá trị mặc định được làm mới.
+  const formKey = state?.success ? `ok-${v?.name}-${v?.fullName}-${v?.birthYear}-${v?.nativeLanguage}` : "form";
   return (
     <form key={formKey} action={action} noValidate className="flex flex-col gap-4">
       <FormError message={state?.error} />
       <FormSuccess message={state?.success} />
-      <Input
-        label="Tên hiển thị (tuỳ chọn)"
-        name="name"
-        autoComplete="name"
-        maxLength={80}
-        defaultValue={state?.values?.name ?? name ?? ""}
-        error={errors?.name?.[0]}
+      <ProfileFields
+        defaults={{
+          name: v?.name ?? name,
+          fullName: v?.fullName ?? fullName,
+          birthYear: v?.birthYear ?? birthYear,
+          nativeLanguage: v?.nativeLanguage ?? nativeLanguage,
+        }}
+        errors={state?.fieldErrors}
       />
-      <Input
-        label="Email"
-        name="email"
-        type="email"
-        autoComplete="email"
-        inputMode="email"
-        required
-        defaultValue={state?.values?.email ?? email}
-        error={errors?.email?.[0]}
-      />
-      <PasswordInput
-        label="Mật khẩu hiện tại (chỉ cần khi đổi email)"
-        name="currentPassword"
-        autoComplete="current-password"
-        error={errors?.currentPassword?.[0]}
-      />
+      <div className="flex flex-col gap-1.5">
+        <Input label="Email" type="email" value={email} readOnly disabled autoComplete="email" />
+        <p className="text-xs text-ink-500">Đăng nhập bằng Google</p>
+      </div>
       <Button type="submit" loading={pending} className="w-full sm:w-auto sm:self-start">
         {pending ? "Đang lưu…" : "Lưu thay đổi"}
       </Button>

@@ -2,176 +2,95 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { after } from "next/server";
 import { DEFAULT_CATEGORIES } from "@/lib/categories";
 import { db } from "@/lib/db";
-import { sendPushOnly } from "@/lib/notify";
-import { hashPassword, verifyDummyPassword, verifyPassword } from "@/lib/auth/password";
+import { verifyFirebaseIdToken, type GoogleIdentity } from "@/lib/auth/google";
 import {
+  INVALID_TOKEN_MARKER,
   RATE_LIMIT_MESSAGE,
   checkLoginAllowed,
-  checkRegisterAllowed,
-  checkResetAllowed,
   getClientIp,
   recordLoginAttempt,
-  recordRegisterAttempt,
-  recordResetRequest,
 } from "@/lib/auth/rate-limit";
-import { isResetTokenUsable } from "@/lib/auth/reset";
-import { createResetLink } from "@/lib/auth/reset-link";
-import { hashToken } from "@/lib/auth/token";
 import { safeNext } from "@/lib/auth/redirect";
 import { clearSessionCookie, createSession, deleteSession, readSessionToken } from "@/lib/auth/session";
-import type { AuthFormState, ResetFormState } from "@/lib/auth/types";
-import { forgotPasswordSchema, loginSchema, registerSchema, resetPasswordSchema } from "@/lib/validators";
 
-const GENERIC_LOGIN_ERROR = "Email hoặc mật khẩu không đúng";
+const GENERIC_ERROR = "Không thể đăng nhập bằng Google. Vui lòng thử lại.";
+const CLOSED_ERROR = "Hiện không nhận tài khoản mới";
 
-const str = (v: FormDataEntryValue | null) => (typeof v === "string" ? v : "");
+const isUniqueViolation = (e: unknown) =>
+  typeof e === "object" && e !== null && (e as { code?: string }).code === "P2002";
 
-export async function login(_prev: AuthFormState, formData: FormData): Promise<AuthFormState> {
-  const rawEmail = str(formData.get("email"));
-  const values = { email: rawEmail.trim() };
-  const parsed = loginSchema.safeParse({ email: rawEmail, password: str(formData.get("password")) });
-  if (!parsed.success) {
-    return { fieldErrors: parsed.error.flatten().fieldErrors, values };
-  }
-  const { email, password } = parsed.data;
-  const h = await headers();
-  const ip = getClientIp(h);
+type UserRow = { id: string; firebaseUid: string | null; onboardedAt: Date | null };
+const userSelect = { id: true, firebaseUid: true, onboardedAt: true } as const;
 
-  if (!(await checkLoginAllowed(email, ip))) return { error: RATE_LIMIT_MESSAGE, values };
-
-  const user = await db.user.findUnique({ where: { email } });
-  const ok = user ? await verifyPassword(password, user.passwordHash) : await verifyDummyPassword(password);
-  await recordLoginAttempt(email, ip, ok);
-  if (!user || !ok) return { error: GENERIC_LOGIN_ERROR, values };
-
-  await createSession(user.id, h.get("user-agent"));
-  redirect(safeNext(formData.get("next")));
+async function createUser(identity: GoogleIdentity, withUid: boolean): Promise<UserRow> {
+  return db.user.create({
+    data: {
+      email: identity.email,
+      name: identity.name?.slice(0, 40) || null,
+      ...(withUid ? { firebaseUid: identity.uid } : {}),
+      categories: { create: DEFAULT_CATEGORIES.map((c) => ({ ...c })) },
+    },
+    select: userSelect,
+  });
 }
 
-export async function register(_prev: AuthFormState, formData: FormData): Promise<AuthFormState> {
-  const rawEmail = str(formData.get("email"));
-  const values = { email: rawEmail.trim(), name: str(formData.get("name")).trim() };
-  if (process.env.ALLOW_REGISTRATION === "false") {
-    return { error: "Đăng ký hiện đã bị tắt", values };
+/** Tìm theo email (khoá định danh) hoặc tạo mới; xử lý tranh chấp P2002 bằng cách đọc lại. */
+async function findOrCreateUser(identity: GoogleIdentity): Promise<UserRow | null> {
+  const existing = await db.user.findUnique({ where: { email: identity.email }, select: userSelect });
+  if (existing) return existing;
+  if (process.env.ALLOW_REGISTRATION === "false") return null;
+  try {
+    return await createUser(identity, true);
+  } catch (e) {
+    if (!isUniqueViolation(e)) throw e;
+    const raced = await db.user.findUnique({ where: { email: identity.email }, select: userSelect });
+    if (raced) return raced;
+    // Trùng firebaseUid với tài khoản khác (đổi email phía Google): vẫn tạo theo email, bỏ qua uid.
+    return createUser(identity, false);
   }
-  const parsed = registerSchema.safeParse({
-    name: str(formData.get("name")),
-    email: rawEmail,
-    password: str(formData.get("password")),
-    confirmPassword: str(formData.get("confirmPassword")),
-  });
-  if (!parsed.success) {
-    return { fieldErrors: parsed.error.flatten().fieldErrors, values };
-  }
-  const { name, email, password } = parsed.data;
+}
+
+/** Đăng nhập bằng Firebase ID token (Google). Thành công thì redirect; lỗi thì trả { error }. */
+export async function signInWithGoogle(idToken: string, next?: string): Promise<{ error: string } | void> {
+  if (typeof idToken !== "string" || idToken.length === 0 || idToken.length > 8192) return { error: GENERIC_ERROR };
   const h = await headers();
   const ip = getClientIp(h);
 
-  if (!(await checkRegisterAllowed(ip))) return { error: RATE_LIMIT_MESSAGE, values };
-  await recordRegisterAttempt(ip);
+  if (!(await checkLoginAllowed(null, ip))) return { error: RATE_LIMIT_MESSAGE };
 
-  const existing = await db.user.findUnique({ where: { email }, select: { id: true } });
-  if (existing) return { fieldErrors: { email: ["Email này đã được đăng ký"] }, values };
-
-  let userId: string;
+  let identity: GoogleIdentity;
   try {
-    const user = await db.user.create({
-      data: {
-        email,
-        name: name || null,
-        passwordHash: await hashPassword(password),
-        categories: { create: DEFAULT_CATEGORIES.map((c) => ({ ...c })) },
-      },
-      select: { id: true },
-    });
-    userId = user.id;
+    identity = await verifyFirebaseIdToken(idToken);
   } catch (e) {
-    if (typeof e === "object" && e !== null && (e as { code?: string }).code === "P2002") {
-      return { fieldErrors: { email: ["Email này đã được đăng ký"] }, values };
-    }
-    throw e;
+    console.error("[auth] token Google không hợp lệ:", e instanceof Error ? e.message : e);
+    await recordLoginAttempt(INVALID_TOKEN_MARKER, ip, false).catch(() => undefined);
+    return { error: GENERIC_ERROR };
   }
 
-  await createSession(userId, h.get("user-agent"));
-  redirect("/");
+  if (!(await checkLoginAllowed(identity.email, ip))) return { error: RATE_LIMIT_MESSAGE };
+
+  const user = await findOrCreateUser(identity);
+  if (!user) return { error: CLOSED_ERROR };
+
+  if (user.firebaseUid !== identity.uid) {
+    // Chỉ là thông tin tham khảo: trùng uid với tài khoản khác thì bỏ qua.
+    await db.user.update({ where: { id: user.id }, data: { firebaseUid: identity.uid } }).catch((e) => {
+      if (!isUniqueViolation(e)) throw e;
+    });
+  }
+
+  await recordLoginAttempt(identity.email, ip, true);
+  await createSession(user.id, h.get("user-agent"));
+
+  const dest = safeNext(next);
+  if (!user.onboardedAt) redirect(dest === "/" ? "/welcome" : `/welcome?next=${encodeURIComponent(dest)}`);
+  redirect(dest);
 }
 
 export async function logout(): Promise<void> {
   await deleteSession(await readSessionToken());
   await clearSessionCookie();
   redirect("/login");
-}
-
-const FORGOT_MESSAGE =
-  "Nếu email tồn tại và đã bật thông báo, link đặt lại mật khẩu sẽ được gửi tới thiết bị của bạn dưới dạng thông báo đẩy";
-
-/** Luôn trả cùng một thông báo (không lộ email có tồn tại hay không); link gửi bằng thông báo đẩy sau khi phản hồi. */
-export async function requestPasswordReset(_prev: ResetFormState, formData: FormData): Promise<ResetFormState> {
-  const rawEmail = str(formData.get("email"));
-  const parsed = forgotPasswordSchema.safeParse({ email: rawEmail });
-  if (!parsed.success) {
-    return { fieldErrors: parsed.error.flatten().fieldErrors, values: { email: rawEmail.trim() } };
-  }
-  const { email } = parsed.data;
-  const ip = getClientIp(await headers());
-  const done: ResetFormState = { success: FORGOT_MESSAGE };
-
-  // Vượt giới hạn: vẫn trả thông báo chung, chỉ không gửi gì.
-  if (!(await checkResetAllowed(email, ip))) return done;
-  await recordResetRequest(email, ip);
-
-  const user = await db.user.findUnique({ where: { email }, select: { id: true } });
-  if (!user) return done;
-
-  const { path } = await createResetLink(user.id);
-  // Link chỉ đi qua thông báo đẩy tới thiết bị đã đăng ký, KHÔNG lưu vào trung tâm thông báo.
-  after(async () => {
-    await sendPushOnly(user.id, {
-      title: "Đặt lại mật khẩu",
-      body: "Chạm để mở liên kết đặt lại mật khẩu (hiệu lực 30 phút, dùng một lần). Nếu không phải bạn yêu cầu, hãy bỏ qua.",
-      href: path,
-      tag: "password-reset",
-    });
-  });
-  return done;
-}
-
-const INVALID_LINK = "Liên kết không hợp lệ hoặc đã hết hạn. Hãy yêu cầu liên kết mới.";
-
-export async function resetPassword(_prev: ResetFormState, formData: FormData): Promise<ResetFormState> {
-  const parsed = resetPasswordSchema.safeParse({
-    token: str(formData.get("token")),
-    password: str(formData.get("password")),
-    confirmPassword: str(formData.get("confirmPassword")),
-  });
-  if (!parsed.success) {
-    const fe = parsed.error.flatten().fieldErrors;
-    return fe.token ? { error: INVALID_LINK } : { fieldErrors: fe };
-  }
-  const { token, password } = parsed.data;
-  const id = hashToken(token);
-  const row = await db.passwordResetToken.findUnique({ where: { id } });
-  if (!row || !isResetTokenUsable(row)) return { error: INVALID_LINK };
-
-  const passwordHash = await hashPassword(password);
-  const ok = await db.$transaction(async (tx) => {
-    // Dùng một lần: chỉ một request thắng khi tranh chấp.
-    const claimed = await tx.passwordResetToken.updateMany({
-      where: { id, usedAt: null, expiresAt: { gt: new Date() } },
-      data: { usedAt: new Date() },
-    });
-    if (claimed.count !== 1) return false;
-    await tx.user.update({ where: { id: row.userId }, data: { passwordHash } });
-    await tx.passwordResetToken.deleteMany({ where: { userId: row.userId, id: { not: id } } });
-    await tx.session.deleteMany({ where: { userId: row.userId } });
-    return true;
-  });
-  if (!ok) return { error: INVALID_LINK };
-
-  // Cookie của thiết bị này (nếu có) đã trỏ tới session vừa bị xoá.
-  await clearSessionCookie();
-  redirect("/login?reset=1");
 }

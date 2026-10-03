@@ -9,3 +9,4 @@ export { Modal, type ModalProps } from "./Modal";
 export { Select, type SelectProps } from "./Select";
 export { Spinner } from "./Spinner";
 export { Textarea, type TextareaProps } from "./Textarea";
+export { LanguageCombobox } from "./LanguageCombobox";

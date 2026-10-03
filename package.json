@@ -13,7 +13,6 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
-    "auth:hash": "tsx scripts/hash-password.ts",
     "push:keys": "tsx scripts/vapid-keys.ts",
     "postinstall": "prisma generate"
   },
@@ -21,6 +20,8 @@
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
     "clsx": "^2.1.1",
+    "firebase": "^12.19.0",
+    "jose": "^6.2.12",
     "lucide-react": "^1.49.0",
     "next": "16.3.8",
     "papaparse": "^5.7.0",

@@ -3,7 +3,6 @@ import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { ADMIN_EMAIL } from "../src/lib/auth/admin";
-import { hashPassword, isPasswordHash } from "../src/lib/auth/password";
 import { PrismaClient, type Level } from "../src/generated/prisma/client";
 import { loadHandbook } from "./seed-data/handbook-loader";
 import { loadVocabFiles } from "./seed-data/vocab-loader";
@@ -41,20 +40,8 @@ const DATA = path.join(__dirname, "seed-data");
 
 async function main() {
   const email = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-  const hashEnv = process.env.ADMIN_PASSWORD_HASH?.trim();
-  const password = process.env.ADMIN_PASSWORD;
   if (email !== ADMIN_EMAIL) {
-    throw new Error(`Seed cần ADMIN_EMAIL=${ADMIN_EMAIL} (tài khoản admin duy nhất). Ví dụ: ADMIN_EMAIL=${ADMIN_EMAIL} ADMIN_PASSWORD=... npm run db:seed`);
-  }
-  if (hashEnv && !isPasswordHash(hashEnv)) {
-    throw new Error(
-      "ADMIN_PASSWORD_HASH sai định dạng (cần scrypt$N$r$p$salt$hash). Tạo bằng `npm run auth:hash` và đặt trong nháy đơn '...' trong .env.",
-    );
-  }
-  if (!hashEnv && (!password || password.length < 8)) {
-    throw new Error(
-      "Seed cần ADMIN_PASSWORD_HASH (ưu tiên) hoặc ADMIN_PASSWORD (>= 8 ký tự) trong env. Tạo hash: `npm run auth:hash`.",
-    );
+    throw new Error(`Seed cần ADMIN_EMAIL=${ADMIN_EMAIL} (tài khoản admin duy nhất). Ví dụ: ADMIN_EMAIL=${ADMIN_EMAIL} npm run db:seed`);
   }
   const name = process.env.ADMIN_NAME?.trim() || "Admin";
   const vocab = loadVocabFiles(path.join(DATA, "vocab"));
@@ -82,11 +69,10 @@ async function main() {
     })),
   ];
 
-  const passwordHash = hashEnv ?? (await hashPassword(password!));
   const admin = await db.user.upsert({
     where: { email },
-    create: { email, name, passwordHash, role: "ADMIN" },
-    update: { name, passwordHash, role: "ADMIN" },
+    create: { email, name, role: "ADMIN", onboardedAt: new Date() },
+    update: { name, role: "ADMIN", onboardedAt: new Date() },
   });
   console.log(`Admin: ${admin.email} (${admin.id})`);
 

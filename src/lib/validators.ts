@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { isLanguageCode } from "./languages";
+import { MAX_AGE, MIN_AGE, isValidBirthYear } from "./profile";
 
 export const CATEGORY_COLORS = ["BLUE", "GREEN", "AMBER", "PURPLE", "ROSE", "SLATE"] as const;
 export type CategoryColor = (typeof CATEGORY_COLORS)[number];
@@ -118,53 +120,20 @@ export type DictionaryEntryDTO = {
 
 export type EnrichResultDTO = { updated: number; notFound: number; remaining: number; failed?: number };
 
-// ── Auth ──────────────────────────────────────────────────────────────────
-const emailField = z
-  .string()
-  .trim()
-  .toLowerCase()
-  .min(1, "Vui lòng nhập email")
-  .max(254, "Email quá dài")
-  .email("Email không hợp lệ");
-
-export const loginSchema = z.object({
-  email: emailField,
-  password: z.string().min(1, "Vui lòng nhập mật khẩu").max(128, "Mật khẩu quá dài"),
+// ── Hồ sơ (onboarding + tài khoản) ─────────────────────────────────────────
+export const onboardingSchema = z.object({
+  name: z.string().trim().min(1, "Vui lòng nhập tên hiển thị").max(40, "Tên hiển thị tối đa 40 ký tự"),
+  fullName: z.string().trim().min(1, "Vui lòng nhập họ tên").max(80, "Họ tên tối đa 80 ký tự"),
+  birthYear: z.coerce
+    .number({ error: "Năm sinh không hợp lệ" })
+    .int("Năm sinh không hợp lệ")
+    .refine((y) => isValidBirthYear(y), `Năm sinh không hợp lệ (tuổi từ ${MIN_AGE} đến ${MAX_AGE})`),
+  nativeLanguage: z.string().refine(isLanguageCode, "Vui lòng chọn ngôn ngữ"),
 });
+export type OnboardingInput = z.infer<typeof onboardingSchema>;
 
-export const registerSchema = z
-  .object({
-    name: z.string().trim().max(100, "Tên quá dài").optional(),
-    email: emailField,
-    password: z.string().min(8, "Mật khẩu tối thiểu 8 ký tự").max(128, "Mật khẩu tối đa 128 ký tự"),
-    confirmPassword: z.string(),
-  })
-  .refine((v) => v.password === v.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Mật khẩu nhập lại không khớp",
-  });
-
-// ── Account ───────────────────────────────────────────────────────────────
-export const updateProfileSchema = z.object({
-  name: z.string().trim().max(80, "Tên tối đa 80 ký tự").optional(),
-  email: emailField,
-  currentPassword: z.string().max(128, "Mật khẩu quá dài").optional(),
-});
-
-export const changePasswordSchema = z
-  .object({
-    currentPassword: z.string().min(1, "Vui lòng nhập mật khẩu hiện tại").max(128, "Mật khẩu quá dài"),
-    newPassword: z.string().min(8, "Mật khẩu tối thiểu 8 ký tự").max(128, "Mật khẩu tối đa 128 ký tự"),
-    confirmPassword: z.string(),
-  })
-  .refine((v) => v.newPassword === v.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Mật khẩu nhập lại không khớp",
-  })
-  .refine((v) => v.newPassword !== v.currentPassword, {
-    path: ["newPassword"],
-    message: "Mật khẩu mới phải khác mật khẩu hiện tại",
-  });
+/** Cập nhật hồ sơ ở trang tài khoản: cùng các trường với onboarding (email chỉ đọc). */
+export const updateProfileSchema = onboardingSchema;
 
 // ── Study progress ────────────────────────────────────────────────────────
 const STUDY_IDS_MAX = 5000;
@@ -221,18 +190,6 @@ export const studySettingsSchema = z.object({
   pushReminders: z.boolean(),
 });
 export type StudySettingsInput = z.infer<typeof studySettingsSchema>;
-
-export const forgotPasswordSchema = z.object({ email: emailField });
-export const resetPasswordSchema = z
-  .object({
-    token: z.string().min(1, "Liên kết không hợp lệ").max(200),
-    password: z.string().min(8, "Mật khẩu tối thiểu 8 ký tự").max(128, "Mật khẩu tối đa 128 ký tự"),
-    confirmPassword: z.string(),
-  })
-  .refine((v) => v.password === v.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Mật khẩu nhập lại không khớp",
-  });
 
 export const aiSuggestInputSchema = z.object({
   term: z.string().trim().min(1).max(200),

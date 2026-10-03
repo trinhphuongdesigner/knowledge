@@ -611,3 +611,19 @@ Bỏ hoàn toàn email (Resend). Thay bằng Web Push (VAPID, thư viện `web-p
 - [x] Service worker v3: `push` + `notificationclick`
 - [x] Supabase: migrate deploy `notifications` (2026-10-03)
 - [ ] Đặt biến VAPID trên Vercel + redeploy, thử push thật trên thiết bị
+
+## 16. Đăng nhập Google (Firebase Auth) + onboarding
+
+Thay email/mật khẩu bằng **Google sign-in qua Firebase Auth là phương thức đăng nhập duy nhất**; thêm màn hình onboarding bắt buộc.
+
+- Kiến trúc: Firebase chỉ chứng minh danh tính. Client `signInWithPopup` (PWA/popup bị chặn: `signInWithRedirect`) → ID token → Server Action `signInWithGoogle` → `jose` xác minh (JWKS securetoken, `iss`/`aud` = project id, RS256, `sign_in_provider = google.com`, `email_verified = true`) → tìm/tạo User theo **email** → `createSession` (cookie `kn_session` giữ nguyên). Không dùng firebase-admin.
+- Migration `20261004000000_google_auth_onboarding`: bỏ `User.passwordHash` và bảng `PasswordResetToken`; thêm `firebaseUid` (unique, tham khảo), `fullName`, `birthYear`, `nativeLanguage` (ISO 639-1), `onboardedAt` (null = phải onboard; tài khoản cũ onboard một lần).
+- `/welcome`: tên hiển thị, họ tên, năm sinh (hiện tuổi ≈), ngôn ngữ mẹ đẻ (combobox tìm kiếm, mặc định `vi`). `requireUser()` chuyển tới `/welcome?next=…` khi chưa onboard (proxy gắn header nội bộ `x-kn-path`); `requireApiUser()` trả 403.
+- `/account`: bỏ tab mật khẩu; sửa được tên/họ tên/năm sinh/ngôn ngữ, email chỉ đọc. Bỏ đăng ký, quên/đặt lại mật khẩu, công cụ link đặt lại của admin, `auth:hash`, `ADMIN_PASSWORD*`.
+- Safari/iOS PWA: `next.config.ts` rewrite `/__/auth/*` và `/__/firebase/*` sang `<project>.firebaseapp.com`; `X-Frame-Options: SAMEORIGIN` cho `/__/*`; proxy.ts loại `__/` khỏi matcher. Production đặt `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` = domain site.
+- Test: xác minh claim bằng khoá RS256 sinh cục bộ (hợp lệ, sai aud/iss, hết hạn, email chưa xác minh, provider khác, thiếu email), `onboardingSchema`, danh sách ngôn ngữ, `ageFromBirthYear`.
+
+### Tiến độ đợt 9
+- [x] Code + migration viết tay (chưa áp vào DB production)
+- [ ] `prisma migrate deploy` lên Supabase (thủ công)
+- [ ] Vercel env `NEXT_PUBLIC_FIREBASE_*` (AUTH_DOMAIN = domain site), Authorized domains + OAuth redirect URI `https://knowledge.gutanembroidery.com/__/auth/handler`

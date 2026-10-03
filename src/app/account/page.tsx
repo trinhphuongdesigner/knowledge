@@ -1,7 +1,6 @@
 import { Download } from "lucide-react";
 import type { Metadata } from "next";
 import { ACCOUNT_TABS, AccountTabs, type AccountTab } from "@/components/account/AccountTabs";
-import { PasswordForm } from "@/components/account/PasswordForm";
 import { ProfileForm } from "@/components/account/ProfileForm";
 import { StudyHistory } from "@/components/account/StudyHistory";
 import { StudySettingsForm } from "@/components/account/StudySettingsForm";
@@ -10,6 +9,7 @@ import { StatsPanel } from "@/components/stats/StatsPanel";
 import { Card } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { DEFAULT_NATIVE_LANGUAGE } from "@/lib/languages";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Quản lý tài khoản — Knowledge" };
@@ -30,7 +30,7 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
       {active === "profile" && (
         <div className="space-y-4">
           <Card>
-            <ProfileForm name={user.name} email={user.email} />
+            <ProfileTab userId={user.id} email={user.email} />
           </Card>
           <Card className="flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -48,12 +48,23 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
           </Card>
         </div>
       )}
-      {active === "password" && (
-        <Card>
-          <PasswordForm />
-        </Card>
-      )}
     </Container>
+  );
+}
+
+async function ProfileTab({ userId, email }: { userId: string; email: string }) {
+  const u = await db.user.findUnique({
+    where: { id: userId },
+    select: { name: true, fullName: true, birthYear: true, nativeLanguage: true },
+  });
+  return (
+    <ProfileForm
+      email={email}
+      name={u?.name ?? ""}
+      fullName={u?.fullName ?? ""}
+      birthYear={u?.birthYear ? String(u.birthYear) : ""}
+      nativeLanguage={u?.nativeLanguage ?? DEFAULT_NATIVE_LANGUAGE}
+    />
   );
 }
 

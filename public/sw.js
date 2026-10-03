@@ -6,7 +6,7 @@
 //   lưu HTML thành công vào cache "pages"; mất mạng -> bản đã lưu -> /offline.html.
 // - GET /api/sets/* và /api/reviews/due: network-first, lưu vào cache "api".
 // - KHÔNG BAO GIỜ cache: method khác GET, /api/auth*, /api/cron/*, /api/account/*, /api/admin/*,
-//   /api/ai/*, /login, /register, /forgot-password, /reset-password, /admin, phản hồi không ok/redirect.
+//   /api/ai/*, /login, /welcome, /__/ (Firebase auth handler), /admin, phản hồi không ok/redirect.
 // - Trang và API là dữ liệu RIÊNG của từng người dùng: cache "pages"/"api" bị xoá khi nhận message
 //   {type:"CLEAR_USER_CACHE"} (client gửi lúc đăng xuất) và khi tải được trang /login (đã đăng xuất / hết phiên).
 //   Cache-Control: no-store của Next trên HTML động KHÔNG được coi là lý do bỏ qua, vì cơ chế xoá ở trên đã bảo vệ.
@@ -55,7 +55,7 @@ function isStaticAsset(url) {
   );
 }
 
-const NEVER_PAGE = /^\/(?:login|register|forgot-password|reset-password|admin|api)(?:\/|$)/;
+const NEVER_PAGE = /^\/(?:login|welcome|__|admin|api)(?:\/|$)/;
 const PAGE_ROUTES = [/^\/$/, /^\/sets\/[^/]+$/, /^\/sets\/[^/]+\/(?:study|quiz)$/, /^\/review$/];
 const NEVER_API = /^\/api\/(?:auth|cron|account|admin|ai)(?:\/|$)/;
 

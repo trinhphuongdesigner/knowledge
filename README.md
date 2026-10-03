@@ -21,7 +21,6 @@
 - **Gợi ý AI** (ví dụ, nghĩa, câu cloze) bằng Anthropic API, tuỳ chọn.
 - **Dark mode + offline (PWA)**: giao diện sáng/tối (cookie `kn_theme`), service worker cache trang, hiện banner "Đang ngoại tuyến".
 - **Thông báo**: chuông ở header (huy hiệu chưa đọc, trang `/notifications`) + Web Push tới thiết bị đã bật (nhắc học, duyệt/từ chối bộ PUBLIC, có người lưu bộ của bạn). Bật push ở `/account` → Cài đặt học → "Thông báo trên thiết bị này" (iPhone cần thêm app vào Màn hình chính trước; chỉ hoạt động ở bản production vì cần service worker).
-- **Quên mật khẩu** qua thông báo đẩy tới thiết bị đã bật thông báo (link dùng một lần, hiệu lực 30 phút; vô hiệu mọi phiên cũ sau khi đổi).
 
 > **Lưu ý:** chỉ tính năng tra phiên âm cần internet (server gọi dictionaryapi.dev, timeout 5 giây). Khi mất mạng hoặc từ không có trong từ điển, thẻ vẫn được tạo/import bình thường — bạn có thể nhập phiên âm thủ công. Phần còn lại của ứng dụng chạy hoàn toàn offline.
 
@@ -91,7 +90,7 @@ Sau đó chạy `npx prisma migrate deploy` và `npm run db:seed` như bình th�
 
 ### Seed
 
-`npm run db:seed` (cần `ADMIN_EMAIL`/`ADMIN_PASSWORD`, xem mục Đăng nhập) **xoá nhóm thẻ/thẻ của tài khoản admin** rồi tạo lại (chạy lại bao nhiêu lần cũng được). Nguồn dữ liệu:
+`npm run db:seed` (cần `ADMIN_EMAIL`, xem mục Đăng nhập) **xoá nhóm thẻ/thẻ của tài khoản admin** rồi tạo lại (chạy lại bao nhiêu lần cũng được). Nguồn dữ liệu:
 
 1. `prisma/seed-data/vocab/*.json`: các bộ từ vựng / câu hỏi HR Tiếng Anh (mỗi file một bộ: `slug`, `order`, `title`, `description`, `category`, `level`, `cards[]` với `question`, `answer`, `explanation?`, `phonetic?`, `partOfSpeech?`). File không hợp lệ bị cảnh báo và bỏ qua; thư mục trống/thiếu vẫn chạy được.
 2. `prisma/seed-data/frontend-handbook.md`: chỉ lấy **PHẦN II**, mỗi mục `## N. Tên` thành một bộ IT `Phỏng vấn Frontend · <Tên>` (parser Markdown kiểu "câu hỏi in đậm", xem bên dưới).
@@ -102,26 +101,20 @@ Thứ tự hiển thị trên trang chủ (mới nhất trước): Life & Work, 
 
 Mỗi nhóm thẻ/thẻ thuộc về đúng một user; user chỉ thấy và sửa dữ liệu của mình (nhóm không thuộc user trả **404**, chưa đăng nhập ở API trả **401**).
 
-- **Cách hoạt động**: email + mật khẩu tự xây (không dùng thư viện/dịch vụ auth). Mật khẩu băm bằng `node:crypto` scrypt (N=2^15, r=8, p=1) kèm salt, lưu dạng `scrypt$N$r$p$salt$hash`. Đăng nhập tạo session ngẫu nhiên 32 byte trong cookie `kn_session` (`httpOnly`, `sameSite=lax`, `secure` khi production, 30 ngày, gia hạn trượt khi còn < 15 ngày ở DB, và `src/proxy.ts` đặt lại cookie mỗi request); DB chỉ lưu `sha256(token)`. Đăng xuất xoá session trong DB và cookie.
+- **Cách hoạt động**: đăng nhập **chỉ bằng Google** qua Firebase Auth. Firebase chỉ dùng để chứng minh danh tính: trình duyệt mở popup Google (`signInWithPopup`; PWA đã cài hoặc popup bị chặn thì dùng `signInWithRedirect`), lấy ID token rồi gọi Server Action `signInWithGoogle`. Server tự xác minh token bằng `jose` (JWKS của Google, kiểm tra `iss`/`aud`/hạn, `sign_in_provider = google.com`, `email_verified = true`; không dùng firebase-admin), tìm/tạo user theo **email** (email là khoá định danh, `firebaseUid` chỉ để tham khảo) rồi tạo session như cũ: cookie `kn_session` ngẫu nhiên 32 byte (`httpOnly`, `sameSite=lax`, `secure` khi production, 30 ngày, gia hạn trượt khi còn < 15 ngày ở DB, và `src/proxy.ts` đặt lại cookie mỗi request); DB chỉ lưu `sha256(token)`. Sau đó client đăng xuất khỏi Firebase (không lưu phiên Firebase). Đăng xuất xoá session trong DB và cookie.
+- **Onboarding `/welcome`**: tài khoản chưa có hồ sơ (`User.onboardedAt = null`, gồm mọi tài khoản cũ) bị chuyển tới `/welcome` để nhập tên hiển thị, họ tên, năm sinh, ngôn ngữ mẹ đẻ. `requireUser()` chặn mọi trang khác, `requireApiUser()` trả 403 `Vui lòng hoàn tất hồ sơ` cho tới khi hoàn tất.
+- **Cấu hình Firebase**: 4 biến `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID` (xem `.env.example`). Ở local giữ `AUTH_DOMAIN=<project>.firebaseapp.com`. **Production**: đặt `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` = domain của site (ví dụ `knowledge.gutanembroidery.com`); `next.config.ts` proxy `/__/auth/*` và `/__/firebase/*` sang `<project>.firebaseapp.com` để đăng nhập hoạt động trên Safari/iOS PWA (không bị chặn cookie bên thứ ba). Cần thêm domain đó vào *Firebase Console → Authentication → Settings → Authorized domains* và thêm `https://<domain>/__/auth/handler` vào *Authorized redirect URIs* của OAuth client (Google Cloud Console).
 - **Kiểm tra 2 lớp**: `src/proxy.ts` chỉ kiểm tra lạc quan sự có mặt của cookie (redirect `/login?next=…`, API không cookie → 401); kiểm tra thật nằm ở DAL `src/lib/auth/dal.ts` (`requireUser`, `requireApiUser`).
-- **Chống lạm dụng**: rate limit lưu DB (đăng nhập sai ≥ 5 lần/15 phút theo email hoặc ≥ 20 lần theo IP; đăng ký ≥ 5 lần/giờ/IP), Route Handler ghi kiểm tra `Origin` trùng `Host` (CSRF), `?next=` chỉ nhận đường dẫn nội bộ, security headers trong `next.config.ts`.
-- **`ALLOW_REGISTRATION`**: đặt `"false"` để tắt đăng ký tài khoản mới (mặc định bật).
-- **Seed admin**: `npm run db:seed` cần `ADMIN_EMAIL` và `ADMIN_PASSWORD_HASH` (ưu tiên) hoặc `ADMIN_PASSWORD` (≥ 8 ký tự), tuỳ chọn `ADMIN_NAME` (mặc định "Admin"). Seed tạo/cập nhật tài khoản admin và **chỉ thay nhóm thẻ của admin** (36 bộ / 994 thẻ); dữ liệu user khác không bị đụng tới.
+- **Chống lạm dụng**: rate limit lưu DB theo IP (token không hợp lệ ≥ 20 lần/15 phút) và theo email, Route Handler ghi kiểm tra `Origin` trùng `Host` (CSRF), `?next=` chỉ nhận đường dẫn nội bộ, security headers trong `next.config.ts`.
+- **`ALLOW_REGISTRATION`**: đặt `"false"` để không tạo tài khoản mới khi đăng nhập Google (tài khoản đã có vẫn đăng nhập được; mặc định bật).
+- **Seed admin**: `npm run db:seed` cần `ADMIN_EMAIL` (= email admin duy nhất), tuỳ chọn `ADMIN_NAME` (mặc định "Admin"). Seed tạo/cập nhật tài khoản admin (không mật khẩu, đã onboard) và **chỉ thay nhóm thẻ của admin** (36 bộ / 994 thẻ); dữ liệu user khác không bị đụng tới. Admin đăng nhập bằng Google với đúng email đó.
 
   ```bash
-  ADMIN_EMAIL=admin@example.com ADMIN_PASSWORD='mat-khau-manh' npm run db:seed
+  ADMIN_EMAIL=trinhphuong.dev@gmail.com npm run db:seed
   ```
+- **Quản lý tài khoản**: menu avatar → "Quản lý tài khoản" (`/account`): tab *Thông tin* (sửa tên hiển thị, họ tên, năm sinh, ngôn ngữ mẹ đẻ; email chỉ đọc — "Đăng nhập bằng Google"). Không còn mật khẩu.
 
-- **Mật khẩu admin dạng hash**: để không lưu mật khẩu thô trong `.env`, tạo hash bằng `npm run auth:hash` (nhập mật khẩu không hiện ký tự; hoặc qua pipe: `echo 'mat-khau-manh' | npm run -s auth:hash`), rồi đặt vào `.env` **trong nháy đơn** (Prisma CLI dùng dotenv, không expand `$`):
-
-  ```
-  ADMIN_PASSWORD_HASH='scrypt$32768$8$1$...$...'
-  ```
-
-  Khi có `ADMIN_PASSWORD_HASH`, seed bỏ qua `ADMIN_PASSWORD`.
-- **Quản lý tài khoản**: menu avatar → "Quản lý tài khoản" (`/account`): tab *Thông tin* (đổi tên, email — đổi email cần mật khẩu hiện tại) và tab *Mật khẩu* (đổi mật khẩu; các thiết bị/phiên khác bị đăng xuất, phiên hiện tại giữ nguyên). Nhập sai mật khẩu hiện tại được tính vào rate limit đăng nhập.
-
-- **Biến môi trường khi deploy (Supabase + Vercel)**: `DATABASE_URL` (Transaction pooler, 6543), `DIRECT_URL` (Session pooler, 5432; dùng cho migrate/seed), `ALLOW_REGISTRATION` (tuỳ chọn). `ADMIN_EMAIL` / `ADMIN_PASSWORD_HASH` / `ADMIN_PASSWORD` / `ADMIN_NAME` **chỉ cần khi chạy seed** (trên máy bạn), không cần đặt trên Vercel.
+- **Biến môi trường khi deploy (Supabase + Vercel)**: `DATABASE_URL` (Transaction pooler, 6543), `DIRECT_URL` (Session pooler, 5432; dùng cho migrate/seed), 4 biến `NEXT_PUBLIC_FIREBASE_*`, `ALLOW_REGISTRATION` (tuỳ chọn). `ADMIN_EMAIL` / `ADMIN_NAME` **chỉ cần khi chạy seed** (trên máy bạn), không cần đặt trên Vercel. Áp migration `20261004000000_google_auth_onboarding` bằng `prisma migrate deploy` (thao tác thủ công, xoá cột `passwordHash` và bảng `PasswordResetToken`).
 
 ### Migration `add_categories` (danh mục tuỳ chỉnh)
 
@@ -137,8 +130,7 @@ Mỗi nhóm thẻ/thẻ thuộc về đúng một user; user chỉ thấy và s�
 | `npm test` | Vitest (test parser import) |
 | `npm run db:up` | `docker compose up -d` (PostgreSQL) |
 | `npm run db:migrate` | `prisma migrate dev` |
-| `npm run db:seed` | Nạp lại dữ liệu mẫu cho tài khoản admin (cần `ADMIN_EMAIL` + `ADMIN_PASSWORD_HASH` hoặc `ADMIN_PASSWORD`) |
-| `npm run auth:hash` | Đọc mật khẩu từ stdin (TTY: không echo), in hash scrypt cho `ADMIN_PASSWORD_HASH` |
+| `npm run db:seed` | Nạp lại dữ liệu mẫu cho tài khoản admin (cần `ADMIN_EMAIL`) |
 | `npm run db:studio` | Prisma Studio |
 | `npm run db:generate` | Sinh Prisma Client vào `src/generated/prisma` |
 
@@ -259,7 +251,7 @@ DIRECT_URL="<Session pooler, cổng 5432>" DATABASE_URL="<cùng URL>" npx prisma
 |---|---|
 | `CRON_SECRET` | Bí mật cho `/api/cron/*` (Vercel gửi `Authorization: Bearer ...`) |
 | `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | Web Push (VAPID). Tạo cặp key bằng `npm run push:keys`; `VAPID_SUBJECT` mặc định `mailto:admin@example.com`. Thiếu key thì không gửi push, thông báo trong app vẫn lưu |
-| `NEXT_PUBLIC_SITE_URL` | URL gốc của site, dùng trong link chia sẻ / đặt lại mật khẩu |
+| `NEXT_PUBLIC_SITE_URL` | URL gốc của site, dùng trong link chia sẻ |
 | `ANTHROPIC_API_KEY`, `AI_MODEL` | Gợi ý AI (tuỳ chọn) |
 | `QUOTA_SETS_PER_USER`, `QUOTA_CARDS_PER_USER`, `QUOTA_CARDS_PER_SET`, `QUOTA_SUBSCRIPTIONS_PER_USER`, `QUOTA_AI_PER_DAY` | Giới hạn mỗi user (tuỳ chọn) |
 

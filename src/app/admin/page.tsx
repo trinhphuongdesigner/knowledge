@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PendingSets } from "./PendingSets";
-import { ResetLinkTool } from "./ResetLinkTool";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
@@ -81,11 +80,6 @@ export default async function AdminPage() {
         <PendingSets
           sets={pending.map((p) => ({ id: p.id, title: p.title, ownerEmail: p.user.email, cardCount: p._count.cards }))}
         />
-      </Card>
-
-      <Card>
-        <h2 className="mb-3 font-semibold text-ink-900">Tạo link đặt lại mật khẩu</h2>
-        <ResetLinkTool />
       </Card>
 
       <div className="grid gap-6 lg:grid-cols-2">

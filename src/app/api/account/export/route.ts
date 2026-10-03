@@ -4,7 +4,7 @@ import { serverError } from "@/lib/http";
 
 export const dynamic = "force-dynamic";
 
-/** Tải toàn bộ dữ liệu của chính user (không có passwordHash / session). */
+/** Tải toàn bộ dữ liệu của chính user (không có session). */
 export async function GET(req: Request) {
   try {
     const user = await requireApiUser(req);
@@ -12,7 +12,7 @@ export async function GET(req: Request) {
     const [profile, categories, sets, progress, cardReviews, studyDays, subscriptions] = await Promise.all([
       db.user.findUnique({
         where: { id: user.id },
-        select: { id: true, email: true, name: true, role: true, dailyGoal: true, pushReminders: true, createdAt: true },
+        select: { id: true, email: true, name: true, fullName: true, birthYear: true, nativeLanguage: true, onboardedAt: true, role: true, dailyGoal: true, pushReminders: true, createdAt: true },
       }),
       db.category.findMany({ where: { userId: user.id }, orderBy: { createdAt: "asc" } }),
       db.studySet.findMany({

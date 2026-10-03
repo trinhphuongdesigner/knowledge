@@ -4,34 +4,22 @@ export type SessionUser = {
   email: string;
   name: string | null;
   role: "USER" | "ADMIN";
+  /** false = chưa hoàn tất hồ sơ ở /welcome */
+  onboarded: boolean;
 };
-
-export type AuthFormState =
-  | {
-      error?: string;
-      fieldErrors?: Partial<Record<"email" | "password" | "name" | "confirmPassword", string[]>>;
-      values?: { email?: string; name?: string };
-    }
-  | undefined;
 
 export const SESSION_COOKIE = "kn_session";
 
-export type AccountFormState =
+export type ProfileField = "name" | "fullName" | "birthYear" | "nativeLanguage";
+
+/** Trạng thái form hồ sơ (onboarding + trang tài khoản). */
+export type ProfileFormState =
   | {
       error?: string;
       success?: string;
-      fieldErrors?: Partial<
-        Record<"name" | "email" | "currentPassword" | "newPassword" | "confirmPassword", string[]>
-      >;
-      values?: { name?: string; email?: string };
+      fieldErrors?: Partial<Record<ProfileField, string[]>>;
+      values?: { name?: string; fullName?: string; birthYear?: string; nativeLanguage?: string };
     }
   | undefined;
 
-export type ResetFormState =
-  | {
-      error?: string;
-      success?: string;
-      fieldErrors?: Partial<Record<"email" | "password" | "confirmPassword", string[]>>;
-      values?: { email?: string };
-    }
-  | undefined;
+export type AccountFormState = ProfileFormState;

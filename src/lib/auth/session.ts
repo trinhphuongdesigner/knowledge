@@ -39,7 +39,7 @@ export async function validateSession(token: string | undefined): Promise<Sessio
   const id = hashToken(token);
   const session = await db.session.findUnique({
     where: { id },
-    include: { user: { select: { id: true, email: true, name: true, role: true } } },
+    include: { user: { select: { id: true, email: true, name: true, role: true, onboardedAt: true } } },
   });
   if (!session) return null;
   if (session.expiresAt.getTime() <= Date.now()) {
@@ -54,7 +54,8 @@ export async function validateSession(token: string | undefined): Promise<Sessio
     await setSessionCookie(token, expiresAt).catch(() => undefined);
   }
   // Role luôn suy ra từ email: chỉ đúng một tài khoản là admin, không tin cột `role` trong DB.
-  return { ...session.user, role: roleForEmail(session.user.email) };
+  const { onboardedAt, ...user } = session.user;
+  return { ...user, role: roleForEmail(user.email), onboarded: onboardedAt !== null };
 }
 
 export async function deleteSession(token: string | undefined): Promise<void> {
