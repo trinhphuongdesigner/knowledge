@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const SESSION_COOKIE = "kn_session";
 const AUTH_PAGES = new Set(["/login"]);
+const PUBLIC_PAGES = new Set(["/about", "/privacy", "/terms"]);
 /** Header nội bộ để Server Components biết đường dẫn hiện tại (dùng cho /welcome?next=). */
 const PATH_HEADER = "x-kn-path";
 const SESSION_MAX_AGE_S = 30 * 24 * 60 * 60;
@@ -33,8 +34,8 @@ export function proxy(req: NextRequest) {
   if (pathname.startsWith("/api/cron/")) return NextResponse.next();
 
   // Public share links (viewable anonymously): pages /s/<token> and API /api/share/*.
-  // Trang giới thiệu: ai cũng xem được.
-  if (pathname === "/about") return NextResponse.next();
+  // Trang giới thiệu + chính sách quyền riêng tư / điều khoản: ai cũng xem được (Google OAuth yêu cầu công khai).
+  if (PUBLIC_PAGES.has(pathname)) return NextResponse.next();
 
   if (pathname.startsWith("/s/") || pathname.startsWith("/api/share/")) return NextResponse.next();
 

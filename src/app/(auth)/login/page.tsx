@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 
 export const metadata: Metadata = { title: "Đăng nhập — Knowledge" };
@@ -17,6 +18,17 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
       <GoogleSignInButton next={typeof next === "string" ? next : undefined} />
       <p className="mt-5 text-center text-sm text-ink-600">
         Lần đầu đăng nhập, tài khoản của bạn sẽ được tạo tự động.
+      </p>
+      <p className="mt-3 text-center text-xs text-ink-500">
+        Khi tiếp tục, bạn đồng ý với{" "}
+        <Link href="/terms" className="underline underline-offset-2 hover:text-accent">
+          Điều khoản sử dụng
+        </Link>{" "}
+        và{" "}
+        <Link href="/privacy" className="underline underline-offset-2 hover:text-accent">
+          Chính sách quyền riêng tư
+        </Link>
+        .
       </p>
     </>
   );

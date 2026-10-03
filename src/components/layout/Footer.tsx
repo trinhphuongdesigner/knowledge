@@ -2,6 +2,12 @@ import Link from "next/link";
 import { Container } from "./Container";
 import { HideOnAuthRoutes } from "./HideOnAuthRoutes";
 
+const SITE_LINKS = [
+  { label: "Giới thiệu", href: "/about" },
+  { label: "Điều khoản", href: "/terms" },
+  { label: "Quyền riêng tư", href: "/privacy" },
+];
+
 const ECOSYSTEM_LINKS = [
   { label: "Resume", href: "https://lancer-trinh.vercel.app/" },
   { label: "Gutan Embroidery", href: "https://gutanembroidery.com/" },
@@ -17,14 +23,16 @@ export function Footer() {
           <p className="hidden sm:block">© {new Date().getFullYear()} Knowledge · Trinh Phuong</p>
           <nav aria-label="Hệ sinh thái của Trinh Phuong">
             <ul className="flex flex-wrap items-center justify-center gap-x-4">
-              <li>
-                <Link
-                  href="/about"
-                  className="flex min-h-9 items-center rounded-lg hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-                >
-                  Giới thiệu
-                </Link>
-              </li>
+              {SITE_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="flex min-h-9 items-center rounded-lg hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
               {ECOSYSTEM_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
