@@ -63,16 +63,3 @@ export async function PATCH(req: Request, { params }: Ctx) {
     return serverError(e);
   }
 }
-
-export async function DELETE(req: Request, { params }: Ctx) {
-  try {
-    const user = await requireApiUser(req);
-    if (user instanceof Response) return user;
-    const { id } = await params;
-    if (!isUuid(id)) return notFound();
-    await db.studyProgress.deleteMany({ where: { userId: user.id, setId: id } });
-    return json({ ok: true });
-  } catch (e) {
-    return serverError(e);
-  }
-}

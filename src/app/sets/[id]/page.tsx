@@ -19,6 +19,8 @@ import { isUuid } from "@/lib/ids";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Chi tiết nhóm thẻ — Knowledge" };
 
+const dateFmt = new Intl.DateTimeFormat("vi-VN", { day: "numeric", month: "numeric", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" });
+
 export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">) {
   const user = await requireUser();
   const { id } = await params;
@@ -30,7 +32,7 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
     db.card.findMany({ where: { setId: id }, orderBy: [{ position: "asc" }, { createdAt: "asc" }] }),
     db.studyProgress.findUnique({
       where: { userId_setId: { userId: user.id, setId: id } },
-      select: { known: true },
+      select: { known: true, completedAt: true },
     }),
     getReviewFlags(user.id, id),
   ]);
@@ -38,6 +40,9 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
   const set = toSetDetailDTO({ ...row, cards }, { isOwner, ownerName: row.user.name });
   const knownIds = progress?.known ?? [];
   const empty = set.cardCount === 0;
+  const completedAt = !empty ? progress?.completedAt ?? null : null;
+  const canQuiz = set.cardCount >= 2;
+  const quizFirst = completedAt !== null && canQuiz;
 
   return (
     <Container className="py-6 sm:py-8">
@@ -62,6 +67,7 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
                 </Badge>
               )}
               {!isOwner && <Badge tone="gray">Chỉ đọc</Badge>}
+              {completedAt && <Badge tone="green">Đã học hết · {dateFmt.format(completedAt)}</Badge>}
             </div>
             <h1 className="break-words text-2xl font-bold text-ink-900">{set.title}</h1>
             {!isOwner && (
@@ -87,15 +93,15 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
                 Học ngay
               </span>
             ) : (
-              <ButtonLink href={`/sets/${set.id}/study`}>
+              <ButtonLink href={`/sets/${set.id}/study`} variant={quizFirst ? "secondary" : undefined}>
                 <Play className="size-4" aria-hidden />
-                Học ngay
+                {completedAt ? "Học lại" : "Học ngay"}
               </ButtonLink>
             )}
-            {set.cardCount >= 2 && (
-              <ButtonLink href={`/sets/${set.id}/quiz`} variant="secondary">
+            {canQuiz && (
+              <ButtonLink href={`/sets/${set.id}/quiz`} variant={quizFirst ? undefined : "secondary"}>
                 <ListChecks className="size-4" aria-hidden />
-                Kiểm tra
+                {quizFirst ? "Làm bài kiểm tra" : "Kiểm tra"}
               </ButtonLink>
             )}
             {!empty && <ExportMenu setId={set.id} />}

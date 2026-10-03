@@ -1,14 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
-import { PartyPopper, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
 import { api, saveStudyProgress } from "@/lib/api";
 import type { Grade } from "@/lib/srs";
 import type { CardDTO } from "@/lib/validators";
 import { Flashcard } from "./Flashcard";
 import { StudyControls, StudyToolbar } from "./StudyControls";
+import { StudyFinished } from "./StudyFinished";
 import { StudyProgress } from "./StudyProgress";
 import { parseStudyState, shuffleArray, type StoredStudyState } from "./utils";
 
@@ -191,17 +191,15 @@ export function StudySession({ setId, title, cards, english = false, initialProg
     goTo(0, true);
   }
 
+  // Học lại chỉ đưa về thẻ đầu: kết quả đã thuộc/chưa thuộc được giữ, bộ thẻ không bao giờ quay về "chưa học".
   function restartAll() {
     setConfirmRestart(false);
-    setKnown(new Set());
-    setUnknown(new Set());
     setOrder(shuffle ? shuffleArray(allIds) : allIds);
     goTo(0, true);
   }
 
   function restartUnknown() {
     const ids = allIds.filter((id) => !known.has(id));
-    setUnknown(new Set());
     setOrder(shuffle ? shuffleArray(ids) : ids);
     goTo(0, true);
   }
@@ -282,39 +280,40 @@ export function StudySession({ setId, title, cards, english = false, initialProg
     );
   }
 
+  const restartModal = (
+    <Modal open={confirmRestart} onClose={() => setConfirmRestart(false)} title="Bắt đầu lại từ đầu?" centered>
+      <p className="text-sm text-ink-600">
+        Bạn sẽ quay về thẻ đầu tiên. Kết quả đã thuộc/chưa thuộc vẫn được giữ nguyên.
+      </p>
+      <div className="mt-5 flex justify-end gap-2">
+        <Button variant="secondary" onClick={() => setConfirmRestart(false)}>
+          Huỷ
+        </Button>
+        <Button onClick={restartAll}>Bắt đầu lại</Button>
+      </div>
+    </Modal>
+  );
+
   if (finished || total === 0) {
     const knownCount = allIds.filter((id) => known.has(id)).length;
-    const unknownCount = allIds.length - knownCount;
+    const unknownCount = allIds.filter((id) => !known.has(id) && unknown.has(id)).length;
+    const unmarkedCount = allIds.length - knownCount - unknownCount;
     return (
-      <div className="index-card flex animate-rise flex-col items-center rounded-3xl border border-ink-200 px-6 pt-16 pb-10 text-center shadow-[0_2px_0_var(--color-ink-200),0_20px_40px_-20px_rgb(70_63_53/0.35)] motion-reduce:animate-none">
-        <div className="mb-4 flex size-16 -rotate-6 items-center justify-center rounded-2xl bg-sun-300 text-ink-900 shadow-[0_4px_0_var(--color-sun-400)]">
-          <PartyPopper className="size-7" aria-hidden />
-        </div>
-        <h2 className="text-xl font-semibold text-ink-900">Hoàn thành!</h2>
-        <p className="mt-1 text-sm text-ink-600">Bạn đã học xong &ldquo;{title}&rdquo;.</p>
-        <dl className="mt-6 grid w-full max-w-xs grid-cols-2 gap-3">
-          <div className="rounded-2xl border border-green-200 bg-green-50 p-3">
-            <dt className="text-xs text-green-700">Đã thuộc</dt>
-            <dd className="text-2xl font-semibold text-green-700">{knownCount}</dd>
-          </div>
-          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-3">
-            <dt className="text-xs text-amber-700">Chưa thuộc</dt>
-            <dd className="text-2xl font-semibold text-amber-700">{unknownCount}</dd>
-          </div>
-        </dl>
-        <div className="mt-6 flex w-full max-w-xs flex-col gap-2">
-          {unknownCount > 0 && <Button onClick={restartUnknown}>Học lại thẻ chưa thuộc</Button>}
-          <Button variant={unknownCount > 0 ? "secondary" : "primary"} onClick={restartAll}>
-            Học lại tất cả
-          </Button>
-          <Link
-            href={`/sets/${setId}`}
-            className="inline-flex min-h-11 items-center justify-center rounded-xl text-sm font-medium text-accent hover:underline"
-          >
-            Quay lại nhóm thẻ
-          </Link>
-        </div>
-      </div>
+      <>
+        <StudyFinished
+          setId={setId}
+          title={title}
+          total={allIds.length}
+          knownCount={knownCount}
+          unknownCount={unknownCount}
+          unmarkedCount={unmarkedCount}
+          remainingCount={allIds.length - knownCount}
+          canQuiz={allIds.length >= 2}
+          onRestartUnknown={restartUnknown}
+          onRestartAll={restartAll}
+        />
+        {restartModal}
+      </>
     );
   }
 
@@ -377,17 +376,7 @@ export function StudySession({ setId, title, cards, english = false, initialProg
         onKnown={() => mark("known")}
         onUnknown={() => mark("unknown")}
       />
-      <Modal open={confirmRestart} onClose={() => setConfirmRestart(false)} title="Bắt đầu lại từ đầu?" centered>
-        <p className="text-sm text-ink-600">
-          Tiến trình đã thuộc/chưa thuộc của nhóm thẻ này sẽ bị xoá.
-        </p>
-        <div className="mt-5 flex justify-end gap-2">
-          <Button variant="secondary" onClick={() => setConfirmRestart(false)}>
-            Huỷ
-          </Button>
-          <Button onClick={restartAll}>Bắt đầu lại</Button>
-        </div>
-      </Modal>
+      {restartModal}
     </div>
   );
 }
