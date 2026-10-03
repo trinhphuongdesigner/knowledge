@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BarChart } from "@/components/admin/charts";
 import { StatCard } from "@/components/admin/dashboard/StatCard";
-import { Card } from "@/components/ui";
+import { Card, Breadcrumbs } from "@/components/ui";
 import { formatBytes, getDashboardStats } from "@/lib/admin/stats";
 import { requireAdmin } from "@/lib/auth/dal";
 
@@ -25,6 +25,7 @@ export default async function AdminPage() {
 
   return (
     <div className="space-y-6">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị" }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">Tổng quan</h1>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">

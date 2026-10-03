@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { StudySession } from "@/components/study/StudySession";
 import { getOnlyCardIds, getOnlyCounts } from "@/components/review/queries";
 import { parseOnly, type ReviewOnly } from "@/components/review/session";
+import { Breadcrumbs } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Học thẻ — Knowledge" };
@@ -55,12 +56,7 @@ export default async function StudyPage({
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
-      <Link
-        href={`/sets/${set.id}`}
-        className="mb-4 inline-flex min-h-11 max-w-full items-center text-sm font-medium text-accent hover:underline"
-      >
-        <span className="truncate">← {set.title}</span>
-      </Link>
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: set.title, href: `/sets/${set.id}` }, { label: "Học thẻ" }]} />
       {filters.length > 1 && (
         <nav aria-label="Lọc thẻ để học" className="mb-4 flex flex-wrap gap-2">
           {filters.map((f) => (

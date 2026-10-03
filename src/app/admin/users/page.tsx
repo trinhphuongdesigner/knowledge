@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { UserAvatar } from "@/components/avatar";
 import { displayName, fmtDate, fmtDateTime, fmtDayOnly } from "@/components/admin/users/format";
-import { Badge, Button, Card, EmptyState } from "@/components/ui";
+import { Badge, Button, Card, EmptyState, Breadcrumbs } from "@/components/ui";
 import { fieldClass } from "@/components/ui/fieldStyles";
 import { requireAdmin } from "@/lib/auth/dal";
 import { listUsers } from "@/lib/admin/users-data";
@@ -55,6 +55,7 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
 
   return (
     <div className="flex flex-col gap-4">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Tài khoản" }]} className="mb-0" />
       <div>
         <h1 className="text-2xl font-bold text-ink-900">Tài khoản</h1>
         <p className="text-sm text-ink-600">{total} tài khoản{q.q || q.filter ? " khớp bộ lọc" : ""}.</p>

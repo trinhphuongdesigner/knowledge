@@ -14,7 +14,7 @@ import {
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { Container } from "@/components/layout/Container";
-import { ButtonLink, Card } from "@/components/ui";
+import { ButtonLink, Card, Breadcrumbs } from "@/components/ui";
 import { getCurrentUser } from "@/lib/auth/dal";
 
 export const metadata: Metadata = {
@@ -82,6 +82,7 @@ export default async function AboutPage() {
   const user = await getCurrentUser();
   return (
     <Container className="py-8 sm:py-12">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Giới thiệu" }]} />
       <section className="mb-10 max-w-2xl sm:mb-14">
         <p className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-accent-strong">
           <Sparkles className="size-3.5" aria-hidden />

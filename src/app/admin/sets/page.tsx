@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PendingSets } from "@/components/admin/PendingSets";
 import { PublicSets } from "@/components/admin/sets/PublicSets";
-import { Button, ButtonLink, Card } from "@/components/ui";
+import { Button, ButtonLink, Card, Breadcrumbs } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
@@ -143,6 +143,7 @@ export default async function AdminSetsPage({
 
   return (
     <div className="space-y-4">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Thư viện" }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">Thư viện</h1>
       <div role="tablist" aria-label="Loại bộ thẻ" className="flex gap-1 border-b border-ink-200">
         {tabs.map((t) => (

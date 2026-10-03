@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Highlight } from "@/components/search/Highlight";
 import { SearchBox } from "@/components/search/SearchBox";
-import { Card, EmptyState } from "@/components/ui";
+import { Card, EmptyState, Breadcrumbs } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { SEARCH_LIMIT, SEARCH_MIN_CHARS, searchCards } from "@/lib/search";
 import type { SearchResultDTO } from "@/lib/validators";
@@ -28,6 +28,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
   return (
     <Container className="max-w-3xl space-y-6 py-6 sm:py-8">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Tìm kiếm" }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">Tìm kiếm</h1>
       <SearchBox defaultValue={q} />
 

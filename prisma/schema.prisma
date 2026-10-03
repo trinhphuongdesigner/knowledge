@@ -181,6 +181,7 @@ model StudyProgress {       // Tiến trình lật thẻ của 1 user trên 1 nh
   shuffle     Boolean   @default(false)
   swap        Boolean   @default(false)
   completedAt DateTime? // lần gần nhất học hết phiên
+  quizBestPct Int?      // điểm kiểm tra cao nhất (%) trên lượt làm đủ mọi thẻ
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 

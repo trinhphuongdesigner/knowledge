@@ -3,6 +3,7 @@ import { CategoryManager } from "@/components/categories/CategoryManager";
 import { requireAdmin } from "@/lib/auth/dal";
 import { listCategories } from "@/lib/categories";
 import { db } from "@/lib/db";
+import { Breadcrumbs } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Danh mục — Quản trị" };
@@ -19,6 +20,7 @@ export default async function AdminCategoriesPage() {
   const cards = new Map(cardRows.map((r) => [r.id, r.n]));
   return (
     <div className="space-y-4">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Danh mục" }]} className="mb-0" />
       <div>
         <h1 className="text-2xl font-bold text-ink-900">Danh mục</h1>
         <p className="mt-1 text-sm text-ink-600">

@@ -1,9 +1,8 @@
 import { ListChecks } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { QuizSession } from "@/components/quiz/QuizSession";
-import { ButtonLink, EmptyState } from "@/components/ui";
+import { ButtonLink, EmptyState, Breadcrumbs } from "@/components/ui";
 import { getReadableSet } from "@/lib/access";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
@@ -33,12 +32,7 @@ export default async function QuizPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
-      <Link
-        href={`/sets/${set.id}`}
-        className="mb-4 inline-flex min-h-11 max-w-full items-center text-sm font-medium text-accent hover:underline"
-      >
-        <span className="truncate">← {set.title}</span>
-      </Link>
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: set.title, href: `/sets/${set.id}` }, { label: "Kiểm tra" }]} />
       {cards.length < 2 ? (
         <EmptyState
           icon={ListChecks}

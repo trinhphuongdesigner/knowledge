@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { RunCleanupButton } from "@/components/admin/dashboard/RunCleanupButton";
-import { Card } from "@/components/ui";
+import { Card, Breadcrumbs } from "@/components/ui";
 import { formatBytes, getSystemStats } from "@/lib/admin/stats";
 import { requireAdmin } from "@/lib/auth/dal";
 
@@ -45,6 +45,7 @@ export default async function AdminSystemPage() {
 
   return (
     <div className="space-y-6">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Hệ thống" }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">Hệ thống</h1>
 
       <Card>

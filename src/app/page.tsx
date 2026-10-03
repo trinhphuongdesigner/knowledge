@@ -5,6 +5,7 @@ import { DueTodayCard } from "@/components/review/DueTodayCard";
 import { StreakCard } from "@/components/stats/StreakCard";
 import { SetCard } from "@/components/sets/SetCard";
 import { CreateSetButton } from "@/components/sets/CreateSetButton";
+import { getSetStatuses } from "@/components/sets/queries";
 import { SetGroups } from "@/components/sets/SetGroups";
 import { SetFilters } from "@/components/sets/SetFilters";
 import { ButtonLink, EmptyState } from "@/components/ui";
@@ -74,6 +75,8 @@ export default async function Home({ searchParams }: PageProps<"/">) {
     toSetDTO(s, s._count.cards, { isOwner: false, ownerName: s.user.name }),
   );
 
+  const statuses = await getSetStatuses(user.id, [...sets.map((s) => s.id), ...savedSets.map((s) => s.id)]);
+
   return (
     <Container className="py-6 sm:py-8">
       <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
@@ -120,7 +123,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           action={filtering ? undefined : <CreateSetButton categories={categories} canManageCategories={user.role === "ADMIN"} />}
         />
       ) : (
-        <SetGroups categories={categories} sets={sets} showEmpty={!filtering && savedSets.length === 0} />
+        <SetGroups categories={categories} sets={sets} showEmpty={!filtering && savedSets.length === 0} statuses={statuses} />
       )}
       {savedSets.length > 0 && (
         <section aria-labelledby="saved-heading" className="mt-10">
@@ -130,7 +133,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           <div className="stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {savedSets.map((s, i) => (
               <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
-                <SetCard set={s} />
+                <SetCard set={s} status={statuses[s.id]} />
               </div>
             ))}
           </div>

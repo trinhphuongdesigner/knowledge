@@ -1,11 +1,10 @@
-import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { UserAvatar } from "@/components/avatar";
 import { UserActions } from "@/components/admin/users/UserActions";
 import { displayName, fmtDate, fmtDateTime } from "@/components/admin/users/format";
-import { Badge, Card } from "@/components/ui";
+import { Badge, Card, Breadcrumbs } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { isUuid } from "@/lib/ids";
 import { usagePercent } from "@/lib/admin/users";
@@ -53,9 +52,7 @@ export default async function AdminUserDetailPage({ params }: { params: Promise<
 
   return (
     <div className="flex flex-col gap-4">
-      <Link href="/admin/users" className="inline-flex min-h-11 w-fit items-center gap-1 text-sm font-medium text-ink-600 hover:text-accent">
-        <ArrowLeft className="size-4" aria-hidden /> Danh sách tài khoản
-      </Link>
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Tài khoản", href: "/admin/users" }, { label: displayName(u) }]} className="mb-0" />
 
       <Card className="flex flex-col gap-4">
         <div className="flex items-start gap-4">

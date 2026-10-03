@@ -9,7 +9,8 @@ import { getReviewFlags } from "@/components/review/queries";
 import { ExportMenu } from "@/components/sets/ExportMenu";
 import { LevelBadge } from "@/components/sets/LevelBadge";
 import { ShareButton } from "@/components/sets/ShareButton";
-import { Badge, ButtonLink } from "@/components/ui";
+import { Badge, ButtonLink, Breadcrumbs } from "@/components/ui";
+import { computeSetStatus } from "@/lib/set-status";
 import { getReadableSet } from "@/lib/access";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
@@ -32,13 +33,18 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
     db.card.findMany({ where: { setId: id }, orderBy: [{ position: "asc" }, { createdAt: "asc" }] }),
     db.studyProgress.findUnique({
       where: { userId_setId: { userId: user.id, setId: id } },
-      select: { known: true, completedAt: true },
+      select: { known: true, completedAt: true, quizBestPct: true },
     }),
     getReviewFlags(user.id, id),
   ]);
   const row = readable.set;
   const set = toSetDetailDTO({ ...row, cards }, { isOwner, ownerName: row.user.name });
   const knownIds = progress?.known ?? [];
+  const status = computeSetStatus({
+    cardIds: cards.map((c) => c.id),
+    known: knownIds,
+    quizBestPct: progress?.quizBestPct ?? null,
+  });
   const empty = set.cardCount === 0;
   const completedAt = !empty ? progress?.completedAt ?? null : null;
   const canQuiz = set.cardCount >= 2;
@@ -46,6 +52,7 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
 
   return (
     <Container className="py-6 sm:py-8">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: set.title }]} />
       <CardList
         setId={set.id}
         initialCards={set.cards}
@@ -68,6 +75,12 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
               )}
               {!isOwner && <Badge tone="gray">Chỉ đọc</Badge>}
               {completedAt && <Badge tone="green">Đã học hết · {dateFmt.format(completedAt)}</Badge>}
+              {status.mastered && <Badge tone="green">Đã thuộc hết</Badge>}
+              {status.quizPassed ? (
+                <Badge className="bg-sun-300 text-ink-900 ring-sun-400/60">Đạt kiểm tra {status.quizBestPct}%</Badge>
+              ) : (
+                status.quizBestPct !== null && <Badge tone="gray">Kiểm tra cao nhất {status.quizBestPct}%</Badge>
+              )}
             </div>
             <h1 className="break-words text-2xl font-bold text-ink-900">{set.title}</h1>
             {!isOwner && (

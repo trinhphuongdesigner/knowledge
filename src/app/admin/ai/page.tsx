@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BarChart } from "@/components/admin/charts";
 import { StatCard } from "@/components/admin/dashboard/StatCard";
-import { Card } from "@/components/ui";
+import { Card, Breadcrumbs } from "@/components/ui";
 import { getAiStats } from "@/lib/admin/stats";
 import { requireAdmin } from "@/lib/auth/dal";
 
@@ -48,6 +48,7 @@ export default async function AdminAiPage() {
   const s = await getAiStats();
   return (
     <div className="space-y-6">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Dùng AI" }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">Dùng AI</h1>
       <div className="grid grid-cols-2 gap-3 sm:max-w-md">
         <StatCard label="Hôm nay" value={s.totalToday} hint="lượt" />

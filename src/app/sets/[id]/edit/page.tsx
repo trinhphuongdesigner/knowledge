@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { DeleteSetButton } from "@/components/sets/DeleteSetButton";
 import { SetForm } from "@/components/sets/SetForm";
-import { Card } from "@/components/ui";
+import { Card, Breadcrumbs } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { listCategories } from "@/lib/categories";
 import { db } from "@/lib/db";
@@ -29,6 +29,7 @@ export default async function EditSetPage({ params }: PageProps<"/sets/[id]/edit
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: set.title, href: `/sets/${set.id}` }, { label: "Chỉnh sửa" }]} />
       <h1 className="mb-6 text-2xl font-bold text-ink-900">Sửa nhóm thẻ</h1>
       <Card>
         <SetForm set={dto} categories={categories} canManageCategories={user.role === "ADMIN"} />

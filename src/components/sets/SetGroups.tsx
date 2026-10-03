@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import type { CSSProperties } from "react";
 import { colorClasses } from "@/components/categories/colors";
 import { LEVELS, LEVEL_LABELS, type CategoryDTO, type Level, type StudySetDTO } from "@/lib/validators";
+import type { SetStatus } from "@/lib/set-status";
 import { SetCard } from "./SetCard";
 
 const GRID = "stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3";
@@ -20,10 +21,12 @@ export function SetGroups({
   categories,
   sets,
   showEmpty,
+  statuses,
 }: {
   categories: CategoryDTO[];
   sets: StudySetDTO[];
   showEmpty: boolean;
+  statuses?: Record<string, SetStatus>;
 }) {
   const groups = categories
     .map((category) => ({ category, items: sets.filter((s) => s.category.id === category.id) }))
@@ -62,7 +65,7 @@ export function SetGroups({
                   <div key={g.key} className={GRID}>
                     {g.items.map((s, i) => (
                       <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
-                        <SetCard set={s} hideCategory />
+                        <SetCard set={s} hideCategory status={statuses?.[s.id]} />
                       </div>
                     ))}
                   </div>
@@ -74,7 +77,7 @@ export function SetGroups({
                     <div className={GRID}>
                       {g.items.map((s, i) => (
                         <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
-                          <SetCard set={s} hideCategory hideLevel />
+                          <SetCard set={s} hideCategory hideLevel status={statuses?.[s.id]} />
                         </div>
                       ))}
                     </div>

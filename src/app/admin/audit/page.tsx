@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Badge, ButtonLink, Card } from "@/components/ui";
+import { Badge, ButtonLink, Card, Breadcrumbs } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 
@@ -58,6 +58,7 @@ export default async function AdminAuditPage({ searchParams }: { searchParams: P
 
   return (
     <div className="space-y-6">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Nhật ký thao tác" }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">Nhật ký thao tác</h1>
 
       <div className="flex flex-wrap gap-2">

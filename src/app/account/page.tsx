@@ -7,7 +7,7 @@ import { StudySettingsForm } from "@/components/account/StudySettingsForm";
 import { Container } from "@/components/layout/Container";
 import { UserAvatar } from "@/components/avatar";
 import { StatsPanel } from "@/components/stats/StatsPanel";
-import { Card } from "@/components/ui";
+import { Card, Breadcrumbs } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { DEFAULT_NATIVE_LANGUAGE } from "@/lib/languages";
@@ -23,6 +23,7 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Tài khoản" }]} />
       <div className="mb-6 flex items-center gap-3">
         <UserAvatar src={user.avatarUrl} gender={user.gender} name={user.name} size={48} />
         <div className="min-w-0">

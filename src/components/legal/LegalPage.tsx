@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Breadcrumbs } from "@/components/ui";
 import { Container } from "@/components/layout/Container";
 
 /** Email liên hệ về quyền riêng tư / điều khoản (cũng là tài khoản quản trị). */
@@ -13,6 +14,7 @@ export type LegalSection = { id: string; title: string; body: ReactNode };
 export function LegalPage({ title, intro, sections }: { title: string; intro: ReactNode; sections: LegalSection[] }) {
   return (
     <Container className="max-w-3xl py-8 sm:py-12">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: title }]} />
       <header className="mb-8">
         <h1 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">{title}</h1>
         <p className="mt-2 text-sm text-ink-500">Cập nhật lần cuối: {LEGAL_UPDATED}</p>

@@ -6,7 +6,7 @@ import { CategoryBadge } from "@/components/categories/CategoryBadge";
 import { Container } from "@/components/layout/Container";
 import { SetSaveButtons } from "@/components/library/SetSaveButtons";
 import { LevelBadge } from "@/components/sets/LevelBadge";
-import { Badge, Button, ButtonLink, Card, EmptyState } from "@/components/ui";
+import { Badge, Button, ButtonLink, Card, EmptyState, Breadcrumbs } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { listLibrary, listLibraryCategories } from "@/lib/library";
@@ -49,6 +49,7 @@ export default async function LibraryPage({
 
   return (
     <Container className="py-6 sm:py-8">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Thư viện" }]} />
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-ink-900">Thư viện</h1>
         <p className="mt-1 text-sm text-ink-600">

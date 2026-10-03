@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BroadcastForm } from "@/components/admin/notifications/BroadcastForm";
-import { Card } from "@/components/ui";
+import { Card, Breadcrumbs } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 
@@ -20,6 +20,7 @@ export default async function AdminNotificationsPage() {
 
   return (
     <div className="space-y-6">
+      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Thông báo hệ thống" }]} className="mb-0" />
       <div>
         <h1 className="text-2xl font-bold text-ink-900">Thông báo hệ thống</h1>
         <p className="mt-1 text-sm text-ink-600">
