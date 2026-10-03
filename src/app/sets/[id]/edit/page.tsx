@@ -22,7 +22,7 @@ export default async function EditSetPage({ params }: PageProps<"/sets/[id]/edit
       where: { id, userId: user.id },
       include: { category: true, _count: { select: { cards: true } } },
     }),
-    listCategories(user.id),
+    listCategories(),
   ]);
   if (!set) notFound();
   const dto = toSetDTO(set, set._count.cards);
@@ -31,7 +31,7 @@ export default async function EditSetPage({ params }: PageProps<"/sets/[id]/edit
     <Container className="max-w-2xl py-6 sm:py-8">
       <h1 className="mb-6 text-2xl font-bold text-ink-900">Sửa nhóm thẻ</h1>
       <Card>
-        <SetForm set={dto} categories={categories} />
+        <SetForm set={dto} categories={categories} canManageCategories={user.role === "ADMIN"} />
       </Card>
       <Card className="mt-6 border-red-200">
         <h2 className="text-base font-semibold text-ink-900">Vùng nguy hiểm</h2>

@@ -1,6 +1,6 @@
 import type { Prisma } from "@/generated/prisma/client";
 import { requireApiUser } from "@/lib/auth/dal";
-import { userOwnsCategory } from "@/lib/categories";
+import { categoryExists } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
 import { badRequest, json, readJson, serverError, validationError } from "@/lib/http";
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     const parsed = setInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     const { title, description, categoryId, level } = parsed.data;
-    if (!(await userOwnsCategory(user.id, categoryId))) return badRequest("Danh mục không hợp lệ");
+    if (!(await categoryExists(categoryId))) return badRequest("Danh mục không hợp lệ");
     const quotaError = await checkQuota(user, { sets: 1 });
     if (quotaError) return badRequest(quotaError);
     const set = await db.studySet.create({

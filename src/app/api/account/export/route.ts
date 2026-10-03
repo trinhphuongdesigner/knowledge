@@ -14,7 +14,7 @@ export async function GET(req: Request) {
         where: { id: user.id },
         select: { id: true, email: true, name: true, fullName: true, birthYear: true, nativeLanguage: true, gender: true, avatarUrl: true, useGoogleAvatar: true, onboardedAt: true, role: true, dailyGoal: true, pushReminders: true, createdAt: true },
       }),
-      db.category.findMany({ where: { userId: user.id }, orderBy: { createdAt: "asc" } }),
+      db.category.findMany({ orderBy: [{ position: "asc" }, { createdAt: "asc" }] }),
       db.studySet.findMany({
         where: { userId: user.id },
         orderBy: { createdAt: "asc" },

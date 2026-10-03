@@ -99,10 +99,12 @@ export function UserMenu({
             </Link>
           </div>
           <div className="border-t border-ink-100 pt-1">
-            <Link href="/categories" onClick={() => setOpen(false)} className={ITEM}>
-              <FolderCog className="size-4" aria-hidden />
-              Quản lý danh mục
-            </Link>
+            {role === "ADMIN" && (
+              <Link href="/admin/categories" onClick={() => setOpen(false)} className={ITEM}>
+                <FolderCog className="size-4" aria-hidden />
+                Quản lý danh mục
+              </Link>
+            )}
             <Link href="/account" onClick={() => setOpen(false)} className={ITEM}>
               <Settings className="size-4" aria-hidden />
               Quản lý tài khoản

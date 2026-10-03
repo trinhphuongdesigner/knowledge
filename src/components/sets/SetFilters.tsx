@@ -13,7 +13,16 @@ const LEVEL_OPTIONS = [
   ...LEVELS.map((l) => ({ value: l, label: LEVEL_LABELS[l] })),
 ];
 
-export function SetFilters({ categories, trailing }: { categories: CategoryDTO[]; trailing?: ReactNode }) {
+export function SetFilters({
+  categories,
+  trailing,
+  canManageCategories = false,
+}: {
+  categories: CategoryDTO[];
+  trailing?: ReactNode;
+  /** Chỉ admin mới quản lý danh mục (dùng chung toàn hệ thống). */
+  canManageCategories?: boolean;
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -91,13 +100,15 @@ export function SetFilters({ categories, trailing }: { categories: CategoryDTO[]
               options={LEVEL_OPTIONS}
             />
           </div>
-          <Link
-            href="/categories"
-            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-ink-600 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-          >
-            <Settings2 className="size-4" aria-hidden />
-            Quản lý<span className="sr-only"> danh mục</span>
-          </Link>
+          {canManageCategories && (
+            <Link
+              href="/admin/categories"
+              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-ink-600 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+            >
+              <Settings2 className="size-4" aria-hidden />
+              Quản lý<span className="sr-only"> danh mục</span>
+            </Link>
+          )}
         </div>
         {trailing && <div className="md:ml-auto md:shrink-0">{trailing}</div>}
       </div>

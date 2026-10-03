@@ -4,7 +4,7 @@ import { requireApiUser } from "@/lib/auth/dal";
 import { todayVN } from "@/lib/dates";
 import { db } from "@/lib/db";
 import { badRequest, json, readJson, serverError, validationError } from "@/lib/http";
-import { QUOTA } from "@/lib/quota";
+import { getUserLimits } from "@/lib/quota";
 import { aiSuggestInputSchema } from "@/lib/validators";
 import { NextResponse } from "next/server";
 
@@ -20,7 +20,8 @@ export async function GET(req: Request) {
       where: { userId_day: { userId: user.id, day: todayVN() } },
       select: { count: true },
     });
-    return json({ enabled: true, remaining: Math.max(0, QUOTA.aiPerDay - (row?.count ?? 0)) });
+    const { aiPerDay } = await getUserLimits(user.id);
+    return json({ enabled: true, remaining: Math.max(0, aiPerDay - (row?.count ?? 0)) });
   } catch (e) {
     return serverError(e);
   }
@@ -41,6 +42,7 @@ export async function POST(req: Request) {
     const where = { userId_day: { userId: user.id, day } };
     const tracked = user.role !== "ADMIN";
     const giveBack = () => db.aiUsage.update({ where, data: { count: { decrement: 1 } } }).catch(() => {});
+    const aiPerDay = tracked ? (await getUserLimits(user.id)).aiPerDay : 0;
     if (tracked) {
       // Atomic reserve: increment first, then reject (and give back) if over the daily limit.
       const row = await db.aiUsage.upsert({
@@ -49,7 +51,7 @@ export async function POST(req: Request) {
         update: { count: { increment: 1 } },
         select: { count: true },
       });
-      if (row.count > QUOTA.aiPerDay) {
+      if (row.count > aiPerDay) {
         await giveBack();
         return NextResponse.json({ error: "Bạn đã dùng hết lượt gợi ý AI hôm nay" }, { status: 429 });
       }

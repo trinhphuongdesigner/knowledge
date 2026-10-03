@@ -6,7 +6,7 @@ import { CategoryBadge } from "@/components/categories/CategoryBadge";
 import { Container } from "@/components/layout/Container";
 import { SetSaveButtons } from "@/components/library/SetSaveButtons";
 import { LevelBadge } from "@/components/sets/LevelBadge";
-import { Button, ButtonLink, Card, EmptyState } from "@/components/ui";
+import { Badge, Button, ButtonLink, Card, EmptyState } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { listLibrary, listLibraryCategories } from "@/lib/library";
@@ -76,8 +76,8 @@ export default async function LibraryPage({
         >
           <option value="">Mọi danh mục</option>
           {categories.map((c) => (
-            <option key={c} value={c}>
-              {c}
+            <option key={c.id} value={c.id}>
+              {c.name}
             </option>
           ))}
         </select>
@@ -109,6 +109,7 @@ export default async function LibraryPage({
               <li key={s.id} style={{ "--i": i } as CSSProperties}>
                 <Card className="flex h-full flex-col gap-3">
                   <div className="flex flex-wrap items-center gap-1.5">
+                    {s.featured && <Badge tone="blue">Nổi bật</Badge>}
                     <CategoryBadge category={s.category} />
                     <LevelBadge level={s.level} />
                   </div>

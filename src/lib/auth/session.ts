@@ -40,11 +40,16 @@ export async function validateSession(token: string | undefined): Promise<Sessio
   const id = hashToken(token);
   const session = await db.session.findUnique({
     where: { id },
-    include: { user: { select: { id: true, email: true, name: true, role: true, onboardedAt: true, gender: true, avatarUrl: true, useGoogleAvatar: true } } },
+    include: { user: { select: { id: true, email: true, name: true, role: true, onboardedAt: true, gender: true, avatarUrl: true, useGoogleAvatar: true, disabledAt: true } } },
   });
   if (!session) return null;
   if (session.expiresAt.getTime() <= Date.now()) {
     await db.session.delete({ where: { id } }).catch(() => undefined);
+    return null;
+  }
+  // Tài khoản bị khoá: từ chối mọi session (và dọn session còn lại).
+  if (session.user.disabledAt) {
+    await db.session.deleteMany({ where: { userId: session.user.id } }).catch(() => undefined);
     return null;
   }
   if (shouldRefreshSession(session.expiresAt)) {
@@ -55,7 +60,9 @@ export async function validateSession(token: string | undefined): Promise<Sessio
     await setSessionCookie(token, expiresAt).catch(() => undefined);
   }
   // Role luôn suy ra từ email: chỉ đúng một tài khoản là admin, không tin cột `role` trong DB.
-  const { onboardedAt, avatarUrl, useGoogleAvatar, ...user } = session.user;
+  const { onboardedAt, avatarUrl, useGoogleAvatar, ...rest } = session.user;
+  const { disabledAt, ...user } = rest;
+  void disabledAt;
   return {
     ...user,
     role: roleForEmail(user.email),

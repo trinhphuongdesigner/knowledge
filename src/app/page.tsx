@@ -43,22 +43,18 @@ export default async function Home({ searchParams }: PageProps<"/">) {
       orderBy: { createdAt: "desc" },
       include: { category: true, _count: { select: { cards: true } } },
     }),
-    listCategories(user.id),
+    listCategories(),
   ]);
   const sets = rows.map((s) => toSetDTO(s, s._count.cards, { isOwner: true }));
   const filtering = !!(where.categoryId || where.level || q);
 
-  // Bộ đã lưu từ thư viện: danh mục thuộc người khác nên lọc theo tên danh mục đang chọn.
-  const selectedCategory = category ? categories.find((c) => c.id === category) : undefined;
   const subWhere: Prisma.StudySetWhereInput = {
     subscribers: { some: { userId: user.id } },
     OR: [{ visibility: "LINK" }, { visibility: "PUBLIC", approved: true }],
   };
   const and: Prisma.StudySetWhereInput[] = [];
   if (where.level) subWhere.level = where.level;
-  if (category) {
-    and.push({ category: { name: { equals: selectedCategory?.name ?? "\u0000", mode: "insensitive" } } });
-  }
+  if (where.categoryId) subWhere.categoryId = where.categoryId;
   if (q) {
     and.push({
       OR: [
@@ -90,7 +86,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           </h1>
           <p className="mt-2 text-sm text-ink-600">Chọn một nhóm thẻ để ôn tập hoặc tạo nhóm thẻ mới.</p>
         </div>
-        <CreateSetButton categories={categories} className="shrink-0" />
+        <CreateSetButton categories={categories} canManageCategories={user.role === "ADMIN"} className="shrink-0" />
       </div>
       <div className="mb-6 grid gap-4 empty:hidden md:grid-cols-2">
         <Suspense fallback={null}>
@@ -104,6 +100,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
         <Suspense fallback={null}>
           <SetFilters
             categories={categories}
+            canManageCategories={user.role === "ADMIN"}
             trailing={
               <ButtonLink href="/library" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
                 <Library className="size-4" aria-hidden />
@@ -120,7 +117,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           description={
             filtering ? "Thử đổi từ khoá hoặc bộ lọc khác." : "Tạo nhóm thẻ đầu tiên để bắt đầu học bằng flashcard."
           }
-          action={filtering ? undefined : <CreateSetButton categories={categories} />}
+          action={filtering ? undefined : <CreateSetButton categories={categories} canManageCategories={user.role === "ADMIN"} />}
         />
       ) : (
         <SetGroups categories={categories} sets={sets} showEmpty={!filtering && savedSets.length === 0} />

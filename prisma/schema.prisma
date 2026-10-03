@@ -71,7 +71,6 @@ model User {
   useGoogleAvatar Boolean  @default(true)
   role         Role       @default(USER)
   sets         StudySet[]
-  categories   Category[]
   sessions     Session[]
   progress     StudyProgress[]
   dailyGoal      Int       @default(20) // số thẻ/ngày, 5–500
@@ -83,6 +82,13 @@ model User {
   aiUsage        AiUsage[]
   notifications  Notification[]
   pushSubscriptions PushSubscription[]
+  lastLoginAt     DateTime?   // cập nhật mỗi lần đăng nhập Google thành công
+  disabledAt      DateTime?   // != null → bị khoá: không đăng nhập, mọi session bị từ chối
+  disabledReason  String?
+  quotaSets       Int?        // override hạn mức (null = dùng mặc định QUOTA)
+  quotaCards      Int?
+  quotaAiPerDay   Int?
+  adminLogs       AdminAuditLog[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -109,19 +115,15 @@ model LoginAttempt { // DB-backed rate limiting (serverless, many instances)
   @@index([ip, createdAt])
 }
 
-model Category {            // Danh mục do user tạo (mặc định: "IT", "Tiếng Anh")
+model Category {            // Danh mục dùng chung toàn hệ thống, chỉ admin quản lý
   id        String        @id @default(uuid(7)) @db.Uuid
-  userId    String        @db.Uuid
-  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  name      String        // 1–40 ký tự, trim; trùng tên (không phân biệt hoa/thường) kiểm bằng code
+  name      String        @unique // 1–40 ký tự; thêm unique index lower(name) bằng SQL thô
   color     CategoryColor @default(BLUE)
   isEnglish Boolean       @default(false) // true: bộ từ vựng tiếng Anh → phiên âm / tra từ điển / phát âm
+  position  Int           @default(0)     // admin sắp xếp
   sets      StudySet[]
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
-
-  @@unique([userId, name])
-  @@index([userId])
 }
 
 model StudySet {            // "Chương trình học"
@@ -138,6 +140,7 @@ model StudySet {            // "Chương trình học"
   visibility  Visibility @default(PRIVATE)
   shareToken  String?    @unique // base64url ngẫu nhiên 22 ký tự, tạo khi bật LINK/PUBLIC
   approved    Boolean    @default(false) // admin duyệt mới hiện ở /library
+  featured    Boolean    @default(false) // bộ nổi bật ở /library
   publishedAt DateTime?
   subscribers SetSubscription[]
   cardReviews CardReview[]
@@ -271,4 +274,20 @@ model PushSubscription {
   lastUsedAt DateTime?
 
   @@index([userId])
+}
+
+/// Nhật ký thao tác của admin.
+model AdminAuditLog {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  adminId    String?  @db.Uuid
+  admin      User?    @relation(fields: [adminId], references: [id], onDelete: SetNull)
+  action     String   // vd "user.disable", "category.create", "set.unpublish", "notify.broadcast"
+  targetType String   // "user" | "category" | "set" | "system"
+  targetId   String?
+  summary    String   // mô tả ngắn tiếng Việt (giữ được kể cả khi target đã bị xoá)
+  meta       Json?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([targetType, targetId])
 }

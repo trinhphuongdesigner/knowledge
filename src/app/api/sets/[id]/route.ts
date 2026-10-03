@@ -1,5 +1,5 @@
 import { requireApiUser } from "@/lib/auth/dal";
-import { userOwnsCategory } from "@/lib/categories";
+import { categoryExists } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { toSetDTO, toSetDetailDTO } from "@/lib/dto";
@@ -46,7 +46,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
     const owned = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
     if (!owned) return notFound("Không tìm thấy nhóm thẻ");
     const { title, description, categoryId, level } = parsed.data;
-    if (categoryId !== undefined && !(await userOwnsCategory(user.id, categoryId))) {
+    if (categoryId !== undefined && !(await categoryExists(categoryId))) {
       return badRequest("Danh mục không hợp lệ");
     }
     const set = await db.studySet.update({

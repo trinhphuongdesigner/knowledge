@@ -8,8 +8,9 @@ import type { PublicSetDTO } from "./validators";
 export const LIBRARY_PAGE_SIZE = 24;
 
 /** PublicSetDTO + token dẫn tới /s/[token] cho bộ chưa lưu (token của bộ PUBLIC đã duyệt vốn công khai). */
-export type LibraryItem = PublicSetDTO & { token: string | null };
+export type LibraryItem = PublicSetDTO & { token: string | null; featured: boolean };
 
+/** `category`: id danh mục (tên danh mục cũ vẫn được chấp nhận để tương thích link cũ). */
 export type LibraryQuery = { q?: string; category?: string; page?: number };
 
 /** Bộ PUBLIC đã duyệt, mới công khai trước. Trả thêm `hasMore` để phân trang. */
@@ -25,13 +26,14 @@ export async function listLibrary(
       { description: { contains: q, mode: "insensitive" } },
     ];
   }
-  // `category` is a category *name* (ids are per-user, so cannot be shared across accounts).
   const category = query.category?.trim();
-  if (category && !isUuid(category)) where.category = { name: { equals: category, mode: "insensitive" } };
+  if (category) {
+    where.category = isUuid(category) ? { id: category } : { name: { equals: category, mode: "insensitive" } };
+  }
 
   const rows = await db.studySet.findMany({
     where,
-    orderBy: [{ publishedAt: "desc" }, { id: "desc" }],
+    orderBy: [{ featured: "desc" }, { publishedAt: "desc" }, { id: "desc" }],
     skip: (page - 1) * LIBRARY_PAGE_SIZE,
     take: LIBRARY_PAGE_SIZE + 1,
     include: {
@@ -46,18 +48,17 @@ export async function listLibrary(
     ownerName: s.user.name,
     subscriberCount: s._count.subscribers,
     token: s.shareToken,
+    featured: s.featured,
   }));
   return { sets, page, hasMore };
 }
 
-/** Distinct category names present in the public library (for the filter). */
-export async function listLibraryCategories(): Promise<string[]> {
-  const rows = await db.category.findMany({
+/** Danh mục có bộ trong thư viện công khai (cho bộ lọc), theo thứ tự admin sắp xếp. */
+export async function listLibraryCategories(): Promise<{ id: string; name: string }[]> {
+  return db.category.findMany({
     where: { sets: { some: { visibility: "PUBLIC", approved: true } } },
-    select: { name: true },
-    distinct: ["name"],
-    orderBy: { name: "asc" },
+    select: { id: true, name: true },
+    orderBy: [{ position: "asc" }, { createdAt: "asc" }],
     take: 50,
   });
-  return rows.map((r) => r.name);
 }

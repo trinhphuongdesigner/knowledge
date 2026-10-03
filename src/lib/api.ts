@@ -50,10 +50,10 @@ export const api = {
     return request<StudySetDTO[]>(`/api/sets${qs ? `?${qs}` : ""}`);
   },
   listCategories: () => request<CategoryDTO[]>("/api/categories"),
-  createCategory: (input: CategoryInput) => request<CategoryDTO>("/api/categories", send("POST", input)),
+  createCategory: (input: CategoryInput) => request<CategoryDTO>("/api/admin/categories", send("POST", input)),
   updateCategory: (id: string, input: Partial<CategoryInput>) =>
-    request<CategoryDTO>(`/api/categories/${id}`, send("PATCH", input)),
-  deleteCategory: (id: string) => request<{ ok: true }>(`/api/categories/${id}`, send("DELETE")),
+    request<CategoryDTO>(`/api/admin/categories/${id}`, send("PATCH", input)),
+  deleteCategory: (id: string) => request<{ ok: true }>(`/api/admin/categories/${id}`, send("DELETE")),
   createSet: (input: SetInput) => request<StudySetDTO>("/api/sets", send("POST", input)),
   getSet: (id: string) => request<StudySetDetailDTO>(`/api/sets/${id}`),
   updateSet: (id: string, input: Partial<SetInput>) =>

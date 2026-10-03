@@ -19,7 +19,7 @@ type SeedCard = {
   partOfSpeech?: string | null;
 };
 
-/** Category key used in the seed JSON files; mapped to the admin's own categories. */
+/** Category key used in the seed JSON files; mapped to the global categories. */
 type SeedCategory = "IT" | "ENGLISH";
 
 const DEFAULT_CATEGORIES = [
@@ -76,15 +76,14 @@ async function main() {
   });
   console.log(`Admin: ${admin.email} (${admin.id})`);
 
-  // Default categories for the admin (kept if they already exist, incl. user edits).
+  // Danh mục mặc định dùng chung toàn hệ thống (upsert theo name; giữ nguyên nếu admin đã sửa).
   const categoryIds = new Map<SeedCategory, string>();
-  for (const c of DEFAULT_CATEGORIES) {
-    const existing = await db.category.findUnique({ where: { userId_name: { userId: admin.id, name: c.name } } });
-    const row =
-      existing ??
-      (await db.category.create({
-        data: { userId: admin.id, name: c.name, color: c.color, isEnglish: c.isEnglish },
-      }));
+  for (const [position, c] of DEFAULT_CATEGORIES.entries()) {
+    const row = await db.category.upsert({
+      where: { name: c.name },
+      create: { name: c.name, color: c.color, isEnglish: c.isEnglish, position },
+      update: {},
+    });
     categoryIds.set(c.key, row.id);
   }
 

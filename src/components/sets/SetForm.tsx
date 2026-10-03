@@ -28,10 +28,13 @@ export function SetForm({
   categories,
   set,
   onCancel,
+  canManageCategories = false,
 }: {
   categories: CategoryDTO[];
   set?: StudySetDTO;
   onCancel?: () => void;
+  /** Chỉ admin mới quản lý danh mục (dùng chung toàn hệ thống). */
+  canManageCategories?: boolean;
 }) {
   const router = useRouter();
   const [title, setTitle] = useState(set?.title ?? "");
@@ -100,12 +103,14 @@ export function SetForm({
           placeholder="Chọn danh mục"
           options={categories.map((c) => ({ value: c.id, label: c.name, color: colorClasses(c.color).dot }))}
         />
-        <Link
-          href="/categories"
-          className="self-start text-sm font-medium text-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-        >
-          Quản lý danh mục
-        </Link>
+        {canManageCategories && (
+          <Link
+            href="/admin/categories"
+            className="self-start text-sm font-medium text-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+          >
+            Quản lý danh mục
+          </Link>
+        )}
       </div>
       <Select
         label="Cấp độ (tuỳ chọn)"

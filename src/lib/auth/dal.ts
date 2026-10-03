@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import { isSameOrigin, safeNext } from "./redirect";
 import { readSessionToken, validateSession } from "./session";
@@ -49,4 +49,18 @@ export async function requireApiUser(req: Request): Promise<SessionUser | Respon
     }
   }
   return user;
+}
+
+/** For admin pages/layouts: non-admins get a 404 (as if the route did not exist). */
+export async function requireAdmin(): Promise<SessionUser> {
+  const user = await requireUser();
+  if (user.role !== "ADMIN") notFound();
+  return user;
+}
+
+/** For /api/admin/** handlers: non-admins (and anonymous callers) get a 404 Response the handler must `return`. */
+export async function requireApiAdmin(req: Request): Promise<SessionUser | Response> {
+  const current = await getCurrentUser();
+  if (!current || current.role !== "ADMIN") return NextResponse.json({ error: "Không tìm thấy" }, { status: 404 });
+  return requireApiUser(req); // thêm kiểm tra onboarded + same-origin cho thao tác ghi
 }

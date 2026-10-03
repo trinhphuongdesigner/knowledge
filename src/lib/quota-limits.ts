@@ -71,3 +71,21 @@ export function evaluateQuota(
   }
   return null;
 }
+
+/** Override hạn mức riêng của một user (cột `User.quotaSets/quotaCards/quotaAiPerDay`; null/undefined = mặc định). */
+export type QuotaOverrides = {
+  quotaSets?: number | null;
+  quotaCards?: number | null;
+  quotaAiPerDay?: number | null;
+};
+
+/** Thuần: hạn mức hiệu lực = mặc định `base`, ghi đè bằng các override là số nguyên >= 0. */
+export function effectiveLimits(base: QuotaLimits, overrides?: QuotaOverrides | null): QuotaLimits {
+  const valid = (n: number | null | undefined): n is number => typeof n === "number" && Number.isInteger(n) && n >= 0;
+  return {
+    ...base,
+    setsPerUser: valid(overrides?.quotaSets) ? overrides.quotaSets : base.setsPerUser,
+    cardsPerUser: valid(overrides?.quotaCards) ? overrides.quotaCards : base.cardsPerUser,
+    aiPerDay: valid(overrides?.quotaAiPerDay) ? overrides.quotaAiPerDay : base.aiPerDay,
+  };
+}

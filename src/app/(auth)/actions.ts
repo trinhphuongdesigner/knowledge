@@ -2,7 +2,6 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { DEFAULT_CATEGORIES } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { verifyFirebaseIdToken, type GoogleIdentity } from "@/lib/auth/google";
 import {
@@ -18,12 +17,19 @@ import { clearSessionCookie, createSession, deleteSession, readSessionToken } fr
 
 const GENERIC_ERROR = "Không thể đăng nhập bằng Google. Vui lòng thử lại.";
 const CLOSED_ERROR = "Hiện không nhận tài khoản mới";
+const DISABLED_ERROR = "Tài khoản đã bị khoá";
 
 const isUniqueViolation = (e: unknown) =>
   typeof e === "object" && e !== null && (e as { code?: string }).code === "P2002";
 
-type UserRow = { id: string; firebaseUid: string | null; onboardedAt: Date | null; avatarUrl: string | null };
-const userSelect = { id: true, firebaseUid: true, onboardedAt: true, avatarUrl: true } as const;
+type UserRow = {
+  id: string;
+  firebaseUid: string | null;
+  onboardedAt: Date | null;
+  avatarUrl: string | null;
+  disabledAt: Date | null;
+};
+const userSelect = { id: true, firebaseUid: true, onboardedAt: true, avatarUrl: true, disabledAt: true } as const;
 
 async function createUser(identity: GoogleIdentity, withUid: boolean): Promise<UserRow> {
   return db.user.create({
@@ -32,7 +38,6 @@ async function createUser(identity: GoogleIdentity, withUid: boolean): Promise<U
       name: identity.name?.slice(0, 40) || null,
       avatarUrl: sanitizePictureUrl(identity.picture),
       ...(withUid ? { firebaseUid: identity.uid } : {}),
-      categories: { create: DEFAULT_CATEGORIES.map((c) => ({ ...c })) },
     },
     select: userSelect,
   });
@@ -75,6 +80,10 @@ export async function signInWithGoogle(idToken: string, next?: string): Promise<
 
   const user = await findOrCreateUser(identity);
   if (!user) return { error: CLOSED_ERROR };
+  if (user.disabledAt) {
+    await recordLoginAttempt(identity.email, ip, false).catch(() => undefined);
+    return { error: DISABLED_ERROR };
+  }
 
   if (user.firebaseUid !== identity.uid) {
     // Chỉ là thông tin tham khảo: trùng uid với tài khoản khác thì bỏ qua.
@@ -92,6 +101,9 @@ export async function signInWithGoogle(idToken: string, next?: string): Promise<
   }
 
   await recordLoginAttempt(identity.email, ip, true);
+  await db.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } }).catch((e) => {
+    console.error("[auth] không cập nhật được lastLoginAt:", e instanceof Error ? e.message : e);
+  });
   await createSession(user.id, h.get("user-agent"));
 
   const dest = safeNext(next);

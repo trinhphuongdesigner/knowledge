@@ -6,7 +6,15 @@ import { Button, Modal } from "@/components/ui";
 import type { CategoryDTO } from "@/lib/validators";
 import { SetForm } from "./SetForm";
 
-export function CreateSetButton({ className, categories }: { className?: string; categories: CategoryDTO[] }) {
+export function CreateSetButton({
+  className,
+  categories,
+  canManageCategories,
+}: {
+  className?: string;
+  categories: CategoryDTO[];
+  canManageCategories?: boolean;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -15,7 +23,7 @@ export function CreateSetButton({ className, categories }: { className?: string;
         Tạo nhóm thẻ
       </Button>
       <Modal open={open} onClose={() => setOpen(false)} title="Tạo nhóm thẻ mới">
-        <SetForm categories={categories} onCancel={() => setOpen(false)} />
+        <SetForm categories={categories} canManageCategories={canManageCategories} onCancel={() => setOpen(false)} />
       </Modal>
     </>
   );

@@ -1,164 +1,99 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { PendingSets } from "./PendingSets";
-import { Container } from "@/components/layout/Container";
+import Link from "next/link";
+import { BarChart } from "@/components/admin/charts";
+import { StatCard } from "@/components/admin/dashboard/StatCard";
 import { Card } from "@/components/ui";
-import { requireUser } from "@/lib/auth/dal";
-import { addDays } from "@/lib/dates";
-import { db } from "@/lib/db";
-import { QUOTA } from "@/lib/quota-limits";
+import { formatBytes, getDashboardStats } from "@/lib/admin/stats";
+import { requireAdmin } from "@/lib/auth/dal";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Quản trị — Knowledge" };
 
-const dtFmt = new Intl.DateTimeFormat("vi-VN", { dateStyle: "short", timeStyle: "short", timeZone: "Asia/Ho_Chi_Minh" });
-
-function bytes(n: number): string {
-  if (n < 1024 * 1024) return `${(n / 1024).toFixed(0)} KB`;
-  if (n < 1024 ** 3) return `${(n / 1024 / 1024).toFixed(1)} MB`;
-  return `${(n / 1024 ** 3).toFixed(2)} GB`;
-}
-
-type UsageRow = { email: string; sets: number; cards: number };
-type SizeRow = { name: string; bytes: bigint | number };
+const quickLinks = [
+  { href: "/admin/users", label: "Tài khoản" },
+  { href: "/admin/categories", label: "Danh mục" },
+  { href: "/admin/sets", label: "Thư viện" },
+  { href: "/admin/notifications", label: "Thông báo" },
+  { href: "/admin/ai", label: "Dùng AI" },
+  { href: "/admin/audit", label: "Nhật ký" },
+  { href: "/admin/system", label: "Hệ thống" },
+];
 
 export default async function AdminPage() {
-  const user = await requireUser();
-  if (user.role !== "ADMIN") notFound();
-
-  const now = new Date();
-  const [users, newUsers, sets, cards, dbSize, tables, usage, jobs, pending] = await Promise.all([
-    db.user.count(),
-    db.user.count({ where: { createdAt: { gte: addDays(now, -7) } } }),
-    db.studySet.count(),
-    db.card.count(),
-    db.$queryRaw<{ bytes: bigint }[]>`SELECT pg_database_size(current_database()) AS bytes`,
-    db.$queryRaw<SizeRow[]>`
-      SELECT c.relname AS name, pg_total_relation_size(c.oid) AS bytes
-      FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
-      WHERE n.nspname = 'public' AND c.relkind = 'r'
-      ORDER BY pg_total_relation_size(c.oid) DESC LIMIT 8`,
-    db.$queryRaw<UsageRow[]>`
-      SELECT u.email AS email, COUNT(DISTINCT s.id)::int AS sets, COUNT(c.id)::int AS cards
-      FROM "User" u
-      LEFT JOIN "StudySet" s ON s."userId" = u.id
-      LEFT JOIN "Card" c ON c."setId" = s.id
-      GROUP BY u.id
-      ORDER BY cards DESC, sets DESC LIMIT 10`,
-    db.jobRun.findMany({ orderBy: { name: "asc" } }),
-    db.studySet.findMany({
-      where: { visibility: "PUBLIC", approved: false },
-      orderBy: { updatedAt: "asc" },
-      take: 50,
-      select: { id: true, title: true, user: { select: { email: true } }, _count: { select: { cards: true } } },
-    }),
-  ]);
-
-  const stats = [
-    { label: "Người dùng", value: users },
-    { label: "Mới 7 ngày", value: newUsers },
-    { label: "Bộ thẻ", value: sets },
-    { label: "Thẻ", value: cards },
-    { label: "Dung lượng DB", value: bytes(Number(dbSize[0]?.bytes ?? 0)) },
-  ];
+  await requireAdmin();
+  const s = await getDashboardStats();
 
   return (
-    <Container className="space-y-6 py-6 sm:py-8">
-      <h1 className="text-2xl font-bold text-ink-900">Quản trị</h1>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold text-ink-900">Tổng quan</h1>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-        {stats.map((s) => (
-          <Card key={s.label} className="p-3 sm:p-4">
-            <p className="text-xs text-ink-600">{s.label}</p>
-            <p className="mt-1 text-xl font-bold text-ink-900">{typeof s.value === "number" ? s.value.toLocaleString("vi-VN") : s.value}</p>
-          </Card>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        <StatCard label="Người dùng" value={s.users} hint={`+${s.new7} / 7 ngày · +${s.new30} / 30 ngày`} href="/admin/users" />
+        <StatCard label="Hoạt động 7 ngày" value={s.active7} hint="Có ôn tập" />
+        <StatCard
+          label="Bộ thẻ"
+          value={s.setsPrivate + s.setsLink + s.setsPublic}
+          hint={`Riêng tư ${s.setsPrivate} · Link ${s.setsLink} · Public ${s.setsPublic}`}
+        />
+        <StatCard label="Thẻ" value={s.cards} />
+        <StatCard label="Chờ duyệt" value={s.pending} hint="Bộ PUBLIC" href="/admin/sets" tone={s.pending > 0 ? "warn" : undefined} />
+        <StatCard label="Tài khoản bị khoá" value={s.disabled} href="/admin/users" />
+        <StatCard label="Dung lượng DB" value={formatBytes(s.dbBytes)} href="/admin/system" />
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {quickLinks.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className="rounded-full border border-ink-200 bg-surface px-3 py-1 text-sm text-ink-700 hover:border-brand-400 hover:text-accent"
+          >
+            {l.label}
+          </Link>
         ))}
       </div>
 
-      <Card>
-        <h2 className="mb-3 font-semibold text-ink-900">Bộ PUBLIC chờ duyệt ({pending.length})</h2>
-        <PendingSets
-          sets={pending.map((p) => ({ id: p.id, title: p.title, ownerEmail: p.user.email, cardCount: p._count.cards }))}
-        />
-      </Card>
-
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
-          <h2 className="mb-3 font-semibold text-ink-900">Bảng lớn nhất</h2>
-          <table className="w-full text-sm">
-            <thead className="text-left text-xs text-ink-500">
-              <tr>
-                <th className="py-1 font-medium">Bảng</th>
-                <th className="py-1 text-right font-medium">Dung lượng</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tables.map((t) => (
-                <tr key={t.name} className="border-t border-ink-100">
-                  <td className="py-1.5">{t.name}</td>
-                  <td className="py-1.5 text-right tabular-nums">{bytes(Number(t.bytes))}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h2 className="mb-3 font-semibold text-ink-900">Đăng ký mới / ngày (30 ngày)</h2>
+          <BarChart data={s.signups} label="Đăng ký mới mỗi ngày trong 30 ngày" unit=" người" />
         </Card>
-
         <Card>
-          <h2 className="mb-3 font-semibold text-ink-900">Top 10 người dùng theo số thẻ</h2>
-          <table className="w-full text-sm">
-            <thead className="text-left text-xs text-ink-500">
-              <tr>
-                <th className="py-1 font-medium">Email</th>
-                <th className="py-1 text-right font-medium">Bộ</th>
-                <th className="py-1 text-right font-medium">Thẻ / hạn mức</th>
-              </tr>
-            </thead>
-            <tbody>
-              {usage.map((u) => (
-                <tr key={u.email} className="border-t border-ink-100">
-                  <td className="max-w-[12rem] truncate py-1.5">{u.email}</td>
-                  <td className="py-1.5 text-right tabular-nums">
-                    {u.sets}/{QUOTA.setsPerUser}
-                  </td>
-                  <td className="py-1.5 text-right tabular-nums">
-                    {u.cards}/{QUOTA.cardsPerUser} ({Math.round((u.cards / QUOTA.cardsPerUser) * 100)}%)
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h2 className="mb-3 font-semibold text-ink-900">Lượt ôn tập / ngày (30 ngày)</h2>
+          <BarChart data={s.reviews} label="Lượt ôn tập mỗi ngày trong 30 ngày" unit=" lượt" />
         </Card>
       </div>
 
       <Card>
-        <h2 className="mb-3 font-semibold text-ink-900">Tác vụ nền (cron)</h2>
-        {jobs.length === 0 ? (
-          <p className="text-sm text-ink-600">Chưa có lần chạy nào.</p>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="text-left text-xs text-ink-500">
-                <tr>
-                  <th className="py-1 font-medium">Tên</th>
-                  <th className="py-1 font-medium">Lần chạy cuối</th>
-                  <th className="py-1 font-medium">Kết quả</th>
-                  <th className="py-1 font-medium">Chi tiết</th>
+        <h2 className="mb-3 font-semibold text-ink-900">Danh mục</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="text-left text-xs text-ink-500">
+              <tr>
+                <th className="py-1 font-medium">Tên</th>
+                <th className="py-1 text-right font-medium">Số bộ</th>
+                <th className="py-1 text-right font-medium">Số thẻ</th>
+              </tr>
+            </thead>
+            <tbody>
+              {s.categories.map((c) => (
+                <tr key={c.id} className="border-t border-ink-100">
+                  <td className="py-1.5">{c.name}</td>
+                  <td className="py-1.5 text-right tabular-nums">{c.sets.toLocaleString("vi-VN")}</td>
+                  <td className="py-1.5 text-right tabular-nums">{c.cards.toLocaleString("vi-VN")}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {jobs.map((j) => (
-                  <tr key={j.name} className="border-t border-ink-100">
-                    <td className="py-1.5 font-medium">{j.name}</td>
-                    <td className="py-1.5">{dtFmt.format(j.lastRunAt)}</td>
-                    <td className={`py-1.5 font-medium ${j.ok ? "text-emerald-600" : "text-red-600"}`}>{j.ok ? "OK" : "Lỗi"}</td>
-                    <td className="py-1.5 font-mono text-xs text-ink-600">{j.result ? JSON.stringify(j.result) : "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+              {s.categories.length === 0 && (
+                <tr>
+                  <td colSpan={3} className="py-3 text-center text-ink-500">
+                    Chưa có danh mục.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </Card>
-    </Container>
+    </div>
   );
 }
