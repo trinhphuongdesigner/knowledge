@@ -26,7 +26,6 @@ const layout = {
     library: "라이브러리",
     search: "검색",
     about: "소개",
-    categories: "카테고리 관리",
     accountSettings: "계정 설정",
     admin: "관리자",
     signOut: "로그아웃",

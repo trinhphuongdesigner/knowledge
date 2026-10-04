@@ -20,6 +20,7 @@ const cards = {
     aiRemaining: "本日の AI 提案はあと {count} 回",
     aiSuggest: "AI で提案",
     aiExhausted: "本日の AI 提案の回数を使い切りました。",
+    aiMaintenance: "AI システムはメンテナンス中です。しばらくしてからもう一度お試しください。",
     aiPreviewTitle: "AI の提案（入力済みの項目はそのまま残ります）",
     answerLabel: "答え：",
     explanationLabel: "解説：",

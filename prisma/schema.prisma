@@ -293,3 +293,36 @@ model AdminAuditLog {
   @@index([createdAt])
   @@index([targetType, targetId])
 }
+
+enum AiProviderKind {
+  ANTHROPIC
+  OPENAI
+  GEMINI
+  GROK
+  DEEPSEEK
+  OPENAI_COMPATIBLE // OpenRouter, proxy nội bộ… — bắt buộc có baseUrl + model
+}
+
+/// Một API key AI do admin quản lý. Gợi ý AI thử lần lượt theo `priority` (nhỏ trước);
+/// key lỗi (hết token, sai key, quá tải…) bị tạm nghỉ tới `cooldownUntil` rồi chuyển sang key kế tiếp.
+model AiProvider {
+  id            String         @id @default(uuid(7)) @db.Uuid
+  name          String
+  kind          AiProviderKind
+  apiKey        String         // đã mã hoá AES-256-GCM bằng AI_ENCRYPTION_KEY — không bao giờ trả về client
+  keyHint       String         // 4 ký tự cuối, chỉ để nhận diện
+  baseUrl       String?
+  model         String?
+  priority      Int            @default(0)
+  enabled       Boolean        @default(true)
+  cooldownUntil DateTime?
+  lastError     String?
+  lastErrorAt   DateTime?
+  lastSuccessAt DateTime?
+  successCount  Int            @default(0)
+  failCount     Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([enabled, priority])
+}

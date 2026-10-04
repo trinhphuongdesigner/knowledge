@@ -20,6 +20,7 @@ const cards = {
     aiRemaining: "오늘 AI 제안 {count}회 남음",
     aiSuggest: "AI로 제안받기",
     aiExhausted: "오늘 AI 제안을 모두 사용했어요.",
+    aiMaintenance: "AI 시스템 점검 중이에요. 잠시 후 다시 시도해 주세요.",
     aiPreviewTitle: "AI 제안 (이미 내용이 있는 필드는 유지돼요)",
     answerLabel: "답: ",
     explanationLabel: "설명: ",

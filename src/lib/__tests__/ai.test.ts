@@ -4,10 +4,8 @@ import {
   AI_MAX_TOKENS,
   buildPrompt,
   buildRequestBody,
-  errorFromStatus,
   extractJson,
   parseSuggestion,
-  textFromResponse,
 } from "../ai-core";
 
 describe("buildPrompt", () => {
@@ -67,23 +65,5 @@ describe("extractJson / parseSuggestion", () => {
     expect(() => parseSuggestion(JSON.stringify({ explanation: "x" }), true)).toThrow(AiError);
     expect(() => parseSuggestion(JSON.stringify({ answer: 5 }), true)).toThrow(AiError);
     expect(() => parseSuggestion(JSON.stringify({ answer: "   " }), true)).toThrow(AiError);
-  });
-});
-
-describe("textFromResponse / errorFromStatus", () => {
-  it("joins text blocks", () => {
-    expect(
-      textFromResponse({ content: [{ type: "text", text: "a" }, { type: "tool_use" }, { type: "text", text: "b" }] }),
-    ).toBe("ab");
-  });
-  it("throws on malformed body", () => {
-    expect(() => textFromResponse(null)).toThrow(AiError);
-    expect(() => textFromResponse({})).toThrow(AiError);
-  });
-  it("maps statuses", () => {
-    expect(errorFromStatus(429).code).toBe("rate_limited");
-    expect(errorFromStatus(529).code).toBe("rate_limited");
-    expect(errorFromStatus(500).code).toBe("upstream");
-    expect(errorFromStatus(401).code).toBe("upstream");
   });
 });

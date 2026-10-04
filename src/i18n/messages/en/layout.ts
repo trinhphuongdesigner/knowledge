@@ -26,7 +26,6 @@ const layout = {
     library: "Library",
     search: "Search",
     about: "About",
-    categories: "Manage categories",
     accountSettings: "Account settings",
     admin: "Admin",
     signOut: "Sign out",

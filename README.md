@@ -252,7 +252,8 @@ DIRECT_URL="<Session pooler, cổng 5432>" DATABASE_URL="<cùng URL>" npx prisma
 | `CRON_SECRET` | Bí mật cho `/api/cron/*` (Vercel gửi `Authorization: Bearer ...`) |
 | `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | Web Push (VAPID). Tạo cặp key bằng `npm run push:keys`; `VAPID_SUBJECT` mặc định `mailto:admin@example.com`. Thiếu key thì không gửi push, thông báo trong app vẫn lưu |
 | `NEXT_PUBLIC_SITE_URL` | URL gốc của site, dùng trong link chia sẻ |
-| `ANTHROPIC_API_KEY`, `AI_MODEL` | Gợi ý AI (tuỳ chọn) |
+| `AI_ENCRYPTION_KEY` | Mã hoá API key AI lưu trong DB (bắt buộc nếu dùng AI; key do admin quản lý ở `/admin/ai/providers`) |
+| `ANTHROPIC_API_KEY`, `AI_MODEL` | Gợi ý AI dự phòng khi admin chưa thêm nhà cung cấp nào (tuỳ chọn) |
 | `QUOTA_SETS_PER_USER`, `QUOTA_CARDS_PER_USER`, `QUOTA_CARDS_PER_SET`, `QUOTA_SUBSCRIPTIONS_PER_USER`, `QUOTA_AI_PER_DAY` | Giới hạn mỗi user (tuỳ chọn) |
 
 ### Cron (vercel.json)

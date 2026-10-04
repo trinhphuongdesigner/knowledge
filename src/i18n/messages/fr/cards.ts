@@ -20,6 +20,7 @@ const cards = {
     aiRemaining: "{count} suggestions IA restantes aujourd’hui",
     aiSuggest: "Suggérer avec l’IA",
     aiExhausted: "Vous avez utilisé toutes vos suggestions IA du jour.",
+    aiMaintenance: "Le système d'IA est en maintenance. Veuillez réessayer plus tard.",
     aiPreviewTitle: "Suggestion de l’IA (les champs déjà remplis sont conservés)",
     answerLabel: "Réponse : ",
     explanationLabel: "Explication : ",

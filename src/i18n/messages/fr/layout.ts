@@ -26,7 +26,6 @@ const layout = {
     library: "Bibliothèque",
     search: "Rechercher",
     about: "À propos",
-    categories: "Gérer les catégories",
     accountSettings: "Paramètres du compte",
     admin: "Administration",
     signOut: "Se déconnecter",

@@ -26,7 +26,6 @@ const layout = {
     library: "资源库",
     search: "搜索",
     about: "关于",
-    categories: "管理分类",
     accountSettings: "账号设置",
     admin: "管理",
     signOut: "退出登录",

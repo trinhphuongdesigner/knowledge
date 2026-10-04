@@ -26,7 +26,6 @@ const layout = {
     library: "Библиотека",
     search: "Поиск",
     about: "О приложении",
-    categories: "Управление категориями",
     accountSettings: "Настройки аккаунта",
     admin: "Администрирование",
     signOut: "Выйти",

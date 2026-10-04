@@ -1,6 +1,6 @@
 "use client";
 
-import { Info, FolderCog, Library, LogOut, RotateCw, Search, Settings, ShieldCheck } from "lucide-react";
+import { Info, Library, LogOut, RotateCw, Search, Settings, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { logout } from "@/app/(auth)/actions";
@@ -101,23 +101,19 @@ export function UserMenu({
             </Link>
           </div>
           <div className="border-t border-ink-100 pt-1">
-            {role === "ADMIN" && (
-              <Link href="/admin/categories" onClick={() => setOpen(false)} className={ITEM}>
-                <FolderCog className="size-4" aria-hidden />
-                {t("userMenu.categories")}
-              </Link>
-            )}
             <Link href="/account" onClick={() => setOpen(false)} className={ITEM}>
               <Settings className="size-4" aria-hidden />
               {t("userMenu.accountSettings")}
             </Link>
-            {role === "ADMIN" && (
+          </div>
+          {role === "ADMIN" && (
+            <div className="border-t border-ink-100 pt-1">
               <Link href="/admin" onClick={() => setOpen(false)} className={ITEM}>
                 <ShieldCheck className="size-4" aria-hidden />
                 {t("userMenu.admin")}
               </Link>
-            )}
-          </div>
+            </div>
+          )}
           <div className="border-t border-ink-100 pt-1">
             <ThemeToggle />
           </div>

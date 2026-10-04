@@ -20,6 +20,7 @@ const cards = {
     aiRemaining: "今天还剩 {count} 次 AI 建议",
     aiSuggest: "AI 建议",
     aiExhausted: "你今天的 AI 建议次数已用完。",
+    aiMaintenance: "AI 系统正在维护中，请稍后再试。",
     aiPreviewTitle: "AI 建议（已有内容的字段将保留）",
     answerLabel: "答案：",
     explanationLabel: "解释：",

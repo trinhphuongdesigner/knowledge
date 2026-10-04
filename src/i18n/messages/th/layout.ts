@@ -26,7 +26,6 @@ const layout = {
     library: "คลัง",
     search: "ค้นหา",
     about: "เกี่ยวกับ",
-    categories: "จัดการหมวดหมู่",
     accountSettings: "ตั้งค่าบัญชี",
     admin: "ผู้ดูแลระบบ",
     signOut: "ออกจากระบบ",

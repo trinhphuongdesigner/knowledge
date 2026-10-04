@@ -1,4 +1,4 @@
-import { aiEnabled, suggestCard } from "@/lib/ai";
+import { getAiAvailability, suggestCard } from "@/lib/ai";
 import { AI_ERROR_KEY, AI_ERROR_STATUS, AiError } from "@/lib/ai-core";
 import { requireApiUser } from "@/lib/auth/dal";
 import { todayVN } from "@/lib/dates";
@@ -9,12 +9,16 @@ import { aiSuggestInputSchema } from "@/lib/validators";
 import { getLocale } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
+// Có thể phải thử lần lượt nhiều key AI khi key trước lỗi / hết token.
+export const maxDuration = 30;
 
 export async function GET(req: Request) {
   try {
     const user = await requireApiUser(req);
     if (user instanceof Response) return user;
-    if (!aiEnabled()) return json({ enabled: false });
+    const availability = await getAiAvailability();
+    if (availability === "disabled") return json({ enabled: false });
+    if (availability === "maintenance") return json({ enabled: true, maintenance: true });
     if (user.role === "ADMIN") return json({ enabled: true });
     const row = await db.aiUsage.findUnique({
       where: { userId_day: { userId: user.id, day: todayVN() } },
@@ -31,7 +35,6 @@ export async function POST(req: Request) {
   try {
     const user = await requireApiUser(req);
     if (user instanceof Response) return user;
-    if (!aiEnabled()) return apiError(AI_ERROR_KEY.disabled, 503);
 
     const body = await readJson(req);
     if (body === undefined) return badRequest("invalidData");

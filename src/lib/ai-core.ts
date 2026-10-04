@@ -6,7 +6,8 @@ export const DEFAULT_AI_MODEL = "claude-haiku-4-5";
 export const AI_TIMEOUT_MS = 10_000;
 export const AI_MAX_TOKENS = 400;
 
-export type AiErrorCode = "disabled" | "rate_limited" | "upstream" | "invalid";
+/** maintenance = có cấu hình nhà cung cấp nhưng tất cả đang lỗi / hết token / tạm nghỉ. */
+export type AiErrorCode = "disabled" | "maintenance" | "rate_limited" | "upstream" | "invalid";
 
 export class AiError extends Error {
   readonly code: AiErrorCode;
@@ -19,6 +20,7 @@ export class AiError extends Error {
 
 export const AI_ERROR_STATUS: Record<AiErrorCode, number> = {
   disabled: 503,
+  maintenance: 503,
   rate_limited: 429,
   upstream: 502,
   invalid: 502,
@@ -27,6 +29,7 @@ export const AI_ERROR_STATUS: Record<AiErrorCode, number> = {
 /** English messages for logs/Error.message; API responses translate by code via AI_ERROR_KEY. */
 export const AI_ERROR_MESSAGE: Record<AiErrorCode, string> = {
   disabled: "AI feature is not enabled",
+  maintenance: "The AI system is under maintenance",
   rate_limited: "AI is busy, please try again later",
   upstream: "Could not reach the AI, please try again",
   invalid: "AI returned an invalid result, please try again",
@@ -35,6 +38,7 @@ export const AI_ERROR_MESSAGE: Record<AiErrorCode, string> = {
 /** Key trong namespace errors cho từng mã lỗi AI. */
 export const AI_ERROR_KEY = {
   disabled: "aiDisabled",
+  maintenance: "aiMaintenance",
   rate_limited: "aiRateLimited",
   upstream: "aiUpstream",
   invalid: "aiInvalid",
@@ -133,19 +137,4 @@ export function parseSuggestion(raw: string, english: boolean) {
     partOfSpeech: english ? partOfSpeech : "",
     ...(english && phonetic ? { phonetic } : {}),
   };
-}
-
-/** Lấy phần văn bản từ body phản hồi của Messages API. */
-export function textFromResponse(body: unknown): string {
-  const content = (body as { content?: unknown } | null)?.content;
-  if (!Array.isArray(content)) throw new AiError("invalid", AI_ERROR_MESSAGE.invalid);
-  return content
-    .filter((b): b is { type: "text"; text: string } => b?.type === "text" && typeof b.text === "string")
-    .map((b) => b.text)
-    .join("");
-}
-
-export function errorFromStatus(status: number): AiError {
-  if (status === 429 || status === 529) return new AiError("rate_limited", AI_ERROR_MESSAGE.rate_limited);
-  return new AiError("upstream", AI_ERROR_MESSAGE.upstream);
 }

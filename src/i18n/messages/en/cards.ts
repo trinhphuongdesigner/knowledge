@@ -20,6 +20,7 @@ const cards = {
     aiRemaining: "{count} AI suggestions left today",
     aiSuggest: "Suggest with AI",
     aiExhausted: "You have used all your AI suggestions for today.",
+    aiMaintenance: "The AI system is under maintenance. Please try again later.",
     aiPreviewTitle: "AI suggestion (fields that already have content are kept)",
     answerLabel: "Answer: ",
     explanationLabel: "Explanation: ",

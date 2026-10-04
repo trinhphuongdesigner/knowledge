@@ -26,9 +26,8 @@ const layout = {
     library: "Thư viện",
     search: "Tìm kiếm",
     about: "Giới thiệu",
-    categories: "Quản lý danh mục",
     accountSettings: "Quản lý tài khoản",
-    admin: "Quản trị",
+    admin: "Quản trị hệ thống",
     signOut: "Đăng xuất",
   },
   install: {

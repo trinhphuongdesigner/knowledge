@@ -8,7 +8,7 @@ import { api } from "@/lib/api";
 import { cardInputSchema, type AiSuggestionDTO, type CardDTO } from "@/lib/validators";
 import { useWordLookup } from "./useWordLookup";
 
-type AiStatus = { enabled: boolean; remaining?: number };
+type AiStatus = { enabled: boolean; maintenance?: boolean; remaining?: number };
 // One status fetch per page load, shared by every CardForm instance.
 let aiStatusPromise: Promise<AiStatus> | null = null;
 function loadAiStatus(): Promise<AiStatus> {
@@ -233,7 +233,7 @@ export function CardForm({
             variant="secondary"
             className="self-start"
             loading={aiLoading}
-            disabled={!question.trim() || ai.remaining === 0}
+            disabled={!question.trim() || ai.remaining === 0 || ai.maintenance}
             title={
               ai.remaining === undefined ? t("form.aiHint") : t("form.aiRemaining", { count: ai.remaining })
             }
@@ -241,7 +241,8 @@ export function CardForm({
           >
             ✨ {t("form.aiSuggest")}
           </Button>
-          {ai.remaining === 0 && <p className="text-sm text-ink-500">{t("form.aiExhausted")}</p>}
+          {ai.maintenance && <p className="text-sm text-ink-500">{t("form.aiMaintenance")}</p>}
+          {!ai.maintenance && ai.remaining === 0 && <p className="text-sm text-ink-500">{t("form.aiExhausted")}</p>}
           {aiError && (
             <p role="alert" className="text-sm text-red-700">
               {aiError}

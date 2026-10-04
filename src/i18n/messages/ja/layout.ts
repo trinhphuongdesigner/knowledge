@@ -26,7 +26,6 @@ const layout = {
     library: "ライブラリ",
     search: "検索",
     about: "概要",
-    categories: "カテゴリを管理",
     accountSettings: "アカウント設定",
     admin: "管理",
     signOut: "ログアウト",

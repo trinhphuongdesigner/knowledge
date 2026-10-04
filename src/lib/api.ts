@@ -82,7 +82,7 @@ export const api = {
   unsubscribe: (setId: string) => request<{ ok: true }>(`/api/sets/${setId}/subscription`, send("DELETE")),
   copySet: (setId: string) => request<StudySetDTO>(`/api/sets/${setId}/copy`, send("POST")),
   search: (q: string) => request<SearchResultDTO[]>(`/api/search?q=${encodeURIComponent(q)}`),
-  aiStatus: () => request<{ enabled: boolean; remaining?: number }>("/api/ai/suggest"),
+  aiStatus: () => request<{ enabled: boolean; maintenance?: boolean; remaining?: number }>("/api/ai/suggest"),
   aiSuggest: (input: AiSuggestInput) => request<AiSuggestionDTO>("/api/ai/suggest", send("POST", input)),
   updateStudySettings: (input: StudySettingsInput) =>
     request<StudySettingsInput>("/api/account/settings", send("PUT", input)),

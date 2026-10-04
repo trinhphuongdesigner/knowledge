@@ -20,6 +20,7 @@ const cards = {
     aiRemaining: "Còn {count} lượt gợi ý AI hôm nay",
     aiSuggest: "Gợi ý bằng AI",
     aiExhausted: "Bạn đã dùng hết lượt gợi ý AI hôm nay.",
+    aiMaintenance: "Hệ thống AI đang bảo trì, vui lòng thử lại sau.",
     aiPreviewTitle: "Gợi ý AI (các ô đã có nội dung được giữ nguyên)",
     answerLabel: "Đáp án: ",
     explanationLabel: "Giải thích: ",

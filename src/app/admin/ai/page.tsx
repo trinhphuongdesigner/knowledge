@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BarChart } from "@/components/admin/charts";
+import { AiTabs } from "@/components/admin/ai/AiTabs";
 import { StatCard } from "@/components/admin/dashboard/StatCard";
 import { Card, Breadcrumbs } from "@/components/ui";
 import type { Locale } from "@/i18n/config";
@@ -56,6 +57,7 @@ export default async function AdminAiPage() {
     <div className="space-y-6">
       <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("admin"), href: "/admin" }, { label: t("ai.title") }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">{t("ai.title")}</h1>
+      <AiTabs active="/admin/ai" t={t} />
       <div className="grid grid-cols-2 gap-3 sm:max-w-md">
         <StatCard locale={locale} label={t("ai.today")} value={s.totalToday} hint={t("ai.unitUses")} />
         <StatCard locale={locale} label={t("ai.days30")} value={s.total30} hint={t("ai.unitUses")} />
