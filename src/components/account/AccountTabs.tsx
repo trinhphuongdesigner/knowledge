@@ -9,7 +9,7 @@ export const ACCOUNT_TABS: AccountTab[] = ["history", "stats", "settings", "prof
 export async function AccountTabs({ active }: { active: AccountTab }) {
   const t = await getT("account");
   return (
-    <nav aria-label={t("tabsLabel")} className="mb-6 flex gap-1 overflow-x-auto border-b border-ink-200">
+    <nav aria-label={t("tabsLabel")} className="mb-6 flex gap-1 overflow-x-auto overflow-y-hidden border-b border-ink-200">
       {ACCOUNT_TABS.map((id) => {
         const current = id === active;
         return (

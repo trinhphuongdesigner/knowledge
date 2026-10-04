@@ -17,6 +17,16 @@ function errorCode(e: unknown): string {
     : "";
 }
 
+/** Server action gọi redirect(): promise phía client bị reject bằng lỗi này trong khi router vẫn điều hướng. */
+function isRedirect(e: unknown): boolean {
+  return (
+    typeof e === "object" &&
+    e !== null &&
+    typeof (e as { digest?: unknown }).digest === "string" &&
+    (e as { digest: string }).digest.startsWith("NEXT_REDIRECT")
+  );
+}
+
 function messageFor(e: unknown, t: TFunction<"auth">): string {
   switch (errorCode(e)) {
     case "auth/network-request-failed":
@@ -83,6 +93,8 @@ export function GoogleSignInButton({ next }: { next?: string }) {
         setPending(false);
       }
     } catch (e) {
+      // Đăng nhập thành công, đang chuyển trang: giữ trạng thái "đang đăng nhập", không báo lỗi.
+      if (isRedirect(e)) return;
       setError(messageFor(e, t));
       setPending(false);
     } finally {
