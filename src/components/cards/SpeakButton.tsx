@@ -1,6 +1,7 @@
 "use client";
 
 import { Volume2 } from "lucide-react";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 
 let current: HTMLAudioElement | null = null;
@@ -41,12 +42,13 @@ export function SpeakButton({
   className?: string;
   tabIndex?: number;
 }) {
+  const t = useT("cards");
   return (
     <button
       type="button"
-      aria-label="Phát âm"
+      aria-label={t("speak")}
       tabIndex={tabIndex}
-      title="Phát âm"
+      title={t("speak")}
       onClick={(e) => {
         e.stopPropagation();
         speak(text, audioUrl);

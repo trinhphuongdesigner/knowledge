@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "아직 통계가 없어요",
+    emptyDescription: "카드를 복습하면 연속 학습이 시작되고 진도를 확인할 수 있어요.",
+    reviewToday: "오늘의 복습",
+    streak: "현재 연속 학습",
+    longest: "최장 연속 학습",
+    total: "총 복습 횟수",
+    accuracy: "정답률",
+    days: { other: "{count}일" },
+    last90: "최근 90일",
+    last30: "최근 30일",
+    heatmapAria: "최근 90일 히트맵, 총 {total}회 복습",
+    barsAria: "최근 30일간 하루 복습 카드 수, 최대 {max}",
+    dayTitle: "{day}: {reviewed}장, 정답 {correct}장",
+    less: "적음",
+    more: "많음",
+    correct: "정답",
+    wrong: "오답",
+  },
+  streak: {
+    chartAria: "최근 14일간 복습한 카드: {values}",
+    daysInRow: { other: "일 연속" },
+    startNew: "오늘 학습하고 새 연속 기록을 시작하세요",
+    keep: "오늘 학습하고 연속 기록을 이어 가세요",
+    longest: { other: "최장: {count}일" },
+    dayTitle: { other: "{day}: {count}장" },
+    goal: "오늘의 목표",
+    goalCount: "{done}/{goal}장",
+    goalAria: "오늘의 목표 진행 상황",
+    view: "통계 보기",
+  },
+};
+
+export default stats;

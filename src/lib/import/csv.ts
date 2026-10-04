@@ -15,7 +15,7 @@ export function parseCsv(text: string): ParseResult {
   );
   for (const err of parsed.errors) {
     if (err.type === "Delimiter") continue;
-    result.errors.push({ row: (err.row ?? 0) + 1, message: `Lỗi định dạng CSV: ${err.message}` });
+    result.errors.push({ row: (err.row ?? 0) + 1, code: "csvFormat", text: err.message });
   }
   result.errors.sort((x, y) => x.row - y.row);
   return result;

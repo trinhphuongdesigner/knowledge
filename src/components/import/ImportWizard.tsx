@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Card, Modal, Select, Textarea } from "@/components/ui";
 import { api, enrichSetFully } from "@/lib/api";
-import { parseCsv, parseFile, parseMarkdown, type ParseError, type ParseResult } from "@/lib/import";
+import { parseCsv, parseFile, parseMarkdown, UnsupportedFormatError, type ParseError, type ParseResult } from "@/lib/import";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 import { FileDropzone } from "./FileDropzone";
 import { ImportPreview, type EditableCard } from "./ImportPreview";
@@ -17,13 +18,14 @@ type Mode = "append" | "replace";
 type Format = "csv" | "md";
 
 const TEMPLATES = [
-  { href: "/templates/mau-import.csv", label: "Mẫu CSV" },
-  { href: "/templates/mau-import.xlsx", label: "Mẫu Excel" },
-  { href: "/templates/mau-import.md", label: "Mẫu Markdown" },
-];
+  { href: "/templates/mau-import.csv", key: "templates.csv" },
+  { href: "/templates/mau-import.xlsx", key: "templates.excel" },
+  { href: "/templates/mau-import.md", key: "templates.markdown" },
+] as const;
 
 export function ImportWizard({ setId, english = false }: { setId: string; english?: boolean }) {
   const router = useRouter();
+  const t = useT("import");
   const [step, setStep] = useState<1 | 2>(1);
   const [confirmReplace, setConfirmReplace] = useState(false);
   const [tab, setTab] = useState<Tab>("file");
@@ -45,8 +47,11 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
       const first = result.errors[0];
       setParseError(
         first
-          ? `Không đọc được thẻ nào. ${first.row > 0 ? `Dòng ${first.row}: ` : ""}${first.message}`
-          : "Không tìm thấy thẻ nào trong dữ liệu.",
+          ? t("parse.noCards", {
+              row: first.row > 0 ? t("parse.rowPrefix", { row: first.row }) : "",
+              message: t(`parseErrors.${first.code}`, { text: first.text ?? "" }),
+            })
+          : t("parse.empty"),
       );
       return;
     }
@@ -75,14 +80,20 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
     setParsing(true);
     try {
       if (tab === "file") {
-        if (!file) throw new Error("Hãy chọn một file trước.");
+        if (!file) throw new Error(t("parse.pickFile"));
         applyResult(await parseFile(file));
       } else {
-        if (!text.trim()) throw new Error("Hãy dán nội dung cần import.");
+        if (!text.trim()) throw new Error(t("parse.pasteContent"));
         applyResult(format === "csv" ? parseCsv(text) : parseMarkdown(text));
       }
     } catch (e) {
-      setParseError(e instanceof Error ? e.message : "Không đọc được dữ liệu.");
+      setParseError(
+        e instanceof UnsupportedFormatError
+          ? t("parse.unsupportedFormat", { format: e.format })
+          : e instanceof Error
+            ? e.message
+            : t("parse.failed"),
+      );
     } finally {
       setParsing(false);
     }
@@ -110,18 +121,16 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
       });
       if (english) {
         // Best effort: network problems never block the import (cards are already saved).
-        setSaveNote("Đang tra phiên âm…");
-        const summary = await enrichSetFully(setId, (done, total) => setSaveNote(`Đang tra phiên âm ${done}/${total}`));
+        setSaveNote(t("save.lookingUp"));
+        const summary = await enrichSetFully(setId, (done, total) => setSaveNote(t("save.lookingUpProgress", { done, total })));
         if (summary.interrupted) {
-          window.alert(
-            "Đã lưu thẻ, nhưng không tra được phiên âm cho một số thẻ (cần có internet). Bạn có thể bấm nút Tra phiên âm ở trang nhóm thẻ sau.",
-          );
+          window.alert(t("save.lookupInterrupted"));
         }
       }
       router.push(`/sets/${setId}`);
       router.refresh();
     } catch (e) {
-      setSaveError(e instanceof Error ? e.message : "Lưu thất bại, vui lòng thử lại.");
+      setSaveError(e instanceof Error ? e.message : t("save.failed"));
       setSaveNote(null);
       setSaving(false);
     }
@@ -129,8 +138,8 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
   return (
     <div className="space-y-5">
-      <ol className="flex items-center gap-2 text-sm" aria-label="Các bước import">
-        {["Chọn nguồn", "Xem trước & lưu"].map((label, i) => {
+      <ol className="flex items-center gap-2 text-sm" aria-label={t("steps.label")}>
+        {[t("steps.source"), t("steps.preview")].map((label, i) => {
           const active = step === i + 1;
           return (
             <li key={label} className="flex items-center gap-2" aria-current={active ? "step" : undefined}>
@@ -151,10 +160,10 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
       {step === 1 && (
         <Card className="space-y-5">
-          <div role="tablist" aria-label="Nguồn dữ liệu" className="grid grid-cols-2 gap-1 rounded-xl bg-ink-100 p-1">
+          <div role="tablist" aria-label={t("tabs.label")} className="grid grid-cols-2 gap-1 rounded-xl bg-ink-100 p-1">
             {([
-              ["file", "Tải file"],
-              ["paste", "Dán văn bản"],
+              ["file", t("tabs.file")],
+              ["paste", t("tabs.paste")],
             ] as const).map(([key, label]) => (
               <button
                 key={key}
@@ -179,19 +188,19 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
             <FileDropzone file={file} onFile={handleFile} onClear={() => setFile(null)} disabled={parsing} />
           ) : (
             <div className="space-y-3">
-              <Select label="Định dạng" value={format} onChange={(e) => setFormat(e.target.value as Format)}>
-                <option value="csv">CSV (phân cách bằng , ; hoặc Tab)</option>
-                <option value="md">Markdown</option>
+              <Select label={t("format.label")} value={format} onChange={(e) => setFormat(e.target.value as Format)}>
+                <option value="csv">{t("format.csv")}</option>
+                <option value="md">{t("format.markdown")}</option>
               </Select>
               <Textarea
-                label="Nội dung"
+                label={t("content.label")}
                 rows={10}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder={
                   format === "csv"
-                    ? "question,answer,explanation\nClosure là gì?,Hàm nhớ scope,Ví dụ: counter"
-                    : "Q: Closure là gì?\nA: Hàm nhớ scope\nE: Ví dụ: counter"
+                    ? t("content.placeholderCsv")
+                    : t("content.placeholderMarkdown")
                 }
                 className="font-mono text-sm"
               />
@@ -205,50 +214,33 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
           )}
 
           <Button onClick={handleParse} loading={parsing} className="w-full sm:w-auto">
-            Xem trước
+            {t("actions.preview")}
           </Button>
 
           <div className="space-y-3 border-t border-ink-200 pt-4 text-sm text-ink-600">
-            <p className="font-medium text-ink-900">Tải file mẫu</p>
+            <p className="font-medium text-ink-900">{t("templates.title")}</p>
             <div className="flex flex-wrap gap-2">
-              {TEMPLATES.map((t) => (
+              {TEMPLATES.map((tpl) => (
                 <a
-                  key={t.href}
-                  href={t.href}
+                  key={tpl.href}
+                  href={tpl.href}
                   download
                   className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-ink-200 bg-surface px-3 text-sm font-medium text-accent-strong hover:bg-brand-50"
                 >
                   <Download className="size-4" aria-hidden />
-                  {t.label}
+                  {t(tpl.key)}
                 </a>
               ))}
             </div>
             <details className="rounded-xl bg-ink-50 p-3">
-              <summary className="cursor-pointer font-medium text-ink-900">Hướng dẫn định dạng</summary>
+              <summary className="cursor-pointer font-medium text-ink-900">{t("guide.title")}</summary>
               <ul className="mt-2 list-disc space-y-1.5 pl-5">
-                <li>
-                  <b>CSV / Excel:</b> dòng đầu là tiêu đề (<code>question</code>/<code>Câu hỏi</code>,{" "}
-                  <code>answer</code>/<code>Đáp án</code>, <code>explanation</code>/<code>Giải thích</code>). Không có
-                  tiêu đề thì cột 1 = câu hỏi, cột 2 = đáp án, cột 3 = giải thích.
-                </li>
-                <li>
-                  <b>Markdown heading:</b> <code>## Câu hỏi</code>, phần bên dưới là đáp án; dòng bắt đầu bằng{" "}
-                  <code>&gt; </code> hoặc phần sau <code>---</code> là giải thích.
-                </li>
-                <li>
-                  <b>Markdown Q/A:</b> <code>Q:</code>/<code>A:</code>/<code>E:</code> (hoặc <code>Hỏi:</code>/
-                  <code>Đáp:</code>/<code>Giải thích:</code>), các thẻ cách nhau bằng dòng trống.
-                </li>
-                <li>
-                  <b>Markdown bảng:</b> <code>| question | answer | explanation |</code>.
-                </li>
-                <li>
-                  <b>Tiếng Anh (tuỳ chọn):</b> thêm cột <code>phonetic</code>/<code>Phiên âm</code>/<code>IPA</code> và{" "}
-                  <code>partOfSpeech</code>/<code>Từ loại</code>/<code>pos</code>; trong Markdown Q/A dùng{" "}
-                  <code>P:</code> hoặc <code>Phiên âm:</code>. Thẻ thiếu phiên âm sẽ được tra tự động sau khi lưu (cần
-                  internet).
-                </li>
-                <li>Tối đa {MAX_CARDS} thẻ mỗi lần import.</li>
+                <li>{t("guide.csv")}</li>
+                <li>{t("guide.heading")}</li>
+                <li>{t("guide.qa")}</li>
+                <li>{t("guide.table")}</li>
+                <li>{t("guide.english")}</li>
+                <li>{t("guide.max", { max: MAX_CARDS })}</li>
               </ul>
             </details>
           </div>
@@ -261,11 +253,11 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
           <Card className="space-y-3">
             <fieldset className="space-y-2">
-              <legend className="mb-1 text-sm font-medium text-ink-900">Cách lưu</legend>
+              <legend className="mb-1 text-sm font-medium text-ink-900">{t("mode.title")}</legend>
               {(
                 [
-                  ["append", "Thêm vào cuối", "Giữ nguyên các thẻ hiện có, thêm thẻ mới phía sau."],
-                  ["replace", "Thay thế toàn bộ", "Xoá tất cả thẻ hiện có rồi thay bằng các thẻ này."],
+                  ["append", t("mode.append"), t("mode.appendHint")],
+                  ["replace", t("mode.replace"), t("mode.replaceHint")],
                 ] as const
               ).map(([value, label, hint]) => (
                 <label
@@ -292,19 +284,19 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
             </fieldset>
             {mode === "replace" && (
               <p role="alert" className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
-                Cảnh báo: toàn bộ thẻ hiện có của nhóm thẻ này sẽ bị xoá vĩnh viễn.
+                {t("mode.replaceWarning")}
               </p>
             )}
           </Card>
 
           {tooMany && (
             <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-              Tối đa {MAX_CARDS} thẻ mỗi lần import (hiện có {cards.length}). Hãy xoá bớt hoặc chia nhỏ file.
+              {t("errors.tooMany", { max: MAX_CARDS, count: cards.length })}
             </p>
           )}
           {invalidCount > 0 && (
             <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-              Có {invalidCount} thẻ đang thiếu câu hỏi hoặc đáp án. Hãy bổ sung hoặc xoá thẻ đó.
+              {t("errors.invalid", { count: invalidCount })}
             </p>
           )}
           {saveNote && (
@@ -320,26 +312,26 @@ export function ImportWizard({ setId, english = false }: { setId: string; englis
 
           <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-between">
             <Button variant="secondary" onClick={() => setStep(1)} disabled={saving}>
-              <ArrowLeft className="size-4" aria-hidden /> Quay lại
+              <ArrowLeft className="size-4" aria-hidden /> {t("actions.back")}
             </Button>
             <Button onClick={() => (mode === "replace" ? setConfirmReplace(true) : handleSave())} loading={saving} disabled={!canSave}>
               <Save className="size-4" aria-hidden />
-              {saving ? (saveNote ?? "Đang lưu...") : `Lưu ${cards.length} thẻ`}
+              {saving ? (saveNote ?? t("save.saving")) : t("save.button", { count: cards.length })}
             </Button>
           </div>
         </div>
       )}
 
-      <Modal open={confirmReplace} onClose={() => setConfirmReplace(false)} title="Thay thế toàn bộ thẻ?" centered>
+      <Modal open={confirmReplace} onClose={() => setConfirmReplace(false)} title={t("replaceModal.title")} centered>
         <p className="text-sm text-ink-600">
-          Tất cả thẻ hiện có trong nhóm thẻ này sẽ bị xoá vĩnh viễn và thay bằng {cards.length} thẻ vừa nhập.
+          {t("replaceModal.body", { count: cards.length })}
         </p>
         <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button variant="secondary" onClick={() => setConfirmReplace(false)}>
-            Huỷ
+            {t("actions.cancel")}
           </Button>
           <Button variant="danger" onClick={handleSave}>
-            Thay thế
+            {t("replaceModal.confirm")}
           </Button>
         </div>
       </Modal>

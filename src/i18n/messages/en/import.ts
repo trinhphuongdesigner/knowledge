@@ -1,0 +1,101 @@
+const importNs = {
+  loading: "Preparing card import…",
+  page: {
+    metaTitle: "Import cards — Knowledge",
+    home: "Home",
+    breadcrumb: "Import from file",
+    title: "Import cards into: {title}",
+  },
+  steps: { label: "Import steps", source: "Choose source", preview: "Preview & save" },
+  tabs: { label: "Data source", file: "Upload file", paste: "Paste text" },
+  format: { label: "Format", csv: "CSV (separated by , ; or Tab)", markdown: "Markdown" },
+  content: {
+    label: "Content",
+    placeholderCsv: "question,answer,explanation\nWhat is a closure?,A function that remembers its scope,Example: counter",
+    placeholderMarkdown: "Q: What is a closure?\nA: A function that remembers its scope\nE: Example: counter",
+  },
+  actions: { preview: "Preview", back: "Back", cancel: "Cancel" },
+  templates: { title: "Download sample files", csv: "CSV sample", excel: "Excel sample", markdown: "Markdown sample" },
+  guide: {
+    title: "Format guide",
+    csv: "CSV / Excel: the first row is the header (question, answer, explanation). Without a header, column 1 = question, column 2 = answer, column 3 = explanation.",
+    heading: "Markdown headings: ## Question, the text below is the answer; lines starting with > or the part after --- are the explanation.",
+    qa: "Markdown Q/A: Q:/A:/E: (or Question:/Answer:/Explanation:), with cards separated by blank lines.",
+    table: "Markdown table: | question | answer | explanation |.",
+    english:
+      "English (optional): add the columns phonetic/IPA and partOfSpeech/pos; in Markdown Q/A use P: for the phonetic. Cards missing a phonetic are looked up automatically after saving (internet required).",
+    max: "Up to {max} cards per import.",
+  },
+  mode: {
+    title: "How to save",
+    append: "Add to the end",
+    appendHint: "Keep the existing cards and add the new ones after them.",
+    replace: "Replace everything",
+    replaceHint: "Delete all existing cards and replace them with these cards.",
+    replaceWarning: "Warning: all existing cards in this set will be permanently deleted.",
+  },
+  errors: {
+    tooMany: "Up to {max} cards per import (you have {count}). Remove some or split the file.",
+    invalid: {
+      one: "{count} card is missing a question or answer. Fill it in or delete it.",
+      other: "{count} cards are missing a question or answer. Fill them in or delete them.",
+    },
+  },
+  parse: {
+    noCards: "No cards could be read. {row}{message}",
+    rowPrefix: "Row {row}: ",
+    empty: "No cards found in the data.",
+    pickFile: "Please choose a file first.",
+    pasteContent: "Please paste the content to import.",
+    failed: "Could not read the data.",
+    unsupportedFormat: 'The file format "{format}" is not supported. Use .csv, .xlsx, .xls, .md, .markdown or .txt.',
+  },
+  parseErrors: {
+    missingQuestion: "Missing question",
+    missingAnswer: "Missing answer",
+    missingBoth: "Missing both question and answer",
+    missingAnswerFor: 'Missing answer for "{text}"',
+    csvFormat: "CSV format error: {text}",
+    noSheet: "The Excel file has no sheets",
+    orphanLine: "Line is outside a card (must start with Q: / Question:)",
+    unknownMarkdown: "Could not recognize the Markdown format (use headings, Q:/A: or a table)",
+  },
+  save: {
+    lookingUp: "Looking up phonetics…",
+    lookingUpProgress: "Looking up phonetics {done}/{total}",
+    lookupInterrupted:
+      "Cards saved, but phonetics could not be looked up for some cards (internet required). You can press the phonetic lookup button on the set page later.",
+    failed: "Save failed, please try again.",
+    saving: "Saving...",
+    button: { one: "Save {count} card", other: "Save {count} cards" },
+  },
+  replaceModal: {
+    title: "Replace all cards?",
+    body: {
+      one: "All existing cards in this set will be permanently deleted and replaced with the {count} card you just entered.",
+      other: "All existing cards in this set will be permanently deleted and replaced with the {count} cards you just entered.",
+    },
+    confirm: "Replace",
+  },
+  fields: { question: "Question", answer: "Answer", explanation: "Explanation" },
+  preview: {
+    valid: { one: "{count} valid card", other: "{count} valid cards" },
+    errorRows: { one: "{count} error row (skipped)", other: "{count} error rows (skipped)" },
+    errorTitle: "The following rows could not be read and will be skipped",
+    empty: "No cards left to import.",
+    delete: "Delete",
+    required: "Must not be empty",
+    card: "Card",
+    deleteCard: "Delete card {n}",
+    fieldLabel: "{field} — card {n}",
+  },
+  dropzone: {
+    aria: "Choose or drag and drop a file to import",
+    prompt: "Drag and drop a file here or",
+    promptAction: "click to choose a file",
+    supported: "Supports .csv, .xlsx, .xls, .md, .markdown, .txt",
+    clear: "Remove selected file",
+  },
+};
+
+export default importNs;

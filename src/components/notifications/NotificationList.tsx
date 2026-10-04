@@ -3,6 +3,7 @@
 import { CheckCheck } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import type { NotificationDTO } from "@/lib/validators";
 import { NotificationItem } from "./NotificationItem";
@@ -17,6 +18,7 @@ export function NotificationList({
   initialCursor: string | null;
   initialUnread: number;
 }) {
+  const t = useT("notifications");
   const [items, setItems] = useState(initialItems);
   const [cursor, setCursor] = useState(initialCursor);
   const [unread, setUnread] = useState(initialUnread);
@@ -32,7 +34,7 @@ export function NotificationList({
       setCursor(page.nextCursor);
       setUnread(page.unreadCount);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không tải được thông báo");
+      setError(e instanceof Error ? e.message : t("loadFailed"));
     } finally {
       setLoading(false);
     }
@@ -51,14 +53,14 @@ export function NotificationList({
     await api.markAllNotificationsRead().catch(() => {});
   }
 
-  if (items.length === 0) return <p className="py-10 text-center text-sm text-ink-500">Chưa có thông báo nào</p>;
+  if (items.length === 0) return <p className="py-10 text-center text-sm text-ink-500">{t("empty")}</p>;
 
   return (
     <div className="space-y-3">
       <div className="flex justify-end">
         <Button type="button" variant="ghost" size="sm" onClick={markAll} disabled={unread === 0}>
           <CheckCheck className="size-4" aria-hidden />
-          Đánh dấu đã đọc tất cả
+          {t("markAll")}
         </Button>
       </div>
       <div className="rounded-xl border border-ink-200 bg-surface p-2">
@@ -70,7 +72,7 @@ export function NotificationList({
       {cursor && (
         <div className="flex justify-center">
           <Button type="button" variant="secondary" onClick={more} loading={loading}>
-            Tải thêm
+            {t("loadMore")}
           </Button>
         </div>
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Lightbulb, RotateCcw, SkipForward, X } from "lucide-react";
+import { Check, Lightbulb, SkipForward, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { SpeakButton } from "@/components/cards/SpeakButton";
 import { shuffleArray } from "@/components/study/utils";
@@ -8,6 +8,8 @@ import { Button, buttonStyles } from "@/components/ui";
 import { hintText, isCorrectAnswer, stripMarkdown } from "@/lib/quiz";
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
+import { RoundResult } from "./RoundResult";
+import { useT } from "@/i18n/client";
 
 const AUTO_NEXT_MS = 1500;
 
@@ -36,42 +38,13 @@ export function TypingGame({
 
   if (done) {
     const wrongCards = results.filter((r) => !r.correct).map((r) => r.card);
-    const score = results.length - wrongCards.length;
     return (
-      <div className="rounded-xl border border-ink-200 bg-surface p-6 shadow-sm">
-        <div className="text-center">
-          <h2 className="text-xl font-bold text-ink-900">Kết quả</h2>
-          <p className="mt-2 text-3xl font-bold text-accent-strong">
-            {score}/{results.length}
-          </p>
-          <p className="text-sm text-ink-600">câu đúng</p>
-        </div>
-        {wrongCards.length > 0 && (
-          <div className="mt-5">
-            <h3 className="mb-2 text-sm font-semibold text-ink-900">Câu sai ({wrongCards.length})</h3>
-            <ul className="space-y-2">
-              {wrongCards.map((c) => (
-                <li key={c.id} className="rounded-xl border border-red-100 bg-red-50 p-3 text-sm">
-                  <p className="break-words text-ink-600">{stripMarkdown(c.answer)}</p>
-                  <p className="mt-1 break-words font-semibold text-ink-900">{stripMarkdown(c.question)}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
-          {wrongCards.length > 0 && (
-            <Button onClick={() => start(wrongCards)}>
-              <RotateCcw className="size-4" aria-hidden />
-              Làm lại câu sai
-            </Button>
-          )}
-          <Button variant={wrongCards.length > 0 ? "secondary" : "primary"} onClick={() => start(cards)}>
-            <RotateCcw className="size-4" aria-hidden />
-            Làm lại tất cả
-          </Button>
-        </div>
-      </div>
+      <RoundResult
+        total={results.length}
+        wrongCards={wrongCards}
+        onRetryWrong={() => start(wrongCards)}
+        onRetryAll={() => start(cards)}
+      />
     );
   }
 
@@ -101,6 +74,7 @@ function TypingRun({
   english: boolean;
   onFinish: (results: Result[]) => void;
 }) {
+  const t = useT("quiz");
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
   const [hint, setHint] = useState(0);
@@ -150,14 +124,14 @@ function TypingRun({
   return (
     <form onSubmit={submit} className="rounded-xl border border-ink-200 bg-surface p-4 shadow-sm sm:p-6">
       <div className="mb-3 text-sm text-ink-500">
-        Câu {index + 1}/{cards.length}
+        {t("play.question", { n: index + 1, total: cards.length })}
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-ink-100" aria-hidden>
         <div className="h-full bg-brand-600 transition-all" style={{ width: `${(index / cards.length) * 100}%` }} />
       </div>
 
       <p className="mt-5 text-xs font-medium uppercase tracking-wide text-ink-500">
-        {english ? "Nghĩa" : "Đáp án"}
+        {english ? t("play.meaning") : t("play.labelAnswer")}
         {english && card.partOfSpeech && <span className="ml-1 normal-case italic">({card.partOfSpeech})</span>}
       </p>
       <p className="mt-1 line-clamp-6 whitespace-pre-wrap break-words text-xl font-semibold text-ink-900">
@@ -165,7 +139,7 @@ function TypingRun({
       </p>
 
       <label htmlFor="quiz-typing-input" className="mt-5 block text-sm font-medium text-ink-700">
-        {english ? "Nhập từ tiếng Anh" : "Nhập câu hỏi / thuật ngữ"}
+        {english ? t("typing.labelEnglish") : t("typing.labelTerm")}
       </label>
       <input
         id="quiz-typing-input"
@@ -188,7 +162,7 @@ function TypingRun({
 
       {!checked && hint > 0 && (
         <p className="mt-2 font-mono text-sm tracking-wider text-accent-strong" aria-live="polite">
-          Gợi ý: {hintText(expected, hint)}
+          {t("play.hint", { hint: hintText(expected, hint) })}
         </p>
       )}
 
@@ -206,10 +180,10 @@ function TypingRun({
             <X className="mt-0.5 size-4 shrink-0" aria-hidden />
           )}
           <div className="min-w-0 flex-1">
-            <p className="font-semibold">{checked.correct ? "Chính xác!" : "Chưa đúng"}</p>
+            <p className="font-semibold">{checked.correct ? t("play.correct") : t("play.wrong")}</p>
             {!checked.correct && (
               <p className="mt-0.5 break-words">
-                Đáp án: <span className="font-semibold">{expected}</span>
+                {t("play.revealAnswer")} <span className="font-semibold">{expected}</span>
               </p>
             )}
           </div>
@@ -220,12 +194,12 @@ function TypingRun({
       <div className="mt-5 flex flex-wrap gap-2">
         {checked ? (
           <button ref={nextRef} type="submit" className={buttonStyles("primary", "md", "w-full")}>
-            {index + 1 >= cards.length ? "Xem kết quả" : "Tiếp"}
+            {index + 1 >= cards.length ? t("play.seeResult") : t("play.next")}
           </button>
         ) : (
           <>
             <Button type="submit" disabled={!value.trim()}>
-              Kiểm tra
+              {t("play.check")}
             </Button>
             <Button
               variant="secondary"
@@ -233,11 +207,11 @@ function TypingRun({
               disabled={hint >= expectedLength}
             >
               <Lightbulb className="size-4" aria-hidden />
-              Gợi ý
+              {t("play.hintButton")}
             </Button>
             <Button variant="ghost" onClick={() => check(false)}>
               <SkipForward className="size-4" aria-hidden />
-              Bỏ qua
+              {t("play.skip")}
             </Button>
           </>
         )}

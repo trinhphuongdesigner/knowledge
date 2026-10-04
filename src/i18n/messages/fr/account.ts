@@ -1,0 +1,108 @@
+const account = {
+  metaTitle: "Paramètres du compte — Knowledge",
+  title: "Paramètres du compte",
+  breadcrumb: "Compte",
+  loading: "Chargement du compte…",
+  tabsLabel: "Paramètres du compte",
+  tabs: {
+    history: "Historique d’étude",
+    stats: "Statistiques",
+    settings: "Paramètres d’étude",
+    profile: "Profil",
+  },
+  export: {
+    title: "Télécharger mes données",
+    description: "Votre profil, vos catégories, paquets, progression et statistiques au format JSON.",
+    button: "Télécharger",
+  },
+  profile: {
+    updated: "Informations du compte mises à jour",
+    signedInWithGoogle: "Connecté avec Google",
+    saveChanges: "Enregistrer les modifications",
+    useGoogleAvatar: "Utiliser ma photo Google",
+    displayName: "Nom d’affichage",
+    fullName: "Nom complet",
+    gender: "Genre",
+    birthYear: "Année de naissance",
+    birthYearPlaceholder: "p. ex. 2000",
+    age: {
+      one: "≈ {count} an",
+      other: "≈ {count} ans",
+    },
+    nativeLanguage: "Langue maternelle",
+    genders: {
+      MALE: "Homme",
+      FEMALE: "Femme",
+      OTHER: "Autre",
+    },
+  },
+  uiLanguage: {
+    label: "Langue d’affichage",
+    hint: "La langue des menus, boutons et messages de l’application. Elle est distincte de votre langue maternelle, utilisée pour l’étude.",
+    saved: "Langue d’affichage mise à jour",
+    saveFailed: "Impossible de changer la langue d’affichage",
+    invalid: "Langue non prise en charge",
+  },
+  avatar: {
+    male: "Avatar par défaut — homme",
+    female: "Avatar par défaut — femme",
+    anonymous: "Avatar par défaut — anonyme",
+    alt: "Photo de profil",
+    altNamed: "Photo de profil de {name}",
+  },
+  push: {
+    title: "Notifications sur cet appareil",
+    enable: "Activer les notifications",
+    disable: "Désactiver les notifications",
+    enableFailed: "Impossible d’activer les notifications",
+    disableFailed: "Impossible de désactiver les notifications",
+    missingKey: "Le navigateur n’a pas renvoyé de clé d’abonnement",
+    iosHint:
+      "Sur iPhone/iPad : ajoutez l’application à votre écran d’accueil (Partager → Sur l’écran d’accueil), puis ouvrez-la depuis cette icône pour activer les notifications.",
+    status: {
+      checking: "Vérification…",
+      unsupported: "Ce navigateur ne prend pas en charge les notifications push.",
+      noKey: "Les notifications push ne sont pas configurées sur le serveur.",
+      noSw: "Disponible uniquement lorsque l’application est exécutée en version de production (un service worker est requis).",
+      denied:
+        "Les notifications sont bloquées. Autorisez les notifications pour ce site dans les paramètres de votre navigateur, puis rechargez la page.",
+      off: "Désactivées sur cet appareil.",
+      on: "Activées sur cet appareil.",
+    },
+  },
+  history: {
+    emptyTitle: "Aucun historique d’étude pour le moment",
+    emptyDescription: "Commencez à étudier un paquet et votre progression apparaîtra ici.",
+    emptyAction: "Choisir un paquet à étudier",
+    mastered: "Maîtrisées",
+    setsStudied: "Paquets étudiés",
+    progress: "Progression",
+    words: {
+      one: "{count} mot",
+      other: "{count} mots",
+    },
+    cards: {
+      one: "{count} carte",
+      other: "{count} cartes",
+    },
+    progressHint: "{known}/{total} cartes",
+    progressOf: "Progression de {title}",
+    completed: "Terminé",
+    inProgress: "En cours",
+    lastStudied: "Dernière étude : {date}",
+    studyAgain: "Étudier à nouveau",
+    continue: "Continuer l’étude",
+  },
+  studySettings: {
+    dailyGoal: "Objectif quotidien ({min}–{max} cartes)",
+    dailyGoalError: "Saisissez un nombre entier entre {min} et {max}",
+    saved: "Paramètres d’étude enregistrés",
+    saveFailed: "Impossible d’enregistrer les paramètres",
+    reminders: "Rappels d’étude par notifications push",
+    remindersHint:
+      "Envoie au plus 1 notification par jour (vers 19 h) si vous n’avez pas étudié et que des cartes sont à réviser. Les notifications apparaissent aussi sur l’icône en forme de cloche.",
+    save: "Enregistrer les paramètres",
+  },
+};
+
+export default account;

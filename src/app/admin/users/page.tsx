@@ -5,11 +5,11 @@ import { UserAvatar } from "@/components/avatar";
 import { displayName, fmtDate, fmtDateTime, fmtDayOnly } from "@/components/admin/users/format";
 import { Badge, Button, Card, EmptyState, Breadcrumbs } from "@/components/ui";
 import { fieldClass } from "@/components/ui/fieldStyles";
+import { getLocale, getT } from "@/i18n/server";
 import { requireAdmin } from "@/lib/auth/dal";
 import { listUsers } from "@/lib/admin/users-data";
 import {
   USER_FILTERS,
-  USER_FILTER_LABELS,
   USER_SORTS,
   parseUserListQuery,
   userListHref,
@@ -17,15 +17,11 @@ import {
 } from "@/lib/admin/users";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = { title: "Tài khoản — Quản trị" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("admin");
+  return { title: `${t("users.title")} — ${t("meta.suffix")}` };
+}
 export const dynamic = "force-dynamic";
-
-const SORT_LABELS: Record<UserSort, string> = {
-  createdAt: "Ngày đăng ký",
-  lastLoginAt: "Đăng nhập cuối",
-  cards: "Số thẻ",
-  sets: "Số bộ",
-};
 
 function pctClass(pct: number) {
   return pct >= 100 ? "text-red-600" : pct >= 80 ? "text-amber-600" : "text-ink-500";
@@ -33,6 +29,7 @@ function pctClass(pct: number) {
 
 export default async function AdminUsersPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   await requireAdmin();
+  const [t, locale] = await Promise.all([getT("admin"), getLocale()]);
   const q = parseUserListQuery(await searchParams);
   const { rows, total, pageSize } = await listUsers(q);
   const pages = Math.max(1, Math.ceil(total / pageSize));
@@ -45,7 +42,7 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
       <Link
         href={userListHref(q, { sort: key, dir: nextDir, page: 1 })}
         className={cn("inline-flex items-center gap-1 hover:text-accent", active && "text-ink-900")}
-        aria-label={`Sắp xếp theo ${label}`}
+        aria-label={t("users.sortBy", { label })}
       >
         {label}
         {active && (q.dir === "desc" ? <ArrowDown className="size-3" aria-hidden /> : <ArrowUp className="size-3" aria-hidden />)}
@@ -55,76 +52,76 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
 
   return (
     <div className="flex flex-col gap-4">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Tài khoản" }]} className="mb-0" />
+      <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("admin"), href: "/admin" }, { label: t("users.title") }]} className="mb-0" />
       <div>
-        <h1 className="text-2xl font-bold text-ink-900">Tài khoản</h1>
-        <p className="text-sm text-ink-600">{total} tài khoản{q.q || q.filter ? " khớp bộ lọc" : ""}.</p>
+        <h1 className="text-2xl font-bold text-ink-900">{t("users.title")}</h1>
+        <p className="text-sm text-ink-600">{t(q.q || q.filter ? "users.countFiltered" : "users.count", { count: total })}</p>
       </div>
 
       <Card>
         <form method="get" action="/admin/users" className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-sm font-medium text-ink-700">
-            Tìm kiếm
+            {t("users.search")}
             <span className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400" aria-hidden />
               <input
                 type="search"
                 name="q"
                 defaultValue={q.q}
-                placeholder="Email hoặc tên"
+                placeholder={t("users.searchPh")}
                 maxLength={100}
                 className={fieldClass(undefined, "min-h-11 pl-9")}
               />
             </span>
           </label>
           <label className="flex flex-col gap-1.5 text-sm font-medium text-ink-700">
-            Bộ lọc
+            {t("users.filter")}
             <select name="filter" defaultValue={q.filter ?? ""} className={fieldClass(undefined, "min-h-11")}>
-              <option value="">Tất cả</option>
+              <option value="">{t("users.filterAll")}</option>
               {USER_FILTERS.map((f) => (
                 <option key={f} value={f}>
-                  {USER_FILTER_LABELS[f]}
+                  {t(`users.filter${f.charAt(0).toUpperCase()}${f.slice(1)}` as "users.filterDisabled")}
                 </option>
               ))}
             </select>
           </label>
           <label className="flex flex-col gap-1.5 text-sm font-medium text-ink-700">
-            Sắp xếp
+            {t("users.sort")}
             <select name="sort" defaultValue={q.sort} className={fieldClass(undefined, "min-h-11")}>
               {USER_SORTS.map((s) => (
                 <option key={s} value={s}>
-                  {SORT_LABELS[s]}
+                  {t(`users.sort${s.charAt(0).toUpperCase()}${s.slice(1)}` as "users.sortSets")}
                 </option>
               ))}
             </select>
           </label>
           <input type="hidden" name="dir" value={q.dir} />
-          <Button type="submit">Lọc</Button>
+          <Button type="submit">{t("users.apply")}</Button>
           {(q.q || q.filter) && (
             <Link href="/admin/users" className="inline-flex min-h-11 items-center justify-center px-2 text-sm font-medium text-ink-600 hover:text-accent">
-              Xoá lọc
+              {t("users.clear")}
             </Link>
           )}
         </form>
       </Card>
 
       {rows.length === 0 ? (
-        <EmptyState title="Không có tài khoản nào" description="Thử đổi từ khoá hoặc bộ lọc." />
+        <EmptyState title={t("users.emptyTitle")} description={t("users.emptyDesc")} />
       ) : (
         <Card className="p-0 sm:p-0">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[1100px] text-left text-sm">
               <thead className="border-b border-ink-200 text-xs font-semibold uppercase tracking-wide text-ink-500">
                 <tr>
-                  <th scope="col" className="px-4 py-3">Tài khoản</th>
-                  <th scope="col" className="px-3 py-3">{sortHeader("createdAt", "Đăng ký")}</th>
-                  <th scope="col" className="px-3 py-3">{sortHeader("lastLoginAt", "Đăng nhập cuối")}</th>
-                  <th scope="col" className="px-3 py-3">Học cuối</th>
-                  <th scope="col" className="px-3 py-3 text-right">{sortHeader("sets", "Bộ")}</th>
-                  <th scope="col" className="px-3 py-3 text-right">{sortHeader("cards", "Thẻ")}</th>
-                  <th scope="col" className="px-3 py-3 text-right">Đã lưu</th>
-                  <th scope="col" className="px-3 py-3 text-right">Lượt ôn</th>
-                  <th scope="col" className="px-4 py-3">Trạng thái</th>
+                  <th scope="col" className="px-4 py-3">{t("users.colAccount")}</th>
+                  <th scope="col" className="px-3 py-3">{sortHeader("createdAt", t("users.colSignup"))}</th>
+                  <th scope="col" className="px-3 py-3">{sortHeader("lastLoginAt", t("users.colLastLogin"))}</th>
+                  <th scope="col" className="px-3 py-3">{t("users.colLastStudy")}</th>
+                  <th scope="col" className="px-3 py-3 text-right">{sortHeader("sets", t("users.colSets"))}</th>
+                  <th scope="col" className="px-3 py-3 text-right">{sortHeader("cards", t("users.colCards"))}</th>
+                  <th scope="col" className="px-3 py-3 text-right">{t("users.colSaved")}</th>
+                  <th scope="col" className="px-3 py-3 text-right">{t("users.colReviews")}</th>
+                  <th scope="col" className="px-4 py-3">{t("users.colStatus")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-ink-100">
@@ -139,9 +136,9 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
                         </span>
                       </Link>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-3 text-ink-700">{fmtDate(u.createdAt)}</td>
-                    <td className="whitespace-nowrap px-3 py-3 text-ink-700">{fmtDateTime(u.lastLoginAt)}</td>
-                    <td className="whitespace-nowrap px-3 py-3 text-ink-700">{fmtDayOnly(u.lastStudyDay)}</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-ink-700">{fmtDate(locale, u.createdAt)}</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-ink-700">{fmtDateTime(locale, u.lastLoginAt)}</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-ink-700">{fmtDayOnly(locale, u.lastStudyDay)}</td>
                     <td className="whitespace-nowrap px-3 py-3 text-right tabular-nums">
                       {u.sets} <span className={cn("text-xs", pctClass(u.setsPct))}>({u.setsPct}%)</span>
                     </td>
@@ -152,10 +149,10 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
                     <td className="px-3 py-3 text-right tabular-nums">{u.reviews}</td>
                     <td className="px-4 py-3">
                       <div className="flex flex-wrap gap-1">
-                        {u.role === "ADMIN" && <Badge tone="blue">Admin</Badge>}
-                        {u.disabledAt && <Badge tone="gray" className="bg-red-50 text-red-700 ring-red-600/20">Bị khoá</Badge>}
-                        {!u.onboardedAt && <Badge tone="gray">Chưa hoàn tất hồ sơ</Badge>}
-                        {u.onboardedAt && !u.disabledAt && u.role !== "ADMIN" && <Badge tone="green">Hoạt động</Badge>}
+                        {u.role === "ADMIN" && <Badge tone="blue">{t("users.badgeAdmin")}</Badge>}
+                        {u.disabledAt && <Badge tone="gray" className="bg-red-50 text-red-700 ring-red-600/20">{t("users.badgeLocked")}</Badge>}
+                        {!u.onboardedAt && <Badge tone="gray">{t("users.badgeUnonboarded")}</Badge>}
+                        {u.onboardedAt && !u.disabledAt && u.role !== "ADMIN" && <Badge tone="green">{t("users.badgeActive")}</Badge>}
                       </div>
                     </td>
                   </tr>
@@ -167,20 +164,20 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
       )}
 
       {pages > 1 && (
-        <nav aria-label="Phân trang" className="flex items-center justify-between gap-3">
+        <nav aria-label={t("users.paginationAria")} className="flex items-center justify-between gap-3">
           {page > 1 ? (
             <Link href={userListHref(q, { page: page - 1 })} className="inline-flex min-h-11 items-center gap-1 rounded-xl px-3 text-sm font-medium text-ink-700 hover:bg-ink-100">
-              <ChevronLeft className="size-4" aria-hidden /> Trước
+              <ChevronLeft className="size-4" aria-hidden /> {t("users.prev")}
             </Link>
           ) : (
             <span />
           )}
           <span className="text-sm text-ink-600">
-            Trang {page} / {pages}
+            {t("users.pageOf", { page, pages })}
           </span>
           {page < pages ? (
             <Link href={userListHref(q, { page: page + 1 })} className="inline-flex min-h-11 items-center gap-1 rounded-xl px-3 text-sm font-medium text-ink-700 hover:bg-ink-100">
-              Sau <ChevronRight className="size-4" aria-hidden />
+              {t("users.next")} <ChevronRight className="size-4" aria-hidden />
             </Link>
           ) : (
             <span />

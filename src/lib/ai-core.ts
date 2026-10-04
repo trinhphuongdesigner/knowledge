@@ -1,5 +1,6 @@
 /** Phần thuần của gợi ý AI (không import DB / mạng) — test được bằng vitest. */
 import { z } from "zod";
+import type { Locale } from "@/i18n/config";
 
 export const DEFAULT_AI_MODEL = "claude-haiku-4-5";
 export const AI_TIMEOUT_MS = 10_000;
@@ -23,12 +24,21 @@ export const AI_ERROR_STATUS: Record<AiErrorCode, number> = {
   invalid: 502,
 };
 
+/** English messages for logs/Error.message; API responses translate by code via AI_ERROR_KEY. */
 export const AI_ERROR_MESSAGE: Record<AiErrorCode, string> = {
-  disabled: "Tính năng AI chưa được bật",
-  rate_limited: "AI đang bận, vui lòng thử lại sau ít phút",
-  upstream: "Không kết nối được AI, vui lòng thử lại",
-  invalid: "AI trả về kết quả không hợp lệ, vui lòng thử lại",
+  disabled: "AI feature is not enabled",
+  rate_limited: "AI is busy, please try again later",
+  upstream: "Could not reach the AI, please try again",
+  invalid: "AI returned an invalid result, please try again",
 };
+
+/** Key trong namespace errors cho từng mã lỗi AI. */
+export const AI_ERROR_KEY = {
+  disabled: "aiDisabled",
+  rate_limited: "aiRateLimited",
+  upstream: "aiUpstream",
+  invalid: "aiInvalid",
+} as const satisfies Record<AiErrorCode, string>;
 
 const clean = (max: number) => z.string().transform((s) => s.trim()).pipe(z.string().max(max));
 
@@ -39,36 +49,56 @@ export const suggestionSchema = z.object({
   phonetic: clean(200).optional(),
 });
 
-export const SYSTEM_PROMPT =
-  "Bạn là trợ lý tạo thẻ ghi nhớ cho người Việt học tập. Chỉ trả về MỘT đối tượng JSON hợp lệ, không kèm lời giải thích hay khối mã.";
+/** Tên tiếng Anh của ngôn ngữ giao diện — đưa vào prompt để AI trả lời đúng ngôn ngữ người dùng cài đặt. */
+export const AI_LANGUAGE_NAMES: Record<Locale, string> = {
+  en: "English",
+  vi: "Vietnamese",
+  zh: "Simplified Chinese",
+  ja: "Japanese",
+  ko: "Korean",
+  ru: "Russian",
+  fr: "French",
+  th: "Thai",
+};
 
-export function buildPrompt(input: { term: string; english: boolean }): string {
+export type AiPromptInput = { term: string; english: boolean; locale: Locale };
+
+export function systemPrompt(locale: Locale): string {
+  return `You are an assistant that creates flashcards for learners whose display language is ${AI_LANGUAGE_NAMES[locale]}. Return exactly ONE valid JSON object, with no explanation and no code block.`;
+}
+
+export function buildPrompt(input: AiPromptInput): string {
   const term = input.term.trim().slice(0, 200);
+  const lang = AI_LANGUAGE_NAMES[input.locale];
   const shape = input.english
     ? `{"answer": string, "explanation": string, "partOfSpeech": string, "phonetic": string}`
     : `{"answer": string, "explanation": string, "partOfSpeech": ""}`;
   const rules = input.english
     ? [
-        `Thuật ngữ tiếng Anh: "${term}".`,
-        `- answer: nghĩa tiếng Việt ngắn gọn, nêu các nghĩa phổ biến nhất, tối đa 120 ký tự.`,
-        `- explanation: một câu ví dụ tiếng Anh tự nhiên có chứa từ/cụm đó, xuống dòng rồi kèm bản dịch tiếng Việt (có thể dùng Markdown, ngắn gọn).`,
-        `- partOfSpeech: từ loại bằng tiếng Anh (noun, verb, adjective, adverb, phrase...).`,
-        `- phonetic: phiên âm IPA dạng /.../ nếu chắc chắn, nếu không thì chuỗi rỗng.`,
+        `English term: "${term}".`,
+        input.locale === "en"
+          ? `- answer: a concise English definition covering the most common senses, at most 120 characters.`
+          : `- answer: a concise ${lang} meaning covering the most common senses, at most 120 characters.`,
+        input.locale === "en"
+          ? `- explanation: one natural English example sentence containing the word/phrase (Markdown allowed, keep it short).`
+          : `- explanation: one natural English example sentence containing the word/phrase, then a line break and its ${lang} translation (Markdown allowed, keep it short).`,
+        `- partOfSpeech: the part of speech in English (noun, verb, adjective, adverb, phrase...).`,
+        `- phonetic: IPA transcription in the form /.../ if you are sure, otherwise an empty string.`,
       ]
     : [
-        `Thuật ngữ (có thể là CNTT/kỹ thuật): "${term}".`,
-        `- answer: định nghĩa tiếng Việt ngắn gọn, chính xác, tối đa 200 ký tự.`,
-        `- explanation: giải thích hoặc ví dụ ngắn (Markdown được phép, tối đa vài câu).`,
-        `- partOfSpeech: luôn là chuỗi rỗng.`,
+        `Term (may be IT/technical): "${term}".`,
+        `- answer: a short, accurate ${lang} definition, at most 200 characters.`,
+        `- explanation: a short explanation or example in ${lang} (Markdown allowed, a few sentences at most).`,
+        `- partOfSpeech: always an empty string.`,
       ];
-  return [...rules, `Trả về JSON đúng dạng: ${shape}`].join("\n");
+  return [...rules, `Return JSON in exactly this shape: ${shape}`].join("\n");
 }
 
-export function buildRequestBody(input: { term: string; english: boolean }, model: string) {
+export function buildRequestBody(input: AiPromptInput, model: string) {
   return {
     model,
     max_tokens: AI_MAX_TOKENS,
-    system: SYSTEM_PROMPT,
+    system: systemPrompt(input.locale),
     messages: [{ role: "user", content: buildPrompt(input) }],
   };
 }

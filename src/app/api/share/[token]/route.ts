@@ -12,7 +12,7 @@ export async function GET(_req: Request, { params }: Ctx) {
   try {
     const { token } = await params;
     const set = await getSetByShareToken(token);
-    if (!set) return notFound("Liên kết không tồn tại hoặc đã bị tắt chia sẻ");
+    if (!set) return notFound("shareNotFound");
     const dto: StudySetDetailDTO = toSetDetailDTO(set, { isOwner: false, ownerName: set.user.name });
     return json({ ...dto, cards: set.cards.map(toCardDTO) });
   } catch (e) {

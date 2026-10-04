@@ -3,19 +3,9 @@
 import { Check, Copy, Globe, Link2, Lock, Share2 } from "lucide-react";
 import { useState } from "react";
 import { Badge, Button, Modal } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import type { Visibility } from "@/lib/validators";
-
-const OPTIONS: { value: Visibility; label: string; hint: string; icon: typeof Lock }[] = [
-  { value: "PRIVATE", label: "Riêng tư", hint: "Chỉ mình bạn xem được.", icon: Lock },
-  { value: "LINK", label: "Ai có link", hint: "Ai có liên kết đều xem được, không cần đăng nhập.", icon: Link2 },
-  {
-    value: "PUBLIC",
-    label: "Công khai trong thư viện — chờ duyệt",
-    hint: "Hiện ở trang Thư viện sau khi quản trị viên duyệt. Ai có link vẫn xem được ngay.",
-    icon: Globe,
-  },
-];
 
 export function ShareButton({
   setId,
@@ -28,6 +18,12 @@ export function ShareButton({
   shareToken: string | null;
   approved: boolean;
 }) {
+  const t = useT("sets");
+  const OPTIONS: { value: Visibility; label: string; hint: string; icon: typeof Lock }[] = [
+    { value: "PRIVATE", label: t("share.private"), hint: t("share.privateHint"), icon: Lock },
+    { value: "LINK", label: t("share.link"), hint: t("share.linkHint"), icon: Link2 },
+    { value: "PUBLIC", label: t("share.public"), hint: t("share.publicHint"), icon: Globe },
+  ];
   const [open, setOpen] = useState(false);
   const [visibility, setVisibility] = useState(initialVisibility);
   const [token, setToken] = useState(initialToken);
@@ -49,7 +45,7 @@ export function ShareButton({
       setVisibility(dto.visibility);
       setToken(dto.shareToken ?? null);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không thể đổi chế độ chia sẻ.");
+      setError(e instanceof Error ? e.message : t("share.changeFailed"));
     } finally {
       setSaving(false);
     }
@@ -61,7 +57,7 @@ export function ShareButton({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      setError("Không sao chép được, hãy chọn và copy liên kết thủ công.");
+      setError(t("share.copyFailed"));
     }
   }
 
@@ -69,11 +65,11 @@ export function ShareButton({
     <>
       <Button variant="secondary" onClick={() => setOpen(true)}>
         <Share2 className="size-4" aria-hidden />
-        Chia sẻ
+        {t("share.button")}
       </Button>
-      <Modal open={open} onClose={() => setOpen(false)} title="Chia sẻ nhóm thẻ">
+      <Modal open={open} onClose={() => setOpen(false)} title={t("share.title")}>
         <fieldset disabled={saving} className="flex flex-col gap-2">
-          <legend className="sr-only">Chế độ chia sẻ</legend>
+          <legend className="sr-only">{t("share.mode")}</legend>
           {OPTIONS.map((o) => {
             const checked = visibility === o.value;
             return (
@@ -106,15 +102,15 @@ export function ShareButton({
 
         {visibility === "PUBLIC" && (
           <p className="mt-3 flex items-center gap-2 text-sm text-ink-600">
-            Trạng thái:
-            <Badge tone={approved ? "green" : "gray"}>{approved ? "Đã duyệt" : "Chờ duyệt"}</Badge>
+            {t("share.status")}
+            <Badge tone={approved ? "green" : "gray"}>{approved ? t("share.approved") : t("share.pending")}</Badge>
           </p>
         )}
 
         {visibility !== "PRIVATE" && token && (
           <div className="mt-4">
             <label htmlFor="share-link" className="mb-1 block text-sm font-medium text-ink-700">
-              Liên kết chia sẻ
+              {t("share.linkLabel")}
             </label>
             <div className="flex gap-2">
               <input
@@ -126,7 +122,7 @@ export function ShareButton({
               />
               <Button variant="secondary" onClick={copyLink} aria-live="polite">
                 {copied ? <Check className="size-4" aria-hidden /> : <Copy className="size-4" aria-hidden />}
-                {copied ? "Đã chép" : "Chép link"}
+                {copied ? t("share.copied") : t("share.copyLink")}
               </Button>
             </div>
           </div>
@@ -138,7 +134,7 @@ export function ShareButton({
         )}
         <div className="mt-5 flex justify-end">
           <Button variant="secondary" onClick={() => setOpen(false)}>
-            Xong
+            {t("share.done")}
           </Button>
         </div>
       </Modal>

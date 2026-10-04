@@ -67,7 +67,7 @@ describe("verifyFirebaseIdToken", () => {
   });
 
   it("rejects an unverified email", async () => {
-    await expect(verify(await sign({ ...goodClaims(), email_verified: false }))).rejects.toThrow(/xác minh/);
+    await expect(verify(await sign({ ...goodClaims(), email_verified: false }))).rejects.toThrow(/not verified/);
   });
 
   it("rejects when email_verified is missing", async () => {

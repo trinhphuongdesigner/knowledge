@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "Chưa có thống kê",
+    emptyDescription: "Ôn thẻ để bắt đầu chuỗi ngày học và xem tiến độ của bạn.",
+    reviewToday: "Ôn hôm nay",
+    streak: "Chuỗi hiện tại",
+    longest: "Chuỗi dài nhất",
+    total: "Tổng lượt ôn",
+    accuracy: "Độ chính xác",
+    days: { one: "{count} ngày", other: "{count} ngày" },
+    last90: "90 ngày gần nhất",
+    last30: "30 ngày gần nhất",
+    heatmapAria: "Biểu đồ nhiệt 90 ngày gần nhất, tổng {total} lượt ôn",
+    barsAria: "Số thẻ đã ôn mỗi ngày trong 30 ngày gần nhất, cao nhất {max}",
+    dayTitle: "{day}: {reviewed} thẻ, đúng {correct}",
+    less: "Ít",
+    more: "Nhiều",
+    correct: "Đúng",
+    wrong: "Sai",
+  },
+  streak: {
+    chartAria: "Số thẻ đã ôn 14 ngày gần nhất: {values}",
+    daysInRow: { one: "ngày liên tiếp", other: "ngày liên tiếp" },
+    startNew: "Học hôm nay để bắt đầu chuỗi mới",
+    keep: "Học hôm nay để giữ chuỗi",
+    longest: { one: "Dài nhất: {count} ngày", other: "Dài nhất: {count} ngày" },
+    dayTitle: { one: "{day}: {count} thẻ", other: "{day}: {count} thẻ" },
+    goal: "Mục tiêu hôm nay",
+    goalCount: "{done}/{goal} thẻ",
+    goalAria: "Tiến độ mục tiêu hôm nay",
+    view: "Xem thống kê",
+  },
+};
+
+export default stats;

@@ -3,11 +3,11 @@
 import { useId, useState } from "react";
 import { UserAvatar } from "@/components/avatar";
 import { Input, LanguageCombobox } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import type { ProfileFormState } from "@/lib/auth/types";
 import {
   BIRTH_YEAR_MIN,
   GENDERS,
-  GENDER_LABELS,
   ageFromBirthYear,
   currentYear,
   isGender,
@@ -35,6 +35,7 @@ export function ProfileFields({
   /** Ảnh Google của người dùng (nếu có); quyết định có hiện nút bật/tắt ảnh hay không. */
   googleAvatarUrl?: string | null;
 }) {
+  const t = useT("account");
   const [birthYear, setBirthYear] = useState(defaults.birthYear);
   const [gender, setGender] = useState(defaults.gender);
   const [useGoogle, setUseGoogle] = useState(defaults.useGoogleAvatar);
@@ -61,14 +62,14 @@ export function ProfileFields({
               onChange={(e) => setUseGoogle(e.target.checked)}
               className="size-5 accent-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
             />
-            Dùng ảnh từ Google
+            {t("profile.useGoogleAvatar")}
           </label>
         ) : (
           <input type="hidden" name="useGoogleAvatar" value="on" />
         )}
       </div>
       <Input
-        label="Tên hiển thị"
+        label={t("profile.displayName")}
         name="name"
         autoComplete="nickname"
         maxLength={40}
@@ -77,7 +78,7 @@ export function ProfileFields({
         error={errors?.name?.[0]}
       />
       <Input
-        label="Họ và tên"
+        label={t("profile.fullName")}
         name="fullName"
         autoComplete="name"
         maxLength={80}
@@ -89,7 +90,7 @@ export function ProfileFields({
         className="flex flex-col gap-1.5"
         aria-describedby={genderError ? `${genderId}-error` : undefined}
       >
-        <legend className="mb-1.5 text-sm font-medium text-ink-700">Giới tính</legend>
+        <legend className="mb-1.5 text-sm font-medium text-ink-700">{t("profile.gender")}</legend>
         <div className="grid grid-cols-3 gap-2">
           {GENDERS.map((g) => (
             <label key={g} className="relative cursor-pointer">
@@ -103,7 +104,7 @@ export function ProfileFields({
                 className="peer sr-only"
               />
               <span className="flex min-h-11 items-center justify-center rounded-xl border border-ink-200 bg-surface px-3 text-sm font-medium text-ink-700 transition-colors hover:bg-ink-50 peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-checked:font-semibold peer-checked:text-brand-800 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-600">
-                {GENDER_LABELS[g]}
+                {t(`profile.genders.${g}`)}
               </span>
             </label>
           ))}
@@ -116,7 +117,7 @@ export function ProfileFields({
       </fieldset>
       <div className="flex flex-col gap-1.5">
         <Input
-          label="Năm sinh"
+          label={t("profile.birthYear")}
           name="birthYear"
           type="number"
           inputMode="numeric"
@@ -124,20 +125,20 @@ export function ProfileFields({
           max={currentYear()}
           step={1}
           required
-          placeholder="VD: 2000"
+          placeholder={t("profile.birthYearPlaceholder")}
           defaultValue={defaults.birthYear}
           onChange={(e) => setBirthYear(e.target.value)}
           error={errors?.birthYear?.[0]}
         />
         {showAge && (
           <p className="text-sm text-ink-600" aria-live="polite">
-            ≈ {ageFromBirthYear(year)} tuổi
+            {t("profile.age", { count: ageFromBirthYear(year) })}
           </p>
         )}
       </div>
       <LanguageCombobox
         name="nativeLanguage"
-        label="Ngôn ngữ mẹ đẻ"
+        label={t("profile.nativeLanguage")}
         defaultValue={defaults.nativeLanguage}
         error={errors?.nativeLanguage?.[0]}
       />

@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Button, Input, Select, Textarea } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import { colorClasses } from "@/components/categories/colors";
 import {
   LEVELS,
-  LEVEL_LABELS,
   setInputSchema,
   type CategoryDTO,
   type Level,
@@ -16,13 +16,6 @@ import {
 } from "@/lib/validators";
 
 type Errors = Partial<Record<"title" | "description" | "categoryId" | "level", string>>;
-
-const MESSAGES: Record<string, string> = {
-  title: "Vui lòng nhập tên nhóm thẻ (tối đa 200 ký tự).",
-  description: "Mô tả tối đa 2000 ký tự.",
-  categoryId: "Vui lòng chọn danh mục.",
-  level: "Cấp độ không hợp lệ.",
-};
 
 export function SetForm({
   categories,
@@ -37,6 +30,13 @@ export function SetForm({
   canManageCategories?: boolean;
 }) {
   const router = useRouter();
+  const t = useT("sets");
+  const MESSAGES: Record<string, string> = {
+    title: t("form.titleError"),
+    description: t("form.descriptionError"),
+    categoryId: t("form.categoryError"),
+    level: t("form.levelError"),
+  };
   const [title, setTitle] = useState(set?.title ?? "");
   const [description, setDescription] = useState(set?.description ?? "");
   const [categoryId, setCategoryId] = useState<string>(set?.category.id ?? categories[0]?.id ?? "");
@@ -70,7 +70,7 @@ export function SetForm({
       }
       router.refresh();
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : "Đã có lỗi xảy ra.");
+      setSubmitError(err instanceof Error ? err.message : t("form.genericError"));
       setLoading(false);
     }
   }
@@ -78,29 +78,29 @@ export function SetForm({
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
       <Input
-        label="Tên nhóm thẻ"
+        label={t("form.title")}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         error={errors.title}
-        placeholder="Ví dụ: JavaScript cơ bản"
+        placeholder={t("form.titlePlaceholder")}
         maxLength={250}
         autoFocus={!set}
       />
       <Textarea
-        label="Mô tả (tuỳ chọn)"
+        label={t("form.description")}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         error={errors.description}
         rows={4}
-        placeholder="Nhóm thẻ này nói về điều gì?"
+        placeholder={t("form.descriptionPlaceholder")}
       />
       <div className="flex flex-col gap-1.5">
         <Select
-          label="Danh mục"
+          label={t("form.category")}
           value={categoryId}
           onValueChange={setCategoryId}
           error={errors.categoryId}
-          placeholder="Chọn danh mục"
+          placeholder={t("form.categoryPlaceholder")}
           options={categories.map((c) => ({ value: c.id, label: c.name, color: colorClasses(c.color).dot }))}
         />
         {canManageCategories && (
@@ -108,20 +108,20 @@ export function SetForm({
             href="/admin/categories"
             className="self-start text-sm font-medium text-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
           >
-            Quản lý danh mục
+            {t("form.manageCategories")}
           </Link>
         )}
       </div>
       <Select
-        label="Cấp độ (tuỳ chọn)"
+        label={t("form.level")}
         value={level}
         onChange={(e) => setLevel(e.target.value as Level | "")}
         error={errors.level}
       >
-        <option value="">Không chọn</option>
+        <option value="">{t("form.levelNone")}</option>
         {LEVELS.map((l) => (
           <option key={l} value={l}>
-            {LEVEL_LABELS[l]}
+            {t(`levels.${l}`)}
           </option>
         ))}
       </Select>
@@ -132,10 +132,10 @@ export function SetForm({
       )}
       <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
         <Button variant="secondary" onClick={() => (onCancel ? onCancel() : router.back())} disabled={loading}>
-          Huỷ
+          {t("actions.cancel")}
         </Button>
         <Button type="submit" loading={loading}>
-          {set ? "Lưu thay đổi" : "Tạo nhóm thẻ"}
+          {set ? t("form.saveChanges") : t("create.button")}
         </Button>
       </div>
     </form>

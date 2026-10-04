@@ -1,0 +1,53 @@
+const categories = {
+  loading: "正在加载分类…",
+  colors: {
+    BLUE: "蓝色",
+    GREEN: "绿色",
+    AMBER: "琥珀色",
+    PURPLE: "紫色",
+    ROSE: "玫红色",
+    SLATE: "石板灰",
+  },
+  form: {
+    editTitle: "编辑分类",
+    createTitle: "创建分类",
+    nameError: "请输入分类名称（最多 40 个字符）。",
+    genericError: "出了点问题。",
+    name: "分类名称",
+    namePlaceholder: "例如：数学",
+    color: "颜色",
+    english: "英语词汇卡组",
+    englishHint: "为卡片显示音标、朗读按钮和词典查询。",
+    cancel: "取消",
+    saveChanges: "保存更改",
+    create: "创建分类",
+  },
+  manager: {
+    requestFailed: "请求失败（{status}）",
+    moveFailed: "无法调整顺序。",
+    deleteFailed: "无法删除分类。",
+    emptyTitle: "还没有分类",
+    emptyDescription: "创建分类来整理你的卡组。",
+    create: "创建分类",
+    english: "英语",
+    setCount: { other: "{count} 个卡组" },
+    cardCount: { other: "{count} 张卡片" },
+    moveUp: "上移分类 {name}",
+    moveDown: "下移分类 {name}",
+    edit: "编辑",
+    delete: "删除",
+    categoryName: "分类 {name}",
+    deleteTitle: "删除这个分类？",
+    deleteNeedsTarget: {
+      other:
+        "分类 {name} 中还有 {count} 个卡组。请选择一个目标分类，将它们全部移过去，然后此分类会被删除。",
+    },
+    deleteConfirm: "分类 {name} 将被永久删除。",
+    reassignTo: "将卡组移至",
+    pickTarget: "选择目标分类",
+    noTargets: "没有其他分类",
+    moveAndDelete: "移动并删除",
+  },
+};
+
+export default categories;

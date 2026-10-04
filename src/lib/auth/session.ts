@@ -40,7 +40,7 @@ export async function validateSession(token: string | undefined): Promise<Sessio
   const id = hashToken(token);
   const session = await db.session.findUnique({
     where: { id },
-    include: { user: { select: { id: true, email: true, name: true, role: true, onboardedAt: true, gender: true, avatarUrl: true, useGoogleAvatar: true, disabledAt: true } } },
+    include: { user: { select: { id: true, email: true, name: true, uiLanguage: true, role: true, onboardedAt: true, gender: true, avatarUrl: true, useGoogleAvatar: true, disabledAt: true } } },
   });
   if (!session) return null;
   if (session.expiresAt.getTime() <= Date.now()) {

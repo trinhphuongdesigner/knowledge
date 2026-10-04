@@ -1,3 +1,7 @@
+"use client";
+
+import { useT } from "@/i18n/client";
+
 type StudyProgressProps = {
   current: number;
   total: number;
@@ -6,6 +10,7 @@ type StudyProgressProps = {
 };
 
 export function StudyProgress({ current, total, known, unknown }: StudyProgressProps) {
+  const t = useT("study");
   const shown = Math.min(current, total);
   const pct = total === 0 ? 0 : Math.round((shown / total) * 100);
   return (
@@ -16,10 +21,10 @@ export function StudyProgress({ current, total, known, unknown }: StudyProgressP
         </span>
         <span className="flex items-center gap-3 text-xs text-ink-600">
           <span className="inline-flex items-center gap-1">
-            <span className="size-2 rounded-full bg-green-500" aria-hidden /> Đã thuộc {known}
+            <span className="size-2 rounded-full bg-green-500" aria-hidden /> {t("progress.known", { count: known })}
           </span>
           <span className="inline-flex items-center gap-1">
-            <span className="size-2 rounded-full bg-amber-500" aria-hidden /> Chưa thuộc {unknown}
+            <span className="size-2 rounded-full bg-amber-500" aria-hidden /> {t("progress.unknown", { count: unknown })}
           </span>
         </span>
       </div>
@@ -28,7 +33,7 @@ export function StudyProgress({ current, total, known, unknown }: StudyProgressP
         aria-valuemin={0}
         aria-valuemax={total}
         aria-valuenow={shown}
-        aria-label="Tiến độ học"
+        aria-label={t("progress.aria")}
         className="mt-2 h-2.5 overflow-hidden rounded-full bg-ink-200/70"
       >
         <div

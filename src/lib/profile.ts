@@ -6,7 +6,6 @@ export const BIRTH_YEAR_MIN = 1900;
 /** Khớp enum Prisma `Gender`. */
 export const GENDERS = ["MALE", "FEMALE", "OTHER"] as const;
 export type Gender = (typeof GENDERS)[number];
-export const GENDER_LABELS: Record<Gender, string> = { MALE: "Nam", FEMALE: "Nữ", OTHER: "Khác" };
 
 export function isGender(v: unknown): v is Gender {
   return typeof v === "string" && (GENDERS as readonly string[]).includes(v);

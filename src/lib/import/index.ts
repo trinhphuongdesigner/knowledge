@@ -4,9 +4,16 @@ import type { ParseResult } from "./types";
 import { parseXlsx } from "./xlsx";
 
 export { parseCsv, parseMarkdown, parseXlsx };
-export type { ParsedCard, ParseResult, ParseError } from "./types";
+export type { ParsedCard, ParseResult, ParseError, ParseErrorCode } from "./types";
 
 export const ACCEPTED_EXTENSIONS = [".csv", ".xlsx", ".xls", ".md", ".markdown", ".txt"];
+
+/** Định dạng file không hỗ trợ — UI dịch thông báo. */
+export class UnsupportedFormatError extends Error {
+  constructor(public readonly format: string) {
+    super(`Unsupported file format: ${format}`);
+  }
+}
 
 export async function parseFile(file: File): Promise<ParseResult> {
   const name = file.name.toLowerCase();
@@ -27,8 +34,6 @@ export async function parseFile(file: File): Promise<ParseResult> {
       return md.cards.length > 0 ? md : parseCsv(text);
     }
     default:
-      throw new Error(
-        `Định dạng file "${ext || file.name}" chưa được hỗ trợ. Hãy dùng .csv, .xlsx, .xls, .md, .markdown hoặc .txt.`,
-      );
+      throw new UnsupportedFormatError(ext || file.name);
   }
 }

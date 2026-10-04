@@ -1,5 +1,6 @@
 import { BookOpen, CircleUserRound, Search } from "lucide-react";
 import Link from "next/link";
+import { getT } from "@/i18n/server";
 import { getCurrentUser } from "@/lib/auth/dal";
 import { NotificationBell } from "@/components/notifications/NotificationBell";
 import { InstallButton } from "@/components/pwa/InstallButton";
@@ -8,7 +9,7 @@ import { HideOnAuthRoutes } from "./HideOnAuthRoutes";
 import { UserMenu } from "./UserMenu";
 
 export async function Header() {
-  const user = await getCurrentUser();
+  const [user, t] = await Promise.all([getCurrentUser(), getT("layout")]);
   return (
     <HideOnAuthRoutes>
       <header className="sticky top-0 z-40 border-b border-ink-200/80 bg-paper/85 pt-[env(safe-area-inset-top)] backdrop-blur-md">
@@ -27,8 +28,8 @@ export async function Header() {
             {user && (
               <Link
                 href="/search"
-                aria-label="Tìm kiếm"
-                title="Tìm kiếm (/)"
+                aria-label={t("header.search")}
+                title={t("header.searchTitle")}
                 className="flex size-11 items-center justify-center rounded-full text-ink-600 transition-colors hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
                 <Search className="size-5" aria-hidden />
@@ -39,7 +40,7 @@ export async function Header() {
                 href="/about"
                 className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
-                Giới thiệu
+                {t("header.about")}
               </Link>
             )}
             {user && <NotificationBell />}
@@ -57,7 +58,7 @@ export async function Header() {
                 className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
                 <CircleUserRound className="size-5" aria-hidden />
-                Đăng nhập
+                {t("header.login")}
               </Link>
             )}
           </div>

@@ -33,6 +33,7 @@ import {
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 import { fieldClass } from "./fieldStyles";
 
@@ -97,6 +98,7 @@ export function Select({
   children,
   "aria-label": ariaLabel,
 }: SelectProps) {
+  const tCommon = useT("common");
   const autoId = useId();
   const fieldId = id ?? autoId;
   const listId = `${fieldId}-list`;
@@ -291,7 +293,7 @@ export function Select({
       >
         {dot(selected?.color)}
         <span className={cn("min-w-0 flex-1 truncate", !selected && "text-ink-400")}>
-          {selected ? selected.label : (placeholder ?? "Chọn…")}
+          {selected ? selected.label : (placeholder ?? tCommon("select"))}
         </span>
         <ChevronDown
           className={cn("size-4 shrink-0 text-ink-500 transition-transform", open && "rotate-180")}

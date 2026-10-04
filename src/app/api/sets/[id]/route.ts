@@ -3,15 +3,7 @@ import { categoryExists } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { toSetDTO, toSetDetailDTO } from "@/lib/dto";
-import {
-  badRequest,
-  isNotFoundError,
-  json,
-  notFound,
-  readJson,
-  serverError,
-  validationError,
-} from "@/lib/http";
+import { badRequest, isNotFoundError, json, notFound, readJson, serverError, validationError } from "@/lib/http";
 import { setInputSchema } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
@@ -28,7 +20,7 @@ export async function GET(req: Request, { params }: Ctx) {
       where: { id, userId: user.id },
       include: { category: true, cards: { orderBy: [{ position: "asc" }, { createdAt: "asc" }] } },
     });
-    if (!set) return notFound("Không tìm thấy nhóm thẻ");
+    if (!set) return notFound("setNotFound");
     return json(toSetDetailDTO(set));
   } catch (e) {
     return serverError(e);
@@ -44,10 +36,10 @@ export async function PATCH(req: Request, { params }: Ctx) {
     const parsed = setInputSchema.partial().safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     const owned = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
-    if (!owned) return notFound("Không tìm thấy nhóm thẻ");
+    if (!owned) return notFound("setNotFound");
     const { title, description, categoryId, level } = parsed.data;
     if (categoryId !== undefined && !(await categoryExists(categoryId))) {
-      return badRequest("Danh mục không hợp lệ");
+      return badRequest("categoryInvalid");
     }
     const set = await db.studySet.update({
       where: { id },
@@ -61,7 +53,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
     });
     return json(toSetDTO(set, set._count.cards));
   } catch (e) {
-    if (isNotFoundError(e)) return notFound("Không tìm thấy nhóm thẻ");
+    if (isNotFoundError(e)) return notFound("setNotFound");
     return serverError(e);
   }
 }
@@ -73,11 +65,11 @@ export async function DELETE(req: Request, { params }: Ctx) {
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const owned = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true } });
-    if (!owned) return notFound("Không tìm thấy nhóm thẻ");
+    if (!owned) return notFound("setNotFound");
     await db.studySet.delete({ where: { id } });
     return json({ ok: true });
   } catch (e) {
-    if (isNotFoundError(e)) return notFound("Không tìm thấy nhóm thẻ");
+    if (isNotFoundError(e)) return notFound("setNotFound");
     return serverError(e);
   }
 }

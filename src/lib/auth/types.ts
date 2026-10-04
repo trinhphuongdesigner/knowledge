@@ -5,6 +5,8 @@ export type SessionUser = {
   id: string;
   email: string;
   name: string | null;
+  /** Ngôn ngữ giao diện (một trong LOCALES); null = chưa đặt */
+  uiLanguage: string | null;
   role: "USER" | "ADMIN";
   /** false = chưa hoàn tất hồ sơ ở /welcome */
   onboarded: boolean;

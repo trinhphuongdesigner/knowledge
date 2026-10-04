@@ -2,10 +2,12 @@ import { Flame } from "lucide-react";
 import Link from "next/link";
 import { Card } from "@/components/ui";
 import { db } from "@/lib/db";
+import { getT } from "@/i18n/server";
 import { loadStudyStats } from "./loadStats";
 
 /** Streak + tiến độ mục tiêu hôm nay + biểu đồ cột nhỏ 14 ngày. Server component. */
 export async function StreakCard({ userId }: { userId: string }) {
+  const t = await getT("stats");
   const [stats, user] = await Promise.all([
     loadStudyStats(userId),
     db.user.findUnique({ where: { id: userId }, select: { dailyGoal: true } }),
@@ -21,7 +23,7 @@ export async function StreakCard({ userId }: { userId: string }) {
   const gap = 4;
   const h = 32;
   const w = last14.length * (barW + gap) - gap;
-  const label = `Số thẻ đã ôn 14 ngày gần nhất: ${last14.map((d) => d.reviewed).join(", ")}`;
+  const label = t("streak.chartAria", { values: last14.map((d) => d.reviewed).join(", ") });
 
   return (
     <Card className="flex flex-col gap-4">
@@ -34,14 +36,14 @@ export async function StreakCard({ userId }: { userId: string }) {
         </span>
         <div>
           <p className="text-2xl font-bold leading-none text-ink-900">
-            {stats.streak} <span className="text-base font-semibold text-ink-600">ngày liên tiếp</span>
+            {stats.streak} <span className="text-base font-semibold text-ink-600">{t("streak.daysInRow", { count: stats.streak })}</span>
           </p>
           <p className="mt-1 text-xs text-ink-500">
             {stats.streak === 0
-              ? "Học hôm nay để bắt đầu chuỗi mới"
+              ? t("streak.startNew")
               : done === 0
-                ? "Học hôm nay để giữ chuỗi"
-                : `Dài nhất: ${stats.longestStreak} ngày`}
+                ? t("streak.keep")
+                : t("streak.longest", { count: stats.longestStreak })}
           </p>
         </div>
         <svg
@@ -64,7 +66,7 @@ export async function StreakCard({ userId }: { userId: string }) {
                 rx={2}
                 className={d.reviewed === 0 ? "fill-ink-200" : i === last14.length - 1 ? "fill-brand-600" : "fill-brand-500/70"}
               >
-                <title>{`${d.day}: ${d.reviewed} thẻ`}</title>
+                <title>{t("streak.dayTitle", { day: d.day, count: d.reviewed })}</title>
               </rect>
             );
           })}
@@ -73,14 +75,14 @@ export async function StreakCard({ userId }: { userId: string }) {
 
       <div className="min-w-0">
         <div className="mb-1 flex items-center justify-between text-xs text-ink-600">
-          <span>Mục tiêu hôm nay</span>
+          <span>{t("streak.goal")}</span>
           <span className="font-medium text-ink-900">
-            {done}/{goal} thẻ
+            {t("streak.goalCount", { done, goal })}
           </span>
         </div>
         <div
           role="progressbar"
-          aria-label="Tiến độ mục tiêu hôm nay"
+          aria-label={t("streak.goalAria")}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={pct}
@@ -92,7 +94,7 @@ export async function StreakCard({ userId }: { userId: string }) {
           />
         </div>
         <Link href="/account?tab=stats" className="mt-2 inline-block text-xs font-medium text-accent hover:underline">
-          Xem thống kê
+          {t("streak.view")}
         </Link>
       </div>
     </Card>

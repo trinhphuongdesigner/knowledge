@@ -2,6 +2,8 @@ import "server-only";
 import webpush from "web-push";
 import type { NotificationType } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
+import { resolveLocale } from "@/i18n/config";
+import { getTFor, type TFunction } from "@/i18n/server";
 import { buildPushPayload, isGonePushStatus, type PushPayload } from "@/lib/notifications-core";
 
 const PUSH_TIMEOUT_MS = 5_000;
@@ -17,14 +19,14 @@ function ensureVapid(): boolean {
   const pub = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
   const priv = process.env.VAPID_PRIVATE_KEY;
   if (!pub || !priv) {
-    console.info("[push] thiếu NEXT_PUBLIC_VAPID_PUBLIC_KEY/VAPID_PRIVATE_KEY — bỏ qua gửi push (thông báo vẫn được lưu).");
+    console.info("[push] missing NEXT_PUBLIC_VAPID_PUBLIC_KEY/VAPID_PRIVATE_KEY - skipping push (in-app notification is still saved).");
     return (vapidReady = false);
   }
   try {
     webpush.setVapidDetails(process.env.VAPID_SUBJECT || "mailto:admin@example.com", pub, priv);
     return (vapidReady = true);
   } catch (e) {
-    console.error("[push] VAPID key không hợp lệ", e);
+    console.error("[push] invalid VAPID key", e);
     return (vapidReady = false);
   }
 }
@@ -46,7 +48,7 @@ async function deliver(userId: string, payload: PushPayload): Promise<number> {
           return { id: s.id, ok: true, gone: false };
         } catch (e) {
           const gone = isGonePushStatus((e as { statusCode?: number }).statusCode);
-          if (!gone) console.error("[push] gửi thất bại", (e as { statusCode?: number }).statusCode ?? (e as Error).message);
+          if (!gone) console.error("[push] send failed", (e as { statusCode?: number }).statusCode ?? (e as Error).message);
           return { id: s.id, ok: false, gone };
         }
       }),
@@ -57,7 +59,7 @@ async function deliver(userId: string, payload: PushPayload): Promise<number> {
     if (okIds.length) await db.pushSubscription.updateMany({ where: { id: { in: okIds } }, data: { lastUsedAt: new Date() } });
     return okIds.length;
   } catch (e) {
-    console.error("[push] lỗi không mong đợi", e);
+    console.error("[push] unexpected error", e);
     return 0;
   }
 }
@@ -67,10 +69,25 @@ export async function notify(userId: string, input: NotifyInput): Promise<void> 
   try {
     await db.notification.create({ data: { userId, ...input } });
   } catch (e) {
-    console.error("[notify] không lưu được thông báo", e);
+    console.error("[notify] failed to save notification", e);
     return;
   }
   await deliver(userId, buildPushPayload({ ...input, tag: input.type === "REVIEW_REMINDER" ? "review-reminder" : input.href }));
+}
+
+/**
+ * Thông báo hệ thống cho NGƯỜI KHÁC: chữ được dịch theo `uiLanguage` của người nhận (không phải cookie của người gọi).
+ * `build` nhận hàm dịch namespace `errors` (các key `notify.*`).
+ */
+export async function notifyLocalized(userId: string, build: (t: TFunction<"errors">) => NotifyInput): Promise<void> {
+  let uiLanguage: string | null = null;
+  try {
+    uiLanguage = (await db.user.findUnique({ where: { id: userId }, select: { uiLanguage: true } }))?.uiLanguage ?? null;
+  } catch (e) {
+    console.error("[notify] failed to read recipient language", e);
+  }
+  const t = await getTFor(resolveLocale({ user: { uiLanguage }, cookie: undefined }), "errors");
+  await notify(userId, build(t));
 }
 
 /** Chỉ đẩy, KHÔNG lưu. Trả số thiết bị đã gửi được. */

@@ -4,10 +4,11 @@ import { GoogleAuthProvider, getRedirectResult, signInWithPopup, signInWithRedir
 import { useEffect, useRef, useState } from "react";
 import { signInWithGoogle } from "@/app/(auth)/actions";
 import { Button } from "@/components/ui";
+import { useT } from "@/i18n/client";
+import type { TFunction } from "@/i18n/translate";
 import { getFirebaseAuth } from "@/lib/firebase-client";
 import { FormError } from "./FormError";
 
-const GENERIC_ERROR = "Không thể đăng nhập bằng Google. Vui lòng thử lại.";
 const SILENT_CODES = new Set(["auth/popup-closed-by-user", "auth/cancelled-popup-request"]);
 
 function errorCode(e: unknown): string {
@@ -16,20 +17,20 @@ function errorCode(e: unknown): string {
     : "";
 }
 
-function messageFor(e: unknown): string {
+function messageFor(e: unknown, t: TFunction<"auth">): string {
   switch (errorCode(e)) {
     case "auth/network-request-failed":
-      return "Không có kết nối mạng. Hãy kiểm tra Internet rồi thử lại.";
+      return t("errors.network");
     case "auth/too-many-requests":
-      return "Thử lại sau ít phút";
+      return t("errors.tooManyRequests");
     case "auth/unauthorized-domain":
-      return "Tên miền này chưa được phép đăng nhập bằng Google.";
+      return t("errors.unauthorizedDomain");
     case "auth/user-disabled":
-      return "Tài khoản Google này đã bị vô hiệu hoá.";
+      return t("errors.userDisabled");
     default:
       return typeof navigator !== "undefined" && navigator.onLine === false
-        ? "Không có kết nối mạng. Hãy kiểm tra Internet rồi thử lại."
-        : GENERIC_ERROR;
+        ? t("errors.network")
+        : t("errors.generic");
   }
 }
 
@@ -66,6 +67,7 @@ function GoogleIcon() {
 }
 
 export function GoogleSignInButton({ next }: { next?: string }) {
+  const t = useT("auth");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
   const handledRedirect = useRef(false);
@@ -81,7 +83,7 @@ export function GoogleSignInButton({ next }: { next?: string }) {
         setPending(false);
       }
     } catch (e) {
-      setError(messageFor(e));
+      setError(messageFor(e, t));
       setPending(false);
     } finally {
       await signOut(auth).catch(() => undefined);
@@ -100,7 +102,7 @@ export function GoogleSignInButton({ next }: { next?: string }) {
         setError(undefined);
         await finish(result.user);
       } catch (e) {
-        if (!SILENT_CODES.has(errorCode(e))) setError(messageFor(e));
+        if (!SILENT_CODES.has(errorCode(e))) setError(messageFor(e, t));
         setPending(false);
       }
     })();
@@ -127,10 +129,10 @@ export function GoogleSignInButton({ next }: { next?: string }) {
           await signInWithRedirect(auth, provider);
           return;
         } catch (e2) {
-          setError(messageFor(e2));
+          setError(messageFor(e2, t));
         }
       } else if (!SILENT_CODES.has(code)) {
-        setError(messageFor(e));
+        setError(messageFor(e, t));
       }
       setPending(false);
     }
@@ -141,7 +143,7 @@ export function GoogleSignInButton({ next }: { next?: string }) {
       <FormError message={error} />
       <Button type="button" variant="secondary" size="lg" loading={pending} onClick={onClick} className="w-full">
         {!pending && <GoogleIcon />}
-        {pending ? "Đang đăng nhập…" : "Tiếp tục với Google"}
+        {pending ? t("login.signingIn") : t("login.google")}
       </Button>
     </div>
   );

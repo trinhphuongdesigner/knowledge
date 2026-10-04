@@ -7,6 +7,7 @@ export { Markdown } from "./Markdown";
 export { PageLoader } from "./PageLoader";
 export { Modal, type ModalProps } from "./Modal";
 export { Select, type SelectProps } from "./Select";
+export { RichText } from "./RichText";
 export { Spinner } from "./Spinner";
 export { Textarea, type TextareaProps } from "./Textarea";
 export { LanguageCombobox } from "./LanguageCombobox";

@@ -11,9 +11,13 @@ import { StudySession } from "@/components/study/StudySession";
 import { getOnlyCardIds, getOnlyCounts } from "@/components/review/queries";
 import { parseOnly, type ReviewOnly } from "@/components/review/session";
 import { Breadcrumbs } from "@/components/ui";
+import { getT } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Học thẻ — Knowledge" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("study");
+  return { title: t("meta.title") };
+}
 
 export default async function StudyPage({
   params,
@@ -22,6 +26,7 @@ export default async function StudyPage({
   params: Promise<{ id: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const t = await getT("study");
   const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
@@ -49,16 +54,16 @@ export default async function StudyPage({
 
   const base = `/sets/${set.id}/study`;
   const filters: { key: ReviewOnly | undefined; label: string; href: string }[] = [
-    { key: undefined, label: "Tất cả", href: base },
-    ...(counts.starred > 0 ? [{ key: "starred" as const, label: `Đánh sao (${counts.starred})`, href: `${base}?only=starred` }] : []),
-    ...(counts.hard > 0 ? [{ key: "hard" as const, label: `Từ khó (${counts.hard})`, href: `${base}?only=hard` }] : []),
+    { key: undefined, label: t("filter.all"), href: base },
+    ...(counts.starred > 0 ? [{ key: "starred" as const, label: t("filter.starred", { count: counts.starred }), href: `${base}?only=starred` }] : []),
+    ...(counts.hard > 0 ? [{ key: "hard" as const, label: t("filter.hard", { count: counts.hard }), href: `${base}?only=hard` }] : []),
   ];
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: set.title, href: `/sets/${set.id}` }, { label: "Học thẻ" }]} />
+      <Breadcrumbs items={[{ label: t("breadcrumb.home"), href: "/" }, { label: set.title, href: `/sets/${set.id}` }, { label: t("breadcrumb.study") }]} />
       {filters.length > 1 && (
-        <nav aria-label="Lọc thẻ để học" className="mb-4 flex flex-wrap gap-2">
+        <nav aria-label={t("filter.aria")} className="mb-4 flex flex-wrap gap-2">
           {filters.map((f) => (
             <Link
               key={f.label}

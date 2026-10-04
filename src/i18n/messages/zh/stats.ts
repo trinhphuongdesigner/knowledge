@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "还没有统计数据",
+    emptyDescription: "复习卡片后，即可开始累计连续学习天数并查看你的进度。",
+    reviewToday: "今日复习",
+    streak: "当前连续天数",
+    longest: "最长连续天数",
+    total: "总复习次数",
+    accuracy: "正确率",
+    days: { other: "{count} 天" },
+    last90: "最近 90 天",
+    last30: "最近 30 天",
+    heatmapAria: "最近 90 天的热力图，共复习 {total} 次",
+    barsAria: "最近 30 天每天复习的卡片数，峰值为 {max}",
+    dayTitle: "{day}：{reviewed} 张卡片，{correct} 张正确",
+    less: "少",
+    more: "多",
+    correct: "正确",
+    wrong: "错误",
+  },
+  streak: {
+    chartAria: "最近 14 天复习的卡片数：{values}",
+    daysInRow: { other: "天连续学习" },
+    startNew: "今天学习，开始新的连续记录",
+    keep: "今天学习，保持你的连续记录",
+    longest: { other: "最长：{count} 天" },
+    dayTitle: { other: "{day}：{count} 张卡片" },
+    goal: "今日目标",
+    goalCount: "{done}/{goal} 张卡片",
+    goalAria: "今日目标进度",
+    view: "查看统计",
+  },
+};
+
+export default stats;

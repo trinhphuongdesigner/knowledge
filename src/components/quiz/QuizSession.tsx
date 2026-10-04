@@ -11,19 +11,20 @@ import { ClozeGame } from "./ClozeGame";
 import { ListenGame } from "./ListenGame";
 import { MatchingGame } from "./MatchingGame";
 import { TypingGame } from "./TypingGame";
+import { useT } from "@/i18n/client";
 
 type Mode = "matching" | "typing" | "listen" | "cloze";
 
 const MODES: {
   id: Mode;
-  label: string;
+  labelKey: "session.modeMatching" | "session.modeTyping" | "session.modeListen" | "session.modeCloze";
   icon: typeof Link2;
   review: ReviewModeValue;
 }[] = [
-  { id: "matching", label: "Ghép từ – nghĩa", icon: Link2, review: "MATCHING" },
-  { id: "typing", label: "Điền từ", icon: Keyboard, review: "TYPING" },
-  { id: "listen", label: "Nghe", icon: Headphones, review: "LISTEN" },
-  { id: "cloze", label: "Chỗ trống", icon: TextCursorInput, review: "CLOZE" },
+  { id: "matching", labelKey: "session.modeMatching", icon: Link2, review: "MATCHING" },
+  { id: "typing", labelKey: "session.modeTyping", icon: Keyboard, review: "TYPING" },
+  { id: "listen", labelKey: "session.modeListen", icon: Headphones, review: "LISTEN" },
+  { id: "cloze", labelKey: "session.modeCloze", icon: TextCursorInput, review: "CLOZE" },
 ];
 
 /** Sends results to SRS in batches of <= 500. Never throws: a failure must not break the quiz UI. */
@@ -41,7 +42,7 @@ async function recordSrs(
     try {
       await api.recordReviews({ setId, mode, items: batch });
     } catch (err) {
-      console.warn("Không ghi được kết quả ôn tập", err);
+      console.warn("Could not record review results", err);
       return;
     }
   }
@@ -59,6 +60,7 @@ export function QuizSession({
   /** Cards already marked "đã thuộc" when the quiz page was opened. */
   knownIds?: string[];
 }) {
+  const t = useT("quiz");
   // Các trò chơi xáo trộn ngẫu nhiên khi khởi tạo → chỉ render sau khi hydrate để tránh lệch SSR.
   const mounted = useSyncExternalStore(
     () => () => {},
@@ -97,10 +99,10 @@ export function QuizSession({
     <div>
       <div
         role="tablist"
-        aria-label="Chế độ kiểm tra"
+        aria-label={t("session.modesAria")}
         className="mb-5 grid grid-cols-2 gap-1 rounded-xl bg-ink-100 p-1 sm:flex"
       >
-        {visibleModes.map(({ id, label, icon: Icon }) => (
+        {visibleModes.map(({ id, labelKey, icon: Icon }) => (
           <button
             key={id}
             type="button"
@@ -119,7 +121,7 @@ export function QuizSession({
             )}
           >
             <Icon className="size-4 shrink-0" aria-hidden />
-            <span className="truncate">{label}</span>
+            <span className="truncate">{t(labelKey)}</span>
           </button>
         ))}
       </div>
@@ -138,7 +140,7 @@ export function QuizSession({
             className="size-5 accent-brand-600"
           />
           <span>
-            Bỏ qua thẻ đã thuộc{" "}
+            {t("session.skipKnown")}{" "}
             <span className="text-ink-500">
               ({knownCount}/{cards.length})
             </span>
@@ -181,9 +183,7 @@ export function QuizSession({
                 />
               ) : (
                 <p className="rounded-xl border border-ink-200 bg-surface p-5 text-center text-sm text-ink-600">
-                  Chế độ này cần ít nhất {CLOZE_MIN_CARDS} thẻ có câu ví dụ chứa
-                  từ cần học (ở phần giải thích của thẻ). Hiện có{" "}
-                  {clozeItems.length} thẻ phù hợp.
+                  {t("session.clozeNeeds", { min: CLOZE_MIN_CARDS, count: clozeItems.length })}
                 </p>
               ))}
           </>
@@ -191,7 +191,7 @@ export function QuizSession({
       </div>
       {saveFailed && (
         <p role="status" className="mt-3 text-center text-xs text-ink-500">
-          Chưa lưu được kết quả kiểm tra.
+          {t("session.saveFailed")}
         </p>
       )}
     </div>

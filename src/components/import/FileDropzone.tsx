@@ -2,6 +2,7 @@
 
 import { FileSpreadsheet, UploadCloud, X } from "lucide-react";
 import { useRef, useState, type DragEvent, type KeyboardEvent } from "react";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 
 const ACCEPT = ".csv,.xlsx,.xls,.md,.markdown,.txt";
@@ -23,6 +24,7 @@ export function FileDropzone({
   onClear?: () => void;
   disabled?: boolean;
 }) {
+  const t = useT("import");
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
 
@@ -51,7 +53,7 @@ export function FileDropzone({
         role="button"
         tabIndex={disabled ? -1 : 0}
         aria-disabled={disabled || undefined}
-        aria-label="Chọn hoặc kéo thả file để import"
+        aria-label={t("dropzone.aria")}
         onClick={open}
         onKeyDown={onKeyDown}
         onDragOver={(e) => {
@@ -69,9 +71,9 @@ export function FileDropzone({
       >
         <UploadCloud className="size-9 text-accent" aria-hidden />
         <p className="text-sm font-medium text-ink-900">
-          Kéo thả file vào đây hoặc <span className="text-accent underline">bấm để chọn file</span>
+          {t("dropzone.prompt")} <span className="text-accent underline">{t("dropzone.promptAction")}</span>
         </p>
-        <p className="text-xs text-ink-600">Hỗ trợ .csv, .xlsx, .xls, .md, .markdown, .txt</p>
+        <p className="text-xs text-ink-600">{t("dropzone.supported")}</p>
         <input
           ref={inputRef}
           type="file"
@@ -99,7 +101,7 @@ export function FileDropzone({
               type="button"
               onClick={onClear}
               disabled={disabled}
-              aria-label="Bỏ file đã chọn"
+              aria-label={t("dropzone.clear")}
               className="flex size-9 items-center justify-center rounded-lg text-ink-500 hover:bg-ink-200 hover:text-ink-900"
             >
               <X className="size-4" aria-hidden />

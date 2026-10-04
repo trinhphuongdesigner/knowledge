@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { isLanguageCode } from "./languages";
-import { MAX_AGE, MIN_AGE, isGender, isValidBirthYear } from "./profile";
+import { isGender, isValidBirthYear } from "./profile";
 
 export const CATEGORY_COLORS = ["BLUE", "GREEN", "AMBER", "PURPLE", "ROSE", "SLATE"] as const;
 export type CategoryColor = (typeof CATEGORY_COLORS)[number];
@@ -21,7 +21,7 @@ export const categoryInputSchema = z.object({
   name: z
     .string()
     .transform(normalizeCategoryName)
-    .pipe(z.string().min(1, "Vui lòng nhập tên danh mục").max(CATEGORY_NAME_MAX, "Tên tối đa 40 ký tự")),
+    .pipe(z.string().min(1, "validation.categoryNameRequired").max(CATEGORY_NAME_MAX, "validation.categoryNameMax")),
   color: z.enum(CATEGORY_COLORS).default("BLUE"),
   isEnglish: z.boolean().default(false),
 });
@@ -29,10 +29,11 @@ export const categoryInputSchema = z.object({
 export const LEVELS = ["BASIC", "INTERMEDIATE", "ADVANCED"] as const;
 export type Level = (typeof LEVELS)[number];
 
+/** English fallback labels; UI translates via its own namespace. */
 export const LEVEL_LABELS: Record<Level, string> = {
-  BASIC: "Cơ bản",
-  INTERMEDIATE: "Trung cấp",
-  ADVANCED: "Nâng cao",
+  BASIC: "Basic",
+  INTERMEDIATE: "Intermediate",
+  ADVANCED: "Advanced",
 };
 
 export const setInputSchema = z.object({
@@ -122,14 +123,14 @@ export type EnrichResultDTO = { updated: number; notFound: number; remaining: nu
 
 // ── Hồ sơ (onboarding + tài khoản) ─────────────────────────────────────────
 export const onboardingSchema = z.object({
-  name: z.string().trim().min(1, "Vui lòng nhập tên hiển thị").max(40, "Tên hiển thị tối đa 40 ký tự"),
-  fullName: z.string().trim().min(1, "Vui lòng nhập họ tên").max(80, "Họ tên tối đa 80 ký tự"),
+  name: z.string().trim().min(1, "validation.nameRequired").max(40, "validation.nameMax"),
+  fullName: z.string().trim().min(1, "validation.fullNameRequired").max(80, "validation.fullNameMax"),
   birthYear: z.coerce
-    .number({ error: "Năm sinh không hợp lệ" })
-    .int("Năm sinh không hợp lệ")
-    .refine((y) => isValidBirthYear(y), `Năm sinh không hợp lệ (tuổi từ ${MIN_AGE} đến ${MAX_AGE})`),
-  nativeLanguage: z.string().refine(isLanguageCode, "Vui lòng chọn ngôn ngữ"),
-  gender: z.string().refine(isGender, "Vui lòng chọn giới tính"),
+    .number({ error: "validation.birthYearInvalid" })
+    .int("validation.birthYearInvalid")
+    .refine((y) => isValidBirthYear(y), "validation.birthYearRange"),
+  nativeLanguage: z.string().refine(isLanguageCode, "validation.languageRequired"),
+  gender: z.string().refine(isGender, "validation.genderRequired"),
   useGoogleAvatar: z.boolean().default(true),
 });
 export type OnboardingInput = z.infer<typeof onboardingSchema>;
@@ -188,7 +189,7 @@ export const visibilityInputSchema = z.object({ visibility: z.enum(VISIBILITIES)
 export const DAILY_GOAL_MIN = 5;
 export const DAILY_GOAL_MAX = 500;
 export const studySettingsSchema = z.object({
-  dailyGoal: z.number().int().min(DAILY_GOAL_MIN, "Mục tiêu tối thiểu 5 thẻ").max(DAILY_GOAL_MAX, "Mục tiêu tối đa 500 thẻ"),
+  dailyGoal: z.number().int().min(DAILY_GOAL_MIN, "validation.dailyGoalMin").max(DAILY_GOAL_MAX, "validation.dailyGoalMax"),
   pushReminders: z.boolean(),
 });
 export type StudySettingsInput = z.infer<typeof studySettingsSchema>;
@@ -218,7 +219,7 @@ export type PublicSetDTO = StudySetDTO & { ownerName: string | null; subscriberC
 
 /** PushSubscription.toJSON() từ trình duyệt. */
 export const pushSubscribeSchema = z.object({
-  endpoint: z.string().url().max(2048).refine((u) => u.startsWith("https://"), "Endpoint phải dùng https"),
+  endpoint: z.string().url().max(2048).refine((u) => u.startsWith("https://"), "validation.endpointHttps"),
   keys: z.object({ p256dh: z.string().min(1).max(512), auth: z.string().min(1).max(512) }),
 });
 export type PushSubscribeInput = z.infer<typeof pushSubscribeSchema>;

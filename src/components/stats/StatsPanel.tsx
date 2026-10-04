@@ -1,7 +1,12 @@
 import { BarChart3 } from "lucide-react";
 import { ButtonLink, Card, EmptyState } from "@/components/ui";
 import type { StudyStatsDTO } from "@/lib/validators";
+import { formatDate, formatNumber } from "@/i18n/format";
+import type { Locale } from "@/i18n/config";
+import { getLocale, getT, type TFunction } from "@/i18n/server";
 import { loadStudyStats } from "./loadStats";
+
+type StatsT = TFunction<"stats">;
 
 const LEVEL_CLASS = ["fill-ink-100", "fill-brand-500/30", "fill-brand-500/55", "fill-brand-600/80", "fill-brand-700"];
 
@@ -11,38 +16,38 @@ function level(reviewed: number, max: number): number {
   return r > 0.75 ? 4 : r > 0.5 ? 3 : r > 0.25 ? 2 : 1;
 }
 
-function fmtDay(key: string) {
-  const [y, m, d] = key.split("-");
-  return `${d}/${m}/${y}`;
+function fmtDay(locale: Locale, key: string) {
+  return formatDate(locale, `${key}T00:00:00Z`, { timeZone: "UTC", day: "2-digit", month: "2-digit", year: "numeric" });
 }
 
 export async function StatsPanel({ userId }: { userId: string }) {
+  const [t, locale] = await Promise.all([getT("stats"), getLocale()]);
   const stats = await loadStudyStats(userId);
   if (stats.totalReviewed === 0) {
     return (
       <EmptyState
         icon={BarChart3}
-        title="Chưa có thống kê"
-        description="Ôn thẻ để bắt đầu chuỗi ngày học và xem tiến độ của bạn."
-        action={<ButtonLink href="/review">Ôn hôm nay</ButtonLink>}
+        title={t("panel.emptyTitle")}
+        description={t("panel.emptyDescription")}
+        action={<ButtonLink href="/review">{t("panel.reviewToday")}</ButtonLink>}
       />
     );
   }
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <Stat label="Chuỗi hiện tại" value={`${stats.streak} ngày`} />
-        <Stat label="Chuỗi dài nhất" value={`${stats.longestStreak} ngày`} />
-        <Stat label="Tổng lượt ôn" value={stats.totalReviewed.toLocaleString("vi-VN")} />
-        <Stat label="Độ chính xác" value={`${Math.round(stats.accuracy * 100)}%`} />
+        <Stat label={t("panel.streak")} value={t("panel.days", { count: stats.streak })} />
+        <Stat label={t("panel.longest")} value={t("panel.days", { count: stats.longestStreak })} />
+        <Stat label={t("panel.total")} value={formatNumber(locale, stats.totalReviewed)} />
+        <Stat label={t("panel.accuracy")} value={`${Math.round(stats.accuracy * 100)}%`} />
       </div>
       <Card>
-        <h2 className="mb-3 text-sm font-semibold text-ink-900">90 ngày gần nhất</h2>
-        <Heatmap days={stats.days} />
+        <h2 className="mb-3 text-sm font-semibold text-ink-900">{t("panel.last90")}</h2>
+        <Heatmap days={stats.days} t={t} locale={locale} />
       </Card>
       <Card>
-        <h2 className="mb-3 text-sm font-semibold text-ink-900">30 ngày gần nhất</h2>
-        <Bars days={stats.days.slice(-30)} />
+        <h2 className="mb-3 text-sm font-semibold text-ink-900">{t("panel.last30")}</h2>
+        <Bars days={stats.days.slice(-30)} t={t} locale={locale} />
       </Card>
     </div>
   );
@@ -58,7 +63,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 }
 
 /** Heatmap kiểu GitHub: cột = tuần (thứ Hai đầu tuần), hàng = thứ trong tuần. */
-function Heatmap({ days }: { days: StudyStatsDTO["days"] }) {
+function Heatmap({ days, t, locale }: { days: StudyStatsDTO["days"]; t: StatsT; locale: Locale }) {
   const max = Math.max(1, ...days.map((d) => d.reviewed));
   const cell = 14;
   const gap = 3;
@@ -73,7 +78,7 @@ function Heatmap({ days }: { days: StudyStatsDTO["days"] }) {
     <div className="overflow-x-auto">
       <svg
         role="img"
-        aria-label={`Biểu đồ nhiệt 90 ngày gần nhất, tổng ${total} lượt ôn`}
+        aria-label={t("panel.heatmapAria", { total })}
         viewBox={`0 0 ${w} ${h}`}
         width={w}
         height={h}
@@ -91,25 +96,25 @@ function Heatmap({ days }: { days: StudyStatsDTO["days"] }) {
               rx={3}
               className={LEVEL_CLASS[level(d.reviewed, max)]}
             >
-              <title>{`${fmtDay(d.day)}: ${d.reviewed} thẻ, đúng ${d.correct}`}</title>
+              <title>{t("panel.dayTitle", { day: fmtDay(locale, d.day), reviewed: d.reviewed, correct: d.correct })}</title>
             </rect>
           );
         })}
       </svg>
       <div className="mt-2 flex items-center justify-end gap-1 text-xs text-ink-500" aria-hidden>
-        Ít
+        {t("panel.less")}
         <svg width={5 * 14} height={12}>
           {LEVEL_CLASS.map((c, i) => (
             <rect key={c} x={i * 14} width={11} height={11} rx={2} className={c} />
           ))}
         </svg>
-        Nhiều
+        {t("panel.more")}
       </div>
     </div>
   );
 }
 
-function Bars({ days }: { days: StudyStatsDTO["days"] }) {
+function Bars({ days, t, locale }: { days: StudyStatsDTO["days"]; t: StatsT; locale: Locale }) {
   const max = Math.max(1, ...days.map((d) => d.reviewed));
   const barW = 14;
   const gap = 4;
@@ -119,7 +124,7 @@ function Bars({ days }: { days: StudyStatsDTO["days"] }) {
     <div className="overflow-x-auto">
       <svg
         role="img"
-        aria-label={`Số thẻ đã ôn mỗi ngày trong 30 ngày gần nhất, cao nhất ${max}`}
+        aria-label={t("panel.barsAria", { max })}
         viewBox={`0 0 ${w} ${h}`}
         width={w}
         height={h}
@@ -130,7 +135,7 @@ function Bars({ days }: { days: StudyStatsDTO["days"] }) {
           const correctH = d.reviewed > 0 ? Math.round((d.correct / d.reviewed) * bh) : 0;
           return (
             <g key={d.day}>
-              <title>{`${fmtDay(d.day)}: ${d.reviewed} thẻ, đúng ${d.correct}`}</title>
+              <title>{t("panel.dayTitle", { day: fmtDay(locale, d.day), reviewed: d.reviewed, correct: d.correct })}</title>
               <rect
                 x={i * (barW + gap)}
                 y={h - bh}
@@ -149,11 +154,11 @@ function Bars({ days }: { days: StudyStatsDTO["days"] }) {
       <p className="mt-2 flex items-center justify-end gap-3 text-xs text-ink-500" aria-hidden>
         <span className="flex items-center gap-1">
           <i className="inline-block size-2.5 rounded-sm bg-brand-600" />
-          Đúng
+          {t("panel.correct")}
         </span>
         <span className="flex items-center gap-1">
           <i className="inline-block size-2.5 rounded-sm bg-amber-400" />
-          Sai
+          {t("panel.wrong")}
         </span>
       </p>
     </div>

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { getT } from "@/i18n/server";
 import { requireApiAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { logAdminAction } from "@/lib/admin/audit";
@@ -16,13 +17,14 @@ export async function POST(req: Request) {
     const parsed = bodySchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     const { id, direction } = parsed.data;
+    const t = await getT("admin");
 
     const all = await db.category.findMany({
       orderBy: [{ position: "asc" }, { createdAt: "asc" }],
       select: { id: true, name: true },
     });
     const i = all.findIndex((c) => c.id === id);
-    if (i < 0) return notFound("Không tìm thấy danh mục");
+    if (i < 0) return notFound("categoryNotFound");
     const j = direction === "up" ? i - 1 : i + 1;
     if (j >= 0 && j < all.length) {
       [all[i], all[j]] = [all[j], all[i]];
@@ -33,7 +35,10 @@ export async function POST(req: Request) {
       action: "category.reorder",
       targetType: "category",
       targetId: id,
-      summary: `Di chuyển danh mục "${all[j >= 0 && j < all.length ? j : i].name}" ${direction === "up" ? "lên" : "xuống"}`,
+      summary: t("audit.categoryReorder", {
+        name: all[j >= 0 && j < all.length ? j : i].name,
+        direction: t(direction === "up" ? "audit.up" : "audit.down"),
+      }),
     });
     return json({ ok: true });
   } catch (e) {

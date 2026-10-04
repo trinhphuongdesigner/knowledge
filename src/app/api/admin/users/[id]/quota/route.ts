@@ -1,10 +1,11 @@
 import { z } from "zod";
+import { getT } from "@/i18n/server";
 import { requireApiAdmin } from "@/lib/auth/dal";
 import { logAdminAction } from "@/lib/admin/audit";
 import { findManageableUser } from "@/lib/admin/users-data";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
-import { json, notFound, readJson, serverError, validationError } from "@/lib/http";
+import { apiError, json, notFound, readJson, serverError, validationError } from "@/lib/http";
 
 export const dynamic = "force-dynamic";
 
@@ -21,19 +22,25 @@ export async function PATCH(req: Request, { params }: Ctx) {
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const target = await findManageableUser(id);
-    if ("error" in target) return json({ error: target.error }, target.status);
+    if ("error" in target) return apiError(target.error, target.status);
 
     const parsed = bodySchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     const data = parsed.data;
 
     await db.user.update({ where: { id }, data });
-    const fmt = (n: number | null) => (n === null ? "mặc định" : String(n));
+    const t = await getT("admin");
+    const fmt = (n: number | null) => (n === null ? t("audit.quotaDefault") : String(n));
     await logAdminAction(admin.id, {
       action: "user.quota",
       targetType: "user",
       targetId: id,
-      summary: `Đặt hạn mức ${target.user.email}: bộ ${fmt(data.quotaSets)}, thẻ ${fmt(data.quotaCards)}, AI/ngày ${fmt(data.quotaAiPerDay)}`,
+      summary: t("audit.userQuota", {
+        email: target.user.email,
+        sets: fmt(data.quotaSets),
+        cards: fmt(data.quotaCards),
+        ai: fmt(data.quotaAiPerDay),
+      }),
       meta: data,
     });
     return json({ ok: true, ...data });

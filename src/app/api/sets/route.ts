@@ -3,7 +3,7 @@ import { requireApiUser } from "@/lib/auth/dal";
 import { categoryExists } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
-import { badRequest, json, readJson, serverError, validationError } from "@/lib/http";
+import { badRequest, json, quotaExceeded, readJson, serverError, validationError } from "@/lib/http";
 import { isUuid } from "@/lib/ids";
 import { checkQuota } from "@/lib/quota";
 import { LEVELS, setInputSchema } from "@/lib/validators";
@@ -49,9 +49,9 @@ export async function POST(req: Request) {
     const parsed = setInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     const { title, description, categoryId, level } = parsed.data;
-    if (!(await categoryExists(categoryId))) return badRequest("Danh mục không hợp lệ");
+    if (!(await categoryExists(categoryId))) return badRequest("categoryInvalid");
     const quotaError = await checkQuota(user, { sets: 1 });
-    if (quotaError) return badRequest(quotaError);
+    if (quotaError) return quotaExceeded(quotaError);
     const set = await db.studySet.create({
       data: { title, description: description || null, categoryId, level: level ?? null, userId: user.id },
       include: { category: true },

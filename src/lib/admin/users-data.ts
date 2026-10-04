@@ -243,12 +243,12 @@ export function isAdminAccount(u: { role: string; email: string }): boolean {
   return u.role === "ADMIN" || u.email.trim().toLowerCase() === ADMIN_EMAIL;
 }
 
-/** Tìm user đích cho API; từ chối tài khoản admin. */
+/** Tìm user đích cho API; từ chối tài khoản admin. `error` là key trong namespace errors. */
 export async function findManageableUser(
   id: string,
-): Promise<{ user: { id: string; email: string; disabledAt: Date | null } } | { status: number; error: string }> {
+): Promise<{ user: { id: string; email: string; disabledAt: Date | null } } | { status: number; error: "userNotFound" | "adminTarget" }> {
   const user = await db.user.findUnique({ where: { id }, select: { id: true, email: true, role: true, disabledAt: true } });
-  if (!user) return { status: 404, error: "Không tìm thấy tài khoản" };
-  if (isAdminAccount(user)) return { status: 403, error: "Không thể thao tác trên tài khoản admin" };
+  if (!user) return { status: 404, error: "userNotFound" };
+  if (isAdminAccount(user)) return { status: 403, error: "adminTarget" };
   return { user };
 }

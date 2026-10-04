@@ -3,6 +3,7 @@
 import { BellOff, BellRing } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import { urlBase64ToBytes } from "@/lib/notifications-core";
 
@@ -20,6 +21,7 @@ function isStandalone(): boolean {
 
 /** Bật/tắt thông báo đẩy cho THIẾT BỊ này (đăng ký Web Push với service worker và lưu lên server). */
 export function PushDeviceControl() {
+  const t = useT("account");
   const [state, setState] = useState<State>("checking");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
@@ -57,11 +59,11 @@ export function PushDeviceControl() {
         (await reg.pushManager.getSubscription()) ??
         (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToBytes(VAPID_PUBLIC_KEY!) }));
       const json = sub.toJSON();
-      if (!json.endpoint || !json.keys?.p256dh || !json.keys.auth) throw new Error("Trình duyệt không trả về khoá đăng ký");
+      if (!json.endpoint || !json.keys?.p256dh || !json.keys.auth) throw new Error(t("push.missingKey"));
       await api.pushSubscribe({ endpoint: json.endpoint, keys: { p256dh: json.keys.p256dh, auth: json.keys.auth } });
       setState("on");
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không bật được thông báo");
+      setError(e instanceof Error ? e.message : t("push.enableFailed"));
     } finally {
       setPending(false);
     }
@@ -79,32 +81,31 @@ export function PushDeviceControl() {
       }
       setState("off");
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không tắt được thông báo");
+      setError(e instanceof Error ? e.message : t("push.disableFailed"));
     } finally {
       setPending(false);
     }
   }
 
   const status: Record<State, string> = {
-    checking: "Đang kiểm tra…",
-    unsupported: "Trình duyệt này không hỗ trợ thông báo đẩy.",
-    "no-key": "Máy chủ chưa cấu hình thông báo đẩy.",
-    "no-sw": "Chỉ khả dụng khi ứng dụng chạy bản production (cần service worker).",
-    denied: "Thông báo đang bị chặn. Hãy cho phép thông báo cho trang này trong cài đặt trình duyệt rồi tải lại.",
-    off: "Đang tắt trên thiết bị này.",
-    on: "Đang bật trên thiết bị này.",
+    checking: t("push.status.checking"),
+    unsupported: t("push.status.unsupported"),
+    "no-key": t("push.status.noKey"),
+    "no-sw": t("push.status.noSw"),
+    denied: t("push.status.denied"),
+    off: t("push.status.off"),
+    on: t("push.status.on"),
   };
 
   return (
     <div className="rounded-xl border border-ink-200 p-3 text-sm">
-      <p className="font-medium text-ink-800">Thông báo trên thiết bị này</p>
+      <p className="font-medium text-ink-800">{t("push.title")}</p>
       <p role="status" className="mt-0.5 text-ink-500">
         {status[state]}
       </p>
       {iosHint && (
         <p className="mt-1 text-ink-500">
-          Trên iPhone/iPad: hãy thêm ứng dụng vào Màn hình chính (Chia sẻ → Thêm vào Màn hình chính) rồi mở từ biểu tượng đó để bật
-          thông báo.
+          {t("push.iosHint")}
         </p>
       )}
       {error && <p className="mt-1 text-danger">{error}</p>}
@@ -113,12 +114,12 @@ export function PushDeviceControl() {
           {state === "off" ? (
             <Button type="button" variant="secondary" size="sm" onClick={enable} loading={pending}>
               <BellRing className="size-4" aria-hidden />
-              Bật thông báo
+              {t("push.enable")}
             </Button>
           ) : (
             <Button type="button" variant="secondary" size="sm" onClick={disable} loading={pending}>
               <BellOff className="size-4" aria-hidden />
-              Tắt thông báo
+              {t("push.disable")}
             </Button>
           )}
         </div>

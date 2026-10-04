@@ -64,8 +64,8 @@ function parseQA(lines: string[]): ParseResult {
     const answer = cur.a?.trim() ?? "";
     const explanation = cur.e?.trim() ?? "";
     const phonetic = cur.p?.trim() ?? "";
-    if (!question) result.errors.push({ row: cur.start, message: "Thiếu câu hỏi" });
-    else if (!answer) result.errors.push({ row: cur.start, message: "Thiếu đáp án" });
+    if (!question) result.errors.push({ row: cur.start, code: "missingQuestion" });
+    else if (!answer) result.errors.push({ row: cur.start, code: "missingAnswer" });
     else result.cards.push(buildCard({ question, answer, explanation, phonetic }));
     cur = null;
     field = null;
@@ -91,7 +91,7 @@ function parseQA(lines: string[]): ParseResult {
     } else if (cur && field) {
       cur[field] = (cur[field] ?? "") + "\n".repeat(blanks + 1) + line;
     } else {
-      result.errors.push({ row: i + 1, message: "Dòng nằm ngoài thẻ (cần bắt đầu bằng Q: / Hỏi:)" });
+      result.errors.push({ row: i + 1, code: "orphanLine" });
     }
     blanks = 0;
   });
@@ -139,7 +139,7 @@ function parseHeadings(lines: string[]): ParseResult {
     const answer = ans.join("\n").trim();
     const explanation = exp.join("\n").trim();
     if (!answer) {
-      result.errors.push({ row: h.idx + 1, message: `Thiếu đáp án cho "${h.text}"` });
+      result.errors.push({ row: h.idx + 1, code: "missingAnswerFor", text: h.text });
     } else {
       const card: ParsedCard = { question: h.text, answer };
       if (explanation) card.explanation = explanation;
@@ -220,8 +220,8 @@ function parseBoldQuestions(lines: string[]): ParseResult {
       answer = vi || en;
       explanation = vi ? en : "";
     }
-    if (!heading) result.errors.push({ row: start + 1, message: "Thiếu câu hỏi" });
-    else if (!answer) result.errors.push({ row: start + 1, message: `Thiếu đáp án cho "${heading}"` });
+    if (!heading) result.errors.push({ row: start + 1, code: "missingQuestion" });
+    else if (!answer) result.errors.push({ row: start + 1, code: "missingAnswerFor", text: heading });
     else result.cards.push(buildCard({ question, answer, explanation }));
   });
   return result;
@@ -239,6 +239,6 @@ export function parseMarkdown(text: string): ParseResult {
   if (lines.some((l) => /^#{1,6}\s+\S/.test(l))) return parseHeadings(lines);
   return {
     cards: [],
-    errors: [{ row: 1, message: "Không nhận diện được định dạng Markdown (dùng heading, Q:/A: hoặc bảng)" }],
+    errors: [{ row: 1, code: "unknownMarkdown" }],
   };
 }

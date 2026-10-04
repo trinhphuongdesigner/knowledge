@@ -7,7 +7,7 @@ export type AdminAction = {
   action: string;
   targetType: "user" | "category" | "set" | "system";
   targetId?: string | null;
-  /** Mô tả ngắn tiếng Việt (giữ được kể cả khi đối tượng đã bị xoá). */
+  /** Mô tả ngắn, dịch theo ngôn ngữ của admin lúc ghi (giữ được kể cả khi đối tượng đã bị xoá). */
   summary: string;
   meta?: Prisma.InputJsonValue;
 };
@@ -26,6 +26,6 @@ export async function logAdminAction(adminId: string | null, entry: AdminAction)
       },
     });
   } catch (e) {
-    console.error("[admin-audit] không ghi được nhật ký:", e instanceof Error ? e.message : e);
+    console.error("[admin-audit] failed to write log:", e instanceof Error ? e.message : e);
   }
 }

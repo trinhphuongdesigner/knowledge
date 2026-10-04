@@ -4,7 +4,7 @@ import {
   buildPushPayload,
   isGonePushStatus,
   notificationCutoffs,
-  relativeTimeVi,
+  relativeTime,
   safeHref,
 } from "../notifications-core";
 import { siteUrl } from "../site";
@@ -42,17 +42,17 @@ describe("badgeLabel", () => {
   });
 });
 
-describe("relativeTimeVi", () => {
+describe("relativeTime", () => {
   const now = new Date("2026-10-03T10:00:00Z");
   const ago = (ms: number) => new Date(now.getTime() - ms);
   it("formats minutes, hours, days", () => {
-    expect(relativeTimeVi(ago(10_000), now)).toBe("vừa xong");
-    expect(relativeTimeVi(ago(5 * 60_000), now)).toBe("5 phút trước");
-    expect(relativeTimeVi(ago(3 * 3_600_000), now)).toBe("3 giờ trước");
-    expect(relativeTimeVi(ago(2 * 86_400_000), now)).toBe("2 ngày trước");
+    expect(relativeTime("en", ago(10_000), now)).toBe("10 seconds ago");
+    expect(relativeTime("en", ago(5 * 60_000), now)).toBe("5 minutes ago");
+    expect(relativeTime("en", ago(3 * 3_600_000), now)).toBe("3 hours ago");
+    expect(relativeTime("en", ago(2 * 86_400_000), now)).toBe("2 days ago");
   });
   it("never goes negative for future dates", () => {
-    expect(relativeTimeVi(new Date(now.getTime() + 60_000), now)).toBe("vừa xong");
+    expect(relativeTime("en", new Date(now.getTime() + 60_000), now)).toBe("now");
   });
 });
 

@@ -65,6 +65,7 @@ model User {
   fullName       String?
   birthYear      Int?
   nativeLanguage String?  // mã ISO 639-1
+  uiLanguage     String?  // một trong LOCALES (src/i18n/config.ts)
   onboardedAt    DateTime? // null = phải hoàn tất hồ sơ ở /welcome
   gender         Gender?
   avatarUrl      String?   // ảnh Google mới nhất (https)

@@ -3,6 +3,7 @@
 import { X } from "lucide-react";
 import { useEffect, useId, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 
 export type ModalProps = {
@@ -19,6 +20,7 @@ const FOCUSABLE =
 
 /** Accessible dialog: Esc / overlay click closes, focus moves in on open and is restored on close. */
 export function Modal({ open, onClose, title, children, centered = false }: ModalProps) {
+  const t = useT("common");
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
@@ -99,7 +101,7 @@ export function Modal({ open, onClose, title, children, centered = false }: Moda
           <button
             type="button"
             onClick={onClose}
-            aria-label="Đóng"
+            aria-label={t("close")}
             className="-m-2 flex size-11 items-center justify-center rounded-xl text-ink-500 hover:bg-ink-100 hover:text-ink-900"
           >
             <X className="size-5" aria-hidden />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useT } from "@/i18n/client";
 import type { Gender } from "@/lib/profile";
 import { DefaultAvatar } from "./DefaultAvatars";
 
@@ -17,6 +18,7 @@ export function UserAvatar({
   size?: number;
   className?: string;
 }) {
+  const t = useT("account");
   // Track which src failed so the error state resets automatically when src changes.
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const showImage = !!src && failedSrc !== src;
@@ -30,7 +32,7 @@ export function UserAvatar({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
-          alt={name ? `Ảnh đại diện của ${name}` : "Ảnh đại diện"}
+          alt={name ? t("avatar.altNamed", { name }) : t("avatar.alt")}
           width={size}
           height={size}
           referrerPolicy="no-referrer"

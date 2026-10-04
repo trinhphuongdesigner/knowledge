@@ -3,6 +3,8 @@
 import { Download, PlusSquare, Share, X } from "lucide-react";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
+import { RichText } from "@/components/ui/RichText";
+import { useT } from "@/i18n/client";
 
 type InstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -34,6 +36,8 @@ const buttonClass =
   "flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-600 hover:bg-ink-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600";
 
 export function InstallButton() {
+  const t = useT("layout");
+  const tc = useT("common");
   const [promptEvent, setPromptEvent] = useState<InstallPromptEvent | null>(
     null,
   );
@@ -72,8 +76,8 @@ export function InstallButton() {
         className={buttonClass}
       >
         <Download className="size-5" aria-hidden />
-        <span className="hidden sm:inline">Cài ứng dụng</span>
-        <span className="sr-only sm:hidden">Cài ứng dụng</span>
+        <span className="hidden sm:inline">{t("install.button")}</span>
+        <span className="sr-only sm:hidden">{t("install.button")}</span>
       </button>
 
       {showIosHelp &&
@@ -81,7 +85,7 @@ export function InstallButton() {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Hướng dẫn cài ứng dụng trên iPhone"
+            aria-label={t("install.iosAria")}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
             onClick={() => setShowIosHelp(false)}
           >
@@ -91,13 +95,13 @@ export function InstallButton() {
             >
               <div className="flex items-start justify-between gap-3">
                 <h2 className="text-base font-semibold text-ink-900">
-                  Cài Knowledge trên iPhone
+                  {t("install.iosTitle")}
                 </h2>
                 <button
                   type="button"
                   onClick={() => setShowIosHelp(false)}
                   className="-m-2 flex size-11 items-center justify-center rounded-xl text-ink-600 hover:bg-ink-100"
-                  aria-label="Đóng"
+                  aria-label={tc("close")}
                 >
                   <X className="size-5" aria-hidden />
                 </button>
@@ -106,21 +110,18 @@ export function InstallButton() {
                 <li className="flex items-center gap-2">
                   <Share className="size-5 shrink-0" aria-hidden />
                   <span>
-                    Chạm nút <b>Chia sẻ</b> của trình duyệt (hoặc menu{" "}
-                    <b>···</b> → Chia sẻ).
+                    <RichText text={t("install.step1")} />
                   </span>
                 </li>
                 <li className="flex items-center gap-2">
                   <PlusSquare className="size-5 shrink-0" aria-hidden />
                   <span>
-                    Chọn <b>Thêm vào MH chính</b> (Add to Home Screen), rồi bấm{" "}
-                    <b>Thêm</b>.
+                    <RichText text={t("install.step2")} />
                   </span>
                 </li>
               </ol>
               <p className="mt-3 text-xs text-ink-500">
-                Không thấy &quot;Thêm vào MH chính&quot;? Cuộn xuống cuối danh
-                sách chia sẻ, hoặc bấm &quot;Xem thêm&quot;.
+                {t("install.iosNote")}
               </p>
             </div>
           </div>,

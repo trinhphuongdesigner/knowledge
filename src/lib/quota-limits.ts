@@ -48,26 +48,29 @@ export type QuotaRequest = {
   subscriptions?: number;
 };
 
-/** Thuần: so sánh với giới hạn, trả thông báo lỗi tiếng Việt hoặc null. */
+/** Vi phạm hạn mức: `key` là key trong namespace errors, `limit` là tham số {limit}. */
+export type QuotaViolation = { key: "quotaSets" | "quotaCardsPerSet" | "quotaCards" | "quotaSubscriptions"; limit: number };
+
+/** Thuần: so sánh với giới hạn, trả vi phạm (để dịch ở nơi gọi) hoặc null. */
 export function evaluateQuota(
   limits: QuotaLimits,
   usage: QuotaUsage,
   req: QuotaRequest,
   setCardCount = 0,
-): string | null {
+): QuotaViolation | null {
   if (req.sets && usage.sets + req.sets > limits.setsPerUser) {
-    return `Bạn đã đạt giới hạn ${limits.setsPerUser} bộ thẻ. Hãy xoá bớt bộ không dùng.`;
+    return { key: "quotaSets", limit: limits.setsPerUser };
   }
   if (req.cards) {
     if (req.setId && setCardCount + req.cards > limits.cardsPerSet) {
-      return `Mỗi bộ thẻ tối đa ${limits.cardsPerSet} thẻ.`;
+      return { key: "quotaCardsPerSet", limit: limits.cardsPerSet };
     }
     if (usage.cards + req.cards > limits.cardsPerUser) {
-      return `Bạn đã đạt giới hạn ${limits.cardsPerUser} thẻ trong tài khoản.`;
+      return { key: "quotaCards", limit: limits.cardsPerUser };
     }
   }
   if (req.subscriptions && usage.subscriptions + req.subscriptions > limits.subscriptionsPerUser) {
-    return `Bạn đã lưu tối đa ${limits.subscriptionsPerUser} bộ từ thư viện.`;
+    return { key: "quotaSubscriptions", limit: limits.subscriptionsPerUser };
   }
   return null;
 }

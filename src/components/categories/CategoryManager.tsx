@@ -4,6 +4,7 @@ import { ArrowDown, ArrowUp, FolderOpen, Pencil, Plus, Trash2 } from "lucide-rea
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Badge, Button, Card, EmptyState, Modal, Select } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 import type { CategoryDTO } from "@/lib/validators";
 import { CategoryFormModal, type CategoryFormValues } from "./CategoryFormModal";
@@ -12,14 +13,14 @@ import { colorClasses } from "./colors";
 /** Danh mục kèm tổng số thẻ (admin). */
 export type AdminCategory = CategoryDTO & { cardCount?: number };
 
-async function call<T>(url: string, method: string, body?: unknown): Promise<T> {
+async function call<T>(url: string, method: string, body: unknown, failed: (status: number) => string): Promise<T> {
   const res = await fetch(url, {
     method,
     headers: { "Content-Type": "application/json" },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   const data = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(data?.error ?? `Yêu cầu thất bại (${res.status})`);
+  if (!res.ok) throw new Error(data?.error ?? failed(res.status));
   return data as T;
 }
 
@@ -27,6 +28,8 @@ type FormTarget = { mode: "create" } | { mode: "edit"; category: AdminCategory }
 
 export function CategoryManager({ initialCategories }: { initialCategories: AdminCategory[] }) {
   const router = useRouter();
+  const t = useT("categories");
+  const requestFailed = (status: number) => t("manager.requestFailed", { status });
   const [categories, setCategories] = useState(initialCategories);
   const [seen, setSeen] = useState(initialCategories);
   const [form, setForm] = useState<FormTarget>(null);
@@ -46,10 +49,10 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
   async function save(values: CategoryFormValues) {
     if (form?.mode === "edit") {
       const id = form.category.id;
-      const updated = await call<CategoryDTO>(`/api/admin/categories/${id}`, "PATCH", values);
+      const updated = await call<CategoryDTO>(`/api/admin/categories/${id}`, "PATCH", values, requestFailed);
       setCategories((list) => list.map((c) => (c.id === id ? { ...c, ...updated } : c)));
     } else {
-      const created = await call<CategoryDTO>("/api/admin/categories", "POST", values);
+      const created = await call<CategoryDTO>("/api/admin/categories", "POST", values, requestFailed);
       setCategories((list) => [...list, { ...created, cardCount: 0 }]);
     }
     setForm(null);
@@ -67,11 +70,11 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
     setMoving(true);
     setMoveError("");
     try {
-      await call("/api/admin/categories/reorder", "POST", { id, direction });
+      await call("/api/admin/categories/reorder", "POST", { id, direction }, requestFailed);
       router.refresh();
     } catch (e) {
       setCategories(previous);
-      setMoveError(e instanceof Error ? e.message : "Không thể đổi thứ tự.");
+      setMoveError(e instanceof Error ? e.message : t("manager.moveFailed"));
     } finally {
       setMoving(false);
     }
@@ -88,11 +91,11 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
     setDeleting(true);
     setDeleteError("");
     try {
-      await call(`/api/admin/categories/${toDelete.id}`, "DELETE", reassignTo ? { reassignTo } : undefined);
+      await call(`/api/admin/categories/${toDelete.id}`, "DELETE", reassignTo ? { reassignTo } : undefined, requestFailed);
       setToDelete(null);
       router.refresh();
     } catch (e) {
-      setDeleteError(e instanceof Error ? e.message : "Không thể xoá danh mục.");
+      setDeleteError(e instanceof Error ? e.message : t("manager.deleteFailed"));
     } finally {
       setDeleting(false);
     }
@@ -111,12 +114,12 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
       {categories.length === 0 ? (
         <EmptyState
           icon={FolderOpen}
-          title="Chưa có danh mục nào"
-          description="Tạo danh mục để nhóm các nhóm thẻ."
+          title={t("manager.emptyTitle")}
+          description={t("manager.emptyDescription")}
           action={
             <Button onClick={() => setForm({ mode: "create" })}>
               <Plus className="size-4" aria-hidden />
-              Tạo danh mục
+              {t("manager.create")}
             </Button>
           }
         />
@@ -130,9 +133,10 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
                     <span className={cn("size-3.5 shrink-0 rounded-full", colorClasses(c.color).dot)} aria-hidden />
                     <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
                       <h2 className="break-words text-base font-semibold text-ink-900">{c.name}</h2>
-                      {c.isEnglish && <Badge tone="green">Tiếng Anh</Badge>}
+                      {c.isEnglish && <Badge tone="green">{t("manager.english")}</Badge>}
                       <span className="text-sm text-ink-500">
-                        {c.setCount} bộ{c.cardCount !== undefined && ` · ${c.cardCount} thẻ`}
+                        {t("manager.setCount", { count: c.setCount })}
+                        {c.cardCount !== undefined && ` · ${t("manager.cardCount", { count: c.cardCount })}`}
                       </span>
                     </div>
                   </div>
@@ -142,7 +146,7 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
                       size="sm"
                       disabled={i === 0 || moving}
                       onClick={() => move(i, "up")}
-                      aria-label={`Chuyển danh mục ${c.name} lên`}
+                      aria-label={t("manager.moveUp", { name: c.name })}
                     >
                       <ArrowUp className="size-4" aria-hidden />
                     </Button>
@@ -151,17 +155,17 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
                       size="sm"
                       disabled={i === categories.length - 1 || moving}
                       onClick={() => move(i, "down")}
-                      aria-label={`Chuyển danh mục ${c.name} xuống`}
+                      aria-label={t("manager.moveDown", { name: c.name })}
                     >
                       <ArrowDown className="size-4" aria-hidden />
                     </Button>
                     <Button variant="secondary" size="sm" onClick={() => setForm({ mode: "edit", category: c })}>
                       <Pencil className="size-4" aria-hidden />
-                      Sửa<span className="sr-only"> danh mục {c.name}</span>
+                      {t("manager.edit")}<span className="sr-only"> {t("manager.categoryName", { name: c.name })}</span>
                     </Button>
                     <Button variant="ghost" size="sm" className="hover:bg-red-50 hover:text-red-600" onClick={() => openDelete(c)}>
                       <Trash2 className="size-4" aria-hidden />
-                      Xoá<span className="sr-only"> danh mục {c.name}</span>
+                      {t("manager.delete")}<span className="sr-only"> {t("manager.categoryName", { name: c.name })}</span>
                     </Button>
                   </div>
                 </Card>
@@ -171,7 +175,7 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
           <div className="mt-4">
             <Button onClick={() => setForm({ mode: "create" })}>
               <Plus className="size-4" aria-hidden />
-              Tạo danh mục
+              {t("manager.create")}
             </Button>
           </div>
         </>
@@ -184,28 +188,23 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
         onSubmit={save}
       />
 
-      <Modal open={!!toDelete} onClose={() => !deleting && setToDelete(null)} title="Xoá danh mục?" centered>
+      <Modal open={!!toDelete} onClose={() => !deleting && setToDelete(null)} title={t("manager.deleteTitle")} centered>
         {toDelete && (
           <>
             <p className="text-sm text-ink-600">
               {needsTarget ? (
-                <>
-                  Danh mục <strong className="break-words text-ink-900">{toDelete.name}</strong> còn {toDelete.setCount} bộ
-                  thẻ. Chọn danh mục đích để chuyển toàn bộ các bộ đó sang, rồi danh mục này sẽ bị xoá.
-                </>
+t("manager.deleteNeedsTarget", { name: toDelete.name, count: toDelete.setCount })
               ) : (
-                <>
-                  Danh mục <strong className="break-words text-ink-900">{toDelete.name}</strong> sẽ bị xoá vĩnh viễn.
-                </>
+t("manager.deleteConfirm", { name: toDelete.name })
               )}
             </p>
             {needsTarget && (
               <div className="mt-3">
                 <Select
-                  label="Chuyển các bộ sang"
+                  label={t("manager.reassignTo")}
                   value={reassignTo}
                   onValueChange={setReassignTo}
-                  placeholder={targets.length ? "Chọn danh mục đích" : "Không có danh mục khác"}
+                  placeholder={targets.length ? t("manager.pickTarget") : t("manager.noTargets")}
                   options={targets.map((c) => ({ value: c.id, label: c.name, color: colorClasses(c.color).dot }))}
                 />
               </div>
@@ -217,10 +216,10 @@ export function CategoryManager({ initialCategories }: { initialCategories: Admi
             )}
             <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
               <Button variant="secondary" onClick={() => setToDelete(null)} disabled={deleting}>
-                Huỷ
+                {t("form.cancel")}
               </Button>
               <Button variant="danger" onClick={confirmDelete} loading={deleting} disabled={needsTarget && !reassignTo}>
-                {needsTarget ? "Chuyển và xoá" : "Xoá"}
+                {needsTarget ? t("manager.moveAndDelete") : t("manager.delete")}
               </Button>
             </div>
           </>

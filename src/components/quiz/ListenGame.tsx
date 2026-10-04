@@ -9,6 +9,7 @@ import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
 import { RoundResult } from "./RoundResult";
 import { NORMAL_RATE, playTerm, SLOW_RATE, stopSpeech } from "./speech";
+import { useT } from "@/i18n/client";
 
 const AUTO_NEXT_MS = 1500;
 const OPTION_COUNT = 4;
@@ -29,6 +30,7 @@ export function ListenGame({
   english: boolean;
   onComplete?: (passedIds: string[], failedIds: string[]) => void;
 }) {
+  const t = useT("quiz");
   const [run, setRun] = useState<{ id: number; cards: CardDTO[] }>(() => ({ id: 0, cards: shuffleArray(cards) }));
   const [results, setResults] = useState<Result[] | null>(null);
   const [answerMode, setAnswerMode] = useState<AnswerMode>("choice");
@@ -56,11 +58,11 @@ export function ListenGame({
 
   return (
     <div>
-      <div role="group" aria-label="Cách trả lời" className="mb-3 grid grid-cols-2 gap-1 rounded-xl bg-ink-100 p-1">
+      <div role="group" aria-label={t("listen.modeAria")} className="mb-3 grid grid-cols-2 gap-1 rounded-xl bg-ink-100 p-1">
         {(
           [
-            ["choice", "Chọn đáp án"],
-            ["type", "Gõ từ"],
+            ["choice", t("listen.modeChoice")],
+            ["type", t("listen.modeType")],
           ] as const
         ).map(([id, label]) => (
           <button
@@ -110,6 +112,7 @@ function ListenRun({
   answerMode: AnswerMode;
   onFinish: (results: Result[]) => void;
 }) {
+  const t = useT("quiz");
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
   const [picked, setPicked] = useState<string | null>(null);
@@ -148,8 +151,8 @@ function ListenRun({
     if (answerMode !== "choice") return;
     function onKey(e: KeyboardEvent) {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
-      const t = e.target as HTMLElement | null;
-      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA")) return;
       if (e.key === "r" || e.key === "R") return play(NORMAL_RATE);
       if (e.key === "s" || e.key === "S") return play(SLOW_RATE);
       const n = Number(e.key);
@@ -188,13 +191,13 @@ function ListenRun({
   return (
     <form onSubmit={submit} className="rounded-xl border border-ink-200 bg-surface p-4 shadow-sm sm:p-6">
       <div className="mb-3 text-sm text-ink-500">
-        Câu {index + 1}/{cards.length}
+        {t("play.question", { n: index + 1, total: cards.length })}
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-ink-100" aria-hidden>
         <div className="h-full bg-brand-600 transition-all" style={{ width: `${(index / cards.length) * 100}%` }} />
       </div>
 
-      <p className="mt-5 text-xs font-medium uppercase tracking-wide text-ink-500">Nghe và chọn đúng từ</p>
+      <p className="mt-5 text-xs font-medium uppercase tracking-wide text-ink-500">{t("listen.prompt")}</p>
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <button
           type="button"
@@ -203,7 +206,7 @@ function ListenRun({
           aria-keyshortcuts="R"
         >
           <Volume2 className="size-5" aria-hidden />
-          Nghe lại
+          {t("listen.replay")}
         </button>
         <button
           type="button"
@@ -212,7 +215,7 @@ function ListenRun({
           aria-keyshortcuts="S"
         >
           <Snail className="size-5" aria-hidden />
-          Nghe chậm
+          {t("listen.slow")}
         </button>
       </div>
 
@@ -249,7 +252,7 @@ function ListenRun({
       ) : (
         <>
           <label htmlFor="quiz-listen-input" className="mt-5 block text-sm font-medium text-ink-700">
-            Nhập từ bạn nghe được
+            {t("listen.typeLabel")}
           </label>
           <input
             id="quiz-listen-input"
@@ -286,9 +289,9 @@ function ListenRun({
               <X className="mt-0.5 size-4 shrink-0" aria-hidden />
             )}
             <div className="min-w-0 flex-1">
-              <p className="font-semibold">{checked.correct ? "Chính xác!" : "Chưa đúng"}</p>
+              <p className="font-semibold">{checked.correct ? t("play.correct") : t("play.wrong")}</p>
               <p className="mt-0.5 break-words">
-                {checked.correct ? "Từ là" : "Đáp án"}: <span className="font-semibold">{expected}</span>
+                {checked.correct ? t("listen.wordIs") : t("play.revealAnswer")} <span className="font-semibold">{expected}</span>
                 <span className="text-ink-600"> — {stripMarkdown(card.answer)}</span>
               </p>
             </div>
@@ -299,17 +302,17 @@ function ListenRun({
       <div className="mt-5 flex flex-wrap gap-2">
         {checked ? (
           <button ref={nextRef} type="submit" className={buttonStyles("primary", "md", "w-full")}>
-            {index + 1 >= cards.length ? "Xem kết quả" : "Tiếp"}
+            {index + 1 >= cards.length ? t("play.seeResult") : t("play.next")}
           </button>
         ) : (
           <>
             {answerMode === "type" && (
               <Button type="submit" disabled={!value.trim()}>
-                Kiểm tra
+                {t("play.check")}
               </Button>
             )}
             <Button variant="ghost" onClick={() => check(false)}>
-              Bỏ qua
+              {t("play.skip")}
             </Button>
           </>
         )}

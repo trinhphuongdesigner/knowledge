@@ -1,8 +1,8 @@
 import { requireApiUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
-import { badRequest, json, notFound, serverError } from "@/lib/http";
-import { notify } from "@/lib/notify";
+import { badRequest, json, notFound, quotaExceeded, serverError } from "@/lib/http";
+import { notifyLocalized } from "@/lib/notify";
 import { checkQuota } from "@/lib/quota";
 
 export const dynamic = "force-dynamic";
@@ -20,13 +20,13 @@ export async function POST(req: Request, { params }: Ctx) {
       select: { userId: true, title: true, visibility: true, approved: true },
     });
     const shareable = set && (set.visibility === "LINK" || (set.visibility === "PUBLIC" && set.approved));
-    if (!set || !shareable) return notFound("Không tìm thấy nhóm thẻ");
-    if (set.userId === user.id) return badRequest("Đây là nhóm thẻ của bạn");
+    if (!set || !shareable) return notFound("setNotFound");
+    if (set.userId === user.id) return badRequest("ownSet");
 
     const key = { userId_setId: { userId: user.id, setId: id } };
     if (await db.setSubscription.findUnique({ where: key })) return json({ ok: true }); // idempotent
     const quotaError = await checkQuota(user, { subscriptions: 1 });
-    if (quotaError) return badRequest(quotaError);
+    if (quotaError) return quotaExceeded(quotaError);
     await db.setSubscription.upsert({
       where: key,
       create: { userId: user.id, setId: id },
@@ -39,12 +39,12 @@ export async function POST(req: Request, { params }: Ctx) {
       select: { id: true },
     });
     if (!recent) {
-      await notify(set.userId, {
+      await notifyLocalized(set.userId, (t) => ({
         type: "SET_SUBSCRIBED",
-        title: "Có người lưu bộ thẻ của bạn",
-        body: `Một người dùng vừa lưu "${set.title}" vào thư viện của họ.`,
+        title: t("notify.setSavedTitle"),
+        body: t("notify.setSavedBody", { title: set.title }),
         href,
-      });
+      }));
     }
     return json({ ok: true }, 201);
   } catch (e) {

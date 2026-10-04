@@ -1,0 +1,101 @@
+const importNs = {
+  loading: "Préparation de l’import des cartes…",
+  page: {
+    metaTitle: "Importer des cartes — Knowledge",
+    home: "Accueil",
+    breadcrumb: "Importer depuis un fichier",
+    title: "Importer des cartes dans : {title}",
+  },
+  steps: { label: "Étapes de l’import", source: "Choisir la source", preview: "Aperçu et enregistrement" },
+  tabs: { label: "Source des données", file: "Téléverser un fichier", paste: "Coller du texte" },
+  format: { label: "Format", csv: "CSV (séparé par , ; ou tabulation)", markdown: "Markdown" },
+  content: {
+    label: "Contenu",
+    placeholderCsv: "question,answer,explanation\nQu’est-ce qu’une fermeture ?,Une fonction qui mémorise sa portée,Exemple : compteur",
+    placeholderMarkdown: "Q: Qu’est-ce qu’une fermeture ?\nA: Une fonction qui mémorise sa portée\nE: Exemple : compteur",
+  },
+  actions: { preview: "Aperçu", back: "Retour", cancel: "Annuler" },
+  templates: { title: "Télécharger des fichiers d’exemple", csv: "Exemple CSV", excel: "Exemple Excel", markdown: "Exemple Markdown" },
+  guide: {
+    title: "Guide des formats",
+    csv: "CSV / Excel : la première ligne est l’en-tête (question, answer, explanation). Sans en-tête, colonne 1 = question, colonne 2 = réponse, colonne 3 = explication.",
+    heading: "Titres Markdown : ## Question, le texte en dessous est la réponse ; les lignes commençant par > ou la partie après --- sont l’explication.",
+    qa: "Q/R Markdown : Q:/A:/E: (ou Question:/Answer:/Explanation:), les cartes étant séparées par des lignes vides.",
+    table: "Tableau Markdown : | question | answer | explanation |.",
+    english:
+      "Anglais (facultatif) : ajoutez les colonnes phonetic/IPA et partOfSpeech/pos ; dans les Q/R Markdown, utilisez P: pour la phonétique. Les cartes sans phonétique sont recherchées automatiquement après l’enregistrement (connexion internet requise).",
+    max: "Jusqu’à {max} cartes par import.",
+  },
+  mode: {
+    title: "Mode d’enregistrement",
+    append: "Ajouter à la fin",
+    appendHint: "Conserver les cartes existantes et ajouter les nouvelles à la suite.",
+    replace: "Tout remplacer",
+    replaceHint: "Supprimer toutes les cartes existantes et les remplacer par celles-ci.",
+    replaceWarning: "Attention : toutes les cartes existantes de ce paquet seront définitivement supprimées.",
+  },
+  errors: {
+    tooMany: "Jusqu’à {max} cartes par import (vous en avez {count}). Supprimez-en ou scindez le fichier.",
+    invalid: {
+      one: "{count} carte n’a pas de question ou de réponse. Complétez-la ou supprimez-la.",
+      other: "{count} cartes n’ont pas de question ou de réponse. Complétez-les ou supprimez-les.",
+    },
+  },
+  parse: {
+    noCards: "Aucune carte n’a pu être lue. {row}{message}",
+    rowPrefix: "Ligne {row} : ",
+    empty: "Aucune carte trouvée dans les données.",
+    pickFile: "Veuillez d’abord choisir un fichier.",
+    pasteContent: "Veuillez coller le contenu à importer.",
+    failed: "Impossible de lire les données.",
+    unsupportedFormat: "Le format de fichier « {format} » n’est pas pris en charge. Utilisez .csv, .xlsx, .xls, .md, .markdown ou .txt.",
+  },
+  parseErrors: {
+    missingQuestion: "Question manquante",
+    missingAnswer: "Réponse manquante",
+    missingBoth: "Question et réponse manquantes",
+    missingAnswerFor: "Réponse manquante pour « {text} »",
+    csvFormat: "Erreur de format CSV : {text}",
+    noSheet: "Le fichier Excel ne contient aucune feuille",
+    orphanLine: "Ligne en dehors d’une carte (doit commencer par Q: / Question:)",
+    unknownMarkdown: "Format Markdown non reconnu (utilisez des titres, Q:/A: ou un tableau)",
+  },
+  save: {
+    lookingUp: "Recherche des transcriptions phonétiques…",
+    lookingUpProgress: "Recherche des transcriptions phonétiques {done}/{total}",
+    lookupInterrupted:
+      "Cartes enregistrées, mais la phonétique n’a pas pu être recherchée pour certaines cartes (connexion internet requise). Vous pourrez utiliser plus tard le bouton de recherche phonétique sur la page du paquet.",
+    failed: "Échec de l’enregistrement, veuillez réessayer.",
+    saving: "Enregistrement...",
+    button: { one: "Enregistrer {count} carte", other: "Enregistrer {count} cartes" },
+  },
+  replaceModal: {
+    title: "Remplacer toutes les cartes ?",
+    body: {
+      one: "Toutes les cartes existantes de ce paquet seront définitivement supprimées et remplacées par la {count} carte que vous venez de saisir.",
+      other: "Toutes les cartes existantes de ce paquet seront définitivement supprimées et remplacées par les {count} cartes que vous venez de saisir.",
+    },
+    confirm: "Remplacer",
+  },
+  fields: { question: "Question", answer: "Réponse", explanation: "Explication" },
+  preview: {
+    valid: { one: "{count} carte valide", other: "{count} cartes valides" },
+    errorRows: { one: "{count} ligne en erreur (ignorée)", other: "{count} lignes en erreur (ignorées)" },
+    errorTitle: "Les lignes suivantes n’ont pas pu être lues et seront ignorées",
+    empty: "Il ne reste aucune carte à importer.",
+    delete: "Supprimer",
+    required: "Ne doit pas être vide",
+    card: "Carte",
+    deleteCard: "Supprimer la carte {n}",
+    fieldLabel: "{field} — carte {n}",
+  },
+  dropzone: {
+    aria: "Choisissez ou glissez-déposez un fichier à importer",
+    prompt: "Glissez-déposez un fichier ici ou",
+    promptAction: "cliquez pour choisir un fichier",
+    supported: "Formats pris en charge : .csv, .xlsx, .xls, .md, .markdown, .txt",
+    clear: "Retirer le fichier sélectionné",
+  },
+};
+
+export default importNs;

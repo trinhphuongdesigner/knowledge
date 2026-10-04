@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Badge, Button, Modal } from "@/components/ui";
+import { useT } from "@/i18n/client";
 
 export type PublicSet = {
   id: string;
@@ -18,6 +19,7 @@ export type PublicSet = {
 
 export function PublicSets({ sets, emptyText }: { sets: PublicSet[]; emptyText: string }) {
   const router = useRouter();
+  const t = useT("admin");
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [toUnpublish, setToUnpublish] = useState<PublicSet | null>(null);
@@ -31,11 +33,11 @@ export function PublicSets({ sets, emptyText }: { sets: PublicSet[]; emptyText: 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (!res.ok) throw new Error((await res.json().catch(() => null))?.error ?? "Thao tác thất bại");
+      if (!res.ok) throw new Error((await res.json().catch(() => null))?.error ?? t("actionFailed"));
       router.refresh();
       return true;
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Thao tác thất bại");
+      setError(e instanceof Error ? e.message : t("actionFailed"));
       return false;
     } finally {
       setBusy(null);
@@ -63,10 +65,10 @@ export function PublicSets({ sets, emptyText }: { sets: PublicSet[]; emptyText: 
                 <Link href={`/sets/${s.id}`} className="break-words font-medium text-ink-900 hover:text-accent">
                   {s.title}
                 </Link>
-                {s.featured && <Badge tone="blue">Nổi bật</Badge>}
+                {s.featured && <Badge tone="blue">{t("publicSets.featured")}</Badge>}
               </div>
               <p className="truncate text-xs text-ink-500">
-                {s.ownerEmail} · {s.categoryName} · {s.cardCount} thẻ · {s.subscriberCount} người lưu
+                {t("publicSets.meta", { owner: s.ownerEmail, category: s.categoryName, cards: s.cardCount, subs: s.subscriberCount })}
               </p>
             </div>
             <div className="flex gap-2">
@@ -79,30 +81,31 @@ export function PublicSets({ sets, emptyText }: { sets: PublicSet[]; emptyText: 
                 onClick={() => patch(s.id, { featured: !s.featured })}
               >
                 <Star className="size-4" aria-hidden />
-                Nổi bật
+                {t("publicSets.featured")}
               </Button>
               <Button size="sm" variant="secondary" disabled={busy !== null} onClick={() => setToUnpublish(s)}>
                 <Undo2 className="size-4" aria-hidden />
-                Gỡ
+                {t("publicSets.unpublish")}
               </Button>
             </div>
           </li>
         ))}
       </ul>
 
-      <Modal open={!!toUnpublish} onClose={() => busy === null && setToUnpublish(null)} title="Gỡ khỏi thư viện?" centered>
+      <Modal open={!!toUnpublish} onClose={() => busy === null && setToUnpublish(null)} title={t("publicSets.modalTitle")} centered>
         {toUnpublish && (
           <>
             <p className="text-sm text-ink-600">
-              Bộ <strong className="break-words text-ink-900">{toUnpublish.title}</strong> sẽ chuyển về chế độ chỉ-link và không
-              còn hiển thị ở thư viện. Chủ bộ sẽ nhận được thông báo.
+              {t("publicSets.modalBefore")}
+              <strong className="break-words text-ink-900">{toUnpublish.title}</strong>
+              {t("publicSets.modalAfter")}
             </p>
             <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
               <Button variant="secondary" onClick={() => setToUnpublish(null)} disabled={busy !== null}>
-                Huỷ
+                {t("cancel")}
               </Button>
               <Button variant="danger" onClick={confirmUnpublish} loading={busy === toUnpublish.id}>
-                Gỡ khỏi thư viện
+                {t("publicSets.confirm")}
               </Button>
             </div>
           </>

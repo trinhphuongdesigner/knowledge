@@ -1,4 +1,22 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { DEFAULT_LOCALE, LOCALE_COOKIE, isLocale } from "@/i18n/config";
+import en from "@/i18n/messages/en/errors";
+import vi from "@/i18n/messages/vi/errors";
+import zh from "@/i18n/messages/zh/errors";
+import ja from "@/i18n/messages/ja/errors";
+import ko from "@/i18n/messages/ko/errors";
+import ru from "@/i18n/messages/ru/errors";
+import fr from "@/i18n/messages/fr/errors";
+import th from "@/i18n/messages/th/errors";
+
+/** Chỉ namespace `errors` (nhẹ) — proxy chạy trước DAL nên đọc cookie kn_locale. */
+const ERRORS: Record<string, { notSignedIn?: string }> = { en, vi, zh, ja, ko, ru, fr, th };
+
+function notSignedInMessage(req: NextRequest): string {
+  const c = req.cookies.get(LOCALE_COOKIE)?.value;
+  const locale = isLocale(c) ? c : DEFAULT_LOCALE;
+  return ERRORS[locale]?.notSignedIn || en.notSignedIn;
+}
 
 const SESSION_COOKIE = "kn_session";
 const AUTH_PAGES = new Set(["/login"]);
@@ -40,7 +58,7 @@ export function proxy(req: NextRequest) {
   if (pathname.startsWith("/s/") || pathname.startsWith("/api/share/")) return NextResponse.next();
 
   if (pathname.startsWith("/api/")) {
-    if (!hasCookie) return NextResponse.json({ error: "Chưa đăng nhập" }, { status: 401 });
+    if (!hasCookie) return NextResponse.json({ error: notSignedInMessage(req) }, { status: 401 });
     return withSlidingCookie(req, NextResponse.next());
   }
 

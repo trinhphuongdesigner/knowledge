@@ -8,7 +8,8 @@ import { hintText, isCorrectAnswer, stripMarkdown } from "@/lib/quiz";
 import type { Grade } from "@/lib/srs";
 import { cn } from "@/lib/utils";
 import type { CardDTO } from "@/lib/validators";
-import { GRADE_LABELS, typingGrade } from "./session";
+import { GRADE_KEYS, typingGrade } from "./session";
+import { useT } from "@/i18n/client";
 
 /** Ôn tập kiểu gõ từ: hiện nghĩa tiếng Việt, người dùng gõ từ tiếng Anh, mức nhớ được tính tự động. */
 export function ReviewTypingCard({
@@ -21,6 +22,7 @@ export function ReviewTypingCard({
   /** Called once when the user moves on to the next card. */
   onAnswer: (grade: Grade) => void;
 }) {
+  const t = useT("review");
   const [value, setValue] = useState("");
   const [hint, setHint] = useState(0);
   const [checked, setChecked] = useState<null | { correct: boolean }>(null);
@@ -54,7 +56,7 @@ export function ReviewTypingCard({
   return (
     <form onSubmit={submit} className="rounded-xl border border-ink-200 bg-surface p-4 shadow-sm sm:p-6">
       <p className="text-xs font-medium uppercase tracking-wide text-ink-500">
-        Nghĩa
+        {t("typing.meaning")}
         {card.partOfSpeech && <span className="ml-1 normal-case italic">({card.partOfSpeech})</span>}
       </p>
       <p className="mt-1 line-clamp-6 whitespace-pre-wrap break-words text-xl font-semibold text-ink-900">
@@ -62,7 +64,7 @@ export function ReviewTypingCard({
       </p>
 
       <label htmlFor="review-typing-input" className="mt-5 block text-sm font-medium text-ink-700">
-        Nhập từ tiếng Anh
+        {t("typing.label")}
       </label>
       <input
         id="review-typing-input"
@@ -86,7 +88,7 @@ export function ReviewTypingCard({
 
       {!checked && hint > 0 && (
         <p className="mt-2 font-mono text-sm tracking-wider text-accent-strong" aria-live="polite">
-          Gợi ý: {hintText(expected, hint)}
+          {t("typing.hint", { hint: hintText(expected, hint) })}
         </p>
       )}
 
@@ -105,9 +107,9 @@ export function ReviewTypingCard({
               <X className="mt-0.5 size-4 shrink-0" aria-hidden />
             )}
             <div className="min-w-0 flex-1">
-              <p className="font-semibold">{checked.correct ? "Chính xác!" : "Chưa đúng"}</p>
+              <p className="font-semibold">{checked.correct ? t("typing.correct") : t("typing.wrong")}</p>
               <p className="mt-0.5 break-words">
-                Đáp án: <span className="font-semibold">{expected}</span>
+                {t("typing.answerLabel")} <span className="font-semibold">{expected}</span>
                 {card.phonetic && <PhoneticLine phonetic={card.phonetic} className="ml-2 text-inherit opacity-80" />}
               </p>
             </div>
@@ -131,19 +133,19 @@ export function ReviewTypingCard({
                 type="submit"
                 className={buttonStyles("primary", "md", "min-h-11 w-full")}
               >
-                Tiếp
+                {t("typing.next")}
               </button>
               <span className="text-center text-xs text-ink-500">
-                {GRADE_LABELS[grade]} · ôn lại sau {previews[grade]}
+                {t("typing.gradeAfter", { grade: t(GRADE_KEYS[grade]), delay: previews[grade] })}
               </span>
             </div>
             {checked.correct && hint === 0 && (
               <div className="flex w-full flex-col gap-1 sm:w-auto sm:flex-1">
                 <Button variant="secondary" className="min-h-11 w-full" onClick={() => answer(3)}>
-                  Quá dễ
+                  {t("typing.tooEasy")}
                 </Button>
                 <span className="text-center text-xs text-ink-500">
-                  {GRADE_LABELS[3]} · {previews[3]}
+                  {t("typing.gradeDelay", { grade: t(GRADE_KEYS[3]), delay: previews[3] })}
                 </span>
               </div>
             )}
@@ -151,7 +153,7 @@ export function ReviewTypingCard({
         ) : (
           <>
             <Button type="submit" className="min-h-11" disabled={!value.trim()}>
-              Kiểm tra
+              {t("typing.check")}
             </Button>
             <Button
               variant="secondary"
@@ -160,11 +162,11 @@ export function ReviewTypingCard({
               disabled={hint >= expectedLength}
             >
               <Lightbulb className="size-4" aria-hidden />
-              Gợi ý
+              {t("typing.hintButton")}
             </Button>
             <Button variant="ghost" className="min-h-11" onClick={() => setChecked({ correct: false })}>
               <SkipForward className="size-4" aria-hidden />
-              Bỏ qua
+              {t("typing.skip")}
             </Button>
           </>
         )}

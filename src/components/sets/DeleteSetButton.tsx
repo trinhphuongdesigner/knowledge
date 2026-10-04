@@ -4,10 +4,12 @@ import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Modal } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 
 export function DeleteSetButton({ id, title }: { id: string; title: string }) {
   const router = useRouter();
+  const t = useT("sets");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -20,7 +22,7 @@ export function DeleteSetButton({ id, title }: { id: string; title: string }) {
       router.push("/");
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không thể xoá nhóm thẻ.");
+      setError(e instanceof Error ? e.message : t("delete.failed"));
       setLoading(false);
     }
   }
@@ -29,12 +31,11 @@ export function DeleteSetButton({ id, title }: { id: string; title: string }) {
     <>
       <Button variant="danger" onClick={() => setOpen(true)}>
         <Trash2 className="size-4" aria-hidden />
-        Xoá nhóm thẻ
+        {t("delete.button")}
       </Button>
-      <Modal open={open} onClose={() => !loading && setOpen(false)} title="Xoá nhóm thẻ?" centered>
+      <Modal open={open} onClose={() => !loading && setOpen(false)} title={t("delete.title")} centered>
         <p className="text-sm text-ink-600">
-          Nhóm thẻ <strong className="break-words text-ink-900">{title}</strong> và toàn bộ thẻ bên trong sẽ bị xoá vĩnh
-          viễn. Hành động này không thể hoàn tác.
+          {t("delete.body", { title })}
         </p>
         {error && (
           <p role="alert" className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">
@@ -43,10 +44,10 @@ export function DeleteSetButton({ id, title }: { id: string; title: string }) {
         )}
         <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button variant="secondary" onClick={() => setOpen(false)} disabled={loading}>
-            Huỷ
+            {t("actions.cancel")}
           </Button>
           <Button variant="danger" onClick={onDelete} loading={loading}>
-            Xoá
+            {t("delete.confirm")}
           </Button>
         </div>
       </Modal>

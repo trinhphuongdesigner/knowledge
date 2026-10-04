@@ -30,7 +30,7 @@ async function request<T>(url: string, init?: RequestInit): Promise<T> {
   });
   const data = await res.json().catch(() => null);
   if (!res.ok) {
-    throw new Error(data?.error ?? `Yêu cầu thất bại (${res.status})`);
+    throw new Error(data?.error ?? `Request failed (${res.status})`);
   }
   return data as T;
 }

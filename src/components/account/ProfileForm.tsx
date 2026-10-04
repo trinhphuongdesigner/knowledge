@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { updateProfile } from "@/app/account/actions";
 import { FormError } from "@/components/auth/FormError";
 import { Button, Input } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import type { AccountFormState } from "@/lib/auth/types";
 import { FormSuccess } from "./FormSuccess";
 import { ProfileFields } from "./ProfileFields";
@@ -28,6 +29,8 @@ export function ProfileForm({
   googleAvatarUrl: string | null;
   email: string;
 }) {
+  const t = useT("account");
+  const tc = useT("common");
   const [state, action, pending] = useActionState<AccountFormState, FormData>(updateProfile, undefined);
   const v = state?.values;
   // Remount sau khi lưu thành công để các giá trị mặc định được làm mới.
@@ -50,10 +53,10 @@ export function ProfileForm({
       />
       <div className="flex flex-col gap-1.5">
         <Input label="Email" type="email" value={email} readOnly disabled autoComplete="email" />
-        <p className="text-xs text-ink-500">Đăng nhập bằng Google</p>
+        <p className="text-xs text-ink-500">{t("profile.signedInWithGoogle")}</p>
       </div>
       <Button type="submit" loading={pending} className="w-full sm:w-auto sm:self-start">
-        {pending ? "Đang lưu…" : "Lưu thay đổi"}
+        {pending ? tc("saving") : t("profile.saveChanges")}
       </Button>
     </form>
   );

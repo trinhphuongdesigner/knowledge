@@ -1,0 +1,53 @@
+const categories = {
+  loading: "カテゴリを読み込み中…",
+  colors: {
+    BLUE: "ブルー",
+    GREEN: "グリーン",
+    AMBER: "アンバー",
+    PURPLE: "パープル",
+    ROSE: "ローズ",
+    SLATE: "スレート",
+  },
+  form: {
+    editTitle: "カテゴリを編集",
+    createTitle: "カテゴリを作成",
+    nameError: "カテゴリ名を入力してください（40 文字まで）。",
+    genericError: "問題が発生しました。",
+    name: "カテゴリ名",
+    namePlaceholder: "例：数学",
+    color: "色",
+    english: "英単語デッキ",
+    englishHint: "カードに発音記号、読み上げボタン、辞書検索を表示します。",
+    cancel: "キャンセル",
+    saveChanges: "変更を保存",
+    create: "カテゴリを作成",
+  },
+  manager: {
+    requestFailed: "リクエストに失敗しました（{status}）",
+    moveFailed: "並び順を変更できませんでした。",
+    deleteFailed: "カテゴリを削除できませんでした。",
+    emptyTitle: "カテゴリはまだありません",
+    emptyDescription: "カテゴリを作成して、デッキをまとめましょう。",
+    create: "カテゴリを作成",
+    english: "英語",
+    setCount: { other: "{count} デッキ" },
+    cardCount: { other: "{count} 枚" },
+    moveUp: "カテゴリ {name} を上へ移動",
+    moveDown: "カテゴリ {name} を下へ移動",
+    edit: "編集",
+    delete: "削除",
+    categoryName: "カテゴリ {name}",
+    deleteTitle: "このカテゴリを削除しますか？",
+    deleteNeedsTarget: {
+      other:
+        "カテゴリ {name} にはまだ {count} 個のデッキがあります。移動先のカテゴリを選ぶと、すべて移動したうえでこのカテゴリを削除します。",
+    },
+    deleteConfirm: "カテゴリ {name} は完全に削除されます。",
+    reassignTo: "デッキの移動先",
+    pickTarget: "移動先のカテゴリを選択",
+    noTargets: "ほかのカテゴリがありません",
+    moveAndDelete: "移動して削除",
+  },
+};
+
+export default categories;

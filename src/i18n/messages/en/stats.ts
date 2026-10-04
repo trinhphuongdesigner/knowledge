@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "No stats yet",
+    emptyDescription: "Review cards to start a study streak and see your progress.",
+    reviewToday: "Review today",
+    streak: "Current streak",
+    longest: "Longest streak",
+    total: "Total reviews",
+    accuracy: "Accuracy",
+    days: { one: "{count} day", other: "{count} days" },
+    last90: "Last 90 days",
+    last30: "Last 30 days",
+    heatmapAria: "Heatmap of the last 90 days, {total} reviews in total",
+    barsAria: "Cards reviewed per day over the last 30 days, peak {max}",
+    dayTitle: "{day}: {reviewed} cards, {correct} correct",
+    less: "Less",
+    more: "More",
+    correct: "Correct",
+    wrong: "Wrong",
+  },
+  streak: {
+    chartAria: "Cards reviewed over the last 14 days: {values}",
+    daysInRow: { one: "day in a row", other: "days in a row" },
+    startNew: "Study today to start a new streak",
+    keep: "Study today to keep your streak",
+    longest: { one: "Longest: {count} day", other: "Longest: {count} days" },
+    dayTitle: { one: "{day}: {count} card", other: "{day}: {count} cards" },
+    goal: "Today's goal",
+    goalCount: "{done}/{goal} cards",
+    goalAria: "Today's goal progress",
+    view: "View stats",
+  },
+};
+
+export default stats;

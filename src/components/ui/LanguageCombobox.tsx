@@ -2,18 +2,20 @@
 
 import { Check, ChevronDown } from "lucide-react";
 import { useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { useLocale, useT } from "@/i18n/client";
 import { languageOptions, type LanguageCode } from "@/lib/languages";
 import { cn } from "@/lib/utils";
 import { Field } from "./Field";
 import { fieldClass } from "./fieldStyles";
 
-/** Bỏ dấu + chữ thường để tìm "tieng viet" ra "Tiếng Việt". */
-const fold = (s: string) =>
-  s
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/đ/g, "d")
-    .toLowerCase();
+/** "đ" (U+0111) không tách được bằng NFD nên thay riêng; viết bằng mã để file không chứa ký tự có dấu. */
+const D_STROKE = String.fromCharCode(0x111);
+
+/**
+ * Chuẩn hoá để so khớp: NFD + bỏ dấu kết hợp + đ→d + chữ thường, nên "tieng viet" ra "Tiếng Việt".
+ * Chữ không thuộc hệ Latin (CJK, Thái, Cyrillic…) vẫn so khớp được vì cùng một phép chuẩn hoá áp cho nhãn lẫn từ khoá.
+ */
+const fold = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replaceAll(D_STROKE, "d");
 
 export function LanguageCombobox({
   name,
@@ -26,7 +28,9 @@ export function LanguageCombobox({
   defaultValue: LanguageCode | string;
   error?: string;
 }) {
-  const options = useMemo(() => languageOptions("vi"), []);
+  const locale = useLocale();
+  const t = useT("common");
+  const options = useMemo(() => languageOptions(locale), [locale]);
   const folded = useMemo(() => options.map((o) => fold(o.label) + " " + o.code), [options]);
   const [value, setValue] = useState<string>(defaultValue);
   const [query, setQuery] = useState<string | null>(null); // null = hiển thị tên đã chọn
@@ -113,7 +117,7 @@ export function LanguageCombobox({
           aria-describedby={error ? `${id}-error` : undefined}
           autoComplete="off"
           spellCheck={false}
-          placeholder="Gõ để tìm ngôn ngữ…"
+          placeholder={t("languageSearch")}
           className={fieldClass(error, "min-h-11 pr-10")}
           value={query ?? selected?.label ?? ""}
           onChange={(e) => {
@@ -145,7 +149,7 @@ export function LanguageCombobox({
           >
             {filtered.length === 0 ? (
               <li role="presentation" className="px-3.5 py-3 text-sm text-ink-500">
-                Không tìm thấy ngôn ngữ phù hợp
+                {t("languageNone")}
               </li>
             ) : (
               filtered.map((o, i) => (

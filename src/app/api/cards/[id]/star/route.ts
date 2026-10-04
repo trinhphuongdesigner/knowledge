@@ -18,7 +18,7 @@ export async function PUT(req: Request, { params }: Ctx) {
     const parsed = starInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     const card = await db.card.findUnique({ where: { id }, select: { id: true, setId: true } });
-    if (!card || !(await getReadableSet(user.id, card.setId))) return notFound("Không tìm thấy thẻ");
+    if (!card || !(await getReadableSet(user.id, card.setId))) return notFound("cardNotFound");
     const { starred } = parsed.data;
     await db.cardReview.upsert({
       where: { userId_cardId: { userId: user.id, cardId: id } },

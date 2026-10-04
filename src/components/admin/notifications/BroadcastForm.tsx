@@ -4,27 +4,29 @@ import { Send } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Button, Input, Textarea } from "@/components/ui";
+import { useT } from "@/i18n/client";
 
 type AudienceType = "all" | "active" | "email";
 
-const OPTIONS: { value: AudienceType; label: string }[] = [
-  { value: "all", label: "Tất cả người dùng" },
-  { value: "active", label: "Người hoạt động trong N ngày gần đây" },
-  { value: "email", label: "Một người theo email" },
-];
+const OPTIONS = [
+  { value: "all", label: "broadcast.audienceAll" },
+  { value: "active", label: "broadcast.audienceActive" },
+  { value: "email", label: "broadcast.audienceEmail" },
+] as const;
 
-async function api<T>(url: string, init?: RequestInit): Promise<T> {
+async function api<T>(url: string, fallback: (status: number) => string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, init);
   const data = await res.json().catch(() => null);
   if (!res.ok) {
     const first = data?.details?.fieldErrors && Object.values(data.details.fieldErrors as Record<string, string[]>).flat()[0];
-    throw new Error(first || data?.error || `Yêu cầu thất bại (${res.status})`);
+    throw new Error(first || data?.error || fallback(res.status));
   }
   return data as T;
 }
 
 export function BroadcastForm() {
   const router = useRouter();
+  const t = useT("admin");
   const [type, setType] = useState<AudienceType>("all");
   const [days, setDays] = useState("7");
   const [email, setEmail] = useState("");
@@ -36,6 +38,7 @@ export function BroadcastForm() {
   const [error, setError] = useState("");
   const [done, setDone] = useState("");
 
+  const failed = (status: number) => t("requestFailed", { status });
   const audience =
     type === "all" ? { type } : type === "active" ? { type, days: Number(days) } : { type, email: email.trim() };
 
@@ -52,11 +55,11 @@ export function BroadcastForm() {
       const sp = new URLSearchParams({ type });
       if (type === "active") sp.set("days", days);
       if (type === "email") sp.set("email", email.trim());
-      const r = await api<{ recipients: number }>(`/api/admin/notifications?${sp.toString()}`);
+      const r = await api<{ recipients: number }>(`/api/admin/notifications?${sp.toString()}`, failed);
       setPreview(r.recipients);
     } catch (e) {
       setPreview(null);
-      setError(e instanceof Error ? e.message : "Không thể xem trước.");
+      setError(e instanceof Error ? e.message : t("broadcast.previewFailed"));
     } finally {
       setBusy(null);
     }
@@ -69,22 +72,22 @@ export function BroadcastForm() {
       return;
     }
     if (preview === 0) return;
-    if (!window.confirm(`Gửi thông báo tới ${preview} người?`)) return;
+    if (!window.confirm(t("broadcast.confirm", { count: preview }))) return;
     setBusy("send");
     setError("");
     try {
-      const r = await api<{ recipients: number }>("/api/admin/notifications", {
+      const r = await api<{ recipients: number }>("/api/admin/notifications", failed, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ audience, message: { title, body, href } }),
       });
-      setDone(`Đã gửi tới ${r.recipients} người.`);
+      setDone(t("broadcast.sent", { count: r.recipients }));
       setPreview(null);
       setTitle("");
       setBody("");
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gửi thất bại.");
+      setError(err instanceof Error ? err.message : t("broadcast.sendFailed"));
     } finally {
       setBusy(null);
     }
@@ -93,7 +96,7 @@ export function BroadcastForm() {
   return (
     <form onSubmit={submit} className="flex flex-col gap-4">
       <fieldset>
-        <legend className="mb-1.5 text-sm font-medium text-ink-700">Đối tượng nhận</legend>
+        <legend className="mb-1.5 text-sm font-medium text-ink-700">{t("broadcast.audience")}</legend>
         <div className="flex flex-col gap-1">
           {OPTIONS.map((o) => (
             <label key={o.value} className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink-900">
@@ -108,13 +111,13 @@ export function BroadcastForm() {
                 }}
                 className="size-4 accent-brand-600"
               />
-              {o.label}
+              {t(o.label)}
             </label>
           ))}
         </div>
         {type === "active" && (
           <Input
-            label="Số ngày"
+            label={t("broadcast.days")}
             type="number"
             min={1}
             max={365}
@@ -128,22 +131,22 @@ export function BroadcastForm() {
         )}
         {type === "email" && (
           <Input
-            label="Email người nhận"
+            label={t("broadcast.recipientEmail")}
             type="email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
               invalidate();
             }}
-            placeholder="nguoidung@gmail.com"
+            placeholder={t("broadcast.emailPlaceholder")}
           />
         )}
       </fieldset>
 
-      <Input label="Tiêu đề" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={100} required />
-      <Textarea label="Nội dung" value={body} onChange={(e) => setBody(e.target.value)} maxLength={500} rows={4} required />
+      <Input label={t("broadcast.title")} value={title} onChange={(e) => setTitle(e.target.value)} maxLength={100} required />
+      <Textarea label={t("broadcast.body")} value={body} onChange={(e) => setBody(e.target.value)} maxLength={500} rows={4} required />
       <Input
-        label="Đường dẫn khi bấm vào (bắt đầu bằng /)"
+        label={t("broadcast.href")}
         value={href}
         onChange={(e) => setHref(e.target.value)}
         placeholder="/library"
@@ -153,7 +156,7 @@ export function BroadcastForm() {
 
       {preview !== null && (
         <p className="rounded-xl bg-brand-50 px-3 py-2 text-sm text-accent-strong" role="status">
-          {preview === 0 ? "Không có người nhận nào phù hợp." : `Sẽ gửi tới ${preview} người.`}
+          {preview === 0 ? t("broadcast.noRecipients") : t("broadcast.willSend", { count: preview })}
         </p>
       )}
       {done && (
@@ -169,11 +172,11 @@ export function BroadcastForm() {
 
       <div className="flex flex-col gap-2 sm:flex-row">
         <Button type="button" variant="secondary" onClick={runPreview} loading={busy === "preview"} disabled={busy !== null}>
-          Xem số người nhận
+          {t("broadcast.previewBtn")}
         </Button>
         <Button type="submit" loading={busy === "send"} disabled={busy !== null || preview === null || preview === 0}>
           <Send className="size-4" aria-hidden />
-          Gửi thông báo
+          {t("broadcast.sendBtn")}
         </Button>
       </div>
     </form>

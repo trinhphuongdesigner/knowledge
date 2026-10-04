@@ -8,6 +8,7 @@ import { CLOZE_BLANK, hintText, isClozeCorrect, stripMarkdown, type Cloze } from
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
 import { RoundResult } from "./RoundResult";
+import { useT } from "@/i18n/client";
 
 const AUTO_NEXT_MS = 1500;
 
@@ -59,6 +60,7 @@ export function ClozeGame({
 }
 
 function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results: Result[]) => void }) {
+  const t = useT("quiz");
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
   const [hint, setHint] = useState(0);
@@ -105,13 +107,13 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
   return (
     <form onSubmit={submit} className="rounded-xl border border-ink-200 bg-surface p-4 shadow-sm sm:p-6">
       <div className="mb-3 text-sm text-ink-500">
-        Câu {index + 1}/{items.length}
+        {t("play.question", { n: index + 1, total: items.length })}
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-ink-100" aria-hidden>
         <div className="h-full bg-brand-600 transition-all" style={{ width: `${(index / items.length) * 100}%` }} />
       </div>
 
-      <p className="mt-5 text-xs font-medium uppercase tracking-wide text-ink-500">Điền từ còn thiếu</p>
+      <p className="mt-5 text-xs font-medium uppercase tracking-wide text-ink-500">{t("cloze.title")}</p>
       <p className="mt-1 whitespace-pre-wrap break-words text-lg font-semibold leading-relaxed text-ink-900">
         {cloze.before}
         {checked ? (
@@ -126,7 +128,7 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
         ) : (
           <span
             className="mx-0.5 inline-block min-w-12 border-b-2 border-brand-600 text-center text-accent"
-            aria-label="chỗ trống"
+            aria-label={t("cloze.blankAria")}
           >
             {CLOZE_BLANK}
           </span>
@@ -134,13 +136,13 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
         {cloze.after}
       </p>
       <p className="mt-3 break-words text-sm text-ink-600">
-        <span className="font-medium text-ink-700">Nghĩa: </span>
+        <span className="font-medium text-ink-700">{t("cloze.meaning")} </span>
         {stripMarkdown(card.answer)}
         {card.partOfSpeech && <span className="ml-1 italic">({card.partOfSpeech})</span>}
       </p>
 
       <label htmlFor="quiz-cloze-input" className="mt-5 block text-sm font-medium text-ink-700">
-        Từ còn thiếu
+        {t("cloze.label")}
       </label>
       <input
         id="quiz-cloze-input"
@@ -163,7 +165,7 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
 
       {!checked && hint > 0 && (
         <p className="mt-2 font-mono text-sm tracking-wider text-accent-strong" aria-live="polite">
-          Gợi ý: {hintText(cloze.answer, hint)}
+          {t("play.hint", { hint: hintText(cloze.answer, hint) })}
         </p>
       )}
 
@@ -181,10 +183,10 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
             <X className="mt-0.5 size-4 shrink-0" aria-hidden />
           )}
           <div className="min-w-0 flex-1">
-            <p className="font-semibold">{checked.correct ? "Chính xác!" : "Chưa đúng"}</p>
+            <p className="font-semibold">{checked.correct ? t("play.correct") : t("play.wrong")}</p>
             {!checked.correct && (
               <p className="mt-0.5 break-words">
-                Đáp án: <span className="font-semibold">{cloze.answer}</span>
+                {t("play.revealAnswer")} <span className="font-semibold">{cloze.answer}</span>
               </p>
             )}
           </div>
@@ -194,12 +196,12 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
       <div className="mt-5 flex flex-wrap gap-2">
         {checked ? (
           <button ref={nextRef} type="submit" className={buttonStyles("primary", "md", "w-full")}>
-            {index + 1 >= items.length ? "Xem kết quả" : "Tiếp"}
+            {index + 1 >= items.length ? t("play.seeResult") : t("play.next")}
           </button>
         ) : (
           <>
             <Button type="submit" disabled={!value.trim()}>
-              Kiểm tra
+              {t("play.check")}
             </Button>
             <Button
               variant="secondary"
@@ -207,11 +209,11 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
               disabled={hint >= answerLength}
             >
               <Lightbulb className="size-4" aria-hidden />
-              Gợi ý
+              {t("play.hintButton")}
             </Button>
             <Button variant="ghost" onClick={() => check(false)}>
               <SkipForward className="size-4" aria-hidden />
-              Bỏ qua
+              {t("play.skip")}
             </Button>
           </>
         )}

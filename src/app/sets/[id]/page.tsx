@@ -13,17 +13,24 @@ import { Badge, ButtonLink, Breadcrumbs } from "@/components/ui";
 import { computeSetStatus } from "@/lib/set-status";
 import { getReadableSet } from "@/lib/access";
 import { requireUser } from "@/lib/auth/dal";
+import { getLocale, getT } from "@/i18n/server";
+import { formatDate } from "@/i18n/format";
 import { db } from "@/lib/db";
 import { toSetDetailDTO } from "@/lib/dto";
 import { isUuid } from "@/lib/ids";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Chi tiết nhóm thẻ — Knowledge" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("sets");
+  return { title: t("detail.metaTitle") };
+}
 
-const dateFmt = new Intl.DateTimeFormat("vi-VN", { day: "numeric", month: "numeric", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" });
+const DATE_OPTIONS: Intl.DateTimeFormatOptions = { day: "numeric", month: "numeric", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" };
 
 export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">) {
   const user = await requireUser();
+  const t = await getT("sets");
+  const locale = await getLocale();
   const { id } = await params;
   if (!isUuid(id)) notFound();
   const readable = await getReadableSet(user.id, id);
@@ -52,7 +59,7 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
 
   return (
     <Container className="py-6 sm:py-8">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: set.title }]} />
+      <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: set.title }]} />
       <CardList
         setId={set.id}
         initialCards={set.cards}
@@ -66,25 +73,25 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
             <div className="mb-2 flex flex-wrap items-center gap-2">
               <CategoryBadge category={set.category} />
               <LevelBadge level={set.level} />
-              <span className="text-sm text-ink-500">{set.cardCount} thẻ</span>
-              {isOwner && set.visibility === "LINK" && <Badge tone="blue">Ai có link</Badge>}
+              <span className="text-sm text-ink-500">{t("cardCount", { count: set.cardCount })}</span>
+              {isOwner && set.visibility === "LINK" && <Badge tone="blue">{t("detail.anyoneWithLink")}</Badge>}
               {isOwner && set.visibility === "PUBLIC" && (
                 <Badge tone={row.approved ? "green" : "gray"}>
-                  {row.approved ? "Công khai · Đã duyệt" : "Công khai · Chờ duyệt"}
+                  {row.approved ? t("detail.publicApproved") : t("detail.publicPending")}
                 </Badge>
               )}
-              {!isOwner && <Badge tone="gray">Chỉ đọc</Badge>}
-              {completedAt && <Badge tone="green">Đã học hết · {dateFmt.format(completedAt)}</Badge>}
-              {status.mastered && <Badge tone="green">Đã thuộc hết</Badge>}
+              {!isOwner && <Badge tone="gray">{t("detail.readOnly")}</Badge>}
+              {completedAt && <Badge tone="green">{t("detail.finished", { date: formatDate(locale, completedAt, DATE_OPTIONS) })}</Badge>}
+              {status.mastered && <Badge tone="green">{t("detail.mastered")}</Badge>}
               {status.quizPassed ? (
-                <Badge className="bg-sun-300 text-ink-900 ring-sun-400/60">Đạt kiểm tra {status.quizBestPct}%</Badge>
+                <Badge className="bg-sun-300 text-ink-900 ring-sun-400/60">{t("detail.quizPassed", { pct: status.quizBestPct ?? 0 })}</Badge>
               ) : (
-                status.quizBestPct !== null && <Badge tone="gray">Kiểm tra cao nhất {status.quizBestPct}%</Badge>
+                status.quizBestPct !== null && <Badge tone="gray">{t("detail.quizBest", { pct: status.quizBestPct })}</Badge>
               )}
             </div>
             <h1 className="break-words text-2xl font-bold text-ink-900">{set.title}</h1>
             {!isOwner && (
-              <p className="mt-1 text-sm text-ink-500">Của {row.user.name ?? "một người dùng khác"}</p>
+              <p className="mt-1 text-sm text-ink-500">{t("detail.by", { name: row.user.name ?? t("detail.anotherUser") })}</p>
             )}
             {set.description && (
               <p className="mt-2 whitespace-pre-wrap break-words text-ink-600">{set.description}</p>
@@ -99,22 +106,22 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
             {empty ? (
               <span
                 aria-disabled="true"
-                title="Thêm thẻ để bắt đầu học"
+                title={t("detail.addCardsToStudy")}
                 className="inline-flex min-h-11 cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 text-sm font-medium text-white opacity-50"
               >
                 <Play className="size-4" aria-hidden />
-                Học ngay
+                {t("detail.studyNow")}
               </span>
             ) : (
               <ButtonLink href={`/sets/${set.id}/study`} variant={quizFirst ? "secondary" : undefined}>
                 <Play className="size-4" aria-hidden />
-                {completedAt ? "Học lại" : "Học ngay"}
+                {completedAt ? t("detail.studyAgain") : t("detail.studyNow")}
               </ButtonLink>
             )}
             {canQuiz && (
               <ButtonLink href={`/sets/${set.id}/quiz`} variant={quizFirst ? undefined : "secondary"}>
                 <ListChecks className="size-4" aria-hidden />
-                {quizFirst ? "Làm bài kiểm tra" : "Kiểm tra"}
+                {quizFirst ? t("detail.takeQuiz") : t("detail.quiz")}
               </ButtonLink>
             )}
             {!empty && <ExportMenu setId={set.id} />}
@@ -128,11 +135,11 @@ export default async function SetDetailPage({ params }: PageProps<"/sets/[id]">)
                 />
                 <ButtonLink href={`/sets/${set.id}/import`} variant="secondary">
                   <FileUp className="size-4" aria-hidden />
-                  Import
+                  {t("detail.import")}
                 </ButtonLink>
                 <ButtonLink href={`/sets/${set.id}/edit`} variant="secondary">
                   <Pencil className="size-4" aria-hidden />
-                  Sửa
+                  {t("detail.edit")}
                 </ButtonLink>
               </>
             )}

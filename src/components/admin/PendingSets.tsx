@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui";
+import { useT } from "@/i18n/client";
 
 export type PendingSet = { id: string; title: string; ownerEmail: string; cardCount: number };
 
 export function PendingSets({ sets }: { sets: PendingSet[] }) {
   const router = useRouter();
+  const t = useT("admin");
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,16 +24,16 @@ export function PendingSets({ sets }: { sets: PendingSet[] }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ approved }),
       });
-      if (!res.ok) throw new Error((await res.json().catch(() => null))?.error ?? "Thao tác thất bại");
+      if (!res.ok) throw new Error((await res.json().catch(() => null))?.error ?? t("actionFailed"));
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Thao tác thất bại");
+      setError(e instanceof Error ? e.message : t("actionFailed"));
     } finally {
       setBusy(null);
     }
   }
 
-  if (sets.length === 0) return <p className="text-sm text-ink-600">Không có bộ nào đang chờ duyệt.</p>;
+  if (sets.length === 0) return <p className="text-sm text-ink-600">{t("pending.none")}</p>;
   return (
     <div>
       {error && (
@@ -47,23 +49,23 @@ export function PendingSets({ sets }: { sets: PendingSet[] }) {
                 {s.title}
               </Link>
               <p className="truncate text-xs text-ink-500">
-                {s.ownerEmail} · {s.cardCount} thẻ
+                {s.ownerEmail} · {t("pending.cardsCount", { count: s.cardCount })}
               </p>
             </div>
             <div className="flex gap-2">
               <Button size="sm" loading={busy === s.id} disabled={busy !== null} onClick={() => decide(s.id, true)}>
                 <Check className="size-4" aria-hidden />
-                Duyệt
+                {t("pending.approve")}
               </Button>
               <Button
                 size="sm"
                 variant="secondary"
                 disabled={busy !== null}
                 onClick={() => decide(s.id, false)}
-                title="Từ chối: bộ chuyển về chế độ chỉ-link, không hiện ở thư viện"
+                title={t("pending.rejectHint")}
               >
                 <X className="size-4" aria-hidden />
-                Từ chối
+                {t("pending.reject")}
               </Button>
             </div>
           </li>

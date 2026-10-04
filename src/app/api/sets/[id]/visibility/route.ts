@@ -29,7 +29,7 @@ export async function PUT(req: Request, { params }: Ctx) {
       where: { id, userId: user.id },
       select: { visibility: true, shareToken: true, publishedAt: true, approved: true },
     });
-    if (!current) return notFound("Không tìm thấy nhóm thẻ");
+    if (!current) return notFound("setNotFound");
 
     const data =
       visibility === "PRIVATE"

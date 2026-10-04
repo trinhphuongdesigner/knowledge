@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "Aucune statistique pour le moment",
+    emptyDescription: "Révisez des cartes pour démarrer une série d’étude et suivre vos progrès.",
+    reviewToday: "Réviser aujourd’hui",
+    streak: "Série en cours",
+    longest: "Plus longue série",
+    total: "Total des révisions",
+    accuracy: "Précision",
+    days: { one: "{count} jour", other: "{count} jours" },
+    last90: "90 derniers jours",
+    last30: "30 derniers jours",
+    heatmapAria: "Carte de chaleur des 90 derniers jours, {total} révisions au total",
+    barsAria: "Cartes révisées par jour sur les 30 derniers jours, pic à {max}",
+    dayTitle: "{day} : {reviewed} cartes, {correct} correctes",
+    less: "Moins",
+    more: "Plus",
+    correct: "Correct",
+    wrong: "Incorrect",
+  },
+  streak: {
+    chartAria: "Cartes révisées au cours des 14 derniers jours : {values}",
+    daysInRow: { one: "jour d’affilée", other: "jours d’affilée" },
+    startNew: "Étudiez aujourd’hui pour commencer une nouvelle série",
+    keep: "Étudiez aujourd’hui pour conserver votre série",
+    longest: { one: "Record : {count} jour", other: "Record : {count} jours" },
+    dayTitle: { one: "{day} : {count} carte", other: "{day} : {count} cartes" },
+    goal: "Objectif du jour",
+    goalCount: "{done}/{goal} cartes",
+    goalAria: "Progression de l’objectif du jour",
+    view: "Voir les statistiques",
+  },
+};
+
+export default stats;

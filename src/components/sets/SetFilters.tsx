@@ -5,13 +5,9 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Select } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
-import { LEVELS, LEVEL_LABELS, type CategoryDTO } from "@/lib/validators";
-
-const LEVEL_OPTIONS = [
-  { value: "", label: "Mọi cấp độ" },
-  ...LEVELS.map((l) => ({ value: l, label: LEVEL_LABELS[l] })),
-];
+import { LEVELS, type CategoryDTO } from "@/lib/validators";
 
 export function SetFilters({
   categories,
@@ -24,6 +20,11 @@ export function SetFilters({
   canManageCategories?: boolean;
 }) {
   const router = useRouter();
+  const t = useT("sets");
+  const levelOptions = [
+    { value: "", label: t("filters.allLevels") },
+    ...LEVELS.map((l) => ({ value: l, label: t(`levels.${l}`) })),
+  ];
   const pathname = usePathname();
   const params = useSearchParams();
   const category = params.get("category") ?? "";
@@ -31,7 +32,7 @@ export function SetFilters({
   const urlQ = params.get("q") ?? "";
   const [q, setQ] = useState(urlQ);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const tabs = [{ value: "", label: "Tất cả" }, ...categories.map((c) => ({ value: c.id, label: c.name }))];
+  const tabs = [{ value: "", label: t("filters.all") }, ...categories.map((c) => ({ value: c.id, label: c.name }))];
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
@@ -55,16 +56,16 @@ export function SetFilters({
     <div className="flex flex-col gap-3">
       {/* Row 1: categories, scrolls horizontally on its own line so no pill is ever clipped */}
       <div className="-mx-4 overflow-x-auto px-4 pb-1 scrollbar-none sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
-        <div role="tablist" aria-label="Lọc theo danh mục" className="flex w-max gap-2">
-          {tabs.map((t) => {
-            const active = category === t.value;
+        <div role="tablist" aria-label={t("filters.byCategory")} className="flex w-max gap-2">
+          {tabs.map((tab) => {
+            const active = category === tab.value;
             return (
               <button
-                key={t.value}
+                key={tab.value}
                 type="button"
                 role="tab"
                 aria-selected={active}
-                onClick={() => push({ category: t.value })}
+                onClick={() => push({ category: tab.value })}
                 className={cn(
                   "min-h-11 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors",
                   active
@@ -72,7 +73,7 @@ export function SetFilters({
                     : "border-ink-200 bg-surface text-ink-700 hover:bg-ink-50",
                 )}
               >
-                {t.label}
+                {tab.label}
               </button>
             );
           })}
@@ -86,18 +87,18 @@ export function SetFilters({
             type="search"
             value={q}
             onChange={(e) => onSearch(e.target.value)}
-            placeholder="Tìm nhóm thẻ..."
-            aria-label="Tìm nhóm thẻ"
+            placeholder={t("filters.searchPlaceholder")}
+            aria-label={t("filters.search")}
             className="min-h-11 w-full rounded-xl border border-ink-300 bg-surface pl-9 pr-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-2 focus:outline-brand-600/30"
           />
         </div>
         <div className="flex items-center gap-2">
           <div className="min-w-0 flex-1 md:w-48 md:flex-none">
             <Select
-              aria-label="Lọc theo cấp độ"
+              aria-label={t("filters.byLevel")}
               value={level}
               onValueChange={(v) => push({ level: v })}
-              options={LEVEL_OPTIONS}
+              options={levelOptions}
             />
           </div>
           {canManageCategories && (
@@ -106,7 +107,7 @@ export function SetFilters({
               className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-ink-600 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
             >
               <Settings2 className="size-4" aria-hidden />
-              Quản lý<span className="sr-only"> danh mục</span>
+              {t("filters.manage")}<span className="sr-only"> {t("filters.manageSr")}</span>
             </Link>
           )}
         </div>

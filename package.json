@@ -13,6 +13,7 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
+    "i18n:check": "tsx scripts/check-i18n.ts",
     "push:keys": "tsx scripts/vapid-keys.ts",
     "postinstall": "prisma generate"
   },

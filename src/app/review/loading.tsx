@@ -1,10 +1,12 @@
 import { Container } from "@/components/layout/Container";
 import { PageLoader } from "@/components/ui";
+import { getT } from "@/i18n/server";
 
-export default function Loading() {
+export default async function Loading() {
+  const t = await getT("review");
   return (
     <Container className="py-6 sm:py-8">
-      <PageLoader label="Đang chuẩn bị phiên ôn…" />
+      <PageLoader label={t("loading")} />
     </Container>
   );
 }

@@ -3,7 +3,7 @@ import { getReadableSet } from "@/lib/access";
 import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
 import { isUuid } from "@/lib/ids";
-import { badRequest, json, notFound, serverError } from "@/lib/http";
+import { json, notFound, quotaExceeded, serverError } from "@/lib/http";
 import { checkQuota } from "@/lib/quota";
 import { copySetForUser } from "@/lib/copy-set";
 
@@ -28,10 +28,10 @@ export async function POST(req: Request, { params }: Ctx) {
     });
     const readable = source && (source.userId === user.id || (await getReadableSet(user.id, id)) !== null);
     const shareable = source && (source.visibility === "LINK" || (source.visibility === "PUBLIC" && source.approved));
-    if (!source || !(readable || shareable)) return notFound("Không tìm thấy nhóm thẻ");
+    if (!source || !(readable || shareable)) return notFound("setNotFound");
 
     const quotaError = await checkQuota(user, { sets: 1, cards: source._count.cards });
-    if (quotaError) return badRequest(quotaError);
+    if (quotaError) return quotaExceeded(quotaError);
 
     const copy = await copySetForUser(user.id, source);
     return json(toSetDTO(copy, source._count.cards, { isOwner: true, ownerName: user.name }), 201);

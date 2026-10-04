@@ -1,9 +1,10 @@
+import { getT } from "@/i18n/server";
 import { requireApiAdmin } from "@/lib/auth/dal";
 import { logAdminAction } from "@/lib/admin/audit";
 import { findManageableUser } from "@/lib/admin/users-data";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
-import { json, notFound, serverError } from "@/lib/http";
+import { apiError, conflict, json, notFound, serverError } from "@/lib/http";
 
 export const dynamic = "force-dynamic";
 
@@ -17,15 +18,16 @@ export async function POST(req: Request, { params }: Ctx) {
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const target = await findManageableUser(id);
-    if ("error" in target) return json({ error: target.error }, target.status);
-    if (!target.user.disabledAt) return json({ error: "Tài khoản không bị khoá" }, 409);
+    if ("error" in target) return apiError(target.error, target.status);
+    if (!target.user.disabledAt) return conflict("accountNotLocked");
 
     await db.user.update({ where: { id }, data: { disabledAt: null, disabledReason: null } });
+    const t = await getT("admin");
     await logAdminAction(admin.id, {
       action: "user.enable",
       targetType: "user",
       targetId: id,
-      summary: `Mở khoá tài khoản ${target.user.email}`,
+      summary: t("audit.userEnable", { email: target.user.email }),
     });
     return json({ ok: true });
   } catch (e) {

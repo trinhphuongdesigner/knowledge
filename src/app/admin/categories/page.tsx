@@ -4,12 +4,17 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { listCategories } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { Breadcrumbs } from "@/components/ui";
+import { getT } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Danh mục — Quản trị" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("admin");
+  return { title: `${t("categories.title")} — ${t("meta.suffix")}` };
+}
 
 export default async function AdminCategoriesPage() {
   await requireAdmin();
+  const t = await getT("admin");
   const [categories, cardRows] = await Promise.all([
     listCategories(),
     db.$queryRaw<{ id: string; n: number }[]>`
@@ -20,11 +25,11 @@ export default async function AdminCategoriesPage() {
   const cards = new Map(cardRows.map((r) => [r.id, r.n]));
   return (
     <div className="space-y-4">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Danh mục" }]} className="mb-0" />
+      <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("admin"), href: "/admin" }, { label: t("categories.title") }]} className="mb-0" />
       <div>
-        <h1 className="text-2xl font-bold text-ink-900">Danh mục</h1>
+        <h1 className="text-2xl font-bold text-ink-900">{t("categories.title")}</h1>
         <p className="mt-1 text-sm text-ink-600">
-          Danh mục dùng chung cho toàn hệ thống. Thứ tự ở đây cũng là thứ tự hiển thị cho người dùng.
+          {t("categories.desc")}
         </p>
       </div>
       <CategoryManager initialCategories={categories.map((c) => ({ ...c, cardCount: cards.get(c.id) ?? 0 }))} />

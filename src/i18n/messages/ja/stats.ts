@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "統計はまだありません",
+    emptyDescription: "カードを復習すると、連続学習の記録が始まり、進捗を確認できます。",
+    reviewToday: "今日の復習",
+    streak: "現在の連続記録",
+    longest: "最長の連続記録",
+    total: "復習の合計回数",
+    accuracy: "正答率",
+    days: { other: "{count} 日" },
+    last90: "過去 90 日間",
+    last30: "過去 30 日間",
+    heatmapAria: "過去 90 日間のヒートマップ（復習は合計 {total} 回）",
+    barsAria: "過去 30 日間の 1 日あたりの復習カード数（最大 {max}）",
+    dayTitle: "{day}：{reviewed} 枚、正解 {correct} 枚",
+    less: "少",
+    more: "多",
+    correct: "正解",
+    wrong: "不正解",
+  },
+  streak: {
+    chartAria: "過去 14 日間に復習したカード数：{values}",
+    daysInRow: { other: "日連続" },
+    startNew: "今日学習して、新しい連続記録を始めましょう",
+    keep: "今日学習して、連続記録を続けましょう",
+    longest: { other: "最長：{count} 日" },
+    dayTitle: { other: "{day}：{count} 枚" },
+    goal: "今日の目標",
+    goalCount: "{done}/{goal} 枚",
+    goalAria: "今日の目標の進捗",
+    view: "統計を見る",
+  },
+};
+
+export default stats;

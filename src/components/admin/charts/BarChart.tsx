@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+import { formatNumber } from "@/i18n/format";
 import type { DayPoint } from "@/lib/admin/stats";
 
 const W = 600;
@@ -14,7 +16,7 @@ function niceMax(v: number): number {
 const shortDay = (d: string) => `${d.slice(8, 10)}/${d.slice(5, 7)}`;
 
 /** Biểu đồ cột SVG theo ngày. Màu lấy từ token theme (tự đổi theo dark mode). */
-export function BarChart({ data, label, unit = "" }: { data: DayPoint[]; label: string; unit?: string }) {
+export function BarChart({ data, label, unit = "", locale }: { data: DayPoint[]; label: string; unit?: string; locale: Locale }) {
   const max = niceMax(Math.max(0, ...data.map((d) => d.value)));
   const iw = W - PAD.l - PAD.r;
   const ih = H - PAD.t - PAD.b;
@@ -32,7 +34,7 @@ export function BarChart({ data, label, unit = "" }: { data: DayPoint[]; label: 
           <g key={t}>
             <line x1={PAD.l} x2={W - PAD.r} y1={y} y2={y} className="stroke-ink-200" strokeWidth={1} />
             <text x={PAD.l - 6} y={y + 3} textAnchor="end" className="fill-ink-500" fontSize={10}>
-              {Math.round(t).toLocaleString("vi-VN")}
+              {formatNumber(locale, Math.round(t))}
             </text>
           </g>
         );
@@ -51,7 +53,7 @@ export function BarChart({ data, label, unit = "" }: { data: DayPoint[]; label: 
               rx={1.5}
               className="fill-accent opacity-80 group-hover:opacity-100"
             >
-              <title>{`${shortDay(d.day)}: ${d.value.toLocaleString("vi-VN")}${unit}`}</title>
+              <title>{`${shortDay(d.day)}: ${formatNumber(locale, d.value)}${unit}`}</title>
             </rect>
             {labelIdx.has(i) && (
               <text

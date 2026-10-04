@@ -1,10 +1,11 @@
 import { z } from "zod";
+import { getT } from "@/i18n/server";
 import { requireApiAdmin } from "@/lib/auth/dal";
 import { logAdminAction } from "@/lib/admin/audit";
 import { findManageableUser, publicSetImpact } from "@/lib/admin/users-data";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
-import { json, notFound, readJson, serverError, validationError } from "@/lib/http";
+import { apiError, badRequest, json, notFound, readJson, serverError, validationError } from "@/lib/http";
 
 export const dynamic = "force-dynamic";
 
@@ -20,12 +21,12 @@ export async function DELETE(req: Request, { params }: Ctx) {
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const target = await findManageableUser(id);
-    if ("error" in target) return json({ error: target.error }, target.status);
+    if ("error" in target) return apiError(target.error, target.status);
 
     const parsed = bodySchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     if (parsed.data.confirmEmail.trim().toLowerCase() !== target.user.email) {
-      return json({ error: "Email xác nhận không khớp" }, 400);
+      return badRequest("confirmEmailMismatch");
     }
 
     const [impact, sets, cards] = await Promise.all([
@@ -34,11 +35,18 @@ export async function DELETE(req: Request, { params }: Ctx) {
       db.card.count({ where: { set: { userId: id } } }),
     ]);
     await db.user.delete({ where: { id } });
+    const t = await getT("admin");
     await logAdminAction(admin.id, {
       action: "user.delete",
       targetType: "user",
       targetId: id,
-      summary: `Xoá tài khoản ${target.user.email} (${sets} bộ, ${cards} thẻ, ${impact.publicSets} bộ PUBLIC, ${impact.savers} lượt lưu của người khác)`,
+      summary: t("audit.userDelete", {
+        email: target.user.email,
+        sets,
+        cards,
+        publicSets: impact.publicSets,
+        savers: impact.savers,
+      }),
       meta: { email: target.user.email, sets, cards, ...impact },
     });
     return json({ ok: true });

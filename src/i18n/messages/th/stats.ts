@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "ยังไม่มีสถิติ",
+    emptyDescription: "ทบทวนการ์ดเพื่อเริ่มสถิติการเรียนต่อเนื่องและดูความคืบหน้าของคุณ",
+    reviewToday: "ทบทวนวันนี้",
+    streak: "เรียนต่อเนื่องปัจจุบัน",
+    longest: "เรียนต่อเนื่องนานที่สุด",
+    total: "จำนวนการทบทวนทั้งหมด",
+    accuracy: "ความแม่นยำ",
+    days: { other: "{count} วัน" },
+    last90: "90 วันที่ผ่านมา",
+    last30: "30 วันที่ผ่านมา",
+    heatmapAria: "ฮีตแมปย้อนหลัง 90 วัน ทบทวนรวม {total} ครั้ง",
+    barsAria: "จำนวนการ์ดที่ทบทวนต่อวันในช่วง 30 วันที่ผ่านมา สูงสุด {max}",
+    dayTitle: "{day}: {reviewed} การ์ด ถูก {correct}",
+    less: "น้อย",
+    more: "มาก",
+    correct: "ถูก",
+    wrong: "ผิด",
+  },
+  streak: {
+    chartAria: "การ์ดที่ทบทวนในช่วง 14 วันที่ผ่านมา: {values}",
+    daysInRow: { other: "วันติดต่อกัน" },
+    startNew: "เรียนวันนี้เพื่อเริ่มสถิติต่อเนื่องใหม่",
+    keep: "เรียนวันนี้เพื่อรักษาสถิติต่อเนื่องไว้",
+    longest: { other: "นานที่สุด: {count} วัน" },
+    dayTitle: { other: "{day}: {count} การ์ด" },
+    goal: "เป้าหมายวันนี้",
+    goalCount: "{done}/{goal} การ์ด",
+    goalAria: "ความคืบหน้าของเป้าหมายวันนี้",
+    view: "ดูสถิติ",
+  },
+};
+
+export default stats;

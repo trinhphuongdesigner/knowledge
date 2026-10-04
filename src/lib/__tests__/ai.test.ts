@@ -12,21 +12,31 @@ import {
 
 describe("buildPrompt", () => {
   it("English prompt asks for meaning, example, POS, IPA", () => {
-    const p = buildPrompt({ term: " resilient ", english: true });
+    const p = buildPrompt({ term: " resilient ", english: true, locale: "vi" });
     expect(p).toContain('"resilient"');
     expect(p).toContain("120");
     expect(p).toContain("phonetic");
   });
   it("non-English prompt asks for a definition", () => {
-    const p = buildPrompt({ term: "idempotent", english: false });
-    expect(p).toContain("định nghĩa");
+    const p = buildPrompt({ term: "idempotent", english: false, locale: "vi" });
+    expect(p).toContain("Vietnamese definition");
     expect(p).not.toContain("IPA");
   });
   it("request body is small and uses the given model", () => {
-    const b = buildRequestBody({ term: "a", english: true }, "claude-haiku-4-5");
+    const b = buildRequestBody({ term: "a", english: true, locale: "ja" }, "claude-haiku-4-5");
     expect(b.model).toBe("claude-haiku-4-5");
     expect(b.max_tokens).toBe(AI_MAX_TOKENS);
     expect(b.messages[0].role).toBe("user");
+    expect(b.system).toContain("Japanese");
+  });
+  it("answers in the user's display language", () => {
+    expect(buildPrompt({ term: "resilient", english: true, locale: "ko" })).toContain("Korean meaning");
+    expect(buildPrompt({ term: "idempotent", english: false, locale: "fr" })).toContain("French definition");
+  });
+  it("English UI + English term: English definition, no translation line", () => {
+    const p = buildPrompt({ term: "resilient", english: true, locale: "en" });
+    expect(p).toContain("English definition");
+    expect(p).not.toContain("translation");
   });
 });
 

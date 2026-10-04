@@ -3,6 +3,7 @@
 import { Check, Flame, Pencil, Star, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button, Card, Markdown, Modal } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
@@ -32,6 +33,7 @@ export function CardItem({
   onEdit: (card: CardDTO) => void;
   onDeleted: (id: string) => void;
 }) {
+  const t = useT("cards");
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState("");
@@ -43,7 +45,7 @@ export function CardItem({
       await api.deleteCard(card.id);
       onDeleted(card.id);
     } catch (e) {
-      setDeleteError(e instanceof Error ? e.message : "Không thể xoá thẻ.");
+      setDeleteError(e instanceof Error ? e.message : t("item.deleteFailed"));
       setDeleting(false);
     }
   }
@@ -63,22 +65,22 @@ export function CardItem({
           }
         >
           {known ? <Check className="size-4 animate-pop motion-reduce:animate-none" aria-hidden /> : index}
-          {known && <span className="sr-only">Thẻ {index}, đã thuộc</span>}
+          {known && <span className="sr-only">{t("item.knownSr", { n: index })}</span>}
         </span>
         <div className="grid min-w-0 flex-1 gap-3 sm:grid-cols-2">
           <div className="min-w-0">
             <p className="mb-1 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-ink-400">
-              Câu hỏi
+              {t("fields.question")}
               {hard && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-[11px] normal-case tracking-normal text-red-700">
                   <Flame className="size-3" aria-hidden />
-                  Từ khó
+                  {t("item.hard")}
                 </span>
               )}
               {known && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-[11px] normal-case tracking-normal text-green-700">
                   <Check className="size-3" aria-hidden />
-                  Đã thuộc
+                  {t("item.known")}
                 </span>
               )}
             </p>
@@ -91,7 +93,7 @@ export function CardItem({
             </div>
           </div>
           <div className="min-w-0">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">Đáp án</p>
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">{t("fields.answer")}</p>
             <Markdown className="text-ink-900">{card.answer}</Markdown>
             {card.explanation && (
               <Markdown className="mt-2 text-sm text-ink-500">{card.explanation}</Markdown>
@@ -104,7 +106,7 @@ export function CardItem({
               type="button"
               onClick={() => onToggleStar(card)}
               aria-pressed={starred}
-              aria-label={`${starred ? "Bỏ đánh sao" : "Đánh sao"} thẻ ${index}`}
+              aria-label={starred ? t("item.unstar", { n: index }) : t("item.star", { n: index })}
               className={cn(
                 "flex size-11 items-center justify-center rounded-xl hover:bg-ink-100",
                 starred ? "text-amber-500" : "text-ink-500 hover:text-ink-900",
@@ -118,7 +120,7 @@ export function CardItem({
           <button
             type="button"
             onClick={() => onEdit(card)}
-            aria-label={`Sửa thẻ ${index}`}
+            aria-label={t("item.edit", { n: index })}
             className="flex size-11 items-center justify-center rounded-xl text-ink-500 hover:bg-ink-100 hover:text-ink-900"
           >
             <Pencil className="size-4" aria-hidden />
@@ -126,7 +128,7 @@ export function CardItem({
           <button
             type="button"
             onClick={() => setConfirmOpen(true)}
-            aria-label={`Xoá thẻ ${index}`}
+            aria-label={t("item.delete", { n: index })}
             className="flex size-11 items-center justify-center rounded-xl text-ink-500 hover:bg-red-50 hover:text-red-600"
           >
             <Trash2 className="size-4" aria-hidden />
@@ -135,8 +137,8 @@ export function CardItem({
           )}
         </div>
       </div>
-      <Modal open={confirmOpen} onClose={() => !deleting && setConfirmOpen(false)} title="Xoá thẻ?" centered>
-        <p className="text-sm text-ink-600">Thẻ này sẽ bị xoá vĩnh viễn và không thể hoàn tác.</p>
+      <Modal open={confirmOpen} onClose={() => !deleting && setConfirmOpen(false)} title={t("item.deleteTitle")} centered>
+        <p className="text-sm text-ink-600">{t("item.deleteBody")}</p>
         {deleteError && (
           <p role="alert" className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">
             {deleteError}
@@ -144,10 +146,10 @@ export function CardItem({
         )}
         <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button variant="secondary" onClick={() => setConfirmOpen(false)} disabled={deleting}>
-            Huỷ
+            {t("form.cancel")}
           </Button>
           <Button variant="danger" onClick={remove} loading={deleting}>
-            Xoá
+            {t("item.deleteConfirm")}
           </Button>
         </div>
       </Modal>

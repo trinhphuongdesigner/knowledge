@@ -1,27 +1,31 @@
 /** Logic thuần cho phiên ôn hằng ngày (không phụ thuộc DB / React). */
+import type { TFunction } from "../../i18n/translate";
 import { nextReview, type Grade, type SrsState } from "../../lib/srs";
+
+export type ReviewT = TFunction<"review">;
 
 const MIN_MS = 60 * 1000;
 const HOUR_MS = 60 * MIN_MS;
 const DAY_MS = 24 * HOUR_MS;
 
-/** "10 phút", "3 giờ", "1 ngày", "3 ngày", "2 tháng", "1 năm". */
-export function formatDelay(ms: number): string {
-  if (ms < HOUR_MS) return `${Math.max(1, Math.round(ms / MIN_MS))} phút`;
-  if (ms < DAY_MS) return `${Math.round(ms / HOUR_MS)} giờ`;
+/** "10 min", "3 hours", "1 day", "3 days", "2 months", "1 year" (translated). */
+export function formatDelay(ms: number, t: ReviewT): string {
+  if (ms < HOUR_MS) return t("delay.minutes", { count: Math.max(1, Math.round(ms / MIN_MS)) });
+  if (ms < DAY_MS) return t("delay.hours", { count: Math.round(ms / HOUR_MS) });
   const days = Math.round(ms / DAY_MS);
-  if (days < 30) return `${days} ngày`;
-  if (days < 365) return `${Math.max(1, Math.round(days / 30))} tháng`;
-  return `${Math.max(1, Math.round(days / 365))} năm`;
+  if (days < 30) return t("delay.days", { count: days });
+  if (days < 365) return t("delay.months", { count: Math.max(1, Math.round(days / 30)) });
+  return t("delay.years", { count: Math.max(1, Math.round(days / 365)) });
 }
 
-export const GRADE_LABELS: Record<Grade, string> = { 0: "Lại", 1: "Khó", 2: "Được", 3: "Dễ" };
+/** Translation keys (namespace "review") of the grade button labels. */
+export const GRADE_KEYS = { 0: "grade.again", 1: "grade.hard", 2: "grade.good", 3: "grade.easy" } as const satisfies Record<Grade, string>;
 
 /** Nhãn khoảng cách đến lần ôn kế tiếp cho từng nút bấm. */
-export function previewLabels(state: SrsState, now: Date = new Date()): Record<Grade, string> {
+export function previewLabels(state: SrsState, t: ReviewT, now: Date = new Date()): Record<Grade, string> {
   const out = {} as Record<Grade, string>;
   for (const g of [0, 1, 2, 3] as const) {
-    out[g] = formatDelay(nextReview(state, g, now).due.getTime() - now.getTime());
+    out[g] = formatDelay(nextReview(state, g, now).due.getTime() - now.getTime(), t);
   }
   return out;
 }

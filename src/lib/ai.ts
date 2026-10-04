@@ -5,6 +5,7 @@ import {
   AI_TIMEOUT_MS,
   AiError,
   DEFAULT_AI_MODEL,
+  type AiPromptInput,
   buildRequestBody,
   errorFromStatus,
   parseSuggestion,
@@ -21,7 +22,7 @@ export function aiEnabled(): boolean {
 }
 
 /** Gọi Claude (Messages API qua fetch) gợi ý nghĩa/ví dụ cho một thẻ. Ném `AiError` khi lỗi. */
-export async function suggestCard(input: { term: string; english: boolean }): Promise<AiSuggestionDTO> {
+export async function suggestCard(input: AiPromptInput): Promise<AiSuggestionDTO> {
   const key = process.env.ANTHROPIC_API_KEY?.trim();
   if (!key) throw new AiError("disabled", AI_ERROR_MESSAGE.disabled);
   const model = process.env.AI_MODEL?.trim() || DEFAULT_AI_MODEL;

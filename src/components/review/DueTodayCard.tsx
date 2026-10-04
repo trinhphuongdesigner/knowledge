@@ -1,9 +1,11 @@
 import { CalendarCheck } from "lucide-react";
 import { ButtonLink, Card } from "@/components/ui";
+import { getT } from "@/i18n/server";
 import { getDueSummary } from "./queries";
 
 /** Thẻ gọn trên trang chủ: số thẻ cần ôn hôm nay + tiến độ mục tiêu ngày. */
 export async function DueTodayCard({ userId }: { userId: string }) {
+  const t = await getT("review");
   const s = await getDueSummary(userId);
   if (!s.hasCards) return null;
 
@@ -19,22 +21,20 @@ export async function DueTodayCard({ userId }: { userId: string }) {
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-ink-900">
             {nothing ? (
-              "Hôm nay bạn đã ôn xong 🎉"
+              t("card.done")
             ) : (
-              <>
-                Hôm nay cần ôn: {s.dueCount} thẻ · Mới: {s.newCount}
-              </>
+              t("card.due", { due: s.dueCount, new: s.newCount })
             )}
           </p>
           <p className="text-xs text-ink-600">
-            Mục tiêu {s.doneToday}/{s.goal}
+            {t("card.goal", { done: s.doneToday, goal: s.goal })}
           </p>
           <div
             role="progressbar"
             aria-valuemin={0}
             aria-valuemax={s.goal}
             aria-valuenow={Math.min(s.doneToday, s.goal)}
-            aria-label="Mục tiêu ôn hôm nay"
+            aria-label={t("card.goalAria")}
             className="mt-2 h-2 w-full max-w-xs overflow-hidden rounded-full bg-ink-200/70"
           >
             <div className="h-full rounded-full bg-linear-to-r from-brand-500 to-brand-400" style={{ width: `${pct}%` }} />
@@ -43,7 +43,7 @@ export async function DueTodayCard({ userId }: { userId: string }) {
       </div>
       {!nothing && (
         <ButtonLink href="/review" className="shrink-0">
-          Bắt đầu ôn
+          {t("card.start")}
         </ButtonLink>
       )}
     </Card>

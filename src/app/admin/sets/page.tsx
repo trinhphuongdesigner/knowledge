@@ -3,12 +3,16 @@ import Link from "next/link";
 import { PendingSets } from "@/components/admin/PendingSets";
 import { PublicSets } from "@/components/admin/sets/PublicSets";
 import { Button, ButtonLink, Card, Breadcrumbs } from "@/components/ui";
+import { getT } from "@/i18n/server";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Thư viện — Quản trị" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("admin");
+  return { title: `${t("sets.title")} — ${t("meta.suffix")}` };
+}
 
 const PAGE_SIZE = 20;
 
@@ -18,6 +22,7 @@ export default async function AdminSetsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   await requireAdmin();
+  const t = await getT("admin");
   const sp = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
   const tab = one(sp.tab) === "public" ? "public" : "pending";
@@ -43,8 +48,8 @@ export default async function AdminSetsPage({
   ]);
 
   const tabs = [
-    { key: "pending", label: "Chờ duyệt", count: pendingCount },
-    { key: "public", label: "Đã public", count: publicCount },
+    { key: "pending", label: t("sets.tabPending"), count: pendingCount },
+    { key: "public", label: t("sets.tabPublic"), count: publicCount },
   ] as const;
 
   const href = (p: number) => {
@@ -96,11 +101,11 @@ export default async function AdminSetsPage({
             type="search"
             name="q"
             defaultValue={q}
-            placeholder="Tìm theo tên bộ hoặc email chủ bộ…"
-            aria-label="Tìm bộ đã public"
+            placeholder={t("sets.searchPh")}
+            aria-label={t("sets.searchAria")}
             className="min-h-11 flex-1 rounded-xl border border-ink-200 bg-surface px-3 text-sm text-ink-900 focus-visible:outline-2 focus-visible:outline-brand-600"
           />
-          <Button type="submit">Tìm</Button>
+          <Button type="submit">{t("sets.searchBtn")}</Button>
         </form>
         <Card>
           <PublicSets
@@ -113,24 +118,24 @@ export default async function AdminSetsPage({
               cardCount: s._count.cards,
               subscriberCount: s._count.subscribers,
             }))}
-            emptyText={q ? "Không tìm thấy bộ phù hợp." : "Chưa có bộ nào được public."}
+            emptyText={q ? t("sets.emptySearch") : t("sets.emptyPublic")}
           />
         </Card>
         {pages > 1 && (
-          <nav aria-label="Phân trang" className="flex items-center justify-between gap-3">
+          <nav aria-label={t("sets.paginationAria")} className="flex items-center justify-between gap-3">
             {page > 1 ? (
               <ButtonLink href={href(page - 1)} variant="secondary">
-                Trang trước
+                {t("sets.prevPage")}
               </ButtonLink>
             ) : (
               <span />
             )}
             <span className="text-sm text-ink-500">
-              Trang {page}/{pages}
+              {t("sets.pageOf", { page, pages })}
             </span>
             {page < pages ? (
               <ButtonLink href={href(page + 1)} variant="secondary">
-                Trang sau
+                {t("sets.nextPage")}
               </ButtonLink>
             ) : (
               <span />
@@ -143,21 +148,21 @@ export default async function AdminSetsPage({
 
   return (
     <div className="space-y-4">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Thư viện" }]} className="mb-0" />
-      <h1 className="text-2xl font-bold text-ink-900">Thư viện</h1>
-      <div role="tablist" aria-label="Loại bộ thẻ" className="flex gap-1 border-b border-ink-200">
-        {tabs.map((t) => (
+      <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("admin"), href: "/admin" }, { label: t("sets.title") }]} className="mb-0" />
+      <h1 className="text-2xl font-bold text-ink-900">{t("sets.title")}</h1>
+      <div role="tablist" aria-label={t("sets.tabsAria")} className="flex gap-1 border-b border-ink-200">
+        {tabs.map((tb) => (
           <Link
-            key={t.key}
+            key={tb.key}
             role="tab"
-            aria-selected={tab === t.key}
-            href={`/admin/sets?tab=${t.key}`}
+            aria-selected={tab === tb.key}
+            href={`/admin/sets?tab=${tb.key}`}
             className={cn(
               "-mb-px min-h-11 border-b-2 px-4 py-2.5 text-sm font-medium",
-              tab === t.key ? "border-brand-600 text-accent-strong" : "border-transparent text-ink-600 hover:text-ink-900",
+              tab === tb.key ? "border-brand-600 text-accent-strong" : "border-transparent text-ink-600 hover:text-ink-900",
             )}
           >
-            {t.label} ({t.count})
+            {tb.label} ({tb.count})
           </Link>
         ))}
       </div>

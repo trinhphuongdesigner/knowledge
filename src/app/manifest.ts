@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
+import { getLocale, getT } from "@/i18n/server";
 
-export default function manifest(): MetadataRoute.Manifest {
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const [t, locale] = await Promise.all([getT("layout"), getLocale()]);
   return {
-    name: "Knowledge — Học bằng flashcard",
+    name: t("title"),
     short_name: "Knowledge",
-    description: "Ôn tập IT và Tiếng Anh với flashcard.",
-    lang: "vi",
+    description: t("description"),
+    lang: locale,
     start_url: "/",
     scope: "/",
     display: "standalone",

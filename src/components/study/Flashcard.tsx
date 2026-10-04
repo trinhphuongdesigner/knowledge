@@ -4,6 +4,7 @@ import { useEffect, type KeyboardEvent } from "react";
 import { PhoneticLine, SpeakButton, speak } from "@/components/cards/SpeakButton";
 import { Markdown } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { useT } from "@/i18n/client";
 
 /** English word info for the card; `side` is the face currently showing the question. */
 export type FlashcardSpeech = {
@@ -43,14 +44,15 @@ const face =
 const text = "m-auto w-full text-center font-semibold text-ink-900 [&_pre]:font-normal [&_table]:font-normal";
 
 export function Flashcard({ front, back, explanation, frontLabel, backLabel, flipped, onFlip, speech }: FlashcardProps) {
+  const t = useT("study");
   const speechText = speech?.text;
   const speechAudio = speech?.audioUrl;
   useEffect(() => {
     if (!speechText) return;
     function onKey(e: globalThis.KeyboardEvent) {
       if (e.metaKey || e.ctrlKey || e.altKey || (e.key !== "s" && e.key !== "S")) return;
-      const t = e.target as HTMLElement | null;
-      if (t?.closest("input, textarea, select, [contenteditable='true']")) return;
+      const target = e.target as HTMLElement | null;
+      if (target?.closest("input, textarea, select, [contenteditable='true']")) return;
       e.preventDefault();
       speak(speechText!, speechAudio);
     }
@@ -71,7 +73,7 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
       <div
         role="button"
         tabIndex={0}
-        aria-label={flipped ? "Đang xem mặt sau, nhấn để lật lại" : "Đang xem mặt trước, nhấn để lật"}
+        aria-label={flipped ? t("flashcard.ariaBack") : t("flashcard.ariaFront")}
         onClick={onFlip}
         onKeyDown={onKeyDown}
         className={cn(
@@ -99,7 +101,7 @@ export function Flashcard({ front, back, explanation, frontLabel, backLabel, fli
               <SpeakButton text={speech.text} audioUrl={speech.audioUrl} tabIndex={flipped ? -1 : 0} />
             </div>
           )}
-          <span className="pb-3 text-center text-xs font-medium text-ink-400">Nhấn để lật ↻</span>
+          <span className="pb-3 text-center text-xs font-medium text-ink-400">{t("flashcard.hint")}</span>
         </div>
 
         {/* Back */}

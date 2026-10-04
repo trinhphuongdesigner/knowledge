@@ -1,4 +1,7 @@
+"use client";
+
 import { useId, type ReactNode } from "react";
+import { useT } from "@/i18n/client";
 import type { Gender } from "@/lib/profile";
 
 export type DefaultAvatarProps = {
@@ -50,10 +53,11 @@ function Frame({
 }
 
 export function BoyAvatar(props: DefaultAvatarProps) {
+  const t = useT("account");
   return (
     <Frame
       {...props}
-      label="Ảnh đại diện mặc định — nam"
+      label={t("avatar.male")}
       bg="#bfe2ff"
     >
       {/* shirt + neck */}
@@ -87,10 +91,11 @@ export function BoyAvatar(props: DefaultAvatarProps) {
 }
 
 export function GirlAvatar(props: DefaultAvatarProps) {
+  const t = useT("account");
   return (
     <Frame
       {...props}
-      label="Ảnh đại diện mặc định — nữ"
+      label={t("avatar.female")}
       bg="#ffd2dc"
     >
       {/* pigtails (behind head) */}
@@ -140,10 +145,11 @@ export function GirlAvatar(props: DefaultAvatarProps) {
 }
 
 export function AnonymousAvatar(props: DefaultAvatarProps) {
+  const t = useT("account");
   return (
     <Frame
       {...props}
-      label="Ảnh đại diện mặc định — ẩn danh"
+      label={t("avatar.anonymous")}
       bg="#d9d0ff"
     >
       {/* question-mark tuft */}

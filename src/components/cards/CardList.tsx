@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type ReactNode } from "react";
 import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api, enrichSetFully } from "@/lib/api";
 import type { CardDTO } from "@/lib/validators";
 import { CardForm } from "./CardForm";
@@ -38,6 +39,7 @@ export function CardList({
   readOnly?: boolean;
 }) {
   const router = useRouter();
+  const t = useT("cards");
   const [cards, setCards] = useState(initialCards);
   const [modal, setModal] = useState<{ card?: CardDTO } | null>(null);
   const [enriching, setEnriching] = useState(false);
@@ -67,15 +69,15 @@ export function CardList({
     setStarError("");
     api.starCard(card.id, next).catch(() => {
       apply(!next);
-      setStarError("Không thể cập nhật đánh sao, hãy thử lại.");
+      setStarError(t("list.starFailed"));
     });
   }
 
   async function enrich() {
     setEnriching(true);
-    setEnrichNote("Đang tra phiên âm…");
+    setEnrichNote(t("list.lookingUp"));
     const summary = await enrichSetFully(setId, (done, total) =>
-      setEnrichNote(`Đang tra phiên âm ${done}/${total}`),
+      setEnrichNote(t("list.lookingUpProgress", { done, total })),
     );
     try {
       const fresh = await api.getSet(setId);
@@ -86,10 +88,12 @@ export function CardList({
     }
     setEnrichNote(
       summary.interrupted
-        ? "Không kết nối được từ điển (cần có internet), một số thẻ chưa được tra. Hãy thử lại sau."
+        ? t("list.lookupInterrupted")
         : summary.updated + summary.notFound === 0
-          ? "Tất cả thẻ đã được tra phiên âm."
-          : `Đã tra ${summary.updated} thẻ${summary.notFound ? `, ${summary.notFound} thẻ không tìm thấy trong từ điển` : ""}.`,
+          ? t("list.lookupAllDone")
+          : summary.notFound
+            ? t("list.lookupSummaryNotFound", { updated: summary.updated, notFound: summary.notFound })
+            : t("list.lookupSummary", { updated: summary.updated }),
     );
     setEnriching(false);
   }
@@ -102,14 +106,14 @@ export function CardList({
           {!readOnly && (
             <Button onClick={() => setModal({})}>
               <Plus className="size-4" aria-hidden />
-              Thêm thẻ
+              {t("list.addCard")}
             </Button>
           )}
           {actions}
         </div>
       </div>
 
-      <Modal open={modal !== null} onClose={() => setModal(null)} title={modal?.card ? "Sửa thẻ" : "Thêm thẻ"}>
+      <Modal open={modal !== null} onClose={() => setModal(null)} title={modal?.card ? t("list.editCard") : t("list.addCard")}>
         <CardForm
           key={modal?.card?.id ?? "new"}
           setId={setId}
@@ -127,25 +131,25 @@ export function CardList({
       <section className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-lg font-semibold text-ink-900">
-            Danh sách thẻ ({cards.length})
+            {t("list.title", { count: cards.length })}
             {knownCount > 0 && (
-              <span className="ml-2 text-sm font-medium text-green-700">· Đã thuộc {knownCount}</span>
+              <span className="ml-2 text-sm font-medium text-green-700">· {t("list.knownCount", { count: knownCount })}</span>
             )}
           </h2>
           {!readOnly && english && cards.length > 0 && (
             <Button variant="secondary" size="sm" onClick={() => void enrich()} loading={enriching}>
               <Languages className="size-4" aria-hidden />
-              Tra phiên âm
+              {t("list.lookup")}
             </Button>
           )}
         </div>
         {(starCount > 0 || hardCount > 0) && (
-          <div role="group" aria-label="Lọc thẻ" className="-mt-1 flex flex-wrap gap-2">
+          <div role="group" aria-label={t("list.filter")} className="-mt-1 flex flex-wrap gap-2">
             {(
               [
-                ["all", "Tất cả", cards.length],
-                ["starred", "Đánh sao", starCount],
-                ["hard", "Từ khó", hardCount],
+                ["all", t("list.filterAll"), cards.length],
+                ["starred", t("list.filterStarred"), starCount],
+                ["hard", t("item.hard"), hardCount],
               ] as const
             ).map(([key, label, n]) => (
               <button
@@ -178,20 +182,20 @@ export function CardList({
         {cards.length === 0 ? (
           <EmptyState
             icon={Layers}
-            title="Nhóm thẻ chưa có thẻ nào"
+            title={t("list.emptyTitle")}
             description={
-              readOnly ? "Bộ thẻ này chưa có thẻ nào." : 'Nhấn "Thêm thẻ" ở trên, hoặc import nhanh từ file CSV, Excel hoặc Markdown.'
+              readOnly ? t("list.emptyReadOnly") : t("list.emptyDescription")
             }
             action={
               readOnly ? undefined : (
               <div className="flex flex-wrap justify-center gap-2">
                 <Button onClick={() => setModal({})}>
                   <Plus className="size-4" aria-hidden />
-                  Thêm thẻ
+                  {t("list.addCard")}
                 </Button>
                 <ButtonLink href={`/sets/${setId}/import`} variant="secondary">
                   <FileUp className="size-4" aria-hidden />
-                  Import thẻ
+                  {t("list.importCards")}
                 </ButtonLink>
               </div>
               )

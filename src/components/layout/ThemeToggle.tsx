@@ -2,6 +2,7 @@
 
 import { Laptop, Moon, Sun, type LucideIcon } from "lucide-react";
 import { useState } from "react";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 
 export type ThemeChoice = "system" | "light" | "dark";
@@ -9,10 +10,10 @@ export type ThemeChoice = "system" | "light" | "dark";
 export const THEME_STORAGE_KEY = "knowledge:theme";
 export const THEME_COOKIE = "kn_theme";
 
-const OPTIONS: { value: ThemeChoice; label: string; Icon: LucideIcon }[] = [
-  { value: "system", label: "Hệ thống", Icon: Laptop },
-  { value: "light", label: "Sáng", Icon: Sun },
-  { value: "dark", label: "Tối", Icon: Moon },
+const OPTIONS: { value: ThemeChoice; Icon: LucideIcon }[] = [
+  { value: "system", Icon: Laptop },
+  { value: "light", Icon: Sun },
+  { value: "dark", Icon: Moon },
 ];
 
 function readChoice(): ThemeChoice {
@@ -47,6 +48,7 @@ function persistTheme(choice: ThemeChoice) {
 }
 
 export function ThemeToggle() {
+  const t = useT("layout");
   const [choice, setChoice] = useState<ThemeChoice>(() => (typeof document === "undefined" ? "system" : readChoice()));
 
   function select(next: ThemeChoice) {
@@ -68,10 +70,10 @@ export function ThemeToggle() {
   return (
     <div className="px-3 py-2">
       <p id="theme-label" className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-ink-500">
-        Giao diện
+        {t("theme.label")}
       </p>
       <div role="radiogroup" aria-labelledby="theme-label" className="grid grid-cols-3 gap-1 rounded-xl bg-ink-100 p-1">
-        {OPTIONS.map(({ value, label, Icon }, i) => {
+        {OPTIONS.map(({ value, Icon }, i) => {
           const active = choice === value;
           return (
             <button
@@ -88,7 +90,7 @@ export function ThemeToggle() {
               )}
             >
               <Icon className="size-4" aria-hidden />
-              {label}
+              {t(`theme.${value}`)}
             </button>
           );
         })}

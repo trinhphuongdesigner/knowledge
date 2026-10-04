@@ -8,11 +8,16 @@ import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { toCardDTO } from "@/lib/dto";
 import { isUuid } from "@/lib/ids";
+import { getT } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Kiểm tra — Knowledge" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("quiz");
+  return { title: t("meta.title") };
+}
 
 export default async function QuizPage({ params }: { params: Promise<{ id: string }> }) {
+  const t = await getT("quiz");
   const user = await requireUser();
   const { id } = await params;
   if (!isUuid(id)) notFound();
@@ -32,13 +37,13 @@ export default async function QuizPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 sm:py-6">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: set.title, href: `/sets/${set.id}` }, { label: "Kiểm tra" }]} />
+      <Breadcrumbs items={[{ label: t("breadcrumb.home"), href: "/" }, { label: set.title, href: `/sets/${set.id}` }, { label: t("breadcrumb.quiz") }]} />
       {cards.length < 2 ? (
         <EmptyState
           icon={ListChecks}
-          title="Cần ít nhất 2 thẻ để kiểm tra"
-          description="Thêm thêm thẻ vào nhóm này rồi quay lại nhé."
-          action={<ButtonLink href={`/sets/${set.id}`}>Về nhóm thẻ</ButtonLink>}
+          title={t("page.needTwoTitle")}
+          description={t("page.needTwoDescription")}
+          action={<ButtonLink href={`/sets/${set.id}`}>{t("page.backToSet")}</ButtonLink>}
         />
       ) : (
         <QuizSession

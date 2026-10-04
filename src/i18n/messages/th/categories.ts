@@ -1,0 +1,53 @@
+const categories = {
+  loading: "กำลังโหลดหมวดหมู่…",
+  colors: {
+    BLUE: "น้ำเงิน",
+    GREEN: "เขียว",
+    AMBER: "เหลืองอำพัน",
+    PURPLE: "ม่วง",
+    ROSE: "ชมพูกุหลาบ",
+    SLATE: "เทาน้ำเงิน",
+  },
+  form: {
+    editTitle: "แก้ไขหมวดหมู่",
+    createTitle: "สร้างหมวดหมู่",
+    nameError: "โปรดกรอกชื่อหมวดหมู่ (ไม่เกิน 40 ตัวอักษร)",
+    genericError: "เกิดข้อผิดพลาดบางอย่าง",
+    name: "ชื่อหมวดหมู่",
+    namePlaceholder: "เช่น คณิตศาสตร์",
+    color: "สี",
+    english: "ชุดคำศัพท์ภาษาอังกฤษ",
+    englishHint: "แสดงสัทอักษร ปุ่มอ่านออกเสียง และการค้นหาในพจนานุกรมบนการ์ด",
+    cancel: "ยกเลิก",
+    saveChanges: "บันทึกการเปลี่ยนแปลง",
+    create: "สร้างหมวดหมู่",
+  },
+  manager: {
+    requestFailed: "คำขอล้มเหลว ({status})",
+    moveFailed: "ไม่สามารถเปลี่ยนลำดับได้",
+    deleteFailed: "ไม่สามารถลบหมวดหมู่ได้",
+    emptyTitle: "ยังไม่มีหมวดหมู่",
+    emptyDescription: "สร้างหมวดหมู่เพื่อจัดกลุ่มชุดการ์ดของคุณ",
+    create: "สร้างหมวดหมู่",
+    english: "ภาษาอังกฤษ",
+    setCount: { other: "{count} ชุด" },
+    cardCount: { other: "{count} การ์ด" },
+    moveUp: "ย้ายหมวดหมู่ {name} ขึ้น",
+    moveDown: "ย้ายหมวดหมู่ {name} ลง",
+    edit: "แก้ไข",
+    delete: "ลบ",
+    categoryName: "หมวดหมู่ {name}",
+    deleteTitle: "ลบหมวดหมู่นี้หรือไม่",
+    deleteNeedsTarget: {
+      other:
+        "หมวดหมู่ {name} ยังมี {count} ชุด เลือกหมวดหมู่ปลายทางเพื่อย้ายชุดทั้งหมดไป แล้วหมวดหมู่นี้จะถูกลบ",
+    },
+    deleteConfirm: "หมวดหมู่ {name} จะถูกลบถาวร",
+    reassignTo: "ย้ายชุดการ์ดไปที่",
+    pickTarget: "เลือกหมวดหมู่ปลายทาง",
+    noTargets: "ไม่มีหมวดหมู่อื่น",
+    moveAndDelete: "ย้ายและลบ",
+  },
+};
+
+export default categories;

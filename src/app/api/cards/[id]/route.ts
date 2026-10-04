@@ -2,14 +2,7 @@ import { requireApiUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { isUuid } from "@/lib/ids";
 import { toCardDTO } from "@/lib/dto";
-import {
-  isNotFoundError,
-  json,
-  notFound,
-  readJson,
-  serverError,
-  validationError,
-} from "@/lib/http";
+import { isNotFoundError, json, notFound, readJson, serverError, validationError } from "@/lib/http";
 import { cardInputSchema } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
@@ -25,7 +18,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
     const parsed = cardInputSchema.partial().safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
     const owned = await db.card.findFirst({ where: { id, set: { userId: user.id } }, select: { id: true } });
-    if (!owned) return notFound("Không tìm thấy thẻ");
+    if (!owned) return notFound("cardNotFound");
     const { question, answer, explanation, phonetic, partOfSpeech, audioUrl } = parsed.data;
     const nullable = (v: string | null | undefined) => (v === undefined ? undefined : v || null);
     const card = await db.card.update({
@@ -41,7 +34,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
     });
     return json(toCardDTO(card));
   } catch (e) {
-    if (isNotFoundError(e)) return notFound("Không tìm thấy thẻ");
+    if (isNotFoundError(e)) return notFound("cardNotFound");
     return serverError(e);
   }
 }
@@ -53,11 +46,11 @@ export async function DELETE(req: Request, { params }: Ctx) {
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const owned = await db.card.findFirst({ where: { id, set: { userId: user.id } }, select: { id: true } });
-    if (!owned) return notFound("Không tìm thấy thẻ");
+    if (!owned) return notFound("cardNotFound");
     await db.card.delete({ where: { id } });
     return json({ ok: true });
   } catch (e) {
-    if (isNotFoundError(e)) return notFound("Không tìm thấy thẻ");
+    if (isNotFoundError(e)) return notFound("cardNotFound");
     return serverError(e);
   }
 }

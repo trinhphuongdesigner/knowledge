@@ -21,7 +21,7 @@ export async function recordJobRun(name: string, ok: boolean, result: unknown, n
   try {
     await db.jobRun.upsert({ where: { name }, create: { name, ...data }, update: data });
   } catch (e) {
-    console.error(`[jobrun] không ghi được JobRun "${name}"`, e);
+    console.error(`[jobrun] failed to record JobRun "${name}"`, e);
   }
 }
 

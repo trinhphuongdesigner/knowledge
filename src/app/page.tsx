@@ -8,19 +8,20 @@ import { CreateSetButton } from "@/components/sets/CreateSetButton";
 import { getSetStatuses } from "@/components/sets/queries";
 import { SetGroups } from "@/components/sets/SetGroups";
 import { SetFilters } from "@/components/sets/SetFilters";
-import { ButtonLink, EmptyState } from "@/components/ui";
+import { ButtonLink, EmptyState, RichText } from "@/components/ui";
 import type { Prisma } from "@/generated/prisma/client";
 import { requireUser } from "@/lib/auth/dal";
 import { listCategories } from "@/lib/categories";
 import { db } from "@/lib/db";
 import { toSetDTO } from "@/lib/dto";
+import { getT } from "@/i18n/server";
 import { isUuid } from "@/lib/ids";
 import { LEVELS } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home({ searchParams }: PageProps<"/">) {
-  const user = await requireUser();
+  const [user, t] = await Promise.all([requireUser(), getT("layout")]);
   const sp = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
   const category = one(sp.category);
@@ -82,12 +83,12 @@ export default async function Home({ searchParams }: PageProps<"/">) {
       <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <div className="animate-rise motion-reduce:animate-none">
           <p className="mb-1 text-sm font-medium text-accent-strong">
-            Xin chào{user.name ? `, ${user.name}` : ""} 👋
+            {user.name ? t("home.greetingNamed", { name: user.name }) : t("home.greeting")}
           </p>
           <h1 className="text-3xl font-bold text-ink-900 sm:text-4xl">
-            Hôm nay mình <span className="highlight">ôn gì</span> nhé?
+            <RichText text={t("home.heading")} boldClassName="highlight" />
           </h1>
-          <p className="mt-2 text-sm text-ink-600">Chọn một nhóm thẻ để ôn tập hoặc tạo nhóm thẻ mới.</p>
+          <p className="mt-2 text-sm text-ink-600">{t("home.subtitle")}</p>
         </div>
         <CreateSetButton categories={categories} canManageCategories={user.role === "ADMIN"} className="shrink-0" />
       </div>
@@ -107,7 +108,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
             trailing={
               <ButtonLink href="/library" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
                 <Library className="size-4" aria-hidden />
-                Khám phá thư viện
+                {t("home.explore")}
               </ButtonLink>
             }
           />
@@ -116,9 +117,9 @@ export default async function Home({ searchParams }: PageProps<"/">) {
       {sets.length === 0 && savedSets.length > 0 ? null : sets.length === 0 ? (
         <EmptyState
           icon={BookOpen}
-          title={filtering ? "Không tìm thấy nhóm thẻ phù hợp" : "Chưa có nhóm thẻ nào"}
+          title={filtering ? t("home.emptyFilteredTitle") : t("home.emptyTitle")}
           description={
-            filtering ? "Thử đổi từ khoá hoặc bộ lọc khác." : "Tạo nhóm thẻ đầu tiên để bắt đầu học bằng flashcard."
+            filtering ? t("home.emptyFilteredDescription") : t("home.emptyDescription")
           }
           action={filtering ? undefined : <CreateSetButton categories={categories} canManageCategories={user.role === "ADMIN"} />}
         />
@@ -128,7 +129,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
       {savedSets.length > 0 && (
         <section aria-labelledby="saved-heading" className="mt-10">
           <h2 id="saved-heading" className="mb-4 text-lg font-semibold text-ink-900">
-            Thư viện đã lưu <span className="text-sm font-normal text-ink-500">· {savedSets.length}</span>
+            {t("home.saved")} <span className="text-sm font-normal text-ink-500">· {savedSets.length}</span>
           </h2>
           <div className="stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {savedSets.map((s, i) => (

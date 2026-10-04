@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-lexend), var(--font-be-vietnam-pro), ui-sans-serif, sans-serif;
+  /* Be Vietnam Pro/Lexend chỉ có latin + vietnamese: CJK/Thai/Cyrillic rơi về font hệ thống */
+  --font-sans: var(--font-be-vietnam-pro), "Noto Sans", "PingFang SC", "Hiragino Sans", "Microsoft YaHei", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans Thai", "Leelawadee UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lexend), var(--font-be-vietnam-pro), "Noto Sans", "PingFang SC", "Hiragino Sans", "Microsoft YaHei", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans Thai", "Leelawadee UI", ui-sans-serif, sans-serif;
 }
 
 /* "Sổ tay học tập": xanh ngọc (brand) trên nền giấy kem (ink = trung tính ngả ấm), vàng dạ quang (sun) làm điểm nhấn. */

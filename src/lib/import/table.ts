@@ -5,7 +5,7 @@ export function normalize(s: string): string {
   return s
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
-    .replace(/đ/gi, "d")
+    .replace(/\u0111/gi, "d")
     .toLowerCase()
     .replace(/\s+/g, " ")
     .trim();
@@ -94,11 +94,11 @@ export function rowsToCards(rows: string[][], rowNumbers: number[]): ParseResult
     const phonetic = ph >= 0 ? (entry.cells[ph] ?? "") : "";
     const partOfSpeech = ps >= 0 ? (entry.cells[ps] ?? "") : "";
     if (!question && !answer) {
-      result.errors.push({ row: entry.row, message: "Thiếu cả câu hỏi và đáp án" });
+      result.errors.push({ row: entry.row, code: "missingBoth" });
     } else if (!question) {
-      result.errors.push({ row: entry.row, message: "Thiếu câu hỏi" });
+      result.errors.push({ row: entry.row, code: "missingQuestion" });
     } else if (!answer) {
-      result.errors.push({ row: entry.row, message: "Thiếu đáp án" });
+      result.errors.push({ row: entry.row, code: "missingAnswer" });
     } else {
       result.cards.push(buildCard({ question, answer, explanation, phonetic, partOfSpeech }));
     }

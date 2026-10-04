@@ -1,27 +1,29 @@
 import Link from "next/link";
+import { getT } from "@/i18n/server";
 import { Container } from "./Container";
 import { HideOnAuthRoutes } from "./HideOnAuthRoutes";
 
 const SITE_LINKS = [
-  { label: "Giới thiệu", href: "/about" },
-  { label: "Điều khoản", href: "/terms" },
-  { label: "Quyền riêng tư", href: "/privacy" },
-];
+  { key: "about", href: "/about" },
+  { key: "terms", href: "/terms" },
+  { key: "privacy", href: "/privacy" },
+] as const;
 
 const ECOSYSTEM_LINKS = [
-  { label: "Resume", href: "https://lancer-trinh.vercel.app/" },
-  { label: "Gutan Embroidery", href: "https://gutanembroidery.com/" },
-  { label: "Gutan Novels", href: "https://novels.gutanembroidery.com/" },
-  { label: "Bóng Đá Tú Nhi", href: "http://bongdatunhi.vn/" },
-];
+  { label: "Resume", key: null, href: "https://lancer-trinh.vercel.app/" },
+  { label: "Gutan Embroidery", key: null, href: "https://gutanembroidery.com/" },
+  { label: "Gutan Novels", key: null, href: "https://novels.gutanembroidery.com/" },
+  { label: "", key: "bongDaTuNhi", href: "http://bongdatunhi.vn/" },
+] as const;
 
-export function Footer() {
+export async function Footer() {
+  const t = await getT("layout");
   return (
     <HideOnAuthRoutes>
       <footer className="mt-auto border-t border-ink-200/80 bg-paper/85 pb-[env(safe-area-inset-bottom)] backdrop-blur-md">
         <Container className="flex min-h-16 flex-wrap items-center justify-center gap-x-5 py-1 text-xs text-ink-600 sm:justify-between sm:text-sm">
           <p className="hidden sm:block">© {new Date().getFullYear()} Knowledge · Trinh Phuong</p>
-          <nav aria-label="Hệ sinh thái của Trinh Phuong">
+          <nav aria-label={t("footer.ecosystem")}>
             <ul className="flex flex-wrap items-center justify-center gap-x-4">
               {SITE_LINKS.map((link) => (
                 <li key={link.href}>
@@ -29,7 +31,7 @@ export function Footer() {
                     href={link.href}
                     className="flex min-h-9 items-center rounded-lg hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
                   >
-                    {link.label}
+                    {t(`footer.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -41,7 +43,7 @@ export function Footer() {
                     rel="noopener noreferrer"
                     className="flex min-h-9 items-center rounded-lg hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
                   >
-                    {link.label}
+                    {link.key ? t(`footer.${link.key}`) : link.label}
                   </a>
                 </li>
               ))}

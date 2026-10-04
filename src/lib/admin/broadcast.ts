@@ -20,13 +20,13 @@ export const audienceSchema = z.discriminatedUnion("type", [
 export type Audience = z.infer<typeof audienceSchema>;
 
 export const messageSchema = z.object({
-  title: z.string().trim().min(1, "Vui lòng nhập tiêu đề").max(100, "Tiêu đề tối đa 100 ký tự"),
-  body: z.string().trim().min(1, "Vui lòng nhập nội dung").max(500, "Nội dung tối đa 500 ký tự"),
+  title: z.string().trim().min(1, "validation.titleRequired").max(100, "validation.titleMax"),
+  body: z.string().trim().min(1, "validation.bodyRequired").max(500, "validation.bodyMax"),
   href: z
     .string()
     .trim()
     .max(300)
-    .refine(isRelativeHref, 'Đường dẫn phải bắt đầu bằng "/" (đường dẫn trong app)'),
+    .refine(isRelativeHref, "validation.hrefRelative"),
 });
 export type BroadcastMessage = z.infer<typeof messageSchema>;
 

@@ -1,0 +1,108 @@
+const account = {
+  metaTitle: "Quản lý tài khoản — Knowledge",
+  title: "Quản lý tài khoản",
+  breadcrumb: "Tài khoản",
+  loading: "Đang tải tài khoản…",
+  tabsLabel: "Quản lý tài khoản",
+  tabs: {
+    history: "Lịch sử học",
+    stats: "Thống kê",
+    settings: "Cài đặt học",
+    profile: "Thông tin",
+  },
+  export: {
+    title: "Tải dữ liệu của tôi",
+    description: "Hồ sơ, danh mục, bộ thẻ, tiến độ và thống kê dạng JSON.",
+    button: "Tải xuống",
+  },
+  profile: {
+    updated: "Đã cập nhật thông tin tài khoản",
+    signedInWithGoogle: "Đăng nhập bằng Google",
+    saveChanges: "Lưu thay đổi",
+    useGoogleAvatar: "Dùng ảnh từ Google",
+    displayName: "Tên hiển thị",
+    fullName: "Họ và tên",
+    gender: "Giới tính",
+    birthYear: "Năm sinh",
+    birthYearPlaceholder: "VD: 2000",
+    age: {
+      one: "≈ {count} tuổi",
+      other: "≈ {count} tuổi",
+    },
+    nativeLanguage: "Ngôn ngữ mẹ đẻ",
+    genders: {
+      MALE: "Nam",
+      FEMALE: "Nữ",
+      OTHER: "Khác",
+    },
+  },
+  uiLanguage: {
+    label: "Ngôn ngữ hiển thị",
+    hint: "Ngôn ngữ của menu, nút bấm và thông báo trong ứng dụng. Khác với ngôn ngữ mẹ đẻ dùng cho việc học.",
+    saved: "Đã cập nhật ngôn ngữ hiển thị",
+    saveFailed: "Không đổi được ngôn ngữ hiển thị",
+    invalid: "Ngôn ngữ không được hỗ trợ",
+  },
+  avatar: {
+    male: "Ảnh đại diện mặc định — nam",
+    female: "Ảnh đại diện mặc định — nữ",
+    anonymous: "Ảnh đại diện mặc định — ẩn danh",
+    alt: "Ảnh đại diện",
+    altNamed: "Ảnh đại diện của {name}",
+  },
+  push: {
+    title: "Thông báo trên thiết bị này",
+    enable: "Bật thông báo",
+    disable: "Tắt thông báo",
+    enableFailed: "Không bật được thông báo",
+    disableFailed: "Không tắt được thông báo",
+    missingKey: "Trình duyệt không trả về khoá đăng ký",
+    iosHint:
+      "Trên iPhone/iPad: hãy thêm ứng dụng vào Màn hình chính (Chia sẻ → Thêm vào Màn hình chính) rồi mở từ biểu tượng đó để bật thông báo.",
+    status: {
+      checking: "Đang kiểm tra…",
+      unsupported: "Trình duyệt này không hỗ trợ thông báo đẩy.",
+      noKey: "Máy chủ chưa cấu hình thông báo đẩy.",
+      noSw: "Chỉ khả dụng khi ứng dụng chạy bản production (cần service worker).",
+      denied:
+        "Thông báo đang bị chặn. Hãy cho phép thông báo cho trang này trong cài đặt trình duyệt rồi tải lại.",
+      off: "Đang tắt trên thiết bị này.",
+      on: "Đang bật trên thiết bị này.",
+    },
+  },
+  history: {
+    emptyTitle: "Chưa có lịch sử học",
+    emptyDescription: "Bắt đầu học một bộ thẻ, tiến trình của bạn sẽ hiện ở đây.",
+    emptyAction: "Chọn bộ thẻ để học",
+    mastered: "Đã thuộc",
+    setsStudied: "Bộ đã học",
+    progress: "Tiến độ",
+    words: {
+      one: "{count} từ vựng",
+      other: "{count} từ vựng",
+    },
+    cards: {
+      one: "{count} thẻ",
+      other: "{count} thẻ",
+    },
+    progressHint: "{known}/{total} thẻ",
+    progressOf: "Tiến độ {title}",
+    completed: "Hoàn thành",
+    inProgress: "Đang học",
+    lastStudied: "Học lần cuối: {date}",
+    studyAgain: "Học lại",
+    continue: "Tiếp tục học",
+  },
+  studySettings: {
+    dailyGoal: "Mục tiêu mỗi ngày ({min}–{max} thẻ)",
+    dailyGoalError: "Nhập số nguyên từ {min} đến {max}",
+    saved: "Đã lưu cài đặt học",
+    saveFailed: "Không lưu được cài đặt",
+    reminders: "Nhắc học bằng thông báo đẩy",
+    remindersHint:
+      "Gửi tối đa 1 thông báo/ngày (khoảng 19:00) khi bạn chưa học và còn thẻ cần ôn. Thông báo cũng hiện ở biểu tượng chuông.",
+    save: "Lưu cài đặt",
+  },
+};
+
+export default account;

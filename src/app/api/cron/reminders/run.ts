@@ -1,3 +1,5 @@
+import { resolveLocale } from "@/i18n/config";
+import { getTFor } from "@/i18n/server";
 import { recordJobRun } from "@/lib/cleanup";
 import { todayVN } from "@/lib/dates";
 import { db } from "@/lib/db";
@@ -10,14 +12,13 @@ const VN_OFFSET_MS = 7 * 60 * 60 * 1000;
 
 export type ReminderResult = { checked: number; sent: number; skipped: number; failed: number };
 
-type Candidate = { id: string; dailyGoal: number };
+type Candidate = { id: string; dailyGoal: number; uiLanguage: string | null };
 
-function buildReminder(c: Candidate, dueCount: number) {
-  const body =
-    dueCount > 0
-      ? `Hôm nay bạn có ${dueCount} thẻ đến hạn ôn. Dành vài phút để giữ chuỗi ngày học nhé!`
-      : `Hôm nay bạn chưa học thẻ nào. Mục tiêu của bạn là ${c.dailyGoal} thẻ — bắt đầu thôi!`;
-  return { type: "REVIEW_REMINDER" as const, title: "Đến giờ ôn bài rồi", body, href: "/review" };
+/** Nhắc học theo `uiLanguage` của NGƯỜI NHẬN (cron không có cookie/phiên). */
+async function buildReminder(c: Candidate, dueCount: number) {
+  const t = await getTFor(resolveLocale({ user: c, cookie: undefined }), "errors");
+  const body = dueCount > 0 ? t("notify.reminderDue", { count: dueCount }) : t("notify.reminderIdle", { goal: c.dailyGoal });
+  return { type: "REVIEW_REMINDER" as const, title: t("notify.reminderTitle"), body, href: "/review" };
 }
 
 async function process1(c: Candidate, today: Date, now: Date): Promise<"sent" | "skipped" | "failed"> {
@@ -33,7 +34,7 @@ async function process1(c: Candidate, today: Date, now: Date): Promise<"sent" | 
     return "skipped";
   }
   // notify() không ném lỗi: lưu thông báo trong app + đẩy tới thiết bị (nếu có); lỗi push không làm hỏng lần chạy.
-  await notify(c.id, buildReminder(c, dueCount));
+  await notify(c.id, await buildReminder(c, dueCount));
   await db.user.update({ where: { id: c.id }, data: { lastReminderAt: now } });
   return "sent";
 }
@@ -48,7 +49,7 @@ export async function runReminders(now = new Date()): Promise<ReminderResult> {
         pushReminders: true,
         OR: [{ lastReminderAt: null }, { lastReminderAt: { lt: startOfTodayVN } }],
       },
-      select: { id: true, dailyGoal: true },
+      select: { id: true, dailyGoal: true, uiLanguage: true },
       orderBy: [{ lastReminderAt: { sort: "asc", nulls: "first" } }, { id: "asc" }],
       take: REMINDER_BATCH,
     });

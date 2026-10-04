@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { getT } from "@/i18n/server";
 import { logAdminAction } from "@/lib/admin/audit";
 import { audienceSchema, countAudience, messageSchema, sendBroadcast } from "@/lib/admin/broadcast";
 import { requireApiAdmin } from "@/lib/auth/dal";
@@ -38,16 +39,17 @@ export async function POST(req: Request) {
     const { audience, message } = parsed.data;
 
     const { recipients } = await sendBroadcast(audience, message);
+    const t = await getT("admin");
     const who =
       audience.type === "all"
-        ? "tất cả người dùng"
+        ? t("audit.whoAll")
         : audience.type === "active"
-          ? `người hoạt động ${audience.days} ngày`
+          ? t("audit.whoActive", { days: audience.days })
           : audience.email;
     await logAdminAction(admin.id, {
       action: "notify.broadcast",
       targetType: "system",
-      summary: `Gửi thông báo "${message.title}" tới ${who} (${recipients} người)`,
+      summary: t("audit.broadcast", { title: message.title, who, count: recipients }),
       meta: { audience, title: message.title, body: message.body, href: message.href, recipients },
     });
     return json({ recipients });

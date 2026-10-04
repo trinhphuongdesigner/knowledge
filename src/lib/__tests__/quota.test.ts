@@ -14,12 +14,12 @@ describe("parseQuota", () => {
 
 describe("evaluateQuota", () => {
   const usage = { sets: 100, cards: 4990, subscriptions: 200 };
-  it("blocks sets over limit", () => expect(evaluateQuota(DEFAULT_QUOTA, usage, { sets: 1 })).toMatch(/100 bộ/));
+  it("blocks sets over limit", () => expect(evaluateQuota(DEFAULT_QUOTA, usage, { sets: 1 })).toEqual({ key: "quotaSets", limit: 100 }));
   it("allows under limit", () => expect(evaluateQuota(DEFAULT_QUOTA, { ...usage, sets: 5 }, { sets: 1 })).toBeNull());
-  it("blocks per-user cards", () => expect(evaluateQuota(DEFAULT_QUOTA, usage, { cards: 11 })).toMatch(/5000 thẻ/));
+  it("blocks per-user cards", () => expect(evaluateQuota(DEFAULT_QUOTA, usage, { cards: 11 })).toEqual({ key: "quotaCards", limit: 5000 }));
   it("blocks per-set cards", () =>
-    expect(evaluateQuota(DEFAULT_QUOTA, { ...usage, cards: 0 }, { cards: 10, setId: "x" }, 1995)).toMatch(/2000 thẻ/));
-  it("blocks subscriptions", () => expect(evaluateQuota(DEFAULT_QUOTA, usage, { subscriptions: 1 })).toMatch(/200/));
+    expect(evaluateQuota(DEFAULT_QUOTA, { ...usage, cards: 0 }, { cards: 10, setId: "x" }, 1995)).toEqual({ key: "quotaCardsPerSet", limit: 2000 }));
+  it("blocks subscriptions", () => expect(evaluateQuota(DEFAULT_QUOTA, usage, { subscriptions: 1 })).toEqual({ key: "quotaSubscriptions", limit: 200 }));
   it("empty request passes", () => expect(evaluateQuota(DEFAULT_QUOTA, usage, {})).toBeNull());
 });
 

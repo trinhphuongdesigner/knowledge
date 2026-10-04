@@ -1,4 +1,6 @@
 // Logic thuần cho thông báo (không import "@/…" để vitest chạy được).
+import type { Locale } from "../i18n/config";
+import { formatDate, formatRelative } from "../i18n/format";
 
 export type PushPayload = { title: string; body: string; href: string; tag: string };
 
@@ -32,17 +34,16 @@ export function badgeLabel(count: number): string | null {
   return count > UNREAD_BADGE_MAX ? `${UNREAD_BADGE_MAX}+` : String(Math.floor(count));
 }
 
-/** Thời gian tương đối bằng tiếng Việt ("vừa xong", "5 phút trước", "2 ngày trước"…). */
-export function relativeTimeVi(date: Date | string | number, now: Date | number = Date.now()): string {
+/** Thời gian tương đối theo locale ("just now", "5 minutes ago"…); quá 30 ngày thì hiện ngày tuyệt đối. */
+export function relativeTime(locale: Locale, date: Date | string | number, now: Date | number = Date.now()): string {
   const diff = Math.max(0, new Date(now).getTime() - new Date(date).getTime());
-  const min = Math.floor(diff / 60_000);
-  if (min < 1) return "vừa xong";
-  if (min < 60) return `${min} phút trước`;
-  const hours = Math.floor(min / 60);
-  if (hours < 24) return `${hours} giờ trước`;
-  const days = Math.floor(hours / 24);
-  if (days < 30) return `${days} ngày trước`;
-  return new Date(date).toLocaleDateString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+  if (diff >= 30 * 24 * 60 * 60_000) return formatDate(locale, date, { dateStyle: "medium", timeZone: "Asia/Ho_Chi_Minh" });
+  return formatRelative(locale, new Date(new Date(now).getTime() - diff), now);
+}
+
+/** @deprecated dùng relativeTime(locale, …). Giữ lại cho code cũ (locale vi). */
+export function relativeTimeVi(date: Date | string | number, now: Date | number = Date.now()): string {
+  return relativeTime("vi", date, now);
 }
 
 /** Chuyển Uint8Array<->base64url cho VAPID public key (applicationServerKey). */

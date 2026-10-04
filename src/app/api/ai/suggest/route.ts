@@ -1,12 +1,12 @@
 import { aiEnabled, suggestCard } from "@/lib/ai";
-import { AI_ERROR_MESSAGE, AI_ERROR_STATUS, AiError } from "@/lib/ai-core";
+import { AI_ERROR_KEY, AI_ERROR_STATUS, AiError } from "@/lib/ai-core";
 import { requireApiUser } from "@/lib/auth/dal";
 import { todayVN } from "@/lib/dates";
 import { db } from "@/lib/db";
-import { badRequest, json, readJson, serverError, validationError } from "@/lib/http";
+import { apiError, badRequest, json, readJson, serverError, validationError } from "@/lib/http";
 import { getUserLimits } from "@/lib/quota";
 import { aiSuggestInputSchema } from "@/lib/validators";
-import { NextResponse } from "next/server";
+import { getLocale } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
 
@@ -31,10 +31,10 @@ export async function POST(req: Request) {
   try {
     const user = await requireApiUser(req);
     if (user instanceof Response) return user;
-    if (!aiEnabled()) return NextResponse.json({ error: AI_ERROR_MESSAGE.disabled }, { status: 503 });
+    if (!aiEnabled()) return apiError(AI_ERROR_KEY.disabled, 503);
 
     const body = await readJson(req);
-    if (body === undefined) return badRequest("Dữ liệu không hợp lệ");
+    if (body === undefined) return badRequest("invalidData");
     const parsed = aiSuggestInputSchema.safeParse(body);
     if (!parsed.success) return validationError(parsed.error);
 
@@ -53,16 +53,16 @@ export async function POST(req: Request) {
       });
       if (row.count > aiPerDay) {
         await giveBack();
-        return NextResponse.json({ error: "Bạn đã dùng hết lượt gợi ý AI hôm nay" }, { status: 429 });
+        return apiError("aiQuotaExhausted", 429);
       }
     }
 
     try {
-      return json(await suggestCard(parsed.data));
+      return json(await suggestCard({ ...parsed.data, locale: await getLocale() }));
     } catch (e) {
       if (tracked) await giveBack();
       if (e instanceof AiError) {
-        return NextResponse.json({ error: AI_ERROR_MESSAGE[e.code] }, { status: AI_ERROR_STATUS[e.code] });
+        return apiError(AI_ERROR_KEY[e.code], AI_ERROR_STATUS[e.code]);
       }
       throw e;
     }

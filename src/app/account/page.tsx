@@ -4,30 +4,34 @@ import { ACCOUNT_TABS, AccountTabs, type AccountTab } from "@/components/account
 import { ProfileForm } from "@/components/account/ProfileForm";
 import { StudyHistory } from "@/components/account/StudyHistory";
 import { StudySettingsForm } from "@/components/account/StudySettingsForm";
+import { UiLanguageSelect } from "@/components/account/UiLanguageSelect";
 import { Container } from "@/components/layout/Container";
 import { UserAvatar } from "@/components/avatar";
 import { StatsPanel } from "@/components/stats/StatsPanel";
 import { Card, Breadcrumbs } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { getLocale, getT } from "@/i18n/server";
 import { DEFAULT_NATIVE_LANGUAGE } from "@/lib/languages";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Quản lý tài khoản — Knowledge" };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: (await getT("account"))("metaTitle") };
+}
 
 export default async function AccountPage({ searchParams }: PageProps<"/account">) {
-  const user = await requireUser();
+  const [user, t, tc, locale] = await Promise.all([requireUser(), getT("account"), getT("common"), getLocale()]);
   const { tab } = await searchParams;
   const raw = Array.isArray(tab) ? tab[0] : tab;
   const active: AccountTab = ACCOUNT_TABS.find((t) => t === raw) ?? "history";
 
   return (
     <Container className="max-w-2xl py-6 sm:py-8">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Tài khoản" }]} />
+      <Breadcrumbs items={[{ label: tc("home"), href: "/" }, { label: t("breadcrumb") }]} />
       <div className="mb-6 flex items-center gap-3">
         <UserAvatar src={user.avatarUrl} gender={user.gender} name={user.name} size={48} />
         <div className="min-w-0">
-          <h1 className="text-2xl font-bold text-ink-900">Quản lý tài khoản</h1>
+          <h1 className="text-2xl font-bold text-ink-900">{t("title")}</h1>
           <p className="truncate text-sm text-ink-600">{user.name ?? user.email}</p>
         </div>
       </div>
@@ -38,12 +42,15 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
       {active === "profile" && (
         <div className="space-y-4">
           <Card>
+            <UiLanguageSelect value={locale} />
+          </Card>
+          <Card>
             <ProfileTab userId={user.id} email={user.email} />
           </Card>
           <Card className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h2 className="font-semibold text-ink-900">Tải dữ liệu của tôi</h2>
-              <p className="text-sm text-ink-600">Hồ sơ, danh mục, bộ thẻ, tiến độ và thống kê dạng JSON.</p>
+              <h2 className="font-semibold text-ink-900">{t("export.title")}</h2>
+              <p className="text-sm text-ink-600">{t("export.description")}</p>
             </div>
             <a
               href="/api/account/export"
@@ -51,7 +58,7 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
               className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-ink-200 bg-surface px-4 text-sm font-semibold text-ink-900 shadow-[0_3px_0_var(--color-ink-200)] hover:bg-ink-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
             >
               <Download className="size-4" aria-hidden />
-              Tải xuống
+              {t("export.button")}
             </a>
           </Card>
         </div>

@@ -16,10 +16,10 @@ export async function GET(req: Request, { params }: Ctx) {
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const format = (new URL(req.url).searchParams.get("format") ?? "csv").toLowerCase();
-    if (!(EXPORT_FORMATS as readonly string[]).includes(format)) return badRequest("Định dạng không hỗ trợ (csv hoặc xlsx)");
+    if (!(EXPORT_FORMATS as readonly string[]).includes(format)) return badRequest("exportFormatUnsupported");
 
     const readable = await getReadableSet(user.id, id);
-    if (!readable) return notFound("Không tìm thấy nhóm thẻ");
+    if (!readable) return notFound("setNotFound");
     const { set } = readable;
     const cards = await db.card.findMany({
       where: { setId: id },

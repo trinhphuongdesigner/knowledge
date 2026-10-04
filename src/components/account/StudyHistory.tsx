@@ -2,13 +2,17 @@ import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import { CategoryBadge } from "@/components/categories/CategoryBadge";
 import { ButtonLink, Card, EmptyState } from "@/components/ui";
+import { formatDate } from "@/i18n/format";
+import { getLocale, getT, type TFunction } from "@/i18n/server";
+import type { Locale } from "@/i18n/config";
 import { db } from "@/lib/db";
 import { buildHistory, type HistoryItem } from "@/lib/history";
 import { cn } from "@/lib/utils";
 
-const dateFmt = new Intl.DateTimeFormat("vi-VN", { dateStyle: "short", timeStyle: "short", timeZone: "Asia/Ho_Chi_Minh" });
+const DATE_OPTS: Intl.DateTimeFormatOptions = { dateStyle: "short", timeStyle: "short", timeZone: "Asia/Ho_Chi_Minh" };
 
 export async function StudyHistory({ userId }: { userId: string }) {
+  const [t, locale] = await Promise.all([getT("account"), getLocale()]);
   // Một query: chỉ lấy các trường cần thiết; id thẻ dùng để lọc id đã bị xoá.
   const progress = await db.studyProgress.findMany({
     where: { userId },
@@ -39,28 +43,28 @@ export async function StudyHistory({ userId }: { userId: string }) {
     return (
       <EmptyState
         icon={BookOpen}
-        title="Chưa có lịch sử học"
-        description="Bắt đầu học một bộ thẻ, tiến trình của bạn sẽ hiện ở đây."
-        action={<ButtonLink href="/">Chọn bộ thẻ để học</ButtonLink>}
+        title={t("history.emptyTitle")}
+        description={t("history.emptyDescription")}
+        action={<ButtonLink href="/">{t("history.emptyAction")}</ButtonLink>}
       />
     );
   }
 
   const parts = [
-    summary.knownWords > 0 && `${summary.knownWords} từ vựng`,
-    summary.knownCards > 0 && `${summary.knownCards} thẻ`,
+    summary.knownWords > 0 && t("history.words", { count: summary.knownWords }),
+    summary.knownCards > 0 && t("history.cards", { count: summary.knownCards }),
   ].filter(Boolean);
 
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-3 gap-3">
-        <Stat label="Đã thuộc" value={String(summary.known)} hint={parts.join(" · ") || "—"} />
-        <Stat label="Bộ đã học" value={String(summary.sets)} />
-        <Stat label="Tiến độ" value={`${summary.percent}%`} hint={`${summary.known}/${summary.total} thẻ`} />
+        <Stat label={t("history.mastered")} value={String(summary.known)} hint={parts.join(" · ") || "—"} />
+        <Stat label={t("history.setsStudied")} value={String(summary.sets)} />
+        <Stat label={t("history.progress")} value={`${summary.percent}%`} hint={t("history.progressHint", { known: summary.known, total: summary.total })} />
       </div>
       <ul className="space-y-3">
         {items.map((it) => (
-          <HistoryRow key={it.setId} item={it} />
+          <HistoryRow key={it.setId} item={it} t={t} locale={locale} />
         ))}
       </ul>
     </div>
@@ -77,7 +81,7 @@ function Stat({ label, value, hint }: { label: string; value: string; hint?: str
   );
 }
 
-function HistoryRow({ item }: { item: HistoryItem }) {
+function HistoryRow({ item, t, locale }: { item: HistoryItem; t: TFunction<"account">; locale: Locale }) {
   const done = item.status === "completed";
   return (
     <li>
@@ -94,7 +98,7 @@ function HistoryRow({ item }: { item: HistoryItem }) {
         <div>
           <div className="mb-1 flex items-center justify-between text-xs text-ink-600">
             <span className={cn("font-medium", done ? "text-emerald-600" : "text-accent")}>
-              {done ? "Hoàn thành" : "Đang học"}
+              {done ? t("history.completed") : t("history.inProgress")}
             </span>
             <span>
               {item.known}/{item.total} · {item.percent}%
@@ -102,7 +106,7 @@ function HistoryRow({ item }: { item: HistoryItem }) {
           </div>
           <div
             role="progressbar"
-            aria-label={`Tiến độ ${item.title}`}
+            aria-label={t("history.progressOf", { title: item.title })}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={item.percent}
@@ -116,10 +120,10 @@ function HistoryRow({ item }: { item: HistoryItem }) {
         </div>
         <div className="flex items-center justify-between gap-3">
           <time dateTime={item.lastStudiedAt.toISOString()} className="text-xs text-ink-500">
-            Học lần cuối: {dateFmt.format(item.lastStudiedAt)}
+            {t("history.lastStudied", { date: formatDate(locale, item.lastStudiedAt, DATE_OPTS) })}
           </time>
           <ButtonLink href={`/sets/${item.setId}/study`} variant="secondary" size="sm">
-            {done ? "Học lại" : "Tiếp tục học"}
+            {done ? t("history.studyAgain") : t("history.continue")}
           </ButtonLink>
         </div>
       </Card>

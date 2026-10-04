@@ -1,10 +1,12 @@
 import { ImageResponse } from "next/og";
+import { getT } from "@/i18n/server";
 
-export const alt = "Knowledge — Học bằng flashcard";
+export const alt = "Knowledge — Learn with flashcards";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  const t = await getT("layout");
   return new ImageResponse(
     (
       <div
@@ -37,7 +39,7 @@ export default function Image() {
           </svg>
         </div>
         <div style={{ fontSize: 96, fontWeight: 700, color: "#211d18", display: "flex" }}>Knowledge</div>
-        <div style={{ fontSize: 40, color: "#5c5447", display: "flex" }}>Ôn tập IT và Tiếng Anh với flashcard</div>
+        <div style={{ fontSize: 40, color: "#5c5447", display: "flex" }}>{t("description")}</div>
       </div>
     ),
     size,

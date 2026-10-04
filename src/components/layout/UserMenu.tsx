@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { logout } from "@/app/(auth)/actions";
 import { UserAvatar } from "@/components/avatar";
+import { useT } from "@/i18n/client";
 import type { Gender } from "@/lib/profile";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -33,6 +34,7 @@ export function UserMenu({
   avatarUrl?: string | null;
   gender?: Gender | null;
 }) {
+  const t = useT("layout");
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -62,7 +64,7 @@ export function UserMenu({
       <button
         ref={buttonRef}
         type="button"
-        aria-label="Tài khoản"
+        aria-label={t("userMenu.account")}
         aria-haspopup="true"
         aria-expanded={open}
         aria-controls={menuId}
@@ -83,36 +85,36 @@ export function UserMenu({
           <div className="border-t border-ink-100 pt-1">
             <Link href="/review" onClick={() => setOpen(false)} className={ITEM}>
               <RotateCw className="size-4" aria-hidden />
-              Ôn hôm nay
+              {t("userMenu.review")}
             </Link>
             <Link href="/library" onClick={() => setOpen(false)} className={ITEM}>
               <Library className="size-4" aria-hidden />
-              Thư viện
+              {t("userMenu.library")}
             </Link>
             <Link href="/search" onClick={() => setOpen(false)} className={ITEM}>
               <Search className="size-4" aria-hidden />
-              Tìm kiếm
+              {t("userMenu.search")}
             </Link>
             <Link href="/about" onClick={() => setOpen(false)} className={ITEM}>
               <Info className="size-4" aria-hidden />
-              Giới thiệu
+              {t("userMenu.about")}
             </Link>
           </div>
           <div className="border-t border-ink-100 pt-1">
             {role === "ADMIN" && (
               <Link href="/admin/categories" onClick={() => setOpen(false)} className={ITEM}>
                 <FolderCog className="size-4" aria-hidden />
-                Quản lý danh mục
+                {t("userMenu.categories")}
               </Link>
             )}
             <Link href="/account" onClick={() => setOpen(false)} className={ITEM}>
               <Settings className="size-4" aria-hidden />
-              Quản lý tài khoản
+              {t("userMenu.accountSettings")}
             </Link>
             {role === "ADMIN" && (
               <Link href="/admin" onClick={() => setOpen(false)} className={ITEM}>
                 <ShieldCheck className="size-4" aria-hidden />
-                Quản trị
+                {t("userMenu.admin")}
               </Link>
             )}
           </div>
@@ -125,7 +127,7 @@ export function UserMenu({
               className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-sm font-medium text-ink-700 hover:bg-ink-100 hover:text-red-600 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600"
             >
               <LogOut className="size-4" aria-hidden />
-              Đăng xuất
+              {t("userMenu.signOut")}
             </button>
           </form>
         </div>

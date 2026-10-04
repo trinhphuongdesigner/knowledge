@@ -8,6 +8,7 @@ import { LevelBadge } from "@/components/sets/LevelBadge";
 import { ButtonLink, Card, Markdown } from "@/components/ui";
 import { getSetByShareToken } from "@/lib/access";
 import { getCurrentUser } from "@/lib/auth/dal";
+import { getT } from "@/i18n/server";
 import { db } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -16,17 +17,19 @@ type Props = { params: Promise<{ token: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { token } = await params;
+  const t = await getT("sets");
   const set = await getSetByShareToken(token);
-  if (!set) return { title: "Không tìm thấy — Knowledge" };
+  if (!set) return { title: t("shared.notFoundTitle") };
   return {
     title: `${set.title} — Knowledge`,
-    description: set.description ?? `Nhóm thẻ ${set.title} (${set.cards.length} thẻ)`,
+    description: set.description ?? t("shared.metaDescription", { title: set.title, count: set.cards.length }),
     robots: { index: false, follow: false },
   };
 }
 
 export default async function SharedSetPage({ params }: Props) {
   const { token } = await params;
+  const t = await getT("sets");
   const set = await getSetByShareToken(token);
   if (!set) notFound();
   const user = await getCurrentUser();
@@ -45,15 +48,15 @@ export default async function SharedSetPage({ params }: Props) {
           <div className="mb-2 flex flex-wrap items-center gap-2">
             <CategoryBadge category={set.category} />
             <LevelBadge level={set.level} />
-            <span className="text-sm text-ink-500">{set.cards.length} thẻ</span>
+            <span className="text-sm text-ink-500">{t("cardCount", { count: set.cards.length })}</span>
           </div>
           <h1 className="break-words text-2xl font-bold text-ink-900">{set.title}</h1>
-          <p className="mt-1 text-sm text-ink-500">Chia sẻ bởi {set.user.name ?? "một người dùng"}</p>
+          <p className="mt-1 text-sm text-ink-500">{t("shared.by", { name: set.user.name ?? t("shared.someone") })}</p>
           {set.description && <p className="mt-2 whitespace-pre-wrap break-words text-ink-600">{set.description}</p>}
         </div>
         <div className="shrink-0">
           {isOwner ? (
-            <ButtonLink href={`/sets/${set.id}`}>Mở nhóm thẻ của bạn</ButtonLink>
+            <ButtonLink href={`/sets/${set.id}`}>{t("shared.openYours")}</ButtonLink>
           ) : user ? (
             <SetSaveButtons
               setId={set.id}
@@ -63,14 +66,14 @@ export default async function SharedSetPage({ params }: Props) {
             />
           ) : (
             <div className="flex flex-wrap gap-2">
-              <ButtonLink href={`/login?next=${next}`}>Đăng nhập bằng Google để lưu</ButtonLink>
+              <ButtonLink href={`/login?next=${next}`}>{t("shared.loginToSave")}</ButtonLink>
             </div>
           )}
         </div>
       </div>
 
       {set.cards.length === 0 ? (
-        <p className="text-sm text-ink-500">Nhóm thẻ này chưa có thẻ nào.</p>
+        <p className="text-sm text-ink-500">{t("shared.noCards")}</p>
       ) : (
         <ol className="flex flex-col gap-3">
           {set.cards.map((card, i) => (
@@ -82,14 +85,14 @@ export default async function SharedSetPage({ params }: Props) {
                   </span>
                   <div className="grid min-w-0 flex-1 gap-3 sm:grid-cols-2">
                     <div className="min-w-0">
-                      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">Câu hỏi</p>
+                      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">{t("fields.question")}</p>
                       <Markdown className="text-ink-900">{card.question}</Markdown>
                       {english && (
                         <PhoneticLine phonetic={card.phonetic || null} partOfSpeech={card.partOfSpeech || null} />
                       )}
                     </div>
                     <div className="min-w-0">
-                      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">Đáp án</p>
+                      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-400">{t("fields.answer")}</p>
                       <Markdown className="text-ink-900">{card.answer}</Markdown>
                       {card.explanation && (
                         <Markdown className="mt-2 text-sm text-ink-500">{card.explanation}</Markdown>

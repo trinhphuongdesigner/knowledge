@@ -3,6 +3,7 @@
 import { Bell, CheckCheck } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import { badgeLabel } from "@/lib/notifications-core";
 import type { NotificationDTO } from "@/lib/validators";
@@ -11,6 +12,8 @@ import { NotificationItem } from "./NotificationItem";
 const POLL_MS = 60_000;
 
 export function NotificationBell() {
+  const t = useT("notifications");
+  const tc = useT("common");
   const [open, setOpen] = useState(false);
   const [unread, setUnread] = useState(0);
   const [items, setItems] = useState<NotificationDTO[] | null>(null);
@@ -111,7 +114,7 @@ export function NotificationBell() {
       <button
         ref={buttonRef}
         type="button"
-        aria-label="Thông báo"
+        aria-label={t("title")}
         aria-haspopup="true"
         aria-expanded={open}
         aria-controls={panelId}
@@ -127,7 +130,7 @@ export function NotificationBell() {
             {label}
           </span>
         )}
-        {unread > 0 && <span className="sr-only">{unread} chưa đọc</span>}
+        {unread > 0 && <span className="sr-only">{t("unreadCount", { count: unread })}</span>}
       </button>
       {open && (
         <div
@@ -135,7 +138,7 @@ export function NotificationBell() {
           className="absolute inset-x-2 top-full z-50 mt-1 rounded-xl border border-ink-200 bg-surface p-2 shadow-lg sm:inset-x-auto sm:right-0 sm:mt-2 sm:w-96"
         >
           <div className="flex items-center justify-between gap-2 px-3 py-1">
-            <h2 className="text-sm font-semibold text-ink-900">Thông báo</h2>
+            <h2 className="text-sm font-semibold text-ink-900">{t("title")}</h2>
             <button
               type="button"
               onClick={markAll}
@@ -143,14 +146,14 @@ export function NotificationBell() {
               className="flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-xs font-medium text-accent hover:bg-ink-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600 disabled:pointer-events-none disabled:opacity-40 sm:min-h-8"
             >
               <CheckCheck className="size-4" aria-hidden />
-              Đánh dấu đã đọc tất cả
+              {t("markAll")}
             </button>
           </div>
           <div className="max-h-[min(24rem,60vh)] overflow-y-auto border-t border-ink-100 pt-1">
             {items === null ? (
-              <p className="px-3 py-6 text-center text-sm text-ink-500">{error ? "Không tải được thông báo" : "Đang tải…"}</p>
+              <p className="px-3 py-6 text-center text-sm text-ink-500">{error ? t("loadFailed") : tc("loading")}</p>
             ) : items.length === 0 ? (
-              <p className="px-3 py-6 text-center text-sm text-ink-500">Chưa có thông báo nào</p>
+              <p className="px-3 py-6 text-center text-sm text-ink-500">{t("empty")}</p>
             ) : (
               items.map((n) => <NotificationItem key={n.id} n={n} onOpen={onItemOpen} />)
             )}
@@ -161,7 +164,7 @@ export function NotificationBell() {
               onClick={() => setOpen(false)}
               className="flex min-h-11 items-center justify-center rounded-lg text-sm font-medium text-accent hover:bg-ink-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-600"
             >
-              Xem tất cả
+              {t("viewAll")}
             </Link>
           </div>
         </div>

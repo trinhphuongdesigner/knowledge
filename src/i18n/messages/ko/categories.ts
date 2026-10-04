@@ -1,0 +1,53 @@
+const categories = {
+  loading: "카테고리를 불러오는 중…",
+  colors: {
+    BLUE: "파랑",
+    GREEN: "초록",
+    AMBER: "호박색",
+    PURPLE: "보라",
+    ROSE: "장미색",
+    SLATE: "슬레이트",
+  },
+  form: {
+    editTitle: "카테고리 수정",
+    createTitle: "카테고리 만들기",
+    nameError: "카테고리 이름을 입력해 주세요(최대 40자).",
+    genericError: "문제가 발생했어요.",
+    name: "카테고리 이름",
+    namePlaceholder: "예: 수학",
+    color: "색상",
+    english: "영어 단어 세트",
+    englishHint: "카드에 발음 기호, 읽어 주기 버튼, 사전 검색을 표시해요.",
+    cancel: "취소",
+    saveChanges: "변경 사항 저장",
+    create: "카테고리 만들기",
+  },
+  manager: {
+    requestFailed: "요청에 실패했어요 ({status})",
+    moveFailed: "순서를 변경하지 못했어요.",
+    deleteFailed: "카테고리를 삭제하지 못했어요.",
+    emptyTitle: "아직 카테고리가 없어요",
+    emptyDescription: "카테고리를 만들어 세트를 묶어 보세요.",
+    create: "카테고리 만들기",
+    english: "영어",
+    setCount: { other: "세트 {count}개" },
+    cardCount: { other: "카드 {count}장" },
+    moveUp: "{name} 카테고리 위로 이동",
+    moveDown: "{name} 카테고리 아래로 이동",
+    edit: "수정",
+    delete: "삭제",
+    categoryName: "{name} 카테고리",
+    deleteTitle: "이 카테고리를 삭제할까요?",
+    deleteNeedsTarget: {
+      other:
+        "{name} 카테고리에 아직 세트가 {count}개 있어요. 세트를 옮길 대상 카테고리를 선택하면 이 카테고리가 삭제돼요.",
+    },
+    deleteConfirm: "{name} 카테고리가 영구적으로 삭제돼요.",
+    reassignTo: "세트를 옮길 곳",
+    pickTarget: "대상 카테고리 선택",
+    noTargets: "다른 카테고리가 없어요",
+    moveAndDelete: "옮기고 삭제",
+  },
+};
+
+export default categories;

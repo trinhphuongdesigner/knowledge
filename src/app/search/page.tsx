@@ -6,14 +6,19 @@ import { Highlight } from "@/components/search/Highlight";
 import { SearchBox } from "@/components/search/SearchBox";
 import { Card, EmptyState, Breadcrumbs } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
+import { getT } from "@/i18n/server";
 import { SEARCH_LIMIT, SEARCH_MIN_CHARS, searchCards } from "@/lib/search";
 import type { SearchResultDTO } from "@/lib/validators";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Tìm kiếm — Knowledge" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("search");
+  return { title: t("metaTitle") };
+}
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const user = await requireUser();
+  const t = await getT("search");
   const { q: rawQ } = await searchParams;
   const q = (Array.isArray(rawQ) ? rawQ[0] : rawQ)?.trim().slice(0, 100) ?? "";
   const tooShort = q.length > 0 && q.length < SEARCH_MIN_CHARS;
@@ -28,21 +33,23 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
   return (
     <Container className="max-w-3xl space-y-6 py-6 sm:py-8">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Tìm kiếm" }]} className="mb-0" />
-      <h1 className="text-2xl font-bold text-ink-900">Tìm kiếm</h1>
+      <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("title") }]} className="mb-0" />
+      <h1 className="text-2xl font-bold text-ink-900">{t("title")}</h1>
       <SearchBox defaultValue={q} />
 
-      {q === "" && <p className="text-sm text-ink-600">Tìm trong câu hỏi, đáp án và giải thích của mọi thẻ bạn có.</p>}
-      {tooShort && <p className="text-sm text-ink-600">Nhập ít nhất {SEARCH_MIN_CHARS} ký tự.</p>}
+      {q === "" && <p className="text-sm text-ink-600">{t("hint")}</p>}
+      {tooShort && <p className="text-sm text-ink-600">{t("minChars", { count: SEARCH_MIN_CHARS })}</p>}
       {q.length >= SEARCH_MIN_CHARS && results.length === 0 && (
-        <EmptyState icon={SearchX} title="Không tìm thấy kết quả" description={`Không có thẻ nào khớp với “${q}”.`} />
+        <EmptyState icon={SearchX} title={t("noResultsTitle")} description={t("noResultsDescription", { q })} />
       )}
 
       {results.length > 0 && (
         <>
           <p aria-live="polite" className="text-sm text-ink-600">
-            {results.length >= SEARCH_LIMIT ? `Hiển thị ${SEARCH_LIMIT} kết quả đầu tiên` : `${results.length} kết quả`} ·{" "}
-            {groups.size} bộ thẻ
+            {results.length >= SEARCH_LIMIT
+              ? t("showingFirst", { count: SEARCH_LIMIT })
+              : t("resultCount", { count: results.length })}{" "}
+            · {t("setCount", { count: groups.size })}
           </p>
           <div className="space-y-4">
             {[...groups.entries()].map(([setId, g]) => (

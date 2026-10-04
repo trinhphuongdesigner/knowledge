@@ -1,23 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Badge, ButtonLink, Card, Breadcrumbs } from "@/components/ui";
+import { formatDate, formatNumber } from "@/i18n/format";
+import { getLocale, getT } from "@/i18n/server";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Nhật ký — Quản trị" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("admin");
+  return { title: `${t("audit.metaTitle")} — ${t("meta.suffix")}` };
+}
 
 const PAGE_SIZE = 50;
 const FILTERS = [
-  { key: "", label: "Tất cả" },
-  { key: "user", label: "Tài khoản" },
-  { key: "category", label: "Danh mục" },
-  { key: "set", label: "Bộ thẻ" },
-  { key: "notify", label: "Thông báo" },
-  { key: "system", label: "Hệ thống" },
+  { key: "", label: "audit.filterAll" },
+  { key: "user", label: "audit.filterUser" },
+  { key: "category", label: "audit.filterCategory" },
+  { key: "set", label: "audit.filterSet" },
+  { key: "notify", label: "audit.filterNotify" },
+  { key: "system", label: "audit.filterSystem" },
 ] as const;
 
-const dtFmt = new Intl.DateTimeFormat("vi-VN", { dateStyle: "short", timeStyle: "medium", timeZone: "Asia/Ho_Chi_Minh" });
+const DT_OPTS: Intl.DateTimeFormatOptions = { dateStyle: "short", timeStyle: "medium", timeZone: "Asia/Ho_Chi_Minh" };
 
 function href(prefix: string, page: number) {
   const q = new URLSearchParams();
@@ -29,6 +34,7 @@ function href(prefix: string, page: number) {
 
 export default async function AdminAuditPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   await requireAdmin();
+  const [t, locale] = await Promise.all([getT("admin"), getLocale()]);
   const sp = await searchParams;
   const rawAction = typeof sp.action === "string" ? sp.action : "";
   const prefix = FILTERS.some((f) => f.key === rawAction) ? rawAction : "";
@@ -58,8 +64,8 @@ export default async function AdminAuditPage({ searchParams }: { searchParams: P
 
   return (
     <div className="space-y-6">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Quản trị", href: "/admin" }, { label: "Nhật ký thao tác" }]} className="mb-0" />
-      <h1 className="text-2xl font-bold text-ink-900">Nhật ký thao tác</h1>
+      <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("admin"), href: "/admin" }, { label: t("audit.title") }]} className="mb-0" />
+      <h1 className="text-2xl font-bold text-ink-900">{t("audit.title")}</h1>
 
       <div className="flex flex-wrap gap-2">
         {FILTERS.map((f) => (
@@ -72,29 +78,29 @@ export default async function AdminAuditPage({ searchParams }: { searchParams: P
                 : "border-ink-200 bg-surface text-ink-700 hover:border-brand-400"
             }`}
           >
-            {f.label}
+            {t(f.label)}
           </Link>
         ))}
       </div>
 
       <Card>
         {logs.length === 0 ? (
-          <p className="text-sm text-ink-600">Chưa có thao tác nào.</p>
+          <p className="text-sm text-ink-600">{t("audit.empty")}</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[40rem] text-sm">
               <thead className="text-left text-xs text-ink-500">
                 <tr>
-                  <th className="py-1 pr-3 font-medium">Thời gian</th>
-                  <th className="py-1 pr-3 font-medium">Thao tác</th>
-                  <th className="py-1 pr-3 font-medium">Mô tả</th>
-                  <th className="py-1 font-medium">Admin</th>
+                  <th className="py-1 pr-3 font-medium">{t("audit.colTime")}</th>
+                  <th className="py-1 pr-3 font-medium">{t("audit.colAction")}</th>
+                  <th className="py-1 pr-3 font-medium">{t("audit.colSummary")}</th>
+                  <th className="py-1 font-medium">{t("audit.colAdmin")}</th>
                 </tr>
               </thead>
               <tbody>
                 {logs.map((l) => (
                   <tr key={l.id} className="border-t border-ink-100 align-top">
-                    <td className="whitespace-nowrap py-1.5 pr-3 text-ink-600">{dtFmt.format(l.createdAt)}</td>
+                    <td className="whitespace-nowrap py-1.5 pr-3 text-ink-600">{formatDate(locale, l.createdAt, DT_OPTS)}</td>
                     <td className="py-1.5 pr-3">
                       <Badge tone="gray" className="font-mono">
                         {l.action}
@@ -120,17 +126,17 @@ export default async function AdminAuditPage({ searchParams }: { searchParams: P
 
       <div className="flex items-center justify-between text-sm text-ink-600">
         <span>
-          {total.toLocaleString("vi-VN")} bản ghi · Trang {Math.min(page, pages)}/{pages}
+          {t("audit.footer", { total: formatNumber(locale, total), page: Math.min(page, pages), pages })}
         </span>
         <div className="flex gap-2">
           {page > 1 && (
             <ButtonLink href={href(prefix, page - 1)} variant="secondary" size="sm">
-              Trước
+              {t("audit.prev")}
             </ButtonLink>
           )}
           {page < pages && (
             <ButtonLink href={href(prefix, page + 1)} variant="secondary" size="sm">
-              Sau
+              {t("audit.next")}
             </ButtonLink>
           )}
         </div>

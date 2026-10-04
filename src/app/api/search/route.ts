@@ -11,7 +11,7 @@ export async function GET(req: Request) {
     if (user instanceof Response) return user;
     const parsed = searchQuerySchema.safeParse({ q: new URL(req.url).searchParams.get("q") ?? "" });
     if (!parsed.success || parsed.data.q.length < SEARCH_MIN_CHARS) {
-      return badRequest(`Nhập ít nhất ${SEARCH_MIN_CHARS} ký tự để tìm kiếm`);
+      return badRequest("searchTooShort", undefined, { min: SEARCH_MIN_CHARS });
     }
     return json(await searchCards(user.id, parsed.data.q));
   } catch (e) {

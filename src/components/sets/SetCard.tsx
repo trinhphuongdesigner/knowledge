@@ -2,6 +2,7 @@ import { BadgeCheck, Layers, Trophy, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { CategoryBadge } from "@/components/categories/CategoryBadge";
 import { Card } from "@/components/ui";
+import { getT } from "@/i18n/server";
 import { LevelBadge } from "./LevelBadge";
 import type { SetStatus } from "@/lib/set-status";
 import type { StudySetDTO } from "@/lib/validators";
@@ -22,7 +23,7 @@ function Ribbon({ icon: Icon, label, className }: { icon: LucideIcon; label: str
   );
 }
 
-export function SetCard({
+export async function SetCard({
   set,
   hideCategory,
   hideLevel,
@@ -33,6 +34,7 @@ export function SetCard({
   hideLevel?: boolean;
   status?: SetStatus;
 }) {
+  const t = await getT("sets");
   const ribbons = (status?.mastered ? 1 : 0) + (status?.quizPassed ? 1 : 0);
   return (
     <Link
@@ -47,9 +49,9 @@ export function SetCard({
       <Card className="relative flex h-full flex-col gap-3 transition-[transform,border-color] duration-300 group-hover/card:-translate-y-1 group-hover/card:border-brand-300 motion-reduce:transition-none motion-reduce:group-hover/card:translate-y-0">
         {ribbons > 0 && status && (
           <div className="absolute -top-1 right-4 flex items-start gap-1">
-            {status.mastered && <Ribbon icon={BadgeCheck} label="Đã thuộc hết" className="bg-green-600 text-white" />}
+            {status.mastered && <Ribbon icon={BadgeCheck} label={t("detail.mastered")} className="bg-green-600 text-white" />}
             {status.quizPassed && (
-              <Ribbon icon={Trophy} label={`Đạt kiểm tra ${status.quizBestPct}%`} className="bg-sun-400 text-ink-900" />
+              <Ribbon icon={Trophy} label={t("detail.quizPassed", { pct: status.quizBestPct ?? 0 })} className="bg-sun-400 text-ink-900" />
             )}
           </div>
         )}
@@ -60,15 +62,15 @@ export function SetCard({
           </div>
           <span className="flex shrink-0 items-center gap-1 rounded-full bg-ink-100 px-2 py-0.5 text-xs font-medium text-ink-600">
             <Layers className="size-3.5" aria-hidden />
-            {set.cardCount} thẻ
+            {t("cardCount", { count: set.cardCount })}
           </span>
         </div>
         <h2 className="line-clamp-2 break-words text-base font-semibold text-ink-900 group-hover/card:text-accent-strong">{set.title}</h2>
         {set.description && <p className="line-clamp-3 break-words text-sm text-ink-600">{set.description}</p>}
         {!set.isOwner && (
           <p className="mt-auto flex items-center gap-1.5 text-xs text-ink-500">
-            <span className="rounded-full bg-ink-100 px-2 py-0.5 font-medium text-ink-600">Chỉ đọc</span>
-            Của {set.ownerName ?? "người dùng khác"}
+            <span className="rounded-full bg-ink-100 px-2 py-0.5 font-medium text-ink-600">{t("detail.readOnly")}</span>
+            {t("detail.by", { name: set.ownerName ?? t("detail.anotherUser") })}
           </p>
         )}
       </Card>

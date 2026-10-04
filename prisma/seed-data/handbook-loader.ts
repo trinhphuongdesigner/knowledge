@@ -40,7 +40,7 @@ export function loadHandbook(file: string): HandbookSet[] {
     const body = rest.join("\n");
     const tip = /^Mẹo:.*$/m.exec(body)?.[0].trim();
     const result = parseMarkdown(body);
-    for (const err of result.errors) console.warn(`! Handbook "${name}" line ${err.row}: ${err.message}`);
+    for (const err of result.errors) console.warn(`! Handbook "${name}" line ${err.row}: ${err.code}`);
     if (result.cards.length === 0) continue;
     sets.push({
       number,

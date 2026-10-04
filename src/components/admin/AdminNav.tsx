@@ -13,27 +13,30 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useT } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 
-type Item = { href: string; label: string; icon: LucideIcon; exact?: boolean };
+type NavKey = "overview" | "users" | "categories" | "library" | "notifications" | "ai" | "audit" | "system";
+type Item = { href: string; key: NavKey; icon: LucideIcon; exact?: boolean };
 
 export const ADMIN_NAV_ITEMS: Item[] = [
-  { href: "/admin", label: "Tổng quan", icon: LayoutDashboard, exact: true },
-  { href: "/admin/users", label: "Tài khoản", icon: Users },
-  { href: "/admin/categories", label: "Danh mục", icon: FolderCog },
-  { href: "/admin/sets", label: "Thư viện", icon: Library },
-  { href: "/admin/notifications", label: "Thông báo", icon: Bell },
-  { href: "/admin/ai", label: "AI", icon: BrainCircuit },
-  { href: "/admin/audit", label: "Nhật ký", icon: ScrollText },
-  { href: "/admin/system", label: "Hệ thống", icon: Server },
+  { href: "/admin", key: "overview", icon: LayoutDashboard, exact: true },
+  { href: "/admin/users", key: "users", icon: Users },
+  { href: "/admin/categories", key: "categories", icon: FolderCog },
+  { href: "/admin/sets", key: "library", icon: Library },
+  { href: "/admin/notifications", key: "notifications", icon: Bell },
+  { href: "/admin/ai", key: "ai", icon: BrainCircuit },
+  { href: "/admin/audit", key: "audit", icon: ScrollText },
+  { href: "/admin/system", key: "system", icon: Server },
 ];
 
 export function AdminNav() {
   const pathname = usePathname();
+  const t = useT("admin");
   return (
-    <nav aria-label="Quản trị" className="lg:w-56 lg:shrink-0">
+    <nav aria-label={t("nav.aria")} className="lg:w-56 lg:shrink-0">
       <ul className="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 sm:-mx-6 sm:px-6 lg:sticky lg:top-20 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0">
-        {ADMIN_NAV_ITEMS.map(({ href, label, icon: Icon, exact }) => {
+        {ADMIN_NAV_ITEMS.map(({ href, key, icon: Icon, exact }) => {
           const active = exact ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
           return (
             <li key={href} className="shrink-0">
@@ -48,7 +51,7 @@ export function AdminNav() {
                 )}
               >
                 <Icon className="size-4 shrink-0" aria-hidden />
-                {label}
+                {t(`nav.${key}`)}
               </Link>
             </li>
           );

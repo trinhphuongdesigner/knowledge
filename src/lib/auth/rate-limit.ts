@@ -7,8 +7,6 @@ const CLEANUP_AFTER_MS = 24 * 60 * 60 * 1000; // opportunistic; the daily cron (
 /** LoginAttempt.email cho lần thử mà token không hợp lệ (chưa biết email). */
 export const INVALID_TOKEN_MARKER = "google:invalid";
 
-export const RATE_LIMIT_MESSAGE = "Thử lại sau ít phút";
-
 // ── Pure threshold logic (unit-tested) ────────────────────────────────────
 export function isLoginBlocked(counts: { emailFailures: number; ipFailures: number | null }): boolean {
   return counts.emailFailures >= MAX_EMAIL_FAILURES || (counts.ipFailures ?? 0) >= MAX_IP_FAILURES;

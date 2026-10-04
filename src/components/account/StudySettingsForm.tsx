@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { FormError } from "@/components/auth/FormError";
 import { Button, Input } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import { DAILY_GOAL_MAX, DAILY_GOAL_MIN } from "@/lib/validators";
 import { PushDeviceControl } from "./PushDeviceControl";
@@ -15,6 +16,8 @@ export function StudySettingsForm({
   dailyGoal: number;
   pushReminders: boolean;
 }) {
+  const t = useT("account");
+  const tc = useT("common");
   const [goal, setGoal] = useState(String(dailyGoal));
   const [reminders, setReminders] = useState(pushReminders);
   const [pending, setPending] = useState(false);
@@ -28,7 +31,7 @@ export function StudySettingsForm({
     setSuccess(undefined);
     const n = Number(goal);
     if (!Number.isInteger(n) || n < DAILY_GOAL_MIN || n > DAILY_GOAL_MAX) {
-      setFieldError(`Nhập số nguyên từ ${DAILY_GOAL_MIN} đến ${DAILY_GOAL_MAX}`);
+      setFieldError(t("studySettings.dailyGoalError", { min: DAILY_GOAL_MIN, max: DAILY_GOAL_MAX }));
       return;
     }
     setFieldError(undefined);
@@ -37,9 +40,9 @@ export function StudySettingsForm({
       const saved = await api.updateStudySettings({ dailyGoal: n, pushReminders: reminders });
       setGoal(String(saved.dailyGoal));
       setReminders(saved.pushReminders);
-      setSuccess("Đã lưu cài đặt học");
+      setSuccess(t("studySettings.saved"));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Không lưu được cài đặt");
+      setError(err instanceof Error ? err.message : t("studySettings.saveFailed"));
     } finally {
       setPending(false);
     }
@@ -50,7 +53,7 @@ export function StudySettingsForm({
       <FormError message={error} />
       <FormSuccess message={success} />
       <Input
-        label={`Mục tiêu mỗi ngày (${DAILY_GOAL_MIN}–${DAILY_GOAL_MAX} thẻ)`}
+        label={t("studySettings.dailyGoal", { min: DAILY_GOAL_MIN, max: DAILY_GOAL_MAX })}
         name="dailyGoal"
         type="number"
         inputMode="numeric"
@@ -68,15 +71,15 @@ export function StudySettingsForm({
           className="mt-0.5 size-5 shrink-0 accent-brand-600"
         />
         <span>
-          <span className="font-medium">Nhắc học bằng thông báo đẩy</span>
+          <span className="font-medium">{t("studySettings.reminders")}</span>
           <span className="block text-ink-500">
-            Gửi tối đa 1 thông báo/ngày (khoảng 19:00) khi bạn chưa học và còn thẻ cần ôn. Thông báo cũng hiện ở biểu tượng chuông.
+            {t("studySettings.remindersHint")}
           </span>
         </span>
       </label>
       <PushDeviceControl />
       <Button type="submit" loading={pending} className="w-full sm:w-auto sm:self-start">
-        {pending ? "Đang lưu…" : "Lưu cài đặt"}
+        {pending ? tc("saving") : t("studySettings.save")}
       </Button>
     </form>
   );

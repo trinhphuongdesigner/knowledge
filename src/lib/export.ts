@@ -45,7 +45,7 @@ export function slugify(title: string): string {
   const slug = title
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
-    .replace(/đ/gi, "d")
+    .replace(/\u0111/gi, "d")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")

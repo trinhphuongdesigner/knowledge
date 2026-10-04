@@ -11,6 +11,7 @@ import { StudyControls, StudyToolbar } from "./StudyControls";
 import { StudyFinished } from "./StudyFinished";
 import { StudyProgress } from "./StudyProgress";
 import { parseStudyState, shuffleArray, type StoredStudyState } from "./utils";
+import { useT } from "@/i18n/client";
 
 type Props = {
   setId: string;
@@ -29,6 +30,7 @@ const REVIEW_DEBOUNCE_MS = 2000;
 const REVIEW_MAX_BATCH = 50;
 
 export function StudySession({ setId, title, cards, english = false, initialProgress = null, persist = true }: Props) {
+  const t = useT("study");
   const allIds = useMemo(() => cards.map((c) => c.id), [cards]);
   const byId = useMemo(() => new Map(cards.map((c) => [c.id, c])), [cards]);
   const position = useMemo(() => new Map(allIds.map((id, i) => [id, i])), [allIds]);
@@ -266,13 +268,13 @@ export function StudySession({ setId, title, cards, english = false, initialProg
     return (
       <EmptyState
         icon={Plus}
-        title="Nhóm thẻ chưa có thẻ nào"
-        description="Hãy thêm thẻ hoặc nhập từ file để bắt đầu học."
+        title={t("session.emptyTitle")}
+        description={t("session.emptyDescription")}
         action={
           <div className="flex flex-wrap justify-center gap-2">
-            <ButtonLink href={`/sets/${setId}`}>Thêm thẻ</ButtonLink>
+            <ButtonLink href={`/sets/${setId}`}>{t("session.addCards")}</ButtonLink>
             <ButtonLink href={`/sets/${setId}/import`} variant="secondary">
-              Nhập từ file
+              {t("session.import")}
             </ButtonLink>
           </div>
         }
@@ -281,15 +283,15 @@ export function StudySession({ setId, title, cards, english = false, initialProg
   }
 
   const restartModal = (
-    <Modal open={confirmRestart} onClose={() => setConfirmRestart(false)} title="Bắt đầu lại từ đầu?" centered>
+    <Modal open={confirmRestart} onClose={() => setConfirmRestart(false)} title={t("session.restartTitle")} centered>
       <p className="text-sm text-ink-600">
-        Bạn sẽ quay về thẻ đầu tiên. Kết quả đã thuộc/chưa thuộc vẫn được giữ nguyên.
+        {t("session.restartBody")}
       </p>
       <div className="mt-5 flex justify-end gap-2">
         <Button variant="secondary" onClick={() => setConfirmRestart(false)}>
-          Huỷ
+          {t("session.cancel")}
         </Button>
-        <Button onClick={restartAll}>Bắt đầu lại</Button>
+        <Button onClick={restartAll}>{t("session.restart")}</Button>
       </div>
     </Modal>
   );
@@ -339,8 +341,8 @@ export function StudySession({ setId, title, cards, english = false, initialProg
           front={swap ? card.answer : card.question}
           back={swap ? card.question : card.answer}
           explanation={card.explanation}
-          frontLabel={swap ? "Đáp án" : "Câu hỏi"}
-          backLabel={swap ? "Câu hỏi" : "Đáp án"}
+          frontLabel={swap ? t("session.answer") : t("session.question")}
+          backLabel={swap ? t("session.question") : t("session.answer")}
           flipped={flipped}
           onFlip={flip}
           speech={
@@ -365,7 +367,7 @@ export function StudySession({ setId, title, cards, english = false, initialProg
       />
       {saveFailed && (
         <p role="status" className="text-center text-xs text-ink-500">
-          Chưa lưu được tiến trình, sẽ thử lại sau.
+          {t("session.saveFailed")}
         </p>
       )}
       <StudyControls

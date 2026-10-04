@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { completeOnboarding } from "@/app/welcome/actions";
 import { ProfileFields } from "@/components/account/ProfileFields";
 import { Button } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import type { ProfileFormState } from "@/lib/auth/types";
 import { DEFAULT_NATIVE_LANGUAGE } from "@/lib/languages";
 import { FormError } from "./FormError";
@@ -19,6 +20,8 @@ export function OnboardingForm({
   googleAvatarUrl?: string | null;
   next?: string;
 }) {
+  const t = useT("auth");
+  const tc = useT("common");
   const [state, action, pending] = useActionState<ProfileFormState, FormData>(completeOnboarding, undefined);
   const v = state?.values;
   return (
@@ -38,7 +41,7 @@ export function OnboardingForm({
         errors={state?.fieldErrors}
       />
       <Button type="submit" loading={pending} className="w-full">
-        {pending ? "Đang lưu…" : "Hoàn tất"}
+        {pending ? tc("saving") : t("onboarding.submit")}
       </Button>
     </form>
   );

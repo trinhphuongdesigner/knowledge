@@ -8,13 +8,6 @@ export type UserSort = (typeof USER_SORTS)[number];
 export const USER_FILTERS = ["unonboarded", "inactive", "nearlimit", "disabled"] as const;
 export type UserFilter = (typeof USER_FILTERS)[number];
 
-export const USER_FILTER_LABELS: Record<UserFilter, string> = {
-  unonboarded: "Chưa hoàn tất hồ sơ",
-  inactive: "Không hoạt động > 30 ngày",
-  nearlimit: "Gần chạm hạn mức (≥ 80%)",
-  disabled: "Đang bị khoá",
-};
-
 export const NEAR_LIMIT_PERCENT = 80;
 export const INACTIVE_DAYS = 30;
 

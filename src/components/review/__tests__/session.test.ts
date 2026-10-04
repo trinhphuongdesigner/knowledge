@@ -1,36 +1,40 @@
 import { describe, expect, it } from "vitest";
+import { createT } from "../../../i18n/translate";
+import type { Messages } from "../../../i18n/messages/types";
+import review from "../../../i18n/messages/vi/review";
 import { buildSession, formatDelay, parseOnly, parseReviewMode, previewLabels, typingGrade } from "../session";
 
+const t = createT("vi", { review } as unknown as Messages, "review");
 const MIN = 60_000;
 const DAY = 24 * 60 * MIN;
 
 describe("formatDelay", () => {
   it("formats minutes, hours, days, months, years", () => {
-    expect(formatDelay(10 * MIN)).toBe("10 phút");
-    expect(formatDelay(30 * 1000)).toBe("1 phút");
-    expect(formatDelay(3 * 60 * MIN)).toBe("3 giờ");
-    expect(formatDelay(DAY)).toBe("1 ngày");
-    expect(formatDelay(3 * DAY)).toBe("3 ngày");
-    expect(formatDelay(60 * DAY)).toBe("2 tháng");
-    expect(formatDelay(400 * DAY)).toBe("1 năm");
+    expect(formatDelay(10 * MIN, t)).toBe("10 phút");
+    expect(formatDelay(30 * 1000, t)).toBe("1 phút");
+    expect(formatDelay(3 * 60 * MIN, t)).toBe("3 giờ");
+    expect(formatDelay(DAY, t)).toBe("1 ngày");
+    expect(formatDelay(3 * DAY, t)).toBe("3 ngày");
+    expect(formatDelay(60 * DAY, t)).toBe("2 tháng");
+    expect(formatDelay(400 * DAY, t)).toBe("1 năm");
   });
 });
 
 describe("previewLabels", () => {
   it("new card", () => {
-    const l = previewLabels({ ease: 2.5, interval: 0, reps: 0, lapses: 0 });
+    const l = previewLabels({ ease: 2.5, interval: 0, reps: 0, lapses: 0 }, t);
     expect(l[0]).toBe("10 phút");
     expect(l[1]).toBe("1 ngày");
     expect(l[2]).toBe("1 ngày");
     expect(l[3]).toBe("1 ngày");
   });
   it("mature card gets longer for Dễ than Khó", () => {
-    const l = previewLabels({ ease: 2.5, interval: 30, reps: 5, lapses: 0 });
+    const l = previewLabels({ ease: 2.5, interval: 30, reps: 5, lapses: 0 }, t);
     expect(l[0]).toBe("10 phút");
     expect(l[3]).not.toBe(l[1]);
   });
   it("interval 1 goes to 3 days", () => {
-    expect(previewLabels({ ease: 2.5, interval: 1, reps: 1, lapses: 0 })[2]).toBe("3 ngày");
+    expect(previewLabels({ ease: 2.5, interval: 1, reps: 1, lapses: 0 }, t)[2]).toBe("3 ngày");
   });
 });
 

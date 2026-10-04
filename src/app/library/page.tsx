@@ -7,12 +7,17 @@ import { Container } from "@/components/layout/Container";
 import { SetSaveButtons } from "@/components/library/SetSaveButtons";
 import { LevelBadge } from "@/components/sets/LevelBadge";
 import { Badge, Button, ButtonLink, Card, EmptyState, Breadcrumbs } from "@/components/ui";
+import { getLocale, getT } from "@/i18n/server";
+import { formatNumber } from "@/i18n/format";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { listLibrary, listLibraryCategories } from "@/lib/library";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Thư viện — Knowledge" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT("library");
+  return { title: t("metaTitle") };
+}
 
 export default async function LibraryPage({
   searchParams,
@@ -20,6 +25,8 @@ export default async function LibraryPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const user = await requireUser();
+  const t = await getT("library");
+  const locale = await getLocale();
   const sp = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
   const q = one(sp.q)?.trim() ?? "";
@@ -49,11 +56,11 @@ export default async function LibraryPage({
 
   return (
     <Container className="py-6 sm:py-8">
-      <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Thư viện" }]} />
+      <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("title") }]} />
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-ink-900">Thư viện</h1>
+        <h1 className="text-3xl font-bold text-ink-900">{t("title")}</h1>
         <p className="mt-1 text-sm text-ink-600">
-          Các nhóm thẻ do cộng đồng chia sẻ. Lưu vào thư viện của bạn hoặc tạo bản sao để tự chỉnh sửa.
+          {t("subtitle")}
         </p>
       </div>
 
@@ -64,39 +71,39 @@ export default async function LibraryPage({
             type="search"
             name="q"
             defaultValue={q}
-            placeholder="Tìm theo tên hoặc mô tả…"
-            aria-label="Tìm trong thư viện"
+            placeholder={t("searchPlaceholder")}
+            aria-label={t("searchAria")}
             className="min-h-11 w-full rounded-xl border border-ink-200 bg-surface pl-9 pr-3 text-sm text-ink-900 focus-visible:outline-2 focus-visible:outline-brand-600"
           />
         </div>
         <select
           name="category"
           defaultValue={category}
-          aria-label="Danh mục"
+          aria-label={t("categoryAria")}
           className="min-h-11 rounded-xl border border-ink-200 bg-surface px-3 text-sm text-ink-900 focus-visible:outline-2 focus-visible:outline-brand-600"
         >
-          <option value="">Mọi danh mục</option>
+          <option value="">{t("allCategories")}</option>
           {categories.map((c) => (
             <option key={c.id} value={c.id}>
               {c.name}
             </option>
           ))}
         </select>
-        <Button type="submit">Tìm</Button>
+        <Button type="submit">{t("searchButton")}</Button>
       </form>
 
       {sets.length === 0 ? (
         <EmptyState
           icon={Library}
-          title={q || category ? "Không tìm thấy nhóm thẻ phù hợp" : "Thư viện chưa có nhóm thẻ nào"}
+          title={q || category ? t("emptyFilteredTitle") : t("emptyTitle")}
           description={
             q || category
-              ? "Thử đổi từ khoá hoặc danh mục khác."
-              : "Hãy là người đầu tiên chia sẻ: mở một nhóm thẻ của bạn và chọn Chia sẻ, Công khai."
+              ? t("emptyFilteredDescription")
+              : t("emptyDescription")
           }
           action={
             <ButtonLink href="/" variant="secondary">
-              Về trang chủ
+              {t("backHome")}
             </ButtonLink>
           }
         />
@@ -110,7 +117,7 @@ export default async function LibraryPage({
               <li key={s.id} style={{ "--i": i } as CSSProperties}>
                 <Card className="flex h-full flex-col gap-3">
                   <div className="flex flex-wrap items-center gap-1.5">
-                    {s.featured && <Badge tone="blue">Nổi bật</Badge>}
+                    {s.featured && <Badge tone="blue">{t("featured")}</Badge>}
                     <CategoryBadge category={s.category} />
                     <LevelBadge level={s.level} />
                   </div>
@@ -124,15 +131,15 @@ export default async function LibraryPage({
                   </h2>
                   {s.description && <p className="line-clamp-3 break-words text-sm text-ink-600">{s.description}</p>}
                   <p className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-500">
-                    <span>Của {s.ownerName ?? "Ẩn danh"}</span>
-                    <span>{s.cardCount} thẻ</span>
+                    <span>{t("by", { name: s.ownerName ?? t("anonymous") })}</span>
+                    <span>{t("cardCount", { count: s.cardCount })}</span>
                     <span className="inline-flex items-center gap-1">
                       <Users className="size-3.5" aria-hidden />
-                      {s.subscriberCount} đã lưu
+                      {t("savedCount", { count: s.subscriberCount })}
                     </span>
                   </p>
                   {mine ? (
-                    <p className="text-sm font-medium text-accent-strong">Nhóm thẻ của bạn</p>
+                    <p className="text-sm font-medium text-accent-strong">{t("yours")}</p>
                   ) : (
                     <SetSaveButtons setId={s.id} subscribed={saved} />
                   )}
@@ -144,18 +151,18 @@ export default async function LibraryPage({
       )}
 
       {(page > 1 || hasMore) && (
-        <nav aria-label="Phân trang" className="mt-8 flex items-center justify-between gap-3">
+        <nav aria-label={t("pagination")} className="mt-8 flex items-center justify-between gap-3">
           {page > 1 ? (
             <ButtonLink href={href(page - 1)} variant="secondary">
-              Trang trước
+              {t("prev")}
             </ButtonLink>
           ) : (
             <span />
           )}
-          <span className="text-sm text-ink-500">Trang {page}</span>
+          <span className="text-sm text-ink-500">{t("page", { page: formatNumber(locale, page) })}</span>
           {hasMore ? (
             <ButtonLink href={href(page + 1)} variant="secondary">
-              Trang sau
+              {t("next")}
             </ButtonLink>
           ) : (
             <span />

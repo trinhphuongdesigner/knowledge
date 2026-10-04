@@ -7,6 +7,7 @@ import { Button } from "@/components/ui";
 import { buildRounds, buildTiles, formatTime, isMatch, type QuizTile } from "@/lib/quiz";
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
+import { useT } from "@/i18n/client";
 
 type Game = { rounds: CardDTO[][]; round: number; tiles: QuizTile[] };
 
@@ -23,6 +24,7 @@ export function MatchingGame({
   /** Called once all rounds are cleared: cards matched without any wrong pick pass. */
   onComplete?: (passedIds: string[], failedIds: string[]) => void;
 }) {
+  const t = useT("quiz");
   const [game, setGame] = useState(() => newGame(cards));
   const [matched, setMatched] = useState<string[]>([]); // card ids cleared in this round
   const [selected, setSelected] = useState<string | null>(null);
@@ -38,21 +40,21 @@ export function MatchingGame({
   // Timer runs until the last round is cleared.
   useEffect(() => {
     if (finished) return;
-    const t = setInterval(() => setSeconds((s) => s + 1), 1000);
-    return () => clearInterval(t);
+    const id = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => clearInterval(id);
   }, [finished]);
 
   // Clear the red flash shortly after a wrong pair.
   useEffect(() => {
     if (!wrong) return;
-    const t = setTimeout(() => setWrong(null), 500);
-    return () => clearTimeout(t);
+    const id = setTimeout(() => setWrong(null), 500);
+    return () => clearTimeout(id);
   }, [wrong]);
 
   // Move on once every pair in the round is matched.
   useEffect(() => {
     if (!roundCleared) return;
-    const t = setTimeout(() => {
+    const id = setTimeout(() => {
       setMatched([]);
       setSelected(null);
       if (game.round + 1 >= game.rounds.length) {
@@ -66,7 +68,7 @@ export function MatchingGame({
         setGame({ ...game, round, tiles: buildTiles(game.rounds[round], shuffleArray) });
       }
     }, 500);
-    return () => clearTimeout(t);
+    return () => clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- onComplete/cards are stable for a game run
   }, [roundCleared, game]);
 
@@ -84,7 +86,7 @@ export function MatchingGame({
   function pick(tile: QuizTile) {
     if (wrong || roundCleared || matched.includes(tile.cardId)) return;
     if (selected === tile.key) return setSelected(null);
-    const first = game.tiles.find((t) => t.key === selected);
+    const first = game.tiles.find((x) => x.key === selected);
     if (!first) return setSelected(tile.key);
     if (first.side === tile.side) return setSelected(tile.key); // same side: just switch selection
     if (isMatch(first, tile)) {
@@ -101,21 +103,21 @@ export function MatchingGame({
   if (finished) {
     return (
       <div className="rounded-xl border border-ink-200 bg-surface p-6 text-center shadow-sm">
-        <h2 className="text-xl font-bold text-ink-900">Hoàn thành!</h2>
-        <p className="mt-1 text-sm text-ink-600">Bạn đã ghép đúng {cards.length} thẻ.</p>
+        <h2 className="text-xl font-bold text-ink-900">{t("matching.doneTitle")}</h2>
+        <p className="mt-1 text-sm text-ink-600">{t("matching.doneSummary", { count: cards.length })}</p>
         <dl className="mx-auto mt-5 grid max-w-xs grid-cols-2 gap-3">
           <div className="rounded-xl bg-brand-50 p-3">
-            <dt className="text-xs text-ink-500">Thời gian</dt>
+            <dt className="text-xs text-ink-500">{t("matching.time")}</dt>
             <dd className="text-2xl font-bold text-accent-strong">{formatTime(seconds)}</dd>
           </div>
           <div className="rounded-xl bg-brand-50 p-3">
-            <dt className="text-xs text-ink-500">Số lần sai</dt>
+            <dt className="text-xs text-ink-500">{t("matching.mistakes")}</dt>
             <dd className="text-2xl font-bold text-accent-strong">{mistakes}</dd>
           </div>
         </dl>
         <Button className="mt-6" onClick={restart}>
           <RotateCcw className="size-4" aria-hidden />
-          Chơi lại
+          {t("matching.replay")}
         </Button>
       </div>
     );
@@ -125,20 +127,20 @@ export function MatchingGame({
     <div>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm text-ink-600">
         <span>
-          Vòng {game.round + 1}/{game.rounds.length}
+          {t("matching.round", { round: game.round + 1, total: game.rounds.length })}
         </span>
         <span className="flex items-center gap-3">
-          <span className="flex items-center gap-1" aria-label={`Thời gian ${formatTime(seconds)}`}>
+          <span className="flex items-center gap-1" aria-label={t("matching.timeAria", { time: formatTime(seconds) })}>
             <Timer className="size-4" aria-hidden />
             {formatTime(seconds)}
           </span>
-          <span className="flex items-center gap-1" aria-label={`${mistakes} lần sai`}>
+          <span className="flex items-center gap-1" aria-label={t("matching.mistakesAria", { count: mistakes })}>
             <XCircle className="size-4" aria-hidden />
             {mistakes}
           </span>
         </span>
       </div>
-      <p className="mb-3 text-sm text-ink-500">Chọn một từ và nghĩa tương ứng của nó.</p>
+      <p className="mb-3 text-sm text-ink-500">{t("matching.instructions")}</p>
       <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
         {game.tiles.map((tile) => {
           const done = matched.includes(tile.cardId);
@@ -168,7 +170,7 @@ export function MatchingGame({
         })}
       </ul>
       <p className="sr-only" aria-live="polite">
-        {wrong ? "Chưa đúng, thử lại" : roundCleared ? "Đã ghép xong vòng này" : ""}
+        {wrong ? t("matching.wrongLive") : roundCleared ? t("matching.clearedLive") : ""}
       </p>
     </div>
   );

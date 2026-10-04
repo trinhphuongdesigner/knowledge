@@ -18,7 +18,7 @@ export async function PUT(req: Request, { params }: Ctx) {
     if (!isUuid(id)) return notFound();
     const parsed = studyProgressInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
-    if (!(await getReadableSet(user.id, id))) return notFound("Không tìm thấy nhóm thẻ");
+    if (!(await getReadableSet(user.id, id))) return notFound("setNotFound");
     const { completed, ...state } = parsed.data;
     await db.studyProgress.upsert({
       where: { userId_setId: { userId: user.id, setId: id } },
@@ -41,7 +41,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
     if (!isUuid(id)) return notFound();
     const parsed = quizResultInputSchema.safeParse(await readJson(req));
     if (!parsed.success) return validationError(parsed.error);
-    if (!(await getReadableSet(user.id, id))) return notFound("Không tìm thấy nhóm thẻ");
+    if (!(await getReadableSet(user.id, id))) return notFound("setNotFound");
 
     const cardIds = (await db.card.findMany({ where: { setId: id }, select: { id: true } })).map((c) => c.id);
     const valid = new Set(cardIds);

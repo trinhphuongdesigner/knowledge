@@ -1,0 +1,108 @@
+const account = {
+  metaTitle: "Account settings — Knowledge",
+  title: "Account settings",
+  breadcrumb: "Account",
+  loading: "Loading account…",
+  tabsLabel: "Account settings",
+  tabs: {
+    history: "Study history",
+    stats: "Statistics",
+    settings: "Study settings",
+    profile: "Profile",
+  },
+  export: {
+    title: "Download my data",
+    description: "Your profile, categories, decks, progress and statistics as JSON.",
+    button: "Download",
+  },
+  profile: {
+    updated: "Account details updated",
+    signedInWithGoogle: "Signed in with Google",
+    saveChanges: "Save changes",
+    useGoogleAvatar: "Use my Google photo",
+    displayName: "Display name",
+    fullName: "Full name",
+    gender: "Gender",
+    birthYear: "Year of birth",
+    birthYearPlaceholder: "e.g. 2000",
+    age: {
+      one: "≈ {count} year old",
+      other: "≈ {count} years old",
+    },
+    nativeLanguage: "Native language",
+    genders: {
+      MALE: "Male",
+      FEMALE: "Female",
+      OTHER: "Other",
+    },
+  },
+  uiLanguage: {
+    label: "Display language",
+    hint: "The language of menus, buttons and messages in the app. This is separate from your native language, which is used for studying.",
+    saved: "Display language updated",
+    saveFailed: "Couldn't change the display language",
+    invalid: "Unsupported language",
+  },
+  avatar: {
+    male: "Default avatar — male",
+    female: "Default avatar — female",
+    anonymous: "Default avatar — anonymous",
+    alt: "Profile picture",
+    altNamed: "Profile picture of {name}",
+  },
+  push: {
+    title: "Notifications on this device",
+    enable: "Turn on notifications",
+    disable: "Turn off notifications",
+    enableFailed: "Couldn't turn on notifications",
+    disableFailed: "Couldn't turn off notifications",
+    missingKey: "The browser did not return a subscription key",
+    iosHint:
+      "On iPhone/iPad: add the app to your Home Screen (Share → Add to Home Screen), then open it from that icon to turn on notifications.",
+    status: {
+      checking: "Checking…",
+      unsupported: "This browser doesn't support push notifications.",
+      noKey: "Push notifications aren't configured on the server.",
+      noSw: "Only available when the app runs a production build (a service worker is required).",
+      denied:
+        "Notifications are blocked. Allow notifications for this site in your browser settings, then reload.",
+      off: "Off on this device.",
+      on: "On for this device.",
+    },
+  },
+  history: {
+    emptyTitle: "No study history yet",
+    emptyDescription: "Start studying a deck and your progress will show up here.",
+    emptyAction: "Choose a deck to study",
+    mastered: "Mastered",
+    setsStudied: "Decks studied",
+    progress: "Progress",
+    words: {
+      one: "{count} word",
+      other: "{count} words",
+    },
+    cards: {
+      one: "{count} card",
+      other: "{count} cards",
+    },
+    progressHint: "{known}/{total} cards",
+    progressOf: "Progress of {title}",
+    completed: "Completed",
+    inProgress: "In progress",
+    lastStudied: "Last studied: {date}",
+    studyAgain: "Study again",
+    continue: "Continue studying",
+  },
+  studySettings: {
+    dailyGoal: "Daily goal ({min}–{max} cards)",
+    dailyGoalError: "Enter a whole number from {min} to {max}",
+    saved: "Study settings saved",
+    saveFailed: "Couldn't save settings",
+    reminders: "Study reminders via push notifications",
+    remindersHint:
+      "Sends at most 1 notification per day (around 19:00) when you haven't studied and have cards due. Notifications also appear on the bell icon.",
+    save: "Save settings",
+  },
+};
+
+export default account;

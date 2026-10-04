@@ -2,9 +2,11 @@
 
 import { Search } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useT } from "@/i18n/client";
 
 /** Ô tìm kiếm (GET /search?q=). Phím "/" đưa con trỏ vào ô khi không đang gõ ở ô khác. */
 export function SearchBox({ defaultValue }: { defaultValue: string }) {
+  const t = useT("search");
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export function SearchBox({ defaultValue }: { defaultValue: string }) {
   return (
     <form action="/search" role="search" className="relative">
       <label htmlFor="global-search" className="sr-only">
-        Tìm trong thẻ của bạn
+        {t("box.label")}
       </label>
       <Search className="pointer-events-none absolute top-1/2 left-3.5 size-5 -translate-y-1/2 text-ink-400" aria-hidden />
       <input
@@ -32,7 +34,7 @@ export function SearchBox({ defaultValue }: { defaultValue: string }) {
         name="q"
         type="search"
         defaultValue={defaultValue}
-        placeholder="Tìm câu hỏi, đáp án, giải thích…  (nhấn / để tìm)"
+        placeholder={t("box.placeholder")}
         autoComplete="off"
         autoFocus
         maxLength={100}

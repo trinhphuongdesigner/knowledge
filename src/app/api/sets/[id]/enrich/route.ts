@@ -20,8 +20,8 @@ export async function POST(req: Request, { params }: Ctx) {
     const { id } = await params;
     if (!isUuid(id)) return notFound();
     const set = await db.studySet.findFirst({ where: { id, userId: user.id }, select: { id: true, category: { select: { isEnglish: true } } } });
-    if (!set) return notFound("Không tìm thấy nhóm thẻ");
-    if (!set.category.isEnglish) return badRequest("Chỉ hỗ trợ tra phiên âm cho bộ từ vựng tiếng Anh");
+    if (!set) return notFound("setNotFound");
+    if (!set.category.isEnglish) return badRequest("enrichEnglishOnly");
 
     const todo = await db.card.findMany({
       where: { setId: id, phonetic: null },

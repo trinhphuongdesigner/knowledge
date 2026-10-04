@@ -6,12 +6,16 @@ import { BookOpen } from "lucide-react";
 import { requireUser } from "@/lib/auth/dal";
 import { safeNext } from "@/lib/auth/redirect";
 import { db } from "@/lib/db";
+import { getT } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Hoàn tất hồ sơ — Knowledge" };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: (await getT("auth"))("onboarding.metaTitle") };
+}
 
 export default async function WelcomePage({ searchParams }: PageProps<"/welcome">) {
   const user = await requireUser({ allowIncomplete: true });
+  const t = await getT("auth");
   if (user.onboarded) redirect("/");
   const { next } = await searchParams;
   const dest = typeof next === "string" ? safeNext(next) : "/";
@@ -28,9 +32,9 @@ export default async function WelcomePage({ searchParams }: PageProps<"/welcome"
         Knowledge
       </div>
       <div className="w-full max-w-sm animate-rise rounded-3xl border border-ink-200 bg-surface p-6 shadow-[0_2px_4px_rgb(70_63_53/0.06),0_24px_48px_-24px_rgb(70_63_53/0.35)] motion-reduce:animate-none sm:p-8">
-        <h1 className="mb-1 text-xl font-bold">Chào mừng bạn!</h1>
+        <h1 className="mb-1 text-xl font-bold">{t("onboarding.title")}</h1>
         <p className="mb-6 text-sm text-ink-600">
-          Hãy cho chúng mình biết đôi điều về bạn để hoàn tất hồ sơ ({user.email}).
+          {t("onboarding.subtitle", { email: user.email })}
         </p>
         <OnboardingForm
           defaultName={record?.name ?? user.name ?? ""}
@@ -44,7 +48,7 @@ export default async function WelcomePage({ searchParams }: PageProps<"/welcome"
           type="submit"
           className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-ink-600 hover:text-ink-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
         >
-          Đăng xuất
+          {t("onboarding.signOut")}
         </button>
       </form>
     </main>

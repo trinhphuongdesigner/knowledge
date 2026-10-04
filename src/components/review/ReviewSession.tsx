@@ -10,7 +10,8 @@ import type { Grade, SrsState } from "@/lib/srs";
 import { cn } from "@/lib/utils";
 import type { CardDTO } from "@/lib/validators";
 import { ReviewTypingCard } from "./ReviewTypingCard";
-import { GRADE_LABELS, parseReviewMode, previewLabels, REVIEW_MODE_STORAGE_KEY, type ReviewMode } from "./session";
+import { GRADE_KEYS, parseReviewMode, previewLabels, REVIEW_MODE_STORAGE_KEY, type ReviewMode } from "./session";
+import { useT } from "@/i18n/client";
 
 export type ReviewSessionItem = {
   card: CardDTO;
@@ -33,10 +34,10 @@ const GRADE_STYLES: Record<Grade, string> = {
 
 type Pending = { cardId: string; grade: Grade };
 
-const MODE_OPTIONS: { value: ReviewMode; label: string; Icon: typeof Keyboard }[] = [
-  { value: "typing", label: "Gõ từ", Icon: Keyboard },
-  { value: "flip", label: "Lật thẻ", Icon: RotateCw },
-];
+const MODE_OPTIONS = [
+  { value: "typing", labelKey: "session.modeTyping", Icon: Keyboard },
+  { value: "flip", labelKey: "session.modeFlip", Icon: RotateCw },
+] as const satisfies readonly { value: ReviewMode; labelKey: string; Icon: typeof Keyboard }[];
 
 // Store nhỏ cho mode: server luôn trả mặc định, client đọc localStorage sau hydrate (không lệch markup).
 const modeListeners = new Set<() => void>();
@@ -66,6 +67,7 @@ function writeMode(next: ReviewMode) {
 }
 
 export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; only?: "starred" | "hard" }) {
+  const t = useT("review");
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [counts, setCounts] = useState<[number, number, number, number]>([0, 0, 0, 0]);
@@ -124,7 +126,7 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
   const total = items.length;
   const finished = index >= total;
   const current = finished ? undefined : items[index];
-  const previews = useMemo(() => (current ? previewLabels(current.state) : null), [current]);
+  const previews = useMemo(() => (current ? previewLabels(current.state, t) : null), [current, t]);
 
   const answer = useCallback(
     (grade: Grade) => {
@@ -163,8 +165,8 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.metaKey || e.ctrlKey || e.altKey || finished || typing) return;
-      const t = e.target as HTMLElement | null;
-      if (t?.closest("input, textarea, select, button, a, [role='button'], [contenteditable='true']")) {
+      const target = e.target as HTMLElement | null;
+      if (target?.closest("input, textarea, select, button, a, [role='button'], [contenteditable='true']")) {
         if (e.key === " " || e.key === "Enter") return;
       }
       if (e.key === " ") flip();
@@ -191,21 +193,21 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
         <div className="mb-4 flex size-16 -rotate-6 items-center justify-center rounded-2xl bg-sun-300 text-ink-900 shadow-[0_4px_0_var(--color-sun-400)]">
           <PartyPopper className="size-7" aria-hidden />
         </div>
-        <h2 className="text-xl font-semibold text-ink-900">Xong phiên ôn!</h2>
+        <h2 className="text-xl font-semibold text-ink-900">{t("session.doneTitle")}</h2>
         <p className="mt-1 text-sm text-ink-600">
-          Đã ôn {total} thẻ · đúng {pct}%
+          {t("session.doneSummary", { count: total, pct })}
         </p>
         <dl className="mt-6 grid w-full max-w-sm grid-cols-4 gap-2">
           {([0, 1, 2, 3] as const).map((g) => (
             <div key={g} className={cn("rounded-2xl border bg-surface p-2", GRADE_STYLES[g].split(" ").slice(0, 2).join(" "))}>
-              <dt className="text-xs">{GRADE_LABELS[g]}</dt>
+              <dt className="text-xs">{t(GRADE_KEYS[g])}</dt>
               <dd className="text-xl font-semibold">{[again, hard, good, easy][g]}</dd>
             </div>
           ))}
         </dl>
         {saveFailed && (
           <p role="status" className="mt-4 text-xs text-ink-500">
-            Chưa lưu được một số kết quả, sẽ thử lại khi có mạng.
+            {t("session.saveFailedSome")}
           </p>
         )}
         <div className="mt-6 flex w-full max-w-xs flex-col gap-2">
@@ -213,11 +215,11 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
             href={only ? "/review" : "/"}
             className="inline-flex min-h-11 items-center justify-center rounded-xl bg-brand-600 px-4 text-sm font-semibold text-white shadow-[0_3px_0_var(--color-brand-800)] hover:bg-brand-500"
           >
-            {only ? "Về ôn hằng ngày" : "Về trang chủ"}
+            {only ? t("session.backDaily") : t("session.backHome")}
           </Link>
           {only && (
             <ButtonLink href="/" variant="secondary">
-              Về trang chủ
+              {t("session.backHome")}
             </ButtonLink>
           )}
         </div>
@@ -239,8 +241,8 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           <span className="min-w-0 truncate text-xs text-ink-600">{current.setTitle}</span>
         </div>
         {hasEnglish && (
-          <div role="group" aria-label="Chế độ ôn" className="mt-3 flex gap-2">
-            {MODE_OPTIONS.map(({ value, label, Icon }) => (
+          <div role="group" aria-label={t("session.modeAria")} className="mt-3 flex gap-2">
+            {MODE_OPTIONS.map(({ value, labelKey, Icon }) => (
               <button
                 key={value}
                 type="button"
@@ -254,7 +256,7 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
                 )}
               >
                 <Icon className="size-4" aria-hidden />
-                {label}
+                {t(labelKey)}
               </button>
             ))}
           </div>
@@ -264,7 +266,7 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           aria-valuemin={0}
           aria-valuemax={total}
           aria-valuenow={index}
-          aria-label="Tiến độ ôn"
+          aria-label={t("session.progressAria")}
           className="mt-2 h-2.5 overflow-hidden rounded-full bg-ink-200/70"
         >
           <div
@@ -282,8 +284,8 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           front={current.card.question}
           back={current.card.answer}
           explanation={current.card.explanation}
-          frontLabel="Câu hỏi"
-          backLabel="Đáp án"
+          frontLabel={t("session.question")}
+          backLabel={t("session.answer")}
           flipped={flipped}
           onFlip={flip}
           speech={
@@ -311,13 +313,13 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           )}
         >
           <Star className={cn("size-4", isStarred && "fill-current")} aria-hidden />
-          {isStarred ? "Đã đánh sao" : "Đánh sao"}
+          {isStarred ? t("session.starred") : t("session.star")}
         </button>
       </div>
 
       {saveFailed && (
         <p role="status" className="text-center text-xs text-ink-500">
-          Chưa lưu được kết quả, sẽ thử lại sau.
+          {t("session.saveFailed")}
         </p>
       )}
 
@@ -330,10 +332,10 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
                   key={g}
                   variant="secondary"
                   onClick={() => answer(g)}
-                  aria-label={`${GRADE_LABELS[g]}, ôn lại sau ${previews[g]}`}
+                  aria-label={t("session.gradeAria", { grade: t(GRADE_KEYS[g]), delay: previews[g] })}
                   className={cn("h-auto flex-col gap-0 px-1 py-2", GRADE_STYLES[g])}
                 >
-                  <span>{GRADE_LABELS[g]}</span>
+                  <span>{t(GRADE_KEYS[g])}</span>
                   <span className="text-xs font-normal opacity-70">{previews[g]}</span>
                   <kbd className="hidden text-[11px] opacity-50 sm:inline">({g + 1})</kbd>
                 </Button>
@@ -342,7 +344,7 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           ) : (
             <div className="mx-auto max-w-xl">
               <Button onClick={flip} className="w-full">
-                <RotateCw className="size-4" aria-hidden /> Hiện đáp án <kbd className="hidden text-xs opacity-60 sm:inline">(Space)</kbd>
+                <RotateCw className="size-4" aria-hidden /> {t("session.showAnswer")} <kbd className="hidden text-xs opacity-60 sm:inline">(Space)</kbd>
               </Button>
             </div>
           )}

@@ -3,6 +3,7 @@
 import { Plus, Search } from "lucide-react";
 import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { Button, Input, Textarea } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import { cardInputSchema, type AiSuggestionDTO, type CardDTO } from "@/lib/validators";
 import { useWordLookup } from "./useWordLookup";
@@ -37,6 +38,7 @@ export function CardForm({
   onSaved: (card: CardDTO, mode: "added" | "updated") => void;
   onClose: () => void;
 }) {
+  const t = useT("cards");
   const formId = useId();
   const [question, setQuestion] = useState(card?.question ?? "");
   const [answer, setAnswer] = useState(card?.answer ?? "");
@@ -115,7 +117,7 @@ export function CardForm({
       applyAi(s, false, entry?.phonetic ?? undefined);
       if (conflicts) setAiPreview(s);
     } catch (e) {
-      setAiError(e instanceof Error ? e.message : "Không lấy được gợi ý AI.");
+      setAiError(e instanceof Error ? e.message : t("form.aiFailed"));
     } finally {
       setAiLoading(false);
     }
@@ -138,10 +140,10 @@ export function CardForm({
         if (errs[key]) continue;
         errs[key] =
           key === "question"
-            ? "Vui lòng nhập câu hỏi (tối đa 5000 ký tự)."
+            ? t("form.questionError")
             : key === "answer"
-              ? "Vui lòng nhập câu trả lời (tối đa 5000 ký tự)."
-              : "Giải thích tối đa 5000 ký tự.";
+              ? t("form.answerError")
+              : t("form.explanationError");
       }
       setErrors(errs);
       return;
@@ -170,10 +172,10 @@ export function CardForm({
       setAiPreview(null);
       setAiError("");
       resetLookup();
-      setNotice("Đã thêm thẻ. Nhập thẻ tiếp theo.");
+      setNotice(t("form.added"));
       questionRef.current?.focus();
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : card ? "Không thể lưu thẻ." : "Không thể thêm thẻ.");
+      setSubmitError(err instanceof Error ? err.message : card ? t("form.saveFailed") : t("form.addFailed"));
     } finally {
       setLoading(null);
     }
@@ -195,7 +197,7 @@ export function CardForm({
     <form id={formId} onSubmit={onSubmit} onKeyDown={onKeyDown} noValidate className="flex flex-col gap-3">
       <Textarea
         ref={questionRef}
-        label="Câu hỏi"
+        label={t("fields.question")}
         rows={3}
         value={question}
         autoFocus
@@ -214,15 +216,15 @@ export function CardForm({
           if (english && q && !phonetic.trim() && !looking && q !== card?.question) void autoFill(true);
         }}
         error={errors.question}
-        placeholder="Mặt trước: thuật ngữ hoặc câu hỏi (hỗ trợ Markdown)"
+        placeholder={t("form.questionPlaceholder")}
       />
       <Textarea
-        label="Đáp án"
+        label={t("fields.answer")}
         rows={4}
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
         error={errors.answer}
-        placeholder="Mặt sau: định nghĩa hoặc đáp án (hỗ trợ Markdown)"
+        placeholder={t("form.answerPlaceholder")}
       />
       {ai.enabled && (
         <div className="flex flex-col gap-2">
@@ -233,13 +235,13 @@ export function CardForm({
             loading={aiLoading}
             disabled={!question.trim() || ai.remaining === 0}
             title={
-              ai.remaining === undefined ? "Gợi ý nghĩa và ví dụ bằng AI" : `Còn ${ai.remaining} lượt gợi ý AI hôm nay`
+              ai.remaining === undefined ? t("form.aiHint") : t("form.aiRemaining", { count: ai.remaining })
             }
             onClick={() => void suggest()}
           >
-            ✨ Gợi ý bằng AI
+            ✨ {t("form.aiSuggest")}
           </Button>
-          {ai.remaining === 0 && <p className="text-sm text-ink-500">Bạn đã dùng hết lượt gợi ý AI hôm nay.</p>}
+          {ai.remaining === 0 && <p className="text-sm text-ink-500">{t("form.aiExhausted")}</p>}
           {aiError && (
             <p role="alert" className="text-sm text-red-700">
               {aiError}
@@ -247,20 +249,20 @@ export function CardForm({
           )}
           {aiPreview && (
             <div role="status" className="rounded-xl border border-brand-200 bg-brand-50 p-3 text-sm text-ink-700">
-              <p className="mb-1 font-medium">Gợi ý AI (các ô đã có nội dung được giữ nguyên)</p>
+              <p className="mb-1 font-medium">{t("form.aiPreviewTitle")}</p>
               <p>
-                <span className="text-ink-500">Đáp án: </span>
+                <span className="text-ink-500">{t("form.answerLabel")}</span>
                 {aiPreview.answer}
               </p>
               {aiPreview.explanation && (
                 <p className="whitespace-pre-line">
-                  <span className="text-ink-500">Giải thích: </span>
+                  <span className="text-ink-500">{t("form.explanationLabel")}</span>
                   {aiPreview.explanation}
                 </p>
               )}
               {english && aiPreview.partOfSpeech && (
                 <p>
-                  <span className="text-ink-500">Từ loại: </span>
+                  <span className="text-ink-500">{t("form.partOfSpeechLabel")}</span>
                   {aiPreview.partOfSpeech}
                 </p>
               )}
@@ -272,10 +274,10 @@ export function CardForm({
                     setAiPreview(null);
                   }}
                 >
-                  Áp dụng
+                  {t("form.apply")}
                 </Button>
                 <Button type="button" variant="secondary" onClick={() => setAiPreview(null)}>
-                  Bỏ qua
+                  {t("form.dismiss")}
                 </Button>
               </div>
             </div>
@@ -286,14 +288,14 @@ export function CardForm({
         <div className="flex flex-col gap-2">
           <div className="grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
             <Input
-              label="Phiên âm"
+              label={t("form.phonetic")}
               value={phonetic}
               onChange={(e) => setPhonetic(e.target.value)}
               placeholder="/ˈeɪbl/"
               maxLength={200}
             />
             <Input
-              label="Từ loại"
+              label={t("form.partOfSpeech")}
               value={partOfSpeech}
               onChange={(e) => setPartOfSpeech(e.target.value)}
               placeholder="adjective"
@@ -301,7 +303,7 @@ export function CardForm({
             />
             <Button type="button" variant="secondary" loading={looking} onClick={() => void autoFill(false)}>
               <Search className="size-4" aria-hidden />
-              Tự tra
+              {t("form.autoLookup")}
             </Button>
           </div>
           {lookupMessage && (
@@ -313,12 +315,12 @@ export function CardForm({
       )}
       {showExplanation ? (
         <Textarea
-          label="Giải thích (tuỳ chọn)"
+          label={t("form.explanationOptional")}
           rows={3}
           value={explanation}
           onChange={(e) => setExplanation(e.target.value)}
           error={errors.explanation}
-          placeholder="Giải thích hoặc ví dụ"
+          placeholder={t("form.explanationPlaceholder")}
         />
       ) : (
         <button
@@ -326,7 +328,7 @@ export function CardForm({
           onClick={() => setShowExplanation(true)}
           className="min-h-11 self-start rounded-xl px-2 text-sm font-medium text-accent hover:bg-brand-50"
         >
-          + Thêm giải thích
+          {t("form.addExplanation")}
         </button>
       )}
       {submitError && (
@@ -341,15 +343,15 @@ export function CardForm({
       )}
       <div className="sticky -bottom-5 z-10 -mx-5 -mb-5 mt-1 flex flex-col gap-2 border-t border-ink-200 bg-surface px-5 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <p className="hidden text-xs text-ink-500 sm:block">
-          {card ? "Ctrl/Cmd + Enter để lưu." : "Ctrl/Cmd + Enter để thêm & tiếp tục."}
+          {card ? t("form.shortcutSave") : t("form.shortcutAdd")}
         </p>
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button type="button" variant="secondary" onClick={onClose} disabled={!!loading}>
-            Huỷ
+            {t("form.cancel")}
           </Button>
           {card ? (
             <Button type="submit" loading={loading === "close"}>
-              Lưu
+              {t("form.save")}
             </Button>
           ) : (
             <>
@@ -361,10 +363,10 @@ export function CardForm({
                 onClick={() => void submit("continue")}
               >
                 <Plus className="size-4" aria-hidden />
-                Thêm &amp; tiếp tục
+                {t("form.addAndContinue")}
               </Button>
               <Button type="submit" loading={loading === "close"} disabled={loading === "continue"}>
-                Thêm
+                {t("form.add")}
               </Button>
             </>
           )}

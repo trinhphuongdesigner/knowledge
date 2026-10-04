@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { QUOTA, effectiveLimits, evaluateQuota, type QuotaLimits, type QuotaRequest, type QuotaUsage } from "./quota-limits";
+import { QUOTA, effectiveLimits, evaluateQuota, type QuotaLimits, type QuotaViolation, type QuotaRequest, type QuotaUsage } from "./quota-limits";
 
 export * from "./quota-limits";
 
@@ -21,11 +21,11 @@ export async function getUserLimits(userId: string): Promise<QuotaLimits> {
   return effectiveLimits(QUOTA, overrides);
 }
 
-/** Trả thông báo lỗi (tiếng Việt) nếu vượt giới hạn, null nếu được phép. ADMIN không bị giới hạn. */
+/** Trả vi phạm hạn mức (dịch bằng quotaExceeded() trong http.ts) nếu vượt giới hạn, null nếu được phép. ADMIN không bị giới hạn. */
 export async function checkQuota(
   user: { id: string; role: "USER" | "ADMIN" },
   req: QuotaRequest,
-): Promise<string | null> {
+): Promise<QuotaViolation | null> {
   if (user.role === "ADMIN") return null;
   const [usage, limits] = await Promise.all([getUsage(user.id), getUserLimits(user.id)]);
   const setCardCount = req.setId && req.cards ? await db.card.count({ where: { setId: req.setId } }) : 0;

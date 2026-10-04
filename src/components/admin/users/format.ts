@@ -1,13 +1,18 @@
+import type { Locale } from "@/i18n/config";
+import { formatDate } from "@/i18n/format";
+
 const TZ = "Asia/Ho_Chi_Minh";
 
-export function fmtDate(d: Date | string | null | undefined): string {
+type D = Date | string | null | undefined;
+
+export function fmtDate(locale: Locale, d: D): string {
   if (!d) return "—";
-  return new Date(d).toLocaleDateString("vi-VN", { timeZone: TZ, day: "2-digit", month: "2-digit", year: "numeric" });
+  return formatDate(locale, d, { timeZone: TZ, day: "2-digit", month: "2-digit", year: "numeric" });
 }
 
-export function fmtDateTime(d: Date | string | null | undefined): string {
+export function fmtDateTime(locale: Locale, d: D): string {
   if (!d) return "—";
-  return new Date(d).toLocaleString("vi-VN", {
+  return formatDate(locale, d, {
     timeZone: TZ,
     day: "2-digit",
     month: "2-digit",
@@ -18,9 +23,9 @@ export function fmtDateTime(d: Date | string | null | undefined): string {
 }
 
 /** Ngày `@db.Date` (UTC 00:00) — không đổi múi giờ để khỏi lệch ngày. */
-export function fmtDayOnly(d: Date | string | null | undefined): string {
+export function fmtDayOnly(locale: Locale, d: D): string {
   if (!d) return "—";
-  return new Date(d).toLocaleDateString("vi-VN", { timeZone: "UTC", day: "2-digit", month: "2-digit", year: "numeric" });
+  return formatDate(locale, d, { timeZone: "UTC", day: "2-digit", month: "2-digit", year: "numeric" });
 }
 
 export function displayName(u: { name: string | null; fullName: string | null; email: string }): string {

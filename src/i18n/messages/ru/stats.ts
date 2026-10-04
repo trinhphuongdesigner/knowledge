@@ -1,0 +1,35 @@
+const stats = {
+  panel: {
+    emptyTitle: "Статистики пока нет",
+    emptyDescription: "Повторяйте карточки, чтобы начать серию занятий и увидеть свой прогресс.",
+    reviewToday: "Повторить сегодня",
+    streak: "Текущая серия",
+    longest: "Самая длинная серия",
+    total: "Всего повторений",
+    accuracy: "Точность",
+    days: { one: "{count} день", few: "{count} дня", many: "{count} дней", other: "{count} дня" },
+    last90: "Последние 90 дней",
+    last30: "Последние 30 дней",
+    heatmapAria: "Тепловая карта за последние 90 дней, всего повторений: {total}",
+    barsAria: "Повторено карточек в день за последние 30 дней, максимум {max}",
+    dayTitle: "{day}: карточек {reviewed}, верно {correct}",
+    less: "Меньше",
+    more: "Больше",
+    correct: "Верно",
+    wrong: "Неверно",
+  },
+  streak: {
+    chartAria: "Повторено карточек за последние 14 дней: {values}",
+    daysInRow: { one: "день подряд", few: "дня подряд", many: "дней подряд", other: "дня подряд" },
+    startNew: "Позанимайтесь сегодня, чтобы начать новую серию",
+    keep: "Позанимайтесь сегодня, чтобы сохранить серию",
+    longest: { one: "Рекорд: {count} день", few: "Рекорд: {count} дня", many: "Рекорд: {count} дней", other: "Рекорд: {count} дня" },
+    dayTitle: { one: "{day}: {count} карточка", few: "{day}: {count} карточки", many: "{day}: {count} карточек", other: "{day}: {count} карточки" },
+    goal: "Цель на сегодня",
+    goalCount: "{done}/{goal} карточек",
+    goalAria: "Прогресс цели на сегодня",
+    view: "Открыть статистику",
+  },
+};
+
+export default stats;

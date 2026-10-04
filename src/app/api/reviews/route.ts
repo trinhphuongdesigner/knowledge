@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     const { setId, items } = parsed.data;
 
     const readable = await getReadableSet(user.id, setId);
-    if (!readable) return notFound("Không tìm thấy nhóm thẻ");
+    if (!readable) return notFound("setNotFound");
 
     const wanted = [...new Set(items.map((i) => i.cardId))];
     const [cards, existing] = await Promise.all([

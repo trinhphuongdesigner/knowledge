@@ -41,8 +41,8 @@ describe("parseCsv", () => {
     const r = parseCsv("question,answer\nQ1,A1\n\n,A2\nQ3,\n,\nQ4,A4");
     expect(r.cards.map((c) => c.question)).toEqual(["Q1", "Q4"]);
     expect(r.errors).toEqual([
-      { row: 4, message: "Thiếu câu hỏi" },
-      { row: 5, message: "Thiếu đáp án" },
+      { row: 4, code: "missingQuestion" },
+      { row: 5, code: "missingAnswer" },
     ]);
   });
 
@@ -81,7 +81,7 @@ describe("parseXlsx", () => {
       { question: "Q1", answer: "A1", explanation: "E1" },
       { question: "Q2", answer: "A2" },
     ]);
-    expect(r.errors).toEqual([{ row: 5, message: "Thiếu câu hỏi" }]);
+    expect(r.errors).toEqual([{ row: 5, code: "missingQuestion" }]);
   });
 
   it("falls back to positional columns without header", () => {
@@ -129,7 +129,7 @@ describe("parseMarkdown", () => {
   it("Q/A reports card without answer", () => {
     const r = parseMarkdown("Q: One\nA: 1\n\nQ: Two\n");
     expect(r.cards).toHaveLength(1);
-    expect(r.errors).toEqual([{ row: 4, message: "Thiếu đáp án" }]);
+    expect(r.errors).toEqual([{ row: 4, code: "missingAnswer" }]);
   });
 
   it("table style with Vietnamese header", () => {
@@ -139,7 +139,7 @@ describe("parseMarkdown", () => {
       { question: "API", answer: "Giao diện lập trình", explanation: "REST" },
       { question: "SQL", answer: "Ngôn ngữ truy vấn" },
     ]);
-    expect(r.errors).toEqual([{ row: 5, message: "Thiếu câu hỏi" }]);
+    expect(r.errors).toEqual([{ row: 5, code: "missingQuestion" }]);
   });
 
   it("table without alias header uses positional columns", () => {
@@ -173,8 +173,8 @@ describe("parseFile", () => {
     expect(txt.cards).toEqual([{ question: "q", answer: "a" }]);
   });
 
-  it("throws a Vietnamese error for unsupported extension", async () => {
-    await expect(parseFile(new File(["x"], "x.pdf"))).rejects.toThrow(/chưa được hỗ trợ/);
+  it("throws UnsupportedFormatError for unsupported extension", async () => {
+    await expect(parseFile(new File(["x"], "x.pdf"))).rejects.toThrow(/Unsupported file format/);
   });
 });
 

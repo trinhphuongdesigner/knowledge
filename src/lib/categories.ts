@@ -34,7 +34,7 @@ export async function findDuplicateCategory(name: string, exceptId?: string): Pr
 /** Danh mục mặc định (chỉ dùng khi seed). */
 export const DEFAULT_CATEGORIES = [
   { name: "IT", color: "BLUE", isEnglish: false },
-  { name: "Tiếng Anh", color: "GREEN", isEnglish: true },
+  { name: "Ti\u1EBFng Anh", color: "GREEN", isEnglish: true },
 ] as const;
 
 /** True khi danh mục tồn tại. */

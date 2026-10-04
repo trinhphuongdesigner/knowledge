@@ -13,20 +13,20 @@ function defaultJwks(): JWTVerifyGetKey {
 
 function projectIdFromEnv(): string {
   const id = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID?.trim();
-  if (!id) throw new Error("Thiếu NEXT_PUBLIC_FIREBASE_PROJECT_ID: không thể xác minh đăng nhập Google");
+  if (!id) throw new Error("Missing NEXT_PUBLIC_FIREBASE_PROJECT_ID: cannot verify Google sign-in");
   return id;
 }
 
 /** Kiểm tra các claim của Firebase ID token đã được xác minh chữ ký (hàm thuần, dễ test). */
 export function identityFromClaims(payload: JWTPayload): GoogleIdentity {
   const uid = typeof payload.sub === "string" ? payload.sub : "";
-  if (!uid) throw new Error("Token thiếu sub");
+  if (!uid) throw new Error("Token is missing sub");
   const firebase = payload.firebase as { sign_in_provider?: unknown } | undefined;
-  if (firebase?.sign_in_provider !== "google.com") throw new Error("Token không phải đăng nhập Google");
+  if (firebase?.sign_in_provider !== "google.com") throw new Error("Token is not a Google sign-in");
   const email = payload.email;
-  if (typeof email !== "string" || !email.trim()) throw new Error("Token thiếu email");
+  if (typeof email !== "string" || !email.trim()) throw new Error("Token is missing email");
   // Bắt buộc: vai trò admin được suy ra từ email nên email phải được Google xác minh.
-  if (payload.email_verified !== true) throw new Error("Email chưa được xác minh");
+  if (payload.email_verified !== true) throw new Error("Email is not verified");
   return {
     uid,
     email: email.trim().toLowerCase(),

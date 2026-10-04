@@ -4,6 +4,7 @@ import { BookmarkCheck, BookmarkPlus, Copy } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui";
+import { useT } from "@/i18n/client";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +27,7 @@ export function SetSaveButtons({
   className?: string;
 }) {
   const router = useRouter();
+  const t = useT("library");
   const [subscribed, setSubscribed] = useState(initialSubscribed);
   const [busy, setBusy] = useState<"save" | "copy" | null>(null);
   const [error, setError] = useState("");
@@ -39,7 +41,7 @@ export function SetSaveButtons({
       setSubscribed(!subscribed);
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không thể thực hiện, vui lòng thử lại.");
+      setError(e instanceof Error ? e.message : t("saveButtons.failed"));
     } finally {
       setBusy(null);
     }
@@ -53,7 +55,7 @@ export function SetSaveButtons({
       router.push(`/sets/${created.id}`);
       router.refresh();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Không thể tạo bản sao, vui lòng thử lại.");
+      setError(e instanceof Error ? e.message : t("saveButtons.copyFailed"));
       setBusy(null);
     }
   }
@@ -69,15 +71,15 @@ export function SetSaveButtons({
             loading={busy === "save"}
             disabled={busy === "copy"}
             aria-pressed={subscribed}
-            title={subscribed ? "Bỏ lưu khỏi thư viện của bạn" : undefined}
+            title={subscribed ? t("saveButtons.unsaveTitle") : undefined}
           >
             {subscribed ? <BookmarkCheck className="size-4" aria-hidden /> : <BookmarkPlus className="size-4" aria-hidden />}
-            {subscribed ? (unsaveLabel ? "Bỏ lưu" : "Đã lưu") : "Lưu vào thư viện"}
+            {subscribed ? (unsaveLabel ? t("saveButtons.unsave") : t("saveButtons.saved")) : t("saveButtons.save")}
           </Button>
         )}
         <Button size={size} variant="secondary" onClick={copy} loading={busy === "copy"} disabled={busy === "save"}>
           <Copy className="size-4" aria-hidden />
-          Tạo bản sao
+          {t("saveButtons.copy")}
         </Button>
       </div>
       {error && (
