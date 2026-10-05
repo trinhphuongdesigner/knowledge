@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildStats, computeStreak } from "../stats";
+import { buildStats, computeStreak, metGoal } from "../stats";
 
 const today = new Date("2026-10-10T00:00:00Z");
 const d = (s: string) => new Date(`${s}T00:00:00Z`);
@@ -38,6 +38,14 @@ describe("computeStreak", () => {
   });
 });
 
+describe("metGoal", () => {
+  it("needs correct >= goal", () => {
+    expect(metGoal({ correct: 20, goal: 20 })).toBe(true);
+    expect(metGoal({ correct: 19, goal: 20 })).toBe(false);
+    expect(metGoal({ correct: 0, goal: 0 })).toBe(false);
+  });
+});
+
 describe("buildStats", () => {
   it("returns zeros for no rows with a 90-day series", () => {
     const s = buildStats([], today);
@@ -50,9 +58,9 @@ describe("buildStats", () => {
   it("fills gaps and computes totals, accuracy, streak", () => {
     const s = buildStats(
       [
-        { day: d("2026-10-10"), reviewed: 10, correct: 8 },
-        { day: d("2026-10-09"), reviewed: 10, correct: 5 },
-        { day: d("2026-10-05"), reviewed: 20, correct: 20 },
+        { day: d("2026-10-10"), reviewed: 10, correct: 8, goal: 5 },
+        { day: d("2026-10-09"), reviewed: 10, correct: 5, goal: 5 },
+        { day: d("2026-10-05"), reviewed: 20, correct: 20, goal: 20 },
       ],
       today,
     );
@@ -65,15 +73,53 @@ describe("buildStats", () => {
   });
 
   it("keeps older history in totals and longest streak but outside the 90-day series", () => {
-    const rows = [0, 1, 2, 3, 4].map((i) => ({ day: d(`2026-05-0${i + 1}`), reviewed: 5, correct: 5 }));
+    const rows = [0, 1, 2, 3, 4].map((i) => ({ day: d(`2026-05-0${i + 1}`), reviewed: 5, correct: 5, goal: 5 }));
     const s = buildStats(rows, today);
     expect(s.longestStreak).toBe(5);
     expect(s.totalReviewed).toBe(25);
     expect(s.days.every((x) => x.reviewed === 0)).toBe(true);
   });
 
+  it("only counts days whose correct count met that day's goal", () => {
+    // Day 1 met the goal, days 2–3 studied but fell short → the streak resets.
+    const s = buildStats(
+      [
+        { day: d("2026-10-08"), reviewed: 25, correct: 20, goal: 20 },
+        { day: d("2026-10-09"), reviewed: 15, correct: 10, goal: 20 },
+        { day: d("2026-10-10"), reviewed: 30, correct: 19, goal: 20 },
+      ],
+      today,
+    );
+    expect(s.streak).toBe(0);
+    expect(s.longestStreak).toBe(1);
+  });
+
+  it("judges each day against the goal stored for that day, not the current one", () => {
+    // 7 days at goal 10, then 3 days at goal 20 — all met → 10, not 3.
+    const rows = Array.from({ length: 10 }, (_, i) => ({
+      day: d(`2026-10-${String(i + 1).padStart(2, "0")}`),
+      reviewed: i < 7 ? 12 : 22,
+      correct: i < 7 ? 10 : 20,
+      goal: i < 7 ? 10 : 20,
+    }));
+    const s = buildStats(rows, today);
+    expect(s.streak).toBe(10);
+    expect(s.longestStreak).toBe(10);
+  });
+
+  it("keeps the streak alive while today's goal is not met yet", () => {
+    const s = buildStats(
+      [
+        { day: d("2026-10-09"), reviewed: 20, correct: 20, goal: 20 },
+        { day: d("2026-10-10"), reviewed: 5, correct: 5, goal: 20 },
+      ],
+      today,
+    );
+    expect(s.streak).toBe(1);
+  });
+
   it("ignores rows with 0 reviewed for the streak", () => {
-    const s = buildStats([{ day: d("2026-10-10"), reviewed: 0, correct: 0 }], today);
+    const s = buildStats([{ day: d("2026-10-10"), reviewed: 0, correct: 0, goal: 20 }], today);
     expect(s.streak).toBe(0);
   });
 });

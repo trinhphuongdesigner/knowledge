@@ -228,6 +228,7 @@ model StudyDay {            // Tổng hợp theo ngày → thống kê, streak, 
   reviewed Int      @default(0)
   correct  Int      @default(0)
   newCards Int      @default(0)
+  goal     Int      @default(20) // dailyGoal của user trong ngày này (giá trị cuối ngày) → streak
 
   @@id([userId, day])
 }

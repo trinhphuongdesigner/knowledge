@@ -20,10 +20,12 @@ export async function POST(req: Request) {
     if (!readable) return notFound("setNotFound");
 
     const wanted = [...new Set(items.map((i) => i.cardId))];
-    const [cards, existing] = await Promise.all([
+    const [cards, existing, settings] = await Promise.all([
       db.card.findMany({ where: { setId, id: { in: wanted } }, select: { id: true } }),
       db.cardReview.findMany({ where: { userId: user.id, cardId: { in: wanted } } }),
+      db.user.findUnique({ where: { id: user.id }, select: { dailyGoal: true } }),
     ]);
+    const goal = settings?.dailyGoal ?? 20;
     const valid = new Set(cards.map((c) => c.id));
 
     const now = new Date();
@@ -71,8 +73,10 @@ export async function POST(req: Request) {
       }),
       db.studyDay.upsert({
         where: { userId_day: { userId: user.id, day } },
-        create: { userId: user.id, day, reviewed: recorded, correct, newCards },
+        // Ghi lại mục tiêu hiện hành của ngày này → streak không bị tính lại khi đổi mục tiêu về sau.
+        create: { userId: user.id, day, reviewed: recorded, correct, newCards, goal },
         update: {
+          goal,
           reviewed: { increment: recorded },
           correct: { increment: correct },
           newCards: { increment: newCards },

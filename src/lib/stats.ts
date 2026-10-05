@@ -3,11 +3,20 @@ import type { StudyStatsDTO } from "./validators";
 
 export const STATS_DAYS = 90;
 
-export type StudyDayRow = { day: Date; reviewed: number; correct: number };
+export type StudyDayRow = { day: Date; reviewed: number; correct: number; goal: number };
 
 /**
- * Streak từ danh sách ngày có học (khoá "YYYY-MM-DD", không cần sắp xếp, trùng được).
- * `current`: chuỗi kết thúc hôm nay hoặc hôm qua (hôm nay chưa học thì chuỗi vẫn "còn sống").
+ * Ngày giữ được chuỗi: số thẻ đã thuộc (`correct`) đạt mục tiêu của CHÍNH ngày đó.
+ * `goal` được ghi vào StudyDay khi ôn / đổi cài đặt trong ngày, nên đổi mục tiêu về sau
+ * không làm thay đổi kết quả của các ngày đã qua.
+ */
+export function metGoal(r: Pick<StudyDayRow, "correct" | "goal">): boolean {
+  return r.correct > 0 && r.correct >= r.goal;
+}
+
+/**
+ * Streak từ danh sách ngày đạt mục tiêu (khoá "YYYY-MM-DD", không cần sắp xếp, trùng được).
+ * `current`: chuỗi kết thúc hôm nay hoặc hôm qua (hôm nay chưa đạt thì chuỗi vẫn "còn sống").
  * `longest`: chuỗi liên tiếp dài nhất.
  */
 export function computeStreak(days: readonly string[], today: Date): { current: number; longest: number } {
@@ -41,13 +50,16 @@ export function buildStats(rows: readonly StudyDayRow[], today: Date): StudyStat
   for (const r of rows) {
     const key = dayKey(r.day);
     const prev = byDay.get(key);
-    byDay.set(key, prev ? { day: r.day, reviewed: prev.reviewed + r.reviewed, correct: prev.correct + r.correct } : r);
+    byDay.set(
+      key,
+      prev ? { day: r.day, reviewed: prev.reviewed + r.reviewed, correct: prev.correct + r.correct, goal: r.goal } : r,
+    );
     totalReviewed += r.reviewed;
     totalCorrect += r.correct;
   }
 
-  const studied = [...byDay.entries()].filter(([, r]) => r.reviewed > 0).map(([k]) => k);
-  const { current, longest } = computeStreak(studied, today);
+  const met = [...byDay.entries()].filter(([, r]) => metGoal(r)).map(([k]) => k);
+  const { current, longest } = computeStreak(met, today);
 
   const days: StudyStatsDTO["days"] = [];
   for (let i = STATS_DAYS - 1; i >= 0; i--) {

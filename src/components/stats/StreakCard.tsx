@@ -15,7 +15,8 @@ export async function StreakCard({ userId }: { userId: string }) {
   const goal = user?.dailyGoal ?? 20;
   const last14 = stats.days.slice(-14);
   const today = last14[last14.length - 1];
-  const done = today?.reviewed ?? 0;
+  // Streak chỉ tính khi số thẻ đã thuộc (correct) đạt mục tiêu → tiến độ hiển thị cùng thước đo đó.
+  const done = today?.correct ?? 0;
   const pct = Math.min(100, Math.round((done / goal) * 100));
   const max = Math.max(1, goal, ...last14.map((d) => d.reviewed));
 
@@ -41,7 +42,7 @@ export async function StreakCard({ userId }: { userId: string }) {
           <p className="mt-1 text-xs text-ink-500">
             {stats.streak === 0
               ? t("streak.startNew")
-              : done === 0
+              : done < goal
                 ? t("streak.keep")
                 : t("streak.longest", { count: stats.longestStreak })}
           </p>

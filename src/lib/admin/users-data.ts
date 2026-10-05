@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 import { addDays, dayKey, todayVN } from "@/lib/dates";
 import { effectiveAvatarUrl } from "@/lib/profile";
 import { QUOTA, effectiveLimits, type QuotaLimits } from "@/lib/quota-limits";
-import { computeStreak } from "@/lib/stats";
+import { computeStreak, metGoal } from "@/lib/stats";
 import {
   INACTIVE_DAYS,
   NEAR_LIMIT_PERCENT,
@@ -156,7 +156,7 @@ export async function getUserDetail(id: string) {
         _count: { select: { cards: true, subscribers: true } },
       },
     }),
-    db.studyDay.findMany({ where: { userId: id }, orderBy: { day: "asc" }, select: { day: true, reviewed: true, correct: true } }),
+    db.studyDay.findMany({ where: { userId: id }, orderBy: { day: "asc" }, select: { day: true, reviewed: true, correct: true, goal: true } }),
     db.aiUsage.findMany({ where: { userId: id, day: { gte: since30 } }, orderBy: { day: "asc" }, select: { day: true, count: true } }),
     db.session.findMany({
       where: { userId: id },
@@ -187,7 +187,7 @@ export async function getUserDetail(id: string) {
     const d = byDay.get(key);
     return { day: key, reviewed: d?.reviewed ?? 0, correct: d?.correct ?? 0 };
   });
-  const streak = computeStreak(studyDays.map((d) => dayKey(d.day)), today);
+  const streak = computeStreak(studyDays.filter(metGoal).map((d) => dayKey(d.day)), today);
   const totalReviews = studyDays.reduce((s, d) => s + d.reviewed, 0);
   const aiByDay = new Map(aiUsage.map((a) => [dayKey(a.day), a.count]));
   const ai30 = Array.from({ length: 30 }, (_, i) => {

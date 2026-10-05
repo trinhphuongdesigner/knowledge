@@ -8,7 +8,7 @@ import type { StudyStatsDTO } from "@/lib/validators";
 export async function loadStudyStats(userId: string): Promise<StudyStatsDTO> {
   const rows = await db.studyDay.findMany({
     where: { userId },
-    select: { day: true, reviewed: true, correct: true },
+    select: { day: true, reviewed: true, correct: true, goal: true },
     orderBy: { day: "asc" },
     take: 400,
   });
