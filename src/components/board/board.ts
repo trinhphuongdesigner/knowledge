@@ -2,11 +2,13 @@
 
 export type BoardTheme = "green" | "black" | "white";
 export type ChalkColor = "white" | "yellow" | "pink";
+/** Màu phấn có sẵn (đổi sắc theo nền bảng) hoặc màu tự chọn "#rrggbb" (giữ nguyên trên mọi nền). */
+export type InkColor = ChalkColor | `#${string}`;
 
 /** Toạ độ và độ dày chuẩn hoá theo chiều rộng bảng → đổi kích thước / xoay máy vẫn giữ đúng tỉ lệ. */
 export type Point = { x: number; y: number; p: number }; // p: hệ số độ dày (lực nhấn bút; 1 với chuột/tay)
 export type Stroke =
-  | { kind: "draw"; color: ChalkColor; size: number; points: Point[] }
+  | { kind: "draw"; color: InkColor; size: number; points: Point[] }
   | { kind: "erase"; size: number; points: Point[] };
 export type Action = Stroke | { kind: "clear" };
 
@@ -31,6 +33,10 @@ export const INK: Record<BoardTheme, Record<ChalkColor, string>> = {
   black: { white: "#f1f1ec", yellow: "#f5d65a", pink: "#f39bbd" },
   white: { white: "#1f2933", yellow: "#c98a04", pink: "#d0367a" },
 };
+
+export function inkColor(theme: BoardTheme, color: InkColor): string {
+  return color.startsWith("#") ? color : INK[theme][color as ChalkColor];
+}
 
 /** Hệ số độ dày theo lực nhấn: chỉ bút mới có lực nhấn tin cậy được. */
 export function pressureFactor(pointerType: string, pressure: number): number {
@@ -83,6 +89,7 @@ export function undo(history: readonly Action[]): Action[] {
  * (i-1,i), điểm điều khiển là điểm i-1 → các đoạn nối nhau liền tiếp tuyến, không gãy góc.
  * Nửa đoạn cuối (trung điểm cuối → điểm cuối) chỉ vẽ khi `tail` (đã nhấc bút / vẽ lại cả nét).
  * `width` = chiều rộng bảng theo px CSS; ctx đã được scale theo devicePixelRatio.
+ * `mask`: vẽ hình nét bằng màu đặc (kể cả nét tẩy) để làm mặt nạ cho viền mềm.
  */
 export function drawStroke(
   ctx: CanvasRenderingContext2D,
@@ -91,6 +98,7 @@ export function drawStroke(
   width: number,
   from = 0,
   tail = true,
+  mask = false,
 ): void {
   const pts = s.points;
   const n = pts.length;
@@ -98,12 +106,12 @@ export function drawStroke(
   ctx.save();
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  if (s.kind === "erase") {
-    ctx.globalCompositeOperation = "destination-out";
+  if (mask || s.kind === "erase") {
+    ctx.globalCompositeOperation = mask ? "source-over" : "destination-out";
     ctx.strokeStyle = ctx.fillStyle = "#000";
   } else {
     ctx.globalCompositeOperation = "source-over";
-    ctx.strokeStyle = ctx.fillStyle = INK[theme][s.color];
+    ctx.strokeStyle = ctx.fillStyle = inkColor(theme, s.color);
   }
   const X = (i: number) => pts[i].x * width;
   const Y = (i: number) => pts[i].y * width;
@@ -132,6 +140,119 @@ export function drawStroke(
       ctx.stroke();
     }
   }
+  ctx.restore();
+}
+
+/**
+ * Độ mềm viền nét / tẩy (độ lệch chuẩn của Gaussian blur, px CSS) theo độ dày: nét đậm mềm rõ,
+ * nét mảnh chỉ mềm nhẹ để không bị nhoè mất; tẩy to mềm như khăn lau.
+ */
+export function softness(sizePx: number): number {
+  return Math.max(0.35, sizePx * 0.12);
+}
+
+/** Khung bao nét theo px CSS (đã tính nửa độ dày lớn nhất), nới thêm `pad`. */
+export function strokeBounds(s: Stroke, width: number, pad = 0): Rect {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  let maxP = 0;
+  for (const p of s.points) {
+    minX = Math.min(minX, p.x);
+    minY = Math.min(minY, p.y);
+    maxX = Math.max(maxX, p.x);
+    maxY = Math.max(maxY, p.y);
+    maxP = Math.max(maxP, p.p);
+  }
+  if (!s.points.length) return { x: 0, y: 0, w: 0, h: 0 };
+  const r = (s.size * maxP * width) / 2 + pad;
+  return { x: minX * width - r, y: minY * width - r, w: (maxX - minX) * width + 2 * r, h: (maxY - minY) * width + 2 * r };
+}
+
+/** Trình duyệt hỗ trợ ctx.filter (Chrome, Firefox, Safari 18+) → vẽ được nét viền mềm. */
+export function canSoften(ctx: CanvasRenderingContext2D): boolean {
+  return typeof ctx.filter === "string";
+}
+
+/**
+ * Vẽ cả nét lên `ctx` (đã scale theo `dpr`) với viền mềm: vẽ hình nét sắc ra canvas nháp rồi in sang
+ * với blur MỘT lần cho cả nét — blur từng đoạn sẽ cộng dồn ở chỗ nối, làm viền phình và gợn.
+ * Nét tẩy in mặt nạ đã làm mềm bằng destination-out. Chỉ xử lý vùng bao quanh nét nên vẽ lại vẫn nhẹ.
+ */
+export function paintStroke(
+  ctx: CanvasRenderingContext2D,
+  scratch: HTMLCanvasElement,
+  s: Stroke,
+  theme: BoardTheme,
+  width: number,
+  dpr: number,
+): void {
+  if (!canSoften(ctx)) {
+    drawStroke(ctx, s, theme, width);
+    return;
+  }
+  const { canvas } = ctx;
+  if (scratch.width !== canvas.width || scratch.height !== canvas.height) {
+    scratch.width = canvas.width;
+    scratch.height = canvas.height;
+  }
+  const sctx = scratch.getContext("2d");
+  if (!sctx) return;
+  const sigma = softness(s.size * width);
+  const { x, y, w, h } = deviceRect(strokeBounds(s, width, sigma * 3 + 1), dpr, canvas.width, canvas.height);
+  if (w <= 0 || h <= 0) return;
+  sctx.setTransform(1, 0, 0, 1, 0, 0);
+  sctx.clearRect(x, y, w, h);
+  sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  drawStroke(sctx, s, theme, width, 0, true, s.kind === "erase");
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.globalCompositeOperation = s.kind === "erase" ? "destination-out" : "source-over";
+  ctx.filter = `blur(${sigma * dpr}px)`;
+  ctx.drawImage(scratch, x, y, w, h, x, y, w, h);
+  ctx.restore();
+}
+
+export type Rect = { x: number; y: number; w: number; h: number };
+
+/** Khung (px CSS) → khung px thiết bị nguyên, cắt theo kích thước canvas. */
+export function deviceRect(r: Rect, dpr: number, maxW: number, maxH: number): Rect {
+  const x = Math.max(0, Math.floor(r.x * dpr));
+  const y = Math.max(0, Math.floor(r.y * dpr));
+  return { x, y, w: Math.min(maxW, Math.ceil((r.x + r.w) * dpr)) - x, h: Math.min(maxH, Math.ceil((r.y + r.h) * dpr)) - y };
+}
+
+/**
+ * Tẩy mềm khi đang kéo: tính lại vùng `region` (px thiết bị) của canvas chính = ảnh lúc bắt đầu tẩy
+ * trừ đi mặt nạ (cả nét tẩy tới giờ) đã làm mềm. Mỗi lần chỉ tính vùng quanh đoạn mới → O(1)/sự kiện,
+ * và không cộng dồn như tẩy mềm từng đoạn (viền sẽ cứng lại và gợn).
+ */
+export function softEraseRegion(
+  ctx: CanvasRenderingContext2D,
+  snapshot: HTMLCanvasElement,
+  mask: HTMLCanvasElement,
+  sigmaDevice: number,
+  region: Rect,
+): void {
+  const { x, y, w, h } = region;
+  if (w <= 0 || h <= 0) return;
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.beginPath();
+  ctx.rect(x, y, w, h);
+  ctx.clip();
+  ctx.clearRect(x, y, w, h);
+  ctx.drawImage(snapshot, x, y, w, h, x, y, w, h);
+  // Lấy mặt nạ rộng hơn vùng cần tính 3σ để blur ở mép vùng vẫn đúng.
+  const pad = Math.ceil(sigmaDevice * 3);
+  const mx = Math.max(0, x - pad);
+  const my = Math.max(0, y - pad);
+  const mw = Math.min(mask.width, x + w + pad) - mx;
+  const mh = Math.min(mask.height, y + h + pad) - my;
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.filter = `blur(${sigmaDevice}px)`;
+  ctx.drawImage(mask, mx, my, mw, mh, mx, my, mw, mh);
   ctx.restore();
 }
 

@@ -129,6 +129,7 @@ const layout = {
     color: { white: "Trắng", yellow: "Vàng", pink: "Hồng", dark: "Đen" },
     size: "Cỡ nét",
     sizes: { xs: "Rất mảnh", s: "Mảnh", m: "Vừa", l: "Đậm" },
+    picker: { open: "Chọn màu khác", title: "Chọn màu", sv: "Độ bão hoà và độ sáng", hue: "Sắc màu", hex: "Mã màu", recent: "Màu gần đây" },
     eraserSize: "Cỡ khăn lau",
     background: "Màu bảng",
     bg: { green: "Xanh", black: "Đen", white: "Trắng" },

@@ -129,6 +129,7 @@ const layout = {
     color: { white: "흰색", yellow: "노란색", pink: "분홍색", dark: "검은색" },
     size: "선 굵기",
     sizes: { xs: "아주 가늘게", s: "가늘게", m: "보통", l: "굵게" },
+    picker: { open: "다른 색", title: "색 선택", sv: "채도와 명도", hue: "색상", hex: "HEX", recent: "최근 색" },
     eraserSize: "지우개 크기",
     background: "칠판 색",
     bg: { green: "초록", black: "검정", white: "흰색" },

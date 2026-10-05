@@ -129,6 +129,7 @@ const layout = {
     color: { white: "White", yellow: "Yellow", pink: "Pink", dark: "Black" },
     size: "Stroke size",
     sizes: { xs: "Extra thin", s: "Thin", m: "Medium", l: "Thick" },
+    picker: { open: "More colours", title: "Pick a colour", sv: "Saturation and brightness", hue: "Hue", hex: "Hex", recent: "Recent colours" },
     eraserSize: "Eraser size",
     background: "Board colour",
     bg: { green: "Green", black: "Black", white: "White" },

@@ -5,7 +5,9 @@ import {
   hasContent,
   pressureFactor,
   smoothFactor,
+  softness,
   speedFactor,
+  strokeBounds,
   undo,
   visibleStrokes,
   type Action,
@@ -129,5 +131,29 @@ describe("drawStroke", () => {
     const { ctx, calls } = recorder();
     drawStroke(ctx, { ...stroke, points: [stroke.points[0]] }, "green", 800);
     expect(calls.some((c) => c.startsWith("arc"))).toBe(true);
+  });
+});
+
+describe("soft edges", () => {
+  it("softens thick strokes more, thin strokes only slightly", () => {
+    expect(softness(11)).toBeGreaterThan(softness(3));
+    expect(softness(1.5)).toBeGreaterThan(0);
+    expect(softness(1.5)).toBeLessThan(0.5);
+  });
+
+  it("bounds cover the stroke width plus padding", () => {
+    const s: Stroke = {
+      kind: "draw",
+      color: "white",
+      size: 0.01,
+      points: [
+        { x: 0.1, y: 0.2, p: 1 },
+        { x: 0.3, y: 0.25, p: 0.5 },
+      ],
+    };
+    // width 1000 → nét 10px, bán kính 5px, nới thêm 2px
+    const b = strokeBounds(s, 1000, 2);
+    expect([b.x, b.y, b.w, b.h].map(Math.round)).toEqual([93, 193, 214, 64]);
+    expect(strokeBounds({ ...s, points: [] }, 1000).w).toBe(0);
   });
 });

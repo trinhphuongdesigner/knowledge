@@ -129,6 +129,7 @@ const layout = {
     color: { white: "Blanc", yellow: "Jaune", pink: "Rose", dark: "Noir" },
     size: "Épaisseur du trait",
     sizes: { xs: "Très fin", s: "Fin", m: "Moyen", l: "Épais" },
+    picker: { open: "Autres couleurs", title: "Choisir une couleur", sv: "Saturation et luminosité", hue: "Teinte", hex: "Hex", recent: "Couleurs récentes" },
     eraserSize: "Taille de la brosse",
     background: "Couleur du tableau",
     bg: { green: "Vert", black: "Noir", white: "Blanc" },

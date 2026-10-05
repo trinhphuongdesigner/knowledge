@@ -129,6 +129,7 @@ const layout = {
     color: { white: "白", yellow: "黄", pink: "ピンク", dark: "黒" },
     size: "線の太さ",
     sizes: { xs: "極細", s: "細", m: "中", l: "太" },
+    picker: { open: "その他の色", title: "色を選ぶ", sv: "彩度と明度", hue: "色相", hex: "HEX", recent: "最近使った色" },
     eraserSize: "黒板消しの大きさ",
     background: "ボードの色",
     bg: { green: "緑", black: "黒", white: "白" },

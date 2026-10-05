@@ -129,6 +129,7 @@ const layout = {
     color: { white: "ขาว", yellow: "เหลือง", pink: "ชมพู", dark: "ดำ" },
     size: "ขนาดเส้น",
     sizes: { xs: "บางมาก", s: "บาง", m: "กลาง", l: "หนา" },
+    picker: { open: "สีอื่น ๆ", title: "เลือกสี", sv: "ความอิ่มตัวและความสว่าง", hue: "เฉดสี", hex: "HEX", recent: "สีที่ใช้ล่าสุด" },
     eraserSize: "ขนาดแปรงลบ",
     background: "สีกระดาน",
     bg: { green: "เขียว", black: "ดำ", white: "ขาว" },

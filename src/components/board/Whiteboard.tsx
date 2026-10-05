@@ -15,24 +15,39 @@ import {
   ERASER_DEFAULT,
   ERASER_MAX,
   ERASER_MIN,
-  INK,
+  canSoften,
   clearAll,
+  deviceRect,
   drawStroke,
   hasContent,
+  inkColor,
+  paintStroke,
   pressureFactor,
   smoothFactor,
+  softEraseRegion,
+  softness,
   speedFactor,
+  strokeBounds,
   textureTile,
   textureUrl,
   undo,
   visibleStrokes,
   type Action,
   type BoardTheme,
-  type ChalkColor,
+  type InkColor,
   type Stroke,
 } from "./board";
+import { pushRecent } from "./color";
+import { ColorPicker } from "./ColorPicker";
 
 type Tool = "chalk" | "eraser";
+/**
+ * Cách vẽ nét đang kéo: "live" = nét phấn trên lớp mềm; "softErase" = tẩy mềm theo vùng;
+ * "direct" = vẽ thẳng lên canvas chính (trình duyệt không hỗ trợ ctx.filter).
+ */
+type Mode = "live" | "softErase" | "direct";
+
+const newCanvas = () => document.createElement("canvas");
 
 /** Trang có thanh điều khiển dính đáy trên mobile → nâng nút lên để không che. */
 const RAISED = /^\/(review(\/|$)|sets\/[^/]+\/study)/;
@@ -53,7 +68,12 @@ export function Whiteboard() {
   const [open, setOpen] = useState(false);
   const [history, setHistory] = useState<Action[]>([]);
   const [tool, setTool] = useState<Tool>("chalk");
-  const [color, setColor] = useState<ChalkColor>("white");
+  const [color, setColor] = useState<InkColor>("white");
+  const [custom, setCustom] = useState<`#${string}`>("#5ec8f2");
+  const [recent, setRecent] = useState<string[]>([]);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerShift, setPickerShift] = useState(0);
+  const pickerRef = useRef<HTMLDivElement>(null);
   const [sizeIdx, setSizeIdx] = useState(2);
   const [eraserSize, setEraserSize] = useState(ERASER_DEFAULT);
   const [theme, setTheme] = useState<BoardTheme>("green");
@@ -61,10 +81,22 @@ export function Whiteboard() {
   const panelRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // Lớp trên chỉ chứa nét phấn đang vẽ, làm mềm viền bằng CSS blur (GPU, không tốn thêm công vẽ);
+  // nhấc bút thì in nét đã làm mềm xuống canvas chính.
+  const liveRef = useRef<HTMLCanvasElement>(null);
+  const scratchRef = useRef<HTMLCanvasElement | null>(null);
+  // Tẩy mềm: ảnh canvas lúc bắt đầu tẩy + mặt nạ (hình cả nét tẩy, nét sắc) để tính lại từng vùng.
+  const snapRef = useRef<HTMLCanvasElement | null>(null);
+  const maskRef = useRef<HTMLCanvasElement | null>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const cssWidth = useRef(0);
   // last: điểm thô cuối cùng (px CSS + thời gian) để lọc điểm quá gần và tính tốc độ.
-  const current = useRef<{ id: number; stroke: Stroke; last?: { x: number; y: number; t: number } } | null>(null);
+  const current = useRef<{
+    id: number;
+    stroke: Stroke;
+    mode: Mode;
+    last?: { x: number; y: number; t: number };
+  } | null>(null);
   const lastPenAt = useRef(0);
 
   const dirty = hasContent(history);
@@ -77,8 +109,21 @@ export function Whiteboard() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    for (const s of visibleStrokes(history)) drawStroke(ctx, s, theme, cssWidth.current);
-    if (current.current) drawStroke(ctx, current.current.stroke, theme, cssWidth.current);
+    scratchRef.current ??= newCanvas();
+    for (const s of visibleStrokes(history)) paintStroke(ctx, scratchRef.current, s, theme, cssWidth.current, dpr);
+    const cur = current.current;
+    const live = liveRef.current?.getContext("2d");
+    live?.clearRect(0, 0, cssWidth.current, live.canvas.height);
+    if (!cur) return;
+    if (cur.mode === "live" && live) drawStroke(live, cur.stroke, theme, cssWidth.current);
+    else if (cur.mode === "softErase") {
+      // Đang tẩy dở mà phải vẽ lại (đổi cỡ / hoàn tác) → chụp lại ảnh nền và dựng lại mặt nạ.
+      const { snap, mask } = beginSoftErase(ctx, snapRef, maskRef, dpr);
+      drawStroke(mask, cur.stroke, theme, cssWidth.current, 0, false, true);
+      const sigma = softness(cur.stroke.size * cssWidth.current);
+      const r = deviceRect(strokeBounds(cur.stroke, cssWidth.current, sigma * 3 + 2), dpr, canvas.width, canvas.height);
+      softEraseRegion(ctx, snap, mask.canvas, sigma * dpr, r);
+    } else drawStroke(ctx, cur.stroke, theme, cssWidth.current);
   }, [history, theme]);
   const redrawRef = useRef(redraw);
   useEffect(() => {
@@ -91,7 +136,8 @@ export function Whiteboard() {
     if (!open) return;
     const box = boxRef.current;
     const canvas = canvasRef.current;
-    if (!box || !canvas) return;
+    const live = liveRef.current;
+    if (!box || !canvas || !live) return;
     const fit = () => {
       const dpr = window.devicePixelRatio || 1;
       // Kích thước layout, không dùng getBoundingClientRect: lúc mở, panel đang chạy hiệu ứng scale
@@ -101,6 +147,9 @@ export function Whiteboard() {
       cssWidth.current = width;
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
+      live.width = canvas.width;
+      live.height = canvas.height;
+      live.getContext("2d")?.setTransform(dpr, 0, 0, dpr, 0, 0);
       redrawRef.current();
     };
     fit();
@@ -129,7 +178,9 @@ export function Whiteboard() {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.stopPropagation();
-        setOpen(false);
+        // Đang mở bảng chọn màu thì Esc chỉ đóng bảng chọn màu.
+        if (pickerRef.current?.querySelector("[role=dialog]")) setPickerOpen(false);
+        else setOpen(false);
         return;
       }
       if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === "z") {
@@ -160,6 +211,16 @@ export function Whiteboard() {
     };
   }, [open]);
 
+  // Bảng chọn màu: bấm ra ngoài thì đóng.
+  useEffect(() => {
+    if (!pickerOpen) return;
+    const onDown = (e: PointerEvent) => {
+      if (!pickerRef.current?.contains(e.target as Node)) setPickerOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown, true);
+    return () => document.removeEventListener("pointerdown", onDown, true);
+  }, [pickerOpen]);
+
   const moveRing = (e: React.PointerEvent, visible: boolean) => {
     const ring = ringRef.current;
     const box = boxRef.current;
@@ -181,7 +242,8 @@ export function Whiteboard() {
   /** Thu điểm và vẽ ngay phần mới (mỗi điểm một đoạn cong) → độ trễ thấp, nét dài không chậm đi. */
   const addPoints = (events: readonly PointerEvent[]) => {
     const cur = current.current;
-    const ctx = canvasRef.current?.getContext("2d");
+    const layer = cur?.mode === "live" ? liveRef : cur?.mode === "softErase" ? maskRef : canvasRef;
+    const ctx = layer.current?.getContext("2d");
     const box = boxRef.current;
     if (!cur || !ctx || !box) return;
     const w = cssWidth.current;
@@ -204,7 +266,26 @@ export function Whiteboard() {
       cur.last = { x, y, t: ev.timeStamp };
       pts.push({ x: x / w, y: y / w, p });
     }
-    if (pts.length > from) drawStroke(ctx, cur.stroke, theme, w, from, false);
+    if (pts.length <= from) return;
+    if (cur.mode === "softErase") {
+      drawStroke(ctx, cur.stroke, theme, w, from, false, true);
+      updateSoftErase(cur.stroke, from);
+    } else drawStroke(ctx, cur.stroke, theme, w, from, false);
+  };
+
+  /** Tính lại vùng quanh các đoạn tẩy mới (từ điểm `from`) trên canvas chính. */
+  const updateSoftErase = (stroke: Stroke, from: number) => {
+    const ctx = canvasRef.current?.getContext("2d");
+    const snap = snapRef.current;
+    const mask = maskRef.current;
+    if (!ctx || !snap || !mask) return;
+    const w = cssWidth.current;
+    const dpr = window.devicePixelRatio || 1;
+    const sigma = softness(stroke.size * w);
+    // Đoạn i dùng điểm i-2..i → vùng ảnh hưởng là khung của các điểm đó, nới thêm 3σ.
+    const part = { ...stroke, points: stroke.points.slice(Math.max(0, from - 2)) };
+    const r = deviceRect(strokeBounds(part, w, sigma * 3 + 2), dpr, ctx.canvas.width, ctx.canvas.height);
+    softEraseRegion(ctx, snap, mask, sigma * dpr, r);
   };
 
   const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
@@ -222,7 +303,20 @@ export function Whiteboard() {
         ? { kind: "erase", size: eraserSize / w, points: [] }
         : { kind: "draw", color, size: CHALK_SIZES[sizeIdx] / w, points: [] };
     e.currentTarget.setPointerCapture(e.pointerId);
-    current.current = { id: e.pointerId, stroke };
+    const base = canvasRef.current?.getContext("2d");
+    const live = liveRef.current;
+    let mode: Mode = "direct";
+    if (base && canSoften(base)) {
+      if (stroke.kind === "draw" && live) {
+        mode = "live";
+        live.style.filter = `blur(${softness(stroke.size * w)}px)`;
+      } else if (stroke.kind === "erase") {
+        mode = "softErase";
+        beginSoftErase(base, snapRef, maskRef, window.devicePixelRatio || 1);
+      }
+    }
+    if (stroke.kind === "draw" && stroke.color.startsWith("#")) setRecent((r) => pushRecent(r, stroke.color));
+    current.current = { id: e.pointerId, stroke, mode };
     addPoints([e.nativeEvent]);
     moveRing(e, true);
   };
@@ -242,9 +336,23 @@ export function Whiteboard() {
     if (!cur || cur.id !== e.pointerId) return;
     if (e.pointerType === "pen") lastPenAt.current = Date.now();
     current.current = null;
-    // Vẽ nốt nửa đoạn cuối (tới đúng điểm nhấc bút).
     const ctx = canvasRef.current?.getContext("2d");
-    if (ctx) drawStroke(ctx, cur.stroke, theme, cssWidth.current, cur.stroke.points.length, true);
+    const live = liveRef.current;
+    const n = cur.stroke.points.length;
+    if (cur.mode === "softErase") {
+      // Vẽ nốt nửa đoạn cuối vào mặt nạ rồi tính lại vùng đó.
+      const mask = maskRef.current?.getContext("2d");
+      if (mask) drawStroke(mask, cur.stroke, theme, cssWidth.current, n, true, true);
+      updateSoftErase(cur.stroke, Math.max(0, n - 1));
+    } else if (ctx && cur.mode === "live" && live) {
+      // In cả nét (đã làm mềm) xuống canvas chính rồi xoá lớp trên — cùng một khung hình nên không nháy.
+      scratchRef.current ??= newCanvas();
+      paintStroke(ctx, scratchRef.current, cur.stroke, theme, cssWidth.current, window.devicePixelRatio || 1);
+      live.getContext("2d")?.clearRect(0, 0, live.width, live.height);
+    } else if (ctx) {
+      // Vẽ nốt nửa đoạn cuối (tới đúng điểm nhấc bút).
+      drawStroke(ctx, cur.stroke, theme, cssWidth.current, n, true);
+    }
     setHistory((h) => [...h, cur.stroke]);
     if (e.pointerType === "touch") moveRing(e, false);
   };
@@ -364,15 +472,59 @@ export function Whiteboard() {
                           key={c}
                           active={color === c}
                           label={theme === "white" && c === "white" ? t("board.color.dark") : t(`board.color.${c}`)}
-                          onClick={() => setColor(c)}
+                          onClick={() => {
+                            setColor(c);
+                            setPickerOpen(false);
+                          }}
                         >
                           <span
                             aria-hidden
                             className="size-5 rounded-full ring-1 ring-ink-300"
-                            style={{ backgroundColor: INK[theme][c] }}
+                            style={{ backgroundColor: inkColor(theme, c) }}
                           />
                         </ToolButton>
                       ))}
+                      <div ref={pickerRef} className="relative">
+                        <ToolButton
+                          active={color === custom}
+                          expanded={pickerOpen}
+                          label={t("board.picker.open")}
+                          onClick={(e) => {
+                            setColor(custom);
+                            if (!pickerOpen) {
+                              // Khung chọn màu rộng ~264px: dịch sang trái nếu sẽ tràn mép phải màn hình.
+                              const left = e.currentTarget.getBoundingClientRect().left;
+                              setPickerShift(Math.min(0, window.innerWidth - 8 - (left + 264)));
+                            }
+                            setPickerOpen(!pickerOpen);
+                          }}
+                        >
+                          <span
+                            aria-hidden
+                            className="flex size-5 items-center justify-center rounded-full"
+                            style={{ backgroundImage: "conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00)" }}
+                          >
+                            <span className="size-2.5 rounded-full ring-1 ring-white" style={{ backgroundColor: custom }} />
+                          </span>
+                        </ToolButton>
+                        {pickerOpen && (
+                          <div
+                            role="dialog"
+                            aria-label={t("board.picker.title")}
+                            className="absolute top-full z-10 mt-2 rounded-2xl bg-surface p-3 shadow-xl ring-1 ring-ink-200"
+                            style={{ left: pickerShift }}
+                          >
+                            <ColorPicker
+                              value={custom}
+                              recent={recent}
+                              onChange={(hex) => {
+                                setCustom(hex);
+                                setColor(hex);
+                              }}
+                            />
+                          </div>
+                        )}
+                      </div>
                     </Group>
                     <Group label={t("board.size")}>
                       {CHALK_SIZES.map((px, i) => (
@@ -459,6 +611,7 @@ export function Whiteboard() {
                     }}
                     onContextMenu={(e) => e.preventDefault()}
                   />
+                  <canvas ref={liveRef} aria-hidden className="pointer-events-none absolute inset-0 size-full" />
                   <div
                     ref={ringRef}
                     aria-hidden
@@ -475,6 +628,32 @@ export function Whiteboard() {
         )}
     </>
   );
+}
+
+/** Chuẩn bị tẩy mềm: chụp canvas chính hiện tại và xoá mặt nạ (cùng kích thước, scale theo dpr). */
+function beginSoftErase(
+  base: CanvasRenderingContext2D,
+  snapRef: React.RefObject<HTMLCanvasElement | null>,
+  maskRef: React.RefObject<HTMLCanvasElement | null>,
+  dpr: number,
+): { snap: HTMLCanvasElement; mask: CanvasRenderingContext2D } {
+  const { width, height } = base.canvas;
+  const snap = (snapRef.current ??= newCanvas());
+  const mask = (maskRef.current ??= newCanvas());
+  for (const c of [snap, mask]) {
+    if (c.width !== width || c.height !== height) {
+      c.width = width;
+      c.height = height;
+    }
+  }
+  const sctx = snap.getContext("2d")!;
+  sctx.clearRect(0, 0, width, height);
+  sctx.drawImage(base.canvas, 0, 0);
+  const mctx = mask.getContext("2d")!;
+  mctx.setTransform(1, 0, 0, 1, 0, 0);
+  mctx.clearRect(0, 0, width, height);
+  mctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { snap, mask: mctx };
 }
 
 /** Toạ độ màn hình → toạ độ layout bên trong `el` (đúng cả khi tổ tiên đang bị transform/scale). */
@@ -495,15 +674,17 @@ function Group({ label, children }: { label: string; children: ReactNode }) {
 
 function ToolButton({
   active,
+  expanded,
   label,
   disabled,
   onClick,
   children,
 }: {
   active?: boolean;
+  expanded?: boolean;
   label: string;
   disabled?: boolean;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
 }) {
   return (
@@ -513,6 +694,7 @@ function ToolButton({
       disabled={disabled}
       aria-label={label}
       aria-pressed={active}
+      aria-expanded={expanded}
       title={label}
       className={cn(
         "flex size-9 items-center justify-center rounded-lg text-ink-700 transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand-600 disabled:opacity-40",
