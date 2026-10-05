@@ -1,0 +1,304 @@
+{
+  "slug": "life-13-shopping-money",
+  "order": 113,
+  "title": "Daily Life 3 · Shopping & Personal Finance",
+  "description": "Từ vựng mua sắm, thanh toán và quản lý tiền cá nhân (CEFR A2–B2). Dùng khi mua hàng, đổi trả, nói về chi tiêu, tiết kiệm và đầu tư.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "receipt",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈsiːt/",
+      "answer": "hoá đơn, biên lai",
+      "explanation": "Keep the receipt in case you want to return it.\n→ Giữ hoá đơn phòng khi bạn muốn trả lại."
+    },
+    {
+      "question": "refund",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈriːfʌnd/",
+      "answer": "hoàn tiền",
+      "explanation": "I asked for a refund because the shoes were damaged.\n→ Tôi yêu cầu hoàn tiền vì giày bị hỏng."
+    },
+    {
+      "question": "exchange",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪksˈtʃeɪndʒ/",
+      "answer": "đổi (hàng)",
+      "explanation": "Can I exchange this shirt for a bigger size?\n→ Tôi đổi áo này lấy cỡ lớn hơn được không?"
+    },
+    {
+      "question": "discount",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɪskaʊnt/",
+      "answer": "giảm giá",
+      "explanation": "Students get a 10% discount.\n→ Sinh viên được giảm 10%."
+    },
+    {
+      "question": "on sale",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɑːn seɪl/",
+      "answer": "đang giảm giá",
+      "explanation": "These jackets are on sale this week.\n→ Tuần này áo khoác đang giảm giá."
+    },
+    {
+      "question": "bargain",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːrɡɪn/",
+      "answer": "món hời",
+      "explanation": "At that price, it's a real bargain.\n→ Với giá đó thì đúng là món hời."
+    },
+    {
+      "question": "haggle",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈhæɡəl/",
+      "answer": "mặc cả",
+      "explanation": "You can haggle at the market, but not in malls.\n→ Bạn có thể mặc cả ở chợ nhưng không phải ở trung tâm thương mại."
+    },
+    {
+      "question": "rip-off",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrɪp ɔːf/",
+      "answer": "bị chặt chém, giá cắt cổ",
+      "explanation": "Ten dollars for a coffee? What a rip-off!\n→ Mười đô một ly cà phê? Đúng là chặt chém!"
+    },
+    {
+      "question": "afford",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈfɔːrd/",
+      "answer": "đủ khả năng chi trả",
+      "explanation": "I can't afford a new car right now.\n→ Giờ tôi chưa đủ tiền mua xe mới."
+    },
+    {
+      "question": "expensive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪkˈspensɪv/",
+      "answer": "đắt",
+      "explanation": "Imported fruit is very expensive here.\n→ Trái cây nhập khẩu ở đây rất đắt."
+    },
+    {
+      "question": "cheap",
+      "partOfSpeech": "adjective",
+      "phonetic": "/tʃiːp/",
+      "answer": "rẻ",
+      "explanation": "The food here is cheap and good.\n→ Đồ ăn ở đây rẻ mà ngon."
+    },
+    {
+      "question": "worth it",
+      "partOfSpeech": "phrase",
+      "phonetic": "/wɜːrθ ɪt/",
+      "answer": "đáng tiền",
+      "explanation": "The course was expensive, but it was worth it.\n→ Khoá học đắt nhưng đáng tiền."
+    },
+    {
+      "question": "cash",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæʃ/",
+      "answer": "tiền mặt",
+      "explanation": "Do you accept cash?\n→ Ở đây có nhận tiền mặt không?"
+    },
+    {
+      "question": "credit card",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkredɪt kɑːrd/",
+      "answer": "thẻ tín dụng",
+      "explanation": "I paid for the flight with my credit card.\n→ Tôi trả vé máy bay bằng thẻ tín dụng."
+    },
+    {
+      "question": "debit card",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdebɪt kɑːrd/",
+      "answer": "thẻ ghi nợ",
+      "explanation": "A debit card takes money directly from your account.\n→ Thẻ ghi nợ trừ tiền trực tiếp từ tài khoản."
+    },
+    {
+      "question": "bank transfer",
+      "partOfSpeech": "noun",
+      "phonetic": "/bæŋk ˈtrænsfɜːr/",
+      "answer": "chuyển khoản",
+      "explanation": "Most people here pay by bank transfer with a QR code.\n→ Hầu hết mọi người ở đây trả bằng chuyển khoản qua mã QR."
+    },
+    {
+      "question": "e-wallet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈiː ˌwɑːlɪt/",
+      "answer": "ví điện tử",
+      "explanation": "I top up my e-wallet to pay for rides.\n→ Tôi nạp tiền ví điện tử để trả tiền xe."
+    },
+    {
+      "question": "checkout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃekaʊt/",
+      "answer": "quầy thanh toán, bước thanh toán",
+      "explanation": "The queue at the checkout was very long.\n→ Hàng chờ ở quầy thanh toán rất dài."
+    },
+    {
+      "question": "shopping cart",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃɑːpɪŋ kɑːrt/",
+      "answer": "giỏ hàng",
+      "explanation": "I have ten items in my shopping cart but I'm not buying them.\n→ Tôi có mười món trong giỏ hàng nhưng không mua."
+    },
+    {
+      "question": "out of stock",
+      "partOfSpeech": "phrase",
+      "phonetic": "/aʊt əv stɑːk/",
+      "answer": "hết hàng",
+      "explanation": "Sorry, that size is out of stock.\n→ Xin lỗi, cỡ đó đã hết hàng."
+    },
+    {
+      "question": "shipping fee",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃɪpɪŋ fiː/",
+      "answer": "phí vận chuyển",
+      "explanation": "Orders over 300,000 dong have no shipping fee.\n→ Đơn trên 300.000 đồng được miễn phí vận chuyển."
+    },
+    {
+      "question": "budget",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʌdʒɪt/",
+      "answer": "ngân sách",
+      "explanation": "I set a budget of five million a month for food.\n→ Tôi đặt ngân sách năm triệu mỗi tháng cho ăn uống."
+    },
+    {
+      "question": "expense",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪkˈspens/",
+      "answer": "khoản chi",
+      "explanation": "Rent is my biggest monthly expense.\n→ Tiền thuê nhà là khoản chi lớn nhất mỗi tháng."
+    },
+    {
+      "question": "save",
+      "partOfSpeech": "verb",
+      "phonetic": "/seɪv/",
+      "answer": "tiết kiệm",
+      "explanation": "I save 20% of my salary every month.\n→ Tôi tiết kiệm 20% lương mỗi tháng."
+    },
+    {
+      "question": "savings",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈseɪvɪŋz/",
+      "answer": "khoản tiết kiệm",
+      "explanation": "I used my savings to pay for the course.\n→ Tôi dùng tiền tiết kiệm để trả khoá học."
+    },
+    {
+      "question": "emergency fund",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈmɜːrdʒənsi fʌnd/",
+      "answer": "quỹ khẩn cấp",
+      "explanation": "Keep an emergency fund for six months of expenses.\n→ Hãy có quỹ khẩn cấp đủ sáu tháng chi tiêu."
+    },
+    {
+      "question": "loan",
+      "partOfSpeech": "noun",
+      "phonetic": "/loʊn/",
+      "answer": "khoản vay",
+      "explanation": "They took out a loan to buy an apartment.\n→ Họ vay tiền để mua căn hộ."
+    },
+    {
+      "question": "interest rate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪntrəst reɪt/",
+      "answer": "lãi suất",
+      "explanation": "Interest rates went up this year.\n→ Năm nay lãi suất đã tăng."
+    },
+    {
+      "question": "debt",
+      "partOfSpeech": "noun",
+      "phonetic": "/det/",
+      "answer": "nợ",
+      "explanation": "He worked hard to pay off his debt.\n→ Anh ấy làm việc chăm chỉ để trả hết nợ."
+    },
+    {
+      "question": "pay off",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/peɪ ɔːf/",
+      "answer": "trả hết (nợ)",
+      "explanation": "I paid off my credit card last month.\n→ Tháng trước tôi đã trả hết nợ thẻ tín dụng."
+    },
+    {
+      "question": "invest",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈvest/",
+      "answer": "đầu tư",
+      "explanation": "She invests a small amount in index funds every month.\n→ Cô ấy đầu tư một khoản nhỏ vào quỹ chỉ số mỗi tháng."
+    },
+    {
+      "question": "stock",
+      "partOfSpeech": "noun",
+      "phonetic": "/stɑːk/",
+      "answer": "cổ phiếu",
+      "explanation": "He bought some tech stocks.\n→ Anh ấy mua vài cổ phiếu công nghệ."
+    },
+    {
+      "question": "inflation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈfleɪʃən/",
+      "answer": "lạm phát",
+      "explanation": "Inflation makes everything more expensive.\n→ Lạm phát khiến mọi thứ đắt hơn."
+    },
+    {
+      "question": "income",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnkʌm/",
+      "answer": "thu nhập",
+      "explanation": "Freelancing gives me a second source of income.\n→ Làm tự do cho tôi nguồn thu nhập thứ hai."
+    },
+    {
+      "question": "tax",
+      "partOfSpeech": "noun",
+      "phonetic": "/tæks/",
+      "answer": "thuế",
+      "explanation": "Income tax is deducted from my salary.\n→ Thuế thu nhập được trừ thẳng vào lương."
+    },
+    {
+      "question": "spend",
+      "partOfSpeech": "verb",
+      "phonetic": "/spend/",
+      "answer": "tiêu (tiền)",
+      "explanation": "I spend too much on coffee.\n→ Tôi tiêu quá nhiều tiền cho cà phê."
+    },
+    {
+      "question": "impulse buy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪmpʌls baɪ/",
+      "answer": "mua sắm bốc đồng",
+      "explanation": "That expensive keyboard was an impulse buy.\n→ Chiếc bàn phím đắt tiền đó là mua bốc đồng."
+    },
+    {
+      "question": "window-shopping",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɪndoʊ ˌʃɑːpɪŋ/",
+      "answer": "đi ngắm đồ không mua",
+      "explanation": "We went window-shopping at the mall.\n→ Chúng tôi đi ngắm đồ ở trung tâm thương mại."
+    },
+    {
+      "question": "broke",
+      "partOfSpeech": "adjective",
+      "phonetic": "/broʊk/",
+      "answer": "cháy túi, hết tiền",
+      "explanation": "I'm broke until payday.\n→ Tôi cháy túi đến ngày lĩnh lương."
+    },
+    {
+      "question": "payday",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪdeɪ/",
+      "answer": "ngày lĩnh lương",
+      "explanation": "Payday is on the 5th of every month.\n→ Ngày lĩnh lương là mùng 5 hằng tháng."
+    },
+    {
+      "question": "cost of living",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɔːst əv ˈlɪvɪŋ/",
+      "answer": "chi phí sinh hoạt",
+      "explanation": "The cost of living in Saigon is rising.\n→ Chi phí sinh hoạt ở Sài Gòn đang tăng."
+    },
+    {
+      "question": "price tag",
+      "partOfSpeech": "noun",
+      "phonetic": "/praɪs tæɡ/",
+      "answer": "nhãn giá",
+      "explanation": "Take the price tag off before you give the gift.\n→ Tháo nhãn giá trước khi tặng quà."
+    }
+  ]
+}

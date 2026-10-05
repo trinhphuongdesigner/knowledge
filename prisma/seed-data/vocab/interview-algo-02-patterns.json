@@ -1,0 +1,75 @@
+{
+  "slug": "interview-algo-02-patterns",
+  "order": 217,
+  "title": "Phỏng vấn Thuật toán · Các pattern giải bài kinh điển",
+  "description": "Các pattern hay gặp khi phỏng vấn coding: two pointers, sliding window, binary search, BFS/DFS, backtracking, dynamic programming, greedy, prefix sum, kèm ví dụ code. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "How do you approach a coding interview problem? / Tiếp cận một bài coding interview thế nào?",
+      "answer": "1. **Làm rõ đề**: input/output, ràng buộc kích thước n, trường hợp biên (rỗng, trùng, số âm).\n2. Nêu **brute force** và độ phức tạp trước.\n3. Tìm **pattern** để tối ưu (dựa vào ràng buộc: n ≤ 10⁵ → cần O(n log n) hoặc tốt hơn).\n4. Thống nhất hướng rồi mới code; code sạch, đặt tên rõ.\n5. **Chạy tay** với ví dụ, kiểm tra biên; nêu độ phức tạp thời gian/bộ nhớ.",
+      "explanation": "Clarify inputs, outputs, constraints and edge cases; state a brute-force solution and its complexity; use the constraints to pick a pattern (n ≤ 10⁵ implies O(n log n) or better); agree on the approach before coding cleanly; then dry-run examples and edge cases and state time and space complexity."
+    },
+    {
+      "question": "When do you use the two pointers technique? / Khi nào dùng kỹ thuật two pointers?",
+      "answer": "Khi làm việc trên **mảng đã sắp xếp** hoặc cần so sánh hai đầu/hai tốc độ:\n- Two Sum trên mảng đã sort, 3Sum, chứa nhiều nước nhất (container with most water).\n- Đảo ngược, kiểm tra palindrome, gộp hai mảng đã sort.\n- **Nhanh/chậm** (Floyd): phát hiện chu trình linked list, tìm điểm giữa.\n```js\nlet l = 0, r = a.length - 1;\nwhile (l < r) {\n  const s = a[l] + a[r];\n  if (s === target) return [l, r];\n  s < target ? l++ : r--;\n}\n```\nGiảm O(n²) → **O(n)**.",
+      "explanation": "Use two pointers on **sorted arrays** or when comparing ends or speeds: pair sums, 3Sum, container with most water, palindromes, merging sorted arrays, and fast/slow pointers for cycle detection or finding the middle. It typically cuts O(n²) to O(n)."
+    },
+    {
+      "question": "Explain the sliding window pattern. / Giải thích pattern sliding window.",
+      "answer": "Dùng cho bài về **đoạn con liên tiếp** (subarray/substring): mở rộng phải, thu hẹp trái khi vi phạm điều kiện, cập nhật trạng thái tăng dần.\nVí dụ: chuỗi con dài nhất không lặp ký tự.\n```js\nconst last = new Map(); let l = 0, best = 0;\nfor (let r = 0; r < s.length; r++) {\n  if (last.has(s[r]) && last.get(s[r]) >= l) l = last.get(s[r]) + 1;\n  last.set(s[r], r);\n  best = Math.max(best, r - l + 1);\n}\n```\nMỗi phần tử vào/ra cửa sổ tối đa một lần → **O(n)**.",
+      "explanation": "Sliding window solves **contiguous subarray or substring** problems: expand the right edge, shrink the left when a constraint breaks, and maintain state incrementally. Each element enters and leaves once, so it runs in **O(n)** — e.g. longest substring without repeating characters."
+    },
+    {
+      "question": "How do you apply binary search beyond sorted arrays? / Áp dụng binary search ngoài mảng đã sort thế nào?",
+      "answer": "Binary search dùng được khi có tính **đơn điệu**: điều kiện `ok(x)` sai… sai đúng… đúng.\n- Tìm vị trí chèn, phần tử đầu tiên ≥ x (lower bound).\n- Mảng sort bị xoay, tìm đỉnh (peak).\n- **Binary search trên đáp án**: \"tốc độ ăn chuối nhỏ nhất\", \"sức chứa tàu nhỏ nhất để ship trong D ngày\" → tìm x nhỏ nhất mà `feasible(x)` đúng.\n```js\nlet lo = minAns, hi = maxAns;\nwhile (lo < hi) {\n  const mid = (lo + hi) >> 1;\n  if (feasible(mid)) hi = mid; else lo = mid + 1;\n}\nreturn lo;\n```",
+      "explanation": "Binary search works whenever a predicate is **monotonic** (false…false true…true): lower bounds, rotated arrays, peaks, and **binary search on the answer** — find the smallest x for which `feasible(x)` holds, such as minimum ship capacity within D days."
+    },
+    {
+      "question": "What is dynamic programming and how do you recognize a DP problem? / Quy hoạch động (DP) là gì và nhận diện bài DP thế nào?",
+      "answer": "DP áp dụng khi bài có:\n- **Bài toán con chồng lấp** (tính đi tính lại cùng một thứ).\n- **Cấu trúc con tối ưu** (lời giải tối ưu dựng từ lời giải tối ưu của bài con).\nDấu hiệu: \"số cách\", \"lớn nhất/nhỏ nhất\", \"có thể hay không\", trên dãy/lưới/chuỗi.\nCác bước: định nghĩa **trạng thái** `dp[i]`, **công thức chuyển**, **trường hợp gốc**, thứ tự tính; top-down (đệ quy + memo) hoặc bottom-up (bảng). Tối ưu bộ nhớ khi chỉ cần vài hàng trước.",
+      "explanation": "DP fits problems with **overlapping subproblems** and **optimal substructure** — signals include \"number of ways\", \"min/max\" or \"is it possible\" over sequences, grids or strings. Define the **state**, the **transition**, base cases and evaluation order; implement top-down with memoization or bottom-up with a table, compressing space when only recent rows matter."
+    },
+    {
+      "question": "Give classic DP examples. / Cho ví dụ các bài DP kinh điển.",
+      "answer": "- **Climbing stairs / Fibonacci**: `dp[i] = dp[i-1] + dp[i-2]`.\n- **House robber**: `dp[i] = max(dp[i-1], dp[i-2] + a[i])`.\n- **Coin change** (ít đồng nhất): `dp[x] = min(dp[x - c] + 1)`.\n- **Knapsack 0/1**: chọn/không chọn món i với sức chứa w.\n- **Longest Common Subsequence**: `dp[i][j]` trên hai chuỗi.\n- **Longest Increasing Subsequence**: O(n²) hoặc O(n log n) với binary search.\n- **Edit distance**: chèn/xoá/thay.",
+      "explanation": "Classics: climbing stairs/Fibonacci, house robber (`max(dp[i-1], dp[i-2] + a[i])`), coin change (`min(dp[x-c] + 1)`), 0/1 knapsack, longest common subsequence on two strings, longest increasing subsequence (O(n log n) with binary search) and edit distance."
+    },
+    {
+      "question": "What is backtracking? / Backtracking (quay lui) là gì?",
+      "answer": "Xây lời giải **từng bước**, nếu nhánh hiện tại không thể dẫn tới lời giải thì **quay lui** và thử lựa chọn khác. Duyệt cây trạng thái bằng DFS.\nDùng cho: sinh **tập con, hoán vị, tổ hợp**, N-Queens, Sudoku, word search.\n```js\nfunction bt(start, path) {\n  res.push([...path]);\n  for (let i = start; i < nums.length; i++) {\n    path.push(nums[i]); bt(i + 1, path); path.pop();\n  }\n}\n```\n**Cắt tỉa (pruning)** sớm để giảm không gian tìm kiếm; độ phức tạp thường mũ.",
+      "explanation": "Backtracking builds solutions step by step via DFS and **undoes** choices that can't lead to a valid answer. It generates subsets, permutations and combinations, and solves N-Queens, Sudoku and word search. Prune early; complexity is usually exponential."
+    },
+    {
+      "question": "When does a greedy algorithm work? / Khi nào thuật toán tham lam (greedy) đúng?",
+      "answer": "Greedy chọn phương án **tốt nhất tại mỗi bước** mà không quay lại. Chỉ đúng khi bài có **greedy choice property** (lựa chọn cục bộ dẫn tới tối ưu toàn cục) — cần chứng minh hoặc phản ví dụ.\n- Đúng: chọn nhiều khoảng không chồng nhau nhất (sort theo **thời điểm kết thúc**), jump game, gas station, Huffman, Dijkstra, Kruskal.\n- Sai: coin change với mệnh giá bất kỳ (vd. {1, 3, 4}, số 6 → greedy 4+1+1, tối ưu 3+3) → cần DP.",
+      "explanation": "Greedy algorithms take the locally best choice without revisiting it and are correct only with the **greedy-choice property**, which needs a proof or counterexample. They work for interval scheduling (sort by end time), jump game, Huffman coding, Dijkstra and Kruskal, but fail for arbitrary coin systems like {1, 3, 4} making 6, which needs DP."
+    },
+    {
+      "question": "What is the prefix sum technique? / Kỹ thuật prefix sum (mảng cộng dồn) là gì?",
+      "answer": "`pre[i] = a[0] + … + a[i-1]` → tổng đoạn `[l, r]` = `pre[r+1] - pre[l]` trong **O(1)** sau O(n) tiền xử lý.\n- Kết hợp **hash map**: đếm số subarray có tổng bằng k → với mỗi `pre`, cộng số lần đã gặp `pre - k`. O(n).\n- Mở rộng: prefix sum 2D cho tổng hình chữ nhật, **difference array** cho cập nhật đoạn hàng loạt.",
+      "explanation": "Prefix sums let you answer range sums in O(1) after O(n) preprocessing. Combined with a hash map of seen prefix values, they count subarrays summing to k in O(n). Extensions include 2D prefix sums for rectangles and difference arrays for batched range updates."
+    },
+    {
+      "question": "How do you find shortest paths in weighted graphs? / Tìm đường đi ngắn nhất trên đồ thị có trọng số thế nào?",
+      "answer": "- **Không trọng số**: BFS, O(V+E).\n- **Trọng số không âm**: **Dijkstra** với min-heap, O((V+E) log V).\n- **Có trọng số âm**: **Bellman-Ford** O(VE), phát hiện chu trình âm.\n- **Mọi cặp đỉnh**: Floyd-Warshall O(V³).\n- Trọng số 0/1: **0-1 BFS** dùng deque.\n- Có heuristic (bản đồ, game): **A***.",
+      "explanation": "Use BFS for unweighted graphs, **Dijkstra** with a min-heap for non-negative weights, **Bellman-Ford** for negative weights and cycle detection, Floyd-Warshall for all pairs, 0-1 BFS for 0/1 weights, and **A*** when a good heuristic exists."
+    },
+    {
+      "question": "What is topological sort and where is it used? / Topological sort là gì và dùng ở đâu?",
+      "answer": "Sắp xếp đỉnh của **đồ thị có hướng không chu trình (DAG)** sao cho mọi cạnh u → v thì u đứng trước v.\n- **Kahn (BFS)**: đưa đỉnh có in-degree 0 vào queue, lấy ra và giảm in-degree hàng xóm. Nếu không lấy hết đỉnh → **có chu trình**.\n- Hoặc DFS post-order rồi đảo ngược.\n- Dùng cho: thứ tự môn học tiên quyết (Course Schedule), build system, thứ tự migration, giải quyết dependency package.",
+      "explanation": "Topological sort orders a **DAG** so every edge points forward. Kahn's algorithm repeatedly removes zero-in-degree nodes; leftover nodes reveal a **cycle**. Reverse DFS post-order also works. Used for course prerequisites, build systems, migrations and package dependency resolution."
+    },
+    {
+      "question": "How do you solve \"top K frequent elements\" efficiently? / Giải bài \"top K phần tử xuất hiện nhiều nhất\" hiệu quả thế nào?",
+      "answer": "1. Đếm tần suất bằng **hash map**: O(n).\n2. Chọn top K:\n- **Min-heap kích thước K**: O(n log K) — tốt khi K nhỏ, dữ liệu stream.\n- **Bucket sort** theo tần suất (bucket index = số lần xuất hiện, tối đa n): **O(n)**.\n- **Quickselect**: O(n) trung bình.\n- Sort toàn bộ: O(n log n) — đơn giản nhưng chậm nhất.",
+      "explanation": "Count with a hash map in O(n), then select: a **size-K min-heap** in O(n log K) (great for streams), **bucket sort** by frequency in O(n), quickselect in O(n) average, or a full sort in O(n log n) as the simplest baseline."
+    },
+    {
+      "question": "How do you detect a cycle in a linked list and find its start? / Phát hiện chu trình trong linked list và tìm điểm bắt đầu thế nào?",
+      "answer": "**Floyd (rùa và thỏ)**: con trỏ chậm đi 1 bước, nhanh đi 2 bước. Nếu gặp nhau → có chu trình; nếu nhanh chạm `null` → không.\nTìm điểm bắt đầu: đưa một con trỏ về **head**, cả hai cùng đi 1 bước → gặp nhau tại **đầu chu trình**.\nThời gian O(n), bộ nhớ **O(1)** (so với dùng Set O(n)).",
+      "explanation": "Use **Floyd's tortoise and hare**: slow moves one step, fast moves two; meeting means a cycle, reaching null means none. To find the start, reset one pointer to head and advance both one step at a time — they meet at the cycle's entry. O(n) time, **O(1)** space."
+    }
+  ]
+}

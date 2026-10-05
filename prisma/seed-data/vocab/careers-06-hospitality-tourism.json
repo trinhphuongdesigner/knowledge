@@ -1,0 +1,283 @@
+{
+  "slug": "careers-06-hospitality-tourism",
+  "order": 136,
+  "title": "Careers 6 · Hospitality & Tourism",
+  "description": "Từ vựng ngành nhà hàng, khách sạn và du lịch (CEFR A2–B2). Hữu ích khi làm việc trong ngành dịch vụ hoặc phát triển sản phẩm đặt phòng, đặt tour.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "receptionist",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈsepʃənɪst/",
+      "answer": "lễ tân",
+      "explanation": "The receptionist gave us a map of the city.\n→ Lễ tân đưa chúng tôi bản đồ thành phố."
+    },
+    {
+      "question": "front desk",
+      "partOfSpeech": "noun",
+      "phonetic": "/frʌnt desk/",
+      "answer": "quầy lễ tân",
+      "explanation": "Leave your key at the front desk.\n→ Để chìa khoá ở quầy lễ tân."
+    },
+    {
+      "question": "concierge",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkɑːnsiˈerʒ/",
+      "answer": "nhân viên hỗ trợ khách (concierge)",
+      "explanation": "The concierge booked a taxi for us.\n→ Nhân viên hỗ trợ đặt taxi cho chúng tôi."
+    },
+    {
+      "question": "housekeeping",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhaʊskiːpɪŋ/",
+      "answer": "bộ phận buồng phòng",
+      "explanation": "Housekeeping will clean your room at 10.\n→ Bộ phận buồng phòng sẽ dọn phòng lúc 10 giờ."
+    },
+    {
+      "question": "bellboy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbelbɔɪ/",
+      "answer": "nhân viên khuân hành lý",
+      "explanation": "The bellboy carried our bags upstairs.\n→ Nhân viên khuân hành lý mang túi lên lầu giúp chúng tôi."
+    },
+    {
+      "question": "waiter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈweɪtər/",
+      "answer": "bồi bàn nam",
+      "explanation": "The waiter recommended the seafood.\n→ Phục vụ gợi ý món hải sản."
+    },
+    {
+      "question": "waitress",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈweɪtrəs/",
+      "answer": "bồi bàn nữ",
+      "explanation": "The waitress brought us water.\n→ Cô phục vụ mang nước cho chúng tôi."
+    },
+    {
+      "question": "chef",
+      "partOfSpeech": "noun",
+      "phonetic": "/ʃef/",
+      "answer": "đầu bếp trưởng",
+      "explanation": "The chef trained in France.\n→ Bếp trưởng từng học ở Pháp."
+    },
+    {
+      "question": "bartender",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːrtendər/",
+      "answer": "nhân viên pha chế",
+      "explanation": "The bartender made a great mojito.\n→ Người pha chế làm ly mojito rất ngon."
+    },
+    {
+      "question": "tour guide",
+      "partOfSpeech": "noun",
+      "phonetic": "/tʊr ɡaɪd/",
+      "answer": "hướng dẫn viên du lịch",
+      "explanation": "Our tour guide spoke four languages.\n→ Hướng dẫn viên của chúng tôi nói được bốn thứ tiếng."
+    },
+    {
+      "question": "travel agency",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtrævəl ˈeɪdʒənsi/",
+      "answer": "công ty du lịch",
+      "explanation": "We booked the tour through a travel agency.\n→ Chúng tôi đặt tour qua một công ty du lịch."
+    },
+    {
+      "question": "single room",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪŋɡəl ruːm/",
+      "answer": "phòng đơn",
+      "explanation": "A single room costs 800,000 dong a night.\n→ Phòng đơn giá 800.000 đồng một đêm."
+    },
+    {
+      "question": "double room",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʌbəl ruːm/",
+      "answer": "phòng đôi (một giường lớn)",
+      "explanation": "We'd like a double room with a sea view.\n→ Chúng tôi muốn phòng đôi hướng biển."
+    },
+    {
+      "question": "twin room",
+      "partOfSpeech": "noun",
+      "phonetic": "/twɪn ruːm/",
+      "answer": "phòng hai giường đơn",
+      "explanation": "Two colleagues shared a twin room.\n→ Hai đồng nghiệp ở chung phòng hai giường."
+    },
+    {
+      "question": "suite",
+      "partOfSpeech": "noun",
+      "phonetic": "/swiːt/",
+      "answer": "phòng hạng sang",
+      "explanation": "The CEO stayed in the presidential suite.\n→ CEO ở phòng tổng thống."
+    },
+    {
+      "question": "vacancy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈveɪkənsi/",
+      "answer": "phòng trống",
+      "explanation": "Sorry, we have no vacancies tonight.\n→ Xin lỗi, tối nay chúng tôi hết phòng."
+    },
+    {
+      "question": "fully booked",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˈfʊli bʊkt/",
+      "answer": "kín phòng",
+      "explanation": "The hotel is fully booked during the festival.\n→ Khách sạn kín phòng trong dịp lễ hội."
+    },
+    {
+      "question": "complimentary",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌkɑːmplɪˈmentəri/",
+      "answer": "miễn phí (tặng kèm)",
+      "explanation": "Breakfast is complimentary.\n→ Bữa sáng được tặng kèm."
+    },
+    {
+      "question": "amenities",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈmenətiz/",
+      "answer": "tiện nghi",
+      "explanation": "The hotel's amenities include a pool and a gym.\n→ Tiện nghi khách sạn gồm hồ bơi và phòng gym."
+    },
+    {
+      "question": "room service",
+      "partOfSpeech": "noun",
+      "phonetic": "/ruːm ˈsɜːrvɪs/",
+      "answer": "dịch vụ phục vụ tại phòng",
+      "explanation": "We ordered room service at midnight.\n→ Chúng tôi gọi đồ ăn lên phòng lúc nửa đêm."
+    },
+    {
+      "question": "wake-up call",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈweɪk ʌp kɔːl/",
+      "answer": "cuộc gọi báo thức",
+      "explanation": "Could I have a wake-up call at 6 a.m.?\n→ Gọi báo thức cho tôi lúc 6 giờ sáng được không?"
+    },
+    {
+      "question": "late check-out",
+      "partOfSpeech": "noun",
+      "phonetic": "/leɪt ˈtʃek aʊt/",
+      "answer": "trả phòng muộn",
+      "explanation": "Is late check-out possible?\n→ Có thể trả phòng muộn không?"
+    },
+    {
+      "question": "guest",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡest/",
+      "answer": "khách",
+      "explanation": "Guests must show ID at check-in.\n→ Khách phải xuất trình giấy tờ khi nhận phòng."
+    },
+    {
+      "question": "hospitality",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌhɑːspɪˈtæləti/",
+      "answer": "lòng hiếu khách; ngành dịch vụ khách sạn",
+      "explanation": "Vietnamese hospitality is famous among travelers.\n→ Lòng hiếu khách của người Việt nổi tiếng với du khách."
+    },
+    {
+      "question": "peak season",
+      "partOfSpeech": "noun",
+      "phonetic": "/piːk ˈsiːzən/",
+      "answer": "mùa cao điểm",
+      "explanation": "Prices double during peak season.\n→ Giá tăng gấp đôi vào mùa cao điểm."
+    },
+    {
+      "question": "off-season",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːf ˌsiːzən/",
+      "answer": "mùa thấp điểm",
+      "explanation": "Travel in the off-season to avoid crowds.\n→ Đi vào mùa thấp điểm để tránh đông."
+    },
+    {
+      "question": "package tour",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpækɪdʒ tʊr/",
+      "answer": "tour trọn gói",
+      "explanation": "The package tour includes flights and meals.\n→ Tour trọn gói bao gồm vé máy bay và các bữa ăn."
+    },
+    {
+      "question": "excursion",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪkˈskɜːrʒən/",
+      "answer": "chuyến tham quan ngắn",
+      "explanation": "We joined a day excursion to Ha Long Bay.\n→ Chúng tôi tham gia chuyến tham quan Hạ Long trong ngày."
+    },
+    {
+      "question": "resort",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈzɔːrt/",
+      "answer": "khu nghỉ dưỡng",
+      "explanation": "The resort has a private beach.\n→ Khu nghỉ dưỡng có bãi biển riêng."
+    },
+    {
+      "question": "homestay",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhoʊmsteɪ/",
+      "answer": "nhà dân cho khách ở",
+      "explanation": "We stayed at a homestay in Mai Chau.\n→ Chúng tôi ở homestay tại Mai Châu."
+    },
+    {
+      "question": "review",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈvjuː/",
+      "answer": "đánh giá",
+      "explanation": "The hotel has excellent reviews online.\n→ Khách sạn có đánh giá rất tốt trên mạng."
+    },
+    {
+      "question": "rating",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈreɪtɪŋ/",
+      "answer": "điểm xếp hạng",
+      "explanation": "The restaurant has a 4.8 rating.\n→ Nhà hàng được chấm 4,8 điểm."
+    },
+    {
+      "question": "cancellation policy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkænsəˈleɪʃən ˈpɑːləsi/",
+      "answer": "chính sách huỷ",
+      "explanation": "Check the cancellation policy before booking.\n→ Kiểm tra chính sách huỷ trước khi đặt."
+    },
+    {
+      "question": "non-refundable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌnɑːn rɪˈfʌndəbəl/",
+      "answer": "không hoàn tiền",
+      "explanation": "The cheapest rate is non-refundable.\n→ Giá rẻ nhất không được hoàn tiền."
+    },
+    {
+      "question": "upgrade",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʌpɡreɪd/",
+      "answer": "nâng hạng",
+      "explanation": "We got a free upgrade to a sea-view room.\n→ Chúng tôi được nâng hạng miễn phí lên phòng view biển."
+    },
+    {
+      "question": "catering",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkeɪtərɪŋ/",
+      "answer": "dịch vụ cung cấp đồ ăn",
+      "explanation": "The company hired catering for the year-end party.\n→ Công ty thuê dịch vụ ăn uống cho tiệc tất niên."
+    },
+    {
+      "question": "buffet",
+      "partOfSpeech": "noun",
+      "phonetic": "/bəˈfeɪ/",
+      "answer": "tiệc tự chọn",
+      "explanation": "The breakfast buffet has Vietnamese and Western food.\n→ Buffet sáng có món Việt và món Âu."
+    },
+    {
+      "question": "customer satisfaction",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌstəmər ˌsætɪsˈfækʃən/",
+      "answer": "sự hài lòng của khách",
+      "explanation": "Customer satisfaction is our top priority.\n→ Sự hài lòng của khách là ưu tiên hàng đầu."
+    },
+    {
+      "question": "go the extra mile",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɡoʊ ði ˈekstrə maɪl/",
+      "answer": "làm nhiều hơn mong đợi",
+      "explanation": "The staff went the extra mile to make us feel at home.\n→ Nhân viên đã làm hơn cả mong đợi để chúng tôi thấy như ở nhà."
+    }
+  ]
+}

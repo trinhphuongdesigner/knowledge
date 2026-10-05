@@ -1,0 +1,269 @@
+{
+  "slug": "sports-01-football",
+  "order": 161,
+  "title": "Sports 1 · Football (Soccer)",
+  "description": "Từ vựng bóng đá: luật chơi, vị trí, bình luận trận đấu (CEFR A2–B2).",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "pitch",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɪtʃ/",
+      "answer": "sân bóng",
+      "explanation": "The players walked onto the pitch.\n→ Các cầu thủ bước ra sân."
+    },
+    {
+      "question": "goalkeeper",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡoʊlkiːpər/",
+      "answer": "thủ môn",
+      "explanation": "The goalkeeper made an incredible save.\n→ Thủ môn có pha cứu thua không tưởng."
+    },
+    {
+      "question": "defender",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈfendər/",
+      "answer": "hậu vệ",
+      "explanation": "He plays as a central defender.\n→ Anh ấy đá trung vệ."
+    },
+    {
+      "question": "midfielder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɪdfiːldər/",
+      "answer": "tiền vệ",
+      "explanation": "A good midfielder controls the game.\n→ Tiền vệ giỏi kiểm soát thế trận."
+    },
+    {
+      "question": "striker",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstraɪkər/",
+      "answer": "tiền đạo",
+      "explanation": "The striker scored twice.\n→ Tiền đạo ghi hai bàn."
+    },
+    {
+      "question": "coach",
+      "partOfSpeech": "noun",
+      "phonetic": "/koʊtʃ/",
+      "answer": "huấn luyện viên",
+      "explanation": "Coach Park changed Vietnamese football.\n→ HLV Park đã thay đổi bóng đá Việt Nam."
+    },
+    {
+      "question": "captain",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæptɪn/",
+      "answer": "đội trưởng",
+      "explanation": "The captain lifted the trophy.\n→ Đội trưởng nâng cúp."
+    },
+    {
+      "question": "referee",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌrefəˈriː/",
+      "answer": "trọng tài",
+      "explanation": "The referee blew the whistle.\n→ Trọng tài thổi còi."
+    },
+    {
+      "question": "kick-off",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɪk ɔːf/",
+      "answer": "giờ bắt đầu trận đấu",
+      "explanation": "Kick-off is at 7:30 p.m.\n→ Trận đấu bắt đầu lúc 19:30."
+    },
+    {
+      "question": "half-time",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌhæf ˈtaɪm/",
+      "answer": "giờ nghỉ giữa hiệp",
+      "explanation": "The score was 1–0 at half-time.\n→ Tỷ số là 1–0 sau hiệp một."
+    },
+    {
+      "question": "score",
+      "partOfSpeech": "verb",
+      "phonetic": "/skɔːr/",
+      "answer": "ghi bàn",
+      "explanation": "He scored in the last minute.\n→ Anh ấy ghi bàn ở phút cuối."
+    },
+    {
+      "question": "equalizer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈiːkwəlaɪzər/",
+      "answer": "bàn gỡ hoà",
+      "explanation": "They got an equalizer in extra time.\n→ Họ có bàn gỡ hoà trong hiệp phụ."
+    },
+    {
+      "question": "draw",
+      "partOfSpeech": "noun",
+      "phonetic": "/drɔː/",
+      "answer": "trận hoà",
+      "explanation": "The match ended in a draw.\n→ Trận đấu kết thúc với tỷ số hoà."
+    },
+    {
+      "question": "penalty",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpenəlti/",
+      "answer": "phạt đền",
+      "explanation": "The referee gave a penalty.\n→ Trọng tài cho hưởng phạt đền."
+    },
+    {
+      "question": "penalty shootout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpenəlti ˈʃuːtaʊt/",
+      "answer": "loạt sút luân lưu",
+      "explanation": "Vietnam won on a penalty shootout.\n→ Việt Nam thắng trong loạt sút luân lưu."
+    },
+    {
+      "question": "free kick",
+      "partOfSpeech": "noun",
+      "phonetic": "/friː kɪk/",
+      "answer": "đá phạt trực tiếp",
+      "explanation": "He scored from a free kick.\n→ Anh ấy ghi bàn từ quả đá phạt."
+    },
+    {
+      "question": "corner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɔːrnər/",
+      "answer": "phạt góc",
+      "explanation": "They won a corner in the 80th minute.\n→ Họ được hưởng phạt góc ở phút 80."
+    },
+    {
+      "question": "offside",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌɔːfˈsaɪd/",
+      "answer": "việt vị",
+      "explanation": "The goal was ruled offside.\n→ Bàn thắng bị tính là việt vị."
+    },
+    {
+      "question": "foul",
+      "partOfSpeech": "noun",
+      "phonetic": "/faʊl/",
+      "answer": "lỗi, phạm lỗi",
+      "explanation": "That was a clear foul.\n→ Đó là một pha phạm lỗi rõ ràng."
+    },
+    {
+      "question": "yellow card",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjeloʊ kɑːrd/",
+      "answer": "thẻ vàng",
+      "explanation": "He got a yellow card for diving.\n→ Anh ấy nhận thẻ vàng vì ăn vạ."
+    },
+    {
+      "question": "red card",
+      "partOfSpeech": "noun",
+      "phonetic": "/red kɑːrd/",
+      "answer": "thẻ đỏ",
+      "explanation": "A red card means you leave the pitch.\n→ Thẻ đỏ nghĩa là phải rời sân."
+    },
+    {
+      "question": "substitute",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌbstɪtuːt/",
+      "answer": "cầu thủ dự bị",
+      "explanation": "The substitute scored the winning goal.\n→ Cầu thủ vào thay ghi bàn quyết định."
+    },
+    {
+      "question": "injury time",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪndʒəri taɪm/",
+      "answer": "thời gian bù giờ",
+      "explanation": "They scored in injury time.\n→ Họ ghi bàn trong thời gian bù giờ."
+    },
+    {
+      "question": "header",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedər/",
+      "answer": "cú đánh đầu",
+      "explanation": "He scored with a powerful header.\n→ Anh ấy ghi bàn bằng cú đánh đầu uy lực."
+    },
+    {
+      "question": "pass",
+      "partOfSpeech": "noun",
+      "phonetic": "/pæs/",
+      "answer": "đường chuyền",
+      "explanation": "What a beautiful pass!\n→ Đường chuyền đẹp quá!"
+    },
+    {
+      "question": "tackle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtækəl/",
+      "answer": "pha tắc bóng",
+      "explanation": "That was a perfect tackle.\n→ Một pha tắc bóng hoàn hảo."
+    },
+    {
+      "question": "clean sheet",
+      "partOfSpeech": "noun",
+      "phonetic": "/kliːn ʃiːt/",
+      "answer": "giữ sạch lưới",
+      "explanation": "The goalkeeper kept a clean sheet.\n→ Thủ môn giữ sạch lưới."
+    },
+    {
+      "question": "hat-trick",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhæt trɪk/",
+      "answer": "cú hat-trick (ghi ba bàn)",
+      "explanation": "Messi scored a hat-trick.\n→ Messi lập hat-trick."
+    },
+    {
+      "question": "league",
+      "partOfSpeech": "noun",
+      "phonetic": "/liːɡ/",
+      "answer": "giải vô địch (theo mùa)",
+      "explanation": "Which team is top of the league?\n→ Đội nào đang đứng đầu giải?"
+    },
+    {
+      "question": "fan",
+      "partOfSpeech": "noun",
+      "phonetic": "/fæn/",
+      "answer": "người hâm mộ",
+      "explanation": "Thousands of fans celebrated in the streets.\n→ Hàng nghìn cổ động viên ăn mừng trên phố."
+    },
+    {
+      "question": "stadium",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsteɪdiəm/",
+      "answer": "sân vận động",
+      "explanation": "My Dinh Stadium was full.\n→ Sân Mỹ Đình kín chỗ."
+    },
+    {
+      "question": "away game",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈweɪ ɡeɪm/",
+      "answer": "trận sân khách",
+      "explanation": "Away games are always harder.\n→ Trận sân khách luôn khó hơn."
+    },
+    {
+      "question": "home team",
+      "partOfSpeech": "noun",
+      "phonetic": "/hoʊm tiːm/",
+      "answer": "đội chủ nhà",
+      "explanation": "The home team won 3–1.\n→ Đội chủ nhà thắng 3–1."
+    },
+    {
+      "question": "underdog",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʌndərdɔːɡ/",
+      "answer": "đội cửa dưới",
+      "explanation": "Everyone loves an underdog.\n→ Ai cũng thích đội cửa dưới."
+    },
+    {
+      "question": "five-a-side",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌfaɪv ə ˈsaɪd/",
+      "answer": "bóng đá 5 người (sân mini)",
+      "explanation": "We play five-a-side every Thursday.\n→ Chúng tôi đá sân 5 mỗi thứ Năm."
+    },
+    {
+      "question": "move the goalposts",
+      "partOfSpeech": "idiom",
+      "phonetic": "/muːv ðə ˈɡoʊlpoʊsts/",
+      "answer": "thay đổi yêu cầu giữa chừng",
+      "explanation": "The client keeps moving the goalposts.\n→ Khách hàng liên tục thay đổi yêu cầu."
+    },
+    {
+      "question": "a game of two halves",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ə ɡeɪm əv tuː hævz/",
+      "answer": "tình thế đảo chiều",
+      "explanation": "The project was a game of two halves.\n→ Dự án là một cuộc đảo chiều ngoạn mục."
+    }
+  ]
+}

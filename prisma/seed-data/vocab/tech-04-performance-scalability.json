@@ -1,0 +1,304 @@
+{
+  "slug": "tech-04-performance-scalability",
+  "order": 104,
+  "title": "Tech English 4 · Performance & Scalability",
+  "description": "Thuật ngữ hiệu năng và khả năng mở rộng (CEFR B2–C1). Dùng khi viết post-mortem, thảo luận tối ưu hệ thống và trả lời câu hỏi system design.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "bottleneck",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːtəlnek/",
+      "answer": "điểm nghẽn",
+      "explanation": "The database turned out to be the main bottleneck.\n→ Hoá ra cơ sở dữ liệu là điểm nghẽn chính."
+    },
+    {
+      "question": "scalability",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌskeɪləˈbɪləti/",
+      "answer": "khả năng mở rộng",
+      "explanation": "Scalability was not a concern when we had ten users.\n→ Khả năng mở rộng không phải vấn đề khi chúng tôi chỉ có mười người dùng."
+    },
+    {
+      "question": "scale out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/skeɪl aʊt/",
+      "answer": "mở rộng theo chiều ngang (thêm máy)",
+      "explanation": "We scale out by adding more stateless app servers.\n→ Chúng tôi mở rộng ngang bằng cách thêm máy chủ ứng dụng không trạng thái."
+    },
+    {
+      "question": "scale up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/skeɪl ʌp/",
+      "answer": "mở rộng theo chiều dọc (máy mạnh hơn)",
+      "explanation": "Scaling up the database bought us a few more months.\n→ Nâng cấp máy cơ sở dữ liệu giúp chúng tôi trụ thêm vài tháng."
+    },
+    {
+      "question": "horizontal scaling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌhɔːrɪˈzɑːntəl ˈskeɪlɪŋ/",
+      "answer": "mở rộng ngang",
+      "explanation": "Horizontal scaling requires the app to be stateless.\n→ Mở rộng ngang đòi hỏi ứng dụng phải không lưu trạng thái."
+    },
+    {
+      "question": "response time",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈspɑːns taɪm/",
+      "answer": "thời gian phản hồi",
+      "explanation": "The average response time dropped from 800 to 120 milliseconds.\n→ Thời gian phản hồi trung bình giảm từ 800 xuống 120 mili giây."
+    },
+    {
+      "question": "p99 latency",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpiː ˌnaɪnti ˈnaɪn ˈleɪtənsi/",
+      "answer": "độ trễ phân vị 99",
+      "explanation": "The average looks fine, but p99 latency is over two seconds.\n→ Trung bình trông ổn nhưng độ trễ p99 vượt hai giây."
+    },
+    {
+      "question": "percentile",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈsentaɪl/",
+      "answer": "phân vị",
+      "explanation": "Always report latency as percentiles, not just the average.\n→ Luôn báo cáo độ trễ theo phân vị, không chỉ trung bình."
+    },
+    {
+      "question": "benchmark",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbentʃmɑːrk/",
+      "answer": "bài đo hiệu năng",
+      "explanation": "Run a benchmark before and after the change.\n→ Hãy chạy đo hiệu năng trước và sau khi thay đổi."
+    },
+    {
+      "question": "profiling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈproʊfaɪlɪŋ/",
+      "answer": "phân tích hiệu năng (profiling)",
+      "explanation": "Profiling showed that JSON parsing took 40% of CPU time.\n→ Profiling cho thấy việc parse JSON chiếm 40% thời gian CPU."
+    },
+    {
+      "question": "hot path",
+      "partOfSpeech": "noun",
+      "phonetic": "/hɑːt pæθ/",
+      "answer": "đoạn code chạy nhiều nhất",
+      "explanation": "Avoid logging inside the hot path.\n→ Tránh ghi log trong đoạn code chạy nhiều nhất."
+    },
+    {
+      "question": "cache hit",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæʃ hɪt/",
+      "answer": "trúng cache",
+      "explanation": "A cache hit returns data in under a millisecond.\n→ Khi trúng cache, dữ liệu trả về chưa tới một mili giây."
+    },
+    {
+      "question": "cache miss",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæʃ mɪs/",
+      "answer": "trượt cache",
+      "explanation": "Every cache miss falls back to the database.\n→ Mỗi lần trượt cache sẽ quay về đọc cơ sở dữ liệu."
+    },
+    {
+      "question": "hit ratio",
+      "partOfSpeech": "noun",
+      "phonetic": "/hɪt ˈreɪʃioʊ/",
+      "answer": "tỉ lệ trúng cache",
+      "explanation": "Our cache hit ratio is about 95%.\n→ Tỉ lệ trúng cache của chúng tôi khoảng 95%."
+    },
+    {
+      "question": "invalidate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈvælɪdeɪt/",
+      "answer": "làm mất hiệu lực (cache)",
+      "explanation": "Invalidate the cache whenever the product price changes.\n→ Xoá hiệu lực cache mỗi khi giá sản phẩm thay đổi."
+    },
+    {
+      "question": "stale",
+      "partOfSpeech": "adjective",
+      "phonetic": "/steɪl/",
+      "answer": "cũ, lỗi thời (dữ liệu)",
+      "explanation": "Users saw stale data because the cache was not refreshed.\n→ Người dùng thấy dữ liệu cũ vì cache chưa được làm mới."
+    },
+    {
+      "question": "warm up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/wɔːrm ʌp/",
+      "answer": "làm nóng (cache, hệ thống)",
+      "explanation": "We warm up the cache before switching traffic.\n→ Chúng tôi làm nóng cache trước khi chuyển lưu lượng."
+    },
+    {
+      "question": "concurrency",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈkɜːrənsi/",
+      "answer": "xử lý đồng thời",
+      "explanation": "The service handles high concurrency with async I/O.\n→ Dịch vụ xử lý đồng thời lớn nhờ I/O bất đồng bộ."
+    },
+    {
+      "question": "parallelism",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpærəlelɪzəm/",
+      "answer": "song song hoá",
+      "explanation": "Parallelism helps CPU-heavy tasks on multi-core machines.\n→ Song song hoá giúp ích cho tác vụ nặng CPU trên máy nhiều nhân."
+    },
+    {
+      "question": "throttle",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈθrɑːtəl/",
+      "answer": "điều tiết, giới hạn tốc độ",
+      "explanation": "The API throttles clients that send too many requests.\n→ API giới hạn tốc độ những client gửi quá nhiều request."
+    },
+    {
+      "question": "rate limit",
+      "partOfSpeech": "noun",
+      "phonetic": "/reɪt ˈlɪmɪt/",
+      "answer": "giới hạn số request",
+      "explanation": "We hit the rate limit of the payment provider.\n→ Chúng tôi chạm giới hạn request của nhà cung cấp thanh toán."
+    },
+    {
+      "question": "backpressure",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækpreʃər/",
+      "answer": "áp lực ngược (cơ chế hãm)",
+      "explanation": "Without backpressure, the queue grows until memory runs out.\n→ Không có cơ chế hãm, hàng đợi sẽ phình đến khi hết bộ nhớ."
+    },
+    {
+      "question": "overhead",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈoʊvərhed/",
+      "answer": "chi phí phụ trội",
+      "explanation": "Each network call adds a few milliseconds of overhead.\n→ Mỗi lần gọi mạng tốn thêm vài mili giây."
+    },
+    {
+      "question": "memory leak",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmeməri liːk/",
+      "answer": "rò rỉ bộ nhớ",
+      "explanation": "A memory leak crashed the service every three days.\n→ Rò rỉ bộ nhớ làm dịch vụ sập ba ngày một lần."
+    },
+    {
+      "question": "garbage collection",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡɑːrbɪdʒ kəˈlekʃən/",
+      "answer": "thu gom rác (bộ nhớ)",
+      "explanation": "Long garbage collection pauses caused latency spikes.\n→ Các lần dừng thu gom rác kéo dài gây tăng đột biến độ trễ."
+    },
+    {
+      "question": "lazy loading",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleɪzi ˈloʊdɪŋ/",
+      "answer": "tải khi cần",
+      "explanation": "Lazy loading images makes the first page load faster.\n→ Tải ảnh khi cần giúp trang đầu tiên tải nhanh hơn."
+    },
+    {
+      "question": "pagination",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpædʒɪˈneɪʃən/",
+      "answer": "phân trang",
+      "explanation": "Use cursor-based pagination for large tables.\n→ Dùng phân trang theo con trỏ cho các bảng lớn."
+    },
+    {
+      "question": "batch",
+      "partOfSpeech": "verb",
+      "phonetic": "/bætʃ/",
+      "answer": "gom thành lô",
+      "explanation": "Batch the inserts instead of writing rows one by one.\n→ Gom các lệnh insert thành lô thay vì ghi từng dòng."
+    },
+    {
+      "question": "debounce",
+      "partOfSpeech": "verb",
+      "phonetic": "/diːˈbaʊns/",
+      "answer": "trì hoãn đến khi ngừng gọi",
+      "explanation": "Debounce the search input to avoid a request on every keystroke.\n→ Debounce ô tìm kiếm để tránh gửi request mỗi lần gõ phím."
+    },
+    {
+      "question": "precompute",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌpriːkəmˈpjuːt/",
+      "answer": "tính toán trước",
+      "explanation": "We precompute the daily report at midnight.\n→ Chúng tôi tính sẵn báo cáo ngày vào nửa đêm."
+    },
+    {
+      "question": "denormalize",
+      "partOfSpeech": "verb",
+      "phonetic": "/diːˈnɔːrməlaɪz/",
+      "answer": "phi chuẩn hoá",
+      "explanation": "We denormalized the table to avoid an expensive join.\n→ Chúng tôi phi chuẩn hoá bảng để tránh phép join tốn kém."
+    },
+    {
+      "question": "sharding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃɑːrdɪŋ/",
+      "answer": "phân mảnh dữ liệu",
+      "explanation": "Sharding splits users across several databases by user ID.\n→ Sharding chia người dùng ra nhiều cơ sở dữ liệu theo ID."
+    },
+    {
+      "question": "read replica",
+      "partOfSpeech": "noun",
+      "phonetic": "/riːd ˈreplɪkə/",
+      "answer": "bản sao chỉ đọc",
+      "explanation": "Heavy reports run on a read replica.\n→ Các báo cáo nặng chạy trên bản sao chỉ đọc."
+    },
+    {
+      "question": "autoscaling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːtoʊskeɪlɪŋ/",
+      "answer": "tự động co giãn",
+      "explanation": "Autoscaling adds servers when CPU stays above 70%.\n→ Tự động co giãn thêm máy khi CPU vượt 70% kéo dài."
+    },
+    {
+      "question": "capacity planning",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈpæsəti ˈplænɪŋ/",
+      "answer": "hoạch định năng lực",
+      "explanation": "Capacity planning helps us prepare for Black Friday.\n→ Hoạch định năng lực giúp chúng tôi chuẩn bị cho Black Friday."
+    },
+    {
+      "question": "load test",
+      "partOfSpeech": "noun",
+      "phonetic": "/loʊd test/",
+      "answer": "kiểm thử tải",
+      "explanation": "The load test showed the API breaks at 2,000 requests per second.\n→ Kiểm thử tải cho thấy API gục ở 2.000 request mỗi giây."
+    },
+    {
+      "question": "degrade gracefully",
+      "partOfSpeech": "phrase",
+      "phonetic": "/dɪˈɡreɪd ˈɡreɪsfəli/",
+      "answer": "xuống cấp nhẹ nhàng (vẫn chạy phần chính)",
+      "explanation": "If recommendations fail, the page should degrade gracefully.\n→ Nếu phần gợi ý lỗi, trang vẫn nên hoạt động phần chính."
+    },
+    {
+      "question": "single point of failure",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪŋɡəl pɔɪnt əv ˈfeɪljər/",
+      "answer": "điểm lỗi duy nhất",
+      "explanation": "One database server is a single point of failure.\n→ Chỉ có một máy chủ CSDL là điểm lỗi duy nhất."
+    },
+    {
+      "question": "high availability",
+      "partOfSpeech": "noun",
+      "phonetic": "/haɪ əˌveɪləˈbɪləti/",
+      "answer": "tính sẵn sàng cao",
+      "explanation": "We run three instances across zones for high availability.\n→ Chúng tôi chạy ba instance ở nhiều vùng để đảm bảo tính sẵn sàng cao."
+    },
+    {
+      "question": "fault tolerance",
+      "partOfSpeech": "noun",
+      "phonetic": "/fɔːlt ˈtɑːlərəns/",
+      "answer": "khả năng chịu lỗi",
+      "explanation": "Fault tolerance means the system keeps working when a node dies.\n→ Khả năng chịu lỗi nghĩa là hệ thống vẫn chạy khi một node chết."
+    },
+    {
+      "question": "trade-off",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtreɪd ɔːf/",
+      "answer": "sự đánh đổi",
+      "explanation": "Caching is a trade-off between speed and freshness.\n→ Cache là sự đánh đổi giữa tốc độ và độ mới của dữ liệu."
+    },
+    {
+      "question": "premature optimization",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpriːməˈtʃʊr ˌɑːptɪmaɪˈzeɪʃən/",
+      "answer": "tối ưu quá sớm",
+      "explanation": "Measure first; premature optimization wastes time.\n→ Hãy đo trước, tối ưu quá sớm chỉ tốn thời gian."
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "slug": "hobbies-05-gaming",
+  "order": 155,
+  "title": "Hobbies 5 · Video Games & Esports",
+  "description": "Từ vựng trò chơi điện tử, chơi game online và esports (CEFR A2–B2).",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "gamer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡeɪmər/",
+      "answer": "game thủ",
+      "explanation": "Many developers are also gamers.\n→ Nhiều lập trình viên cũng là game thủ."
+    },
+    {
+      "question": "console",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːnsoʊl/",
+      "answer": "máy chơi game",
+      "explanation": "I play on a console, not a PC.\n→ Tôi chơi trên máy console, không phải PC."
+    },
+    {
+      "question": "controller",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈtroʊlər/",
+      "answer": "tay cầm",
+      "explanation": "My controller's battery is dead.\n→ Tay cầm của tôi hết pin."
+    },
+    {
+      "question": "level",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlevəl/",
+      "answer": "màn chơi; cấp độ",
+      "explanation": "I'm stuck on level 12.\n→ Tôi bị kẹt ở màn 12."
+    },
+    {
+      "question": "level up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˈlevəl ʌp/",
+      "answer": "lên cấp",
+      "explanation": "My character leveled up after the battle.\n→ Nhân vật của tôi lên cấp sau trận đánh."
+    },
+    {
+      "question": "quest",
+      "partOfSpeech": "noun",
+      "phonetic": "/kwest/",
+      "answer": "nhiệm vụ",
+      "explanation": "Complete the quest to unlock the map.\n→ Hoàn thành nhiệm vụ để mở khoá bản đồ."
+    },
+    {
+      "question": "boss",
+      "partOfSpeech": "noun",
+      "phonetic": "/bɔːs/",
+      "answer": "trùm (cuối màn)",
+      "explanation": "The final boss is really hard.\n→ Trùm cuối rất khó."
+    },
+    {
+      "question": "respawn",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈspɔːn/",
+      "answer": "hồi sinh",
+      "explanation": "You respawn at the last checkpoint.\n→ Bạn hồi sinh ở điểm lưu gần nhất."
+    },
+    {
+      "question": "checkpoint",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃekpɔɪnt/",
+      "answer": "điểm lưu",
+      "explanation": "The game saves at every checkpoint.\n→ Game tự lưu ở mỗi điểm lưu."
+    },
+    {
+      "question": "multiplayer",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌmʌltiˈpleɪər/",
+      "answer": "nhiều người chơi",
+      "explanation": "We play multiplayer games after work.\n→ Chúng tôi chơi game nhiều người sau giờ làm."
+    },
+    {
+      "question": "co-op",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkoʊ ɑːp/",
+      "answer": "chơi hợp tác",
+      "explanation": "This game has a great co-op mode.\n→ Game này có chế độ chơi hợp tác rất hay."
+    },
+    {
+      "question": "teammate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtiːmmeɪt/",
+      "answer": "đồng đội",
+      "explanation": "My teammate saved me at the last second.\n→ Đồng đội cứu tôi vào giây cuối."
+    },
+    {
+      "question": "match",
+      "partOfSpeech": "noun",
+      "phonetic": "/mætʃ/",
+      "answer": "trận đấu",
+      "explanation": "One match takes about 20 minutes.\n→ Một trận mất khoảng 20 phút."
+    },
+    {
+      "question": "rank",
+      "partOfSpeech": "noun",
+      "phonetic": "/ræŋk/",
+      "answer": "thứ hạng",
+      "explanation": "I finally reached Diamond rank.\n→ Cuối cùng tôi cũng lên hạng Kim Cương."
+    },
+    {
+      "question": "leaderboard",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈliːdərbɔːrd/",
+      "answer": "bảng xếp hạng",
+      "explanation": "He's at the top of the leaderboard.\n→ Anh ấy đứng đầu bảng xếp hạng."
+    },
+    {
+      "question": "skill",
+      "partOfSpeech": "noun",
+      "phonetic": "/skɪl/",
+      "answer": "kỹ năng",
+      "explanation": "The game rewards skill, not money.\n→ Game thưởng cho kỹ năng chứ không phải tiền."
+    },
+    {
+      "question": "strategy game",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstrætədʒi ɡeɪm/",
+      "answer": "game chiến thuật",
+      "explanation": "Strategy games require patience.\n→ Game chiến thuật đòi hỏi kiên nhẫn."
+    },
+    {
+      "question": "open world",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈoʊpən wɜːrld/",
+      "answer": "thế giới mở",
+      "explanation": "I love exploring open-world games.\n→ Tôi thích khám phá game thế giới mở."
+    },
+    {
+      "question": "lag",
+      "partOfSpeech": "noun",
+      "phonetic": "/læɡ/",
+      "answer": "giật, trễ mạng",
+      "explanation": "The lag made me lose the match.\n→ Mạng giật làm tôi thua trận."
+    },
+    {
+      "question": "ping",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɪŋ/",
+      "answer": "độ trễ mạng",
+      "explanation": "My ping is too high to play.\n→ Ping của tôi quá cao để chơi."
+    },
+    {
+      "question": "patch",
+      "partOfSpeech": "noun",
+      "phonetic": "/pætʃ/",
+      "answer": "bản vá",
+      "explanation": "The new patch fixed many bugs.\n→ Bản vá mới sửa nhiều lỗi."
+    },
+    {
+      "question": "update",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʌpdeɪt/",
+      "answer": "bản cập nhật",
+      "explanation": "The update is 20 GB.\n→ Bản cập nhật nặng 20 GB."
+    },
+    {
+      "question": "glitch",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡlɪtʃ/",
+      "answer": "lỗi nhỏ trong game",
+      "explanation": "A glitch let players walk through walls.\n→ Một lỗi cho phép người chơi đi xuyên tường."
+    },
+    {
+      "question": "cheat",
+      "partOfSpeech": "verb",
+      "phonetic": "/tʃiːt/",
+      "answer": "gian lận",
+      "explanation": "Players who cheat get banned.\n→ Người chơi gian lận sẽ bị khoá tài khoản."
+    },
+    {
+      "question": "nerf",
+      "partOfSpeech": "verb",
+      "phonetic": "/nɜːrf/",
+      "answer": "giảm sức mạnh (nhân vật, vũ khí)",
+      "explanation": "They nerfed my favorite hero.\n→ Họ giảm sức mạnh tướng yêu thích của tôi."
+    },
+    {
+      "question": "buff",
+      "partOfSpeech": "verb",
+      "phonetic": "/bʌf/",
+      "answer": "tăng sức mạnh",
+      "explanation": "The update buffed healers.\n→ Bản cập nhật tăng sức mạnh cho hỗ trợ hồi máu."
+    },
+    {
+      "question": "in-game purchase",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɪn ɡeɪm ˈpɜːrtʃəs/",
+      "answer": "mua vật phẩm trong game",
+      "explanation": "The game is free but has in-game purchases.\n→ Game miễn phí nhưng có mua vật phẩm trong game."
+    },
+    {
+      "question": "skin",
+      "partOfSpeech": "noun",
+      "phonetic": "/skɪn/",
+      "answer": "trang phục (nhân vật)",
+      "explanation": "I spent too much on skins.\n→ Tôi tiêu quá nhiều tiền vào trang phục."
+    },
+    {
+      "question": "esports",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈiːspɔːrts/",
+      "answer": "thể thao điện tử",
+      "explanation": "Esports is now a real career.\n→ Thể thao điện tử giờ là một nghề thực sự."
+    },
+    {
+      "question": "tournament",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʊrnəmənt/",
+      "answer": "giải đấu",
+      "explanation": "Vietnam won the regional tournament.\n→ Việt Nam vô địch giải đấu khu vực."
+    },
+    {
+      "question": "streamer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstriːmər/",
+      "answer": "người phát trực tiếp",
+      "explanation": "He's a popular game streamer.\n→ Anh ấy là streamer game nổi tiếng."
+    },
+    {
+      "question": "AFK",
+      "partOfSpeech": "abbreviation",
+      "phonetic": "/ˌeɪ ef ˈkeɪ/",
+      "answer": "rời bàn phím, treo máy",
+      "explanation": "Sorry, I was AFK for a minute.\n→ Xin lỗi, tôi treo máy một chút."
+    },
+    {
+      "question": "noob",
+      "partOfSpeech": "noun",
+      "phonetic": "/nuːb/",
+      "answer": "người mới, gà mờ",
+      "explanation": "Don't be mean to noobs.\n→ Đừng xấu tính với người mới."
+    },
+    {
+      "question": "GG",
+      "partOfSpeech": "abbreviation",
+      "phonetic": "/ˌdʒiː ˈdʒiː/",
+      "answer": "chơi hay (good game)",
+      "explanation": "GG, well played everyone!\n→ GG, mọi người chơi hay lắm!"
+    },
+    {
+      "question": "addictive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əˈdɪktɪv/",
+      "answer": "gây nghiện",
+      "explanation": "This puzzle game is very addictive.\n→ Game giải đố này rất gây nghiện."
+    },
+    {
+      "question": "game over",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡeɪm ˈoʊvər/",
+      "answer": "kết thúc, thua cuộc",
+      "explanation": "If the server goes down during the sale, it's game over.\n→ Nếu server sập lúc sale thì coi như xong."
+    }
+  ]
+}

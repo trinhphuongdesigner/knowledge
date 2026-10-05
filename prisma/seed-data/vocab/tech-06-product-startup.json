@@ -1,0 +1,311 @@
+{
+  "slug": "tech-06-product-startup",
+  "order": 106,
+  "title": "Tech English 6 · Product & Startup",
+  "description": "Từ vựng sản phẩm số và khởi nghiệp (CEFR B1–C1): MVP, roadmap, churn, funding... Dùng khi làm việc với PM, đọc tin startup và bàn về chỉ số kinh doanh.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "product manager",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːdʌkt ˈmænɪdʒər/",
+      "answer": "quản lý sản phẩm",
+      "explanation": "The product manager decides what we build next.\n→ Quản lý sản phẩm quyết định chúng ta sẽ làm gì tiếp theo."
+    },
+    {
+      "question": "roadmap",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈroʊdmæp/",
+      "answer": "lộ trình sản phẩm",
+      "explanation": "Dark mode is on the roadmap for next quarter.\n→ Chế độ tối nằm trong lộ trình quý sau."
+    },
+    {
+      "question": "MVP",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌem viː ˈpiː/",
+      "answer": "sản phẩm khả dụng tối thiểu",
+      "explanation": "We launched an MVP in six weeks to test the idea.\n→ Chúng tôi ra mắt MVP trong sáu tuần để thử ý tưởng."
+    },
+    {
+      "question": "feature request",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfiːtʃər rɪˈkwest/",
+      "answer": "yêu cầu tính năng",
+      "explanation": "We get many feature requests for an offline mode.\n→ Chúng tôi nhận nhiều yêu cầu làm chế độ offline."
+    },
+    {
+      "question": "user feedback",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjuːzər ˈfiːdbæk/",
+      "answer": "phản hồi người dùng",
+      "explanation": "User feedback showed the sign-up form was confusing.\n→ Phản hồi cho thấy form đăng ký gây khó hiểu."
+    },
+    {
+      "question": "pain point",
+      "partOfSpeech": "noun",
+      "phonetic": "/peɪn pɔɪnt/",
+      "answer": "vấn đề nhức nhối của khách hàng",
+      "explanation": "Slow checkout is the biggest pain point for our customers.\n→ Thanh toán chậm là vấn đề lớn nhất của khách hàng."
+    },
+    {
+      "question": "target audience",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtɑːrɡɪt ˈɔːdiəns/",
+      "answer": "đối tượng mục tiêu",
+      "explanation": "Our target audience is students preparing for exams.\n→ Đối tượng mục tiêu là sinh viên ôn thi."
+    },
+    {
+      "question": "persona",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈsoʊnə/",
+      "answer": "chân dung người dùng",
+      "explanation": "Design the flow for our main persona, a busy office worker.\n→ Thiết kế luồng cho chân dung chính: nhân viên văn phòng bận rộn."
+    },
+    {
+      "question": "use case",
+      "partOfSpeech": "noun",
+      "phonetic": "/juːs keɪs/",
+      "answer": "tình huống sử dụng",
+      "explanation": "The main use case is sharing flashcards with classmates.\n→ Tình huống chính là chia sẻ thẻ học với bạn cùng lớp."
+    },
+    {
+      "question": "user journey",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjuːzər ˈdʒɜːrni/",
+      "answer": "hành trình người dùng",
+      "explanation": "Map the user journey from landing page to payment.\n→ Vẽ hành trình người dùng từ trang đích đến thanh toán."
+    },
+    {
+      "question": "onboarding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːnbɔːrdɪŋ/",
+      "answer": "hướng dẫn người dùng mới",
+      "explanation": "A better onboarding flow increased activation by 20%.\n→ Luồng hướng dẫn tốt hơn tăng tỉ lệ kích hoạt 20%."
+    },
+    {
+      "question": "retention",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈtenʃən/",
+      "answer": "tỉ lệ giữ chân",
+      "explanation": "Retention matters more than downloads.\n→ Tỉ lệ giữ chân quan trọng hơn lượt tải."
+    },
+    {
+      "question": "churn",
+      "partOfSpeech": "noun",
+      "phonetic": "/tʃɜːrn/",
+      "answer": "tỉ lệ rời bỏ",
+      "explanation": "Monthly churn went up after the price increase.\n→ Tỉ lệ rời bỏ hằng tháng tăng sau khi tăng giá."
+    },
+    {
+      "question": "conversion rate",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈvɜːrʒən reɪt/",
+      "answer": "tỉ lệ chuyển đổi",
+      "explanation": "The new pricing page improved the conversion rate.\n→ Trang giá mới cải thiện tỉ lệ chuyển đổi."
+    },
+    {
+      "question": "engagement",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈɡeɪdʒmənt/",
+      "answer": "mức độ tương tác",
+      "explanation": "Daily reminders boosted engagement.\n→ Nhắc nhở hằng ngày giúp tăng mức độ tương tác."
+    },
+    {
+      "question": "metric",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmetrɪk/",
+      "answer": "chỉ số đo lường",
+      "explanation": "Pick one metric that shows real value for users.\n→ Chọn một chỉ số thể hiện giá trị thật cho người dùng."
+    },
+    {
+      "question": "KPI",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkeɪ piː ˈaɪ/",
+      "answer": "chỉ số hiệu suất chính",
+      "explanation": "Our KPI this quarter is weekly active users.\n→ KPI quý này là số người dùng hoạt động hằng tuần."
+    },
+    {
+      "question": "active user",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæktɪv ˈjuːzər/",
+      "answer": "người dùng hoạt động",
+      "explanation": "We have 10,000 monthly active users.\n→ Chúng tôi có 10.000 người dùng hoạt động hằng tháng."
+    },
+    {
+      "question": "A/B test",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌeɪ ˈbiː test/",
+      "answer": "thử nghiệm A/B",
+      "explanation": "We ran an A/B test on two button colors.\n→ Chúng tôi thử nghiệm A/B hai màu nút."
+    },
+    {
+      "question": "iterate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈɪtəreɪt/",
+      "answer": "cải tiến lặp lại",
+      "explanation": "Ship small and iterate based on data.\n→ Phát hành nhỏ rồi cải tiến dựa trên dữ liệu."
+    },
+    {
+      "question": "pivot",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈpɪvət/",
+      "answer": "chuyển hướng (mô hình kinh doanh)",
+      "explanation": "The startup pivoted from games to education.\n→ Startup đã chuyển hướng từ game sang giáo dục."
+    },
+    {
+      "question": "product-market fit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːdʌkt ˈmɑːrkɪt fɪt/",
+      "answer": "sản phẩm phù hợp thị trường",
+      "explanation": "We haven't found product-market fit yet.\n→ Chúng tôi chưa tìm được sự phù hợp sản phẩm - thị trường."
+    },
+    {
+      "question": "go-to-market",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌɡoʊ tə ˈmɑːrkɪt/",
+      "answer": "chiến lược đưa ra thị trường",
+      "explanation": "Our go-to-market plan focuses on universities.\n→ Kế hoạch ra thị trường tập trung vào các trường đại học."
+    },
+    {
+      "question": "launch",
+      "partOfSpeech": "verb",
+      "phonetic": "/lɔːntʃ/",
+      "answer": "ra mắt",
+      "explanation": "We will launch the mobile app in March.\n→ Chúng tôi sẽ ra mắt ứng dụng di động vào tháng Ba."
+    },
+    {
+      "question": "founder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfaʊndər/",
+      "answer": "nhà sáng lập",
+      "explanation": "The founder still writes code every day.\n→ Nhà sáng lập vẫn viết code mỗi ngày."
+    },
+    {
+      "question": "co-founder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkoʊ ˈfaʊndər/",
+      "answer": "đồng sáng lập",
+      "explanation": "She is looking for a technical co-founder.\n→ Cô ấy đang tìm một đồng sáng lập kỹ thuật."
+    },
+    {
+      "question": "funding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfʌndɪŋ/",
+      "answer": "vốn đầu tư",
+      "explanation": "The company raised $2 million in funding.\n→ Công ty huy động được 2 triệu đô vốn đầu tư."
+    },
+    {
+      "question": "investor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈvestər/",
+      "answer": "nhà đầu tư",
+      "explanation": "Investors want to see strong growth.\n→ Nhà đầu tư muốn thấy tăng trưởng mạnh."
+    },
+    {
+      "question": "seed round",
+      "partOfSpeech": "noun",
+      "phonetic": "/siːd raʊnd/",
+      "answer": "vòng gọi vốn hạt giống",
+      "explanation": "They closed their seed round last month.\n→ Họ đã chốt vòng gọi vốn hạt giống tháng trước."
+    },
+    {
+      "question": "valuation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌvæljuˈeɪʃən/",
+      "answer": "định giá",
+      "explanation": "The startup's valuation doubled in a year.\n→ Định giá của startup tăng gấp đôi trong một năm."
+    },
+    {
+      "question": "revenue",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrevənuː/",
+      "answer": "doanh thu",
+      "explanation": "Most of our revenue comes from subscriptions.\n→ Phần lớn doanh thu đến từ gói đăng ký."
+    },
+    {
+      "question": "profit margin",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːfɪt ˈmɑːrdʒɪn/",
+      "answer": "biên lợi nhuận",
+      "explanation": "Software has a high profit margin.\n→ Phần mềm có biên lợi nhuận cao."
+    },
+    {
+      "question": "burn rate",
+      "partOfSpeech": "noun",
+      "phonetic": "/bɜːrn reɪt/",
+      "answer": "tốc độ đốt tiền",
+      "explanation": "With this burn rate, we have twelve months of runway.\n→ Với tốc độ đốt tiền này, chúng tôi còn đủ tiền chạy mười hai tháng."
+    },
+    {
+      "question": "runway",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrʌnweɪ/",
+      "answer": "thời gian còn trụ được (bằng tiền hiện có)",
+      "explanation": "We need to extend our runway before the next round.\n→ Cần kéo dài thời gian trụ được trước vòng gọi vốn tới."
+    },
+    {
+      "question": "freemium",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfriːmiəm/",
+      "answer": "mô hình miễn phí cơ bản, trả phí nâng cao",
+      "explanation": "We use a freemium model with a paid Pro plan.\n→ Chúng tôi dùng mô hình freemium với gói Pro trả phí."
+    },
+    {
+      "question": "pricing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpraɪsɪŋ/",
+      "answer": "chính sách giá",
+      "explanation": "We changed our pricing to monthly and yearly plans.\n→ Chúng tôi đổi chính sách giá sang gói tháng và năm."
+    },
+    {
+      "question": "competitor",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəmˈpetɪtər/",
+      "answer": "đối thủ cạnh tranh",
+      "explanation": "Our main competitor just released a similar feature.\n→ Đối thủ chính vừa ra tính năng tương tự."
+    },
+    {
+      "question": "stakeholder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsteɪkhoʊldər/",
+      "answer": "các bên liên quan",
+      "explanation": "Share the demo with all stakeholders on Friday.\n→ Chia sẻ bản demo với các bên liên quan vào thứ Sáu."
+    },
+    {
+      "question": "prioritize",
+      "partOfSpeech": "verb",
+      "phonetic": "/praɪˈɔːrətaɪz/",
+      "answer": "ưu tiên",
+      "explanation": "We prioritize bugs that block payments.\n→ Chúng tôi ưu tiên các lỗi chặn thanh toán."
+    },
+    {
+      "question": "backlog",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbæklɔːɡ/",
+      "answer": "danh sách việc tồn",
+      "explanation": "The backlog has more than 200 tickets.\n→ Danh sách việc tồn có hơn 200 ticket."
+    },
+    {
+      "question": "scope creep",
+      "partOfSpeech": "noun",
+      "phonetic": "/skoʊp kriːp/",
+      "answer": "phạm vi phình dần",
+      "explanation": "Scope creep delayed the release by a month.\n→ Phạm vi phình dần khiến bản phát hành trễ một tháng."
+    },
+    {
+      "question": "beta",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbeɪtə/",
+      "answer": "bản thử nghiệm beta",
+      "explanation": "Join the beta to try new features early.\n→ Tham gia bản beta để dùng thử tính năng mới sớm."
+    },
+    {
+      "question": "early adopter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɜːrli əˈdɑːptər/",
+      "answer": "người dùng sớm",
+      "explanation": "Early adopters forgive bugs if the idea is great.\n→ Người dùng sớm bỏ qua lỗi nếu ý tưởng hay."
+    }
+  ]
+}

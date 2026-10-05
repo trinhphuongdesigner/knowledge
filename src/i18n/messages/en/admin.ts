@@ -66,7 +66,7 @@ const admin = {
   aiProviders: {
     title: "AI providers",
     desc: "API keys used for AI suggestions. Keys are tried top to bottom; when one runs out of tokens, is rate limited or fails, it is paused and the next one takes over. When every key is unavailable, users see that the AI system is under maintenance.",
-    noEncryptionKey: "AI_ENCRYPTION_KEY is not set on the server, so API keys cannot be saved or used. Generate one with \"openssl rand -hex 32\", add it to the environment and redeploy. Do not change it later, or saved keys can no longer be decrypted.",
+    noEncryptionKey: "AI_ENCRYPTION_KEY is not set on the server, so API keys cannot be saved or used. Generate one with node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\", add it to the environment and redeploy. Do not change it later, or saved keys can no longer be decrypted.",
     statusReady: "AI is working: {ready}/{total} keys ready",
     statusMaintenance: "AI is under maintenance: every key is failing or paused",
     statusAllOff: "AI is off: every key is disabled",

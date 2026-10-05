@@ -1,0 +1,85 @@
+{
+  "slug": "interview-be-07-auth-security",
+  "order": 207,
+  "title": "Phỏng vấn Backend · Authentication & Security",
+  "description": "Câu hỏi phỏng vấn về xác thực, phân quyền, JWT, OAuth2/OIDC, lưu mật khẩu, OWASP Top 10 (SQLi, XSS, CSRF, SSRF). Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "What is the difference between authentication and authorization? / Authentication và authorization khác nhau thế nào?",
+      "answer": "- **Authentication (AuthN)**: xác minh **bạn là ai** (mật khẩu, OTP, passkey, OAuth).\n- **Authorization (AuthZ)**: xác định **bạn được làm gì** (RBAC theo vai trò, ABAC theo thuộc tính, ReBAC theo quan hệ).\n- AuthN lỗi → `401`; AuthZ lỗi → `403`.",
+      "explanation": "**Authentication** verifies **who you are**; **authorization** decides **what you may do** (RBAC, ABAC, ReBAC). AuthN failure → `401`; AuthZ failure → `403`."
+    },
+    {
+      "question": "Session-based auth vs JWT — pros and cons? / Session và JWT — ưu nhược điểm?",
+      "answer": "- **Session**: server lưu state (Redis), client giữ session id trong cookie. Ưu: **thu hồi tức thì**, payload nhỏ. Nhược: cần store chung giữa các instance.\n- **JWT**: token tự chứa claim, ký số, server **stateless** verify. Ưu: không cần tra DB, hợp service-to-service. Nhược: **khó thu hồi** trước khi hết hạn, token to, dễ bị dùng sai (lưu localStorage → XSS lấy được).\n- Thực tế: **access token JWT ngắn hạn (5–15 phút) + refresh token** lưu server-side, có rotation.",
+      "explanation": "**Sessions** keep state server-side (e.g. Redis) with an id cookie — instant revocation, small cookies, but shared storage needed. **JWTs** are self-contained signed tokens verified statelessly — no DB lookup, but hard to revoke, larger, and risky in localStorage. Common compromise: short-lived JWT access tokens plus server-tracked, rotating refresh tokens."
+    },
+    {
+      "question": "How should passwords be stored? / Mật khẩu nên được lưu thế nào?",
+      "answer": "- **Không bao giờ** lưu plaintext hay mã hoá hai chiều; không dùng MD5/SHA-256 trần (quá nhanh → brute-force GPU).\n- Dùng hàm hash **chậm, có salt**: **Argon2id** (khuyến nghị), bcrypt (cost ≥ 12), scrypt.\n- Salt ngẫu nhiên mỗi user (thư viện tự lo). Có thể thêm **pepper** lưu ngoài DB.\n- Kèm: rate limit đăng nhập, khoá tạm thời, kiểm tra mật khẩu đã lộ (HaveIBeenPwned), hỗ trợ MFA.",
+      "explanation": "Never store plaintext or reversible encryption, and never plain fast hashes like MD5 or SHA-256. Use a slow, salted algorithm — **Argon2id**, bcrypt (cost ≥ 12) or scrypt — optionally with a pepper kept outside the DB. Add login rate limiting, breached-password checks and MFA."
+    },
+    {
+      "question": "Explain the OAuth 2.0 Authorization Code flow with PKCE. / Giải thích luồng OAuth 2.0 Authorization Code với PKCE.",
+      "answer": "1. Client tạo `code_verifier` ngẫu nhiên, tính `code_challenge = SHA256(verifier)`.\n2. Chuyển hướng user tới authorization server kèm `client_id`, `redirect_uri`, `scope`, `state` (chống CSRF), `code_challenge`.\n3. User đăng nhập, đồng ý → redirect về với `code`.\n4. Client đổi `code` + `code_verifier` lấy **access token** (+ refresh token, id_token nếu OIDC).\nPKCE ngăn kẻ chặn được `code` đem đi đổi token. Hiện là **khuyến nghị cho mọi client**, kể cả SPA và mobile. Implicit flow đã lỗi thời.",
+      "explanation": "The client creates a random `code_verifier` and its SHA-256 `code_challenge`, redirects the user with client id, redirect URI, scopes, a `state` value and the challenge; after consent it receives a `code` and exchanges it plus the verifier for tokens. PKCE stops intercepted codes from being redeemed. It's recommended for all clients; the implicit flow is obsolete."
+    },
+    {
+      "question": "What is the difference between OAuth 2.0 and OpenID Connect? / OAuth 2.0 và OpenID Connect khác nhau thế nào?",
+      "answer": "- **OAuth 2.0** là giao thức **uỷ quyền**: cấp access token để gọi API thay mặt user. Không định nghĩa \"user là ai\".\n- **OIDC** là lớp **xác thực** trên OAuth 2.0: thêm **ID Token (JWT)** chứa thông tin user (`sub`, `email`), endpoint `userinfo`, discovery. \"Đăng nhập bằng Google\" là OIDC.",
+      "explanation": "**OAuth 2.0** is for **delegated authorization** — access tokens to call APIs on a user's behalf — and says nothing about identity. **OpenID Connect** adds **authentication** on top: an ID token (JWT) with user claims, a userinfo endpoint and discovery. \"Sign in with Google\" is OIDC."
+    },
+    {
+      "question": "How do you securely validate a JWT? / Validate JWT an toàn thế nào?",
+      "answer": "- Kiểm tra **chữ ký** bằng key đúng; **cố định thuật toán** cho phép (chặn `alg: none` và nhầm lẫn HS256/RS256).\n- Kiểm tra `exp`, `nbf`, `iss`, `aud`.\n- Dùng **JWKS** với `kid` để xoay vòng key (RS256/ES256 cho hệ nhiều service).\n- Không để dữ liệu nhạy cảm trong payload (chỉ là base64, ai cũng đọc được).\n- Thu hồi: access token ngắn hạn, hoặc denylist `jti`.",
+      "explanation": "Verify the **signature** with the right key and an **allow-listed algorithm** (reject `none` and HS/RS confusion); check `exp`, `nbf`, `iss` and `aud`; rotate keys via JWKS and `kid`; keep secrets out of the payload since it's only base64; revoke via short lifetimes or a `jti` denylist."
+    },
+    {
+      "question": "Where should a web app store tokens — localStorage or cookies? / Web app nên lưu token ở đâu — localStorage hay cookie?",
+      "answer": "- **localStorage**: JS đọc được → bị **XSS** đánh cắp token.\n- **Cookie `HttpOnly; Secure; SameSite=Lax/Strict`**: JS không đọc được, giảm rủi ro XSS; cần phòng **CSRF** (SameSite + CSRF token cho thao tác nhạy cảm).\n- Khuyến nghị: refresh token/session trong cookie HttpOnly; access token ngắn hạn trong bộ nhớ (biến JS) nếu cần. Mẫu **BFF** (backend-for-frontend) giữ token phía server.",
+      "explanation": "**localStorage** is readable by JS, so XSS can steal tokens. **HttpOnly, Secure, SameSite** cookies are out of JS's reach but need CSRF defenses. Prefer refresh tokens or sessions in HttpOnly cookies, short-lived access tokens in memory, or a **BFF** that keeps tokens server-side."
+    },
+    {
+      "question": "What is SQL injection and how do you prevent it? / SQL injection là gì và phòng chống thế nào?",
+      "answer": "Kẻ tấn công chèn SQL qua input khi query được **nối chuỗi**: `\"... WHERE email = '\" + input + \"'\"` với input `' OR 1=1 --`.\n**Phòng**:\n- **Parameterized query / prepared statement** (`WHERE email = $1`) — biện pháp chính.\n- Dùng ORM/query builder đúng cách (cẩn thận với `$queryRawUnsafe`, raw string).\n- Whitelist cho tên cột/bảng động (ORDER BY).\n- DB user **quyền tối thiểu**.",
+      "explanation": "SQL injection happens when input is **concatenated** into SQL, e.g. `' OR 1=1 --`. Prevent it with **parameterized queries**, careful ORM use (avoid unsafe raw queries), allow-lists for dynamic identifiers like sort columns, and least-privilege DB users."
+    },
+    {
+      "question": "What is XSS and how do you prevent it? / XSS là gì và phòng chống thế nào?",
+      "answer": "Chèn **script độc** vào trang người khác xem: **Stored** (lưu DB, vd. comment), **Reflected** (qua URL), **DOM-based**.\n**Phòng**:\n- **Escape output** theo ngữ cảnh (React tự escape; tránh `dangerouslySetInnerHTML`, `innerHTML`).\n- Sanitize HTML do user nhập (DOMPurify).\n- **Content-Security-Policy** chặn inline script, giới hạn nguồn.\n- Cookie `HttpOnly`.",
+      "explanation": "XSS injects malicious script into pages others view — stored, reflected or DOM-based. Prevent it with context-aware **output escaping** (React escapes by default; avoid raw HTML APIs), HTML sanitization like DOMPurify, a strict **Content-Security-Policy**, and HttpOnly cookies."
+    },
+    {
+      "question": "What is CSRF and how do you prevent it? / CSRF là gì và phòng chống thế nào?",
+      "answer": "Trang độc khiến trình duyệt của nạn nhân gửi request tới site bạn **kèm cookie** đăng nhập (vd. form tự submit chuyển tiền).\n**Phòng**:\n- Cookie **`SameSite=Lax`/`Strict`** (mặc định Lax ở trình duyệt hiện đại).\n- **CSRF token** (synchronizer hoặc double-submit cookie).\n- Kiểm tra header `Origin`/`Referer`.\n- GET không bao giờ thay đổi state.\n- API chỉ dùng `Authorization: Bearer` (không cookie) thì không bị CSRF.",
+      "explanation": "CSRF tricks a victim's browser into sending an authenticated request with their cookies. Defenses: `SameSite` cookies, CSRF tokens, checking `Origin`/`Referer`, never mutating state on GET. APIs authenticated only by bearer headers are not CSRF-prone."
+    },
+    {
+      "question": "What is SSRF? / SSRF là gì?",
+      "answer": "**Server-Side Request Forgery**: kẻ tấn công khiến server của bạn gửi request tới địa chỉ họ chọn (tính năng \"nhập URL để lấy ảnh/preview\"), từ đó truy cập **mạng nội bộ** hoặc **cloud metadata** (`169.254.169.254` → lấy credential IAM).\n**Phòng**: whitelist domain, resolve DNS và **chặn IP private/link-local** (kiểm tra sau redirect, chống DNS rebinding), dùng egress proxy, bật **IMDSv2** trên AWS.",
+      "explanation": "SSRF makes your server fetch attacker-chosen URLs (e.g. \"preview this link\"), reaching internal services or **cloud metadata** to steal credentials. Defend with allow-lists, resolving DNS and blocking private and link-local IPs (re-checking after redirects), egress proxies, and IMDSv2 on AWS."
+    },
+    {
+      "question": "What is IDOR / Broken Object Level Authorization? / IDOR / Broken Object Level Authorization là gì?",
+      "answer": "API chỉ kiểm tra \"đã đăng nhập\" mà **không kiểm tra quyền sở hữu** đối tượng: `GET /api/invoices/1002` → đổi thành `1003` xem được hoá đơn người khác. Là lỗi **số 1 trong OWASP API Top 10**.\n**Phòng**: mọi truy vấn lọc theo chủ sở hữu (`WHERE id = ? AND user_id = ?`), kiểm tra quyền ở **tầng service** tập trung, test tự động cho phân quyền. ID khó đoán (UUID) chỉ là lớp phụ, không thay thế kiểm tra quyền.",
+      "explanation": "IDOR is when an API checks login but not **ownership**, so changing an id exposes another user's data — #1 in the OWASP API Top 10. Scope every query by owner, enforce authorization centrally, and test it; unguessable ids help but never replace checks."
+    },
+    {
+      "question": "How do you manage secrets (API keys, DB passwords)? / Quản lý secret (API key, mật khẩu DB) thế nào?",
+      "answer": "- **Không commit** vào git (dùng `.env` ngoài repo, secret scanning như gitleaks, GitHub push protection).\n- Dùng **secret manager**: AWS Secrets Manager, GCP Secret Manager, Vault, Doppler; K8s Secret + External Secrets/Sealed Secrets.\n- **Quyền tối thiểu**, **xoay vòng** định kỳ, ưu tiên credential ngắn hạn (IAM role, OIDC federation cho CI thay vì key tĩnh).\n- Không log secret; lộ thì **thu hồi ngay**, không chỉ xoá commit.",
+      "explanation": "Never commit secrets — use env files outside git and secret scanning. Store them in a **secrets manager** (cloud, Vault, External Secrets for K8s), grant least privilege, rotate regularly, and prefer short-lived credentials such as IAM roles or OIDC federation in CI. Never log them; if leaked, **revoke immediately**."
+    },
+    {
+      "question": "What security headers should a web app send? / Web app nên gửi những security header nào?",
+      "answer": "- `Strict-Transport-Security` (HSTS): ép HTTPS.\n- `Content-Security-Policy`: giới hạn nguồn script/style, chống XSS.\n- `X-Content-Type-Options: nosniff`.\n- `X-Frame-Options: DENY` hoặc CSP `frame-ancestors` chống clickjacking.\n- `Referrer-Policy: strict-origin-when-cross-origin`.\n- `Permissions-Policy` tắt API không dùng (camera, geolocation).",
+      "explanation": "Send HSTS to force HTTPS, a Content-Security-Policy, `X-Content-Type-Options: nosniff`, `frame-ancestors` or `X-Frame-Options` against clickjacking, a sensible `Referrer-Policy`, and a `Permissions-Policy` that disables unused browser features."
+    },
+    {
+      "question": "How do you implement RBAC and when is it not enough? / Triển khai RBAC thế nào và khi nào RBAC không đủ?",
+      "answer": "**RBAC**: user → role (admin, editor, viewer) → permission (`post:update`). Kiểm tra permission, không kiểm tra tên role trực tiếp trong code.\n**Không đủ khi** quyền phụ thuộc thuộc tính/quan hệ: \"chỉ sửa bài **của mình**\", \"xem tài liệu được **chia sẻ** với team\", \"chỉ trong giờ hành chính\".\n→ **ABAC** (theo thuộc tính) hoặc **ReBAC** (theo quan hệ, kiểu Google Zanzibar — OpenFGA, SpiceDB). Có thể dùng policy engine như OPA/Cedar.",
+      "explanation": "RBAC maps users to roles and roles to permissions; code should check permissions, not role names. It falls short when access depends on attributes or relationships — editing only your own posts, documents shared with your team, time-based rules — which call for **ABAC** or **ReBAC** (Zanzibar-style: OpenFGA, SpiceDB) or a policy engine like OPA or Cedar."
+    }
+  ]
+}

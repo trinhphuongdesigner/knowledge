@@ -1,0 +1,70 @@
+{
+  "slug": "interview-be-09-system-design",
+  "order": 209,
+  "title": "Phỏng vấn Backend · System Design",
+  "description": "Các bài system design kinh điển (URL shortener, rate limiter, chat, news feed, notification…) và khung trả lời. Đáp án tóm tắt song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "What framework do you use to answer a system design question? / Bạn dùng khung nào để trả lời câu hỏi system design?",
+      "answer": "1. **Làm rõ yêu cầu**: chức năng chính, phi chức năng (độ trễ, tính sẵn sàng, nhất quán).\n2. **Ước lượng**: DAU, QPS đọc/ghi, dung lượng lưu trữ, băng thông.\n3. **API** và **mô hình dữ liệu**.\n4. **Thiết kế tổng thể**: client → LB → service → cache → DB → queue.\n5. **Đi sâu** vào phần khó nhất (scale, bottleneck).\n6. **Đánh đổi**, điểm lỗi đơn, giám sát, mở rộng tương lai.\nNói to suy nghĩ, chủ động nêu trade-off.",
+      "explanation": "1) Clarify functional and non-functional requirements. 2) Estimate users, read/write QPS, storage and bandwidth. 3) Define the API and data model. 4) Sketch the high-level design. 5) Deep-dive into the hardest parts. 6) Discuss trade-offs, single points of failure, monitoring and evolution. Think aloud and surface trade-offs proactively."
+    },
+    {
+      "question": "Design a URL shortener (like bit.ly). / Thiết kế dịch vụ rút gọn URL (như bit.ly).",
+      "answer": "- **API**: `POST /urls {longUrl}` → `shortCode`; `GET /{code}` → `301/302` redirect.\n- **Sinh code**: base62 của ID tăng dần (counter phân đoạn hoặc Snowflake) → 7 ký tự ≈ 3.500 tỷ; hoặc hash + xử lý va chạm.\n- **Lưu trữ**: bảng `code → long_url, created_at, expires_at` (KV store hoặc Postgres).\n- **Đọc ≫ ghi** (100:1) → cache Redis + CDN cho redirect.\n- `301` giảm tải nhưng mất analytics; `302` để đếm click (ghi async qua queue).\n- Chống lạm dụng: rate limit, quét URL độc hại.",
+      "explanation": "API: create a short code and redirect via `GET /{code}`. Generate codes by base62-encoding a unique ID (7 chars ≈ 3.5 trillion) or hashing with collision checks. Store `code → url` in a KV store or Postgres. Reads dominate, so cache in Redis and at the edge. `301` saves load but hides analytics; `302` lets you count clicks asynchronously. Add rate limits and malicious-URL scanning."
+    },
+    {
+      "question": "Design a rate limiter for a distributed API. / Thiết kế rate limiter cho API phân tán.",
+      "answer": "- **Vị trí**: API gateway/middleware.\n- **Thuật toán**: token bucket (cho burst) hoặc sliding window counter.\n- **Lưu trạng thái**: Redis, thao tác atomic bằng **Lua script** (đọc + cập nhật + set TTL một lần).\n- **Quy tắc**: theo user/API key/IP/endpoint, cấu hình động.\n- **Phản hồi**: `429` + `Retry-After`, header `RateLimit-*`.\n- **Độ trễ**: Redis cùng region; khi Redis lỗi → **fail open** (cho qua) hoặc fail closed tuỳ mức nhạy cảm; có thể dùng bộ đếm local + đồng bộ định kỳ.",
+      "explanation": "Place it in the gateway or middleware, use token bucket or a sliding-window counter, keep state in Redis updated atomically via Lua, key rules by user, key, IP or endpoint, respond `429` with `Retry-After`, keep Redis close for latency, and decide whether to fail open or closed when Redis is down."
+    },
+    {
+      "question": "Design a chat application like Messenger. / Thiết kế ứng dụng chat như Messenger.",
+      "answer": "- **Kết nối**: **WebSocket** tới chat server (stateful); presence service lưu user ↔ server trong Redis.\n- **Gửi tin**: client → chat server → lưu DB → tra server của người nhận → đẩy qua pub/sub (Redis/Kafka) → WebSocket. Offline → **push notification**.\n- **Lưu trữ**: Cassandra/ScyllaDB partition theo `conversation_id`, cluster theo `message_id` (thời gian) — ghi nhiều, đọc theo khoảng.\n- **Thứ tự**: ID tăng theo conversation; client khử trùng theo `client_msg_id`.\n- Đã gửi/đã nhận/đã xem, nhóm chat (fan-out), mã hoá đầu cuối.",
+      "explanation": "Clients hold **WebSockets** to stateful chat servers; a presence service maps users to servers in Redis. Messages are persisted, then routed via pub/sub to the recipient's server, or sent as push notifications when offline. Store messages in a wide-column DB partitioned by conversation and ordered by time-sortable IDs; dedupe with client message IDs. Cover receipts, group fan-out and end-to-end encryption."
+    },
+    {
+      "question": "Design a news feed (like Facebook/Twitter timeline). / Thiết kế news feed (như timeline Facebook/Twitter).",
+      "answer": "- **Fan-out on write (push)**: khi đăng bài, ghi post ID vào feed cache (Redis list/ZSET) của từng follower → đọc cực nhanh. Vấn đề: người nổi tiếng có hàng triệu follower.\n- **Fan-out on read (pull)**: khi mở feed mới gom bài từ người mình theo dõi → ghi rẻ, đọc chậm.\n- **Hybrid**: push cho user thường, **pull cho celebrity** rồi merge lúc đọc.\n- Ranking (ML hoặc theo thời gian), phân trang bằng cursor, lưu bài trong DB + media trên object storage/CDN.",
+      "explanation": "**Fan-out on write** pushes post IDs into each follower's cached feed for fast reads but explodes for celebrities. **Fan-out on read** assembles feeds at read time — cheap writes, slow reads. Use a **hybrid**: push for normal users, pull for celebrities and merge. Add ranking, cursor pagination, and media on object storage behind a CDN."
+    },
+    {
+      "question": "Design a notification system (email, SMS, push). / Thiết kế hệ thống thông báo (email, SMS, push).",
+      "answer": "- Các service gọi **Notification API** → validate, kiểm tra **preference/opt-out** của user, template + i18n.\n- Đẩy vào **queue theo kênh** (email, SMS, push) → worker gọi provider (SES, Twilio, FCM/APNs).\n- **Retry + DLQ**, failover provider, **idempotency** (không gửi trùng), rate limit theo user (không spam).\n- Lưu log trạng thái gửi/nhận/mở; thông báo theo lịch, gộp (digest), quiet hours theo múi giờ.",
+      "explanation": "Services call a **notification API** that validates, checks user preferences and opt-outs, and renders templates. Messages go to **per-channel queues**; workers call providers (SES, Twilio, FCM/APNs) with retries, DLQs and provider failover. Ensure idempotency, per-user rate limits, delivery tracking, scheduling, digests and quiet hours."
+    },
+    {
+      "question": "Design a file storage/sharing service like Google Drive. / Thiết kế dịch vụ lưu trữ/chia sẻ file như Google Drive.",
+      "answer": "- File lưu trên **object storage** (S3); metadata (tên, thư mục, quyền, version) trong DB.\n- Upload: client xin **presigned URL** rồi upload thẳng lên S3 (không đi qua server); file lớn dùng **multipart upload**, resume được.\n- Đồng bộ: chia file thành **chunk** + hash → chỉ upload chunk thay đổi, **dedup** theo hash.\n- Chia sẻ: ACL/link có token; tải xuống qua CDN với signed URL ngắn hạn.\n- Quét virus, quota, versioning, thông báo thay đổi qua WebSocket/long poll.",
+      "explanation": "Store blobs in **object storage** and metadata (paths, permissions, versions) in a DB. Clients upload directly via **presigned URLs**, with **multipart, resumable** uploads for big files. Sync by chunking and hashing so only changed chunks upload, with hash-based dedup. Share via ACLs or tokenized links and serve downloads via CDN signed URLs. Add virus scanning, quotas, versioning and change notifications."
+    },
+    {
+      "question": "Design a web crawler. / Thiết kế web crawler.",
+      "answer": "- **URL frontier**: hàng đợi ưu tiên, phân theo host để **lịch sự** (rate limit mỗi domain, tôn trọng `robots.txt`).\n- Worker: DNS resolve (có cache) → tải trang → parse → trích link → chuẩn hoá URL.\n- **Khử trùng**: Bloom filter cho URL đã thấy; hash nội dung (simhash) phát hiện trang trùng.\n- Lưu HTML trên object storage, metadata trong DB.\n- Tránh **bẫy crawler** (URL vô hạn, lịch), giới hạn độ sâu; scale ngang theo partition host.",
+      "explanation": "A prioritized **URL frontier** partitioned by host enforces politeness and `robots.txt`. Workers resolve DNS (cached), fetch, parse and normalize links. Deduplicate URLs with a Bloom filter and content with simhash. Store pages in object storage, avoid crawler traps with depth limits, and scale by host partition."
+    },
+    {
+      "question": "Design a ride-hailing system like Grab. / Thiết kế hệ thống gọi xe như Grab.",
+      "answer": "- Tài xế gửi **vị trí** mỗi 3–5 giây → location service lưu vị trí mới nhất trong bộ nhớ/Redis với **geo index** (geohash, H3, quadtree, Redis GEO).\n- Đặt xe: tìm tài xế rảnh trong bán kính → **matching service** gửi lời mời lần lượt/song song, khoá tài xế khi nhận (tránh ghép 2 chuyến).\n- Trạng thái chuyến là **state machine** (requested → accepted → arrived → in_trip → completed), lưu DB.\n- Giá (surge theo cung-cầu khu vực), ETA (dịch vụ bản đồ), thanh toán, WebSocket cập nhật realtime.",
+      "explanation": "Drivers send **locations** every few seconds to a location service backed by a **geo index** (geohash, H3, Redis GEO). A matching service finds nearby available drivers, offers the trip and locks the driver on accept. Trips follow a **state machine** persisted in the DB. Add surge pricing, ETA from a maps service, payments and real-time updates over WebSockets."
+    },
+    {
+      "question": "How do you estimate capacity (back-of-the-envelope)? / Ước lượng dung lượng (back-of-the-envelope) thế nào?",
+      "answer": "Ví dụ: 10 triệu DAU, mỗi user 10 request/ngày.\n- **QPS trung bình** = 100 triệu / 86.400 ≈ **1.200 QPS**; **đỉnh** ×2–3 ≈ 3.000 QPS.\n- **Lưu trữ**: 1 triệu bài/ngày × 1KB = 1GB/ngày ≈ 365GB/năm (chưa tính media, replica ×3).\n- Mốc cần nhớ: đọc RAM ~100ns, SSD ~100µs, round-trip trong datacenter ~0.5ms, xuyên lục địa ~150ms; một server ứng dụng xử lý vài nghìn QPS đơn giản.",
+      "explanation": "Example: 10M DAU × 10 requests = 100M/day ≈ **1,200 QPS** average, ~3,000 at peak. Storage: 1M posts/day × 1 KB ≈ 1 GB/day ≈ 365 GB/year before media and replication. Useful numbers: RAM ~100 ns, SSD ~100 µs, in-datacenter round trip ~0.5 ms, cross-continent ~150 ms."
+    },
+    {
+      "question": "Design a \"flash sale\" system that won't oversell. / Thiết kế hệ thống flash sale không bán vượt tồn kho.",
+      "answer": "- **Chặn tải ở biên**: CDN cho trang tĩnh, hàng đợi ảo (waiting room), rate limit, captcha chống bot.\n- **Giữ tồn kho trong Redis**: `DECR` atomic (hoặc Lua kiểm tra ≥ 0) → nhanh, không oversell.\n- Thành công → đẩy **đơn vào queue**, worker tạo đơn trong DB (kiểm tra lại bằng `UPDATE ... WHERE stock > 0`).\n- **Giữ chỗ có thời hạn** (reservation TTL 10 phút); không thanh toán → hoàn tồn kho.\n- Idempotency theo user + sản phẩm (mỗi người một suất).",
+      "explanation": "Shed load at the edge (CDN, virtual waiting room, rate limits, bot protection). Keep stock in Redis and decrement atomically so you never oversell. On success, enqueue the order and let workers persist it with a guarded `UPDATE ... WHERE stock > 0`. Use time-limited reservations that release unpaid stock, and enforce one purchase per user idempotently."
+    },
+    {
+      "question": "How would you design search autocomplete (typeahead)? / Thiết kế gợi ý tìm kiếm (autocomplete) thế nào?",
+      "answer": "- Dữ liệu: tần suất các truy vấn (thu thập log → job batch tổng hợp hằng giờ/ngày).\n- Cấu trúc: **Trie** mà mỗi node lưu sẵn **top-K** gợi ý → tra cứu O(độ dài prefix); hoặc Elasticsearch `completion suggester`/edge n-gram; hoặc Redis ZSET theo prefix.\n- Phục vụ: cache mạnh (prefix ngắn rất hot), CDN; client **debounce** ~150ms, hủy request cũ.\n- Lọc nội dung không phù hợp, cá nhân hoá, đa ngôn ngữ (bỏ dấu tiếng Việt).",
+      "explanation": "Aggregate query frequencies from logs in batch jobs. Serve from a **trie whose nodes store precomputed top-K suggestions**, or Elasticsearch completion/edge n-grams, or Redis sorted sets per prefix. Cache aggressively, debounce on the client and cancel stale requests. Filter inappropriate terms, personalize, and normalize accents."
+    }
+  ]
+}

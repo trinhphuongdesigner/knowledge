@@ -1,0 +1,85 @@
+{
+  "slug": "interview-be-02-nodejs-runtime",
+  "order": 202,
+  "title": "Phỏng vấn Backend · Node.js Runtime & Event Loop",
+  "description": "Câu hỏi phỏng vấn về Node.js: event loop, async, streams, worker threads, memory leak, cluster. Đáp án song ngữ Việt – Anh.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "Explain the Node.js event loop. / Giải thích event loop trong Node.js.",
+      "answer": "Node chạy JS trên **một thread**, I/O được giao cho OS/libuv thread pool. Event loop lặp qua các phase:\n1. **timers** (`setTimeout`, `setInterval`)\n2. **pending callbacks**\n3. **poll** (lấy I/O event mới, chạy callback I/O)\n4. **check** (`setImmediate`)\n5. **close callbacks**\nGiữa mỗi callback, Node chạy hết **microtask**: `process.nextTick` trước, rồi Promise.",
+      "explanation": "Node runs JS on **one thread** and offloads I/O to the OS or libuv's thread pool. The loop cycles through phases: **timers**, **pending callbacks**, **poll** (I/O), **check** (`setImmediate`), **close callbacks**. After each callback it drains **microtasks**: `process.nextTick` first, then Promise callbacks."
+    },
+    {
+      "question": "What is the output order of setTimeout, setImmediate, process.nextTick and Promise.then? / Thứ tự chạy của setTimeout, setImmediate, process.nextTick và Promise.then là gì?",
+      "answer": "Trong code đồng bộ ở main module:\n1. Code đồng bộ\n2. `process.nextTick`\n3. `Promise.then` (microtask)\n4. `setTimeout(fn, 0)` và `setImmediate` — **thứ tự không xác định** ở main module (phụ thuộc thời gian khởi động).\nNhưng **bên trong một I/O callback**, `setImmediate` luôn chạy trước `setTimeout(0)` vì phase check đến ngay sau poll.",
+      "explanation": "From the main module: sync code, then `process.nextTick`, then Promise microtasks, then `setTimeout(0)` and `setImmediate` in **non-deterministic** order. **Inside an I/O callback**, `setImmediate` always runs before `setTimeout(0)` because the check phase follows poll."
+    },
+    {
+      "question": "Is Node.js single-threaded? / Node.js có phải đơn luồng không?",
+      "answer": "**JS của bạn** chạy trên 1 thread (main thread), nhưng Node **không hoàn toàn đơn luồng**:\n- **libuv thread pool** (mặc định 4, chỉnh bằng `UV_THREADPOOL_SIZE`) xử lý fs, DNS lookup, crypto, zlib.\n- Network I/O dùng cơ chế non-blocking của OS (epoll/kqueue/IOCP).\n- V8 có thread riêng cho GC, JIT.\n- Có thể tạo thread JS bằng **worker_threads**.",
+      "explanation": "**Your JavaScript** runs on one main thread, but Node isn't purely single-threaded: libuv's thread pool (default 4) handles fs, DNS lookup, crypto and zlib; network I/O uses OS async primitives; V8 has GC and JIT threads; and you can spawn JS threads with **worker_threads**."
+    },
+    {
+      "question": "How do you handle CPU-intensive work in Node.js? / Xử lý tác vụ nặng CPU trong Node.js thế nào?",
+      "answer": "CPU-bound (hash ảnh, nén, tính toán lớn) sẽ **block event loop** → mọi request khác bị treo.\n- **worker_threads** (hoặc thư viện Piscina) chạy song song trong cùng process.\n- **child_process**/tách thành service riêng (Go, Rust).\n- Đẩy vào **job queue** (BullMQ) xử lý bởi worker riêng.\n- Chia nhỏ việc và nhường loop bằng `setImmediate` (giải pháp tạm).",
+      "explanation": "CPU-bound work **blocks the event loop**, stalling all requests. Options: **worker_threads** (or Piscina), child processes or a separate service, a **job queue** like BullMQ with dedicated workers, or chunking the work and yielding with `setImmediate`."
+    },
+    {
+      "question": "What is the difference between process.nextTick and setImmediate? / process.nextTick và setImmediate khác nhau thế nào?",
+      "answer": "- `process.nextTick`: chạy **ngay sau thao tác hiện tại**, trước bất kỳ I/O hay microtask Promise nào. Gọi đệ quy có thể làm **đói (starve) event loop**.\n- `setImmediate`: chạy ở **phase check** của vòng lặp kế tiếp, sau I/O.\n- Khuyến nghị chung: ưu tiên `setImmediate`/`queueMicrotask`; dùng nextTick khi cần emit event sau khi constructor trả về.",
+      "explanation": "`process.nextTick` runs **right after the current operation**, before I/O and Promise microtasks, and recursive use can **starve** the loop. `setImmediate` runs in the **check phase** of the next iteration. Prefer `setImmediate` or `queueMicrotask` unless you need to defer something just past the current call."
+    },
+    {
+      "question": "What are streams in Node.js and why use them? / Stream trong Node.js là gì và vì sao dùng?",
+      "answer": "Stream xử lý dữ liệu **từng chunk** thay vì nạp hết vào RAM. 4 loại: Readable, Writable, Duplex, Transform.\n- Ví dụ: đọc file 5GB và gửi về client với **bộ nhớ cố định** vài chục KB.\n- **Backpressure**: khi `write()` trả `false`, phải chờ event `drain`. Dùng `stream.pipeline()` để tự xử lý backpressure và lỗi, tự đóng stream.",
+      "explanation": "Streams process data **chunk by chunk** instead of loading it all into memory. Types: Readable, Writable, Duplex, Transform. You can serve a 5 GB file with constant memory. Respect **backpressure** (`write()` returning `false` → wait for `drain`); `stream.pipeline()` handles backpressure, errors and cleanup."
+    },
+    {
+      "question": "How do you detect and fix a memory leak in Node.js? / Phát hiện và sửa memory leak trong Node.js thế nào?",
+      "answer": "**Nguyên nhân thường gặp**: cache/Map toàn cục không giới hạn, event listener không gỡ, closure giữ object lớn, timer không clear, biến global.\n**Phát hiện**: theo dõi `heapUsed` tăng dần không giảm sau GC; dùng `--inspect` + Chrome DevTools chụp **heap snapshot** 2–3 lần và so sánh (Comparison view), hoặc `clinic heapprofiler`.\n**Sửa**: dùng LRU có giới hạn, `WeakMap`, `removeListener`, `clearInterval`, `AbortController`.",
+      "explanation": "Common causes: unbounded global caches, listeners never removed, closures holding big objects, uncleared timers. Detect by watching `heapUsed` grow after GC, then compare **heap snapshots** via `--inspect` and DevTools or use clinic.js. Fix with bounded LRU caches, `WeakMap`, removing listeners, clearing timers and `AbortController`."
+    },
+    {
+      "question": "How do you scale a Node.js app across CPU cores? / Scale ứng dụng Node.js trên nhiều CPU core thế nào?",
+      "answer": "- **cluster module** hoặc **PM2 cluster mode**: fork N process (= số core), share port.\n- Trong container/K8s: thường chạy **1 process/container** và scale bằng số replica — đơn giản hơn, để orchestrator lo.\n- Lưu ý: process không share memory → session/cache/rate-limit phải đưa ra **Redis**; WebSocket cần sticky session hoặc adapter pub/sub.",
+      "explanation": "Use the **cluster module** or **PM2 cluster mode** to fork one process per core sharing a port. In containers, usually run **one process per container** and scale replicas instead. Processes share no memory, so put sessions, caches and rate limits in **Redis**; WebSockets need sticky sessions or a pub/sub adapter."
+    },
+    {
+      "question": "How should you handle errors in async code and unhandled rejections? / Xử lý lỗi trong async code và unhandled rejection thế nào?",
+      "answer": "- Dùng `try/catch` với `await`, hoặc `.catch()`; trong Express 4 phải gọi `next(err)` (Express 5 tự bắt Promise reject).\n- Middleware lỗi tập trung, phân loại lỗi nghiệp vụ (4xx) và lỗi hệ thống (5xx).\n- `process.on('unhandledRejection')` và `uncaughtException`: **log rồi thoát** (`process.exit(1)`) để orchestrator khởi động lại — không cố chạy tiếp vì state có thể hỏng.\n- Từ Node 15, unhandled rejection mặc định làm crash process.",
+      "explanation": "Use `try/catch` around `await` or `.catch()`; in Express 4 pass errors to `next(err)` (Express 5 catches rejected promises). Centralize error middleware and separate client errors from server errors. On `unhandledRejection`/`uncaughtException`, **log and exit** so the orchestrator restarts a clean process. Since Node 15, unhandled rejections crash by default."
+    },
+    {
+      "question": "How do you implement graceful shutdown? / Triển khai graceful shutdown thế nào?",
+      "answer": "Khi nhận `SIGTERM` (K8s gửi trước khi kill):\n1. Đánh dấu **not ready** để readiness probe fail, LB ngừng gửi traffic.\n2. `server.close()` — ngừng nhận connection mới, chờ request đang chạy xong.\n3. Dừng consumer queue, hoàn tất job đang làm.\n4. Đóng DB pool, Redis, flush log/metrics.\n5. Thoát; đặt **timeout cứng** (vd. 25s < `terminationGracePeriodSeconds`) để buộc thoát nếu treo.",
+      "explanation": "On `SIGTERM`: mark the instance **not ready**, call `server.close()` to stop accepting connections and finish in-flight requests, stop queue consumers, close DB and Redis pools, flush logs and metrics, then exit, with a **hard timeout** shorter than the termination grace period."
+    },
+    {
+      "question": "What is the difference between CommonJS and ES Modules? / CommonJS và ES Modules khác nhau thế nào?",
+      "answer": "- **CJS**: `require`/`module.exports`, load **đồng bộ** lúc chạy, có thể require động ở bất kỳ đâu.\n- **ESM**: `import`/`export`, phân tích **tĩnh** → hỗ trợ tree-shaking, top-level `await`, load bất đồng bộ; là chuẩn của JS.\n- Node chọn theo `\"type\": \"module\"` trong package.json hoặc đuôi `.mjs`/`.cjs`. ESM import được CJS; CJS dùng `import()` động để lấy ESM (Node mới cho phép `require(esm)` đồng bộ nếu không có top-level await).",
+      "explanation": "**CJS** uses `require`/`module.exports` and loads synchronously at runtime. **ESM** uses static `import`/`export`, enabling tree-shaking, top-level `await` and async loading; it's the JS standard. Node picks by `\"type\"` or `.mjs`/`.cjs`. ESM can import CJS; CJS uses dynamic `import()` (newer Node also supports `require()` of ESM without top-level await)."
+    },
+    {
+      "question": "Promise.all vs Promise.allSettled vs Promise.race vs Promise.any? / Phân biệt Promise.all, allSettled, race và any.",
+      "answer": "- `Promise.all`: chờ tất cả thành công; **reject ngay** khi một cái lỗi.\n- `Promise.allSettled`: chờ tất cả xong, trả trạng thái từng cái — không bao giờ reject.\n- `Promise.race`: kết thúc theo promise **đầu tiên settle** (thành công hoặc lỗi) — hay dùng làm timeout.\n- `Promise.any`: lấy promise **đầu tiên thành công**; reject `AggregateError` nếu tất cả lỗi.\nLưu ý: `Promise.all` với 10.000 phần tử chạy đồng thời hết → cần giới hạn concurrency (p-limit).",
+      "explanation": "`all` waits for all and rejects on the first failure; `allSettled` reports every outcome and never rejects; `race` settles with the first to settle (useful for timeouts); `any` resolves with the first success or rejects with `AggregateError`. Beware running thousands at once — limit concurrency with something like p-limit."
+    },
+    {
+      "question": "What is middleware in Express/Koa/NestJS? / Middleware trong Express/Koa/NestJS là gì?",
+      "answer": "Middleware là hàm nằm giữa request và handler, nhận `(req, res, next)`, có thể: đọc/sửa request, kết thúc response, hoặc gọi `next()` sang middleware kế tiếp.\n- Dùng cho: logging, auth, parse body, CORS, rate limit, xử lý lỗi.\n- **Thứ tự đăng ký quan trọng**.\n- Koa dùng mô hình \"onion\" với `await next()` nên xử lý được cả trước và sau handler. NestJS tách thành middleware, guard, interceptor, pipe, exception filter.",
+      "explanation": "Middleware sits between the request and the handler, receiving `(req, res, next)`; it can modify the request, end the response, or pass control on. Used for logging, auth, body parsing, CORS, rate limiting and errors; **order matters**. Koa's onion model runs code before and after `await next()`; NestJS splits concerns into middleware, guards, interceptors, pipes and exception filters."
+    },
+    {
+      "question": "How do you measure event loop lag and why does it matter? / Đo event loop lag thế nào và tại sao quan trọng?",
+      "answer": "Event loop lag = thời gian callback phải chờ vì loop đang bận. Lag cao → mọi request chậm, health check timeout.\n- Đo: `perf_hooks.monitorEventLoopDelay()` (histogram p50/p99), hoặc metric `nodejs_eventloop_lag_seconds` từ prom-client.\n- Nguyên nhân: JSON.parse/stringify payload lớn, regex nặng (ReDoS), vòng lặp đồng bộ, `fs.*Sync`, crypto sync.\n- Cảnh báo khi p99 > ~100ms.",
+      "explanation": "Event loop lag is how long callbacks wait because the loop is busy; high lag slows every request and fails health checks. Measure with `perf_hooks.monitorEventLoopDelay()` or prom-client's lag metric. Causes include huge JSON parsing, catastrophic regexes, sync loops, `*Sync` fs and sync crypto. Alert when p99 exceeds about 100 ms."
+    },
+    {
+      "question": "What is the libuv thread pool and when can it become a bottleneck? / libuv thread pool là gì và khi nào nó thành nút cổ chai?",
+      "answer": "Pool mặc định **4 thread** dùng cho: `fs`, `dns.lookup`, `crypto.pbkdf2/scrypt/randomBytes` async, `zlib`. Nếu có nhiều thao tác như hash mật khẩu bcrypt đồng thời, 4 thread bị chiếm hết → các thao tác fs/DNS khác phải xếp hàng.\n- Tăng `UV_THREADPOOL_SIZE` (tối đa 1024) **trước khi** pool được dùng.\n- Dùng `dns.resolve` (không qua pool) thay `dns.lookup` khi phù hợp.",
+      "explanation": "libuv's pool defaults to **4 threads** for `fs`, `dns.lookup`, async crypto like `pbkdf2`/`scrypt`, and `zlib`. Many concurrent password hashes can saturate it so fs and DNS work queues up. Raise `UV_THREADPOOL_SIZE` at startup or use `dns.resolve`, which bypasses the pool."
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "slug": "life-17-emotions-feelings",
+  "order": 117,
+  "title": "Daily Life 7 · Emotions & Feelings",
+  "description": "Từ vựng diễn tả cảm xúc, tâm trạng và phản ứng (CEFR A2–C1). Giúp nói về cảm xúc tự nhiên hơn thay vì chỉ dùng happy, sad, angry.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "thrilled",
+      "partOfSpeech": "adjective",
+      "phonetic": "/θrɪld/",
+      "answer": "vô cùng phấn khích",
+      "explanation": "I was thrilled to get the job offer.\n→ Tôi vô cùng phấn khích khi nhận được lời mời làm việc."
+    },
+    {
+      "question": "delighted",
+      "partOfSpeech": "adjective",
+      "phonetic": "/dɪˈlaɪtɪd/",
+      "answer": "rất vui mừng",
+      "explanation": "We are delighted to welcome you to the team.\n→ Chúng tôi rất vui được chào đón bạn vào đội."
+    },
+    {
+      "question": "grateful",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈɡreɪtfəl/",
+      "answer": "biết ơn",
+      "explanation": "I'm grateful for your help during my first month.\n→ Tôi rất biết ơn sự giúp đỡ của bạn trong tháng đầu."
+    },
+    {
+      "question": "relieved",
+      "partOfSpeech": "adjective",
+      "phonetic": "/rɪˈliːvd/",
+      "answer": "nhẹ nhõm",
+      "explanation": "I was relieved when the bug was finally fixed.\n→ Tôi thấy nhẹ nhõm khi lỗi cuối cùng được sửa."
+    },
+    {
+      "question": "proud",
+      "partOfSpeech": "adjective",
+      "phonetic": "/praʊd/",
+      "answer": "tự hào",
+      "explanation": "I'm proud of what our team built.\n→ Tôi tự hào về những gì đội đã xây dựng."
+    },
+    {
+      "question": "content",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kənˈtent/",
+      "answer": "hài lòng, mãn nguyện",
+      "explanation": "She is content with a simple life.\n→ Cô ấy hài lòng với cuộc sống giản dị."
+    },
+    {
+      "question": "calm",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kɑːm/",
+      "answer": "bình tĩnh",
+      "explanation": "Stay calm and read the error message.\n→ Bình tĩnh và đọc thông báo lỗi."
+    },
+    {
+      "question": "nervous",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈnɜːrvəs/",
+      "answer": "hồi hộp, lo lắng",
+      "explanation": "I always get nervous before presentations.\n→ Tôi luôn hồi hộp trước khi thuyết trình."
+    },
+    {
+      "question": "anxious",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈæŋkʃəs/",
+      "answer": "bồn chồn, lo âu",
+      "explanation": "He felt anxious waiting for the test results.\n→ Anh ấy bồn chồn khi chờ kết quả xét nghiệm."
+    },
+    {
+      "question": "overwhelmed",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌoʊvərˈwelmd/",
+      "answer": "quá tải, choáng ngợp",
+      "explanation": "I feel overwhelmed by all these tasks.\n→ Tôi thấy quá tải với đống việc này."
+    },
+    {
+      "question": "frustrated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfrʌstreɪtɪd/",
+      "answer": "bực bội, nản",
+      "explanation": "I'm frustrated because the build keeps failing.\n→ Tôi bực vì build cứ lỗi mãi."
+    },
+    {
+      "question": "annoyed",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əˈnɔɪd/",
+      "answer": "khó chịu",
+      "explanation": "She was annoyed by the constant notifications.\n→ Cô ấy khó chịu vì thông báo liên tục."
+    },
+    {
+      "question": "furious",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfjʊriəs/",
+      "answer": "giận dữ",
+      "explanation": "The client was furious about the data loss.\n→ Khách hàng giận dữ vì mất dữ liệu."
+    },
+    {
+      "question": "upset",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ʌpˈset/",
+      "answer": "buồn bực, phiền lòng",
+      "explanation": "He was upset that nobody listened to his idea.\n→ Anh ấy buồn vì không ai nghe ý tưởng của mình."
+    },
+    {
+      "question": "disappointed",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌdɪsəˈpɔɪntɪd/",
+      "answer": "thất vọng",
+      "explanation": "I was disappointed with the final result.\n→ Tôi thất vọng với kết quả cuối cùng."
+    },
+    {
+      "question": "heartbroken",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈhɑːrtbroʊkən/",
+      "answer": "đau lòng",
+      "explanation": "She was heartbroken when her dog died.\n→ Cô ấy đau lòng khi chú chó qua đời."
+    },
+    {
+      "question": "lonely",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈloʊnli/",
+      "answer": "cô đơn",
+      "explanation": "Working remotely can feel lonely.\n→ Làm việc từ xa đôi khi thấy cô đơn."
+    },
+    {
+      "question": "homesick",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈhoʊmsɪk/",
+      "answer": "nhớ nhà",
+      "explanation": "I felt homesick during my first year abroad.\n→ Tôi nhớ nhà trong năm đầu ở nước ngoài."
+    },
+    {
+      "question": "jealous",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdʒeləs/",
+      "answer": "ghen tị",
+      "explanation": "Don't be jealous of other people's success.\n→ Đừng ghen tị với thành công của người khác."
+    },
+    {
+      "question": "embarrassed",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪmˈbærəst/",
+      "answer": "xấu hổ, ngượng",
+      "explanation": "I was embarrassed when I called my boss by the wrong name.\n→ Tôi ngượng khi gọi nhầm tên sếp."
+    },
+    {
+      "question": "ashamed",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əˈʃeɪmd/",
+      "answer": "hổ thẹn",
+      "explanation": "He felt ashamed of lying to his friend.\n→ Anh ấy thấy hổ thẹn vì đã nói dối bạn."
+    },
+    {
+      "question": "guilty",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈɡɪlti/",
+      "answer": "áy náy, có lỗi",
+      "explanation": "I feel guilty for missing your birthday.\n→ Tôi thấy áy náy vì lỡ sinh nhật bạn."
+    },
+    {
+      "question": "confused",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kənˈfjuːzd/",
+      "answer": "bối rối",
+      "explanation": "I'm confused by these instructions.\n→ Tôi bối rối với những hướng dẫn này."
+    },
+    {
+      "question": "curious",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkjʊriəs/",
+      "answer": "tò mò",
+      "explanation": "I'm curious about how the algorithm works.\n→ Tôi tò mò thuật toán hoạt động thế nào."
+    },
+    {
+      "question": "bored",
+      "partOfSpeech": "adjective",
+      "phonetic": "/bɔːrd/",
+      "answer": "chán",
+      "explanation": "I get bored doing the same tasks every day.\n→ Tôi thấy chán khi làm cùng một việc mỗi ngày."
+    },
+    {
+      "question": "motivated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈmoʊtɪveɪtɪd/",
+      "answer": "có động lực",
+      "explanation": "I feel motivated after a good night's sleep.\n→ Tôi thấy có động lực sau một giấc ngủ ngon."
+    },
+    {
+      "question": "confident",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkɑːnfɪdənt/",
+      "answer": "tự tin",
+      "explanation": "Practice makes you more confident in interviews.\n→ Luyện tập giúp bạn tự tin hơn khi phỏng vấn."
+    },
+    {
+      "question": "insecure",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌɪnsɪˈkjʊr/",
+      "answer": "thiếu tự tin, bất an",
+      "explanation": "She feels insecure about her English.\n→ Cô ấy thiếu tự tin về tiếng Anh của mình."
+    },
+    {
+      "question": "scared",
+      "partOfSpeech": "adjective",
+      "phonetic": "/skerd/",
+      "answer": "sợ hãi",
+      "explanation": "I'm scared of making mistakes in front of others.\n→ Tôi sợ mắc lỗi trước mặt người khác."
+    },
+    {
+      "question": "terrified",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈterɪfaɪd/",
+      "answer": "khiếp sợ",
+      "explanation": "He's terrified of flying.\n→ Anh ấy cực kỳ sợ đi máy bay."
+    },
+    {
+      "question": "moody",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈmuːdi/",
+      "answer": "hay thay đổi tâm trạng",
+      "explanation": "He gets moody when he's hungry.\n→ Anh ấy dễ cáu khi đói."
+    },
+    {
+      "question": "cheer up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/tʃɪr ʌp/",
+      "answer": "vui lên",
+      "explanation": "Cheer up! It's not the end of the world.\n→ Vui lên nào! Đâu phải tận thế."
+    },
+    {
+      "question": "calm down",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/kɑːm daʊn/",
+      "answer": "bình tĩnh lại",
+      "explanation": "Calm down and tell me what happened.\n→ Bình tĩnh và kể tôi nghe chuyện gì đã xảy ra."
+    },
+    {
+      "question": "freak out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/friːk aʊt/",
+      "answer": "hoảng hốt",
+      "explanation": "Don't freak out, we have a backup.\n→ Đừng hoảng, mình có bản sao lưu."
+    },
+    {
+      "question": "get on my nerves",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɡet ɑːn maɪ nɜːrvz/",
+      "answer": "làm tôi phát bực",
+      "explanation": "That noise really gets on my nerves.\n→ Tiếng ồn đó thật làm tôi phát bực."
+    },
+    {
+      "question": "over the moon",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˈoʊvər ðə muːn/",
+      "answer": "vui sướng tột độ",
+      "explanation": "She was over the moon when she passed the exam.\n→ Cô ấy vui sướng tột độ khi đỗ kỳ thi."
+    },
+    {
+      "question": "on cloud nine",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɑːn klaʊd naɪn/",
+      "answer": "hạnh phúc ngất ngây",
+      "explanation": "He's been on cloud nine since the wedding.\n→ Anh ấy hạnh phúc ngất ngây từ hôm cưới."
+    },
+    {
+      "question": "down in the dumps",
+      "partOfSpeech": "idiom",
+      "phonetic": "/daʊn ɪn ðə dʌmps/",
+      "answer": "buồn chán, chán nản",
+      "explanation": "She's been down in the dumps since she lost her job.\n→ Cô ấy chán nản từ khi mất việc."
+    },
+    {
+      "question": "mixed feelings",
+      "partOfSpeech": "noun",
+      "phonetic": "/mɪkst ˈfiːlɪŋz/",
+      "answer": "cảm xúc lẫn lộn",
+      "explanation": "I have mixed feelings about moving abroad.\n→ Tôi có cảm xúc lẫn lộn về việc ra nước ngoài sống."
+    },
+    {
+      "question": "mood swings",
+      "partOfSpeech": "noun",
+      "phonetic": "/muːd swɪŋz/",
+      "answer": "tâm trạng thất thường",
+      "explanation": "Lack of sleep gives me mood swings.\n→ Thiếu ngủ khiến tâm trạng tôi thất thường."
+    },
+    {
+      "question": "let off steam",
+      "partOfSpeech": "idiom",
+      "phonetic": "/let ɔːf stiːm/",
+      "answer": "xả stress",
+      "explanation": "I go running to let off steam.\n→ Tôi chạy bộ để xả stress."
+    },
+    {
+      "question": "touched",
+      "partOfSpeech": "adjective",
+      "phonetic": "/tʌtʃt/",
+      "answer": "cảm động",
+      "explanation": "I was touched by their kind message.\n→ Tôi cảm động trước lời nhắn tử tế của họ."
+    }
+  ]
+}

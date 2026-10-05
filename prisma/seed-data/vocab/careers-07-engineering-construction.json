@@ -1,0 +1,290 @@
+{
+  "slug": "careers-07-engineering-construction",
+  "order": 137,
+  "title": "Careers 7 · Engineering, Construction & Manufacturing",
+  "description": "Từ vựng kỹ thuật, xây dựng và sản xuất (CEFR B1–B2). Hữu ích khi làm phần mềm cho nhà máy, IoT, công trình hoặc giao tiếp với kỹ sư các ngành khác.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "engineer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌendʒɪˈnɪr/",
+      "answer": "kỹ sư",
+      "explanation": "My father is a civil engineer.\n→ Bố tôi là kỹ sư xây dựng."
+    },
+    {
+      "question": "civil engineering",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪvəl ˌendʒɪˈnɪrɪŋ/",
+      "answer": "kỹ thuật xây dựng dân dụng",
+      "explanation": "Civil engineering covers roads, bridges and buildings.\n→ Kỹ thuật xây dựng gồm đường, cầu và toà nhà."
+    },
+    {
+      "question": "mechanical engineer",
+      "partOfSpeech": "noun",
+      "phonetic": "/məˈkænɪkəl ˌendʒɪˈnɪr/",
+      "answer": "kỹ sư cơ khí",
+      "explanation": "Mechanical engineers design engines and machines.\n→ Kỹ sư cơ khí thiết kế động cơ và máy móc."
+    },
+    {
+      "question": "electrical engineer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈlektrɪkəl ˌendʒɪˈnɪr/",
+      "answer": "kỹ sư điện",
+      "explanation": "An electrical engineer checked the power system.\n→ Một kỹ sư điện kiểm tra hệ thống điện."
+    },
+    {
+      "question": "architect",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːrkɪtekt/",
+      "answer": "kiến trúc sư",
+      "explanation": "The architect designed a green building.\n→ Kiến trúc sư thiết kế một toà nhà xanh."
+    },
+    {
+      "question": "blueprint",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbluːprɪnt/",
+      "answer": "bản thiết kế",
+      "explanation": "The blueprint shows every room in detail.\n→ Bản thiết kế thể hiện chi tiết từng phòng."
+    },
+    {
+      "question": "site",
+      "partOfSpeech": "noun",
+      "phonetic": "/saɪt/",
+      "answer": "công trường, địa điểm",
+      "explanation": "Wear a helmet on site.\n→ Đội mũ bảo hộ khi ở công trường."
+    },
+    {
+      "question": "contractor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːntræktər/",
+      "answer": "nhà thầu",
+      "explanation": "The contractor finished the project on time.\n→ Nhà thầu hoàn thành công trình đúng hạn."
+    },
+    {
+      "question": "subcontractor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsʌbˈkɑːntræktər/",
+      "answer": "nhà thầu phụ",
+      "explanation": "The plumbing work was done by a subcontractor.\n→ Phần cấp thoát nước do nhà thầu phụ làm."
+    },
+    {
+      "question": "foundation",
+      "partOfSpeech": "noun",
+      "phonetic": "/faʊnˈdeɪʃən/",
+      "answer": "móng (nhà)",
+      "explanation": "They are pouring the foundation this week.\n→ Tuần này họ đổ móng."
+    },
+    {
+      "question": "concrete",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːŋkriːt/",
+      "answer": "bê tông",
+      "explanation": "The bridge is made of reinforced concrete.\n→ Cây cầu làm bằng bê tông cốt thép."
+    },
+    {
+      "question": "steel",
+      "partOfSpeech": "noun",
+      "phonetic": "/stiːl/",
+      "answer": "thép",
+      "explanation": "Steel prices have risen sharply.\n→ Giá thép tăng mạnh."
+    },
+    {
+      "question": "scaffolding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskæfəldɪŋ/",
+      "answer": "giàn giáo",
+      "explanation": "The building is covered in scaffolding.\n→ Toà nhà được bao phủ bởi giàn giáo."
+    },
+    {
+      "question": "crane",
+      "partOfSpeech": "noun",
+      "phonetic": "/kreɪn/",
+      "answer": "cần cẩu",
+      "explanation": "A huge crane lifted the steel beams.\n→ Một chiếc cần cẩu khổng lồ nâng các dầm thép."
+    },
+    {
+      "question": "safety helmet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈseɪfti ˈhelmɪt/",
+      "answer": "mũ bảo hộ",
+      "explanation": "Everyone must wear a safety helmet.\n→ Mọi người phải đội mũ bảo hộ."
+    },
+    {
+      "question": "safety regulations",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈseɪfti ˌreɡjəˈleɪʃənz/",
+      "answer": "quy định an toàn",
+      "explanation": "The site was closed for breaking safety regulations.\n→ Công trường bị đóng cửa vì vi phạm quy định an toàn."
+    },
+    {
+      "question": "inspection",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈspekʃən/",
+      "answer": "kiểm tra, thanh tra",
+      "explanation": "The building passed the fire inspection.\n→ Toà nhà đã qua kiểm tra phòng cháy."
+    },
+    {
+      "question": "factory",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfæktəri/",
+      "answer": "nhà máy",
+      "explanation": "The factory produces 10,000 phones a day.\n→ Nhà máy sản xuất 10.000 điện thoại mỗi ngày."
+    },
+    {
+      "question": "assembly line",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈsembli laɪn/",
+      "answer": "dây chuyền lắp ráp",
+      "explanation": "Robots work on the assembly line.\n→ Robot làm việc trên dây chuyền lắp ráp."
+    },
+    {
+      "question": "manufacture",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌmænjəˈfæktʃər/",
+      "answer": "sản xuất",
+      "explanation": "The company manufactures electronic parts.\n→ Công ty sản xuất linh kiện điện tử."
+    },
+    {
+      "question": "raw material",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɔː məˈtɪriəl/",
+      "answer": "nguyên liệu thô",
+      "explanation": "The price of raw materials keeps rising.\n→ Giá nguyên liệu thô liên tục tăng."
+    },
+    {
+      "question": "quality control",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkwɑːləti kənˈtroʊl/",
+      "answer": "kiểm soát chất lượng",
+      "explanation": "Quality control rejected 2% of the products.\n→ Bộ phận kiểm soát chất lượng loại 2% sản phẩm."
+    },
+    {
+      "question": "defect",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdiːfekt/",
+      "answer": "lỗi, khuyết tật",
+      "explanation": "The defect was found before shipping.\n→ Lỗi được phát hiện trước khi giao hàng."
+    },
+    {
+      "question": "prototype",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈproʊtətaɪp/",
+      "answer": "nguyên mẫu",
+      "explanation": "We built a prototype in three months.\n→ Chúng tôi làm nguyên mẫu trong ba tháng."
+    },
+    {
+      "question": "specification",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌspesɪfɪˈkeɪʃən/",
+      "answer": "thông số kỹ thuật",
+      "explanation": "The part does not meet the specification.\n→ Linh kiện không đạt thông số kỹ thuật."
+    },
+    {
+      "question": "tolerance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtɑːlərəns/",
+      "answer": "dung sai",
+      "explanation": "The tolerance is plus or minus 0.1 millimeters.\n→ Dung sai là cộng trừ 0,1 mi-li-mét."
+    },
+    {
+      "question": "maintenance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmeɪntənəns/",
+      "answer": "bảo trì",
+      "explanation": "The machines need regular maintenance.\n→ Máy móc cần bảo trì định kỳ."
+    },
+    {
+      "question": "breakdown",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbreɪkdaʊn/",
+      "answer": "sự hỏng hóc",
+      "explanation": "A machine breakdown stopped production for a day.\n→ Máy hỏng khiến sản xuất ngừng một ngày."
+    },
+    {
+      "question": "sensor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsensər/",
+      "answer": "cảm biến",
+      "explanation": "Sensors send temperature data to the cloud.\n→ Cảm biến gửi dữ liệu nhiệt độ lên đám mây."
+    },
+    {
+      "question": "automation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɔːtəˈmeɪʃən/",
+      "answer": "tự động hoá",
+      "explanation": "Automation reduced labor costs by 30%.\n→ Tự động hoá giảm 30% chi phí nhân công."
+    },
+    {
+      "question": "efficiency",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈfɪʃənsi/",
+      "answer": "hiệu suất",
+      "explanation": "The new process improved efficiency.\n→ Quy trình mới cải thiện hiệu suất."
+    },
+    {
+      "question": "output",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtpʊt/",
+      "answer": "sản lượng",
+      "explanation": "Monthly output reached a record high.\n→ Sản lượng tháng đạt mức kỷ lục."
+    },
+    {
+      "question": "shift",
+      "partOfSpeech": "noun",
+      "phonetic": "/ʃɪft/",
+      "answer": "ca làm việc",
+      "explanation": "The factory runs three shifts a day.\n→ Nhà máy chạy ba ca mỗi ngày."
+    },
+    {
+      "question": "warehouse",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwerhaʊs/",
+      "answer": "nhà kho",
+      "explanation": "Finished goods are stored in the warehouse.\n→ Thành phẩm được lưu trong kho."
+    },
+    {
+      "question": "power plant",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpaʊər plænt/",
+      "answer": "nhà máy điện",
+      "explanation": "A new solar power plant opened in Ninh Thuan.\n→ Một nhà máy điện mặt trời mới khánh thành ở Ninh Thuận."
+    },
+    {
+      "question": "infrastructure",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnfrəstrʌktʃər/",
+      "answer": "cơ sở hạ tầng",
+      "explanation": "The government is investing in infrastructure.\n→ Chính phủ đang đầu tư vào cơ sở hạ tầng."
+    },
+    {
+      "question": "durable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdʊrəbəl/",
+      "answer": "bền",
+      "explanation": "This material is light but durable.\n→ Vật liệu này nhẹ nhưng bền."
+    },
+    {
+      "question": "renovate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈrenəveɪt/",
+      "answer": "cải tạo, sửa sang",
+      "explanation": "They are renovating the old office.\n→ Họ đang cải tạo văn phòng cũ."
+    },
+    {
+      "question": "budget overrun",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʌdʒɪt ˈoʊvərrʌn/",
+      "answer": "vượt ngân sách",
+      "explanation": "The project had a 20% budget overrun.\n→ Dự án vượt ngân sách 20%."
+    },
+    {
+      "question": "on schedule",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɑːn ˈskedʒuːl/",
+      "answer": "đúng tiến độ",
+      "explanation": "Construction is on schedule.\n→ Việc xây dựng đang đúng tiến độ."
+    }
+  ]
+}

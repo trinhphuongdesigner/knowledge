@@ -1,0 +1,70 @@
+{
+  "slug": "interview-devops-05-observability-sre",
+  "order": 214,
+  "title": "Phỏng vấn DevOps · Observability, SRE & Incidents",
+  "description": "Câu hỏi phỏng vấn về logs/metrics/traces, SLI/SLO/error budget, alerting, xử lý sự cố, postmortem, high availability. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "What are the three pillars of observability? / Ba trụ cột của observability là gì?",
+      "answer": "- **Metrics**: số liệu tổng hợp theo thời gian (RPS, latency p99, CPU) — rẻ, dùng cho dashboard và cảnh báo (Prometheus, Grafana).\n- **Logs**: sự kiện chi tiết, nên **structured (JSON)** kèm trace ID (Loki, ELK).\n- **Traces**: hành trình một request qua nhiều service (OpenTelemetry, Jaeger, Tempo).\nObservability = khả năng trả lời câu hỏi **chưa từng nghĩ tới** về hệ thống từ dữ liệu này; có thêm **profiling** liên tục.",
+      "explanation": "**Metrics** are cheap aggregated time series for dashboards and alerts; **logs** are detailed structured events tagged with trace IDs; **traces** follow a request across services. Observability means answering new, unanticipated questions from this data; continuous profiling is often called a fourth pillar."
+    },
+    {
+      "question": "What are SLI, SLO, SLA and error budget? / SLI, SLO, SLA và error budget là gì?",
+      "answer": "- **SLI**: chỉ số đo được, vd. % request thành công dưới 300ms.\n- **SLO**: mục tiêu nội bộ cho SLI, vd. 99,9% trong 30 ngày.\n- **SLA**: cam kết **hợp đồng** với khách hàng, vi phạm bị phạt (thường lỏng hơn SLO).\n- **Error budget** = 100% − SLO (99,9% → ~43 phút/tháng). Còn budget → được ra tính năng nhanh; hết budget → ưu tiên độ ổn định.",
+      "explanation": "An **SLI** is a measured indicator (e.g. share of requests under 300 ms); an **SLO** is the internal target (99.9% over 30 days); an **SLA** is the contractual promise with penalties. The **error budget** (100% − SLO, ~43 min/month at 99.9%) balances feature velocity against reliability."
+    },
+    {
+      "question": "What are the RED and USE methods? / Phương pháp RED và USE là gì?",
+      "answer": "- **RED** (cho **service**): **R**ate (số request/giây), **E**rrors (tỷ lệ lỗi), **D**uration (phân phối độ trễ, p50/p95/p99).\n- **USE** (cho **tài nguyên** — CPU, disk, network): **U**tilization, **S**aturation (hàng đợi), **E**rrors.\n- Google còn có **4 golden signals**: latency, traffic, errors, saturation.",
+      "explanation": "**RED** covers services — Rate, Errors, Duration. **USE** covers resources — Utilization, Saturation, Errors. Google's **four golden signals** are latency, traffic, errors and saturation."
+    },
+    {
+      "question": "Why use percentiles (p99) instead of averages for latency? / Tại sao dùng percentile (p99) thay vì trung bình cho latency?",
+      "answer": "Trung bình **che giấu đuôi chậm**: 99 request 10ms + 1 request 5s → trung bình ~60ms trông ổn nhưng 1% user chịu 5 giây.\n- p99 = 99% request nhanh hơn giá trị này.\n- Một trang gọi nhiều service → khả năng **gặp ít nhất một request chậm** rất cao (tail at scale).\n- Không thể lấy trung bình các percentile; dùng **histogram** để tổng hợp.",
+      "explanation": "Averages **hide the tail**: 99 fast requests and one 5-second request average out fine while real users suffer. p99 shows the experience of the slowest 1%, which matters more as pages fan out to many services. Percentiles can't be averaged — aggregate histograms instead."
+    },
+    {
+      "question": "What makes a good alert? / Thế nào là một cảnh báo tốt?",
+      "answer": "- Cảnh báo theo **triệu chứng người dùng thấy** (error rate, latency, SLO burn rate) hơn là nguyên nhân (CPU 80%).\n- **Actionable**: ai nhận cũng biết phải làm gì; kèm **runbook** và link dashboard.\n- Ít nhưng chất: tránh **alert fatigue**; page chỉ cho việc khẩn, còn lại là ticket.\n- Dùng **multi-window burn-rate alert** cho SLO.\n- Định kỳ xoá/điều chỉnh alert ồn ào.",
+      "explanation": "Good alerts fire on **user-facing symptoms** (errors, latency, SLO burn rate) rather than causes, are **actionable** with runbooks and dashboards, page only for urgent issues to avoid fatigue, use multi-window burn-rate rules for SLOs, and get pruned regularly."
+    },
+    {
+      "question": "Walk through how you handle a production incident. / Trình bày cách bạn xử lý một sự cố production.",
+      "answer": "1. **Phát hiện & tuyên bố** sự cố, phân mức nghiêm trọng (SEV1/2/3).\n2. Chỉ định **incident commander**, kênh liên lạc riêng, cập nhật status page.\n3. **Giảm thiểu trước, tìm nguyên nhân sau**: rollback, tắt feature flag, scale up, failover.\n4. Theo dõi đến khi ổn định, ghi timeline.\n5. **Postmortem blameless**: nguyên nhân gốc, yếu tố góp phần, action item có người phụ trách và hạn.",
+      "explanation": "Detect and declare the incident with a severity, assign an **incident commander** and communication channel, update the status page, **mitigate first** (rollback, flag off, scale, failover), confirm stability while keeping a timeline, then run a **blameless postmortem** with owned, dated action items."
+    },
+    {
+      "question": "What is a blameless postmortem? / Postmortem không đổ lỗi (blameless) là gì?",
+      "answer": "Tài liệu phân tích sự cố tập trung vào **hệ thống và quy trình**, không quy lỗi cá nhân — vì con người luôn mắc lỗi, hệ thống phải chặn được.\nNội dung: tóm tắt, ảnh hưởng, **timeline**, nguyên nhân gốc (5 Whys), điều gì tốt/chưa tốt, **action item** cụ thể.\nMục tiêu: mọi người dám nói thật → học được nhiều nhất, không lặp lại sự cố.",
+      "explanation": "A blameless postmortem analyzes **systems and processes**, not individual fault, since humans err and systems should catch it. It covers summary, impact, timeline, root causes (5 Whys), what went well or badly, and concrete action items. Psychological safety yields honest learning."
+    },
+    {
+      "question": "What are MTTR, MTTD, MTBF? / MTTR, MTTD, MTBF là gì?",
+      "answer": "- **MTTD** (Mean Time To Detect): bao lâu mới phát hiện sự cố → cải thiện bằng monitoring/alert.\n- **MTTR** (Mean Time To Recover/Restore): bao lâu khôi phục → rollback nhanh, runbook, tự động hoá.\n- **MTBF** (Mean Time Between Failures): khoảng thời gian trung bình giữa các lần lỗi.\nTư duy hiện đại: không thể tránh mọi lỗi → ưu tiên **giảm MTTD và MTTR**.",
+      "explanation": "**MTTD** is time to detect, **MTTR** time to restore, **MTBF** time between failures. Since failures are inevitable, modern practice focuses on shrinking detection and recovery time through monitoring, fast rollbacks, runbooks and automation."
+    },
+    {
+      "question": "How do you design for high availability? / Thiết kế hệ thống có tính sẵn sàng cao thế nào?",
+      "answer": "- **Loại bỏ điểm lỗi đơn (SPOF)**: nhiều instance sau load balancer, chạy trên **nhiều AZ**.\n- DB có replica + **failover tự động**; backup và **thử restore** định kỳ.\n- Health check, tự thay instance lỗi (auto-healing).\n- Graceful degradation: tính năng phụ lỗi không làm sập tính năng chính.\n- Đa region (active-passive/active-active) cho yêu cầu rất cao.\n- Mỗi \"số 9\" thêm vào **tốn kém gấp bội** — chọn SLO hợp lý.",
+      "explanation": "Remove single points of failure with redundant instances across **availability zones**, replicated databases with automatic failover and tested restores, health checks and auto-healing, graceful degradation, and multi-region setups for the strictest needs. Each extra nine costs dramatically more, so choose SLOs wisely."
+    },
+    {
+      "question": "What is chaos engineering? / Chaos engineering là gì?",
+      "answer": "Chủ động **tiêm lỗi có kiểm soát** (giết instance, thêm độ trễ mạng, làm sập AZ) để kiểm chứng hệ thống chịu lỗi như mong đợi.\n- Bắt đầu từ giả thuyết về trạng thái ổn định, **phạm vi nhỏ**, có nút dừng.\n- Công cụ: Chaos Monkey, Gremlin, LitmusChaos, AWS FIS.\n- \"Game day\": diễn tập sự cố cho cả đội.",
+      "explanation": "Chaos engineering injects **controlled failures** — killing instances, adding latency, losing a zone — to verify resilience. Start from a steady-state hypothesis with a small blast radius and an abort switch, using tools like Chaos Monkey, Gremlin, LitmusChaos or AWS FIS, and run team game days."
+    },
+    {
+      "question": "How do you approach structured logging? / Thực hành structured logging thế nào?",
+      "answer": "- Log dạng **JSON** có trường cố định: `timestamp`, `level`, `message`, `service`, **`trace_id`**, `request_id`, `user_id`.\n- Mức log hợp lý (ERROR/WARN/INFO/DEBUG), có thể đổi lúc runtime.\n- **Không log** mật khẩu, token, dữ liệu cá nhân (PII) — có redaction.\n- Log tới stdout, để agent (Fluent Bit, Vector) gom về hệ thống trung tâm; đặt **retention** và sampling để kiểm soát chi phí.",
+      "explanation": "Emit **JSON** logs with consistent fields — timestamp, level, message, service, trace and request IDs — use sensible levels adjustable at runtime, redact secrets and PII, write to stdout for agents like Fluent Bit to ship, and control cost with retention and sampling."
+    },
+    {
+      "question": "What is the difference between RPO and RTO? / RPO và RTO khác nhau thế nào?",
+      "answer": "- **RPO** (Recovery Point Objective): chấp nhận **mất tối đa bao nhiêu dữ liệu** (tính bằng thời gian). RPO 5 phút → backup/replication ít nhất 5 phút một lần.\n- **RTO** (Recovery Time Objective): phải **khôi phục dịch vụ trong bao lâu**.\n- Chọn chiến lược DR theo hai chỉ số: backup & restore (rẻ, chậm) → pilot light → warm standby → multi-site active-active (đắt, gần 0).",
+      "explanation": "**RPO** is the maximum tolerable data loss measured in time; **RTO** is the maximum tolerable downtime. They drive the DR strategy, from cheap backup-and-restore through pilot light and warm standby to costly active-active multi-site."
+    }
+  ]
+}

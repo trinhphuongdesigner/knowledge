@@ -1,0 +1,290 @@
+{
+  "slug": "careers-03-marketing-sales",
+  "order": 133,
+  "title": "Careers 3 · Marketing & Sales",
+  "description": "Từ vựng marketing, bán hàng và chăm sóc khách hàng (CEFR B1–B2). Hữu ích khi làm việc với team growth, đọc báo cáo chiến dịch hoặc làm sản phẩm e-commerce.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "brand",
+      "partOfSpeech": "noun",
+      "phonetic": "/brænd/",
+      "answer": "thương hiệu",
+      "explanation": "A strong brand builds customer trust.\n→ Thương hiệu mạnh tạo dựng niềm tin khách hàng."
+    },
+    {
+      "question": "brand awareness",
+      "partOfSpeech": "noun",
+      "phonetic": "/brænd əˈwernəs/",
+      "answer": "độ nhận diện thương hiệu",
+      "explanation": "The campaign increased brand awareness among students.\n→ Chiến dịch tăng độ nhận diện thương hiệu trong giới sinh viên."
+    },
+    {
+      "question": "campaign",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæmˈpeɪn/",
+      "answer": "chiến dịch",
+      "explanation": "Our summer campaign starts next week.\n→ Chiến dịch mùa hè bắt đầu tuần sau."
+    },
+    {
+      "question": "advertisement",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌædvərˈtaɪzmənt/",
+      "answer": "quảng cáo",
+      "explanation": "We placed an advertisement on Facebook.\n→ Chúng tôi chạy quảng cáo trên Facebook."
+    },
+    {
+      "question": "target market",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtɑːrɡɪt ˈmɑːrkɪt/",
+      "answer": "thị trường mục tiêu",
+      "explanation": "Our target market is young professionals.\n→ Thị trường mục tiêu là người đi làm trẻ."
+    },
+    {
+      "question": "segment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈseɡmənt/",
+      "answer": "phân khúc",
+      "explanation": "We focus on the premium segment.\n→ Chúng tôi tập trung vào phân khúc cao cấp."
+    },
+    {
+      "question": "market research",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːrkɪt rɪˈsɜːrtʃ/",
+      "answer": "nghiên cứu thị trường",
+      "explanation": "Market research showed strong demand.\n→ Nghiên cứu thị trường cho thấy nhu cầu lớn."
+    },
+    {
+      "question": "survey",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrveɪ/",
+      "answer": "khảo sát",
+      "explanation": "We sent a survey to 1,000 customers.\n→ Chúng tôi gửi khảo sát cho 1.000 khách hàng."
+    },
+    {
+      "question": "lead",
+      "partOfSpeech": "noun",
+      "phonetic": "/liːd/",
+      "answer": "khách hàng tiềm năng",
+      "explanation": "The webinar generated 300 new leads.\n→ Buổi webinar tạo ra 300 khách hàng tiềm năng."
+    },
+    {
+      "question": "prospect",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːspekt/",
+      "answer": "khách hàng triển vọng",
+      "explanation": "Call the prospects who opened the email.\n→ Gọi cho những khách hàng triển vọng đã mở email."
+    },
+    {
+      "question": "pitch",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɪtʃ/",
+      "answer": "bài chào hàng",
+      "explanation": "She gave a great sales pitch to the client.\n→ Cô ấy có màn chào hàng xuất sắc với khách."
+    },
+    {
+      "question": "close a deal",
+      "partOfSpeech": "phrase",
+      "phonetic": "/kloʊz ə diːl/",
+      "answer": "chốt hợp đồng",
+      "explanation": "We closed a deal with a big retailer.\n→ Chúng tôi chốt hợp đồng với một nhà bán lẻ lớn."
+    },
+    {
+      "question": "quota",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkwoʊtə/",
+      "answer": "chỉ tiêu",
+      "explanation": "He met his sales quota for the month.\n→ Anh ấy đạt chỉ tiêu bán hàng tháng."
+    },
+    {
+      "question": "commission",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈmɪʃən/",
+      "answer": "tiền hoa hồng",
+      "explanation": "Salespeople earn a 5% commission.\n→ Nhân viên bán hàng nhận 5% hoa hồng."
+    },
+    {
+      "question": "upsell",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈʌpsel/",
+      "answer": "bán gói cao hơn",
+      "explanation": "Try to upsell customers to the annual plan.\n→ Hãy cố bán gói năm cho khách hàng."
+    },
+    {
+      "question": "cross-sell",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈkrɔːs sel/",
+      "answer": "bán chéo",
+      "explanation": "The store cross-sells phone cases with every phone.\n→ Cửa hàng bán chéo ốp lưng với mỗi chiếc điện thoại."
+    },
+    {
+      "question": "customer acquisition cost",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌstəmər ˌækwɪˈzɪʃən kɔːst/",
+      "answer": "chi phí thu hút khách hàng (CAC)",
+      "explanation": "Our customer acquisition cost is too high.\n→ Chi phí thu hút khách hàng của chúng tôi quá cao."
+    },
+    {
+      "question": "lifetime value",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪftaɪm ˈvæljuː/",
+      "answer": "giá trị vòng đời khách hàng (LTV)",
+      "explanation": "Lifetime value should be at least three times CAC.\n→ LTV nên ít nhất gấp ba lần CAC."
+    },
+    {
+      "question": "SEO",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes iː ˈoʊ/",
+      "answer": "tối ưu hoá công cụ tìm kiếm",
+      "explanation": "Good SEO brings free traffic.\n→ SEO tốt mang lại lưu lượng miễn phí."
+    },
+    {
+      "question": "organic traffic",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɔːrˈɡænɪk ˈtræfɪk/",
+      "answer": "lưu lượng tự nhiên",
+      "explanation": "Most of our organic traffic comes from blog posts.\n→ Phần lớn lưu lượng tự nhiên đến từ bài blog."
+    },
+    {
+      "question": "landing page",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlændɪŋ peɪdʒ/",
+      "answer": "trang đích",
+      "explanation": "The landing page has a clear call to action.\n→ Trang đích có lời kêu gọi hành động rõ ràng."
+    },
+    {
+      "question": "call to action",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɔːl tə ˈækʃən/",
+      "answer": "lời kêu gọi hành động (CTA)",
+      "explanation": "Make the call to action bigger and brighter.\n→ Làm nút kêu gọi hành động to và nổi hơn."
+    },
+    {
+      "question": "click-through rate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈklɪk θruː reɪt/",
+      "answer": "tỉ lệ nhấp (CTR)",
+      "explanation": "The new subject line doubled the click-through rate.\n→ Tiêu đề email mới tăng gấp đôi tỉ lệ nhấp."
+    },
+    {
+      "question": "newsletter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnuːzletər/",
+      "answer": "bản tin định kỳ",
+      "explanation": "Sign up for our weekly newsletter.\n→ Đăng ký nhận bản tin hằng tuần của chúng tôi."
+    },
+    {
+      "question": "promotion",
+      "partOfSpeech": "noun",
+      "phonetic": "/prəˈmoʊʃən/",
+      "answer": "khuyến mãi",
+      "explanation": "The promotion ends on Sunday.\n→ Chương trình khuyến mãi kết thúc Chủ nhật."
+    },
+    {
+      "question": "word of mouth",
+      "partOfSpeech": "noun",
+      "phonetic": "/wɜːrd əv maʊθ/",
+      "answer": "truyền miệng",
+      "explanation": "Most of our customers come from word of mouth.\n→ Phần lớn khách đến nhờ truyền miệng."
+    },
+    {
+      "question": "loyal customer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɔɪəl ˈkʌstəmər/",
+      "answer": "khách hàng trung thành",
+      "explanation": "We give discounts to loyal customers.\n→ Chúng tôi giảm giá cho khách hàng trung thành."
+    },
+    {
+      "question": "customer service",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌstəmər ˈsɜːrvɪs/",
+      "answer": "dịch vụ khách hàng",
+      "explanation": "Their customer service replied within an hour.\n→ Bộ phận chăm sóc khách hàng trả lời trong vòng một giờ."
+    },
+    {
+      "question": "complaint",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəmˈpleɪnt/",
+      "answer": "lời phàn nàn",
+      "explanation": "We received several complaints about late delivery.\n→ Chúng tôi nhận vài lời phàn nàn về giao hàng trễ."
+    },
+    {
+      "question": "testimonial",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌtestɪˈmoʊniəl/",
+      "answer": "lời chứng thực của khách",
+      "explanation": "Add customer testimonials to the homepage.\n→ Thêm lời chứng thực của khách hàng vào trang chủ."
+    },
+    {
+      "question": "competitive advantage",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəmˈpetətɪv ədˈvæntɪdʒ/",
+      "answer": "lợi thế cạnh tranh",
+      "explanation": "Fast delivery is our competitive advantage.\n→ Giao hàng nhanh là lợi thế cạnh tranh của chúng tôi."
+    },
+    {
+      "question": "market share",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːrkɪt ʃer/",
+      "answer": "thị phần",
+      "explanation": "We have 15% market share in Vietnam.\n→ Chúng tôi chiếm 15% thị phần ở Việt Nam."
+    },
+    {
+      "question": "launch event",
+      "partOfSpeech": "noun",
+      "phonetic": "/lɔːntʃ ɪˈvent/",
+      "answer": "sự kiện ra mắt",
+      "explanation": "Over 500 people attended the launch event.\n→ Hơn 500 người tham dự sự kiện ra mắt."
+    },
+    {
+      "question": "sponsor",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈspɑːnsər/",
+      "answer": "tài trợ",
+      "explanation": "The company sponsors a local football team.\n→ Công ty tài trợ một đội bóng địa phương."
+    },
+    {
+      "question": "target",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtɑːrɡɪt/",
+      "answer": "nhắm tới",
+      "explanation": "The ad targets parents with young children.\n→ Quảng cáo nhắm tới phụ huynh có con nhỏ."
+    },
+    {
+      "question": "B2B",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌbiː tə ˈbiː/",
+      "answer": "doanh nghiệp với doanh nghiệp",
+      "explanation": "We sell B2B software to factories.\n→ Chúng tôi bán phần mềm B2B cho các nhà máy."
+    },
+    {
+      "question": "B2C",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌbiː tə ˈsiː/",
+      "answer": "doanh nghiệp với người tiêu dùng",
+      "explanation": "B2C apps need a big marketing budget.\n→ Ứng dụng B2C cần ngân sách marketing lớn."
+    },
+    {
+      "question": "copywriting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːpiraɪtɪŋ/",
+      "answer": "viết nội dung quảng cáo",
+      "explanation": "Good copywriting makes people want to click.\n→ Viết quảng cáo hay khiến người ta muốn bấm vào."
+    },
+    {
+      "question": "viral marketing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvaɪrəl ˈmɑːrkɪtɪŋ/",
+      "answer": "marketing lan truyền",
+      "explanation": "Their viral marketing video got ten million views.\n→ Video marketing lan truyền của họ đạt mười triệu lượt xem."
+    },
+    {
+      "question": "follow up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˈfɑːloʊ ʌp/",
+      "answer": "liên hệ lại",
+      "explanation": "Follow up with the client two days after the demo.\n→ Liên hệ lại khách hai ngày sau buổi demo."
+    }
+  ]
+}

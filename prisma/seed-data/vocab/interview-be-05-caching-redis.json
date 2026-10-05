@@ -1,0 +1,75 @@
+{
+  "slug": "interview-be-05-caching-redis",
+  "order": 205,
+  "title": "Phỏng vấn Backend · Caching & Redis",
+  "description": "Câu hỏi phỏng vấn về chiến lược cache, invalidation, cache stampede, Redis data structures, persistence và cluster. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "Explain cache-aside, read-through, write-through and write-behind. / Giải thích cache-aside, read-through, write-through và write-behind.",
+      "answer": "- **Cache-aside** (lazy loading): app đọc cache; miss thì đọc DB rồi ghi vào cache. Ghi: cập nhật DB rồi **xoá** key cache. Phổ biến nhất.\n- **Read-through**: cache tự load từ DB khi miss (app chỉ nói chuyện với cache).\n- **Write-through**: ghi vào cache và cache ghi đồng bộ xuống DB → cache luôn mới, ghi chậm hơn.\n- **Write-behind (write-back)**: ghi vào cache, cache ghi xuống DB **bất đồng bộ** theo batch → ghi rất nhanh nhưng có thể mất dữ liệu.",
+      "explanation": "**Cache-aside**: the app checks the cache, loads from the DB on a miss and populates it; on writes it updates the DB and deletes the key — the most common. **Read-through**: the cache loads on miss itself. **Write-through**: writes go to the cache, which synchronously writes the DB. **Write-behind**: the cache writes to the DB asynchronously in batches — fast but risks loss."
+    },
+    {
+      "question": "Why delete the cache key instead of updating it on writes? / Tại sao khi ghi nên xoá key cache thay vì cập nhật nó?",
+      "answer": "Hai request ghi đồng thời có thể cập nhật DB theo thứ tự A→B nhưng cập nhật cache theo thứ tự B→A → cache giữ **giá trị cũ vĩnh viễn**. Xoá key thì lần đọc sau sẽ load lại từ DB.\n- Vẫn còn race hiếm (đọc cũ rồi set sau khi xoá) → đặt **TTL** làm lưới an toàn, hoặc **delayed double delete**.\n- Thứ tự: **cập nhật DB trước, xoá cache sau**.",
+      "explanation": "Concurrent writers can update the DB in one order and the cache in another, leaving a **stale value forever**. Deleting forces a fresh load on the next read. Rare races remain, so keep a **TTL** as a safety net or use a delayed double delete. Update the DB first, then invalidate."
+    },
+    {
+      "question": "What is cache stampede (thundering herd) and how do you prevent it? / Cache stampede (thundering herd) là gì và ngăn thế nào?",
+      "answer": "Key hot hết hạn → hàng nghìn request cùng miss và cùng đập vào DB.\n**Ngăn**:\n- **Lock/single-flight**: chỉ một request rebuild cache (`SET NX`), các request khác chờ hoặc dùng bản cũ.\n- **Stale-while-revalidate**: trả bản cũ, refresh ngầm.\n- **Probabilistic early expiration** (XFetch): refresh sớm ngẫu nhiên trước khi hết hạn.\n- **TTL jitter**: cộng thời gian ngẫu nhiên để các key không hết hạn cùng lúc.",
+      "explanation": "When a hot key expires, thousands of requests miss simultaneously and hammer the DB. Prevent it with a **lock or single-flight** so one request rebuilds, **stale-while-revalidate**, **probabilistic early refresh**, and **TTL jitter** so keys don't expire together."
+    },
+    {
+      "question": "What is cache penetration and cache avalanche? / Cache penetration và cache avalanche là gì?",
+      "answer": "- **Cache penetration**: request liên tục cho key **không tồn tại** (vd. id rác từ attacker) → luôn miss, luôn đập DB. Giải pháp: cache cả kết quả rỗng (TTL ngắn), **Bloom filter**, validate input.\n- **Cache avalanche**: rất nhiều key hết hạn cùng lúc hoặc Redis sập → DB quá tải. Giải pháp: TTL jitter, Redis HA (replica/Sentinel/Cluster), **circuit breaker** và rate limit trước DB, cache nhiều tầng (in-memory + Redis).",
+      "explanation": "**Penetration**: repeated lookups for non-existent keys always miss and hit the DB; cache negative results briefly, use a **Bloom filter**, validate input. **Avalanche**: many keys expire at once or Redis goes down; use TTL jitter, highly available Redis, circuit breakers and rate limits in front of the DB, and multi-level caching."
+    },
+    {
+      "question": "What data structures does Redis support and what are they used for? / Redis hỗ trợ những cấu trúc dữ liệu nào và dùng làm gì?",
+      "answer": "- **String**: cache, counter (`INCR`), lock.\n- **Hash**: object (user profile) từng field.\n- **List**: queue đơn giản, timeline gần đây.\n- **Set**: tag, danh sách duy nhất, giao/hợp tập.\n- **Sorted Set (ZSET)**: **leaderboard**, rate limit sliding window, hàng đợi theo thời gian.\n- **Stream**: log sự kiện, consumer group.\n- **Bitmap/HyperLogLog**: đếm unique (DAU) tiết kiệm bộ nhớ.\n- **Geo**: tìm vị trí gần.\n- **Pub/Sub**: phát thông điệp realtime (không lưu).",
+      "explanation": "Strings (cache, counters, locks), hashes (objects), lists (simple queues), sets (unique membership, set ops), sorted sets (leaderboards, sliding-window rate limits, delayed jobs), streams (event logs with consumer groups), bitmaps and HyperLogLog (cheap unique counts), geo indexes, and pub/sub for fire-and-forget messaging."
+    },
+    {
+      "question": "Why is Redis so fast even though it is (mostly) single-threaded? / Vì sao Redis rất nhanh dù (chủ yếu) đơn luồng?",
+      "answer": "- Dữ liệu nằm hoàn toàn trong **RAM**.\n- **Một thread** xử lý lệnh → không tốn chi phí lock/context switch, mọi lệnh **atomic**.\n- I/O multiplexing (epoll) phục vụ hàng chục nghìn connection.\n- Cấu trúc dữ liệu tối ưu, giao thức RESP đơn giản.\n- Từ Redis 6 có **I/O threads** cho đọc/ghi socket, nhưng thực thi lệnh vẫn đơn luồng.\nHệ quả: **lệnh chậm (`KEYS *`, `SMEMBERS` set lớn) chặn tất cả** → dùng `SCAN`.",
+      "explanation": "Data lives in **memory**; a single command thread avoids locks and makes each command atomic; epoll multiplexing handles many connections; data structures and the RESP protocol are lean. Redis 6 added I/O threads, but execution stays single-threaded — so one slow command like `KEYS *` blocks everyone; use `SCAN`."
+    },
+    {
+      "question": "How does Redis persist data (RDB vs AOF)? / Redis lưu trữ bền vững dữ liệu thế nào (RDB và AOF)?",
+      "answer": "- **RDB**: snapshot định kỳ (fork + copy-on-write). File gọn, khởi động nhanh, nhưng **mất dữ liệu** từ lần snapshot cuối.\n- **AOF**: ghi log mọi lệnh ghi; `appendfsync everysec` mất tối đa ~1 giây. File lớn hơn, cần rewrite.\n- Thường **bật cả hai** (hoặc chế độ hybrid). Nếu chỉ dùng làm cache thuần, có thể tắt persistence.",
+      "explanation": "**RDB** takes periodic snapshots via fork and copy-on-write — compact and fast to load, but you lose writes since the last snapshot. **AOF** logs every write; with `everysec` you lose at most about a second, at the cost of larger files and rewrites. Many setups enable both; a pure cache may disable persistence."
+    },
+    {
+      "question": "What eviction policies does Redis have? / Redis có những chính sách eviction nào?",
+      "answer": "Khi đạt `maxmemory`:\n- `noeviction`: từ chối lệnh ghi (mặc định).\n- `allkeys-lru` / `allkeys-lfu`: xoá key ít dùng gần đây / ít dùng nhất trong mọi key — **hợp cho cache**.\n- `volatile-lru` / `volatile-lfu` / `volatile-ttl` / `volatile-random`: chỉ xoá key **có TTL**.\n- `allkeys-random`.\nNếu Redis vừa làm cache vừa lưu dữ liệu quan trọng (session, queue) → tách instance hoặc dùng `volatile-*`.",
+      "explanation": "At `maxmemory`: `noeviction` rejects writes (default); `allkeys-lru`/`allkeys-lfu` evict across all keys — best for caches; `volatile-*` variants evict only keys with a TTL; plus random options. If Redis also holds critical data like sessions or queues, use separate instances or `volatile-*`."
+    },
+    {
+      "question": "Redis Sentinel vs Redis Cluster? / Redis Sentinel và Redis Cluster khác nhau thế nào?",
+      "answer": "- **Sentinel**: **high availability** cho một master + replica: giám sát, tự failover, thông báo master mới cho client. Không chia dữ liệu → giới hạn bởi RAM một máy.\n- **Cluster**: **sharding** dữ liệu qua **16.384 hash slot** trên nhiều master, mỗi master có replica, tự failover. Hạn chế: lệnh nhiều key phải cùng slot (dùng **hash tag** `{user:42}:cart`), không có `SELECT db`.",
+      "explanation": "**Sentinel** provides HA for one master with replicas — monitoring, automatic failover and discovery — but no sharding. **Cluster** shards data across **16,384 hash slots** on multiple masters with replicas and failover; multi-key commands must hit the same slot (use hash tags) and there's only DB 0."
+    },
+    {
+      "question": "What should you NOT cache? / Những gì KHÔNG nên cache?",
+      "answer": "- Dữ liệu **thay đổi liên tục** và cần chính xác tuyệt đối (số dư tài khoản khi trừ tiền).\n- Dữ liệu cá nhân nhạy cảm trên **cache dùng chung/CDN** (lỗi key → lộ dữ liệu user khác).\n- Dữ liệu hit rate thấp (mỗi key chỉ đọc một lần).\n- Khi chưa đo đạc: cache thêm **độ phức tạp và bug nhất quán**; ưu tiên tối ưu query/index trước.",
+      "explanation": "Don't cache rapidly changing data that must be exact (balances during payments), sensitive per-user data in shared caches or CDNs, or data with a low hit rate. Caching adds complexity and consistency bugs, so measure first and tune queries and indexes before reaching for it."
+    },
+    {
+      "question": "What are the levels of caching in a web system? / Các tầng cache trong một hệ thống web là gì?",
+      "answer": "1. **Browser cache** (HTTP headers, service worker).\n2. **CDN** (static asset, HTML, API công khai).\n3. **Reverse proxy** (Nginx, Varnish).\n4. **Application in-memory** (LRU trong process — nhanh nhất nhưng không chia sẻ giữa instance).\n5. **Distributed cache** (Redis, Memcached).\n6. **Database cache** (buffer pool, query plan cache) và materialized view.\nCàng gần người dùng càng nhanh nhưng càng khó invalidate.",
+      "explanation": "Browser cache, CDN, reverse proxy, in-process memory (fastest but per-instance), distributed caches like Redis, and the database's own buffer pool and materialized views. The closer to the user, the faster — and the harder to invalidate."
+    },
+    {
+      "question": "How do you implement a leaderboard with Redis? / Triển khai bảng xếp hạng với Redis thế nào?",
+      "answer": "Dùng **Sorted Set**:\n- Cộng điểm: `ZINCRBY leaderboard 10 user:42`\n- Top 10: `ZREVRANGE leaderboard 0 9 WITHSCORES`\n- Hạng của user: `ZREVRANK leaderboard user:42`\n- Xung quanh user: lấy rank rồi `ZREVRANGE` khoảng rank±5.\nCác thao tác **O(log N)**. Bảng xếp hạng theo tuần: key `leaderboard:2026-w40` + TTL.",
+      "explanation": "Use a **sorted set**: `ZINCRBY` to add points, `ZREVRANGE ... WITHSCORES` for the top N, `ZREVRANK` for a user's rank, and a range around that rank for neighbors. Operations are O(log N). For weekly boards, use per-week keys with a TTL."
+    },
+    {
+      "question": "How do you use Redis for user sessions? / Dùng Redis lưu session người dùng thế nào?",
+      "answer": "- Lưu `session:<random id>` → hash dữ liệu user, **TTL** (vd. 7 ngày, gia hạn khi hoạt động — sliding expiration).\n- Cookie chỉ chứa session id: `HttpOnly`, `Secure`, `SameSite=Lax`.\n- Ưu điểm so với JWT: **thu hồi tức thì** (xoá key), logout mọi thiết bị (set `user_sessions:<uid>`).\n- Đổi session id sau khi login để chống **session fixation**.",
+      "explanation": "Store `session:<random id>` as a hash with a TTL, extended on activity, and put only the id in an `HttpOnly`, `Secure`, `SameSite` cookie. Unlike JWTs, sessions can be **revoked instantly**, including all devices via a per-user set. Rotate the id on login to prevent session fixation."
+    }
+  ]
+}

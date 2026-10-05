@@ -1,0 +1,70 @@
+{
+  "slug": "interview-devops-02-docker",
+  "order": 211,
+  "title": "Phỏng vấn DevOps · Docker & Containers",
+  "description": "Câu hỏi phỏng vấn về container, Dockerfile, image layer, multi-stage build, networking, volume, bảo mật container. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "Container vs virtual machine? / Container và máy ảo khác nhau thế nào?",
+      "answer": "- **VM**: ảo hoá phần cứng, mỗi VM có **kernel/OS riêng** → cô lập mạnh, nặng (GB), khởi động chậm.\n- **Container**: chia sẻ **kernel host**, cô lập bằng **namespaces** (pid, net, mount…) và giới hạn tài nguyên bằng **cgroups** → nhẹ (MB), khởi động giây.\n- Container cô lập yếu hơn VM; cần cô lập mạnh → gVisor, Kata, Firecracker microVM.",
+      "explanation": "**VMs** virtualize hardware with their own kernel — strong isolation, heavy, slow to boot. **Containers** share the host kernel, isolated by **namespaces** and limited by **cgroups** — light and fast but weaker isolation; gVisor, Kata or Firecracker close the gap."
+    },
+    {
+      "question": "What are image layers and how does build caching work? / Image layer là gì và build cache hoạt động thế nào?",
+      "answer": "Mỗi lệnh `RUN`, `COPY`, `ADD` tạo một **layer** chỉ-đọc; container thêm một layer ghi được ở trên (copy-on-write).\n- Docker **cache** layer: nếu lệnh và input không đổi thì dùng lại; một layer đổi → **mọi layer sau** build lại.\n- Vì vậy: copy `package.json` + cài dependency **trước**, rồi mới `COPY . .`.\n```dockerfile\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\n```",
+      "explanation": "Each `RUN`, `COPY` or `ADD` creates a read-only **layer**; containers add a writable copy-on-write layer. Layers are cached while their instruction and inputs are unchanged, but a change invalidates **all later layers** — so copy dependency manifests and install before copying source."
+    },
+    {
+      "question": "What is a multi-stage build and why use it? / Multi-stage build là gì và dùng để làm gì?",
+      "answer": "Dùng nhiều `FROM` trong một Dockerfile: stage **build** có đủ compiler, devDependencies; stage **runtime** chỉ copy artifact cần thiết.\n```dockerfile\nFROM node:22 AS build\nWORKDIR /app\nCOPY . .\nRUN npm ci && npm run build\n\nFROM node:22-slim\nCOPY --from=build /app/dist ./dist\nCMD [\"node\", \"dist/server.js\"]\n```\nLợi ích: image **nhỏ hơn nhiều**, ít lỗ hổng, không chứa source/secret build.",
+      "explanation": "Multi-stage builds use several `FROM` stages: a full build stage with compilers and dev dependencies, and a slim runtime stage that copies only the artifacts. Result: much smaller images, fewer vulnerabilities, and no build tooling or secrets shipped."
+    },
+    {
+      "question": "CMD vs ENTRYPOINT? / CMD và ENTRYPOINT khác nhau thế nào?",
+      "answer": "- **ENTRYPOINT**: lệnh chính, luôn chạy. **CMD**: tham số mặc định (hoặc lệnh mặc định), bị **ghi đè** bởi tham số `docker run image <args>`.\n- Kết hợp: `ENTRYPOINT [\"node\"]` + `CMD [\"server.js\"]`.\n- Dùng **exec form** (`[\"node\", \"app.js\"]`) thay shell form để process là **PID 1** và nhận được SIGTERM.",
+      "explanation": "**ENTRYPOINT** is the fixed executable; **CMD** provides default arguments that `docker run` arguments override. Combine them, and use **exec form** so your process is PID 1 and receives signals like SIGTERM."
+    },
+    {
+      "question": "How do you reduce Docker image size? / Giảm kích thước Docker image thế nào?",
+      "answer": "- Base image nhỏ: `-slim`, `alpine` (cẩn thận musl), **distroless**.\n- **Multi-stage build**.\n- `.dockerignore` (node_modules, .git, test).\n- Gộp lệnh `RUN` và dọn cache cùng layer (`apt-get install ... && rm -rf /var/lib/apt/lists/*`).\n- Chỉ cài production dependency (`npm ci --omit=dev`).\n- Phân tích bằng `docker history`, `dive`.",
+      "explanation": "Use small bases (slim, alpine, distroless), multi-stage builds and `.dockerignore`, combine `RUN` steps and clean package caches in the same layer, install only production dependencies, and inspect with `docker history` or `dive`."
+    },
+    {
+      "question": "Volumes vs bind mounts? / Volume và bind mount khác nhau thế nào?",
+      "answer": "- **Volume**: Docker quản lý (`/var/lib/docker/volumes`), độc lập với cấu trúc host, dễ backup, dùng cho **dữ liệu bền** (DB).\n- **Bind mount**: gắn một đường dẫn host cụ thể vào container — tiện khi **dev** (hot reload source).\n- **tmpfs**: trong RAM, không ghi đĩa.\n- Dữ liệu ghi vào layer container **mất khi xoá container**.",
+      "explanation": "**Volumes** are Docker-managed and ideal for persistent data such as databases. **Bind mounts** map a specific host path — handy for development. **tmpfs** mounts live in memory. Anything written to the container layer disappears with the container."
+    },
+    {
+      "question": "How does Docker networking work? / Docker networking hoạt động thế nào?",
+      "answer": "- **bridge** (mặc định): mạng ảo riêng trên host, NAT ra ngoài; publish port bằng `-p 8080:3000`.\n- **User-defined bridge**: container gọi nhau **bằng tên** (DNS nội bộ) — Docker Compose tự tạo.\n- **host**: dùng chung network stack của host (không cô lập, hiệu năng cao).\n- **none**: không mạng. **overlay**: nhiều host (Swarm).\n- Trong container, `localhost` là **chính container** chứ không phải host.",
+      "explanation": "The default **bridge** network NATs containers and exposes ports with `-p`. **User-defined bridges** (Compose default) give DNS by container name. **host** shares the host stack; **none** disables networking; **overlay** spans hosts. Inside a container, `localhost` is the container itself."
+    },
+    {
+      "question": "What are Docker security best practices? / Best practice bảo mật Docker là gì?",
+      "answer": "- Chạy bằng **user không phải root** (`USER node`).\n- Base image tối giản, cập nhật, **pin version/digest**; quét lỗ hổng (Trivy, Grype).\n- Không đưa **secret** vào image/ENV build; dùng BuildKit `--secret` hoặc runtime secret.\n- Filesystem chỉ đọc (`--read-only`), `--cap-drop ALL`, `no-new-privileges`.\n- Không mount `/var/run/docker.sock` bừa bãi (= quyền root host).\n- Ký image (cosign), giới hạn tài nguyên CPU/RAM.",
+      "explanation": "Run as a **non-root user**, use minimal pinned bases and scan them (Trivy), keep secrets out of layers (BuildKit secrets), use read-only filesystems, drop capabilities, set `no-new-privileges`, never casually mount the Docker socket, sign images and set resource limits."
+    },
+    {
+      "question": "What is Docker Compose used for? / Docker Compose dùng để làm gì?",
+      "answer": "Định nghĩa và chạy **nhiều container** (app, DB, Redis) bằng một file `compose.yaml`: service, network, volume, biến môi trường, `depends_on` (kèm `condition: service_healthy`).\n- Rất hợp cho **môi trường dev**, test tích hợp, demo.\n- Production nhiều host thường dùng Kubernetes/ECS thay vì Compose.",
+      "explanation": "Compose defines and runs **multi-container** setups — services, networks, volumes, env vars, health-gated `depends_on` — in one `compose.yaml`. Ideal for local development and integration tests; multi-host production usually uses Kubernetes or ECS."
+    },
+    {
+      "question": "Why does a container exit immediately after starting? / Tại sao container thoát ngay sau khi khởi động?",
+      "answer": "Container sống **chừng nào process chính (PID 1) còn chạy**.\n- Lệnh chính chạy xong (script, hoặc service tự **daemonize** chạy nền như `nginx` không có `daemon off`).\n- App crash: xem `docker logs <id>`, `docker inspect` (ExitCode: 137 = bị kill/OOM, 1 = lỗi app).\n- Debug: `docker run -it --entrypoint sh image`.",
+      "explanation": "A container lives only while its **main process** runs. It exits if the command finishes, the service daemonizes into the background, or the app crashes. Check `docker logs` and `docker inspect` (exit 137 = killed/OOM), and debug with an interactive shell entrypoint."
+    },
+    {
+      "question": "What is the difference between COPY and ADD? / COPY và ADD khác nhau thế nào?",
+      "answer": "- **COPY**: chỉ copy file/thư mục từ build context — rõ ràng, **nên dùng mặc định**.\n- **ADD**: thêm khả năng tự **giải nén tar** cục bộ và tải từ **URL** → hành vi ngầm, khó đoán.\n- Tải file từ mạng nên dùng `RUN curl ... && verify checksum`.",
+      "explanation": "**COPY** simply copies from the build context and should be the default. **ADD** also auto-extracts local tarballs and fetches URLs, which is implicit and surprising; prefer `RUN curl` with checksum verification for downloads."
+    },
+    {
+      "question": "How do you handle configuration and environment variables in containers? / Quản lý cấu hình và biến môi trường trong container thế nào?",
+      "answer": "- Theo **12-factor**: cấu hình qua **biến môi trường**, cùng một image chạy mọi môi trường (dev/staging/prod).\n- Không \"nướng\" config/secret vào image.\n- Truyền: `-e`, `--env-file`, Compose `environment`, K8s ConfigMap/Secret.\n- Validate config lúc khởi động (zod/envalid) để **fail fast**.",
+      "explanation": "Follow **12-factor**: configure via environment variables so one image runs everywhere, never bake config or secrets into images, pass them via `-e`, env files, Compose or ConfigMaps/Secrets, and validate at startup to fail fast."
+    }
+  ]
+}

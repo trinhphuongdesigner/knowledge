@@ -1,0 +1,360 @@
+{
+  "slug": "irregular-verbs-04",
+  "order": 223,
+  "title": "Động từ bất quy tắc · Phần 4",
+  "description": "Động từ bất quy tắc ít gặp hơn: động từ ghép over-/out-/re-/mis-/under- và các dạng chuyên ngành. Phần 4/5, xếp theo độ phổ biến. Mỗi thẻ: V1 → V2 – V3, phiên âm 3 dạng, nghĩa và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "burst",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɜːrst/ – /bɜːrst/ – /bɜːrst/",
+      "answer": "burst – burst · nổ, vỡ, bật (khóc/cười)",
+      "explanation": "V1: burst · V2: burst · V3: burst\nShe burst into tears.\n→ Cô ấy bật khóc."
+    },
+    {
+      "question": "cast",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kæst/ – /kæst/ – /kæst/",
+      "answer": "cast – cast · ném, chọn diễn viên, bỏ (phiếu)",
+      "explanation": "V1: cast · V2: cast · V3: cast\nMillions cast their votes yesterday.\n→ Hàng triệu người đã bỏ phiếu hôm qua."
+    },
+    {
+      "question": "shed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃed/ – /ʃed/ – /ʃed/",
+      "answer": "shed – shed · rụng, loại bỏ, toả ra",
+      "explanation": "V1: shed · V2: shed · V3: shed\nThe trees shed their leaves.\n→ Cây rụng lá."
+    },
+    {
+      "question": "rid",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/rɪd/ – /rɪd/ – /rɪd/",
+      "answer": "rid – rid · loại bỏ (get rid of)",
+      "explanation": "V1: rid · V2: rid · V3: rid\nWe finally got rid of the old sofa.\n→ Cuối cùng chúng tôi đã bỏ được chiếc sofa cũ."
+    },
+    {
+      "question": "fit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fɪt/ – /fɪt, ˈfɪtɪd/ – /fɪt, ˈfɪtɪd/",
+      "answer": "fit/fitted – fit/fitted · vừa, khớp",
+      "explanation": "V1: fit · V2: fit/fitted · V3: fit/fitted\nThe dress fit her perfectly.\n→ Chiếc váy vừa khít với cô ấy."
+    },
+    {
+      "question": "dive",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/daɪv/ – /daɪvd, doʊv/ – /daɪvd/",
+      "answer": "dived/dove – dived · lặn, lao xuống",
+      "explanation": "V1: dive · V2: dived/dove · V3: dived\nHe dove into the pool.\n→ Anh ấy lao xuống hồ bơi."
+    },
+    {
+      "question": "speed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spiːd/ – /sped/ – /sped/",
+      "answer": "sped/speeded – sped/speeded · chạy nhanh, tăng tốc",
+      "explanation": "V1: speed · V2: sped/speeded · V3: sped/speeded\nThe car sped away.\n→ Chiếc xe phóng đi."
+    },
+    {
+      "question": "wed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wed/ – /wed, ˈwedɪd/ – /wed, ˈwedɪd/",
+      "answer": "wed/wedded – wed/wedded · cưới",
+      "explanation": "V1: wed · V2: wed/wedded · V3: wed/wedded\nThey wed in a small ceremony.\n→ Họ cưới trong một buổi lễ nhỏ."
+    },
+    {
+      "question": "spit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spɪt/ – /spæt/ – /spæt/",
+      "answer": "spat/spit – spat/spit · khạc, nhổ",
+      "explanation": "V1: spit · V2: spat/spit · V3: spat/spit\nHe spat out the bitter medicine.\n→ Anh ấy nhổ thuốc đắng ra."
+    },
+    {
+      "question": "thrust",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/θrʌst/ – /θrʌst/ – /θrʌst/",
+      "answer": "thrust – thrust · đẩy mạnh, xô",
+      "explanation": "V1: thrust · V2: thrust · V3: thrust\nShe thrust the papers into my hand.\n→ Cô ấy dúi tập giấy vào tay tôi."
+    },
+    {
+      "question": "swell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/swel/ – /sweld/ – /ˈswoʊlən/",
+      "answer": "swelled – swollen/swelled · sưng lên, phình ra",
+      "explanation": "V1: swell · V2: swelled · V3: swollen/swelled\nMy ankle has swollen up.\n→ Mắt cá chân tôi bị sưng lên."
+    },
+    {
+      "question": "string",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/strɪŋ/ – /strʌŋ/ – /strʌŋ/",
+      "answer": "strung – strung · xâu, giăng (dây)",
+      "explanation": "V1: string · V2: strung · V3: strung\nThey strung lights across the street.\n→ Họ giăng đèn ngang con phố."
+    },
+    {
+      "question": "stride",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/straɪd/ – /stroʊd/ – /ˈstrɪdən/",
+      "answer": "strode – stridden · sải bước",
+      "explanation": "V1: stride · V2: strode · V3: stridden\nHe strode into the office.\n→ Anh ấy sải bước vào văn phòng."
+    },
+    {
+      "question": "slay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/sleɪ/ – /sluː/ – /sleɪn/",
+      "answer": "slew – slain · giết (văn chương)",
+      "explanation": "V1: slay · V2: slew · V3: slain\nThe knight slew the dragon.\n→ Hiệp sĩ giết con rồng."
+    },
+    {
+      "question": "mislead",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌmɪsˈliːd/ – /ˌmɪsˈled/ – /ˌmɪsˈled/",
+      "answer": "misled – misled · đánh lừa, làm hiểu sai",
+      "explanation": "V1: mislead · V2: misled · V3: misled\nThe ad misled customers.\n→ Quảng cáo đã đánh lừa khách hàng."
+    },
+    {
+      "question": "misunderstand",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌmɪsʌndərˈstænd/ – /ˌmɪsʌndərˈstʊd/ – /ˌmɪsʌndərˈstʊd/",
+      "answer": "misunderstood – misunderstood · hiểu lầm",
+      "explanation": "V1: misunderstand · V2: misunderstood · V3: misunderstood\nI think you misunderstood me.\n→ Tôi nghĩ bạn hiểu lầm tôi rồi."
+    },
+    {
+      "question": "overhear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈhɪr/ – /ˌoʊvərˈhɜːrd/ – /ˌoʊvərˈhɜːrd/",
+      "answer": "overheard – overheard · nghe lỏm, tình cờ nghe",
+      "explanation": "V1: overhear · V2: overheard · V3: overheard\nI overheard their conversation.\n→ Tôi tình cờ nghe được cuộc trò chuyện của họ."
+    },
+    {
+      "question": "override",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈraɪd/ – /ˌoʊvərˈroʊd/ – /ˌoʊvərˈrɪdən/",
+      "answer": "overrode – overridden · ghi đè, bác bỏ",
+      "explanation": "V1: override · V2: overrode · V3: overridden\nThe child class overrode the method.\n→ Lớp con đã ghi đè phương thức."
+    },
+    {
+      "question": "overthrow",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈθroʊ/ – /ˌoʊvərˈθruː/ – /ˌoʊvərˈθroʊn/",
+      "answer": "overthrew – overthrown · lật đổ",
+      "explanation": "V1: overthrow · V2: overthrew · V3: overthrown\nThe king was overthrown.\n→ Nhà vua bị lật đổ."
+    },
+    {
+      "question": "oversleep",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈsliːp/ – /ˌoʊvərˈslept/ – /ˌoʊvərˈslept/",
+      "answer": "overslept – overslept · ngủ quên",
+      "explanation": "V1: oversleep · V2: overslept · V3: overslept\nI overslept and missed the bus.\n→ Tôi ngủ quên và lỡ xe buýt."
+    },
+    {
+      "question": "overdo",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈduː/ – /ˌoʊvərˈdɪd/ – /ˌoʊvərˈdʌn/",
+      "answer": "overdid – overdone · làm quá mức",
+      "explanation": "V1: overdo · V2: overdid · V3: overdone\nDon't overdo it at the gym.\n→ Đừng tập quá sức ở phòng gym."
+    },
+    {
+      "question": "outdo",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌaʊtˈduː/ – /ˌaʊtˈdɪd/ – /ˌaʊtˈdʌn/",
+      "answer": "outdid – outdone · làm giỏi hơn, vượt trội",
+      "explanation": "V1: outdo · V2: outdid · V3: outdone\nShe outdid all her rivals.\n→ Cô ấy vượt trội tất cả đối thủ."
+    },
+    {
+      "question": "undo",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʌnˈduː/ – /ʌnˈdɪd/ – /ʌnˈdʌn/",
+      "answer": "undid – undone · hoàn tác, cởi",
+      "explanation": "V1: undo · V2: undid · V3: undone\nI undid the last change.\n→ Tôi đã hoàn tác thay đổi cuối cùng."
+    },
+    {
+      "question": "redo",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈduː/ – /ˌriːˈdɪd/ – /ˌriːˈdʌn/",
+      "answer": "redid – redone · làm lại",
+      "explanation": "V1: redo · V2: redid · V3: redone\nWe redid the design from scratch.\n→ Chúng tôi làm lại thiết kế từ đầu."
+    },
+    {
+      "question": "remake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈmeɪk/ – /ˌriːˈmeɪd/ – /ˌriːˈmeɪd/",
+      "answer": "remade – remade · làm lại (phim)",
+      "explanation": "V1: remake · V2: remade · V3: remade\nThe film was remade in 2019.\n→ Bộ phim được làm lại năm 2019."
+    },
+    {
+      "question": "repay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/rɪˈpeɪ/ – /rɪˈpeɪd/ – /rɪˈpeɪd/",
+      "answer": "repaid – repaid · trả lại (nợ), đền đáp",
+      "explanation": "V1: repay · V2: repaid · V3: repaid\nHe repaid the loan early.\n→ Anh ấy trả khoản vay sớm."
+    },
+    {
+      "question": "rewrite",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈraɪt/ – /ˌriːˈroʊt/ – /ˌriːˈrɪtən/",
+      "answer": "rewrote – rewritten · viết lại",
+      "explanation": "V1: rewrite · V2: rewrote · V3: rewritten\nWe rewrote the backend in Go.\n→ Chúng tôi viết lại backend bằng Go."
+    },
+    {
+      "question": "retake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈteɪk/ – /ˌriːˈtʊk/ – /ˌriːˈteɪkən/",
+      "answer": "retook – retaken · thi lại, chiếm lại",
+      "explanation": "V1: retake · V2: retook · V3: retaken\nShe retook the exam and passed.\n→ Cô ấy thi lại và đã đỗ."
+    },
+    {
+      "question": "reset",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈset/ – /ˌriːˈset/ – /ˌriːˈset/",
+      "answer": "reset – reset · đặt lại",
+      "explanation": "V1: reset · V2: reset · V3: reset\nI reset my password.\n→ Tôi đã đặt lại mật khẩu."
+    },
+    {
+      "question": "rerun",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈrʌn/ – /ˌriːˈræn/ – /ˌriːˈrʌn/",
+      "answer": "reran – rerun · chạy lại",
+      "explanation": "V1: rerun · V2: reran · V3: rerun\nWe reran the failed tests.\n→ Chúng tôi chạy lại các test bị lỗi."
+    },
+    {
+      "question": "withhold",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wɪðˈhoʊld/ – /wɪðˈheld/ – /wɪðˈheld/",
+      "answer": "withheld – withheld · giữ lại, không tiết lộ",
+      "explanation": "V1: withhold · V2: withheld · V3: withheld\nThey withheld important information.\n→ Họ giấu thông tin quan trọng."
+    },
+    {
+      "question": "underlie",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈlaɪ/ – /ˌʌndərˈleɪ/ – /ˌʌndərˈleɪn/",
+      "answer": "underlay – underlain · nằm bên dưới, làm nền tảng",
+      "explanation": "V1: underlie · V2: underlay · V3: underlain\nSeveral factors underlie the problem.\n→ Nhiều yếu tố nằm sau vấn đề này."
+    },
+    {
+      "question": "undercut",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈkʌt/ – /ˌʌndərˈkʌt/ – /ˌʌndərˈkʌt/",
+      "answer": "undercut – undercut · bán phá giá, làm suy yếu",
+      "explanation": "V1: undercut · V2: undercut · V3: undercut\nThey undercut their competitors' prices.\n→ Họ bán rẻ hơn đối thủ."
+    },
+    {
+      "question": "underwrite",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈraɪt/ – /ˌʌndərˈroʊt/ – /ˌʌndərˈrɪtən/",
+      "answer": "underwrote – underwritten · bảo lãnh, bảo hiểm",
+      "explanation": "V1: underwrite · V2: underwrote · V3: underwritten\nThe bank underwrote the loan.\n→ Ngân hàng bảo lãnh khoản vay."
+    },
+    {
+      "question": "unwind",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʌnˈwaɪnd/ – /ʌnˈwaʊnd/ – /ʌnˈwaʊnd/",
+      "answer": "unwound – unwound · thư giãn, tháo ra",
+      "explanation": "V1: unwind · V2: unwound · V3: unwound\nI unwound with a good book.\n→ Tôi thư giãn bằng một cuốn sách hay."
+    },
+    {
+      "question": "offset",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌɔːfˈset/ – /ˌɔːfˈset/ – /ˌɔːfˈset/",
+      "answer": "offset – offset · bù đắp",
+      "explanation": "V1: offset · V2: offset · V3: offset\nHigher sales offset the costs.\n→ Doanh số cao hơn bù đắp chi phí."
+    },
+    {
+      "question": "input",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈɪnpʊt/ – /ˈɪnpʊt/ – /ˈɪnpʊt/",
+      "answer": "input/inputted – input/inputted · nhập (dữ liệu)",
+      "explanation": "V1: input · V2: input/inputted · V3: input/inputted\nShe input the data into the system.\n→ Cô ấy nhập dữ liệu vào hệ thống."
+    },
+    {
+      "question": "babysit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈbeɪbisɪt/ – /ˈbeɪbisæt/ – /ˈbeɪbisæt/",
+      "answer": "babysat – babysat · trông trẻ",
+      "explanation": "V1: babysit · V2: babysat · V3: babysat\nI babysat my niece last night.\n→ Tối qua tôi trông cháu gái."
+    },
+    {
+      "question": "proofread",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈpruːfriːd/ – /ˈpruːfred/ – /ˈpruːfred/",
+      "answer": "proofread – proofread · đọc soát lỗi",
+      "explanation": "V1: proofread · V2: proofread · V3: proofread\nHave you proofread the report?\n→ Bạn đã soát lỗi báo cáo chưa?"
+    },
+    {
+      "question": "daydream",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈdeɪdriːm/ – /ˈdeɪdriːmd, ˈdeɪdremt/ – /ˈdeɪdriːmd, ˈdeɪdremt/",
+      "answer": "daydreamed/daydreamt – daydreamed/daydreamt · mơ mộng",
+      "explanation": "V1: daydream · V2: daydreamed/daydreamt · V3: daydreamed/daydreamt\nHe daydreamed during class.\n→ Cậu ấy mơ mộng trong giờ học."
+    },
+    {
+      "question": "sightsee",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈsaɪtsiː/ – /ˈsaɪtsɔː/ – /ˈsaɪtsiːn/",
+      "answer": "sightsaw – sightseen · đi ngắm cảnh, tham quan",
+      "explanation": "V1: sightsee · V2: sightsaw · V3: sightseen\nWe sightsaw around Hoi An.\n→ Chúng tôi tham quan quanh Hội An."
+    },
+    {
+      "question": "mow",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/moʊ/ – /moʊd/ – /moʊn/",
+      "answer": "mowed – mown/mowed · cắt (cỏ)",
+      "explanation": "V1: mow · V2: mowed · V3: mown/mowed\nHe mowed the lawn on Sunday.\n→ Anh ấy cắt cỏ vào Chủ nhật."
+    },
+    {
+      "question": "sow",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/soʊ/ – /soʊd/ – /soʊn/",
+      "answer": "sowed – sown/sowed · gieo (hạt)",
+      "explanation": "V1: sow · V2: sowed · V3: sown/sowed\nFarmers sowed rice in spring.\n→ Nông dân gieo lúa vào mùa xuân."
+    },
+    {
+      "question": "saw",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/sɔː/ – /sɔːd/ – /sɔːn/",
+      "answer": "sawed – sawn/sawed · cưa",
+      "explanation": "V1: saw · V2: sawed · V3: sawn/sawed\nHe sawed the wood in half.\n→ Anh ấy cưa đôi khúc gỗ."
+    },
+    {
+      "question": "knit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/nɪt/ – /nɪt, ˈnɪtɪd/ – /nɪt, ˈnɪtɪd/",
+      "answer": "knit/knitted – knit/knitted · đan (len)",
+      "explanation": "V1: knit · V2: knit/knitted · V3: knit/knitted\nMy grandmother knitted me a scarf.\n→ Bà đan cho tôi một chiếc khăn."
+    },
+    {
+      "question": "plead",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/pliːd/ – /ˈpliːdɪd, pled/ – /ˈpliːdɪd, pled/",
+      "answer": "pleaded/pled – pleaded/pled · biện hộ, van xin",
+      "explanation": "V1: plead · V2: pleaded/pled · V3: pleaded/pled\nHe pleaded not guilty.\n→ Anh ấy không nhận tội."
+    },
+    {
+      "question": "dwell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/dwel/ – /dwelt/ – /dwelt/",
+      "answer": "dwelt/dwelled – dwelt/dwelled · ở, day dứt (về)",
+      "explanation": "V1: dwell · V2: dwelt/dwelled · V3: dwelt/dwelled\nDon't dwell on past mistakes.\n→ Đừng day dứt mãi về lỗi lầm cũ."
+    },
+    {
+      "question": "forsake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fərˈseɪk/ – /fərˈsʊk/ – /fərˈseɪkən/",
+      "answer": "forsook – forsaken · từ bỏ, ruồng bỏ",
+      "explanation": "V1: forsake · V2: forsook · V3: forsaken\nHe forsook his old habits.\n→ Anh ấy từ bỏ những thói quen cũ."
+    },
+    {
+      "question": "behold",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɪˈhoʊld/ – /bɪˈheld/ – /bɪˈheld/",
+      "answer": "beheld – beheld · ngắm nhìn (văn chương)",
+      "explanation": "V1: behold · V2: beheld · V3: beheld\nThey beheld a beautiful sunset.\n→ Họ ngắm một hoàng hôn tuyệt đẹp."
+    },
+    {
+      "question": "abide",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/əˈbaɪd/ – /əˈboʊd, əˈbaɪdɪd/ – /əˈboʊd, əˈbaɪdɪd/",
+      "answer": "abode/abided – abode/abided · tuân theo (abide by), chịu đựng",
+      "explanation": "V1: abide · V2: abode/abided · V3: abode/abided\nYou must abide by the rules.\n→ Bạn phải tuân theo quy định."
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "slug": "careers-09-business-management",
+  "order": 139,
+  "title": "Careers 9 · Business & Management",
+  "description": "Từ vựng quản trị doanh nghiệp và quản lý con người (CEFR B2–C1). Hữu ích khi lên vị trí lead, họp với ban giám đốc hoặc đọc tin kinh doanh.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "CEO",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsiː iː ˈoʊ/",
+      "answer": "giám đốc điều hành",
+      "explanation": "The CEO announced a new strategy.\n→ CEO công bố chiến lược mới."
+    },
+    {
+      "question": "board of directors",
+      "partOfSpeech": "noun",
+      "phonetic": "/bɔːrd əv dəˈrektərz/",
+      "answer": "hội đồng quản trị",
+      "explanation": "The board of directors approved the budget.\n→ Hội đồng quản trị duyệt ngân sách."
+    },
+    {
+      "question": "executive",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪɡˈzekjətɪv/",
+      "answer": "lãnh đạo cấp cao",
+      "explanation": "Executives meet every Monday.\n→ Các lãnh đạo cấp cao họp mỗi thứ Hai."
+    },
+    {
+      "question": "middle management",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɪdəl ˈmænɪdʒmənt/",
+      "answer": "quản lý cấp trung",
+      "explanation": "Middle management connects leaders and staff.\n→ Quản lý cấp trung kết nối lãnh đạo và nhân viên."
+    },
+    {
+      "question": "headquarters",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedkwɔːrtərz/",
+      "answer": "trụ sở chính",
+      "explanation": "Our headquarters are in Singapore.\n→ Trụ sở chính của chúng tôi ở Singapore."
+    },
+    {
+      "question": "branch",
+      "partOfSpeech": "noun",
+      "phonetic": "/bræntʃ/",
+      "answer": "chi nhánh",
+      "explanation": "We opened a new branch in Da Nang.\n→ Chúng tôi mở chi nhánh mới ở Đà Nẵng."
+    },
+    {
+      "question": "subsidiary",
+      "partOfSpeech": "noun",
+      "phonetic": "/səbˈsɪdieri/",
+      "answer": "công ty con",
+      "explanation": "The company has three subsidiaries.\n→ Công ty có ba công ty con."
+    },
+    {
+      "question": "merger",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɜːrdʒər/",
+      "answer": "sáp nhập",
+      "explanation": "The merger created the biggest bank in the country.\n→ Vụ sáp nhập tạo ra ngân hàng lớn nhất nước."
+    },
+    {
+      "question": "acquisition",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌækwɪˈzɪʃən/",
+      "answer": "thâu tóm, mua lại",
+      "explanation": "The acquisition was worth $500 million.\n→ Thương vụ mua lại trị giá 500 triệu đô."
+    },
+    {
+      "question": "strategy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstrætədʒi/",
+      "answer": "chiến lược",
+      "explanation": "Our strategy is to grow in Southeast Asia.\n→ Chiến lược của chúng tôi là phát triển ở Đông Nam Á."
+    },
+    {
+      "question": "vision",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvɪʒən/",
+      "answer": "tầm nhìn",
+      "explanation": "The founder has a clear vision for the company.\n→ Nhà sáng lập có tầm nhìn rõ ràng cho công ty."
+    },
+    {
+      "question": "mission",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɪʃən/",
+      "answer": "sứ mệnh",
+      "explanation": "Our mission is to make learning accessible.\n→ Sứ mệnh của chúng tôi là giúp mọi người tiếp cận việc học."
+    },
+    {
+      "question": "objective",
+      "partOfSpeech": "noun",
+      "phonetic": "/əbˈdʒektɪv/",
+      "answer": "mục tiêu",
+      "explanation": "Set clear objectives for each quarter.\n→ Đặt mục tiêu rõ ràng cho từng quý."
+    },
+    {
+      "question": "OKR",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌoʊ keɪ ˈɑːr/",
+      "answer": "mục tiêu và kết quả then chốt",
+      "explanation": "Each team writes its own OKRs.\n→ Mỗi đội tự viết OKR của mình."
+    },
+    {
+      "question": "delegate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈdeləɡeɪt/",
+      "answer": "uỷ quyền, giao việc",
+      "explanation": "A good manager knows how to delegate.\n→ Quản lý giỏi biết cách giao việc."
+    },
+    {
+      "question": "empower",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪmˈpaʊər/",
+      "answer": "trao quyền",
+      "explanation": "We empower teams to make their own decisions.\n→ Chúng tôi trao quyền cho các đội tự quyết định."
+    },
+    {
+      "question": "accountability",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˌkaʊntəˈbɪləti/",
+      "answer": "trách nhiệm giải trình",
+      "explanation": "Clear ownership creates accountability.\n→ Phân công rõ ràng tạo ra trách nhiệm giải trình."
+    },
+    {
+      "question": "performance review",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈfɔːrməns rɪˈvjuː/",
+      "answer": "đánh giá hiệu suất",
+      "explanation": "Performance reviews happen twice a year.\n→ Đánh giá hiệu suất diễn ra hai lần một năm."
+    },
+    {
+      "question": "one-on-one",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌwʌn ɑːn ˈwʌn/",
+      "answer": "buổi trao đổi riêng",
+      "explanation": "I have a one-on-one with my manager every week.\n→ Tôi có buổi gặp riêng với quản lý mỗi tuần."
+    },
+    {
+      "question": "headcount",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedkaʊnt/",
+      "answer": "số lượng nhân sự",
+      "explanation": "We're increasing headcount by 20 people.\n→ Chúng tôi tăng thêm 20 nhân sự."
+    },
+    {
+      "question": "restructure",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈstrʌktʃər/",
+      "answer": "tái cấu trúc",
+      "explanation": "The company restructured its sales team.\n→ Công ty tái cấu trúc đội bán hàng."
+    },
+    {
+      "question": "downsize",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈdaʊnsaɪz/",
+      "answer": "cắt giảm quy mô",
+      "explanation": "They downsized after losing a big client.\n→ Họ thu hẹp quy mô sau khi mất khách hàng lớn."
+    },
+    {
+      "question": "outsource",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈaʊtsɔːrs/",
+      "answer": "thuê ngoài",
+      "explanation": "Many companies outsource software development to Vietnam.\n→ Nhiều công ty thuê ngoài phát triển phần mềm ở Việt Nam."
+    },
+    {
+      "question": "in-house",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌɪn ˈhaʊs/",
+      "answer": "nội bộ",
+      "explanation": "We built the tool in-house.\n→ Chúng tôi tự xây dựng công cụ nội bộ."
+    },
+    {
+      "question": "vendor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvendər/",
+      "answer": "nhà cung cấp",
+      "explanation": "We are evaluating three vendors.\n→ Chúng tôi đang đánh giá ba nhà cung cấp."
+    },
+    {
+      "question": "negotiate",
+      "partOfSpeech": "verb",
+      "phonetic": "/nɪˈɡoʊʃieɪt/",
+      "answer": "đàm phán",
+      "explanation": "We negotiated a better price.\n→ Chúng tôi đã đàm phán được giá tốt hơn."
+    },
+    {
+      "question": "proposal",
+      "partOfSpeech": "noun",
+      "phonetic": "/prəˈpoʊzəl/",
+      "answer": "đề xuất",
+      "explanation": "Send the proposal to the client by Monday.\n→ Gửi đề xuất cho khách trước thứ Hai."
+    },
+    {
+      "question": "risk assessment",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪsk əˈsesmənt/",
+      "answer": "đánh giá rủi ro",
+      "explanation": "Do a risk assessment before launch.\n→ Đánh giá rủi ro trước khi ra mắt."
+    },
+    {
+      "question": "decision-making",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈsɪʒən ˌmeɪkɪŋ/",
+      "answer": "ra quyết định",
+      "explanation": "Data improves decision-making.\n→ Dữ liệu giúp ra quyết định tốt hơn."
+    },
+    {
+      "question": "bottom line",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːtəm laɪn/",
+      "answer": "lợi nhuận ròng; điều cốt lõi",
+      "explanation": "The bottom line is we need more customers.\n→ Điều cốt lõi là chúng ta cần thêm khách hàng."
+    },
+    {
+      "question": "long-term",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌlɔːŋ ˈtɜːrm/",
+      "answer": "dài hạn",
+      "explanation": "Think about long-term growth, not quick wins.\n→ Nghĩ đến tăng trưởng dài hạn, không phải thắng nhanh."
+    },
+    {
+      "question": "short-term",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌʃɔːrt ˈtɜːrm/",
+      "answer": "ngắn hạn",
+      "explanation": "This is only a short-term fix.\n→ Đây chỉ là giải pháp ngắn hạn."
+    },
+    {
+      "question": "quick win",
+      "partOfSpeech": "noun",
+      "phonetic": "/kwɪk wɪn/",
+      "answer": "kết quả nhanh dễ đạt",
+      "explanation": "Fixing the page title is a quick win for SEO.\n→ Sửa tiêu đề trang là việc dễ mà có ngay hiệu quả SEO."
+    },
+    {
+      "question": "company culture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌmpəni ˈkʌltʃər/",
+      "answer": "văn hoá công ty",
+      "explanation": "I love the company culture here.\n→ Tôi rất thích văn hoá công ty ở đây."
+    },
+    {
+      "question": "leadership",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈliːdərʃɪp/",
+      "answer": "khả năng lãnh đạo",
+      "explanation": "Leadership is about serving your team.\n→ Lãnh đạo là phục vụ đội của mình."
+    },
+    {
+      "question": "micromanage",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌmaɪkroʊˈmænɪdʒ/",
+      "answer": "quản lý vi mô, soi từng chút",
+      "explanation": "Nobody likes a boss who micromanages.\n→ Không ai thích sếp soi từng chút."
+    },
+    {
+      "question": "streamline",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈstriːmlaɪn/",
+      "answer": "tinh gọn",
+      "explanation": "We streamlined the approval process.\n→ Chúng tôi tinh gọn quy trình phê duyệt."
+    },
+    {
+      "question": "benchmark",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈbentʃmɑːrk/",
+      "answer": "so sánh với chuẩn",
+      "explanation": "Benchmark our salaries against the market.\n→ So sánh mức lương của chúng tôi với thị trường."
+    },
+    {
+      "question": "think outside the box",
+      "partOfSpeech": "idiom",
+      "phonetic": "/θɪŋk ˌaʊtˈsaɪd ðə bɑːks/",
+      "answer": "suy nghĩ sáng tạo, khác lối mòn",
+      "explanation": "We need to think outside the box.\n→ Chúng ta cần suy nghĩ thoát khỏi lối mòn."
+    },
+    {
+      "question": "get the ball rolling",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɡet ðə bɔːl ˈroʊlɪŋ/",
+      "answer": "khởi động, bắt đầu",
+      "explanation": "Let's get the ball rolling on the new project.\n→ Hãy bắt đầu dự án mới thôi."
+    }
+  ]
+}

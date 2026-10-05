@@ -1,0 +1,304 @@
+{
+  "slug": "tech-03-networking-protocols",
+  "order": 103,
+  "title": "Tech English 3 · Networking & Protocols",
+  "description": "Thuật ngữ mạng máy tính (CEFR B1–B2): DNS, TCP/IP, load balancer, proxy... Dùng khi đọc tài liệu hạ tầng, debug lỗi kết nối và phỏng vấn Backend/DevOps.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "network",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnetwɜːrk/",
+      "answer": "mạng máy tính",
+      "explanation": "The office network goes down every Monday morning.\n→ Mạng văn phòng sập mỗi sáng thứ Hai."
+    },
+    {
+      "question": "bandwidth",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbændwɪdθ/",
+      "answer": "băng thông",
+      "explanation": "Video calls use a lot of bandwidth.\n→ Gọi video tốn rất nhiều băng thông."
+    },
+    {
+      "question": "latency",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleɪtənsi/",
+      "answer": "độ trễ",
+      "explanation": "High latency makes online games feel slow.\n→ Độ trễ cao khiến game online có cảm giác chậm."
+    },
+    {
+      "question": "throughput",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈθruːpʊt/",
+      "answer": "thông lượng",
+      "explanation": "We doubled the throughput after adding a second server.\n→ Chúng tôi tăng gấp đôi thông lượng sau khi thêm máy chủ thứ hai."
+    },
+    {
+      "question": "packet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpækɪt/",
+      "answer": "gói tin",
+      "explanation": "Some packets were lost on the way to the server.\n→ Một số gói tin bị mất trên đường tới máy chủ."
+    },
+    {
+      "question": "packet loss",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpækɪt lɔːs/",
+      "answer": "mất gói tin",
+      "explanation": "Packet loss causes choppy audio in calls.\n→ Mất gói tin khiến âm thanh cuộc gọi bị giật."
+    },
+    {
+      "question": "IP address",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌaɪ ˈpiː əˈdres/",
+      "answer": "địa chỉ IP",
+      "explanation": "Each server has its own IP address.\n→ Mỗi máy chủ có địa chỉ IP riêng."
+    },
+    {
+      "question": "subnet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌbnet/",
+      "answer": "mạng con",
+      "explanation": "Put the database in a private subnet.\n→ Đặt cơ sở dữ liệu trong một mạng con riêng tư."
+    },
+    {
+      "question": "port",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɔːrt/",
+      "answer": "cổng (mạng)",
+      "explanation": "The web server listens on port 443.\n→ Web server lắng nghe ở cổng 443."
+    },
+    {
+      "question": "protocol",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈproʊtəkɔːl/",
+      "answer": "giao thức",
+      "explanation": "HTTP is the protocol of the web.\n→ HTTP là giao thức của web."
+    },
+    {
+      "question": "handshake",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhændʃeɪk/",
+      "answer": "bắt tay (thiết lập kết nối)",
+      "explanation": "TCP uses a three-way handshake to open a connection.\n→ TCP dùng bắt tay ba bước để mở kết nối."
+    },
+    {
+      "question": "DNS",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdiː en ˈes/",
+      "answer": "hệ thống phân giải tên miền",
+      "explanation": "It's always DNS when the site suddenly can't be reached.\n→ Website đột nhiên không truy cập được thì thường là lỗi DNS."
+    },
+    {
+      "question": "domain name",
+      "partOfSpeech": "noun",
+      "phonetic": "/doʊˈmeɪn neɪm/",
+      "answer": "tên miền",
+      "explanation": "We bought a short domain name for the product.\n→ Chúng tôi đã mua một tên miền ngắn cho sản phẩm."
+    },
+    {
+      "question": "resolve",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈzɑːlv/",
+      "answer": "phân giải (tên miền)",
+      "explanation": "The domain resolves to the wrong IP address.\n→ Tên miền đang phân giải sang sai địa chỉ IP."
+    },
+    {
+      "question": "propagate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈprɑːpəɡeɪt/",
+      "answer": "lan truyền (thay đổi DNS)",
+      "explanation": "DNS changes can take a few hours to propagate.\n→ Thay đổi DNS có thể mất vài giờ để cập nhật khắp nơi."
+    },
+    {
+      "question": "router",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈraʊtər/",
+      "answer": "bộ định tuyến",
+      "explanation": "Restart the router if the Wi-Fi is slow.\n→ Khởi động lại router nếu Wi-Fi chậm."
+    },
+    {
+      "question": "gateway",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡeɪtweɪ/",
+      "answer": "cổng kết nối, gateway",
+      "explanation": "All requests go through the API gateway first.\n→ Mọi request đều đi qua API gateway trước."
+    },
+    {
+      "question": "firewall",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfaɪərwɔːl/",
+      "answer": "tường lửa",
+      "explanation": "The firewall blocks all traffic except ports 80 and 443.\n→ Tường lửa chặn mọi lưu lượng trừ cổng 80 và 443."
+    },
+    {
+      "question": "proxy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːksi/",
+      "answer": "máy chủ trung gian",
+      "explanation": "Our company routes internet traffic through a proxy.\n→ Công ty chúng tôi định tuyến lưu lượng internet qua một proxy."
+    },
+    {
+      "question": "reverse proxy",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈvɜːrs ˈprɑːksi/",
+      "answer": "proxy ngược",
+      "explanation": "Nginx works as a reverse proxy in front of the app.\n→ Nginx đóng vai trò proxy ngược đứng trước ứng dụng."
+    },
+    {
+      "question": "load balancer",
+      "partOfSpeech": "noun",
+      "phonetic": "/loʊd ˈbælənsər/",
+      "answer": "bộ cân bằng tải",
+      "explanation": "The load balancer spreads traffic across three servers.\n→ Bộ cân bằng tải chia lưu lượng cho ba máy chủ."
+    },
+    {
+      "question": "VPN",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌviː piː ˈen/",
+      "answer": "mạng riêng ảo",
+      "explanation": "You need to connect to the VPN to access internal tools.\n→ Bạn cần kết nối VPN để dùng các công cụ nội bộ."
+    },
+    {
+      "question": "TLS certificate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌtiː el ˈes sərˈtɪfɪkət/",
+      "answer": "chứng chỉ TLS/SSL",
+      "explanation": "The TLS certificate expired and users saw a warning.\n→ Chứng chỉ TLS hết hạn nên người dùng thấy cảnh báo."
+    },
+    {
+      "question": "encryption",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈkrɪpʃən/",
+      "answer": "mã hoá",
+      "explanation": "Data is protected by encryption in transit and at rest.\n→ Dữ liệu được bảo vệ bằng mã hoá khi truyền và khi lưu."
+    },
+    {
+      "question": "timeout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtaɪmaʊt/",
+      "answer": "hết thời gian chờ",
+      "explanation": "The request failed with a timeout after 30 seconds.\n→ Request thất bại do hết thời gian chờ sau 30 giây."
+    },
+    {
+      "question": "retry",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈtraɪ/",
+      "answer": "thử lại",
+      "explanation": "The client retries three times before giving up.\n→ Client thử lại ba lần rồi mới bỏ cuộc."
+    },
+    {
+      "question": "connection pool",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈnekʃən puːl/",
+      "answer": "nhóm kết nối dùng lại",
+      "explanation": "Increase the connection pool size to handle more requests.\n→ Tăng kích thước connection pool để xử lý nhiều request hơn."
+    },
+    {
+      "question": "keep-alive",
+      "partOfSpeech": "noun",
+      "phonetic": "/kiːp əˈlaɪv/",
+      "answer": "giữ kết nối mở",
+      "explanation": "Keep-alive lets the browser reuse the same TCP connection.\n→ Keep-alive cho phép trình duyệt dùng lại cùng một kết nối TCP."
+    },
+    {
+      "question": "CDN",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsiː diː ˈen/",
+      "answer": "mạng phân phối nội dung",
+      "explanation": "Static files are served from a CDN close to the user.\n→ Tệp tĩnh được phục vụ từ CDN gần người dùng."
+    },
+    {
+      "question": "edge location",
+      "partOfSpeech": "noun",
+      "phonetic": "/edʒ loʊˈkeɪʃən/",
+      "answer": "điểm biên (máy chủ gần người dùng)",
+      "explanation": "The CDN has an edge location in Singapore.\n→ CDN có một điểm biên ở Singapore."
+    },
+    {
+      "question": "WebSocket",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwebsɑːkɪt/",
+      "answer": "kết nối WebSocket hai chiều",
+      "explanation": "The chat app uses WebSockets for real-time messages.\n→ Ứng dụng chat dùng WebSocket cho tin nhắn thời gian thực."
+    },
+    {
+      "question": "polling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpoʊlɪŋ/",
+      "answer": "hỏi định kỳ (polling)",
+      "explanation": "Polling every second puts a heavy load on the server.\n→ Gọi định kỳ mỗi giây tạo tải lớn cho máy chủ."
+    },
+    {
+      "question": "peer-to-peer",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌpɪr tə ˈpɪr/",
+      "answer": "ngang hàng (P2P)",
+      "explanation": "Video calls often use a peer-to-peer connection.\n→ Cuộc gọi video thường dùng kết nối ngang hàng."
+    },
+    {
+      "question": "outage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtɪdʒ/",
+      "answer": "sự cố ngừng hoạt động",
+      "explanation": "A network outage took the site down for two hours.\n→ Sự cố mạng làm website ngừng hoạt động hai tiếng."
+    },
+    {
+      "question": "downtime",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdaʊntaɪm/",
+      "answer": "thời gian ngừng hoạt động",
+      "explanation": "We planned the migration to avoid any downtime.\n→ Chúng tôi lên kế hoạch migration để không bị gián đoạn dịch vụ."
+    },
+    {
+      "question": "uptime",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʌptaɪm/",
+      "answer": "thời gian hoạt động ổn định",
+      "explanation": "Our SLA promises 99.9% uptime.\n→ SLA của chúng tôi cam kết 99,9% thời gian hoạt động."
+    },
+    {
+      "question": "traffic",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtræfɪk/",
+      "answer": "lưu lượng truy cập",
+      "explanation": "Traffic spikes every evening at 8 p.m.\n→ Lưu lượng truy cập tăng vọt mỗi tối lúc 8 giờ."
+    },
+    {
+      "question": "spike",
+      "partOfSpeech": "noun",
+      "phonetic": "/spaɪk/",
+      "answer": "sự tăng đột biến",
+      "explanation": "We saw a spike in errors after the release.\n→ Chúng tôi thấy lỗi tăng đột biến sau khi phát hành."
+    },
+    {
+      "question": "ping",
+      "partOfSpeech": "verb",
+      "phonetic": "/pɪŋ/",
+      "answer": "kiểm tra kết nối (ping)",
+      "explanation": "Ping the server to check if it is reachable.\n→ Ping máy chủ để xem có truy cập được không."
+    },
+    {
+      "question": "reachable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈriːtʃəbəl/",
+      "answer": "có thể kết nối tới",
+      "explanation": "The database is not reachable from the public internet.\n→ Cơ sở dữ liệu không thể truy cập từ internet công cộng."
+    },
+    {
+      "question": "whitelist",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈwaɪtlɪst/",
+      "answer": "đưa vào danh sách cho phép",
+      "explanation": "Please whitelist our office IP address.\n→ Vui lòng thêm IP văn phòng chúng tôi vào danh sách cho phép."
+    },
+    {
+      "question": "NAT",
+      "partOfSpeech": "noun",
+      "phonetic": "/næt/",
+      "answer": "chuyển đổi địa chỉ mạng",
+      "explanation": "Private servers reach the internet through a NAT gateway.\n→ Máy chủ riêng ra internet qua NAT gateway."
+    }
+  ]
+}

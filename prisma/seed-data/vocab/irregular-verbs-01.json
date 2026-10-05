@@ -1,0 +1,360 @@
+{
+  "slug": "irregular-verbs-01",
+  "order": 220,
+  "title": "Động từ bất quy tắc · Phần 1",
+  "description": "50 động từ bất quy tắc thông dụng nhất (be, have, do, go, get…) — nền tảng bắt buộc. Phần 1/5, xếp theo độ phổ biến. Mỗi thẻ: V1 → V2 – V3, phiên âm 3 dạng, nghĩa và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "be",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/biː/ – /wʌz, wɜːr/ – /bɪn/",
+      "answer": "was/were – been · thì, là, ở",
+      "explanation": "V1: be · V2: was/were · V3: been\nI was very tired yesterday.\n→ Hôm qua tôi rất mệt."
+    },
+    {
+      "question": "have",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/hæv/ – /hæd/ – /hæd/",
+      "answer": "had – had · có",
+      "explanation": "V1: have · V2: had · V3: had\nWe had a great time at the party.\n→ Chúng tôi đã có khoảng thời gian tuyệt vời ở bữa tiệc."
+    },
+    {
+      "question": "do",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/duː/ – /dɪd/ – /dʌn/",
+      "answer": "did – done · làm",
+      "explanation": "V1: do · V2: did · V3: done\nHave you done your homework?\n→ Bạn đã làm bài tập chưa?"
+    },
+    {
+      "question": "say",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/seɪ/ – /sed/ – /sed/",
+      "answer": "said – said · nói",
+      "explanation": "V1: say · V2: said · V3: said\nShe said she was busy.\n→ Cô ấy nói cô ấy bận."
+    },
+    {
+      "question": "go",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ɡoʊ/ – /went/ – /ɡɔːn/",
+      "answer": "went – gone · đi",
+      "explanation": "V1: go · V2: went · V3: gone\nThey went to Da Nang last summer.\n→ Họ đã đi Đà Nẵng hè năm ngoái."
+    },
+    {
+      "question": "get",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ɡet/ – /ɡɑːt/ – /ɡɑːt, ˈɡɑːtən/",
+      "answer": "got – got/gotten · nhận được, trở nên",
+      "explanation": "V1: get · V2: got · V3: got/gotten\nI got an email from my manager.\n→ Tôi nhận được email từ quản lý."
+    },
+    {
+      "question": "make",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/meɪk/ – /meɪd/ – /meɪd/",
+      "answer": "made – made · làm, chế tạo",
+      "explanation": "V1: make · V2: made · V3: made\nHe made a mistake in the report.\n→ Anh ấy đã mắc lỗi trong báo cáo."
+    },
+    {
+      "question": "know",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/noʊ/ – /nuː/ – /noʊn/",
+      "answer": "knew – known · biết",
+      "explanation": "V1: know · V2: knew · V3: known\nI have known her for ten years.\n→ Tôi quen cô ấy đã mười năm."
+    },
+    {
+      "question": "think",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/θɪŋk/ – /θɔːt/ – /θɔːt/",
+      "answer": "thought – thought · nghĩ",
+      "explanation": "V1: think · V2: thought · V3: thought\nI thought you were at home.\n→ Tôi tưởng bạn ở nhà."
+    },
+    {
+      "question": "take",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/teɪk/ – /tʊk/ – /ˈteɪkən/",
+      "answer": "took – taken · lấy, cầm, mất (thời gian)",
+      "explanation": "V1: take · V2: took · V3: taken\nThe trip took three hours.\n→ Chuyến đi mất ba tiếng."
+    },
+    {
+      "question": "see",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/siː/ – /sɔː/ – /siːn/",
+      "answer": "saw – seen · nhìn thấy",
+      "explanation": "V1: see · V2: saw · V3: seen\nHave you seen my keys?\n→ Bạn có thấy chìa khoá của tôi không?"
+    },
+    {
+      "question": "come",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kʌm/ – /keɪm/ – /kʌm/",
+      "answer": "came – come · đến",
+      "explanation": "V1: come · V2: came · V3: come\nShe came to the office early.\n→ Cô ấy đến văn phòng sớm."
+    },
+    {
+      "question": "give",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ɡɪv/ – /ɡeɪv/ – /ˈɡɪvən/",
+      "answer": "gave – given · cho, đưa",
+      "explanation": "V1: give · V2: gave · V3: given\nHe gave me a useful tip.\n→ Anh ấy cho tôi một mẹo hữu ích."
+    },
+    {
+      "question": "find",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/faɪnd/ – /faʊnd/ – /faʊnd/",
+      "answer": "found – found · tìm thấy",
+      "explanation": "V1: find · V2: found · V3: found\nI found the bug in the code.\n→ Tôi đã tìm ra lỗi trong code."
+    },
+    {
+      "question": "tell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/tel/ – /toʊld/ – /toʊld/",
+      "answer": "told – told · kể, bảo",
+      "explanation": "V1: tell · V2: told · V3: told\nShe told me the truth.\n→ Cô ấy đã nói với tôi sự thật."
+    },
+    {
+      "question": "become",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɪˈkʌm/ – /bɪˈkeɪm/ – /bɪˈkʌm/",
+      "answer": "became – become · trở thành",
+      "explanation": "V1: become · V2: became · V3: become\nHe became a team leader last year.\n→ Anh ấy trở thành trưởng nhóm năm ngoái."
+    },
+    {
+      "question": "leave",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/liːv/ – /left/ – /left/",
+      "answer": "left – left · rời đi, để lại",
+      "explanation": "V1: leave · V2: left · V3: left\nI left my phone at home.\n→ Tôi để quên điện thoại ở nhà."
+    },
+    {
+      "question": "feel",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fiːl/ – /felt/ – /felt/",
+      "answer": "felt – felt · cảm thấy",
+      "explanation": "V1: feel · V2: felt · V3: felt\nI felt nervous before the interview.\n→ Tôi thấy hồi hộp trước buổi phỏng vấn."
+    },
+    {
+      "question": "put",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/pʊt/ – /pʊt/ – /pʊt/",
+      "answer": "put – put · đặt, để",
+      "explanation": "V1: put · V2: put · V3: put\nShe put the book on the table.\n→ Cô ấy đặt cuốn sách lên bàn."
+    },
+    {
+      "question": "bring",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/brɪŋ/ – /brɔːt/ – /brɔːt/",
+      "answer": "brought – brought · mang đến",
+      "explanation": "V1: bring · V2: brought · V3: brought\nHe brought some snacks for the team.\n→ Anh ấy mang đồ ăn vặt cho cả nhóm."
+    },
+    {
+      "question": "begin",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɪˈɡɪn/ – /bɪˈɡæn/ – /bɪˈɡʌn/",
+      "answer": "began – begun · bắt đầu",
+      "explanation": "V1: begin · V2: began · V3: begun\nThe meeting began at nine.\n→ Cuộc họp bắt đầu lúc chín giờ."
+    },
+    {
+      "question": "keep",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kiːp/ – /kept/ – /kept/",
+      "answer": "kept – kept · giữ",
+      "explanation": "V1: keep · V2: kept · V3: kept\nShe kept all the receipts.\n→ Cô ấy giữ lại tất cả hoá đơn."
+    },
+    {
+      "question": "hold",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/hoʊld/ – /held/ – /held/",
+      "answer": "held – held · cầm, tổ chức",
+      "explanation": "V1: hold · V2: held · V3: held\nThe company held a party in December.\n→ Công ty tổ chức tiệc vào tháng Mười Hai."
+    },
+    {
+      "question": "write",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/raɪt/ – /roʊt/ – /ˈrɪtən/",
+      "answer": "wrote – written · viết",
+      "explanation": "V1: write · V2: wrote · V3: written\nI have written three blog posts this month.\n→ Tháng này tôi đã viết ba bài blog."
+    },
+    {
+      "question": "stand",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/stænd/ – /stʊd/ – /stʊd/",
+      "answer": "stood – stood · đứng",
+      "explanation": "V1: stand · V2: stood · V3: stood\nWe stood in line for an hour.\n→ Chúng tôi đứng xếp hàng một tiếng."
+    },
+    {
+      "question": "hear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/hɪr/ – /hɜːrd/ – /hɜːrd/",
+      "answer": "heard – heard · nghe thấy",
+      "explanation": "V1: hear · V2: heard · V3: heard\nI heard a strange noise last night.\n→ Tối qua tôi nghe thấy một tiếng động lạ."
+    },
+    {
+      "question": "let",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/let/ – /let/ – /let/",
+      "answer": "let – let · để cho, cho phép",
+      "explanation": "V1: let · V2: let · V3: let\nMy boss let me leave early.\n→ Sếp cho tôi về sớm."
+    },
+    {
+      "question": "mean",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/miːn/ – /ment/ – /ment/",
+      "answer": "meant – meant · có nghĩa là, ý định",
+      "explanation": "V1: mean · V2: meant · V3: meant\nSorry, I meant to call you.\n→ Xin lỗi, tôi định gọi cho bạn."
+    },
+    {
+      "question": "set",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/set/ – /set/ – /set/",
+      "answer": "set – set · đặt, thiết lập",
+      "explanation": "V1: set · V2: set · V3: set\nI set an alarm for 6 a.m.\n→ Tôi đặt báo thức lúc 6 giờ sáng."
+    },
+    {
+      "question": "meet",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/miːt/ – /met/ – /met/",
+      "answer": "met – met · gặp",
+      "explanation": "V1: meet · V2: met · V3: met\nWe met at a conference.\n→ Chúng tôi gặp nhau ở một hội nghị."
+    },
+    {
+      "question": "run",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/rʌn/ – /ræn/ – /rʌn/",
+      "answer": "ran – run · chạy, vận hành",
+      "explanation": "V1: run · V2: ran · V3: run\nShe ran five kilometers this morning.\n→ Sáng nay cô ấy chạy năm cây số."
+    },
+    {
+      "question": "pay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/peɪ/ – /peɪd/ – /peɪd/",
+      "answer": "paid – paid · trả tiền",
+      "explanation": "V1: pay · V2: paid · V3: paid\nI paid the bill online.\n→ Tôi đã thanh toán hoá đơn trực tuyến."
+    },
+    {
+      "question": "sit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/sɪt/ – /sæt/ – /sæt/",
+      "answer": "sat – sat · ngồi",
+      "explanation": "V1: sit · V2: sat · V3: sat\nHe sat next to me in the meeting.\n→ Anh ấy ngồi cạnh tôi trong cuộc họp."
+    },
+    {
+      "question": "speak",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spiːk/ – /spoʊk/ – /ˈspoʊkən/",
+      "answer": "spoke – spoken · nói (ngôn ngữ), phát biểu",
+      "explanation": "V1: speak · V2: spoke · V3: spoken\nHave you spoken to the client?\n→ Bạn đã nói chuyện với khách hàng chưa?"
+    },
+    {
+      "question": "lie",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/laɪ/ – /leɪ/ – /leɪn/",
+      "answer": "lay – lain · nằm",
+      "explanation": "V1: lie · V2: lay · V3: lain\nHe lay on the sofa all afternoon.\n→ Anh ấy nằm trên sofa cả buổi chiều."
+    },
+    {
+      "question": "lead",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/liːd/ – /led/ – /led/",
+      "answer": "led – led · dẫn dắt, lãnh đạo",
+      "explanation": "V1: lead · V2: led · V3: led\nShe led the project successfully.\n→ Cô ấy đã dẫn dắt dự án thành công."
+    },
+    {
+      "question": "read",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/riːd/ – /red/ – /red/",
+      "answer": "read – read · đọc",
+      "explanation": "V1: read · V2: read · V3: read\nI read that book last year.\n→ Tôi đọc cuốn sách đó năm ngoái."
+    },
+    {
+      "question": "grow",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ɡroʊ/ – /ɡruː/ – /ɡroʊn/",
+      "answer": "grew – grown · lớn lên, trồng, tăng",
+      "explanation": "V1: grow · V2: grew · V3: grown\nThe company grew quickly.\n→ Công ty phát triển nhanh chóng."
+    },
+    {
+      "question": "lose",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/luːz/ – /lɔːst/ – /lɔːst/",
+      "answer": "lost – lost · mất, thua",
+      "explanation": "V1: lose · V2: lost · V3: lost\nI lost my wallet on the bus.\n→ Tôi làm mất ví trên xe buýt."
+    },
+    {
+      "question": "fall",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fɔːl/ – /fel/ – /ˈfɔːlən/",
+      "answer": "fell – fallen · ngã, rơi, giảm",
+      "explanation": "V1: fall · V2: fell · V3: fallen\nPrices have fallen this month.\n→ Giá đã giảm trong tháng này."
+    },
+    {
+      "question": "send",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/send/ – /sent/ – /sent/",
+      "answer": "sent – sent · gửi",
+      "explanation": "V1: send · V2: sent · V3: sent\nI sent you the file this morning.\n→ Sáng nay tôi đã gửi bạn file."
+    },
+    {
+      "question": "build",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɪld/ – /bɪlt/ – /bɪlt/",
+      "answer": "built – built · xây dựng",
+      "explanation": "V1: build · V2: built · V3: built\nThey built a new app in three months.\n→ Họ đã xây dựng một ứng dụng mới trong ba tháng."
+    },
+    {
+      "question": "understand",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈstænd/ – /ˌʌndərˈstʊd/ – /ˌʌndərˈstʊd/",
+      "answer": "understood – understood · hiểu",
+      "explanation": "V1: understand · V2: understood · V3: understood\nI finally understood the problem.\n→ Cuối cùng tôi đã hiểu vấn đề."
+    },
+    {
+      "question": "draw",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/drɔː/ – /druː/ – /drɔːn/",
+      "answer": "drew – drawn · vẽ, kéo, thu hút",
+      "explanation": "V1: draw · V2: drew · V3: drawn\nShe drew a diagram on the whiteboard.\n→ Cô ấy vẽ sơ đồ lên bảng trắng."
+    },
+    {
+      "question": "break",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/breɪk/ – /broʊk/ – /ˈbroʊkən/",
+      "answer": "broke – broken · làm vỡ, phá vỡ",
+      "explanation": "V1: break · V2: broke · V3: broken\nSomeone broke the build again.\n→ Ai đó lại làm hỏng bản build."
+    },
+    {
+      "question": "spend",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spend/ – /spent/ – /spent/",
+      "answer": "spent – spent · tiêu (tiền), dành (thời gian)",
+      "explanation": "V1: spend · V2: spent · V3: spent\nWe spent the weekend at the beach.\n→ Chúng tôi dành cuối tuần ở biển."
+    },
+    {
+      "question": "cut",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kʌt/ – /kʌt/ – /kʌt/",
+      "answer": "cut – cut · cắt",
+      "explanation": "V1: cut · V2: cut · V3: cut\nThe company cut its budget.\n→ Công ty đã cắt giảm ngân sách."
+    },
+    {
+      "question": "rise",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/raɪz/ – /roʊz/ – /ˈrɪzən/",
+      "answer": "rose – risen · tăng, mọc lên",
+      "explanation": "V1: rise · V2: rose · V3: risen\nThe sun rose at 5:30.\n→ Mặt trời mọc lúc 5 giờ 30."
+    },
+    {
+      "question": "drive",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/draɪv/ – /droʊv/ – /ˈdrɪvən/",
+      "answer": "drove – driven · lái xe",
+      "explanation": "V1: drive · V2: drove · V3: driven\nHe drove me to the airport.\n→ Anh ấy chở tôi ra sân bay."
+    },
+    {
+      "question": "buy",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/baɪ/ – /bɔːt/ – /bɔːt/",
+      "answer": "bought – bought · mua",
+      "explanation": "V1: buy · V2: bought · V3: bought\nI bought a new laptop.\n→ Tôi đã mua một chiếc laptop mới."
+    }
+  ]
+}

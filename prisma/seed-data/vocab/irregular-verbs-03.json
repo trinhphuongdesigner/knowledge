@@ -1,0 +1,360 @@
+{
+  "slug": "irregular-verbs-03",
+  "order": 222,
+  "title": "Động từ bất quy tắc · Phần 3",
+  "description": "Động từ bất quy tắc mức trung cấp, gồm các dạng có hai cách chia (smell/smelt…) và động từ ghép tiền tố (overcome, undergo…). Phần 3/5, xếp theo độ phổ biến. Mỗi thẻ: V1 → V2 – V3, phiên âm 3 dạng, nghĩa và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "arise",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/əˈraɪz/ – /əˈroʊz/ – /əˈrɪzən/",
+      "answer": "arose – arisen · nảy sinh, phát sinh",
+      "explanation": "V1: arise · V2: arose · V3: arisen\nA problem arose during testing.\n→ Một vấn đề phát sinh trong lúc kiểm thử."
+    },
+    {
+      "question": "shine",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃaɪn/ – /ʃoʊn/ – /ʃoʊn/",
+      "answer": "shone – shone · chiếu sáng, toả sáng",
+      "explanation": "V1: shine · V2: shone · V3: shone\nThe sun shone all day.\n→ Mặt trời chiếu sáng cả ngày."
+    },
+    {
+      "question": "stick",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/stɪk/ – /stʌk/ – /stʌk/",
+      "answer": "stuck – stuck · dính, mắc kẹt",
+      "explanation": "V1: stick · V2: stuck · V3: stuck\nWe were stuck in traffic.\n→ Chúng tôi bị kẹt xe."
+    },
+    {
+      "question": "swing",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/swɪŋ/ – /swʌŋ/ – /swʌŋ/",
+      "answer": "swung – swung · đu, vung",
+      "explanation": "V1: swing · V2: swung · V3: swung\nThe door swung open.\n→ Cánh cửa bật mở."
+    },
+    {
+      "question": "sink",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/sɪŋk/ – /sæŋk/ – /sʌŋk/",
+      "answer": "sank – sunk · chìm",
+      "explanation": "V1: sink · V2: sank · V3: sunk\nThe boat sank in the storm.\n→ Con thuyền chìm trong cơn bão."
+    },
+    {
+      "question": "sweep",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/swiːp/ – /swept/ – /swept/",
+      "answer": "swept – swept · quét",
+      "explanation": "V1: sweep · V2: swept · V3: swept\nShe swept the floor.\n→ Cô ấy quét nhà."
+    },
+    {
+      "question": "slide",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/slaɪd/ – /slɪd/ – /slɪd/",
+      "answer": "slid – slid · trượt",
+      "explanation": "V1: slide · V2: slid · V3: slid\nThe phone slid off the table.\n→ Điện thoại trượt khỏi bàn."
+    },
+    {
+      "question": "split",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/splɪt/ – /splɪt/ – /splɪt/",
+      "answer": "split – split · chia, tách",
+      "explanation": "V1: split · V2: split · V3: split\nWe split the bill.\n→ Chúng tôi chia nhau hoá đơn."
+    },
+    {
+      "question": "upset",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʌpˈset/ – /ʌpˈset/ – /ʌpˈset/",
+      "answer": "upset – upset · làm buồn, làm đảo lộn",
+      "explanation": "V1: upset · V2: upset · V3: upset\nThe news upset her.\n→ Tin đó làm cô ấy buồn."
+    },
+    {
+      "question": "overcome",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈkʌm/ – /ˌoʊvərˈkeɪm/ – /ˌoʊvərˈkʌm/",
+      "answer": "overcame – overcome · vượt qua",
+      "explanation": "V1: overcome · V2: overcame · V3: overcome\nHe overcame his fear of speaking.\n→ Anh ấy đã vượt qua nỗi sợ nói trước đám đông."
+    },
+    {
+      "question": "undergo",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈɡoʊ/ – /ˌʌndərˈwent/ – /ˌʌndərˈɡɔːn/",
+      "answer": "underwent – undergone · trải qua",
+      "explanation": "V1: undergo · V2: underwent · V3: undergone\nThe system underwent major changes.\n→ Hệ thống đã trải qua những thay đổi lớn."
+    },
+    {
+      "question": "withdraw",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wɪðˈdrɔː/ – /wɪðˈdruː/ – /wɪðˈdrɔːn/",
+      "answer": "withdrew – withdrawn · rút (tiền), rút lui",
+      "explanation": "V1: withdraw · V2: withdrew · V3: withdrawn\nI withdrew some cash from the ATM.\n→ Tôi rút ít tiền mặt từ ATM."
+    },
+    {
+      "question": "forecast",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈfɔːrkæst/ – /ˈfɔːrkæst/ – /ˈfɔːrkæst/",
+      "answer": "forecast – forecast · dự báo",
+      "explanation": "V1: forecast · V2: forecast · V3: forecast\nThey forecast rain for tomorrow.\n→ Họ dự báo ngày mai có mưa."
+    },
+    {
+      "question": "broadcast",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈbrɔːdkæst/ – /ˈbrɔːdkæst/ – /ˈbrɔːdkæst/",
+      "answer": "broadcast – broadcast · phát sóng",
+      "explanation": "V1: broadcast · V2: broadcast · V3: broadcast\nThe match was broadcast live.\n→ Trận đấu được phát sóng trực tiếp."
+    },
+    {
+      "question": "forbid",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fərˈbɪd/ – /fərˈbæd/ – /fərˈbɪdən/",
+      "answer": "forbade – forbidden · cấm",
+      "explanation": "V1: forbid · V2: forbade · V3: forbidden\nSmoking is forbidden here.\n→ Hút thuốc bị cấm ở đây."
+    },
+    {
+      "question": "mistake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/mɪˈsteɪk/ – /mɪˈstʊk/ – /mɪˈsteɪkən/",
+      "answer": "mistook – mistaken · nhầm lẫn",
+      "explanation": "V1: mistake · V2: mistook · V3: mistaken\nI mistook him for his brother.\n→ Tôi nhầm anh ấy với anh trai anh ấy."
+    },
+    {
+      "question": "undertake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈteɪk/ – /ˌʌndərˈtʊk/ – /ˌʌndərˈteɪkən/",
+      "answer": "undertook – undertaken · đảm nhận",
+      "explanation": "V1: undertake · V2: undertook · V3: undertaken\nShe undertook a difficult task.\n→ Cô ấy đảm nhận một nhiệm vụ khó."
+    },
+    {
+      "question": "withstand",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wɪðˈstænd/ – /wɪðˈstʊd/ – /wɪðˈstʊd/",
+      "answer": "withstood – withstood · chịu được",
+      "explanation": "V1: withstand · V2: withstood · V3: withstood\nThe bridge withstood the earthquake.\n→ Cây cầu chịu được trận động đất."
+    },
+    {
+      "question": "uphold",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʌpˈhoʊld/ – /ʌpˈheld/ – /ʌpˈheld/",
+      "answer": "upheld – upheld · giữ vững, duy trì",
+      "explanation": "V1: uphold · V2: upheld · V3: upheld\nThe court upheld the decision.\n→ Toà án giữ nguyên phán quyết."
+    },
+    {
+      "question": "overtake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈteɪk/ – /ˌoʊvərˈtʊk/ – /ˌoʊvərˈteɪkən/",
+      "answer": "overtook – overtaken · vượt qua, vượt mặt",
+      "explanation": "V1: overtake · V2: overtook · V3: overtaken\nA truck overtook us on the highway.\n→ Một chiếc xe tải vượt chúng tôi trên cao tốc."
+    },
+    {
+      "question": "oversee",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈsiː/ – /ˌoʊvərˈsɔː/ – /ˌoʊvərˈsiːn/",
+      "answer": "oversaw – overseen · giám sát",
+      "explanation": "V1: oversee · V2: oversaw · V3: overseen\nShe oversaw the whole project.\n→ Cô ấy giám sát toàn bộ dự án."
+    },
+    {
+      "question": "foresee",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fɔːrˈsiː/ – /fɔːrˈsɔː/ – /fɔːrˈsiːn/",
+      "answer": "foresaw – foreseen · thấy trước, lường trước",
+      "explanation": "V1: foresee · V2: foresaw · V3: foreseen\nNobody foresaw the crisis.\n→ Không ai lường trước cuộc khủng hoảng."
+    },
+    {
+      "question": "rebuild",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈbɪld/ – /ˌriːˈbɪlt/ – /ˌriːˈbɪlt/",
+      "answer": "rebuilt – rebuilt · xây lại",
+      "explanation": "V1: rebuild · V2: rebuilt · V3: rebuilt\nThey rebuilt the house after the flood.\n→ Họ xây lại nhà sau trận lũ."
+    },
+    {
+      "question": "smell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/smel/ – /smeld, smelt/ – /smeld, smelt/",
+      "answer": "smelled/smelt – smelled/smelt · ngửi, có mùi",
+      "explanation": "V1: smell · V2: smelled/smelt · V3: smelled/smelt\nThe kitchen smelled of coffee.\n→ Nhà bếp thơm mùi cà phê."
+    },
+    {
+      "question": "spell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spel/ – /speld, spelt/ – /speld, spelt/",
+      "answer": "spelled/spelt – spelled/spelt · đánh vần",
+      "explanation": "V1: spell · V2: spelled/spelt · V3: spelled/spelt\nYou spelled my name wrong.\n→ Bạn viết sai tên tôi rồi."
+    },
+    {
+      "question": "spill",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spɪl/ – /spɪld, spɪlt/ – /spɪld, spɪlt/",
+      "answer": "spilled/spilt – spilled/spilt · làm đổ",
+      "explanation": "V1: spill · V2: spilled/spilt · V3: spilled/spilt\nI spilled coffee on my keyboard.\n→ Tôi làm đổ cà phê lên bàn phím."
+    },
+    {
+      "question": "spoil",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spɔɪl/ – /spɔɪld, spɔɪlt/ – /spɔɪld, spɔɪlt/",
+      "answer": "spoiled/spoilt – spoiled/spoilt · làm hỏng, chiều hư",
+      "explanation": "V1: spoil · V2: spoiled/spoilt · V3: spoiled/spoilt\nThe rain spoiled our picnic.\n→ Cơn mưa làm hỏng buổi dã ngoại."
+    },
+    {
+      "question": "lean",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/liːn/ – /liːnd, lent/ – /liːnd, lent/",
+      "answer": "leaned/leant – leaned/leant · dựa, nghiêng",
+      "explanation": "V1: lean · V2: leaned/leant · V3: leaned/leant\nHe leaned against the wall.\n→ Anh ấy dựa vào tường."
+    },
+    {
+      "question": "leap",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/liːp/ – /liːpt, lept/ – /liːpt, lept/",
+      "answer": "leaped/leapt – leaped/leapt · nhảy vọt",
+      "explanation": "V1: leap · V2: leaped/leapt · V3: leaped/leapt\nThe cat leapt onto the table.\n→ Con mèo nhảy phốc lên bàn."
+    },
+    {
+      "question": "kneel",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/niːl/ – /nelt, niːld/ – /nelt, niːld/",
+      "answer": "knelt/kneeled – knelt/kneeled · quỳ",
+      "explanation": "V1: kneel · V2: knelt/kneeled · V3: knelt/kneeled\nShe knelt down to tie her shoe.\n→ Cô ấy quỳ xuống buộc dây giày."
+    },
+    {
+      "question": "flee",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fliː/ – /fled/ – /fled/",
+      "answer": "fled – fled · chạy trốn",
+      "explanation": "V1: flee · V2: fled · V3: fled\nThey fled the burning building.\n→ Họ chạy khỏi toà nhà đang cháy."
+    },
+    {
+      "question": "bleed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bliːd/ – /bled/ – /bled/",
+      "answer": "bled – bled · chảy máu",
+      "explanation": "V1: bleed · V2: bled · V3: bled\nHis nose bled after the fall.\n→ Mũi anh ấy chảy máu sau cú ngã."
+    },
+    {
+      "question": "breed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/briːd/ – /bred/ – /bred/",
+      "answer": "bred – bred · nuôi, nhân giống",
+      "explanation": "V1: breed · V2: bred · V3: bred\nThey bred dogs on the farm.\n→ Họ nuôi chó giống ở trang trại."
+    },
+    {
+      "question": "bind",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/baɪnd/ – /baʊnd/ – /baʊnd/",
+      "answer": "bound – bound · buộc, ràng buộc",
+      "explanation": "V1: bind · V2: bound · V3: bound\nThe contract binds both parties.\n→ Hợp đồng ràng buộc cả hai bên."
+    },
+    {
+      "question": "grind",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ɡraɪnd/ – /ɡraʊnd/ – /ɡraʊnd/",
+      "answer": "ground – ground · xay, nghiền",
+      "explanation": "V1: grind · V2: ground · V3: ground\nHe ground the coffee beans.\n→ Anh ấy xay hạt cà phê."
+    },
+    {
+      "question": "wind",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/waɪnd/ – /waʊnd/ – /waʊnd/",
+      "answer": "wound – wound · quấn, uốn khúc",
+      "explanation": "V1: wind · V2: wound · V3: wound\nThe road wound through the hills.\n→ Con đường uốn lượn qua những ngọn đồi."
+    },
+    {
+      "question": "cling",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/klɪŋ/ – /klʌŋ/ – /klʌŋ/",
+      "answer": "clung – clung · bám chặt",
+      "explanation": "V1: cling · V2: clung · V3: clung\nThe child clung to his mother.\n→ Đứa trẻ bám chặt lấy mẹ."
+    },
+    {
+      "question": "creep",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kriːp/ – /krept/ – /krept/",
+      "answer": "crept – crept · rón rén, bò",
+      "explanation": "V1: creep · V2: crept · V3: crept\nShe crept into the room.\n→ Cô ấy rón rén vào phòng."
+    },
+    {
+      "question": "weep",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wiːp/ – /wept/ – /wept/",
+      "answer": "wept – wept · khóc",
+      "explanation": "V1: weep · V2: wept · V3: wept\nShe wept at the sad ending.\n→ Cô ấy khóc ở cái kết buồn."
+    },
+    {
+      "question": "sting",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/stɪŋ/ – /stʌŋ/ – /stʌŋ/",
+      "answer": "stung – stung · đốt, chích",
+      "explanation": "V1: sting · V2: stung · V3: stung\nA bee stung me on the arm.\n→ Một con ong đốt vào tay tôi."
+    },
+    {
+      "question": "awake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/əˈweɪk/ – /əˈwoʊk/ – /əˈwoʊkən/",
+      "answer": "awoke – awoken · thức tỉnh, tỉnh dậy",
+      "explanation": "V1: awake · V2: awoke · V3: awoken\nI awoke to the sound of rain.\n→ Tôi tỉnh dậy vì tiếng mưa."
+    },
+    {
+      "question": "prove",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/pruːv/ – /pruːvd/ – /ˈpruːvən, pruːvd/",
+      "answer": "proved – proven/proved · chứng minh",
+      "explanation": "V1: prove · V2: proved · V3: proven/proved\nThe method has proven effective.\n→ Phương pháp đã được chứng minh là hiệu quả."
+    },
+    {
+      "question": "sew",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/soʊ/ – /soʊd/ – /soʊn, soʊd/",
+      "answer": "sewed – sewn/sewed · may, khâu",
+      "explanation": "V1: sew · V2: sewed · V3: sewn/sewed\nShe sewed a button on my shirt.\n→ Cô ấy khâu khuy áo cho tôi."
+    },
+    {
+      "question": "shrink",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃrɪŋk/ – /ʃræŋk/ – /ʃrʌŋk/",
+      "answer": "shrank – shrunk · co lại, thu nhỏ",
+      "explanation": "V1: shrink · V2: shrank · V3: shrunk\nMy sweater shrank in the wash.\n→ Áo len của tôi bị co sau khi giặt."
+    },
+    {
+      "question": "spin",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spɪn/ – /spʌn/ – /spʌn/",
+      "answer": "spun – spun · quay, xoay",
+      "explanation": "V1: spin · V2: spun · V3: spun\nThe wheel spun faster and faster.\n→ Bánh xe quay ngày càng nhanh."
+    },
+    {
+      "question": "stink",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/stɪŋk/ – /stæŋk, stʌŋk/ – /stʌŋk/",
+      "answer": "stank/stunk – stunk · bốc mùi hôi",
+      "explanation": "V1: stink · V2: stank/stunk · V3: stunk\nThe room stank of smoke.\n→ Căn phòng nồng nặc mùi khói."
+    },
+    {
+      "question": "strive",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/straɪv/ – /stroʊv, straɪvd/ – /ˈstrɪvən, straɪvd/",
+      "answer": "strove/strived – striven/strived · cố gắng, phấn đấu",
+      "explanation": "V1: strive · V2: strove/strived · V3: striven/strived\nWe strive to improve every day.\n→ Chúng tôi phấn đấu cải thiện mỗi ngày."
+    },
+    {
+      "question": "swear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/swer/ – /swɔːr/ – /swɔːrn/",
+      "answer": "swore – sworn · thề, chửi thề",
+      "explanation": "V1: swear · V2: swore · V3: sworn\nHe swore to tell the truth.\n→ Anh ấy thề sẽ nói sự thật."
+    },
+    {
+      "question": "tread",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/tred/ – /trɑːd/ – /ˈtrɑːdən/",
+      "answer": "trod – trodden · giẫm, bước",
+      "explanation": "V1: tread · V2: trod · V3: trodden\nSomeone trod on my foot.\n→ Ai đó giẫm vào chân tôi."
+    },
+    {
+      "question": "weave",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wiːv/ – /woʊv/ – /ˈwoʊvən/",
+      "answer": "wove – woven · dệt",
+      "explanation": "V1: weave · V2: wove · V3: woven\nShe wove a basket from bamboo.\n→ Cô ấy đan một chiếc giỏ bằng tre."
+    }
+  ]
+}

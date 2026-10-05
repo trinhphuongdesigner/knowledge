@@ -1,0 +1,80 @@
+{
+  "slug": "interview-be-04-transactions-concurrency",
+  "order": 204,
+  "title": "Phỏng vấn Backend · Transactions, Isolation & Concurrency",
+  "description": "Câu hỏi phỏng vấn về ACID, isolation level, locking, deadlock, race condition, optimistic/pessimistic lock. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "What does ACID mean? / ACID nghĩa là gì?",
+      "answer": "- **Atomicity**: transaction thành công trọn vẹn hoặc rollback hoàn toàn.\n- **Consistency**: dữ liệu luôn chuyển từ trạng thái hợp lệ sang hợp lệ (constraint, FK, check).\n- **Isolation**: các transaction đồng thời không thấy trạng thái dở dang của nhau (mức độ tuỳ isolation level).\n- **Durability**: đã commit thì không mất kể cả khi crash (nhờ WAL/redo log, fsync).",
+      "explanation": "**Atomicity** — all or nothing. **Consistency** — constraints keep data valid between transactions. **Isolation** — concurrent transactions don't see each other's partial state, to a degree set by the isolation level. **Durability** — committed data survives crashes thanks to WAL and fsync."
+    },
+    {
+      "question": "Explain dirty read, non-repeatable read and phantom read. / Giải thích dirty read, non-repeatable read và phantom read.",
+      "answer": "- **Dirty read**: đọc dữ liệu transaction khác **chưa commit** (có thể bị rollback).\n- **Non-repeatable read**: đọc cùng một dòng 2 lần trong 1 transaction nhưng giá trị khác nhau vì transaction khác đã UPDATE + commit.\n- **Phantom read**: chạy cùng một query điều kiện 2 lần nhưng **số dòng khác nhau** vì có INSERT/DELETE xen vào.\n- Thêm: **lost update** (hai transaction cùng đọc-sửa-ghi, cái sau ghi đè cái trước), **write skew**.",
+      "explanation": "A **dirty read** sees uncommitted data. A **non-repeatable read** gets different values for the same row within one transaction. A **phantom read** gets a different set of rows for the same predicate because of concurrent inserts or deletes. Related anomalies: **lost updates** and **write skew**."
+    },
+    {
+      "question": "What are the SQL isolation levels? / Các isolation level trong SQL là gì?",
+      "answer": "- **Read Uncommitted**: có thể gặp cả 3.\n- **Read Committed** (mặc định Postgres, Oracle): chặn dirty read.\n- **Repeatable Read** (mặc định MySQL InnoDB): chặn thêm non-repeatable; Postgres (snapshot) và InnoDB (gap lock) cũng chặn phần lớn phantom.\n- **Serializable**: kết quả như chạy tuần tự; Postgres dùng SSI, có thể trả lỗi `serialization_failure` → **ứng dụng phải retry**.\nLevel càng cao càng an toàn nhưng càng nhiều xung đột/chậm.",
+      "explanation": "Read Uncommitted allows all anomalies; Read Committed (Postgres default) prevents dirty reads; Repeatable Read (MySQL default) also prevents non-repeatable reads, and in practice most phantoms in Postgres and InnoDB; Serializable behaves like serial execution — Postgres's SSI may abort with serialization failures that the app must retry. Higher levels trade throughput for safety."
+    },
+    {
+      "question": "How do you prevent the lost update problem? / Ngăn lost update thế nào?",
+      "answer": "Ví dụ: hai request cùng đọc `stock = 10`, mỗi cái trừ 1 rồi ghi `9` → mất một lần trừ.\n1. **Atomic update**: `UPDATE products SET stock = stock - 1 WHERE id = ? AND stock > 0` — đơn giản và tốt nhất khi được.\n2. **Pessimistic lock**: `SELECT ... FOR UPDATE` trong transaction.\n3. **Optimistic lock**: cột `version`; `UPDATE ... SET version = version + 1 WHERE id = ? AND version = ?` — nếu 0 dòng bị ảnh hưởng thì retry.\n4. Isolation **Serializable** + retry.",
+      "explanation": "Two requests read stock 10 and both write 9, losing one decrement. Fixes: an **atomic update** (`SET stock = stock - 1 WHERE stock > 0`), a **pessimistic lock** with `SELECT ... FOR UPDATE`, **optimistic locking** with a version column and retry when no row is updated, or Serializable isolation with retries."
+    },
+    {
+      "question": "Optimistic vs pessimistic locking — when to use which? / Optimistic hay pessimistic lock — khi nào dùng cái nào?",
+      "answer": "- **Pessimistic** (`FOR UPDATE`): khoá trước khi sửa. Hợp khi **xung đột cao** và transaction ngắn (đặt chỗ hot, trừ tiền). Nhược: chờ lock, nguy cơ deadlock, không giữ lock qua tương tác người dùng.\n- **Optimistic** (version/ETag): không khoá, kiểm tra lúc ghi. Hợp khi **xung đột thấp**, đọc nhiều, hoặc chỉnh sửa kéo dài (form edit — trả `409`/`412` khi xung đột).",
+      "explanation": "**Pessimistic** locking (`FOR UPDATE`) suits high-contention, short transactions, at the cost of waiting and deadlock risk; never hold locks across user think-time. **Optimistic** locking (version or ETag check at write) suits low contention and long edits, returning `409`/`412` on conflict."
+    },
+    {
+      "question": "What is a deadlock and how do you avoid it? / Deadlock là gì và tránh thế nào?",
+      "answer": "Hai transaction chờ lock của nhau: T1 khoá A rồi chờ B, T2 khoá B rồi chờ A. DB phát hiện và **huỷ một transaction** (Postgres: `deadlock detected`).\n**Tránh**:\n- Luôn khoá theo **thứ tự nhất quán** (vd. sort theo id trước khi update nhiều dòng).\n- Giữ transaction **ngắn**, không gọi API ngoài trong transaction.\n- Có index phù hợp để không khoá quá nhiều dòng.\n- Đặt `lock_timeout` và **retry** khi gặp deadlock.",
+      "explanation": "A deadlock is two transactions each waiting for a lock the other holds; the DB aborts one. Avoid it by locking in a **consistent order**, keeping transactions short with no external calls inside, indexing so fewer rows are locked, and retrying on deadlock errors with a lock timeout."
+    },
+    {
+      "question": "What is a race condition? Give a backend example. / Race condition là gì? Cho ví dụ phía backend.",
+      "answer": "Kết quả phụ thuộc vào thứ tự thực thi không kiểm soát của các tác vụ đồng thời.\nVí dụ **check-then-act**: kiểm tra email chưa tồn tại → INSERT. Hai request đồng thời đều qua bước kiểm tra → tạo trùng.\nSửa: dùng **unique constraint** và bắt lỗi trùng; hoặc `INSERT ... ON CONFLICT DO NOTHING`. Nguyên tắc: **đẩy bất biến xuống DB** (constraint, atomic op) thay vì kiểm tra ở tầng ứng dụng.",
+      "explanation": "A race condition is when the outcome depends on uncontrolled timing of concurrent operations. Classic case: check-then-act — two signups both see the email is free and both insert. Fix with a **unique constraint** and handling the conflict, or `INSERT ... ON CONFLICT`. Push invariants into the database rather than checking in app code."
+    },
+    {
+      "question": "How do you implement a distributed lock? What are the pitfalls? / Triển khai distributed lock thế nào? Có những cạm bẫy gì?",
+      "answer": "- Redis: `SET lock:key <token> NX PX 30000`; giải phóng bằng Lua script chỉ xoá nếu token khớp.\n- Postgres: **advisory lock** `pg_try_advisory_lock(key)`.\n- ZooKeeper/etcd: dựa trên consensus, an toàn hơn.\n**Cạm bẫy**: process bị GC pause/treo lâu hơn TTL → lock hết hạn, process khác lấy lock → **hai bên cùng chạy**. Giải pháp: **fencing token** (số tăng dần, storage từ chối token cũ). Tốt nhất là thiết kế để không cần lock (idempotency, unique constraint).",
+      "explanation": "Options: Redis `SET key token NX PX ttl` with a compare-and-delete Lua release, Postgres advisory locks, or etcd/ZooKeeper. Pitfall: a paused process can outlive its TTL while another acquires the lock, so both act; use **fencing tokens** that storage validates. Better still, design to avoid locks via idempotency and constraints."
+    },
+    {
+      "question": "What is MVCC? / MVCC là gì?",
+      "answer": "**Multi-Version Concurrency Control**: mỗi lần UPDATE tạo **phiên bản mới** của dòng thay vì ghi đè; mỗi transaction đọc từ một **snapshot**.\n- Kết quả: **reader không chặn writer, writer không chặn reader**.\n- Postgres lưu version cũ trong bảng (dead tuple) → cần **VACUUM**; transaction mở quá lâu ngăn vacuum dọn dẹp → bloat.\n- InnoDB lưu version cũ trong **undo log**.",
+      "explanation": "Multi-Version Concurrency Control keeps multiple row versions; each transaction reads a consistent **snapshot**, so readers and writers don't block each other. Postgres keeps old versions in the table and needs **VACUUM** (long transactions cause bloat); InnoDB uses undo logs."
+    },
+    {
+      "question": "How do you handle transactions across multiple services? / Xử lý transaction trải qua nhiều service thế nào?",
+      "answer": "**Two-phase commit (2PC)** đảm bảo atomic nhưng chậm, coordinator là điểm lỗi, ít dùng với microservice.\n**Saga pattern**: chuỗi transaction cục bộ, mỗi bước có **compensating action** (huỷ đơn, hoàn tiền) khi bước sau lỗi.\n- **Choreography**: service phát/nghe event.\n- **Orchestration**: một orchestrator (vd. Temporal) điều phối.\nKết hợp **transactional outbox** để publish event tin cậy và **idempotent consumer**.",
+      "explanation": "**2PC** gives atomicity but is slow and fragile, rarely used across microservices. The **Saga** pattern chains local transactions with **compensating actions** on failure, either by choreography (events) or orchestration (e.g. Temporal). Pair it with a transactional outbox and idempotent consumers."
+    },
+    {
+      "question": "What is the transactional outbox pattern? / Transactional outbox pattern là gì?",
+      "answer": "Vấn đề **dual write**: lưu DB xong rồi publish lên Kafka — nếu publish lỗi thì mất event; publish trước rồi DB lỗi thì event sai.\nGiải pháp: trong **cùng transaction** với nghiệp vụ, INSERT event vào bảng `outbox`. Một relay (polling hoặc **CDC** như Debezium) đọc outbox và publish lên broker, đánh dấu đã gửi.\n→ Đảm bảo **at-least-once**; consumer phải idempotent.",
+      "explanation": "Writing to the DB and publishing to a broker are two separate operations that can diverge. Instead, insert the event into an **outbox table in the same transaction**; a relay (polling or CDC like Debezium) publishes it and marks it sent. This gives at-least-once delivery, so consumers must be idempotent."
+    },
+    {
+      "question": "How do you safely implement \"transfer money from A to B\"? / Triển khai \"chuyển tiền từ A sang B\" an toàn thế nào?",
+      "answer": "```sql\nBEGIN;\nSELECT id FROM accounts WHERE id IN (A, B) ORDER BY id FOR UPDATE; -- khoá theo thứ tự\nUPDATE accounts SET balance = balance - 100 WHERE id = A AND balance >= 100; -- kiểm tra 1 dòng\nUPDATE accounts SET balance = balance + 100 WHERE id = B;\nINSERT INTO ledger (...); -- bút toán kép\nCOMMIT;\n```\nThêm: **idempotency key** cho request, CHECK `balance >= 0`, dùng kiểu **DECIMAL/bigint (đơn vị nhỏ nhất)** chứ không dùng float, ghi **ledger bất biến**.",
+      "explanation": "In one transaction, lock both accounts in id order with `FOR UPDATE`, debit with a guard (`balance >= amount`) and verify one row changed, credit the other, write double-entry ledger rows, and commit. Add an idempotency key, a `CHECK (balance >= 0)`, integer minor units or DECIMAL — never floats — and an append-only ledger."
+    },
+    {
+      "question": "What is SELECT ... FOR UPDATE SKIP LOCKED used for? / SELECT ... FOR UPDATE SKIP LOCKED dùng để làm gì?",
+      "answer": "Lấy và khoá các dòng, **bỏ qua dòng đang bị khoá** bởi transaction khác thay vì chờ. Dùng làm **job queue trên Postgres**:\n```sql\nSELECT id FROM jobs WHERE status = 'pending'\nORDER BY created_at LIMIT 10 FOR UPDATE SKIP LOCKED;\n```\nNhiều worker chạy song song mà không lấy trùng job, không chờ nhau. Các thư viện như pg-boss, Graphile Worker dùng cơ chế này.",
+      "explanation": "It locks rows while **skipping rows already locked** by others instead of waiting. That makes Postgres a solid job queue: many workers can each grab a batch of pending jobs with no duplicates and no blocking. Libraries like pg-boss and Graphile Worker rely on it."
+    },
+    {
+      "question": "What is the difference between consistency in ACID and in CAP? / \"Consistency\" trong ACID và trong CAP khác nhau thế nào?",
+      "answer": "- **ACID-C**: dữ liệu thoả mãn **ràng buộc nghiệp vụ** (constraint, invariant) trước và sau transaction.\n- **CAP-C** (linearizability): mọi node trả về **giá trị ghi mới nhất**, như thể chỉ có một bản sao dữ liệu.\nHai khái niệm khác nhau hoàn toàn dù trùng tên — một câu hỏi bẫy hay gặp.",
+      "explanation": "ACID consistency means data satisfies **business invariants** before and after a transaction. CAP consistency means **linearizability** — every read sees the latest write as if there were one copy. Same word, different concepts — a classic trick question."
+    }
+  ]
+}

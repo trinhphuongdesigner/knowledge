@@ -1,0 +1,304 @@
+{
+  "slug": "life-16-weather-nature-environment",
+  "order": 116,
+  "title": "Daily Life 6 · Weather, Nature & Environment",
+  "description": "Từ vựng thời tiết, thiên nhiên và môi trường (CEFR A2–B2). Dùng cho small talk, đọc tin thời tiết và thảo luận về biến đổi khí hậu.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "forecast",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɔːrkæst/",
+      "answer": "dự báo thời tiết",
+      "explanation": "The forecast says it will rain all weekend.\n→ Dự báo nói trời sẽ mưa cả cuối tuần."
+    },
+    {
+      "question": "humid",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈhjuːmɪd/",
+      "answer": "ẩm ướt, nồm",
+      "explanation": "Saigon is hot and humid most of the year.\n→ Sài Gòn nóng ẩm gần như quanh năm."
+    },
+    {
+      "question": "drizzle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdrɪzəl/",
+      "answer": "mưa phùn",
+      "explanation": "Hanoi has light drizzle in early spring.\n→ Hà Nội có mưa phùn đầu xuân."
+    },
+    {
+      "question": "pouring",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈpɔːrɪŋ/",
+      "answer": "mưa như trút",
+      "explanation": "It's pouring outside, take an umbrella.\n→ Ngoài trời đang mưa như trút, mang ô đi."
+    },
+    {
+      "question": "thunderstorm",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈθʌndərstɔːrm/",
+      "answer": "giông bão",
+      "explanation": "The thunderstorm knocked out the power.\n→ Cơn giông làm mất điện."
+    },
+    {
+      "question": "lightning",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪtnɪŋ/",
+      "answer": "tia chớp",
+      "explanation": "Lightning struck a tree near our house.\n→ Sét đánh trúng cái cây gần nhà tôi."
+    },
+    {
+      "question": "typhoon",
+      "partOfSpeech": "noun",
+      "phonetic": "/taɪˈfuːn/",
+      "answer": "bão nhiệt đới",
+      "explanation": "A typhoon is expected to hit the central coast.\n→ Một cơn bão dự kiến đổ bộ miền Trung."
+    },
+    {
+      "question": "flood",
+      "partOfSpeech": "noun",
+      "phonetic": "/flʌd/",
+      "answer": "lũ lụt",
+      "explanation": "The flood damaged hundreds of houses.\n→ Lũ lụt làm hư hại hàng trăm ngôi nhà."
+    },
+    {
+      "question": "heatwave",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhiːtweɪv/",
+      "answer": "đợt nắng nóng",
+      "explanation": "During the heatwave, temperatures reached 40 degrees.\n→ Trong đợt nắng nóng, nhiệt độ lên tới 40 độ."
+    },
+    {
+      "question": "chilly",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈtʃɪli/",
+      "answer": "se lạnh",
+      "explanation": "It's a bit chilly this morning.\n→ Sáng nay trời hơi se lạnh."
+    },
+    {
+      "question": "freezing",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfriːzɪŋ/",
+      "answer": "lạnh cóng",
+      "explanation": "It was freezing in Sapa last winter.\n→ Mùa đông năm ngoái ở Sa Pa lạnh cóng."
+    },
+    {
+      "question": "breeze",
+      "partOfSpeech": "noun",
+      "phonetic": "/briːz/",
+      "answer": "gió nhẹ",
+      "explanation": "A cool breeze came from the sea.\n→ Một làn gió mát thổi từ biển vào."
+    },
+    {
+      "question": "foggy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfɑːɡi/",
+      "answer": "có sương mù",
+      "explanation": "The road is foggy, so drive slowly.\n→ Đường có sương mù, lái chậm thôi."
+    },
+    {
+      "question": "sunny spells",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌni spelz/",
+      "answer": "nắng xen kẽ",
+      "explanation": "Expect sunny spells in the afternoon.\n→ Chiều nay trời có nắng xen kẽ."
+    },
+    {
+      "question": "temperature",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtemprətʃər/",
+      "answer": "nhiệt độ",
+      "explanation": "The temperature dropped suddenly at night.\n→ Nhiệt độ giảm đột ngột vào ban đêm."
+    },
+    {
+      "question": "degree",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈɡriː/",
+      "answer": "độ (nhiệt độ)",
+      "explanation": "It's 35 degrees Celsius today.\n→ Hôm nay 35 độ C."
+    },
+    {
+      "question": "season",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsiːzən/",
+      "answer": "mùa",
+      "explanation": "The rainy season lasts from May to October.\n→ Mùa mưa kéo dài từ tháng Năm đến tháng Mười."
+    },
+    {
+      "question": "climate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈklaɪmət/",
+      "answer": "khí hậu",
+      "explanation": "Da Lat has a cool climate all year.\n→ Đà Lạt có khí hậu mát mẻ quanh năm."
+    },
+    {
+      "question": "climate change",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈklaɪmət tʃeɪndʒ/",
+      "answer": "biến đổi khí hậu",
+      "explanation": "Climate change makes storms stronger.\n→ Biến đổi khí hậu khiến bão mạnh hơn."
+    },
+    {
+      "question": "global warming",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡloʊbəl ˈwɔːrmɪŋ/",
+      "answer": "nóng lên toàn cầu",
+      "explanation": "Global warming is melting the ice caps.\n→ Nóng lên toàn cầu làm tan các chỏm băng."
+    },
+    {
+      "question": "pollution",
+      "partOfSpeech": "noun",
+      "phonetic": "/pəˈluːʃən/",
+      "answer": "ô nhiễm",
+      "explanation": "Air pollution is bad in big cities.\n→ Ô nhiễm không khí ở các thành phố lớn rất tệ."
+    },
+    {
+      "question": "air quality",
+      "partOfSpeech": "noun",
+      "phonetic": "/er ˈkwɑːləti/",
+      "answer": "chất lượng không khí",
+      "explanation": "Check the air quality before you go running.\n→ Kiểm tra chất lượng không khí trước khi chạy bộ."
+    },
+    {
+      "question": "smog",
+      "partOfSpeech": "noun",
+      "phonetic": "/smɑːɡ/",
+      "answer": "khói bụi mù",
+      "explanation": "Thick smog covered the city this morning.\n→ Khói bụi dày đặc bao phủ thành phố sáng nay."
+    },
+    {
+      "question": "recycle",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈsaɪkəl/",
+      "answer": "tái chế",
+      "explanation": "We recycle plastic bottles and cans.\n→ Chúng tôi tái chế chai nhựa và lon."
+    },
+    {
+      "question": "single-use plastic",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪŋɡəl juːs ˈplæstɪk/",
+      "answer": "nhựa dùng một lần",
+      "explanation": "Many cafés have stopped using single-use plastic straws.\n→ Nhiều quán cà phê đã ngừng dùng ống hút nhựa dùng một lần."
+    },
+    {
+      "question": "renewable energy",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈnuːəbəl ˈenərdʒi/",
+      "answer": "năng lượng tái tạo",
+      "explanation": "Solar power is a growing source of renewable energy.\n→ Điện mặt trời là nguồn năng lượng tái tạo đang phát triển."
+    },
+    {
+      "question": "carbon footprint",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːrbən ˈfʊtprɪnt/",
+      "answer": "lượng khí thải carbon (của cá nhân)",
+      "explanation": "Flying less reduces your carbon footprint.\n→ Đi máy bay ít hơn giúp giảm lượng phát thải carbon."
+    },
+    {
+      "question": "endangered",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪnˈdeɪndʒərd/",
+      "answer": "có nguy cơ tuyệt chủng",
+      "explanation": "The saola is an endangered animal in Vietnam.\n→ Sao la là loài có nguy cơ tuyệt chủng ở Việt Nam."
+    },
+    {
+      "question": "wildlife",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwaɪldlaɪf/",
+      "answer": "động vật hoang dã",
+      "explanation": "The national park is home to rare wildlife.\n→ Vườn quốc gia là nơi sinh sống của nhiều loài hoang dã quý hiếm."
+    },
+    {
+      "question": "forest",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɔːrɪst/",
+      "answer": "rừng",
+      "explanation": "Forests are being cut down for farmland.\n→ Rừng đang bị chặt để lấy đất nông nghiệp."
+    },
+    {
+      "question": "deforestation",
+      "partOfSpeech": "noun",
+      "phonetic": "/diːˌfɔːrɪˈsteɪʃən/",
+      "answer": "nạn phá rừng",
+      "explanation": "Deforestation causes landslides in the mountains.\n→ Phá rừng gây sạt lở ở vùng núi."
+    },
+    {
+      "question": "landslide",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlændslaɪd/",
+      "answer": "sạt lở đất",
+      "explanation": "The road was blocked by a landslide.\n→ Con đường bị chặn do sạt lở đất."
+    },
+    {
+      "question": "drought",
+      "partOfSpeech": "noun",
+      "phonetic": "/draʊt/",
+      "answer": "hạn hán",
+      "explanation": "The Mekong Delta suffered a severe drought.\n→ Đồng bằng sông Cửu Long chịu hạn hán nghiêm trọng."
+    },
+    {
+      "question": "waterfall",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɔːtərfɔːl/",
+      "answer": "thác nước",
+      "explanation": "We hiked to a beautiful waterfall.\n→ Chúng tôi leo bộ đến một thác nước đẹp."
+    },
+    {
+      "question": "cave",
+      "partOfSpeech": "noun",
+      "phonetic": "/keɪv/",
+      "answer": "hang động",
+      "explanation": "Son Doong is the largest cave in the world.\n→ Sơn Đoòng là hang động lớn nhất thế giới."
+    },
+    {
+      "question": "coast",
+      "partOfSpeech": "noun",
+      "phonetic": "/koʊst/",
+      "answer": "bờ biển",
+      "explanation": "We drove along the coast from Da Nang to Hoi An.\n→ Chúng tôi lái xe dọc bờ biển từ Đà Nẵng đến Hội An."
+    },
+    {
+      "question": "valley",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvæli/",
+      "answer": "thung lũng",
+      "explanation": "The valley is full of rice terraces.\n→ Thung lũng đầy ruộng bậc thang."
+    },
+    {
+      "question": "sunrise",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌnraɪz/",
+      "answer": "bình minh",
+      "explanation": "We woke up early to watch the sunrise.\n→ Chúng tôi dậy sớm ngắm bình minh."
+    },
+    {
+      "question": "sunset",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌnset/",
+      "answer": "hoàng hôn",
+      "explanation": "The sunset over the river was amazing.\n→ Hoàng hôn trên sông thật tuyệt."
+    },
+    {
+      "question": "it's boiling",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɪts ˈbɔɪlɪŋ/",
+      "answer": "nóng như đổ lửa",
+      "explanation": "It's boiling today, let's stay inside.\n→ Hôm nay nóng như đổ lửa, ở trong nhà thôi."
+    },
+    {
+      "question": "clear up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/klɪr ʌp/",
+      "answer": "trời quang, tạnh",
+      "explanation": "The sky should clear up by the afternoon.\n→ Trời sẽ quang đãng vào buổi chiều."
+    },
+    {
+      "question": "eco-friendly",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌiːkoʊ ˈfrendli/",
+      "answer": "thân thiện với môi trường",
+      "explanation": "We use eco-friendly cleaning products.\n→ Chúng tôi dùng sản phẩm tẩy rửa thân thiện môi trường."
+    }
+  ]
+}

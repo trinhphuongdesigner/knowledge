@@ -1,0 +1,311 @@
+{
+  "slug": "life-12-food-cooking",
+  "order": 112,
+  "title": "Daily Life 2 · Food, Cooking & Eating Out",
+  "description": "Từ vựng về món ăn, nấu nướng và gọi món ở nhà hàng (CEFR A1–B1). Dùng khi đi ăn với đồng nghiệp nước ngoài, đọc công thức hoặc giới thiệu món Việt.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "recipe",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈresəpi/",
+      "answer": "công thức nấu ăn",
+      "explanation": "I followed my mom's recipe for fish sauce.\n→ Tôi làm theo công thức nước mắm của mẹ."
+    },
+    {
+      "question": "ingredient",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈɡriːdiənt/",
+      "answer": "nguyên liệu",
+      "explanation": "Fresh ingredients make the dish taste better.\n→ Nguyên liệu tươi giúp món ăn ngon hơn."
+    },
+    {
+      "question": "chop",
+      "partOfSpeech": "verb",
+      "phonetic": "/tʃɑːp/",
+      "answer": "thái, băm",
+      "explanation": "Chop the onions into small pieces.\n→ Thái hành thành miếng nhỏ."
+    },
+    {
+      "question": "slice",
+      "partOfSpeech": "verb",
+      "phonetic": "/slaɪs/",
+      "answer": "thái lát",
+      "explanation": "Slice the beef thinly for pho.\n→ Thái thịt bò thật mỏng để nấu phở."
+    },
+    {
+      "question": "peel",
+      "partOfSpeech": "verb",
+      "phonetic": "/piːl/",
+      "answer": "gọt vỏ, bóc vỏ",
+      "explanation": "Peel the potatoes before boiling them.\n→ Gọt vỏ khoai tây trước khi luộc."
+    },
+    {
+      "question": "boil",
+      "partOfSpeech": "verb",
+      "phonetic": "/bɔɪl/",
+      "answer": "luộc, đun sôi",
+      "explanation": "Boil the eggs for seven minutes.\n→ Luộc trứng bảy phút."
+    },
+    {
+      "question": "fry",
+      "partOfSpeech": "verb",
+      "phonetic": "/fraɪ/",
+      "answer": "chiên, rán",
+      "explanation": "She fried the spring rolls until golden.\n→ Cô ấy chiên nem đến khi vàng."
+    },
+    {
+      "question": "stir-fry",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈstɜːr fraɪ/",
+      "answer": "xào",
+      "explanation": "Stir-fry the vegetables with garlic.\n→ Xào rau với tỏi."
+    },
+    {
+      "question": "steam",
+      "partOfSpeech": "verb",
+      "phonetic": "/stiːm/",
+      "answer": "hấp",
+      "explanation": "Steamed fish is healthy and tasty.\n→ Cá hấp vừa lành mạnh vừa ngon."
+    },
+    {
+      "question": "grill",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɡrɪl/",
+      "answer": "nướng (vỉ)",
+      "explanation": "We grilled pork for bun cha.\n→ Chúng tôi nướng thịt lợn để làm bún chả."
+    },
+    {
+      "question": "bake",
+      "partOfSpeech": "verb",
+      "phonetic": "/beɪk/",
+      "answer": "nướng (lò)",
+      "explanation": "My sister bakes bread every weekend.\n→ Chị tôi nướng bánh mì mỗi cuối tuần."
+    },
+    {
+      "question": "simmer",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈsɪmər/",
+      "answer": "ninh, đun liu riu",
+      "explanation": "Let the broth simmer for six hours.\n→ Để nước dùng ninh liu riu sáu tiếng."
+    },
+    {
+      "question": "season",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈsiːzən/",
+      "answer": "nêm gia vị",
+      "explanation": "Season the soup with salt and pepper.\n→ Nêm súp với muối và tiêu."
+    },
+    {
+      "question": "marinate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈmærɪneɪt/",
+      "answer": "ướp",
+      "explanation": "Marinate the chicken overnight.\n→ Ướp gà qua đêm."
+    },
+    {
+      "question": "spicy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈspaɪsi/",
+      "answer": "cay",
+      "explanation": "Is this dish very spicy?\n→ Món này có cay lắm không?"
+    },
+    {
+      "question": "salty",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈsɔːlti/",
+      "answer": "mặn",
+      "explanation": "The soup is a bit too salty.\n→ Súp hơi mặn quá."
+    },
+    {
+      "question": "sour",
+      "partOfSpeech": "adjective",
+      "phonetic": "/saʊər/",
+      "answer": "chua",
+      "explanation": "Tamarind gives the soup a sour taste.\n→ Me làm cho canh có vị chua."
+    },
+    {
+      "question": "bitter",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈbɪtər/",
+      "answer": "đắng",
+      "explanation": "Bitter melon is good for your health.\n→ Mướp đắng tốt cho sức khoẻ."
+    },
+    {
+      "question": "bland",
+      "partOfSpeech": "adjective",
+      "phonetic": "/blænd/",
+      "answer": "nhạt nhẽo",
+      "explanation": "Hospital food is usually bland.\n→ Đồ ăn bệnh viện thường nhạt nhẽo."
+    },
+    {
+      "question": "greasy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈɡriːsi/",
+      "answer": "nhiều dầu mỡ",
+      "explanation": "I avoid greasy food at night.\n→ Tôi tránh đồ nhiều dầu mỡ vào buổi tối."
+    },
+    {
+      "question": "crispy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkrɪspi/",
+      "answer": "giòn",
+      "explanation": "The skin of the roast pork is very crispy.\n→ Da heo quay rất giòn."
+    },
+    {
+      "question": "tender",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈtendər/",
+      "answer": "mềm (thịt)",
+      "explanation": "The beef is so tender it melts in your mouth.\n→ Thịt bò mềm đến mức tan trong miệng."
+    },
+    {
+      "question": "leftovers",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleftoʊvərz/",
+      "answer": "đồ ăn thừa",
+      "explanation": "I'll take the leftovers for lunch tomorrow.\n→ Tôi sẽ mang đồ ăn thừa làm bữa trưa mai."
+    },
+    {
+      "question": "appetizer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæpɪtaɪzər/",
+      "answer": "món khai vị",
+      "explanation": "Let's order some appetizers to share.\n→ Gọi vài món khai vị ăn chung nhé."
+    },
+    {
+      "question": "main course",
+      "partOfSpeech": "noun",
+      "phonetic": "/meɪn kɔːrs/",
+      "answer": "món chính",
+      "explanation": "For the main course, I'll have grilled fish.\n→ Món chính tôi gọi cá nướng."
+    },
+    {
+      "question": "dessert",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈzɜːrt/",
+      "answer": "món tráng miệng",
+      "explanation": "Save some room for dessert!\n→ Chừa bụng cho món tráng miệng nhé!"
+    },
+    {
+      "question": "menu",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmenjuː/",
+      "answer": "thực đơn",
+      "explanation": "Could we see the menu, please?\n→ Cho chúng tôi xem thực đơn được không?"
+    },
+    {
+      "question": "order",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈɔːrdər/",
+      "answer": "gọi món",
+      "explanation": "Are you ready to order?\n→ Anh chị gọi món chưa ạ?"
+    },
+    {
+      "question": "book a table",
+      "partOfSpeech": "phrase",
+      "phonetic": "/bʊk ə ˈteɪbəl/",
+      "answer": "đặt bàn",
+      "explanation": "I booked a table for six at 7 p.m.\n→ Tôi đã đặt bàn cho sáu người lúc 7 giờ tối."
+    },
+    {
+      "question": "the bill",
+      "partOfSpeech": "noun",
+      "phonetic": "/ðə bɪl/",
+      "answer": "hoá đơn (nhà hàng)",
+      "explanation": "Could we have the bill, please?\n→ Cho chúng tôi xin hoá đơn."
+    },
+    {
+      "question": "split the bill",
+      "partOfSpeech": "phrase",
+      "phonetic": "/splɪt ðə bɪl/",
+      "answer": "chia tiền",
+      "explanation": "Let's split the bill equally.\n→ Mình chia đều tiền nhé."
+    },
+    {
+      "question": "my treat",
+      "partOfSpeech": "phrase",
+      "phonetic": "/maɪ triːt/",
+      "answer": "để tôi mời",
+      "explanation": "Put your wallet away, it's my treat.\n→ Cất ví đi, để tôi mời."
+    },
+    {
+      "question": "tip",
+      "partOfSpeech": "noun",
+      "phonetic": "/tɪp/",
+      "answer": "tiền boa",
+      "explanation": "Tips are not expected in most Vietnamese restaurants.\n→ Ở phần lớn nhà hàng Việt, khách không cần boa."
+    },
+    {
+      "question": "takeaway",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈteɪkəweɪ/",
+      "answer": "đồ mang đi",
+      "explanation": "Let's get a takeaway tonight; I'm too tired to cook.\n→ Tối nay mua đồ mang về đi, mình mệt quá không nấu nổi."
+    },
+    {
+      "question": "food delivery",
+      "partOfSpeech": "noun",
+      "phonetic": "/fuːd dɪˈlɪvəri/",
+      "answer": "giao đồ ăn",
+      "explanation": "Food delivery apps are very popular in Vietnam.\n→ Ứng dụng giao đồ ăn rất phổ biến ở Việt Nam."
+    },
+    {
+      "question": "street food",
+      "partOfSpeech": "noun",
+      "phonetic": "/striːt fuːd/",
+      "answer": "đồ ăn đường phố",
+      "explanation": "Hanoi is famous for its street food.\n→ Hà Nội nổi tiếng với đồ ăn đường phố."
+    },
+    {
+      "question": "vegetarian",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌvedʒəˈteriən/",
+      "answer": "ăn chay",
+      "explanation": "Do you have any vegetarian dishes?\n→ Ở đây có món chay không?"
+    },
+    {
+      "question": "allergic to",
+      "partOfSpeech": "phrase",
+      "phonetic": "/əˈlɜːrdʒɪk tuː/",
+      "answer": "bị dị ứng với",
+      "explanation": "I'm allergic to shrimp.\n→ Tôi bị dị ứng tôm."
+    },
+    {
+      "question": "starving",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈstɑːrvɪŋ/",
+      "answer": "đói meo",
+      "explanation": "I skipped lunch, so I'm starving.\n→ Tôi bỏ bữa trưa nên giờ đói meo."
+    },
+    {
+      "question": "full",
+      "partOfSpeech": "adjective",
+      "phonetic": "/fʊl/",
+      "answer": "no",
+      "explanation": "No more, thanks, I'm full.\n→ Thôi, cảm ơn, tôi no rồi."
+    },
+    {
+      "question": "delicious",
+      "partOfSpeech": "adjective",
+      "phonetic": "/dɪˈlɪʃəs/",
+      "answer": "ngon",
+      "explanation": "This bowl of bun bo is delicious.\n→ Tô bún bò này ngon thật."
+    },
+    {
+      "question": "home-cooked",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌhoʊm ˈkʊkt/",
+      "answer": "nấu tại nhà",
+      "explanation": "Nothing beats a home-cooked meal.\n→ Không gì bằng bữa cơm nhà."
+    },
+    {
+      "question": "fish sauce",
+      "partOfSpeech": "noun",
+      "phonetic": "/fɪʃ sɔːs/",
+      "answer": "nước mắm",
+      "explanation": "Fish sauce is the soul of Vietnamese cooking.\n→ Nước mắm là linh hồn của ẩm thực Việt."
+    }
+  ]
+}

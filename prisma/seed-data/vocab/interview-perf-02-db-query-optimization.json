@@ -1,0 +1,75 @@
+{
+  "slug": "interview-perf-02-db-query-optimization",
+  "order": 219,
+  "title": "Phỏng vấn Performance · Tối ưu truy vấn Database",
+  "description": "Câu hỏi phỏng vấn về tối ưu truy vấn PostgreSQL: EXPLAIN ANALYZE, chiến lược index, phân trang, partitioning, vacuum, lock, thống kê. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "How do you read EXPLAIN ANALYZE output? / Đọc kết quả EXPLAIN ANALYZE thế nào?",
+      "answer": "`EXPLAIN (ANALYZE, BUFFERS) SELECT ...` chạy thật và hiển thị **cây kế hoạch**, đọc từ trong ra ngoài.\n- Mỗi node: loại thao tác (Seq Scan, Index Scan, Hash Join…), **estimated rows vs actual rows**, thời gian, số vòng lặp (`loops`).\n- Ước lượng sai lệch nhiều (100 vs 100.000) → **thống kê cũ** → `ANALYZE`.\n- `Buffers: shared hit/read` cho biết đọc từ cache hay đĩa.\n- Tìm node tốn thời gian nhất, Seq Scan trên bảng lớn có điều kiện lọc chọn lọc, `Rows Removed by Filter` lớn, Sort ghi ra đĩa (`external merge`).",
+      "explanation": "`EXPLAIN (ANALYZE, BUFFERS)` executes the query and shows the plan tree, read inside-out. Compare **estimated vs actual rows** (big gaps mean stale stats — run `ANALYZE`), check loops, timings and buffer hits versus reads, and hunt for expensive nodes: big sequential scans with selective filters, many rows removed by filter, or sorts spilling to disk."
+    },
+    {
+      "question": "Seq Scan vs Index Scan vs Index Only Scan vs Bitmap Scan? / Seq Scan, Index Scan, Index Only Scan, Bitmap Scan khác nhau thế nào?",
+      "answer": "- **Seq Scan**: đọc toàn bảng — tốt khi lấy phần lớn bảng hoặc bảng nhỏ.\n- **Index Scan**: duyệt index rồi lấy từng dòng trong heap — tốt khi lấy **ít dòng**.\n- **Index Only Scan**: mọi cột cần đều có trong index (covering) → **không đọc heap** (nếu visibility map sạch).\n- **Bitmap Index/Heap Scan**: gom vị trí từ một hoặc nhiều index thành bitmap rồi đọc heap theo thứ tự trang — tốt cho số dòng **trung bình**, kết hợp nhiều điều kiện.\nPlanner chọn theo **chi phí ước lượng**; Seq Scan không phải lúc nào cũng xấu.",
+      "explanation": "**Seq scans** read the whole table — best for small tables or large fractions. **Index scans** fetch few rows via the index then the heap. **Index-only scans** answer from a covering index without the heap. **Bitmap scans** combine index results and read heap pages in order — good for medium selectivity. The planner picks by estimated cost; seq scans aren't inherently bad."
+    },
+    {
+      "question": "How do you design a composite index? / Thiết kế composite index thế nào?",
+      "answer": "- Thứ tự cột quan trọng (quy tắc **tiền tố trái nhất**): index `(a, b, c)` dùng được cho `a`, `a,b`, `a,b,c`, không dùng tốt cho chỉ `b`.\n- Đặt cột so sánh **bằng (=)** trước, cột **khoảng/sort** sau: `WHERE user_id = ? AND created_at > ? ORDER BY created_at` → index `(user_id, created_at)`.\n- Thêm `INCLUDE (cột)` để có index-only scan.\n- Ưu tiên index phục vụ **truy vấn thực tế hay chạy nhất** (xem `pg_stat_statements`).",
+      "explanation": "Column order matters — the **leftmost prefix** rule means `(a, b, c)` serves `a`, `a,b` and `a,b,c` but not `b` alone. Put **equality** columns first and **range or sort** columns last, e.g. `(user_id, created_at)` for \"this user's recent rows\". Add `INCLUDE` columns for index-only scans and design around the most frequent real queries."
+    },
+    {
+      "question": "Why might a query not use an index? / Tại sao truy vấn không dùng index?",
+      "answer": "- Áp **hàm/biểu thức** lên cột: `WHERE lower(email) = ...` → cần **expression index** `ON (lower(email))`.\n- **Ép kiểu ngầm** (so sánh text với số).\n- `LIKE '%abc'` (wildcard đầu) → B-tree vô dụng → dùng **pg_trgm** GIN index.\n- Điều kiện ít chọn lọc (cột boolean) → Seq Scan rẻ hơn.\n- `OR` giữa các cột khác nhau, sai thứ tự composite index.\n- Thống kê cũ; bảng quá nhỏ.",
+      "explanation": "Indexes go unused when columns are wrapped in **functions** (use expression indexes), types are implicitly cast, patterns start with a **leading wildcard** (use pg_trgm), predicates aren't selective, ORs span columns, composite order doesn't match, statistics are stale, or the table is tiny."
+    },
+    {
+      "question": "Why is OFFSET pagination slow and what is the alternative? / Tại sao phân trang OFFSET chậm và giải pháp thay thế là gì?",
+      "answer": "`LIMIT 20 OFFSET 100000` vẫn phải **đọc và bỏ qua 100.000 dòng** → càng về sau càng chậm; dữ liệu thay đổi giữa các trang gây trùng/sót.\n**Keyset (cursor) pagination**:\n```sql\nSELECT * FROM posts\nWHERE (created_at, id) < ($1, $2)\nORDER BY created_at DESC, id DESC\nLIMIT 20;\n```\nVới index `(created_at DESC, id DESC)` → luôn nhanh như trang đầu. Nhược: không nhảy tới \"trang 500\" trực tiếp.",
+      "explanation": "`OFFSET` still reads and discards every skipped row, so deep pages get slower and concurrent changes cause duplicates or gaps. **Keyset pagination** filters on the last seen sort key `(created_at, id)` with a matching index, staying fast at any depth — at the cost of no random page jumps."
+    },
+    {
+      "question": "What specialized index types does PostgreSQL offer? / PostgreSQL có những loại index chuyên dụng nào?",
+      "answer": "- **B-tree**: mặc định, =, <, >, sort, LIKE 'abc%'.\n- **GIN**: giá trị nhiều phần tử — **JSONB**, mảng, full-text search, trigram (`pg_trgm`).\n- **GiST / SP-GiST**: dữ liệu hình học, khoảng (range), PostGIS, nearest-neighbor.\n- **BRIN**: bảng **cực lớn** có thứ tự tự nhiên (log theo thời gian) — index rất nhỏ.\n- **Hash**: chỉ phép =.\n- **Partial index**: `WHERE status = 'active'`; **expression index**.\n- Vector: **pgvector** (HNSW, IVFFlat) cho tìm kiếm embedding.",
+      "explanation": "Beyond **B-tree**, Postgres offers **GIN** for JSONB, arrays, full-text and trigrams; **GiST/SP-GiST** for geometry, ranges and nearest-neighbor; **BRIN** for huge naturally ordered tables; **hash** for equality; **partial** and **expression** indexes; and pgvector's HNSW/IVFFlat for embeddings."
+    },
+    {
+      "question": "How do you find the slowest queries in production? / Tìm các truy vấn chậm nhất trên production thế nào?",
+      "answer": "- **pg_stat_statements**: tổng thời gian, số lần gọi, thời gian trung bình theo truy vấn đã chuẩn hoá → ưu tiên theo **total time** (truy vấn nhanh nhưng gọi triệu lần cũng đáng tối ưu).\n- `log_min_duration_statement = 500ms`, **auto_explain** để log plan của truy vấn chậm.\n- `pg_stat_activity`: truy vấn đang chạy, đang chờ lock.\n- APM/trace cho biết truy vấn thuộc endpoint nào.\n- Supabase: Query Performance, Index Advisor.",
+      "explanation": "Use **pg_stat_statements** ranked by **total time**, slow-query logging plus **auto_explain** for plans, `pg_stat_activity` for live queries and lock waits, and APM traces to map queries to endpoints. Managed platforms like Supabase add query performance dashboards and index advisors."
+    },
+    {
+      "question": "What is VACUUM and why does table bloat happen? / VACUUM là gì và tại sao bảng bị phình (bloat)?",
+      "answer": "Postgres dùng **MVCC**: `UPDATE`/`DELETE` không xoá ngay mà để lại **dead tuple** (phiên bản cũ).\n- **VACUUM** dọn dead tuple để tái sử dụng chỗ, cập nhật visibility map (giúp index-only scan), chống **transaction ID wraparound**.\n- **Autovacuum** chạy tự động; bảng update nhiều cần chỉnh ngưỡng (`autovacuum_vacuum_scale_factor`).\n- Bloat do: autovacuum không theo kịp, **transaction mở quá lâu** chặn dọn dẹp.\n- `VACUUM FULL` khoá bảng — dùng `pg_repack` thay thế.",
+      "explanation": "Under **MVCC**, updates and deletes leave **dead tuples**. **VACUUM** reclaims them, maintains the visibility map for index-only scans and prevents transaction ID wraparound. Bloat happens when autovacuum can't keep up or **long-running transactions** block cleanup; tune autovacuum per hot table and prefer `pg_repack` over locking `VACUUM FULL`."
+    },
+    {
+      "question": "When and how do you partition a table? / Khi nào và partition bảng thế nào?",
+      "answer": "Khi bảng **rất lớn** (hàng trăm triệu dòng) và truy vấn thường lọc theo một khoá (thời gian, tenant).\n- **Range** (theo tháng), **List** (theo vùng), **Hash** (chia đều).\n- Lợi ích: **partition pruning** (chỉ quét phân vùng liên quan), xoá dữ liệu cũ bằng `DROP/DETACH PARTITION` thay vì `DELETE` khổng lồ, index nhỏ hơn.\n- Lưu ý: truy vấn không có khoá phân vùng sẽ quét tất cả; khoá chính/unique phải chứa cột phân vùng; dùng **pg_partman** để tự tạo partition.",
+      "explanation": "Partition very large tables when queries filter on a common key like time or tenant, by **range**, **list** or **hash**. Benefits: **partition pruning**, dropping old data by detaching partitions instead of massive deletes, and smaller indexes. Caveats: queries without the key scan everything, unique keys must include the partition column; pg_partman automates maintenance."
+    },
+    {
+      "question": "How do you speed up bulk inserts and large updates? / Tăng tốc bulk insert và update lớn thế nào?",
+      "answer": "- **Insert**: `COPY` nhanh nhất; hoặc multi-row `INSERT ... VALUES (...), (...)` / `unnest`; gom batch 1.000–10.000 dòng trong transaction.\n- Nạp lượng rất lớn: tạm bỏ index/constraint rồi tạo lại sau.\n- **Update/Delete lớn**: chia **batch nhỏ** theo khoá (`WHERE id BETWEEN ...`) để tránh lock lâu, WAL khổng lồ, bloat và lag replica.\n- Tránh vòng lặp ORM insert từng dòng.",
+      "explanation": "Use `COPY` or multi-row inserts batched within transactions; for very large loads, drop and rebuild indexes afterwards. Split large updates and deletes into **key-ranged batches** to avoid long locks, WAL spikes, bloat and replica lag. Never insert row by row in an ORM loop."
+    },
+    {
+      "question": "How do you diagnose lock contention and deadlocks? / Chẩn đoán tranh chấp lock và deadlock thế nào?",
+      "answer": "- `pg_stat_activity` + `pg_locks` (hoặc `pg_blocking_pids(pid)`) xem ai chặn ai.\n- Bật `log_lock_waits`, đặt `lock_timeout`, `statement_timeout`, `idle_in_transaction_session_timeout`.\n- **Deadlock**: Postgres tự phát hiện và huỷ một transaction → app cần **retry**; phòng bằng cách khoá theo **thứ tự nhất quán**, transaction ngắn.\n- **Migration DDL** (ALTER TABLE) xin `ACCESS EXCLUSIVE` lock và xếp hàng sau truy vấn dài → chặn mọi truy vấn sau nó → luôn đặt `lock_timeout` khi chạy migration.",
+      "explanation": "Inspect `pg_stat_activity`, `pg_locks` and `pg_blocking_pids`; enable `log_lock_waits` and set lock, statement and idle-in-transaction timeouts. Postgres aborts one side of a **deadlock**, so retry, and lock rows in a consistent order with short transactions. DDL migrations queue for exclusive locks and block everything behind them — always set `lock_timeout`."
+    },
+    {
+      "question": "Should you denormalize or use materialized views for performance? / Có nên denormalize hoặc dùng materialized view để tăng hiệu năng?",
+      "answer": "Khi JOIN/aggregate nặng chạy rất thường xuyên mà dữ liệu không cần tức thì:\n- **Materialized view**: lưu sẵn kết quả truy vấn; `REFRESH MATERIALIZED VIEW CONCURRENTLY` (cần unique index) theo lịch.\n- **Denormalize**: lưu thêm cột tổng hợp (`comment_count`), cập nhật bằng trigger/ứng dụng/event — đọc nhanh nhưng phải giữ **nhất quán**.\n- Bảng **tổng hợp** (rollup) theo giờ/ngày cho dashboard.\nLuôn chứng minh bằng đo đạc trước khi hy sinh chuẩn hoá.",
+      "explanation": "For frequent, heavy joins or aggregates that tolerate slight staleness, use **materialized views** refreshed concurrently on a schedule, **denormalized** counters maintained by triggers or events, or **rollup tables** for dashboards. Measure first, since denormalization adds consistency burden."
+    },
+    {
+      "question": "How do you count rows or check existence efficiently? / Đếm số dòng hoặc kiểm tra tồn tại hiệu quả thế nào?",
+      "answer": "- `SELECT count(*)` trên bảng lớn phải quét (MVCC) → chậm. Cần ước lượng: `reltuples` trong `pg_class` hoặc số ước lượng từ EXPLAIN; hoặc lưu bộ đếm riêng.\n- Kiểm tra tồn tại: `SELECT EXISTS (SELECT 1 FROM t WHERE ...)` — dừng ngay khi thấy dòng đầu, thay vì `count(*) > 0`.\n- UI phân trang không cần tổng chính xác: hiển thị \"hơn 1.000 kết quả\" hoặc chỉ \"trang tiếp\".",
+      "explanation": "Exact `count(*)` must scan under MVCC, so use `pg_class.reltuples` or EXPLAIN estimates, or maintain counters. For existence, use `EXISTS`, which stops at the first match, instead of `count(*) > 0`. Paginated UIs rarely need exact totals."
+    }
+  ]
+}

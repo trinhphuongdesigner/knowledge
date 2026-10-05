@@ -1,0 +1,290 @@
+{
+  "slug": "careers-08-design-creative",
+  "order": 138,
+  "title": "Careers 8 · Design & Creative Work",
+  "description": "Từ vựng thiết kế đồ hoạ, sáng tạo nội dung và làm việc với designer (CEFR B1–B2). Hữu ích cho developer làm việc với Figma, brand guideline và phản hồi thiết kế.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "graphic designer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡræfɪk dɪˈzaɪnər/",
+      "answer": "nhà thiết kế đồ hoạ",
+      "explanation": "Our graphic designer made the new logo.\n→ Nhà thiết kế đồ hoạ làm logo mới."
+    },
+    {
+      "question": "illustrator",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪləstreɪtər/",
+      "answer": "hoạ sĩ minh hoạ",
+      "explanation": "We hired an illustrator for the onboarding screens.\n→ Chúng tôi thuê hoạ sĩ minh hoạ cho các màn hình hướng dẫn."
+    },
+    {
+      "question": "art director",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɑːrt dəˈrektər/",
+      "answer": "giám đốc nghệ thuật",
+      "explanation": "The art director approved the color palette.\n→ Giám đốc nghệ thuật duyệt bảng màu."
+    },
+    {
+      "question": "mood board",
+      "partOfSpeech": "noun",
+      "phonetic": "/muːd bɔːrd/",
+      "answer": "bảng cảm hứng",
+      "explanation": "Let's start with a mood board before designing.\n→ Hãy bắt đầu bằng bảng cảm hứng trước khi thiết kế."
+    },
+    {
+      "question": "sketch",
+      "partOfSpeech": "noun",
+      "phonetic": "/sketʃ/",
+      "answer": "bản phác thảo",
+      "explanation": "She showed us a quick sketch of the idea.\n→ Cô ấy cho chúng tôi xem bản phác thảo nhanh."
+    },
+    {
+      "question": "draft",
+      "partOfSpeech": "noun",
+      "phonetic": "/dræft/",
+      "answer": "bản nháp",
+      "explanation": "This is just the first draft.\n→ Đây mới chỉ là bản nháp đầu."
+    },
+    {
+      "question": "mockup",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːkʌp/",
+      "answer": "bản mô phỏng",
+      "explanation": "The mockup looks great on mobile.\n→ Bản mô phỏng trông rất đẹp trên di động."
+    },
+    {
+      "question": "color palette",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌlər ˈpælət/",
+      "answer": "bảng màu",
+      "explanation": "We use a calm, blue color palette.\n→ Chúng tôi dùng bảng màu xanh dịu."
+    },
+    {
+      "question": "contrast",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːntræst/",
+      "answer": "độ tương phản",
+      "explanation": "The text needs more contrast to be readable.\n→ Chữ cần tương phản hơn để dễ đọc."
+    },
+    {
+      "question": "typography",
+      "partOfSpeech": "noun",
+      "phonetic": "/taɪˈpɑːɡrəfi/",
+      "answer": "nghệ thuật chữ, kiểu chữ",
+      "explanation": "Good typography makes the page feel professional.\n→ Kiểu chữ tốt giúp trang trông chuyên nghiệp."
+    },
+    {
+      "question": "font",
+      "partOfSpeech": "noun",
+      "phonetic": "/fɑːnt/",
+      "answer": "phông chữ",
+      "explanation": "Use a font that supports Vietnamese.\n→ Dùng phông chữ hỗ trợ tiếng Việt."
+    },
+    {
+      "question": "layout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleɪaʊt/",
+      "answer": "bố cục",
+      "explanation": "The layout feels too crowded.\n→ Bố cục trông quá chật."
+    },
+    {
+      "question": "whitespace",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwaɪtspeɪs/",
+      "answer": "khoảng trắng",
+      "explanation": "Add more whitespace between sections.\n→ Thêm khoảng trắng giữa các phần."
+    },
+    {
+      "question": "alignment",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈlaɪnmənt/",
+      "answer": "căn chỉnh",
+      "explanation": "The icons are out of alignment.\n→ Các biểu tượng bị lệch hàng."
+    },
+    {
+      "question": "hierarchy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhaɪərɑːrki/",
+      "answer": "thứ bậc thị giác",
+      "explanation": "Visual hierarchy guides the eye to the main button.\n→ Thứ bậc thị giác dẫn mắt đến nút chính."
+    },
+    {
+      "question": "grid",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡrɪd/",
+      "answer": "lưới bố cục",
+      "explanation": "The design follows a 12-column grid.\n→ Thiết kế theo lưới 12 cột."
+    },
+    {
+      "question": "icon",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaɪkɑːn/",
+      "answer": "biểu tượng",
+      "explanation": "The settings icon is hard to find.\n→ Biểu tượng cài đặt khó tìm."
+    },
+    {
+      "question": "logo",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈloʊɡoʊ/",
+      "answer": "biểu trưng",
+      "explanation": "The logo should work in black and white too.\n→ Logo cũng phải dùng được ở dạng đen trắng."
+    },
+    {
+      "question": "brand guidelines",
+      "partOfSpeech": "noun",
+      "phonetic": "/brænd ˈɡaɪdlaɪnz/",
+      "answer": "bộ quy chuẩn thương hiệu",
+      "explanation": "Follow the brand guidelines for colors and fonts.\n→ Tuân theo quy chuẩn thương hiệu về màu và phông."
+    },
+    {
+      "question": "vector",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvektər/",
+      "answer": "đồ hoạ vector",
+      "explanation": "Export the logo as a vector file.\n→ Xuất logo dưới dạng file vector."
+    },
+    {
+      "question": "resolution",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌrezəˈluːʃən/",
+      "answer": "độ phân giải",
+      "explanation": "The image resolution is too low for printing.\n→ Độ phân giải ảnh quá thấp để in."
+    },
+    {
+      "question": "pixel-perfect",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈpɪksəl ˈpɜːrfɪkt/",
+      "answer": "chính xác từng điểm ảnh",
+      "explanation": "The client expects a pixel-perfect implementation.\n→ Khách hàng muốn code đúng thiết kế từng pixel."
+    },
+    {
+      "question": "crop",
+      "partOfSpeech": "verb",
+      "phonetic": "/krɑːp/",
+      "answer": "cắt (ảnh)",
+      "explanation": "Crop the photo to a square.\n→ Cắt ảnh thành hình vuông."
+    },
+    {
+      "question": "retouch",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈtʌtʃ/",
+      "answer": "chỉnh sửa ảnh",
+      "explanation": "The photos were retouched before printing.\n→ Ảnh đã được chỉnh sửa trước khi in."
+    },
+    {
+      "question": "render",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈrendər/",
+      "answer": "kết xuất hình ảnh",
+      "explanation": "It takes an hour to render the 3D scene.\n→ Mất một giờ để kết xuất cảnh 3D."
+    },
+    {
+      "question": "animation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌænɪˈmeɪʃən/",
+      "answer": "hoạt hình, chuyển động",
+      "explanation": "A subtle animation makes the button feel alive.\n→ Chuyển động tinh tế giúp nút trông sinh động."
+    },
+    {
+      "question": "portfolio",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɔːrtˈfoʊlioʊ/",
+      "answer": "hồ sơ năng lực",
+      "explanation": "Her portfolio shows a wide range of projects.\n→ Portfolio của cô ấy thể hiện nhiều dự án đa dạng."
+    },
+    {
+      "question": "creative brief",
+      "partOfSpeech": "noun",
+      "phonetic": "/kriˈeɪtɪv briːf/",
+      "answer": "bản yêu cầu sáng tạo",
+      "explanation": "Read the creative brief before you start.\n→ Đọc bản yêu cầu sáng tạo trước khi bắt đầu."
+    },
+    {
+      "question": "revision",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈvɪʒən/",
+      "answer": "lần chỉnh sửa",
+      "explanation": "The price includes two rounds of revisions.\n→ Giá đã bao gồm hai lần chỉnh sửa."
+    },
+    {
+      "question": "feedback",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfiːdbæk/",
+      "answer": "góp ý",
+      "explanation": "The client's feedback was vague: \"make it pop\".\n→ Góp ý của khách khá mơ hồ: \"làm cho nó nổi lên\"."
+    },
+    {
+      "question": "eye-catching",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈaɪ ˌkætʃɪŋ/",
+      "answer": "bắt mắt",
+      "explanation": "We need an eye-catching banner.\n→ Chúng tôi cần một banner bắt mắt."
+    },
+    {
+      "question": "minimalist",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈmɪnɪməlɪst/",
+      "answer": "tối giản",
+      "explanation": "I prefer a clean, minimalist style.\n→ Tôi thích phong cách gọn gàng, tối giản."
+    },
+    {
+      "question": "cluttered",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈklʌtərd/",
+      "answer": "rối mắt, lộn xộn",
+      "explanation": "The dashboard looks cluttered.\n→ Dashboard trông rối mắt."
+    },
+    {
+      "question": "consistent",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kənˈsɪstənt/",
+      "answer": "nhất quán",
+      "explanation": "Keep button styles consistent across pages.\n→ Giữ kiểu nút nhất quán giữa các trang."
+    },
+    {
+      "question": "accessible",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əkˈsesəbəl/",
+      "answer": "dễ tiếp cận (cho mọi người)",
+      "explanation": "Accessible design helps users with disabilities.\n→ Thiết kế dễ tiếp cận giúp người dùng khuyết tật."
+    },
+    {
+      "question": "aesthetic",
+      "partOfSpeech": "noun",
+      "phonetic": "/esˈθetɪk/",
+      "answer": "thẩm mỹ, phong cách",
+      "explanation": "I love the retro aesthetic of this app.\n→ Tôi thích phong cách hoài cổ của ứng dụng này."
+    },
+    {
+      "question": "inspiration",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɪnspəˈreɪʃən/",
+      "answer": "cảm hứng",
+      "explanation": "I look for inspiration on Dribbble.\n→ Tôi tìm cảm hứng trên Dribbble."
+    },
+    {
+      "question": "freelance",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfriːlæns/",
+      "answer": "làm tự do",
+      "explanation": "She works as a freelance designer.\n→ Cô ấy làm thiết kế tự do."
+    },
+    {
+      "question": "hand off",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/hænd ɔːf/",
+      "answer": "bàn giao",
+      "explanation": "The designer handed off the files to developers.\n→ Designer bàn giao file cho lập trình viên."
+    },
+    {
+      "question": "asset",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæset/",
+      "answer": "tài nguyên (ảnh, icon...)",
+      "explanation": "Export all assets in SVG and PNG.\n→ Xuất tất cả tài nguyên dạng SVG và PNG."
+    }
+  ]
+}

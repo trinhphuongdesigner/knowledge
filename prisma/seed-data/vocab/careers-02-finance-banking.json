@@ -1,0 +1,297 @@
+{
+  "slug": "careers-02-finance-banking",
+  "order": 132,
+  "title": "Careers 2 · Finance, Banking & Accounting",
+  "description": "Từ vựng tài chính, ngân hàng và kế toán (CEFR B1–C1). Hữu ích khi làm FinTech, đọc báo cáo tài chính hoặc trao đổi với phòng kế toán.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "accountant",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈkaʊntənt/",
+      "answer": "kế toán viên",
+      "explanation": "Our accountant handles the company's taxes.\n→ Kế toán của chúng tôi lo thuế cho công ty."
+    },
+    {
+      "question": "auditor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːdɪtər/",
+      "answer": "kiểm toán viên",
+      "explanation": "The auditors will review our books next week.\n→ Kiểm toán viên sẽ rà soát sổ sách tuần tới."
+    },
+    {
+      "question": "financial analyst",
+      "partOfSpeech": "noun",
+      "phonetic": "/faɪˈnænʃəl ˈænəlɪst/",
+      "answer": "chuyên viên phân tích tài chính",
+      "explanation": "Financial analysts study market trends.\n→ Chuyên viên phân tích tài chính nghiên cứu xu hướng thị trường."
+    },
+    {
+      "question": "bookkeeping",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʊkkiːpɪŋ/",
+      "answer": "ghi sổ kế toán",
+      "explanation": "Small businesses often outsource bookkeeping.\n→ Doanh nghiệp nhỏ thường thuê ngoài việc ghi sổ."
+    },
+    {
+      "question": "balance sheet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbæləns ʃiːt/",
+      "answer": "bảng cân đối kế toán",
+      "explanation": "The balance sheet shows assets and liabilities.\n→ Bảng cân đối kế toán thể hiện tài sản và nợ phải trả."
+    },
+    {
+      "question": "income statement",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnkʌm ˈsteɪtmənt/",
+      "answer": "báo cáo kết quả kinh doanh",
+      "explanation": "The income statement shows a loss this year.\n→ Báo cáo kết quả kinh doanh năm nay cho thấy lỗ."
+    },
+    {
+      "question": "cash flow",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæʃ floʊ/",
+      "answer": "dòng tiền",
+      "explanation": "Good cash flow keeps a business alive.\n→ Dòng tiền tốt giúp doanh nghiệp tồn tại."
+    },
+    {
+      "question": "asset",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæset/",
+      "answer": "tài sản",
+      "explanation": "The building is the company's biggest asset.\n→ Toà nhà là tài sản lớn nhất của công ty."
+    },
+    {
+      "question": "liability",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌlaɪəˈbɪləti/",
+      "answer": "nợ phải trả",
+      "explanation": "Bank loans are recorded as liabilities.\n→ Khoản vay ngân hàng được ghi là nợ phải trả."
+    },
+    {
+      "question": "equity",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈekwəti/",
+      "answer": "vốn chủ sở hữu; cổ phần",
+      "explanation": "The founders still own 60% of the equity.\n→ Các nhà sáng lập vẫn nắm 60% cổ phần."
+    },
+    {
+      "question": "dividend",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɪvɪdend/",
+      "answer": "cổ tức",
+      "explanation": "The company pays a dividend twice a year.\n→ Công ty trả cổ tức hai lần một năm."
+    },
+    {
+      "question": "shareholder",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃerhoʊldər/",
+      "answer": "cổ đông",
+      "explanation": "Shareholders voted for the new board.\n→ Các cổ đông bầu hội đồng quản trị mới."
+    },
+    {
+      "question": "fiscal year",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪskəl jɪr/",
+      "answer": "năm tài chính",
+      "explanation": "Our fiscal year ends in March.\n→ Năm tài chính của chúng tôi kết thúc vào tháng Ba."
+    },
+    {
+      "question": "quarter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkwɔːrtər/",
+      "answer": "quý",
+      "explanation": "Revenue grew 12% in the third quarter.\n→ Doanh thu tăng 12% trong quý ba."
+    },
+    {
+      "question": "forecast",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈfɔːrkæst/",
+      "answer": "dự báo",
+      "explanation": "We forecast a profit by the end of the year.\n→ Chúng tôi dự báo có lãi vào cuối năm."
+    },
+    {
+      "question": "invoice",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnvɔɪs/",
+      "answer": "hoá đơn",
+      "explanation": "Please send the invoice to our finance team.\n→ Vui lòng gửi hoá đơn cho phòng tài chính."
+    },
+    {
+      "question": "overdue",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌoʊvərˈduː/",
+      "answer": "quá hạn",
+      "explanation": "The invoice is two weeks overdue.\n→ Hoá đơn đã quá hạn hai tuần."
+    },
+    {
+      "question": "reimburse",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːɪmˈbɜːrs/",
+      "answer": "hoàn trả (chi phí)",
+      "explanation": "The company will reimburse your travel costs.\n→ Công ty sẽ hoàn trả chi phí đi lại của bạn."
+    },
+    {
+      "question": "expense report",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪkˈspens rɪˈpɔːrt/",
+      "answer": "báo cáo chi phí",
+      "explanation": "Submit your expense report with the receipts.\n→ Nộp báo cáo chi phí kèm hoá đơn."
+    },
+    {
+      "question": "payroll",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪroʊl/",
+      "answer": "bảng lương",
+      "explanation": "Payroll is processed on the 25th.\n→ Bảng lương được xử lý vào ngày 25."
+    },
+    {
+      "question": "interest",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪntrəst/",
+      "answer": "tiền lãi",
+      "explanation": "The savings account pays 5% interest.\n→ Tài khoản tiết kiệm trả lãi 5%."
+    },
+    {
+      "question": "mortgage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɔːrɡɪdʒ/",
+      "answer": "khoản vay thế chấp mua nhà",
+      "explanation": "They took a 20-year mortgage.\n→ Họ vay thế chấp 20 năm."
+    },
+    {
+      "question": "collateral",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈlætərəl/",
+      "answer": "tài sản thế chấp",
+      "explanation": "The house was used as collateral for the loan.\n→ Ngôi nhà được dùng làm tài sản thế chấp cho khoản vay."
+    },
+    {
+      "question": "credit score",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkredɪt skɔːr/",
+      "answer": "điểm tín dụng",
+      "explanation": "A good credit score gets you lower interest rates.\n→ Điểm tín dụng tốt giúp bạn được lãi suất thấp hơn."
+    },
+    {
+      "question": "transaction",
+      "partOfSpeech": "noun",
+      "phonetic": "/trænˈzækʃən/",
+      "answer": "giao dịch",
+      "explanation": "The bank flagged a suspicious transaction.\n→ Ngân hàng gắn cờ một giao dịch đáng ngờ."
+    },
+    {
+      "question": "fraud",
+      "partOfSpeech": "noun",
+      "phonetic": "/frɔːd/",
+      "answer": "gian lận",
+      "explanation": "The system detects card fraud in real time.\n→ Hệ thống phát hiện gian lận thẻ theo thời gian thực."
+    },
+    {
+      "question": "compliance",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəmˈplaɪəns/",
+      "answer": "tuân thủ quy định",
+      "explanation": "Banks spend a lot on compliance.\n→ Ngân hàng chi rất nhiều cho việc tuân thủ."
+    },
+    {
+      "question": "KYC",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkeɪ waɪ ˈsiː/",
+      "answer": "xác minh danh tính khách hàng (Know Your Customer)",
+      "explanation": "New users must complete KYC before they can transfer money.\n→ Người dùng mới phải xác minh danh tính trước khi chuyển tiền."
+    },
+    {
+      "question": "portfolio",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɔːrtˈfoʊlioʊ/",
+      "answer": "danh mục đầu tư",
+      "explanation": "Diversify your portfolio to reduce risk.\n→ Đa dạng hoá danh mục để giảm rủi ro."
+    },
+    {
+      "question": "diversify",
+      "partOfSpeech": "verb",
+      "phonetic": "/daɪˈvɜːrsɪfaɪ/",
+      "answer": "đa dạng hoá",
+      "explanation": "Don't put all your money in one stock; diversify.\n→ Đừng dồn hết tiền vào một cổ phiếu, hãy đa dạng hoá."
+    },
+    {
+      "question": "bond",
+      "partOfSpeech": "noun",
+      "phonetic": "/bɑːnd/",
+      "answer": "trái phiếu",
+      "explanation": "Government bonds are a safe investment.\n→ Trái phiếu chính phủ là khoản đầu tư an toàn."
+    },
+    {
+      "question": "stock market",
+      "partOfSpeech": "noun",
+      "phonetic": "/stɑːk ˈmɑːrkɪt/",
+      "answer": "thị trường chứng khoán",
+      "explanation": "The stock market fell 3% today.\n→ Thị trường chứng khoán giảm 3% hôm nay."
+    },
+    {
+      "question": "bull market",
+      "partOfSpeech": "noun",
+      "phonetic": "/bʊl ˈmɑːrkɪt/",
+      "answer": "thị trường giá lên",
+      "explanation": "Everyone feels like a genius in a bull market.\n→ Ai cũng thấy mình thiên tài trong thị trường tăng giá."
+    },
+    {
+      "question": "bear market",
+      "partOfSpeech": "noun",
+      "phonetic": "/ber ˈmɑːrkɪt/",
+      "answer": "thị trường giá xuống",
+      "explanation": "Many investors panic in a bear market.\n→ Nhiều nhà đầu tư hoảng loạn khi thị trường giảm."
+    },
+    {
+      "question": "volatile",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈvɑːlətəl/",
+      "answer": "biến động mạnh",
+      "explanation": "Crypto prices are extremely volatile.\n→ Giá tiền mã hoá biến động cực mạnh."
+    },
+    {
+      "question": "return on investment",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈtɜːrn ɑːn ɪnˈvestmənt/",
+      "answer": "lợi tức đầu tư (ROI)",
+      "explanation": "What's the expected return on investment?\n→ Lợi tức đầu tư dự kiến là bao nhiêu?"
+    },
+    {
+      "question": "break even",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/breɪk ˈiːvən/",
+      "answer": "hoà vốn",
+      "explanation": "We expect to break even next year.\n→ Chúng tôi dự kiến hoà vốn năm sau."
+    },
+    {
+      "question": "overhead costs",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈoʊvərhed kɔːsts/",
+      "answer": "chi phí chung",
+      "explanation": "Working remotely cut our overhead costs.\n→ Làm việc từ xa giúp cắt giảm chi phí chung."
+    },
+    {
+      "question": "cost-effective",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌkɔːst ɪˈfektɪv/",
+      "answer": "hiệu quả về chi phí",
+      "explanation": "Cloud servers are more cost-effective for small teams.\n→ Máy chủ đám mây tiết kiệm chi phí hơn cho đội nhỏ."
+    },
+    {
+      "question": "exchange rate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪksˈtʃeɪndʒ reɪt/",
+      "answer": "tỉ giá hối đoái",
+      "explanation": "The exchange rate affects our import costs.\n→ Tỉ giá ảnh hưởng đến chi phí nhập khẩu."
+    },
+    {
+      "question": "wire transfer",
+      "partOfSpeech": "noun",
+      "phonetic": "/waɪər ˈtrænsfɜːr/",
+      "answer": "chuyển tiền qua ngân hàng (quốc tế)",
+      "explanation": "The client paid by international wire transfer.\n→ Khách hàng thanh toán bằng chuyển khoản quốc tế."
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "slug": "irregular-verbs-05",
+  "order": 224,
+  "title": "Động từ bất quy tắc · Phần 5",
+  "description": "Động từ bất quy tắc hiếm, trang trọng hoặc mang tính văn chương — hoàn thiện toàn bộ danh sách. Phần 5/5, xếp theo độ phổ biến. Mỗi thẻ: V1 → V2 – V3, phiên âm 3 dạng, nghĩa và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "foretell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fɔːrˈtel/ – /fɔːrˈtoʊld/ – /fɔːrˈtoʊld/",
+      "answer": "foretold – foretold · tiên đoán",
+      "explanation": "V1: foretell · V2: foretold · V3: foretold\nThe prophet foretold the future.\n→ Nhà tiên tri tiên đoán tương lai."
+    },
+    {
+      "question": "forgo",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fɔːrˈɡoʊ/ – /fɔːrˈwent/ – /fɔːrˈɡɔːn/",
+      "answer": "forwent – forgone · bỏ qua, từ bỏ (quyền lợi)",
+      "explanation": "V1: forgo · V2: forwent · V3: forgone\nShe forwent her bonus to help the team.\n→ Cô ấy từ bỏ tiền thưởng để giúp đội."
+    },
+    {
+      "question": "misread",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌmɪsˈriːd/ – /ˌmɪsˈred/ – /ˌmɪsˈred/",
+      "answer": "misread – misread · đọc nhầm, hiểu sai",
+      "explanation": "V1: misread · V2: misread · V3: misread\nI misread the meeting time.\n→ Tôi đọc nhầm giờ họp."
+    },
+    {
+      "question": "mishear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌmɪsˈhɪr/ – /ˌmɪsˈhɜːrd/ – /ˌmɪsˈhɜːrd/",
+      "answer": "misheard – misheard · nghe nhầm",
+      "explanation": "V1: mishear · V2: misheard · V3: misheard\nSorry, I misheard your name.\n→ Xin lỗi, tôi nghe nhầm tên bạn."
+    },
+    {
+      "question": "mislay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌmɪsˈleɪ/ – /ˌmɪsˈleɪd/ – /ˌmɪsˈleɪd/",
+      "answer": "mislaid – mislaid · để thất lạc",
+      "explanation": "V1: mislay · V2: mislaid · V3: mislaid\nI've mislaid my glasses.\n→ Tôi để thất lạc kính rồi."
+    },
+    {
+      "question": "misspell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌmɪsˈspel/ – /ˌmɪsˈspeld, ˌmɪsˈspelt/ – /ˌmɪsˈspeld, ˌmɪsˈspelt/",
+      "answer": "misspelled/misspelt – misspelled/misspelt · viết sai chính tả",
+      "explanation": "V1: misspell · V2: misspelled/misspelt · V3: misspelled/misspelt\nHe misspelled the variable name.\n→ Anh ấy viết sai tên biến."
+    },
+    {
+      "question": "overpay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈpeɪ/ – /ˌoʊvərˈpeɪd/ – /ˌoʊvərˈpeɪd/",
+      "answer": "overpaid – overpaid · trả quá nhiều",
+      "explanation": "V1: overpay · V2: overpaid · V3: overpaid\nI think we overpaid for this hotel.\n→ Tôi nghĩ chúng ta trả quá đắt cho khách sạn này."
+    },
+    {
+      "question": "overspend",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈspend/ – /ˌoʊvərˈspent/ – /ˌoʊvərˈspent/",
+      "answer": "overspent – overspent · tiêu quá mức",
+      "explanation": "V1: overspend · V2: overspent · V3: overspent\nWe overspent our budget.\n→ Chúng tôi chi vượt ngân sách."
+    },
+    {
+      "question": "overeat",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈiːt/ – /ˌoʊvərˈeɪt/ – /ˌoʊvərˈiːtən/",
+      "answer": "overate – overeaten · ăn quá nhiều",
+      "explanation": "V1: overeat · V2: overate · V3: overeaten\nI overate at the wedding.\n→ Tôi ăn quá nhiều ở đám cưới."
+    },
+    {
+      "question": "overrun",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈrʌn/ – /ˌoʊvərˈræn/ – /ˌoʊvərˈrʌn/",
+      "answer": "overran – overrun · vượt quá (thời gian), tràn ngập",
+      "explanation": "V1: overrun · V2: overran · V3: overrun\nThe meeting overran by 30 minutes.\n→ Cuộc họp kéo dài quá 30 phút."
+    },
+    {
+      "question": "overshoot",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈʃuːt/ – /ˌoʊvərˈʃɑːt/ – /ˌoʊvərˈʃɑːt/",
+      "answer": "overshot – overshot · vượt quá (mục tiêu)",
+      "explanation": "V1: overshoot · V2: overshot · V3: overshot\nWe overshot the deadline by a week.\n→ Chúng tôi trễ hạn một tuần."
+    },
+    {
+      "question": "oversell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈsel/ – /ˌoʊvərˈsoʊld/ – /ˌoʊvərˈsoʊld/",
+      "answer": "oversold – oversold · bán quá số lượng, thổi phồng",
+      "explanation": "V1: oversell · V2: oversold · V3: oversold\nThe airline oversold the flight.\n→ Hãng bay bán vé vượt số ghế."
+    },
+    {
+      "question": "overhang",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈhæŋ/ – /ˌoʊvərˈhʌŋ/ – /ˌoʊvərˈhʌŋ/",
+      "answer": "overhung – overhung · nhô ra, treo lơ lửng",
+      "explanation": "V1: overhang · V2: overhung · V3: overhung\nBranches overhung the path.\n→ Cành cây nhô ra trên lối đi."
+    },
+    {
+      "question": "overfeed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌoʊvərˈfiːd/ – /ˌoʊvərˈfed/ – /ˌoʊvərˈfed/",
+      "answer": "overfed – overfed · cho ăn quá nhiều",
+      "explanation": "V1: overfeed · V2: overfed · V3: overfed\nDon't overfeed your fish.\n→ Đừng cho cá ăn quá nhiều."
+    },
+    {
+      "question": "outrun",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌaʊtˈrʌn/ – /ˌaʊtˈræn/ – /ˌaʊtˈrʌn/",
+      "answer": "outran – outrun · chạy nhanh hơn",
+      "explanation": "V1: outrun · V2: outran · V3: outrun\nHe outran the defender.\n→ Anh ấy chạy nhanh hơn hậu vệ."
+    },
+    {
+      "question": "outsell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌaʊtˈsel/ – /ˌaʊtˈsoʊld/ – /ˌaʊtˈsoʊld/",
+      "answer": "outsold – outsold · bán chạy hơn",
+      "explanation": "V1: outsell · V2: outsold · V3: outsold\nThe new phone outsold the old model.\n→ Điện thoại mới bán chạy hơn mẫu cũ."
+    },
+    {
+      "question": "outshine",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌaʊtˈʃaɪn/ – /ˌaʊtˈʃoʊn/ – /ˌaʊtˈʃoʊn/",
+      "answer": "outshone – outshone · nổi bật hơn",
+      "explanation": "V1: outshine · V2: outshone · V3: outshone\nShe outshone everyone on stage.\n→ Cô ấy nổi bật hơn mọi người trên sân khấu."
+    },
+    {
+      "question": "outbid",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌaʊtˈbɪd/ – /ˌaʊtˈbɪd/ – /ˌaʊtˈbɪd/",
+      "answer": "outbid – outbid · trả giá cao hơn",
+      "explanation": "V1: outbid · V2: outbid · V3: outbid\nAnother buyer outbid us.\n→ Một người mua khác trả giá cao hơn chúng tôi."
+    },
+    {
+      "question": "outgrow",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌaʊtˈɡroʊ/ – /ˌaʊtˈɡruː/ – /ˌaʊtˈɡroʊn/",
+      "answer": "outgrew – outgrown · lớn vượt, không còn phù hợp",
+      "explanation": "V1: outgrow · V2: outgrew · V3: outgrown\nThe startup outgrew its small office.\n→ Startup đã lớn vượt văn phòng nhỏ."
+    },
+    {
+      "question": "resell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈsel/ – /ˌriːˈsoʊld/ – /ˌriːˈsoʊld/",
+      "answer": "resold – resold · bán lại",
+      "explanation": "V1: resell · V2: resold · V3: resold\nHe resold the tickets online.\n→ Anh ấy bán lại vé trên mạng."
+    },
+    {
+      "question": "rewind",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈwaɪnd/ – /ˌriːˈwaʊnd/ – /ˌriːˈwaʊnd/",
+      "answer": "rewound – rewound · tua lại",
+      "explanation": "V1: rewind · V2: rewound · V3: rewound\nShe rewound the video.\n→ Cô ấy tua lại video."
+    },
+    {
+      "question": "retell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈtel/ – /ˌriːˈtoʊld/ – /ˌriːˈtoʊld/",
+      "answer": "retold – retold · kể lại",
+      "explanation": "V1: retell · V2: retold · V3: retold\nThe story was retold many times.\n→ Câu chuyện được kể lại nhiều lần."
+    },
+    {
+      "question": "resit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌriːˈsɪt/ – /ˌriːˈsæt/ – /ˌriːˈsæt/",
+      "answer": "resat – resat · thi lại (Anh-Anh)",
+      "explanation": "V1: resit · V2: resat · V3: resat\nHe resat the exam in August.\n→ Anh ấy thi lại vào tháng Tám."
+    },
+    {
+      "question": "sublet",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌsʌbˈlet/ – /ˌsʌbˈlet/ – /ˌsʌbˈlet/",
+      "answer": "sublet – sublet · cho thuê lại",
+      "explanation": "V1: sublet · V2: sublet · V3: sublet\nShe sublet her apartment for the summer.\n→ Cô ấy cho thuê lại căn hộ trong mùa hè."
+    },
+    {
+      "question": "underpay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈpeɪ/ – /ˌʌndərˈpeɪd/ – /ˌʌndərˈpeɪd/",
+      "answer": "underpaid – underpaid · trả lương thấp",
+      "explanation": "V1: underpay · V2: underpaid · V3: underpaid\nMany workers feel underpaid.\n→ Nhiều công nhân cảm thấy bị trả lương thấp."
+    },
+    {
+      "question": "undersell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌʌndərˈsel/ – /ˌʌndərˈsoʊld/ – /ˌʌndərˈsoʊld/",
+      "answer": "undersold – undersold · bán rẻ, đánh giá thấp (bản thân)",
+      "explanation": "V1: undersell · V2: undersold · V3: undersold\nDon't undersell yourself in interviews.\n→ Đừng tự hạ thấp mình khi phỏng vấn."
+    },
+    {
+      "question": "unbend",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʌnˈbend/ – /ʌnˈbent/ – /ʌnˈbent/",
+      "answer": "unbent – unbent · duỗi thẳng, bớt cứng nhắc",
+      "explanation": "V1: unbend · V2: unbent · V3: unbent\nHe unbent the wire.\n→ Anh ấy duỗi thẳng sợi dây thép."
+    },
+    {
+      "question": "unfreeze",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʌnˈfriːz/ – /ʌnˈfroʊz/ – /ʌnˈfroʊzən/",
+      "answer": "unfroze – unfrozen · làm tan băng, mở băng (tài khoản)",
+      "explanation": "V1: unfreeze · V2: unfroze · V3: unfrozen\nThe bank unfroze his account.\n→ Ngân hàng mở băng tài khoản của anh ấy."
+    },
+    {
+      "question": "spoon-feed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈspuːn fiːd/ – /ˈspuːn fed/ – /ˈspuːn fed/",
+      "answer": "spoon-fed – spoon-fed · đút từng thìa, mớm sẵn",
+      "explanation": "V1: spoon-feed · V2: spoon-fed · V3: spoon-fed\nStudents shouldn't be spoon-fed answers.\n→ Học sinh không nên được mớm sẵn đáp án."
+    },
+    {
+      "question": "lip-read",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈlɪp riːd/ – /ˈlɪp red/ – /ˈlɪp red/",
+      "answer": "lip-read – lip-read · đọc khẩu hình",
+      "explanation": "V1: lip-read · V2: lip-read · V3: lip-read\nShe lip-read what he said.\n→ Cô ấy đọc khẩu hình những gì anh nói."
+    },
+    {
+      "question": "handwrite",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌhændˈraɪt/ – /ˌhændˈroʊt/ – /ˌhændˈrɪtən/",
+      "answer": "handwrote – handwritten · viết tay",
+      "explanation": "V1: handwrite · V2: handwrote · V3: handwritten\nHe handwrote a thank-you note.\n→ Anh ấy viết tay một tấm thiệp cảm ơn."
+    },
+    {
+      "question": "ghostwrite",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈɡoʊstraɪt/ – /ˈɡoʊstroʊt/ – /ˈɡoʊstrɪtən/",
+      "answer": "ghostwrote – ghostwritten · viết thuê (đứng tên người khác)",
+      "explanation": "V1: ghostwrite · V2: ghostwrote · V3: ghostwritten\nThe book was ghostwritten.\n→ Cuốn sách được viết thuê."
+    },
+    {
+      "question": "breastfeed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈbrestfiːd/ – /ˈbrestfed/ – /ˈbrestfed/",
+      "answer": "breastfed – breastfed · cho con bú",
+      "explanation": "V1: breastfeed · V2: breastfed · V3: breastfed\nShe breastfed her baby for a year.\n→ Cô ấy cho con bú một năm."
+    },
+    {
+      "question": "sling",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/slɪŋ/ – /slʌŋ/ – /slʌŋ/",
+      "answer": "slung – slung · quăng, đeo (lên vai)",
+      "explanation": "V1: sling · V2: slung · V3: slung\nHe slung his bag over his shoulder.\n→ Anh ấy quàng túi lên vai."
+    },
+    {
+      "question": "slink",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/slɪŋk/ – /slʌŋk/ – /slʌŋk/",
+      "answer": "slunk – slunk · lẻn đi",
+      "explanation": "V1: slink · V2: slunk · V3: slunk\nThe cat slunk away.\n→ Con mèo lẻn đi."
+    },
+    {
+      "question": "wring",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/rɪŋ/ – /rʌŋ/ – /rʌŋ/",
+      "answer": "wrung – wrung · vắt (quần áo)",
+      "explanation": "V1: wring · V2: wrung · V3: wrung\nShe wrung out the wet towel.\n→ Cô ấy vắt chiếc khăn ướt."
+    },
+    {
+      "question": "shear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃɪr/ – /ʃɪrd/ – /ʃɔːrn/",
+      "answer": "sheared – shorn/sheared · xén (lông cừu)",
+      "explanation": "V1: shear · V2: sheared · V3: shorn/sheared\nThe farmer sheared the sheep.\n→ Người nông dân xén lông cừu."
+    },
+    {
+      "question": "hew",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/hjuː/ – /hjuːd/ – /hjuːn/",
+      "answer": "hewed – hewn/hewed · đẽo, chặt",
+      "explanation": "V1: hew · V2: hewed · V3: hewn/hewed\nThe statue was hewn from stone.\n→ Bức tượng được đẽo từ đá."
+    },
+    {
+      "question": "smite",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/smaɪt/ – /smoʊt/ – /ˈsmɪtən/",
+      "answer": "smote – smitten · đánh mạnh; (bị) say mê",
+      "explanation": "V1: smite · V2: smote · V3: smitten\nHe was smitten with her.\n→ Anh ấy say mê cô ấy."
+    },
+    {
+      "question": "beseech",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɪˈsiːtʃ/ – /bɪˈsɔːt/ – /bɪˈsɔːt/",
+      "answer": "besought/beseeched – besought/beseeched · van nài",
+      "explanation": "V1: beseech · V2: besought/beseeched · V3: besought/beseeched\nShe besought him to stay.\n→ Cô ấy van nài anh ở lại."
+    },
+    {
+      "question": "beget",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɪˈɡet/ – /bɪˈɡɑːt/ – /bɪˈɡɑːtən/",
+      "answer": "begot – begotten · sinh ra, gây ra",
+      "explanation": "V1: beget · V2: begot · V3: begotten\nViolence begets violence.\n→ Bạo lực sinh ra bạo lực."
+    },
+    {
+      "question": "alight",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/əˈlaɪt/ – /əˈlaɪtɪd, əˈlɪt/ – /əˈlaɪtɪd, əˈlɪt/",
+      "answer": "alighted/alit – alighted/alit · xuống (xe), đậu xuống",
+      "explanation": "V1: alight · V2: alighted/alit · V3: alighted/alit\nPassengers alighted at the station.\n→ Hành khách xuống tàu ở ga."
+    },
+    {
+      "question": "browbeat",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈbraʊbiːt/ – /ˈbraʊbiːt/ – /ˈbraʊbiːtən/",
+      "answer": "browbeat – browbeaten · bắt nạt, doạ nạt",
+      "explanation": "V1: browbeat · V2: browbeat · V3: browbeaten\nThey browbeat him into signing.\n→ Họ doạ nạt để anh ấy ký."
+    },
+    {
+      "question": "interweave",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌɪntərˈwiːv/ – /ˌɪntərˈwoʊv/ – /ˌɪntərˈwoʊvən/",
+      "answer": "interwove – interwoven · đan xen",
+      "explanation": "V1: interweave · V2: interwove · V3: interwoven\nThe two stories are interwoven.\n→ Hai câu chuyện đan xen nhau."
+    },
+    {
+      "question": "forswear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fɔːrˈswer/ – /fɔːrˈswɔːr/ – /fɔːrˈswɔːrn/",
+      "answer": "forswore – forsworn · thề từ bỏ",
+      "explanation": "V1: forswear · V2: forswore · V3: forsworn\nHe forswore alcohol.\n→ Anh ấy thề bỏ rượu."
+    },
+    {
+      "question": "waylay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌweɪˈleɪ/ – /ˌweɪˈleɪd/ – /ˌweɪˈleɪd/",
+      "answer": "waylaid – waylaid · chặn đường, giữ chân",
+      "explanation": "V1: waylay · V2: waylaid · V3: waylaid\nI was waylaid by a colleague.\n→ Tôi bị một đồng nghiệp giữ lại nói chuyện."
+    },
+    {
+      "question": "gainsay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˌɡeɪnˈseɪ/ – /ˌɡeɪnˈsed/ – /ˌɡeɪnˈsed/",
+      "answer": "gainsaid – gainsaid · phủ nhận, phản bác",
+      "explanation": "V1: gainsay · V2: gainsaid · V3: gainsaid\nNo one can gainsay his talent.\n→ Không ai phủ nhận được tài năng của anh ấy."
+    },
+    {
+      "question": "hamstring",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈhæmstrɪŋ/ – /ˈhæmstrʌŋ/ – /ˈhæmstrʌŋ/",
+      "answer": "hamstrung – hamstrung · cản trở, làm tê liệt",
+      "explanation": "V1: hamstring · V2: hamstrung · V3: hamstrung\nThe project was hamstrung by low funding.\n→ Dự án bị cản trở vì thiếu kinh phí."
+    },
+    {
+      "question": "typeset",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ˈtaɪpset/ – /ˈtaɪpset/ – /ˈtaɪpset/",
+      "answer": "typeset – typeset · sắp chữ (in ấn)",
+      "explanation": "V1: typeset · V2: typeset · V3: typeset\nThe book was typeset in LaTeX.\n→ Cuốn sách được dàn trang bằng LaTeX."
+    },
+    {
+      "question": "slit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/slɪt/ – /slɪt/ – /slɪt/",
+      "answer": "slit – slit · rạch, xẻ",
+      "explanation": "V1: slit · V2: slit · V3: slit\nShe slit open the envelope.\n→ Cô ấy rạch phong bì."
+    }
+  ]
+}

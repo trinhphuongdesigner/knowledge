@@ -1,0 +1,100 @@
+{
+  "slug": "interview-be-01-http-rest",
+  "order": 201,
+  "title": "Phỏng vấn Backend · HTTP & REST API Design",
+  "description": "Câu hỏi phỏng vấn Backend về HTTP, REST, thiết kế API, versioning, pagination, idempotency. Mỗi thẻ có đáp án tiếng Việt và bản tiếng Anh để luyện trả lời.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "What happens when you type a URL into the browser and press Enter? / Điều gì xảy ra khi bạn gõ URL vào trình duyệt và nhấn Enter?",
+      "answer": "1. Trình duyệt phân tích URL, kiểm tra cache (HSTS, DNS cache).\n2. **DNS resolve** tên miền → IP (browser → OS → resolver → root → TLD → authoritative).\n3. Mở **TCP** (3-way handshake), rồi **TLS handshake** nếu HTTPS.\n4. Gửi **HTTP request** (method, headers, cookies).\n5. Server (qua load balancer, reverse proxy) xử lý và trả response.\n6. Trình duyệt parse HTML, tải CSS/JS/ảnh, dựng DOM + CSSOM → layout → paint.",
+      "explanation": "1. The browser parses the URL and checks caches (HSTS, DNS cache).\n2. **DNS resolution** turns the hostname into an IP.\n3. It opens a **TCP** connection (3-way handshake), then a **TLS handshake** for HTTPS.\n4. It sends an **HTTP request** with method, headers and cookies.\n5. The server (behind load balancers and reverse proxies) processes it and returns a response.\n6. The browser parses HTML, fetches sub-resources, builds the DOM and CSSOM, then lays out and paints."
+    },
+    {
+      "question": "What is the difference between PUT and PATCH? / PUT và PATCH khác nhau thế nào?",
+      "answer": "- **PUT** thay thế *toàn bộ* resource bằng payload gửi lên; field không gửi coi như bị xoá/đặt mặc định. PUT là **idempotent**.\n- **PATCH** cập nhật *một phần* resource. PATCH không bắt buộc idempotent (vd. `{\"op\":\"increment\"}`), nhưng thường được thiết kế để idempotent.\n- Thực tế: dùng PATCH cho form chỉnh sửa vài trường, PUT khi client có đầy đủ trạng thái.",
+      "explanation": "- **PUT** replaces the *whole* resource with the payload; missing fields are cleared or defaulted. PUT is **idempotent**.\n- **PATCH** applies a *partial* update. It is not required to be idempotent (e.g. an increment operation), though it usually is in practice.\n- Use PATCH for editing a few fields, PUT when the client sends the full state."
+    },
+    {
+      "question": "Which HTTP methods are safe and which are idempotent? / Những HTTP method nào là safe, những method nào là idempotent?",
+      "answer": "- **Safe** (không thay đổi state server): GET, HEAD, OPTIONS, TRACE.\n- **Idempotent** (gọi N lần cho kết quả như 1 lần): tất cả method safe + PUT, DELETE.\n- **Không idempotent**: POST, (thường) PATCH.\n- Ý nghĩa: client/proxy có thể **retry an toàn** các request idempotent khi timeout.",
+      "explanation": "- **Safe** (no server state change): GET, HEAD, OPTIONS, TRACE.\n- **Idempotent** (N calls have the same effect as one): all safe methods plus PUT and DELETE.\n- **Not idempotent**: POST and usually PATCH.\n- Why it matters: clients and proxies can **safely retry** idempotent requests after a timeout."
+    },
+    {
+      "question": "How do you make a POST endpoint idempotent, e.g. for payments? / Làm sao để một endpoint POST (ví dụ thanh toán) trở nên idempotent?",
+      "answer": "Dùng **Idempotency-Key**:\n1. Client sinh UUID và gửi qua header `Idempotency-Key`.\n2. Server lưu key + hash request + response vào bảng/Redis với **unique constraint**, TTL ~24h.\n3. Nếu key đã tồn tại và đã xong → trả lại response cũ; nếu đang xử lý → trả `409` hoặc chờ.\n4. Nếu cùng key nhưng body khác → trả `422`.\nGhi key và thực hiện nghiệp vụ trong **cùng transaction** để tránh race condition.",
+      "explanation": "Use an **Idempotency-Key**:\n1. The client generates a UUID and sends it in an `Idempotency-Key` header.\n2. The server stores the key, a request hash and the response with a **unique constraint** and a TTL of about 24h.\n3. If the key is done, return the stored response; if in progress, return `409` or wait.\n4. If the same key comes with a different body, return `422`.\nWrite the key and perform the business action in the **same transaction** to avoid races."
+    },
+    {
+      "question": "Explain common HTTP status codes and when to use them. / Giải thích các HTTP status code phổ biến và khi nào dùng.",
+      "answer": "- `200 OK`, `201 Created` (kèm `Location`), `204 No Content`.\n- `301/308` chuyển hướng vĩnh viễn, `302/307` tạm thời, `304 Not Modified` (cache).\n- `400` request sai định dạng, `401` chưa xác thực, `403` không có quyền, `404` không tồn tại, `409` xung đột, `422` dữ liệu không hợp lệ, `429` vượt rate limit.\n- `500` lỗi server, `502` upstream lỗi, `503` tạm không phục vụ, `504` upstream timeout.",
+      "explanation": "- `200 OK`, `201 Created` (with `Location`), `204 No Content`.\n- `301/308` permanent redirect, `302/307` temporary, `304 Not Modified` for caching.\n- `400` malformed request, `401` unauthenticated, `403` forbidden, `404` not found, `409` conflict, `422` validation failed, `429` rate limited.\n- `500` server error, `502` bad gateway, `503` unavailable, `504` gateway timeout."
+    },
+    {
+      "question": "What is the difference between 401 and 403? / 401 và 403 khác nhau thế nào?",
+      "answer": "- **401 Unauthorized** thực chất là \"unauthenticated\": server không biết bạn là ai (thiếu/sai token). Nên kèm header `WWW-Authenticate`. Đăng nhập lại có thể giải quyết.\n- **403 Forbidden**: server biết bạn là ai nhưng bạn **không có quyền**. Đăng nhập lại không giúp gì.\n- Đôi khi trả `404` thay cho `403` để không lộ sự tồn tại của resource.",
+      "explanation": "- **401** really means \"unauthenticated\": the server doesn't know who you are. Include `WWW-Authenticate`; logging in may fix it.\n- **403** means the server knows who you are, but you **lack permission**; re-authenticating won't help.\n- Sometimes `404` is returned instead of `403` to hide that the resource exists."
+    },
+    {
+      "question": "What are the principles of REST? / Các nguyên tắc của REST là gì?",
+      "answer": "- **Client–server** tách biệt.\n- **Stateless**: mỗi request mang đủ thông tin, server không giữ session state.\n- **Cacheable**: response khai báo có cache được hay không.\n- **Uniform interface**: resource định danh bằng URI, thao tác qua representation, message tự mô tả, (HATEOAS).\n- **Layered system**: client không biết có proxy/LB ở giữa.\n- (Tuỳ chọn) **Code on demand**.",
+      "explanation": "- **Client–server** separation.\n- **Stateless**: each request carries all needed context.\n- **Cacheable**: responses declare whether they can be cached.\n- **Uniform interface**: resources identified by URIs, manipulated via representations, self-descriptive messages, HATEOAS.\n- **Layered system**: clients can't tell if intermediaries exist.\n- Optional **code on demand**."
+    },
+    {
+      "question": "How do you design REST resource URLs well? / Thiết kế URL resource REST thế nào cho tốt?",
+      "answer": "- Dùng **danh từ số nhiều**: `/users`, `/users/42/orders`.\n- Hành động thể hiện bằng **HTTP method**, không phải động từ trong URL (`POST /orders` thay vì `/createOrder`).\n- Lồng tối đa 1–2 cấp; quá sâu thì dùng query: `/orders?userId=42`.\n- Lọc/sắp xếp/phân trang qua query: `?status=paid&sort=-createdAt&limit=20`.\n- Hành động không CRUD: sub-resource `POST /orders/42/cancel` là chấp nhận được.\n- Dùng kebab-case, nhất quán.",
+      "explanation": "- Use **plural nouns**: `/users`, `/users/42/orders`.\n- Express actions with **HTTP methods**, not verbs in paths.\n- Nest at most 1–2 levels; otherwise use query filters.\n- Filter, sort and paginate via query params.\n- For non-CRUD actions, a sub-resource like `POST /orders/42/cancel` is acceptable.\n- Be consistent, e.g. kebab-case."
+    },
+    {
+      "question": "Compare offset pagination and cursor pagination. / So sánh phân trang offset và cursor.",
+      "answer": "- **Offset** (`LIMIT 20 OFFSET 1000`): dễ làm, nhảy trang được. Nhược: DB vẫn phải quét bỏ 1000 dòng → **chậm khi offset lớn**; dữ liệu chèn/xoá giữa chừng gây **trùng hoặc sót**.\n- **Cursor/keyset** (`WHERE (created_at, id) < ($1, $2) ORDER BY created_at DESC, id DESC LIMIT 20`): dùng index, hiệu năng ổn định, không trùng/sót. Nhược: không nhảy trang tuỳ ý, cần cột sắp xếp duy nhất.\n- Feed/infinite scroll → cursor; bảng admin nhỏ → offset.",
+      "explanation": "- **Offset**: simple and supports jumping to page N, but the DB still scans skipped rows (slow at high offsets) and concurrent inserts cause duplicates or gaps.\n- **Cursor/keyset**: uses an index, stable performance, no duplicates or gaps; but no random page access and it needs a unique sort key.\n- Use cursor for feeds and infinite scroll, offset for small admin tables."
+    },
+    {
+      "question": "How do you version an API? / Bạn versioning API thế nào?",
+      "answer": "- **URL**: `/v1/users` — rõ ràng, dễ route, dễ cache. Phổ biến nhất.\n- **Header**: `Accept: application/vnd.app.v2+json` — URL sạch nhưng khó debug.\n- **Query**: `?version=2` — ít dùng.\nNguyên tắc: tránh breaking change (chỉ **thêm** field, không đổi nghĩa/xoá); khi buộc phải breaking thì ra version mới, thông báo **deprecation** (header `Deprecation`, `Sunset`) và giữ bản cũ một thời gian.",
+      "explanation": "- **URL path** (`/v1/users`): explicit, easy to route and cache; most common.\n- **Header** (`Accept: application/vnd.app.v2+json`): clean URLs but harder to debug.\n- **Query param**: rarely used.\nPrefer additive, non-breaking changes; when a breaking change is unavoidable, ship a new version, announce deprecation with `Deprecation`/`Sunset` headers, and keep the old one for a while."
+    },
+    {
+      "question": "REST vs GraphQL vs gRPC — when would you choose each? / REST, GraphQL hay gRPC — khi nào chọn cái nào?",
+      "answer": "- **REST**: public API, đơn giản, tận dụng HTTP cache, tooling phổ biến.\n- **GraphQL**: nhiều client (web/mobile) cần dữ liệu khác nhau, tránh over/under-fetching, gộp nhiều nguồn. Nhược: cache khó, N+1 (cần DataLoader), cần giới hạn độ sâu query.\n- **gRPC**: giao tiếp **service-to-service** nội bộ, cần hiệu năng cao (HTTP/2 + Protobuf), streaming, contract chặt. Nhược: browser không gọi trực tiếp (cần gRPC-Web).",
+      "explanation": "- **REST**: public APIs, simplicity, HTTP caching, ubiquitous tooling.\n- **GraphQL**: many clients needing different shapes of data; avoids over/under-fetching. Downsides: harder caching, N+1 risk (use DataLoader), query depth limits needed.\n- **gRPC**: internal service-to-service calls needing high performance, streaming and strict contracts; browsers need gRPC-Web."
+    },
+    {
+      "question": "How does HTTP caching work (Cache-Control, ETag)? / HTTP caching hoạt động thế nào (Cache-Control, ETag)?",
+      "answer": "- `Cache-Control: max-age=3600` → client/CDN dùng bản cache 1 giờ không cần hỏi lại. `public`/`private`, `no-store` (không lưu), `no-cache` (lưu nhưng phải revalidate), `s-maxage` cho CDN, `stale-while-revalidate`.\n- **Revalidation**: server trả `ETag` (hash nội dung) hoặc `Last-Modified`. Lần sau client gửi `If-None-Match`/`If-Modified-Since`; nếu không đổi → `304 Not Modified` (không body).\n- Static asset có hash trong tên file → `max-age=31536000, immutable`.",
+      "explanation": "- `Cache-Control: max-age=3600` lets clients/CDNs reuse the response for an hour. Also `public`/`private`, `no-store`, `no-cache` (store but revalidate), `s-maxage`, `stale-while-revalidate`.\n- **Revalidation**: the server sends an `ETag` or `Last-Modified`; the client later sends `If-None-Match`/`If-Modified-Since` and gets `304` if unchanged.\n- Fingerprinted static assets: `max-age=31536000, immutable`."
+    },
+    {
+      "question": "What are the differences between HTTP/1.1, HTTP/2 and HTTP/3? / HTTP/1.1, HTTP/2 và HTTP/3 khác nhau thế nào?",
+      "answer": "- **HTTP/1.1**: text, mỗi connection xử lý 1 request tại một thời điểm → head-of-line blocking, browser mở 6 connection/host.\n- **HTTP/2**: binary, **multiplexing** nhiều stream trên 1 TCP connection, nén header (HPACK). Vẫn bị HOL blocking ở tầng TCP khi mất gói.\n- **HTTP/3**: chạy trên **QUIC (UDP)**, mỗi stream độc lập → hết HOL blocking tầng transport, handshake nhanh hơn (0-RTT), chuyển mạng (wifi→4G) không đứt kết nối.",
+      "explanation": "- **HTTP/1.1**: text-based, one in-flight request per connection, so head-of-line blocking; browsers open ~6 connections per host.\n- **HTTP/2**: binary framing, **multiplexing** over one TCP connection, HPACK header compression; still suffers TCP-level HOL blocking on packet loss.\n- **HTTP/3**: runs over **QUIC/UDP** with independent streams, faster handshakes (0-RTT) and connection migration."
+    },
+    {
+      "question": "What is CORS and how does a preflight request work? / CORS là gì và preflight request hoạt động thế nào?",
+      "answer": "- **Same-origin policy**: browser chặn JS đọc response từ origin khác (scheme+host+port).\n- **CORS** cho phép server nới lỏng bằng header `Access-Control-Allow-Origin`, `-Methods`, `-Headers`, `-Credentials`.\n- Request \"không đơn giản\" (method PUT/DELETE, header `Authorization`, `Content-Type: application/json`) → browser gửi **preflight `OPTIONS`** trước; server trả các header cho phép, có thể cache bằng `Access-Control-Max-Age`.\n- Lưu ý: CORS là cơ chế **của browser**, không bảo vệ API khỏi curl/server khác.",
+      "explanation": "- The **same-origin policy** stops JS from reading responses from another origin.\n- **CORS** lets servers relax it via `Access-Control-Allow-*` headers.\n- Non-simple requests (PUT/DELETE, `Authorization`, JSON content type) trigger a **preflight `OPTIONS`**, cacheable via `Access-Control-Max-Age`.\n- CORS is enforced by **browsers only**; it does not protect an API from curl or servers."
+    },
+    {
+      "question": "How would you implement rate limiting for an API? / Bạn triển khai rate limiting cho API thế nào?",
+      "answer": "- Thuật toán: **Fixed window** (đơn giản, bị burst ở ranh giới), **Sliding window log/counter** (chính xác hơn), **Token bucket** (cho phép burst có kiểm soát, phổ biến nhất), **Leaky bucket** (làm mượt lưu lượng).\n- Lưu counter trong **Redis** (atomic `INCR` + `EXPIRE` hoặc Lua script) để dùng chung giữa nhiều instance.\n- Key theo user/API key/IP; trả `429 Too Many Requests` kèm `Retry-After`, `X-RateLimit-Remaining`.\n- Đặt ở API gateway/reverse proxy khi có thể.",
+      "explanation": "- Algorithms: **fixed window** (simple, bursty at edges), **sliding window** (more accurate), **token bucket** (controlled bursts, most common), **leaky bucket** (smooths traffic).\n- Store counters in **Redis** with atomic ops or Lua so all instances share them.\n- Key by user, API key or IP; return `429` with `Retry-After` and rate-limit headers.\n- Enforce at the gateway or reverse proxy when possible."
+    },
+    {
+      "question": "How should an API return errors? / API nên trả lỗi như thế nào?",
+      "answer": "- Dùng **status code đúng** + body có cấu trúc nhất quán, ví dụ chuẩn **RFC 9457 (Problem Details)**: `type`, `title`, `status`, `detail`, `instance`, cộng thêm `errors` theo field.\n- Có **mã lỗi ổn định** (`code: \"EMAIL_TAKEN\"`) để client xử lý, message để hiển thị.\n- Không lộ stack trace/SQL ra ngoài; log chi tiết phía server kèm **request ID** và trả request ID cho client.",
+      "explanation": "- Use the **correct status code** plus a consistent body, e.g. **RFC 9457 Problem Details** (`type`, `title`, `status`, `detail`, `instance`) with per-field `errors`.\n- Provide a **stable error code** for clients and a human-readable message.\n- Never leak stack traces or SQL; log details server-side with a **request ID** returned to the client."
+    },
+    {
+      "question": "What is the difference between a webhook and polling? / Webhook và polling khác nhau thế nào?",
+      "answer": "- **Polling**: client định kỳ hỏi server \"có gì mới không?\" → đơn giản nhưng tốn tài nguyên, có độ trễ.\n- **Webhook**: server **chủ động gọi** URL của client khi có sự kiện → realtime, tiết kiệm.\n- Làm webhook tốt: ký payload bằng **HMAC** để xác thực, có **retry với backoff**, gửi **event ID** để bên nhận khử trùng (idempotent), bên nhận trả 2xx nhanh rồi xử lý bất đồng bộ.",
+      "explanation": "- **Polling**: the client repeatedly asks for updates; simple but wasteful and laggy.\n- **Webhook**: the server **pushes** an HTTP call when an event happens; near real-time and efficient.\n- Good webhooks: **HMAC-signed** payloads, **retries with backoff**, **event IDs** for deduplication, and receivers that ack fast and process asynchronously."
+    },
+    {
+      "question": "What are long polling, Server-Sent Events and WebSockets? / Long polling, Server-Sent Events và WebSocket là gì?",
+      "answer": "- **Long polling**: client gửi request, server giữ đến khi có dữ liệu rồi trả; client gửi lại ngay. Hoạt động mọi nơi nhưng tốn connection.\n- **SSE**: 1 HTTP connection, server **đẩy một chiều** text event, tự reconnect. Hợp với notification, live feed, streaming token AI.\n- **WebSocket**: kết nối **hai chiều** full-duplex sau khi upgrade từ HTTP. Hợp chat, game, collaborative editing. Cần xử lý scale (sticky session hoặc pub/sub như Redis).",
+      "explanation": "- **Long polling**: the server holds a request until data is ready; works everywhere but costs connections.\n- **SSE**: one HTTP connection for **one-way server push** with auto-reconnect; great for notifications and streaming AI tokens.\n- **WebSocket**: **bidirectional** full-duplex after an HTTP upgrade; for chat, games, collaboration. Scaling needs sticky sessions or pub/sub."
+    }
+  ]
+}

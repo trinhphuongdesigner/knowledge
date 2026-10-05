@@ -11,6 +11,7 @@
     "db:up": "docker compose up -d",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
+    "db:seed:append": "tsx scripts/seed-append.ts",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
     "i18n:check": "tsx scripts/check-i18n.ts",

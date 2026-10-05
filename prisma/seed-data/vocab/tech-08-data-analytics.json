@@ -1,0 +1,304 @@
+{
+  "slug": "tech-08-data-analytics",
+  "order": 108,
+  "title": "Tech English 8 · Data & Analytics",
+  "description": "Từ vựng phân tích dữ liệu, báo cáo và thống kê cơ bản (CEFR B1–C1). Dùng khi đọc dashboard, trình bày số liệu và làm việc với data team.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "dataset",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtəset/",
+      "answer": "tập dữ liệu",
+      "explanation": "The dataset contains five years of sales records.\n→ Tập dữ liệu chứa doanh số trong năm năm."
+    },
+    {
+      "question": "data point",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə pɔɪnt/",
+      "answer": "điểm dữ liệu",
+      "explanation": "One strange data point can skew the average.\n→ Một điểm dữ liệu lạ có thể làm lệch giá trị trung bình."
+    },
+    {
+      "question": "dashboard",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdæʃbɔːrd/",
+      "answer": "bảng điều khiển số liệu",
+      "explanation": "The sales dashboard updates every hour.\n→ Dashboard doanh số cập nhật mỗi giờ."
+    },
+    {
+      "question": "chart",
+      "partOfSpeech": "noun",
+      "phonetic": "/tʃɑːrt/",
+      "answer": "biểu đồ",
+      "explanation": "This chart shows revenue by month.\n→ Biểu đồ này thể hiện doanh thu theo tháng."
+    },
+    {
+      "question": "bar chart",
+      "partOfSpeech": "noun",
+      "phonetic": "/bɑːr tʃɑːrt/",
+      "answer": "biểu đồ cột",
+      "explanation": "Use a bar chart to compare the regions.\n→ Dùng biểu đồ cột để so sánh các khu vực."
+    },
+    {
+      "question": "line chart",
+      "partOfSpeech": "noun",
+      "phonetic": "/laɪn tʃɑːrt/",
+      "answer": "biểu đồ đường",
+      "explanation": "The line chart shows a clear upward trend.\n→ Biểu đồ đường cho thấy xu hướng tăng rõ rệt."
+    },
+    {
+      "question": "pie chart",
+      "partOfSpeech": "noun",
+      "phonetic": "/paɪ tʃɑːrt/",
+      "answer": "biểu đồ tròn",
+      "explanation": "Pie charts are hard to read with too many slices.\n→ Biểu đồ tròn khó đọc khi có quá nhiều phần."
+    },
+    {
+      "question": "axis",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæksɪs/",
+      "answer": "trục (biểu đồ)",
+      "explanation": "The x-axis shows time and the y-axis shows users.\n→ Trục x là thời gian, trục y là số người dùng."
+    },
+    {
+      "question": "trend",
+      "partOfSpeech": "noun",
+      "phonetic": "/trend/",
+      "answer": "xu hướng",
+      "explanation": "We noticed a downward trend in sign-ups.\n→ Chúng tôi thấy xu hướng giảm ở lượt đăng ký."
+    },
+    {
+      "question": "average",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈævərɪdʒ/",
+      "answer": "giá trị trung bình",
+      "explanation": "The average order value is 300,000 dong.\n→ Giá trị đơn hàng trung bình là 300.000 đồng."
+    },
+    {
+      "question": "median",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmiːdiən/",
+      "answer": "trung vị",
+      "explanation": "The median is more useful than the average when there are outliers.\n→ Trung vị hữu ích hơn trung bình khi có giá trị ngoại lai."
+    },
+    {
+      "question": "outlier",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtlaɪər/",
+      "answer": "giá trị ngoại lai",
+      "explanation": "Remove the outliers before training the model.\n→ Loại bỏ giá trị ngoại lai trước khi huấn luyện mô hình."
+    },
+    {
+      "question": "percentage",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈsentɪdʒ/",
+      "answer": "phần trăm",
+      "explanation": "What percentage of users finished the course?\n→ Bao nhiêu phần trăm người dùng hoàn thành khoá học?"
+    },
+    {
+      "question": "percentage point",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈsentɪdʒ pɔɪnt/",
+      "answer": "điểm phần trăm",
+      "explanation": "Conversion rose from 2% to 3%, an increase of one percentage point.\n→ Tỉ lệ chuyển đổi tăng từ 2% lên 3%, tức tăng một điểm phần trăm."
+    },
+    {
+      "question": "increase",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈkriːs/",
+      "answer": "tăng",
+      "explanation": "Revenue increased by 15% last quarter.\n→ Doanh thu tăng 15% trong quý trước."
+    },
+    {
+      "question": "decline",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪˈklaɪn/",
+      "answer": "giảm",
+      "explanation": "Usage declined sharply during the holidays.\n→ Lượng dùng giảm mạnh trong kỳ nghỉ."
+    },
+    {
+      "question": "fluctuate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈflʌktʃueɪt/",
+      "answer": "dao động",
+      "explanation": "Traffic fluctuates a lot during the week.\n→ Lưu lượng dao động nhiều trong tuần."
+    },
+    {
+      "question": "peak",
+      "partOfSpeech": "noun",
+      "phonetic": "/piːk/",
+      "answer": "đỉnh, cao điểm",
+      "explanation": "Sales reached their peak in December.\n→ Doanh số đạt đỉnh vào tháng Mười Hai."
+    },
+    {
+      "question": "correlation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkɔːrəˈleɪʃən/",
+      "answer": "tương quan",
+      "explanation": "There is a strong correlation between study time and scores.\n→ Có tương quan mạnh giữa thời gian học và điểm số."
+    },
+    {
+      "question": "causation",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɔːˈzeɪʃən/",
+      "answer": "quan hệ nhân quả",
+      "explanation": "Correlation does not imply causation.\n→ Tương quan không có nghĩa là nhân quả."
+    },
+    {
+      "question": "sample",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsæmpəl/",
+      "answer": "mẫu",
+      "explanation": "The sample is too small to draw a conclusion.\n→ Mẫu quá nhỏ để rút ra kết luận."
+    },
+    {
+      "question": "bias",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbaɪəs/",
+      "answer": "thiên lệch",
+      "explanation": "The survey has a bias because only happy users replied.\n→ Khảo sát bị thiên lệch vì chỉ người dùng hài lòng trả lời."
+    },
+    {
+      "question": "statistically significant",
+      "partOfSpeech": "phrase",
+      "phonetic": "/stəˈtɪstɪkli sɪɡˈnɪfɪkənt/",
+      "answer": "có ý nghĩa thống kê",
+      "explanation": "The difference is not statistically significant yet.\n→ Sự khác biệt chưa có ý nghĩa thống kê."
+    },
+    {
+      "question": "insight",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnsaɪt/",
+      "answer": "thông tin sâu sắc, phát hiện",
+      "explanation": "The data gave us a useful insight about mobile users.\n→ Dữ liệu cho chúng tôi một phát hiện hữu ích về người dùng di động."
+    },
+    {
+      "question": "data-driven",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdeɪtə ˈdrɪvən/",
+      "answer": "dựa trên dữ liệu",
+      "explanation": "We want to make data-driven decisions.\n→ Chúng tôi muốn ra quyết định dựa trên dữ liệu."
+    },
+    {
+      "question": "query",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈkwɪri/",
+      "answer": "truy vấn",
+      "explanation": "Query the table to count orders by city.\n→ Truy vấn bảng để đếm đơn hàng theo thành phố."
+    },
+    {
+      "question": "aggregate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈæɡrɪɡeɪt/",
+      "answer": "tổng hợp",
+      "explanation": "We aggregate the events into daily totals.\n→ Chúng tôi tổng hợp sự kiện thành tổng theo ngày."
+    },
+    {
+      "question": "filter",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈfɪltər/",
+      "answer": "lọc",
+      "explanation": "Filter the data to show only active customers.\n→ Lọc dữ liệu chỉ hiện khách hàng đang hoạt động."
+    },
+    {
+      "question": "group by",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡruːp baɪ/",
+      "answer": "nhóm theo",
+      "explanation": "Group the results by month.\n→ Nhóm kết quả theo tháng."
+    },
+    {
+      "question": "spreadsheet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈspredʃiːt/",
+      "answer": "bảng tính",
+      "explanation": "Finance still tracks everything in a spreadsheet.\n→ Phòng tài chính vẫn theo dõi mọi thứ trong bảng tính."
+    },
+    {
+      "question": "pivot table",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɪvət ˈteɪbəl/",
+      "answer": "bảng tổng hợp động",
+      "explanation": "Use a pivot table to summarize sales by region.\n→ Dùng pivot table để tổng hợp doanh số theo vùng."
+    },
+    {
+      "question": "data pipeline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə ˈpaɪplaɪn/",
+      "answer": "luồng xử lý dữ liệu",
+      "explanation": "The data pipeline runs every night.\n→ Pipeline dữ liệu chạy mỗi đêm."
+    },
+    {
+      "question": "ETL",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌiː tiː ˈel/",
+      "answer": "trích xuất - biến đổi - nạp",
+      "explanation": "The ETL job loads data from the app into the warehouse.\n→ Job ETL nạp dữ liệu từ ứng dụng vào kho dữ liệu."
+    },
+    {
+      "question": "data warehouse",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə ˈwerhaʊs/",
+      "answer": "kho dữ liệu",
+      "explanation": "All reports read from the data warehouse.\n→ Mọi báo cáo đều đọc từ kho dữ liệu."
+    },
+    {
+      "question": "data cleaning",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdeɪtə ˈkliːnɪŋ/",
+      "answer": "làm sạch dữ liệu",
+      "explanation": "Data cleaning takes most of an analyst's time.\n→ Làm sạch dữ liệu chiếm phần lớn thời gian của chuyên viên phân tích."
+    },
+    {
+      "question": "missing values",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɪsɪŋ ˈvæljuːz/",
+      "answer": "giá trị bị thiếu",
+      "explanation": "Fill the missing values with zero.\n→ Điền giá trị thiếu bằng 0."
+    },
+    {
+      "question": "forecast",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɔːrkæst/",
+      "answer": "dự báo",
+      "explanation": "The forecast predicts 20% growth next year.\n→ Dự báo cho thấy tăng trưởng 20% năm tới."
+    },
+    {
+      "question": "cohort",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkoʊhɔːrt/",
+      "answer": "nhóm người dùng (theo thời điểm)",
+      "explanation": "Users in the January cohort stayed longer.\n→ Nhóm người dùng tháng Một ở lại lâu hơn."
+    },
+    {
+      "question": "funnel",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfʌnəl/",
+      "answer": "phễu chuyển đổi",
+      "explanation": "Most users drop out at the payment step of the funnel.\n→ Hầu hết người dùng rời bỏ ở bước thanh toán của phễu."
+    },
+    {
+      "question": "drill down",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/drɪl daʊn/",
+      "answer": "xem chi tiết hơn",
+      "explanation": "Click a region to drill down into city data.\n→ Bấm vào vùng để xem chi tiết theo thành phố."
+    },
+    {
+      "question": "year-over-year",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌjɪr ˌoʊvər ˈjɪr/",
+      "answer": "so với cùng kỳ năm trước",
+      "explanation": "Year-over-year growth was 30%.\n→ Tăng trưởng so với cùng kỳ năm trước là 30%."
+    },
+    {
+      "question": "roughly",
+      "partOfSpeech": "adverb",
+      "phonetic": "/ˈrʌfli/",
+      "answer": "khoảng, xấp xỉ",
+      "explanation": "Roughly half of our users are on mobile.\n→ Khoảng một nửa người dùng dùng di động."
+    }
+  ]
+}

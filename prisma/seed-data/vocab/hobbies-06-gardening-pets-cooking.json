@@ -1,0 +1,262 @@
+{
+  "slug": "hobbies-06-gardening-pets-cooking",
+  "order": 156,
+  "title": "Hobbies 6 · Gardening, Pets & DIY",
+  "description": "Từ vựng làm vườn, nuôi thú cưng và tự làm đồ (DIY) (CEFR A2–B1).",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "garden",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡɑːrdən/",
+      "answer": "khu vườn",
+      "explanation": "We grow herbs in our small garden.\n→ Chúng tôi trồng rau thơm trong khu vườn nhỏ."
+    },
+    {
+      "question": "gardening",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡɑːrdənɪŋ/",
+      "answer": "làm vườn",
+      "explanation": "Gardening helps me relax.\n→ Làm vườn giúp tôi thư giãn."
+    },
+    {
+      "question": "plant",
+      "partOfSpeech": "verb",
+      "phonetic": "/plænt/",
+      "answer": "trồng",
+      "explanation": "We planted a mango tree last year.\n→ Năm ngoái chúng tôi trồng một cây xoài."
+    },
+    {
+      "question": "seed",
+      "partOfSpeech": "noun",
+      "phonetic": "/siːd/",
+      "answer": "hạt giống",
+      "explanation": "Plant the seeds in spring.\n→ Gieo hạt vào mùa xuân."
+    },
+    {
+      "question": "soil",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɔɪl/",
+      "answer": "đất trồng",
+      "explanation": "This soil is too dry.\n→ Đất này quá khô."
+    },
+    {
+      "question": "pot",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɑːt/",
+      "answer": "chậu cây",
+      "explanation": "I keep succulents in small pots.\n→ Tôi trồng sen đá trong chậu nhỏ."
+    },
+    {
+      "question": "water",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈwɔːtər/",
+      "answer": "tưới nước",
+      "explanation": "Water the plants every morning.\n→ Tưới cây mỗi sáng."
+    },
+    {
+      "question": "fertilizer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɜːrtəlaɪzər/",
+      "answer": "phân bón",
+      "explanation": "Use organic fertilizer.\n→ Dùng phân bón hữu cơ."
+    },
+    {
+      "question": "weed",
+      "partOfSpeech": "noun",
+      "phonetic": "/wiːd/",
+      "answer": "cỏ dại",
+      "explanation": "Pull out the weeds before they spread.\n→ Nhổ cỏ dại trước khi chúng lan ra."
+    },
+    {
+      "question": "prune",
+      "partOfSpeech": "verb",
+      "phonetic": "/pruːn/",
+      "answer": "tỉa cành",
+      "explanation": "Prune the roses in winter.\n→ Tỉa hoa hồng vào mùa đông."
+    },
+    {
+      "question": "harvest",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈhɑːrvɪst/",
+      "answer": "thu hoạch",
+      "explanation": "We harvested a basket of tomatoes.\n→ Chúng tôi thu hoạch được một rổ cà chua."
+    },
+    {
+      "question": "bloom",
+      "partOfSpeech": "verb",
+      "phonetic": "/bluːm/",
+      "answer": "nở hoa",
+      "explanation": "Peach trees bloom around Tet.\n→ Cây đào nở hoa quanh dịp Tết."
+    },
+    {
+      "question": "houseplant",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhaʊsplænt/",
+      "answer": "cây trồng trong nhà",
+      "explanation": "Houseplants make the office feel fresh.\n→ Cây trong nhà làm văn phòng thêm tươi mát."
+    },
+    {
+      "question": "green thumb",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɡriːn θʌm/",
+      "answer": "có tay trồng cây",
+      "explanation": "My mom has a green thumb.\n→ Mẹ tôi rất có tay trồng cây."
+    },
+    {
+      "question": "pet",
+      "partOfSpeech": "noun",
+      "phonetic": "/pet/",
+      "answer": "thú cưng",
+      "explanation": "Do you have any pets?\n→ Bạn có nuôi thú cưng không?"
+    },
+    {
+      "question": "puppy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʌpi/",
+      "answer": "chó con",
+      "explanation": "We adopted a puppy from a shelter.\n→ Chúng tôi nhận nuôi một chú chó con từ trại cứu hộ."
+    },
+    {
+      "question": "kitten",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɪtən/",
+      "answer": "mèo con",
+      "explanation": "The kitten sleeps on my keyboard.\n→ Mèo con ngủ trên bàn phím của tôi."
+    },
+    {
+      "question": "adopt",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈdɑːpt/",
+      "answer": "nhận nuôi",
+      "explanation": "Adopt, don't shop.\n→ Hãy nhận nuôi, đừng mua."
+    },
+    {
+      "question": "shelter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃeltər/",
+      "answer": "trại cứu hộ động vật",
+      "explanation": "The animal shelter needs volunteers.\n→ Trại cứu hộ cần tình nguyện viên."
+    },
+    {
+      "question": "vet",
+      "partOfSpeech": "noun",
+      "phonetic": "/vet/",
+      "answer": "bác sĩ thú y",
+      "explanation": "Take the cat to the vet for a checkup.\n→ Đưa mèo đi bác sĩ thú y kiểm tra."
+    },
+    {
+      "question": "vaccinate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈvæksɪneɪt/",
+      "answer": "tiêm phòng",
+      "explanation": "Vaccinate your dog every year.\n→ Tiêm phòng cho chó hằng năm."
+    },
+    {
+      "question": "leash",
+      "partOfSpeech": "noun",
+      "phonetic": "/liːʃ/",
+      "answer": "dây xích (dắt chó)",
+      "explanation": "Keep your dog on a leash in the park.\n→ Giữ chó bằng dây dắt trong công viên."
+    },
+    {
+      "question": "walk the dog",
+      "partOfSpeech": "phrase",
+      "phonetic": "/wɔːk ðə dɔːɡ/",
+      "answer": "dắt chó đi dạo",
+      "explanation": "I walk the dog after dinner.\n→ Tôi dắt chó đi dạo sau bữa tối."
+    },
+    {
+      "question": "groom",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɡruːm/",
+      "answer": "chải chuốt, tắm tỉa (thú cưng)",
+      "explanation": "We get the dog groomed once a month.\n→ Chúng tôi đưa chó đi tắm tỉa mỗi tháng một lần."
+    },
+    {
+      "question": "litter box",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɪtər bɑːks/",
+      "answer": "khay cát vệ sinh cho mèo",
+      "explanation": "Clean the litter box every day.\n→ Dọn khay cát mỗi ngày."
+    },
+    {
+      "question": "pet food",
+      "partOfSpeech": "noun",
+      "phonetic": "/pet fuːd/",
+      "answer": "thức ăn cho thú cưng",
+      "explanation": "Pet food is getting expensive.\n→ Thức ăn cho thú cưng ngày càng đắt."
+    },
+    {
+      "question": "aquarium",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈkweriəm/",
+      "answer": "bể cá",
+      "explanation": "He has a huge aquarium in his living room.\n→ Anh ấy có bể cá rất lớn trong phòng khách."
+    },
+    {
+      "question": "loyal",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈlɔɪəl/",
+      "answer": "trung thành",
+      "explanation": "Dogs are very loyal.\n→ Chó rất trung thành."
+    },
+    {
+      "question": "DIY",
+      "partOfSpeech": "abbreviation",
+      "phonetic": "/ˌdiː aɪ ˈwaɪ/",
+      "answer": "tự làm (do it yourself)",
+      "explanation": "I love DIY projects on weekends.\n→ Tôi thích tự làm đồ vào cuối tuần."
+    },
+    {
+      "question": "toolbox",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtuːlbɑːks/",
+      "answer": "hộp dụng cụ",
+      "explanation": "Get the screwdriver from the toolbox.\n→ Lấy tua vít trong hộp dụng cụ."
+    },
+    {
+      "question": "screwdriver",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskruːdraɪvər/",
+      "answer": "tua vít",
+      "explanation": "You need a small screwdriver to open it.\n→ Cần tua vít nhỏ để mở nó."
+    },
+    {
+      "question": "drill",
+      "partOfSpeech": "noun",
+      "phonetic": "/drɪl/",
+      "answer": "máy khoan",
+      "explanation": "Borrow a drill to hang the shelf.\n→ Mượn máy khoan để treo kệ."
+    },
+    {
+      "question": "assemble",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈsembəl/",
+      "answer": "lắp ráp",
+      "explanation": "It took two hours to assemble the desk.\n→ Mất hai tiếng để lắp cái bàn."
+    },
+    {
+      "question": "knit",
+      "partOfSpeech": "verb",
+      "phonetic": "/nɪt/",
+      "answer": "đan len",
+      "explanation": "My grandma knitted me a scarf.\n→ Bà đan cho tôi một chiếc khăn."
+    },
+    {
+      "question": "sew",
+      "partOfSpeech": "verb",
+      "phonetic": "/soʊ/",
+      "answer": "may, khâu",
+      "explanation": "Can you sew this button back on?\n→ Bạn khâu lại cái cúc này được không?"
+    },
+    {
+      "question": "upcycle",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈʌpsaɪkəl/",
+      "answer": "tái chế sáng tạo",
+      "explanation": "She upcycles old jeans into bags.\n→ Cô ấy tái chế quần jean cũ thành túi."
+    }
+  ]
+}

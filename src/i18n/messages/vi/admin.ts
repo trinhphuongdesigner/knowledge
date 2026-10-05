@@ -66,7 +66,7 @@ const admin = {
   aiProviders: {
     title: "Nhà cung cấp AI",
     desc: "Các API key dùng cho gợi ý AI. Key được thử từ trên xuống; key nào hết token, bị giới hạn hoặc lỗi sẽ tạm nghỉ và key kế tiếp tự động thay thế. Khi tất cả key đều không dùng được, người dùng sẽ thấy thông báo hệ thống AI đang bảo trì.",
-    noEncryptionKey: "Server chưa đặt AI_ENCRYPTION_KEY nên không lưu / dùng được API key. Tạo bằng \"openssl rand -hex 32\", thêm vào biến môi trường rồi deploy lại. Không đổi giá trị này về sau, nếu không các key đã lưu sẽ không giải mã được.",
+    noEncryptionKey: "Server chưa đặt AI_ENCRYPTION_KEY nên không lưu / dùng được API key. Tạo bằng node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\", thêm vào biến môi trường rồi deploy lại. Không đổi giá trị này về sau, nếu không các key đã lưu sẽ không giải mã được.",
     statusReady: "AI đang hoạt động: {ready}/{total} key sẵn sàng",
     statusMaintenance: "AI đang bảo trì: tất cả key đều lỗi hoặc đang tạm nghỉ",
     statusAllOff: "AI đang tắt: tất cả key đều bị tắt",

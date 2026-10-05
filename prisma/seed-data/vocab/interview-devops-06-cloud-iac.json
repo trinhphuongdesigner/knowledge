@@ -1,0 +1,70 @@
+{
+  "slug": "interview-devops-06-cloud-iac",
+  "order": 215,
+  "title": "Phỏng vấn DevOps · Cloud (AWS) & Infrastructure as Code",
+  "description": "Câu hỏi phỏng vấn về dịch vụ AWS cốt lõi, VPC, IAM, serverless, tối ưu chi phí, Terraform và IaC. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "What is Infrastructure as Code and why use it? / Infrastructure as Code là gì và vì sao nên dùng?",
+      "answer": "Mô tả hạ tầng bằng **code** (Terraform, OpenTofu, Pulumi, CloudFormation, CDK) thay vì click console.\n- **Lặp lại được**: dựng môi trường giống hệt nhau.\n- **Review qua PR**, lịch sử Git, rollback.\n- Tránh **drift** và \"snowflake server\".\n- Tự động hoá trong CI (plan → review → apply).",
+      "explanation": "IaC defines infrastructure in code (Terraform, OpenTofu, Pulumi, CloudFormation, CDK) instead of console clicks — giving reproducible environments, PR reviews and history, less drift, and automated plan/apply pipelines."
+    },
+    {
+      "question": "How does Terraform state work and how do you manage it in a team? / Terraform state hoạt động thế nào và quản lý trong team ra sao?",
+      "answer": "**State** ánh xạ resource trong code ↔ resource thật, dùng để tính **plan** (diff).\n- Lưu ở **remote backend** (S3 + DynamoDB lock / S3 native lock, Terraform Cloud) chứ không để local hay commit Git.\n- **State locking** chống hai người apply cùng lúc.\n- State có thể chứa **secret** → mã hoá, giới hạn quyền.\n- Tách state theo môi trường/thành phần để giảm blast radius.\n- Lệnh: `terraform import`, `state mv`, khối `moved`/`import`.",
+      "explanation": "Terraform **state** maps code to real resources and powers plans. Keep it in a **remote backend** with **locking** (S3 with locks, Terraform Cloud), never in Git; encrypt it since it may hold secrets; split state per environment or component; and use `import` and `moved` blocks for refactors."
+    },
+    {
+      "question": "What does `terraform plan` vs `apply` do, and what is drift? / `terraform plan` và `apply` làm gì, drift là gì?",
+      "answer": "- **plan**: so sánh code + state + hạ tầng thật → liệt kê thay đổi sẽ tạo/sửa/**xoá**. Luôn đọc kỹ, đặc biệt `-/+ replace`.\n- **apply**: thực thi thay đổi.\n- **Drift**: hạ tầng thật bị sửa tay ngoài Terraform → plan sẽ muốn kéo về. Phát hiện bằng plan định kỳ; chặn bằng hạn chế quyền console.",
+      "explanation": "**plan** compares code, state and reality to preview creates, updates and destroys — read replacements carefully; **apply** executes them. **Drift** is out-of-band manual change; detect it with scheduled plans and prevent it by restricting console write access."
+    },
+    {
+      "question": "How do you structure Terraform code for multiple environments? / Tổ chức code Terraform cho nhiều môi trường thế nào?",
+      "answer": "- **Module** tái sử dụng (vpc, eks, rds) có input/output rõ ràng, pin version.\n- Mỗi môi trường một thư mục/stack gọi module với biến khác nhau (`envs/dev`, `envs/prod`), state riêng.\n- Workspaces dùng được nhưng dễ nhầm môi trường; Terragrunt giúp giảm lặp.\n- Chạy `fmt`, `validate`, `tflint`, `checkov` trong CI.",
+      "explanation": "Build reusable, versioned **modules** and call them from per-environment stacks with separate state. Workspaces work but risk mix-ups; Terragrunt reduces repetition. Run fmt, validate, tflint and checkov in CI."
+    },
+    {
+      "question": "Explain AWS VPC components. / Giải thích các thành phần VPC của AWS.",
+      "answer": "- **VPC**: mạng riêng với dải CIDR.\n- **Subnet** gắn với một AZ: public (route ra **Internet Gateway**) và private (ra ngoài qua **NAT Gateway**).\n- **Route table**, **Security Group** (stateful, gắn vào ENI/instance, chỉ có allow), **NACL** (stateless, theo subnet, có allow/deny).\n- **VPC Endpoint** truy cập S3/DynamoDB… không qua Internet (tiết kiệm phí NAT).\n- Kết nối: VPC peering, Transit Gateway, VPN, Direct Connect.",
+      "explanation": "A **VPC** is a private network; **subnets** live in one AZ — public via an Internet Gateway, private via a NAT Gateway. Route tables steer traffic; **security groups** are stateful allow-lists on instances; **NACLs** are stateless subnet rules. **VPC endpoints** reach AWS services privately and cut NAT costs; peering, Transit Gateway and VPN connect networks."
+    },
+    {
+      "question": "How does AWS IAM work? What is least privilege? / IAM của AWS hoạt động thế nào? Least privilege là gì?",
+      "answer": "- **User/Group** (người), **Role** (được \"assume\" để nhận credential tạm thời — dùng cho EC2, Lambda, CI qua OIDC), **Policy** (JSON: Effect, Action, Resource, Condition).\n- Mặc định **deny**; explicit deny luôn thắng.\n- **Least privilege**: chỉ cấp đúng quyền cần cho đúng resource; tránh `\"Action\": \"*\"`.\n- Không dùng root account hằng ngày, bật MFA; dùng **IAM Identity Center** (SSO) cho người, role cho máy; SCP ở mức Organization.",
+      "explanation": "IAM has users and groups for people, **roles** assumed for temporary credentials (EC2, Lambda, CI via OIDC), and JSON **policies**. Everything is denied by default and explicit denies win. Grant **least privilege**, avoid wildcards, lock away the root user with MFA, use Identity Center for humans, and apply SCPs across the organization."
+    },
+    {
+      "question": "When would you use EC2 vs ECS/Fargate vs EKS vs Lambda? / Khi nào dùng EC2, ECS/Fargate, EKS hay Lambda?",
+      "answer": "- **EC2**: toàn quyền máy ảo, workload đặc thù, phần mềm cũ.\n- **ECS/Fargate**: chạy container **đơn giản**, không quản lý node (Fargate) — hợp đa số team.\n- **EKS**: cần hệ sinh thái Kubernetes, đa cloud, nhiều team/service; vận hành phức tạp hơn.\n- **Lambda**: hàm theo sự kiện, tải không đều, scale về 0; giới hạn thời gian chạy (15 phút), có **cold start**.",
+      "explanation": "**EC2** for full VM control or legacy software; **ECS on Fargate** for simple container hosting without managing nodes; **EKS** when you need the Kubernetes ecosystem at scale and can afford its operational cost; **Lambda** for event-driven, spiky workloads that scale to zero, within its 15-minute limit and cold starts."
+    },
+    {
+      "question": "What is a serverless cold start and how do you mitigate it? / Cold start của serverless là gì và giảm thiểu thế nào?",
+      "answer": "Khi không có instance ấm, nền tảng phải **khởi tạo môi trường mới** (tải code, khởi động runtime, chạy code init) → request đầu chậm (100ms đến vài giây).\n**Giảm**: gói code nhỏ, ít dependency; runtime khởi động nhanh (Node, Go); khởi tạo kết nối ngoài handler để tái sử dụng; **provisioned concurrency**/SnapStart; tránh VPC không cần thiết; dùng RDS Proxy cho kết nối DB.",
+      "explanation": "A cold start occurs when no warm instance exists and the platform must initialize a new one, adding latency. Mitigate with small bundles, fast runtimes, initialization outside the handler for reuse, **provisioned concurrency** or SnapStart, and connection proxies like RDS Proxy."
+    },
+    {
+      "question": "How do you optimize cloud costs? / Tối ưu chi phí cloud thế nào?",
+      "answer": "- **Right-sizing**: giảm instance thừa tài nguyên; autoscaling theo tải.\n- **Savings Plans/Reserved** cho tải ổn định; **Spot** cho tải chịu gián đoạn (batch, CI, node K8s phụ).\n- Tắt môi trường dev ngoài giờ; xoá EBS/snapshot/IP không dùng.\n- S3 lifecycle (chuyển Glacier/Intelligent-Tiering).\n- Để ý **data transfer** và **NAT Gateway** (hay bị bất ngờ) → VPC endpoint, CDN.\n- Gắn **tag** theo team/dự án, budget alert, công cụ FinOps.",
+      "explanation": "Right-size and autoscale; use Savings Plans for steady load and **Spot** for interruptible work; shut down idle dev environments and orphaned volumes; apply S3 lifecycle tiers; watch **data transfer and NAT** charges (VPC endpoints, CDNs); and tag resources with budgets and alerts for FinOps visibility."
+    },
+    {
+      "question": "S3 storage classes and common use cases? / Các lớp lưu trữ S3 và trường hợp sử dụng?",
+      "answer": "- **Standard**: truy cập thường xuyên.\n- **Intelligent-Tiering**: tự chuyển lớp theo mức truy cập — mặc định tốt khi không chắc.\n- **Standard-IA / One Zone-IA**: ít truy cập, phí lấy dữ liệu.\n- **Glacier Instant / Flexible / Deep Archive**: lưu trữ dài hạn, rẻ dần, lấy lại chậm dần.\nDùng cho: static website + CloudFront, backup, data lake, upload của user (presigned URL). Bật **Block Public Access**, versioning, mã hoá.",
+      "explanation": "S3 classes range from **Standard** to **Intelligent-Tiering** (automatic), **Infrequent Access**, and the **Glacier** tiers for archives with slower, cheaper retrieval. Common uses: static sites behind CloudFront, backups, data lakes and user uploads via presigned URLs. Keep Block Public Access, versioning and encryption on."
+    },
+    {
+      "question": "What is the shared responsibility model? / Mô hình trách nhiệm chia sẻ (shared responsibility) là gì?",
+      "answer": "- **Nhà cung cấp cloud** chịu trách nhiệm bảo mật **\"của\" cloud**: datacenter, phần cứng, hypervisor, hạ tầng dịch vụ managed.\n- **Khách hàng** chịu trách nhiệm bảo mật **\"trong\" cloud**: dữ liệu, IAM, cấu hình mạng/security group, mã hoá, vá OS (với EC2), code ứng dụng.\n- Dịch vụ càng managed (Lambda, S3) thì phần khách hàng càng nhỏ — nhưng **cấu hình sai** (bucket public) luôn là lỗi của khách hàng.",
+      "explanation": "The provider secures the cloud itself — facilities, hardware, hypervisors, managed service internals; the customer secures what they put in it — data, IAM, network rules, encryption, OS patching on VMs and application code. More managed services shift more to the provider, but misconfiguration is always the customer's."
+    },
+    {
+      "question": "How do you choose between regions and availability zones? / Chọn region và availability zone thế nào?",
+      "answer": "- **Region**: vùng địa lý độc lập; chọn theo **gần người dùng** (latency), **luật lưu trữ dữ liệu**, dịch vụ hỗ trợ, giá.\n- **AZ**: các datacenter tách biệt trong một region, nối mạng độ trễ thấp → triển khai **multi-AZ** cho HA là mặc định nên làm.\n- Multi-region: cho DR hoặc người dùng toàn cầu, nhưng phức tạp (replication dữ liệu, nhất quán, chi phí).",
+      "explanation": "Pick a **region** for user proximity, data residency laws, service availability and price. Spread across **availability zones** — isolated datacenters with low-latency links — for high availability by default. Go multi-region only for DR or global users, accepting the replication and cost complexity."
+    }
+  ]
+}

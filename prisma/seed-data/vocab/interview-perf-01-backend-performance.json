@@ -1,0 +1,75 @@
+{
+  "slug": "interview-perf-01-backend-performance",
+  "order": 218,
+  "title": "Phỏng vấn Performance · Tối ưu hiệu năng Backend",
+  "description": "Câu hỏi phỏng vấn về đo lường và tối ưu hiệu năng backend: profiling, N+1, connection pool, async, caching, load test, memory leak, scale. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "How do you approach a \"the API is slow\" complaint? / Tiếp cận vấn đề \"API bị chậm\" thế nào?",
+      "answer": "1. **Đo trước, đoán sau**: endpoint nào, chậm bao nhiêu (p50/p95/p99), từ khi nào, với ai.\n2. Xem **trace** để biết thời gian nằm ở đâu: DB, gọi service ngoài, CPU, chờ lock, GC.\n3. Tương quan với deploy, lưu lượng, tài nguyên (CPU, connection pool, DB).\n4. Sửa **nút thắt lớn nhất** (Amdahl's law), đo lại, lặp.\n5. Thêm alert/benchmark để không tái phát.",
+      "explanation": "Measure first: which endpoint, how slow at which percentiles, since when and for whom. Use **traces** to see where time goes — DB, downstream calls, CPU, locks, GC — correlate with deploys, traffic and resource saturation, fix the **biggest bottleneck** first (Amdahl's law), re-measure, and add guards against regression."
+    },
+    {
+      "question": "What is the N+1 query problem and how do you fix it? / Vấn đề N+1 query là gì và sửa thế nào?",
+      "answer": "Lấy danh sách N bản ghi (1 query), rồi với mỗi bản ghi lại query quan hệ (N query) → 101 query cho 100 bài viết.\n**Sửa**:\n- **Eager loading / JOIN**: Prisma `include`, `select` lồng; SQL JOIN.\n- **Batch**: `WHERE author_id IN (...)` rồi ghép trong bộ nhớ.\n- **DataLoader** (GraphQL): gom các lời gọi trong một tick thành một query.\nPhát hiện: log số query mỗi request, APM, cảnh báo khi vượt ngưỡng.",
+      "explanation": "N+1 fetches a list in one query, then one query per row for related data. Fix it with **eager loading/joins**, **batched `IN` queries** merged in memory, or **DataLoader** in GraphQL. Detect it by counting queries per request in logs or APM."
+    },
+    {
+      "question": "Why use a connection pool and how do you size it? / Tại sao dùng connection pool và chọn kích thước thế nào?",
+      "answer": "Tạo kết nối DB tốn kém (TCP + TLS + auth); pool **tái sử dụng** kết nối.\n- Pool **không phải càng to càng tốt**: Postgres mỗi kết nối là một process; quá nhiều → tranh chấp CPU/lock, chậm hơn.\n- Gợi ý khởi điểm: ~`(số core DB × 2) + số đĩa`, chia cho số instance app; đo và điều chỉnh.\n- Serverless/nhiều instance → dùng **PgBouncer**/Supabase pooler (transaction mode), RDS Proxy.\n- Đặt **timeout** chờ lấy kết nối; giữ transaction **ngắn**.",
+      "explanation": "Pools reuse expensive DB connections. Bigger isn't better — each Postgres connection is a process, and too many cause contention. Start near `(DB cores × 2) + disks` split across app instances, then measure. With serverless or many instances, use PgBouncer or RDS Proxy, set acquire timeouts and keep transactions short."
+    },
+    {
+      "question": "How do you find CPU hotspots in a Node.js service? / Tìm điểm nóng CPU trong service Node.js thế nào?",
+      "answer": "- **Profiling**: `node --cpu-prof`, `--inspect` + Chrome DevTools, **clinic.js flame**, `0x` → xem **flame graph**: thanh rộng nhất là nơi tốn CPU.\n- Theo dõi **event loop lag/utilization** (`perf_hooks.monitorEventLoopDelay`).\n- Thủ phạm hay gặp: JSON lớn (`JSON.parse/stringify`), regex catastrophic backtracking, crypto/nén đồng bộ, vòng lặp O(n²), log quá nhiều.\n- Giải pháp: thuật toán tốt hơn, stream, chuyển việc nặng sang **worker threads** hoặc service khác.",
+      "explanation": "Profile with `--cpu-prof`, DevTools, clinic.js or 0x and read the **flame graph** — the widest frames burn the most CPU. Monitor event-loop delay. Usual suspects: huge JSON, catastrophic regex, synchronous crypto or compression, quadratic loops, excessive logging. Fix with better algorithms, streaming or worker threads."
+    },
+    {
+      "question": "How do you detect and fix a memory leak? / Phát hiện và sửa memory leak thế nào?",
+      "answer": "**Dấu hiệu**: RAM tăng dần không giảm sau GC, cuối cùng **OOMKilled**/restart theo chu kỳ.\n**Tìm**: chụp **heap snapshot** ở hai thời điểm (DevTools, `--heapsnapshot-signal`), so sánh object tăng lên và **retainer** giữ chúng.\n**Nguyên nhân hay gặp**:\n- Cache/Map toàn cục **không giới hạn** (dùng LRU, TTL).\n- Event listener, `setInterval` không gỡ.\n- Closure giữ object lớn; mảng log/metric tích luỹ.\n- Promise/request treo không bao giờ resolve.",
+      "explanation": "Symptoms: memory that climbs and never returns after GC, ending in OOM kills. Compare **heap snapshots** over time and inspect retainers. Common causes: unbounded global caches, listeners and intervals never removed, closures holding large objects, accumulating arrays, and promises that never settle."
+    },
+    {
+      "question": "How do you load test a system? / Load test hệ thống thế nào?",
+      "answer": "- Công cụ: **k6**, Gatling, Locust, JMeter, `autocannon` (Node).\n- Loại test: **load** (tải dự kiến), **stress** (vượt ngưỡng tìm điểm gãy), **spike** (tăng đột ngột), **soak** (chạy lâu tìm leak).\n- Kịch bản **giống thực tế**: tỷ lệ endpoint, dữ liệu đa dạng (tránh cache hit 100%), think time.\n- Môi trường giống production; theo dõi p95/p99, error rate, CPU, DB, pool.\n- Đặt **ngưỡng pass/fail** và chạy trong CI cho luồng quan trọng.",
+      "explanation": "Use k6, Gatling, Locust or autocannon to run **load**, **stress**, **spike** and **soak** tests with realistic traffic mixes and data, in a production-like environment, watching tail latency, errors and resource saturation, with pass/fail thresholds wired into CI for critical flows."
+    },
+    {
+      "question": "What are common caching layers for a web application? / Các tầng cache phổ biến của ứng dụng web là gì?",
+      "answer": "Từ ngoài vào trong:\n- **Trình duyệt**: `Cache-Control`, ETag.\n- **CDN/edge**: tài nguyên tĩnh, trang/API công khai.\n- **Reverse proxy** (Nginx, Varnish).\n- **Cache ứng dụng**: in-memory (LRU cục bộ, rất nhanh nhưng mỗi instance một bản) + **Redis** dùng chung.\n- **Database**: buffer cache, materialized view.\nNguyên tắc: cache càng gần user càng nhanh nhưng càng **khó invalidate**; chọn TTL theo độ \"tươi\" chấp nhận được.",
+      "explanation": "Caches stack from the **browser** (Cache-Control, ETag) to the **CDN/edge**, **reverse proxy**, **application** (local in-memory LRU plus shared Redis) and the **database** (buffer cache, materialized views). The closer to the user, the faster — and the harder to invalidate — so choose TTLs by acceptable staleness."
+    },
+    {
+      "question": "How can async processing improve performance? / Xử lý bất đồng bộ cải thiện hiệu năng thế nào?",
+      "answer": "- Đưa việc **không cần trả ngay** (email, resize ảnh, webhook, analytics, tạo báo cáo) vào **queue** → API trả `202 Accepted` nhanh, worker xử lý sau.\n- **Song song hoá** các lời gọi độc lập: `Promise.all` thay vì `await` tuần tự (300ms + 200ms → 300ms).\n- Streaming response, phân trang thay vì trả mọi thứ.\n- Lưu ý: cần **giới hạn đồng thời** (p-limit) để không đè DB/service ngoài.",
+      "explanation": "Move work that needn't block the response — emails, image processing, webhooks, reports — onto **queues** and return `202` quickly. Run independent calls **concurrently** with `Promise.all` instead of sequential awaits, stream or paginate large responses, and cap concurrency so you don't overwhelm downstream systems."
+    },
+    {
+      "question": "How do you optimize API payloads and network overhead? / Tối ưu payload API và chi phí mạng thế nào?",
+      "answer": "- Chỉ trả **trường cần thiết** (select, sparse fieldset, GraphQL).\n- **Phân trang** (cursor), giới hạn kích thước.\n- **Nén**: gzip/**brotli**.\n- **HTTP/2, HTTP/3**, keep-alive, tái sử dụng kết nối (HTTP agent).\n- Gộp request nhỏ (batch endpoint) hoặc tránh chatty API.\n- CDN và cache header; ETag + `304 Not Modified`.\n- Định dạng nhị phân (Protobuf/gRPC) cho service nội bộ tải cao.",
+      "explanation": "Return only needed fields, paginate with cursors, compress with brotli or gzip, use HTTP/2 or 3 and keep-alive connection reuse, batch chatty calls, leverage CDN caching and ETag/`304`, and consider Protobuf/gRPC for high-volume internal traffic."
+    },
+    {
+      "question": "Vertical vs horizontal scaling? / Scale dọc và scale ngang khác nhau thế nào?",
+      "answer": "- **Vertical (scale up)**: máy mạnh hơn (CPU, RAM). Đơn giản, không đổi code; nhưng có **giới hạn trần**, đắt, vẫn là điểm lỗi đơn.\n- **Horizontal (scale out)**: thêm máy. Gần như không giới hạn, chịu lỗi tốt; đòi hỏi app **stateless** (session ra Redis, file ra S3), load balancer.\n- DB khó scale ngang: read replica → cache → partitioning → **sharding** (phức tạp nhất, làm sau cùng).",
+      "explanation": "**Vertical scaling** adds CPU and RAM to one machine — simple but capped, costly and still a single point of failure. **Horizontal scaling** adds machines — near-unlimited and resilient but requires **stateless** apps behind a load balancer. Databases scale via replicas, caching, partitioning and finally sharding."
+    },
+    {
+      "question": "What is backpressure and load shedding? / Backpressure và load shedding là gì?",
+      "answer": "- **Backpressure**: thành phần chậm **báo ngược** cho phía gửi giảm tốc (Node stream `pipe` tự xử lý `highWaterMark`, TCP flow control, giới hạn queue).\n- **Load shedding**: khi quá tải, **chủ động từ chối** một phần request (trả `503`/`429`, ưu tiên request quan trọng) để phần còn lại vẫn nhanh, thay vì tất cả cùng chậm và sập.\n- Kết hợp: concurrency limit, adaptive limit, timeout, circuit breaker.",
+      "explanation": "**Backpressure** lets a slow consumer signal producers to slow down (Node streams, TCP flow control, bounded queues). **Load shedding** deliberately rejects some requests under overload — with 503 or 429, prioritizing critical traffic — so the rest stay fast instead of everything collapsing. Combine with concurrency limits, timeouts and circuit breakers."
+    },
+    {
+      "question": "What is Little's Law and why does it matter? / Định luật Little là gì và tại sao quan trọng?",
+      "answer": "**L = λ × W**: số request đang xử lý đồng thời = tốc độ đến × thời gian xử lý trung bình.\nVí dụ: 1.000 RPS × 0,2s = **200 request đồng thời** → cần đủ worker/thread/kết nối DB cho mức đó.\n- Latency tăng gấp đôi → số request đồng thời gấp đôi → dễ **cạn pool** và sập dây chuyền.\n- Dùng để tính capacity, kích thước pool, concurrency limit.",
+      "explanation": "**Little's Law**: concurrency = arrival rate × average latency. At 1,000 RPS and 200 ms you need ~200 concurrent slots. If latency doubles, concurrency doubles and pools can exhaust, cascading into outages — so it guides capacity, pool sizing and concurrency limits."
+    },
+    {
+      "question": "How do you optimize cold paths like application startup time? / Tối ưu thời gian khởi động ứng dụng thế nào?",
+      "answer": "- **Lazy load** module/kết nối ít dùng; tránh làm việc nặng ở top-level import.\n- Bundle/tree-shake (esbuild) cho serverless; giảm dependency.\n- Cache kết quả khởi tạo (config, schema) giữa các lần gọi.\n- Warm-up: readiness chỉ bật sau khi pool/cache đã sẵn, gửi request khởi động trước khi nhận traffic.\n- Đo bằng `--cpu-prof` lúc khởi động, `require` timing.",
+      "explanation": "Lazy-load rarely used modules and connections, avoid heavy top-level work, bundle and tree-shake for serverless, trim dependencies, cache initialization results, warm up pools and caches before marking the instance ready, and profile startup to find the slow parts."
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "slug": "life-11-home-household",
+  "order": 111,
+  "title": "Daily Life 1 · Home & Household Chores",
+  "description": "Từ vựng về nhà cửa, đồ dùng và việc nhà (CEFR A1–B1). Dùng khi nói về nơi ở, thuê nhà hoặc chia việc với người thân, bạn cùng phòng.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "apartment",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈpɑːrtmənt/",
+      "answer": "căn hộ",
+      "explanation": "We rent a small apartment near the office.\n→ Chúng tôi thuê một căn hộ nhỏ gần văn phòng."
+    },
+    {
+      "question": "landlord",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlændlɔːrd/",
+      "answer": "chủ nhà (cho thuê)",
+      "explanation": "The landlord fixed the air conditioner quickly.\n→ Chủ nhà sửa điều hoà rất nhanh."
+    },
+    {
+      "question": "tenant",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtenənt/",
+      "answer": "người thuê nhà",
+      "explanation": "The tenant must pay rent on the first of each month.\n→ Người thuê phải trả tiền vào ngày đầu mỗi tháng."
+    },
+    {
+      "question": "rent",
+      "partOfSpeech": "noun",
+      "phonetic": "/rent/",
+      "answer": "tiền thuê nhà",
+      "explanation": "Rent is getting more expensive in the city center.\n→ Tiền thuê nhà ở trung tâm ngày càng đắt."
+    },
+    {
+      "question": "deposit",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈpɑːzɪt/",
+      "answer": "tiền đặt cọc",
+      "explanation": "You'll get your deposit back when you move out.\n→ Bạn sẽ được trả cọc khi chuyển đi."
+    },
+    {
+      "question": "utility bills",
+      "partOfSpeech": "noun",
+      "phonetic": "/juːˈtɪləti bɪlz/",
+      "answer": "hoá đơn điện nước",
+      "explanation": "Utility bills are not included in the rent.\n→ Tiền thuê chưa bao gồm hoá đơn điện nước."
+    },
+    {
+      "question": "living room",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɪvɪŋ ruːm/",
+      "answer": "phòng khách",
+      "explanation": "We watch movies in the living room.\n→ Chúng tôi xem phim ở phòng khách."
+    },
+    {
+      "question": "bedroom",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbedruːm/",
+      "answer": "phòng ngủ",
+      "explanation": "The apartment has two bedrooms.\n→ Căn hộ có hai phòng ngủ."
+    },
+    {
+      "question": "kitchen",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɪtʃɪn/",
+      "answer": "nhà bếp",
+      "explanation": "The kitchen is small but bright.\n→ Nhà bếp nhỏ nhưng sáng sủa."
+    },
+    {
+      "question": "bathroom",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbæθruːm/",
+      "answer": "phòng tắm, nhà vệ sinh",
+      "explanation": "Someone left the bathroom light on again.\n→ Lại có người để quên đèn nhà tắm."
+    },
+    {
+      "question": "balcony",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbælkəni/",
+      "answer": "ban công",
+      "explanation": "I grow herbs on the balcony.\n→ Tôi trồng rau thơm ngoài ban công."
+    },
+    {
+      "question": "furniture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɜːrnɪtʃər/",
+      "answer": "đồ nội thất",
+      "explanation": "The apartment comes with basic furniture.\n→ Căn hộ có sẵn nội thất cơ bản."
+    },
+    {
+      "question": "wardrobe",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɔːrdroʊb/",
+      "answer": "tủ quần áo",
+      "explanation": "My wardrobe is full of clothes I never wear.\n→ Tủ quần áo của tôi đầy đồ không bao giờ mặc."
+    },
+    {
+      "question": "shelf",
+      "partOfSpeech": "noun",
+      "phonetic": "/ʃelf/",
+      "answer": "kệ, giá",
+      "explanation": "Put the books back on the shelf.\n→ Đặt sách lại lên kệ."
+    },
+    {
+      "question": "drawer",
+      "partOfSpeech": "noun",
+      "phonetic": "/drɔːr/",
+      "answer": "ngăn kéo",
+      "explanation": "The keys are in the top drawer.\n→ Chìa khoá ở ngăn kéo trên cùng."
+    },
+    {
+      "question": "curtain",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɜːrtən/",
+      "answer": "rèm cửa",
+      "explanation": "Close the curtains, the sun is too bright.\n→ Kéo rèm lại đi, nắng chói quá."
+    },
+    {
+      "question": "washing machine",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɑːʃɪŋ məˈʃiːn/",
+      "answer": "máy giặt",
+      "explanation": "The washing machine is making a strange noise.\n→ Máy giặt đang phát ra tiếng lạ."
+    },
+    {
+      "question": "fridge",
+      "partOfSpeech": "noun",
+      "phonetic": "/frɪdʒ/",
+      "answer": "tủ lạnh",
+      "explanation": "There's nothing in the fridge except eggs.\n→ Trong tủ lạnh chẳng còn gì ngoài trứng."
+    },
+    {
+      "question": "microwave",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmaɪkrəweɪv/",
+      "answer": "lò vi sóng",
+      "explanation": "Heat the soup in the microwave for two minutes.\n→ Hâm súp trong lò vi sóng hai phút."
+    },
+    {
+      "question": "vacuum cleaner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvækjuːm ˈkliːnər/",
+      "answer": "máy hút bụi",
+      "explanation": "Our robot vacuum cleaner works while we are at work.\n→ Robot hút bụi làm việc khi chúng tôi đi làm."
+    },
+    {
+      "question": "do the laundry",
+      "partOfSpeech": "phrase",
+      "phonetic": "/duː ðə ˈlɔːndri/",
+      "answer": "giặt giũ",
+      "explanation": "I usually do the laundry on Sunday.\n→ Tôi thường giặt đồ vào Chủ nhật."
+    },
+    {
+      "question": "do the dishes",
+      "partOfSpeech": "phrase",
+      "phonetic": "/duː ðə ˈdɪʃɪz/",
+      "answer": "rửa bát",
+      "explanation": "It's your turn to do the dishes.\n→ Đến lượt bạn rửa bát rồi."
+    },
+    {
+      "question": "make the bed",
+      "partOfSpeech": "phrase",
+      "phonetic": "/meɪk ðə bed/",
+      "answer": "dọn giường",
+      "explanation": "Make the bed as soon as you get up.\n→ Dọn giường ngay khi thức dậy."
+    },
+    {
+      "question": "sweep",
+      "partOfSpeech": "verb",
+      "phonetic": "/swiːp/",
+      "answer": "quét (nhà)",
+      "explanation": "Sweep the floor before you mop it.\n→ Quét nhà trước khi lau."
+    },
+    {
+      "question": "mop",
+      "partOfSpeech": "verb",
+      "phonetic": "/mɑːp/",
+      "answer": "lau nhà",
+      "explanation": "I mop the floor twice a week.\n→ Tôi lau nhà hai lần một tuần."
+    },
+    {
+      "question": "dust",
+      "partOfSpeech": "verb",
+      "phonetic": "/dʌst/",
+      "answer": "phủi bụi",
+      "explanation": "Don't forget to dust the shelves.\n→ Đừng quên phủi bụi kệ."
+    },
+    {
+      "question": "iron",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈaɪərn/",
+      "answer": "là, ủi (quần áo)",
+      "explanation": "I need to iron my shirt for the interview.\n→ Tôi cần ủi áo sơ mi cho buổi phỏng vấn."
+    },
+    {
+      "question": "fold",
+      "partOfSpeech": "verb",
+      "phonetic": "/foʊld/",
+      "answer": "gấp",
+      "explanation": "Fold the clothes and put them away.\n→ Gấp quần áo rồi cất đi."
+    },
+    {
+      "question": "take out the trash",
+      "partOfSpeech": "phrase",
+      "phonetic": "/teɪk aʊt ðə træʃ/",
+      "answer": "đổ rác",
+      "explanation": "Can you take out the trash on your way down?\n→ Bạn đổ rác giúp khi đi xuống được không?"
+    },
+    {
+      "question": "tidy up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ˈtaɪdi ʌp/",
+      "answer": "dọn dẹp gọn gàng",
+      "explanation": "Tidy up your desk before you leave.\n→ Dọn bàn gọn gàng trước khi về."
+    },
+    {
+      "question": "messy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈmesi/",
+      "answer": "bừa bộn",
+      "explanation": "My room gets messy when I'm busy.\n→ Phòng tôi bừa bộn khi tôi bận."
+    },
+    {
+      "question": "spotless",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈspɑːtləs/",
+      "answer": "sạch bong",
+      "explanation": "The kitchen was spotless after the party.\n→ Nhà bếp sạch bong sau bữa tiệc."
+    },
+    {
+      "question": "leak",
+      "partOfSpeech": "noun",
+      "phonetic": "/liːk/",
+      "answer": "chỗ rò rỉ",
+      "explanation": "There's a leak under the sink.\n→ Có chỗ rò dưới bồn rửa."
+    },
+    {
+      "question": "plumber",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈplʌmər/",
+      "answer": "thợ sửa ống nước",
+      "explanation": "We called a plumber to fix the toilet.\n→ Chúng tôi gọi thợ sửa ống nước để sửa bồn cầu."
+    },
+    {
+      "question": "electrician",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˌlekˈtrɪʃən/",
+      "answer": "thợ điện",
+      "explanation": "An electrician is coming to check the wiring.\n→ Thợ điện sẽ đến kiểm tra hệ thống dây."
+    },
+    {
+      "question": "broken",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈbroʊkən/",
+      "answer": "bị hỏng",
+      "explanation": "The door handle is broken.\n→ Tay nắm cửa bị hỏng rồi."
+    },
+    {
+      "question": "light bulb",
+      "partOfSpeech": "noun",
+      "phonetic": "/laɪt bʌlb/",
+      "answer": "bóng đèn",
+      "explanation": "Change the light bulb in the hallway.\n→ Thay bóng đèn ở hành lang."
+    },
+    {
+      "question": "power cut",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpaʊər kʌt/",
+      "answer": "mất điện",
+      "explanation": "We had a power cut during the storm.\n→ Chúng tôi bị mất điện trong cơn bão."
+    },
+    {
+      "question": "neighbor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈneɪbər/",
+      "answer": "hàng xóm",
+      "explanation": "Our neighbors are friendly and quiet.\n→ Hàng xóm chúng tôi thân thiện và yên tĩnh."
+    },
+    {
+      "question": "move in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/muːv ɪn/",
+      "answer": "chuyển đến ở",
+      "explanation": "We moved in last weekend.\n→ Chúng tôi chuyển đến cuối tuần trước."
+    },
+    {
+      "question": "move out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/muːv aʊt/",
+      "answer": "chuyển đi",
+      "explanation": "She moved out of her parents' house at 22.\n→ Cô ấy dọn ra khỏi nhà bố mẹ năm 22 tuổi."
+    },
+    {
+      "question": "roommate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈruːmmeɪt/",
+      "answer": "bạn cùng phòng",
+      "explanation": "My roommate always cooks too much rice.\n→ Bạn cùng phòng tôi luôn nấu quá nhiều cơm."
+    },
+    {
+      "question": "cozy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkoʊzi/",
+      "answer": "ấm cúng",
+      "explanation": "It's a small but cozy flat.\n→ Đó là một căn hộ nhỏ nhưng ấm cúng."
+    }
+  ]
+}

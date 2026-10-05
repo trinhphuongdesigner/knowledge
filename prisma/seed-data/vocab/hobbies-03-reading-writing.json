@@ -1,0 +1,276 @@
+{
+  "slug": "hobbies-03-reading-writing",
+  "order": 153,
+  "title": "Hobbies 3 · Reading, Books & Writing",
+  "description": "Từ vựng đọc sách, văn học và viết lách (CEFR B1–B2). Hữu ích khi tham gia book club, viết blog kỹ thuật hoặc review sách.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "novel",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnɑːvəl/",
+      "answer": "tiểu thuyết",
+      "explanation": "I'm reading a novel by Haruki Murakami.\n→ Tôi đang đọc tiểu thuyết của Haruki Murakami."
+    },
+    {
+      "question": "fiction",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪkʃən/",
+      "answer": "truyện hư cấu",
+      "explanation": "I mostly read fiction before bed.\n→ Trước khi ngủ tôi chủ yếu đọc truyện hư cấu."
+    },
+    {
+      "question": "non-fiction",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌnɑːn ˈfɪkʃən/",
+      "answer": "sách phi hư cấu",
+      "explanation": "Non-fiction helps me learn new skills.\n→ Sách phi hư cấu giúp tôi học kỹ năng mới."
+    },
+    {
+      "question": "biography",
+      "partOfSpeech": "noun",
+      "phonetic": "/baɪˈɑːɡrəfi/",
+      "answer": "tiểu sử",
+      "explanation": "I read a biography of Steve Jobs.\n→ Tôi đọc tiểu sử Steve Jobs."
+    },
+    {
+      "question": "memoir",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmemwɑːr/",
+      "answer": "hồi ký",
+      "explanation": "Her memoir is about growing up in Hue.\n→ Hồi ký của bà kể về tuổi thơ ở Huế."
+    },
+    {
+      "question": "self-help book",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌself ˈhelp bʊk/",
+      "answer": "sách phát triển bản thân",
+      "explanation": "\"Atomic Habits\" is a popular self-help book.\n→ \"Atomic Habits\" là sách phát triển bản thân nổi tiếng."
+    },
+    {
+      "question": "author",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːθər/",
+      "answer": "tác giả",
+      "explanation": "The author signed my copy.\n→ Tác giả ký vào cuốn sách của tôi."
+    },
+    {
+      "question": "publisher",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʌblɪʃər/",
+      "answer": "nhà xuất bản",
+      "explanation": "The publisher rejected her first book.\n→ Nhà xuất bản từ chối cuốn sách đầu tiên của cô ấy."
+    },
+    {
+      "question": "chapter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃæptər/",
+      "answer": "chương",
+      "explanation": "I read one chapter every night.\n→ Tôi đọc một chương mỗi tối."
+    },
+    {
+      "question": "paperback",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪpərbæk/",
+      "answer": "sách bìa mềm",
+      "explanation": "The paperback is cheaper.\n→ Bản bìa mềm rẻ hơn."
+    },
+    {
+      "question": "hardcover",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːrdkʌvər/",
+      "answer": "sách bìa cứng",
+      "explanation": "I collect hardcover editions.\n→ Tôi sưu tầm các bản bìa cứng."
+    },
+    {
+      "question": "e-book",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈiː bʊk/",
+      "answer": "sách điện tử",
+      "explanation": "E-books are easy to carry.\n→ Sách điện tử dễ mang theo."
+    },
+    {
+      "question": "audiobook",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːdioʊbʊk/",
+      "answer": "sách nói",
+      "explanation": "I listen to audiobooks while commuting.\n→ Tôi nghe sách nói khi đi làm."
+    },
+    {
+      "question": "bookworm",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʊkwɜːrm/",
+      "answer": "mọt sách",
+      "explanation": "My sister is a real bookworm.\n→ Em gái tôi là mọt sách chính hiệu."
+    },
+    {
+      "question": "page-turner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪdʒ ˌtɜːrnər/",
+      "answer": "sách cuốn hút, đọc không dừng được",
+      "explanation": "This thriller is a real page-turner.\n→ Cuốn trinh thám này đọc không dứt ra được."
+    },
+    {
+      "question": "bestseller",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌbestˈselər/",
+      "answer": "sách bán chạy",
+      "explanation": "It became an international bestseller.\n→ Nó trở thành sách bán chạy toàn cầu."
+    },
+    {
+      "question": "genre",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʒɑːnrə/",
+      "answer": "thể loại",
+      "explanation": "Fantasy is my favorite genre.\n→ Giả tưởng là thể loại tôi thích nhất."
+    },
+    {
+      "question": "narrator",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnæreɪtər/",
+      "answer": "người kể chuyện",
+      "explanation": "The narrator is a child.\n→ Người kể chuyện là một đứa trẻ."
+    },
+    {
+      "question": "protagonist",
+      "partOfSpeech": "noun",
+      "phonetic": "/proʊˈtæɡənɪst/",
+      "answer": "nhân vật chính",
+      "explanation": "The protagonist slowly changes through the book.\n→ Nhân vật chính dần thay đổi qua cuốn sách."
+    },
+    {
+      "question": "theme",
+      "partOfSpeech": "noun",
+      "phonetic": "/θiːm/",
+      "answer": "chủ đề",
+      "explanation": "The main theme is loneliness.\n→ Chủ đề chính là sự cô đơn."
+    },
+    {
+      "question": "quote",
+      "partOfSpeech": "noun",
+      "phonetic": "/kwoʊt/",
+      "answer": "câu trích dẫn",
+      "explanation": "I wrote my favorite quote on a sticky note.\n→ Tôi viết câu trích dẫn yêu thích lên giấy nhớ."
+    },
+    {
+      "question": "skim",
+      "partOfSpeech": "verb",
+      "phonetic": "/skɪm/",
+      "answer": "đọc lướt",
+      "explanation": "I skimmed the article for key points.\n→ Tôi đọc lướt bài viết để lấy ý chính."
+    },
+    {
+      "question": "bookmark",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʊkmɑːrk/",
+      "answer": "dấu trang",
+      "explanation": "I lost my bookmark again.\n→ Tôi lại làm mất dấu trang."
+    },
+    {
+      "question": "book club",
+      "partOfSpeech": "noun",
+      "phonetic": "/bʊk klʌb/",
+      "answer": "câu lạc bộ sách",
+      "explanation": "Our book club meets once a month.\n→ Câu lạc bộ sách của chúng tôi họp mỗi tháng một lần."
+    },
+    {
+      "question": "library card",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪbreri kɑːrd/",
+      "answer": "thẻ thư viện",
+      "explanation": "You need a library card to borrow books.\n→ Cần có thẻ thư viện để mượn sách."
+    },
+    {
+      "question": "draft",
+      "partOfSpeech": "noun",
+      "phonetic": "/dræft/",
+      "answer": "bản nháp",
+      "explanation": "My first draft was terrible.\n→ Bản nháp đầu tiên của tôi rất tệ."
+    },
+    {
+      "question": "edit",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈedɪt/",
+      "answer": "biên tập, chỉnh sửa",
+      "explanation": "Always edit your blog post before publishing.\n→ Luôn biên tập bài blog trước khi đăng."
+    },
+    {
+      "question": "proofread",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈpruːfriːd/",
+      "answer": "đọc soát lỗi",
+      "explanation": "Can you proofread my cover letter?\n→ Bạn soát lỗi thư xin việc giúp tôi được không?"
+    },
+    {
+      "question": "writer's block",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈraɪtərz blɑːk/",
+      "answer": "bí ý tưởng khi viết",
+      "explanation": "I've had writer's block for a week.\n→ Tôi bí ý tưởng cả tuần nay."
+    },
+    {
+      "question": "journal",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʒɜːrnəl/",
+      "answer": "nhật ký",
+      "explanation": "I write in my journal every morning.\n→ Tôi viết nhật ký mỗi sáng."
+    },
+    {
+      "question": "blog post",
+      "partOfSpeech": "noun",
+      "phonetic": "/blɑːɡ poʊst/",
+      "answer": "bài blog",
+      "explanation": "My blog post about Docker got 10,000 views.\n→ Bài blog về Docker của tôi có 10.000 lượt xem."
+    },
+    {
+      "question": "outline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtlaɪn/",
+      "answer": "dàn ý",
+      "explanation": "Start with an outline before writing.\n→ Hãy bắt đầu bằng dàn ý trước khi viết."
+    },
+    {
+      "question": "paragraph",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpærəɡræf/",
+      "answer": "đoạn văn",
+      "explanation": "Keep each paragraph short.\n→ Giữ mỗi đoạn văn ngắn gọn."
+    },
+    {
+      "question": "concise",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kənˈsaɪs/",
+      "answer": "ngắn gọn, súc tích",
+      "explanation": "Good technical writing is clear and concise.\n→ Viết kỹ thuật tốt cần rõ ràng và súc tích."
+    },
+    {
+      "question": "vivid",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈvɪvɪd/",
+      "answer": "sống động",
+      "explanation": "The author uses vivid descriptions.\n→ Tác giả dùng những miêu tả sống động."
+    },
+    {
+      "question": "plot hole",
+      "partOfSpeech": "noun",
+      "phonetic": "/plɑːt hoʊl/",
+      "answer": "lỗ hổng cốt truyện",
+      "explanation": "The story has a big plot hole.\n→ Câu chuyện có một lỗ hổng lớn."
+    },
+    {
+      "question": "can't put it down",
+      "partOfSpeech": "phrase",
+      "phonetic": "/kænt pʊt ɪt daʊn/",
+      "answer": "không thể ngừng đọc",
+      "explanation": "Once I started, I couldn't put it down.\n→ Đã bắt đầu đọc là tôi không thể dừng."
+    },
+    {
+      "question": "don't judge a book by its cover",
+      "partOfSpeech": "idiom",
+      "phonetic": "/doʊnt dʒʌdʒ ə bʊk baɪ ɪts ˈkʌvər/",
+      "answer": "đừng đánh giá qua vẻ bề ngoài",
+      "explanation": "The office looks old, but don't judge a book by its cover.\n→ Văn phòng trông cũ nhưng đừng trông mặt mà bắt hình dong."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "slug": "interview-be-03-databases-sql",
+  "order": 203,
+  "title": "Phỏng vấn Backend · Databases, SQL & Indexing",
+  "description": "Câu hỏi phỏng vấn về cơ sở dữ liệu quan hệ: index, JOIN, chuẩn hoá, SQL vs NoSQL, sharding, replication. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "How does a B-tree index work and why does it speed up queries? / Index B-tree hoạt động thế nào và vì sao làm query nhanh hơn?",
+      "answer": "B-tree (B+tree) là cây cân bằng, dữ liệu sắp xếp theo key, các node lá liên kết với nhau. Tìm kiếm mất **O(log n)** thay vì quét toàn bảng O(n).\n- Hỗ trợ tốt: `=`, `<`, `>`, `BETWEEN`, `ORDER BY`, tiền tố `LIKE 'abc%'`.\n- Không hỗ trợ: `LIKE '%abc'`, hàm trên cột (`LOWER(email)`) trừ khi có **expression index**.\n- Đánh đổi: tốn dung lượng, **làm chậm INSERT/UPDATE/DELETE**.",
+      "explanation": "A B+tree keeps keys sorted in a balanced tree with linked leaves, so lookups are **O(log n)** instead of a full scan. It supports equality, ranges, `ORDER BY` and prefix `LIKE`, but not leading-wildcard `LIKE` or functions on the column unless you build an expression index. Costs: storage and slower writes."
+    },
+    {
+      "question": "What is a composite index and what is the leftmost prefix rule? / Composite index là gì và quy tắc leftmost prefix là gì?",
+      "answer": "Index trên nhiều cột, ví dụ `(user_id, status, created_at)`. Index dùng được khi query lọc theo **tiền tố bên trái**: `user_id`; `user_id + status`; `user_id + status + created_at`. Query chỉ lọc `status` thì **không** dùng hiệu quả.\n- Thứ tự cột: cột lọc **bằng (=)** trước, cột **range/sort** sau.\n- `WHERE user_id = ? ORDER BY created_at` → index `(user_id, created_at)` tránh được sort.",
+      "explanation": "An index over several columns, e.g. `(user_id, status, created_at)`. It's usable when a query filters on a **leftmost prefix** of the columns; filtering only on `status` can't use it efficiently. Put equality columns first, then range or sort columns. `WHERE user_id = ? ORDER BY created_at` is served by `(user_id, created_at)` without a sort."
+    },
+    {
+      "question": "What is a covering index? / Covering index là gì?",
+      "answer": "Index chứa **mọi cột** mà query cần → DB trả kết quả chỉ từ index (**index-only scan**), không phải đọc bảng (heap).\n- Postgres: `CREATE INDEX ON orders (user_id) INCLUDE (total, status);`\n- MySQL InnoDB: secondary index luôn chứa primary key nên query chỉ lấy PK + cột index là covering.",
+      "explanation": "An index that contains **every column** the query needs, so the DB answers from the index alone (an **index-only scan**) without touching the table. In Postgres use `INCLUDE`; in InnoDB, secondary indexes already include the primary key."
+    },
+    {
+      "question": "When should you NOT add an index? / Khi nào KHÔNG nên thêm index?",
+      "answer": "- Bảng nhỏ (quét toàn bảng còn nhanh hơn).\n- Cột **cardinality thấp** (vd. boolean) — trừ khi dùng **partial index** `WHERE is_deleted = false`.\n- Bảng **ghi rất nhiều**, đọc ít (mỗi index làm chậm write, tăng WAL).\n- Index trùng lặp/thừa (đã có `(a,b)` thì `(a)` thường thừa).\nKiểm tra index không được dùng: `pg_stat_user_indexes.idx_scan = 0`.",
+      "explanation": "Skip indexes on tiny tables, low-cardinality columns (unless a partial index fits), write-heavy tables with few reads, and redundant indexes (an `(a,b)` index usually makes `(a)` redundant). Find unused ones via `pg_stat_user_indexes.idx_scan = 0`."
+    },
+    {
+      "question": "Explain INNER, LEFT, RIGHT and FULL OUTER JOIN. / Giải thích INNER, LEFT, RIGHT và FULL OUTER JOIN.",
+      "answer": "- **INNER JOIN**: chỉ dòng khớp ở cả hai bảng.\n- **LEFT JOIN**: mọi dòng bảng trái, bảng phải không khớp thì NULL. Dùng tìm \"user chưa có đơn\": `LEFT JOIN orders o ... WHERE o.id IS NULL` (anti-join).\n- **RIGHT JOIN**: ngược lại LEFT.\n- **FULL OUTER JOIN**: mọi dòng của cả hai bên.\n- **CROSS JOIN**: tích Descartes.\nLưu ý: đặt điều kiện bảng phải trong `WHERE` sẽ biến LEFT JOIN thành INNER JOIN; đặt trong `ON` nếu muốn giữ.",
+      "explanation": "INNER returns only matches; LEFT keeps all left rows with NULLs for missing right rows (handy for anti-joins); RIGHT is the mirror; FULL OUTER keeps everything; CROSS is the Cartesian product. A `WHERE` filter on the right table turns a LEFT JOIN into an inner join — put it in `ON` instead."
+    },
+    {
+      "question": "What is database normalization? When would you denormalize? / Chuẩn hoá CSDL là gì? Khi nào nên phi chuẩn hoá?",
+      "answer": "**Chuẩn hoá** loại bỏ dư thừa, tránh bất thường khi cập nhật:\n- **1NF**: giá trị nguyên tử, không lặp nhóm.\n- **2NF**: không phụ thuộc một phần vào khoá tổ hợp.\n- **3NF**: không phụ thuộc bắc cầu (cột không khoá chỉ phụ thuộc khoá).\n**Phi chuẩn hoá** khi đọc nhiều, JOIN đắt: lưu sẵn `order_count`, copy `product_name` vào `order_items` (cũng để giữ lịch sử giá), dùng materialized view. Đánh đổi: phải đồng bộ dữ liệu.",
+      "explanation": "Normalization removes redundancy and update anomalies: 1NF atomic values, 2NF no partial dependency on a composite key, 3NF no transitive dependencies. Denormalize for read-heavy paths with expensive joins — counters, copied fields (also to keep historical prices), materialized views — at the cost of keeping copies in sync."
+    },
+    {
+      "question": "SQL vs NoSQL — how do you choose? / SQL hay NoSQL — chọn thế nào?",
+      "answer": "**SQL** (Postgres, MySQL): dữ liệu quan hệ, cần **transaction ACID**, JOIN, ràng buộc, truy vấn linh hoạt. Là lựa chọn mặc định tốt.\n**NoSQL**:\n- Document (MongoDB): schema linh hoạt, đọc theo aggregate.\n- Key-value (Redis, DynamoDB): truy cập theo key, độ trễ thấp, scale ngang.\n- Wide-column (Cassandra): ghi cực lớn, time-series.\n- Graph (Neo4j): quan hệ nhiều tầng.\nChọn theo **access pattern**, yêu cầu nhất quán và quy mô — không theo trào lưu.",
+      "explanation": "SQL databases suit relational data needing ACID transactions, joins, constraints and ad-hoc queries — a strong default. NoSQL options: document stores for flexible aggregates, key-value for low-latency key access, wide-column for huge write volumes, graph for deep relationships. Decide by **access patterns**, consistency needs and scale."
+    },
+    {
+      "question": "What is the N+1 query problem and how do you fix it? / Vấn đề N+1 query là gì và sửa thế nào?",
+      "answer": "Lấy N bản ghi (1 query), rồi với mỗi bản ghi lại query quan hệ (N query) → N+1 lần round-trip. Thường gặp với ORM lazy loading.\n**Sửa**:\n- Eager load / JOIN: Prisma `include`, TypeORM `relations`.\n- Batch: `WHERE post_id IN (...)`.\n- GraphQL: **DataLoader** gom và cache trong một request.\n**Phát hiện**: bật log query, APM thấy cùng một câu SQL lặp lại nhiều lần trong một request.",
+      "explanation": "Loading N rows with one query and then querying a relation per row yields N+1 round trips, typical of ORM lazy loading. Fix with eager loading or joins, batching with `IN (...)`, or DataLoader in GraphQL. Detect it via query logs or APM showing the same SQL repeated within one request."
+    },
+    {
+      "question": "Explain replication and read replicas. / Giải thích replication và read replica.",
+      "answer": "**Primary** nhận ghi, stream WAL/binlog sang **replica**; replica phục vụ đọc.\n- **Async replication**: nhanh nhưng có **replication lag** → đọc ngay sau ghi có thể thấy dữ liệu cũ. Giải pháp: *read-your-writes* (đọc từ primary trong vài giây sau khi ghi, hoặc theo LSN).\n- **Sync replication**: không mất dữ liệu khi failover nhưng tăng latency ghi.\n- Lợi ích: scale đọc, HA (failover), backup/analytics không ảnh hưởng primary.",
+      "explanation": "The **primary** takes writes and streams WAL/binlog to **replicas** that serve reads. Async replication is fast but has **lag**, so read-your-writes needs routing recent readers to the primary. Sync replication avoids data loss on failover at the cost of write latency. Benefits: read scaling, high availability, and offloading analytics."
+    },
+    {
+      "question": "What is sharding and what are its challenges? / Sharding là gì và có những thách thức gì?",
+      "answer": "Chia dữ liệu theo **shard key** ra nhiều DB để scale ghi và dung lượng.\n- Chiến lược: **range** (dễ hotspot), **hash** (phân bố đều, khó range query), **directory/lookup**.\n- Thách thức: chọn shard key sai → **hot shard**; query/JOIN **cross-shard** đắt; transaction phân tán; **rebalancing** khi thêm shard (dùng consistent hashing); unique ID toàn cục (Snowflake, UUIDv7).\n- Thử trước: tối ưu query, index, read replica, partitioning, scale dọc.",
+      "explanation": "Sharding splits data across databases by a **shard key** to scale writes and storage. Strategies: range (hotspot risk), hash (even, but poor range queries), directory. Challenges: hot shards, expensive cross-shard queries and transactions, rebalancing (consistent hashing helps), and global IDs. Exhaust query tuning, replicas, partitioning and vertical scaling first."
+    },
+    {
+      "question": "What is table partitioning and how is it different from sharding? / Partitioning bảng là gì, khác sharding thế nào?",
+      "answer": "**Partitioning** chia một bảng lớn thành nhiều phần **trong cùng một DB instance** (Postgres declarative partitioning theo RANGE/LIST/HASH), ví dụ `events` theo tháng.\n- Lợi ích: **partition pruning** (query chỉ quét partition liên quan), xoá dữ liệu cũ bằng `DROP PARTITION` thay vì `DELETE` hàng triệu dòng, vacuum/index nhỏ hơn.\n- **Sharding** chia ra **nhiều server**. Partitioning đơn giản hơn nhiều, nên làm trước.",
+      "explanation": "Partitioning splits one large table into pieces **within the same database server** (e.g. monthly ranges). It enables partition pruning, cheap retention via dropping partitions, and smaller indexes. Sharding spreads data across **multiple servers**; partitioning is much simpler and should come first."
+    },
+    {
+      "question": "What is a connection pool and why do you need one? / Connection pool là gì, tại sao cần?",
+      "answer": "Mở connection DB tốn kém (TCP + TLS + auth, Postgres fork một process mỗi connection ~ vài MB RAM). Pool giữ sẵn một số connection để tái sử dụng.\n- Cấu hình: `max` hợp lý (công thức tham khảo: `cores * 2 + spindles`), timeout lấy connection, idle timeout.\n- Nhiều instance/serverless → tổng connection vượt `max_connections` → dùng **PgBouncer** (transaction pooling) hoặc Supabase pooler.\n- Lưu ý: transaction pooling không hỗ trợ prepared statement/session state đầy đủ.",
+      "explanation": "Opening DB connections is expensive (TCP, TLS, auth; Postgres forks a process per connection). A pool reuses a bounded set. Size it sensibly, set acquire and idle timeouts. With many instances or serverless, total connections can exceed `max_connections`, so add **PgBouncer** or a managed pooler — noting transaction pooling limits session features like prepared statements."
+    },
+    {
+      "question": "What is the difference between DELETE, TRUNCATE and DROP? / DELETE, TRUNCATE và DROP khác nhau thế nào?",
+      "answer": "- **DELETE**: xoá từng dòng theo điều kiện, ghi log từng dòng, kích hoạt trigger, rollback được; chậm với bảng lớn, để lại dead tuple (Postgres cần VACUUM).\n- **TRUNCATE**: xoá **toàn bộ** dữ liệu rất nhanh (giải phóng file), reset sequence (tuỳ chọn), không kích hoạt trigger dòng. Postgres cho phép rollback trong transaction.\n- **DROP**: xoá cả bảng (cấu trúc, index, quyền).",
+      "explanation": "DELETE removes rows matching a condition, logs each row, fires triggers and is slow on big tables (leaving dead tuples). TRUNCATE empties the whole table quickly and can reset sequences without row triggers (transactional in Postgres). DROP removes the table itself with its indexes and grants."
+    },
+    {
+      "question": "What are soft deletes and their trade-offs? / Soft delete là gì và có đánh đổi gì?",
+      "answer": "Thay vì xoá, đặt `deleted_at = now()`.\n- Ưu: khôi phục được, giữ lịch sử/audit, tránh mất quan hệ.\n- Nhược: **mọi query phải nhớ lọc** `deleted_at IS NULL` (dễ quên → lộ dữ liệu); unique constraint bị ảnh hưởng (dùng partial unique index `WHERE deleted_at IS NULL`); bảng phình to; vướng **GDPR \"quyền được xoá\"**.\n- Thay thế: chuyển sang bảng archive hoặc event log.",
+      "explanation": "Soft delete sets `deleted_at` instead of removing rows. Pros: restore, audit history, intact relations. Cons: every query must filter it (easy to forget), unique constraints need partial indexes, tables bloat, and it may conflict with GDPR erasure. Alternatives include archive tables or event logs."
+    },
+    {
+      "question": "How do you run a database migration on a large table with zero downtime? / Chạy migration trên bảng lớn mà không downtime thế nào?",
+      "answer": "Dùng mô hình **expand → migrate → contract**:\n1. **Expand**: thêm cột mới nullable (không default nặng), không khoá lâu. Tạo index bằng `CREATE INDEX CONCURRENTLY`.\n2. Code **ghi cả cột cũ và mới**.\n3. **Backfill** theo batch nhỏ (vd. 5.000 dòng/lần) để tránh lock và WAL bùng nổ.\n4. Chuyển code sang **đọc cột mới**.\n5. **Contract**: xoá cột cũ ở lần deploy sau.\nĐặt `lock_timeout` để migration tự huỷ thay vì chặn mọi query.",
+      "explanation": "Use **expand → migrate → contract**: add nullable columns and build indexes `CONCURRENTLY`; deploy code that writes both old and new; backfill in small batches; switch reads to the new column; drop the old one in a later release. Set `lock_timeout` so a blocked migration fails fast instead of stalling traffic."
+    },
+    {
+      "question": "What are window functions? Give an example. / Window function là gì? Cho ví dụ.",
+      "answer": "Hàm tính toán trên một \"cửa sổ\" các dòng liên quan **mà không gộp dòng** như GROUP BY.\n```sql\nSELECT user_id, created_at, total,\n  ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n  SUM(total) OVER (PARTITION BY user_id) AS user_total\nFROM orders;\n```\n- Lấy đơn mới nhất mỗi user: lọc `rn = 1`.\n- Hàm hay dùng: `ROW_NUMBER`, `RANK`, `DENSE_RANK`, `LAG/LEAD`, running total `SUM() OVER (ORDER BY ...)`.",
+      "explanation": "Window functions compute over a set of related rows **without collapsing them** like GROUP BY. With `ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC)` you can pick each user's latest order (`rn = 1`). Common ones: `ROW_NUMBER`, `RANK`, `DENSE_RANK`, `LAG`/`LEAD`, and running sums."
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "interview-devops-01-linux-networking",
+  "order": 210,
+  "title": "Phỏng vấn DevOps · Linux & Networking",
+  "description": "Câu hỏi phỏng vấn về Linux (process, file, permission, troubleshooting) và mạng (DNS, TCP, TLS, load balancer). Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "What happens when you type a URL into the browser and press Enter? / Điều gì xảy ra khi gõ URL vào trình duyệt và nhấn Enter?",
+      "answer": "1. **DNS**: tra cache trình duyệt → OS → resolver → root → TLD → authoritative để lấy IP.\n2. **TCP handshake** (SYN, SYN-ACK, ACK) tới IP:443 (HTTP/3 thì dùng QUIC trên UDP).\n3. **TLS handshake**: thoả thuận cipher, kiểm tra chứng chỉ, tạo khoá phiên.\n4. Gửi **HTTP request**; có thể qua CDN, load balancer, reverse proxy → app server → DB.\n5. Nhận response → trình duyệt parse HTML, tải CSS/JS/ảnh, dựng DOM/CSSOM, layout, paint.",
+      "explanation": "The browser resolves the domain via DNS (browser, OS, resolver, root, TLD, authoritative), opens a TCP connection (or QUIC for HTTP/3), performs a TLS handshake verifying the certificate, sends the HTTP request through CDN/load balancer/proxy to the app and DB, then parses HTML, fetches subresources and renders."
+    },
+    {
+      "question": "TCP vs UDP? / TCP và UDP khác nhau thế nào?",
+      "answer": "- **TCP**: có kết nối (handshake), **tin cậy** (ACK, retransmit), **đúng thứ tự**, kiểm soát luồng/tắc nghẽn. Dùng cho HTTP/1-2, DB, SSH.\n- **UDP**: không kết nối, không đảm bảo giao/thứ tự, overhead thấp, độ trễ thấp. Dùng cho DNS, video call, game, streaming, **QUIC/HTTP3** (tự xây độ tin cậy trên UDP).",
+      "explanation": "**TCP** is connection-oriented, reliable, ordered, with flow and congestion control — used by HTTP/1-2, databases, SSH. **UDP** is connectionless with no delivery or ordering guarantees but low overhead and latency — used by DNS, real-time media, games and QUIC (HTTP/3), which builds reliability on top."
+    },
+    {
+      "question": "Explain common DNS record types. / Giải thích các loại bản ghi DNS phổ biến.",
+      "answer": "- **A / AAAA**: tên → IPv4 / IPv6.\n- **CNAME**: bí danh trỏ tới tên khác (không đặt ở apex domain).\n- **MX**: mail server. **TXT**: xác minh domain, SPF, DKIM, DMARC.\n- **NS**: name server quản lý zone. **SOA**: thông tin zone.\n- **SRV**: dịch vụ + port. **CAA**: CA nào được cấp chứng chỉ.\n- **TTL**: thời gian cache — giảm TTL trước khi migrate.",
+      "explanation": "A/AAAA map names to IPv4/IPv6; CNAME aliases another name (not at the apex); MX routes mail; TXT holds verification, SPF, DKIM and DMARC; NS delegates the zone; SRV gives service ports; CAA limits which CAs may issue certificates. TTL controls caching — lower it before migrations."
+    },
+    {
+      "question": "How do you troubleshoot a server with high load? / Xử lý sự cố server bị tải cao thế nào?",
+      "answer": "- `uptime`/load average so với số CPU (`nproc`).\n- `top`/`htop`: CPU user/system/**iowait**, process nào ăn tài nguyên.\n- `vmstat 1`, `free -h`: RAM, swap, run queue.\n- `iostat -x 1`: disk bận (`%util`, `await`).\n- `ss -s`, `ss -tanp`: số kết nối, trạng thái.\n- `dmesg -T`: OOM killer, lỗi phần cứng. `journalctl -u <svc>`: log dịch vụ.\n- Tư duy: CPU-bound, IO-bound, thiếu RAM (swap), hay chờ mạng/khoá?",
+      "explanation": "Compare load average to CPU count, then use `top`/`htop` (watch iowait), `vmstat`, `free`, `iostat -x` for disk saturation, `ss` for connections, `dmesg` for OOM kills and `journalctl` for service logs. Classify the bottleneck: CPU, I/O, memory pressure, or waiting on network or locks."
+    },
+    {
+      "question": "What is load average? / Load average là gì?",
+      "answer": "Số tiến trình trung bình đang **chạy hoặc chờ CPU** (trên Linux còn tính cả process đang chờ **disk I/O** — trạng thái D) trong 1, 5, 15 phút.\n- So với số core: load 8 trên máy 8 core ≈ đầy tải; 16 → đang xếp hàng.\n- Load cao nhưng CPU thấp → thường do **I/O wait**.",
+      "explanation": "Load average is the mean number of processes **running or waiting** for CPU — on Linux including uninterruptible disk waits — over 1, 5 and 15 minutes. Compare it to core count; high load with low CPU usage usually means I/O wait."
+    },
+    {
+      "question": "Explain Linux file permissions and `chmod 755`. / Giải thích quyền file Linux và `chmod 755`.",
+      "answer": "Ba nhóm: **owner / group / others**, mỗi nhóm `r`(4) `w`(2) `x`(1).\n- `755` = `rwxr-xr-x`: chủ đọc/ghi/chạy, người khác đọc/chạy (thư mục, script).\n- `644` = `rw-r--r--`: file thường. `600`: khoá SSH riêng tư.\n- Với thư mục, `x` = được **đi vào** (cd).\n- Đặc biệt: setuid, setgid, sticky bit (`/tmp`). Đổi chủ: `chown user:group`.",
+      "explanation": "Permissions apply to owner, group and others as read (4), write (2), execute (1). `755` is `rwxr-xr-x` (directories, scripts), `644` for regular files, `600` for private SSH keys. On directories, `x` means traversal. Special bits: setuid, setgid, sticky. Use `chown` to change ownership."
+    },
+    {
+      "question": "What is the difference between a process and a thread? / Process và thread khác nhau thế nào?",
+      "answer": "- **Process**: có **không gian bộ nhớ riêng**, tài nguyên riêng (file descriptor…); cô lập, crash không ảnh hưởng process khác; tạo và chuyển ngữ cảnh tốn hơn.\n- **Thread**: chạy trong process, **chia sẻ bộ nhớ** → giao tiếp nhanh nhưng cần đồng bộ (lock), lỗi một thread có thể làm sập cả process.\n- Trên Linux, cả hai đều là \"task\" được kernel lập lịch.",
+      "explanation": "A **process** has its own address space and resources — isolated, heavier to create and switch. **Threads** live inside a process and **share memory** — cheap communication but need synchronization, and one bad thread can crash the process. Linux schedules both as tasks."
+    },
+    {
+      "question": "What are signals like SIGTERM and SIGKILL? / Signal như SIGTERM và SIGKILL là gì?",
+      "answer": "- **SIGTERM (15)**: yêu cầu dừng **lịch sự** — app có thể bắt để **graceful shutdown** (ngừng nhận request, xử lý nốt, đóng kết nối).\n- **SIGKILL (9)**: kernel giết ngay, **không bắt được**, không dọn dẹp.\n- **SIGINT (2)**: Ctrl+C. **SIGHUP**: thường dùng để reload config.\n- Docker/K8s gửi SIGTERM, chờ grace period (mặc định 30s) rồi SIGKILL → app phải xử lý SIGTERM. Chú ý PID 1 trong container (dùng `tini`/`exec`).",
+      "explanation": "**SIGTERM** asks a process to stop gracefully and can be handled; **SIGKILL** is immediate and uncatchable; **SIGINT** is Ctrl+C; **SIGHUP** often reloads config. Docker and Kubernetes send SIGTERM, wait a grace period, then SIGKILL — so handle SIGTERM, and mind PID 1 signal handling in containers."
+    },
+    {
+      "question": "How do you find what is using a port or why disk is full? / Tìm process đang dùng port hoặc vì sao đầy ổ đĩa thế nào?",
+      "answer": "**Port**: `ss -tlnp | grep :8080` hoặc `lsof -i :8080`.\n**Đầy đĩa**:\n- `df -h` (dung lượng), `df -i` (**hết inode** do quá nhiều file nhỏ).\n- `du -sh /* | sort -h`, `ncdu` tìm thư mục lớn.\n- File đã xoá nhưng **process vẫn giữ** → `lsof +L1`; restart process hoặc truncate.\n- Thủ phạm hay gặp: log không rotate, Docker image/volume (`docker system df`).",
+      "explanation": "For ports, use `ss -tlnp` or `lsof -i :PORT`. For full disks: `df -h` and `df -i` (inode exhaustion), `du`/`ncdu` to find large directories, `lsof +L1` for deleted files still held open, and check unrotated logs and Docker images (`docker system df`)."
+    },
+    {
+      "question": "How does TLS/HTTPS work at a high level? / TLS/HTTPS hoạt động thế nào ở mức tổng quan?",
+      "answer": "1. Client gửi ClientHello (phiên bản, cipher, key share).\n2. Server gửi **chứng chỉ** (public key + chữ ký của CA) và key share.\n3. Client **xác minh chuỗi chứng chỉ** tới root CA tin cậy, kiểm tra tên miền, hạn.\n4. Hai bên dùng **ECDHE** tạo khoá phiên chung (forward secrecy) → mã hoá **đối xứng** (AES-GCM/ChaCha20).\nTLS 1.3 chỉ cần **1-RTT** (0-RTT khi resume). Chứng chỉ miễn phí, tự gia hạn: Let's Encrypt.",
+      "explanation": "The client sends supported ciphers and a key share; the server returns its **certificate** and key share; the client validates the chain to a trusted CA, hostname and expiry; both derive a session key via **ECDHE** (forward secrecy) and switch to symmetric encryption. TLS 1.3 needs one round trip. Let's Encrypt automates free certificates."
+    },
+    {
+      "question": "L4 vs L7 load balancer? / Load balancer L4 và L7 khác nhau thế nào?",
+      "answer": "- **L4** (TCP/UDP): cân bằng theo IP/port, không đọc nội dung → rất nhanh, hỗ trợ mọi giao thức (AWS NLB).\n- **L7** (HTTP): đọc header/path/cookie → routing theo path/host, sticky session, TLS termination, rewrite, WAF (AWS ALB, Nginx, Envoy).\n- Thuật toán: round robin, least connections, weighted, IP hash/consistent hash.\n- Health check để loại backend lỗi.",
+      "explanation": "**L4** balancers route on IP and port without inspecting payloads — fast and protocol-agnostic (NLB). **L7** balancers understand HTTP, enabling host/path routing, sticky sessions, TLS termination, rewrites and WAFs (ALB, Nginx, Envoy). Algorithms include round robin, least connections, weighted and hashing; health checks eject bad backends."
+    },
+    {
+      "question": "What is a reverse proxy vs a forward proxy? / Reverse proxy và forward proxy khác nhau thế nào?",
+      "answer": "- **Forward proxy**: đứng **phía client**, thay mặt client đi ra Internet (proxy công ty, lọc nội dung, ẩn IP client).\n- **Reverse proxy**: đứng **phía server**, nhận request thay cho backend (Nginx, HAProxy, Cloudflare): load balancing, TLS termination, cache, nén, rate limit, ẩn kiến trúc nội bộ.",
+      "explanation": "A **forward proxy** sits on the client side and makes outbound requests on clients' behalf (corporate filtering, hiding client IPs). A **reverse proxy** sits in front of servers (Nginx, HAProxy, Cloudflare), handling load balancing, TLS termination, caching, compression and rate limiting while hiding the backend."
+    },
+    {
+      "question": "What are CIDR, subnets, and private IP ranges? / CIDR, subnet và dải IP private là gì?",
+      "answer": "- **CIDR** `10.0.0.0/16`: 16 bit đầu là mạng → 65.536 địa chỉ; `/24` = 256 địa chỉ.\n- **Private range** (RFC 1918): `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16` — không định tuyến ra Internet, cần **NAT**.\n- Trong VPC: chia **public subnet** (có route tới Internet Gateway) và **private subnet** (ra ngoài qua NAT gateway).\n- Lên kế hoạch dải IP tránh **chồng lấn** khi peering/VPN.",
+      "explanation": "CIDR notation like `/16` sets the network prefix (65,536 addresses; `/24` = 256). RFC 1918 private ranges (`10/8`, `172.16/12`, `192.168/16`) need NAT to reach the internet. VPCs split public subnets (internet gateway route) from private ones (NAT egress). Plan ranges to avoid overlap when peering."
+    },
+    {
+      "question": "How do you debug \"connection refused\" vs \"connection timed out\"? / Debug \"connection refused\" và \"connection timed out\" thế nào?",
+      "answer": "- **Connection refused**: tới được máy nhưng **không có process nghe** port đó (hoặc nghe `127.0.0.1` thay vì `0.0.0.0`) → kiểm tra service, `ss -tlnp`, bind address.\n- **Timed out**: gói tin **bị chặn/mất** → firewall, security group, NACL, route, sai IP.\n- Công cụ: `curl -v`, `nc -zv host port`, `dig`, `traceroute`/`mtr`, `tcpdump`.",
+      "explanation": "**Refused** means the host answered but nothing listens on that port, or it's bound to localhost — check the service and bind address. **Timed out** means packets are dropped — firewalls, security groups, routing or wrong IP. Use `curl -v`, `nc -zv`, `dig`, `mtr` and `tcpdump`."
+    },
+    {
+      "question": "What is an inode and a symbolic vs hard link? / Inode là gì? Symbolic link và hard link khác nhau thế nào?",
+      "answer": "- **Inode**: cấu trúc lưu metadata file (quyền, chủ, kích thước, vị trí block) — **không chứa tên**; tên nằm trong thư mục.\n- **Hard link**: thêm một tên trỏ tới **cùng inode**; xoá tên gốc file vẫn còn; không áp dụng cho thư mục, không xuyên filesystem.\n- **Symlink**: file đặc biệt chứa **đường dẫn** tới file khác; có thể xuyên filesystem, trỏ thư mục; bị \"gãy\" nếu đích bị xoá.",
+      "explanation": "An **inode** stores file metadata and block locations, but not the name. A **hard link** is another name for the same inode — the file survives deleting the original name, but it can't span filesystems or target directories. A **symlink** stores a path, can cross filesystems and point to directories, and breaks if the target disappears."
+    }
+  ]
+}

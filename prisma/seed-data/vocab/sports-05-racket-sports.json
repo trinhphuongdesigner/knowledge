@@ -1,0 +1,234 @@
+{
+  "slug": "sports-05-racket-sports",
+  "order": 165,
+  "title": "Sports 5 · Badminton, Tennis & Pickleball",
+  "description": "Từ vựng các môn vợt: cầu lông, tennis, bóng bàn, pickleball (CEFR A2–B2).",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "racket",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrækɪt/",
+      "answer": "cây vợt",
+      "explanation": "I need to restring my racket.\n→ Tôi cần đan lại lưới vợt."
+    },
+    {
+      "question": "shuttlecock",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃʌtəlkɑːk/",
+      "answer": "quả cầu lông",
+      "explanation": "The shuttlecock hit the net.\n→ Quả cầu chạm lưới."
+    },
+    {
+      "question": "court",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɔːrt/",
+      "answer": "sân (cầu lông, tennis)",
+      "explanation": "We booked a badminton court for 8 p.m.\n→ Chúng tôi đặt sân cầu lông lúc 8 giờ tối."
+    },
+    {
+      "question": "net",
+      "partOfSpeech": "noun",
+      "phonetic": "/net/",
+      "answer": "lưới",
+      "explanation": "The ball clipped the net.\n→ Bóng chạm mép lưới."
+    },
+    {
+      "question": "serve",
+      "partOfSpeech": "verb",
+      "phonetic": "/sɜːrv/",
+      "answer": "giao bóng/cầu",
+      "explanation": "It's your turn to serve.\n→ Đến lượt bạn giao bóng."
+    },
+    {
+      "question": "return",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈtɜːrn/",
+      "answer": "trả bóng",
+      "explanation": "She returned the serve easily.\n→ Cô ấy trả giao bóng dễ dàng."
+    },
+    {
+      "question": "rally",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈræli/",
+      "answer": "loạt đánh qua lại",
+      "explanation": "That was a 30-shot rally!\n→ Đó là một loạt đánh 30 lần qua lại!"
+    },
+    {
+      "question": "smash",
+      "partOfSpeech": "noun",
+      "phonetic": "/smæʃ/",
+      "answer": "cú đập",
+      "explanation": "His smash is very powerful.\n→ Cú đập của anh ấy rất mạnh."
+    },
+    {
+      "question": "drop shot",
+      "partOfSpeech": "noun",
+      "phonetic": "/drɑːp ʃɑːt/",
+      "answer": "cú bỏ nhỏ",
+      "explanation": "She won the point with a drop shot.\n→ Cô ấy ghi điểm bằng cú bỏ nhỏ."
+    },
+    {
+      "question": "forehand",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɔːrhænd/",
+      "answer": "cú thuận tay",
+      "explanation": "My forehand is stronger than my backhand.\n→ Cú thuận tay của tôi mạnh hơn trái tay."
+    },
+    {
+      "question": "backhand",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækhænd/",
+      "answer": "cú trái tay",
+      "explanation": "Practice your backhand more.\n→ Tập thêm cú trái tay đi."
+    },
+    {
+      "question": "volley",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvɑːli/",
+      "answer": "cú vô-lê (đánh khi bóng chưa chạm đất)",
+      "explanation": "He finished the point with a volley at the net.\n→ Anh ấy kết thúc điểm bằng cú vô-lê trên lưới."
+    },
+    {
+      "question": "singles",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪŋɡəlz/",
+      "answer": "đánh đơn",
+      "explanation": "Singles is more tiring than doubles.\n→ Đánh đơn mệt hơn đánh đôi."
+    },
+    {
+      "question": "doubles",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʌbəlz/",
+      "answer": "đánh đôi",
+      "explanation": "Let's play doubles.\n→ Chơi đánh đôi nhé."
+    },
+    {
+      "question": "partner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːrtnər/",
+      "answer": "đồng đội (đánh đôi)",
+      "explanation": "My partner covers the back of the court.\n→ Đồng đội tôi lo phần cuối sân."
+    },
+    {
+      "question": "point",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɔɪnt/",
+      "answer": "điểm",
+      "explanation": "Match point!\n→ Điểm quyết định trận!"
+    },
+    {
+      "question": "deuce",
+      "partOfSpeech": "noun",
+      "phonetic": "/duːs/",
+      "answer": "hoà điểm (tennis 40–40)",
+      "explanation": "It's deuce again.\n→ Lại hoà 40 đều."
+    },
+    {
+      "question": "set",
+      "partOfSpeech": "noun",
+      "phonetic": "/set/",
+      "answer": "ván, séc",
+      "explanation": "She won in straight sets.\n→ Cô ấy thắng liền các séc."
+    },
+    {
+      "question": "in",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪn/",
+      "answer": "trong sân",
+      "explanation": "Was that in or out?\n→ Bóng đó trong hay ngoài?"
+    },
+    {
+      "question": "out",
+      "partOfSpeech": "adjective",
+      "phonetic": "/aʊt/",
+      "answer": "ngoài sân",
+      "explanation": "The ball was clearly out.\n→ Bóng rõ ràng ra ngoài."
+    },
+    {
+      "question": "fault",
+      "partOfSpeech": "noun",
+      "phonetic": "/fɔːlt/",
+      "answer": "lỗi (giao bóng)",
+      "explanation": "That's a fault — your foot was on the line.\n→ Lỗi rồi — chân bạn giẫm vạch."
+    },
+    {
+      "question": "grip",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡrɪp/",
+      "answer": "cách cầm vợt; cán vợt",
+      "explanation": "Change your grip for the backhand.\n→ Đổi cách cầm vợt khi đánh trái tay."
+    },
+    {
+      "question": "footwork",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfʊtwɜːrk/",
+      "answer": "bộ chân, di chuyển",
+      "explanation": "Good footwork is the key to badminton.\n→ Bộ chân tốt là chìa khoá của cầu lông."
+    },
+    {
+      "question": "table tennis",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈteɪbəl ˈtenɪs/",
+      "answer": "bóng bàn",
+      "explanation": "We have a table tennis table at the office.\n→ Văn phòng có bàn bóng bàn."
+    },
+    {
+      "question": "pickleball",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɪkəlbɔːl/",
+      "answer": "môn pickleball",
+      "explanation": "Pickleball is very popular in Vietnam now.\n→ Pickleball hiện rất thịnh hành ở Việt Nam."
+    },
+    {
+      "question": "paddle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpædəl/",
+      "answer": "vợt (pickleball, bóng bàn)",
+      "explanation": "Pickleball paddles are solid, not strung.\n→ Vợt pickleball đặc, không có lưới."
+    },
+    {
+      "question": "opponent",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈpoʊnənt/",
+      "answer": "đối thủ",
+      "explanation": "My opponent was much younger.\n→ Đối thủ trẻ hơn tôi nhiều."
+    },
+    {
+      "question": "tiebreak",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtaɪbreɪk/",
+      "answer": "loạt đánh phân định (tie-break)",
+      "explanation": "The set went to a tiebreak.\n→ Séc đấu phải phân định bằng tie-break."
+    },
+    {
+      "question": "champion",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃæmpiən/",
+      "answer": "nhà vô địch",
+      "explanation": "He's the national badminton champion.\n→ Anh ấy là nhà vô địch cầu lông quốc gia."
+    },
+    {
+      "question": "amateur",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈæmətʃər/",
+      "answer": "nghiệp dư",
+      "explanation": "It's just an amateur tournament.\n→ Đó chỉ là giải nghiệp dư."
+    },
+    {
+      "question": "spin",
+      "partOfSpeech": "noun",
+      "phonetic": "/spɪn/",
+      "answer": "độ xoáy",
+      "explanation": "Put more spin on the ball.\n→ Tạo thêm độ xoáy cho bóng."
+    },
+    {
+      "question": "the ball is in your court",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ðə bɔːl ɪz ɪn jɔːr kɔːrt/",
+      "answer": "đến lượt bạn quyết định",
+      "explanation": "I've sent the proposal; the ball is in your court.\n→ Tôi đã gửi đề xuất; giờ đến lượt bạn quyết."
+    }
+  ]
+}

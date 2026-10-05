@@ -1,0 +1,360 @@
+{
+  "slug": "irregular-verbs-02",
+  "order": 221,
+  "title": "Động từ bất quy tắc · Phần 2",
+  "description": "50 động từ bất quy tắc rất hay gặp trong giao tiếp hằng ngày. Phần 2/5, xếp theo độ phổ biến. Mỗi thẻ: V1 → V2 – V3, phiên âm 3 dạng, nghĩa và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "wear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wer/ – /wɔːr/ – /wɔːrn/",
+      "answer": "wore – worn · mặc, đeo",
+      "explanation": "V1: wear · V2: wore · V3: worn\nShe wore a blue dress.\n→ Cô ấy mặc một chiếc váy xanh."
+    },
+    {
+      "question": "choose",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/tʃuːz/ – /tʃoʊz/ – /ˈtʃoʊzən/",
+      "answer": "chose – chosen · chọn",
+      "explanation": "V1: choose · V2: chose · V3: chosen\nWe chose the cheaper option.\n→ Chúng tôi chọn phương án rẻ hơn."
+    },
+    {
+      "question": "seek",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/siːk/ – /sɔːt/ – /sɔːt/",
+      "answer": "sought – sought · tìm kiếm",
+      "explanation": "V1: seek · V2: sought · V3: sought\nHe sought advice from a lawyer.\n→ Anh ấy tìm lời khuyên từ luật sư."
+    },
+    {
+      "question": "throw",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/θroʊ/ – /θruː/ – /θroʊn/",
+      "answer": "threw – thrown · ném",
+      "explanation": "V1: throw · V2: threw · V3: thrown\nHe threw the ball to his dog.\n→ Anh ấy ném bóng cho con chó."
+    },
+    {
+      "question": "catch",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kætʃ/ – /kɔːt/ – /kɔːt/",
+      "answer": "caught – caught · bắt, bắt kịp",
+      "explanation": "V1: catch · V2: caught · V3: caught\nI caught the last train.\n→ Tôi kịp chuyến tàu cuối."
+    },
+    {
+      "question": "deal",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/diːl/ – /delt/ – /delt/",
+      "answer": "dealt – dealt · giải quyết, xử lý",
+      "explanation": "V1: deal · V2: dealt · V3: dealt\nShe dealt with the complaint quickly.\n→ Cô ấy xử lý khiếu nại nhanh chóng."
+    },
+    {
+      "question": "win",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/wɪn/ – /wʌn/ – /wʌn/",
+      "answer": "won – won · thắng",
+      "explanation": "V1: win · V2: won · V3: won\nOur team won the hackathon.\n→ Đội chúng tôi thắng cuộc thi hackathon."
+    },
+    {
+      "question": "forget",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fərˈɡet/ – /fərˈɡɑːt/ – /fərˈɡɑːtən/",
+      "answer": "forgot – forgotten · quên",
+      "explanation": "V1: forget · V2: forgot · V3: forgotten\nI forgot my password again.\n→ Tôi lại quên mật khẩu."
+    },
+    {
+      "question": "teach",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/tiːtʃ/ – /tɔːt/ – /tɔːt/",
+      "answer": "taught – taught · dạy",
+      "explanation": "V1: teach · V2: taught · V3: taught\nMy mother taught me to cook.\n→ Mẹ tôi dạy tôi nấu ăn."
+    },
+    {
+      "question": "sell",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/sel/ – /soʊld/ – /soʊld/",
+      "answer": "sold – sold · bán",
+      "explanation": "V1: sell · V2: sold · V3: sold\nThey sold their old car.\n→ Họ đã bán chiếc xe cũ."
+    },
+    {
+      "question": "fight",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/faɪt/ – /fɔːt/ – /fɔːt/",
+      "answer": "fought – fought · đánh nhau, đấu tranh",
+      "explanation": "V1: fight · V2: fought · V3: fought\nThey fought for their rights.\n→ Họ đấu tranh cho quyền lợi của mình."
+    },
+    {
+      "question": "eat",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/iːt/ – /eɪt/ – /ˈiːtən/",
+      "answer": "ate – eaten · ăn",
+      "explanation": "V1: eat · V2: ate · V3: eaten\nHave you eaten lunch yet?\n→ Bạn ăn trưa chưa?"
+    },
+    {
+      "question": "sleep",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/sliːp/ – /slept/ – /slept/",
+      "answer": "slept – slept · ngủ",
+      "explanation": "V1: sleep · V2: slept · V3: slept\nI slept for ten hours.\n→ Tôi đã ngủ mười tiếng."
+    },
+    {
+      "question": "shoot",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃuːt/ – /ʃɑːt/ – /ʃɑːt/",
+      "answer": "shot – shot · bắn, quay (phim), chụp",
+      "explanation": "V1: shoot · V2: shot · V3: shot\nThey shot the video in one day.\n→ Họ quay video trong một ngày."
+    },
+    {
+      "question": "hit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/hɪt/ – /hɪt/ – /hɪt/",
+      "answer": "hit – hit · đánh, đâm vào",
+      "explanation": "V1: hit · V2: hit · V3: hit\nThe storm hit the coast last night.\n→ Cơn bão đổ bộ vào bờ biển tối qua."
+    },
+    {
+      "question": "show",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃoʊ/ – /ʃoʊd/ – /ʃoʊn/",
+      "answer": "showed – shown · cho xem, chỉ ra",
+      "explanation": "V1: show · V2: showed · V3: shown\nShe showed me how to use the tool.\n→ Cô ấy chỉ tôi cách dùng công cụ."
+    },
+    {
+      "question": "fly",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/flaɪ/ – /fluː/ – /floʊn/",
+      "answer": "flew – flown · bay",
+      "explanation": "V1: fly · V2: flew · V3: flown\nWe flew to Singapore.\n→ Chúng tôi bay sang Singapore."
+    },
+    {
+      "question": "hang",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/hæŋ/ – /hʌŋ/ – /hʌŋ/",
+      "answer": "hung – hung · treo",
+      "explanation": "V1: hang · V2: hung · V3: hung\nHe hung the picture on the wall.\n→ Anh ấy treo bức tranh lên tường."
+    },
+    {
+      "question": "strike",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/straɪk/ – /strʌk/ – /strʌk/",
+      "answer": "struck – struck · đánh, tấn công, gây ấn tượng",
+      "explanation": "V1: strike · V2: struck · V3: struck\nI was struck by her confidence.\n→ Tôi ấn tượng bởi sự tự tin của cô ấy."
+    },
+    {
+      "question": "cost",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kɔːst/ – /kɔːst/ – /kɔːst/",
+      "answer": "cost – cost · có giá, tốn",
+      "explanation": "V1: cost · V2: cost · V3: cost\nThe repair cost a lot of money.\n→ Việc sửa chữa tốn rất nhiều tiền."
+    },
+    {
+      "question": "hide",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/haɪd/ – /hɪd/ – /ˈhɪdən/",
+      "answer": "hid – hidden · giấu, trốn",
+      "explanation": "V1: hide · V2: hid · V3: hidden\nThe cat hid under the bed.\n→ Con mèo trốn dưới gầm giường."
+    },
+    {
+      "question": "sing",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/sɪŋ/ – /sæŋ/ – /sʌŋ/",
+      "answer": "sang – sung · hát",
+      "explanation": "V1: sing · V2: sang · V3: sung\nShe sang at the company party.\n→ Cô ấy hát ở tiệc công ty."
+    },
+    {
+      "question": "feed",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fiːd/ – /fed/ – /fed/",
+      "answer": "fed – fed · cho ăn",
+      "explanation": "V1: feed · V2: fed · V3: fed\nHave you fed the dog?\n→ Bạn đã cho chó ăn chưa?"
+    },
+    {
+      "question": "shake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃeɪk/ – /ʃʊk/ – /ˈʃeɪkən/",
+      "answer": "shook – shaken · lắc, bắt (tay)",
+      "explanation": "V1: shake · V2: shook · V3: shaken\nWe shook hands after the deal.\n→ Chúng tôi bắt tay sau thương vụ."
+    },
+    {
+      "question": "drink",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/drɪŋk/ – /dræŋk/ – /drʌŋk/",
+      "answer": "drank – drunk · uống",
+      "explanation": "V1: drink · V2: drank · V3: drunk\nI drank three cups of coffee today.\n→ Hôm nay tôi uống ba cốc cà phê."
+    },
+    {
+      "question": "wake",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/weɪk/ – /woʊk/ – /ˈwoʊkən/",
+      "answer": "woke – woken · thức dậy, đánh thức",
+      "explanation": "V1: wake · V2: woke · V3: woken\nI woke up at 6 a.m.\n→ Tôi thức dậy lúc 6 giờ sáng."
+    },
+    {
+      "question": "ride",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/raɪd/ – /roʊd/ – /ˈrɪdən/",
+      "answer": "rode – ridden · cưỡi, đi (xe)",
+      "explanation": "V1: ride · V2: rode · V3: ridden\nHe rode his motorbike to work.\n→ Anh ấy đi xe máy đi làm."
+    },
+    {
+      "question": "shut",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ʃʌt/ – /ʃʌt/ – /ʃʌt/",
+      "answer": "shut – shut · đóng",
+      "explanation": "V1: shut · V2: shut · V3: shut\nShe shut the door quietly.\n→ Cô ấy khẽ đóng cửa."
+    },
+    {
+      "question": "steal",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/stiːl/ – /stoʊl/ – /ˈstoʊlən/",
+      "answer": "stole – stolen · lấy trộm",
+      "explanation": "V1: steal · V2: stole · V3: stolen\nMy bike was stolen last week.\n→ Xe đạp của tôi bị trộm tuần trước."
+    },
+    {
+      "question": "lay",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/leɪ/ – /leɪd/ – /leɪd/",
+      "answer": "laid – laid · đặt, đẻ (trứng)",
+      "explanation": "V1: lay · V2: laid · V3: laid\nShe laid the baby on the bed.\n→ Cô ấy đặt em bé lên giường."
+    },
+    {
+      "question": "forgive",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/fərˈɡɪv/ – /fərˈɡeɪv/ – /fərˈɡɪvən/",
+      "answer": "forgave – forgiven · tha thứ",
+      "explanation": "V1: forgive · V2: forgave · V3: forgiven\nHe forgave his friend.\n→ Anh ấy đã tha thứ cho bạn mình."
+    },
+    {
+      "question": "burn",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bɜːrn/ – /bɜːrnd, bɜːrnt/ – /bɜːrnd, bɜːrnt/",
+      "answer": "burned/burnt – burned/burnt · đốt, cháy",
+      "explanation": "V1: burn · V2: burned/burnt · V3: burned/burnt\nI burnt the toast.\n→ Tôi làm cháy bánh mì nướng."
+    },
+    {
+      "question": "light",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/laɪt/ – /lɪt/ – /lɪt/",
+      "answer": "lit – lit · thắp, đốt",
+      "explanation": "V1: light · V2: lit · V3: lit\nShe lit a candle.\n→ Cô ấy thắp một ngọn nến."
+    },
+    {
+      "question": "learn",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/lɜːrn/ – /lɜːrnd, lɜːrnt/ – /lɜːrnd, lɜːrnt/",
+      "answer": "learned/learnt – learned/learnt · học",
+      "explanation": "V1: learn · V2: learned/learnt · V3: learned/learnt\nI learned a lot from this project.\n→ Tôi đã học được nhiều từ dự án này."
+    },
+    {
+      "question": "spread",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/spred/ – /spred/ – /spred/",
+      "answer": "spread – spread · lan truyền, trải",
+      "explanation": "V1: spread · V2: spread · V3: spread\nThe news spread quickly.\n→ Tin tức lan truyền nhanh chóng."
+    },
+    {
+      "question": "swim",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/swɪm/ – /swæm/ – /swʌm/",
+      "answer": "swam – swum · bơi",
+      "explanation": "V1: swim · V2: swam · V3: swum\nWe swam in the lake.\n→ Chúng tôi bơi ở hồ."
+    },
+    {
+      "question": "ring",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/rɪŋ/ – /ræŋ/ – /rʌŋ/",
+      "answer": "rang – rung · reo, gọi điện",
+      "explanation": "V1: ring · V2: rang · V3: rung\nThe phone rang during the meeting.\n→ Điện thoại reo trong cuộc họp."
+    },
+    {
+      "question": "beat",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/biːt/ – /biːt/ – /ˈbiːtən/",
+      "answer": "beat – beaten · đánh bại, đập",
+      "explanation": "V1: beat · V2: beat · V3: beaten\nVietnam beat Thailand 2–1.\n→ Việt Nam thắng Thái Lan 2–1."
+    },
+    {
+      "question": "bear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ber/ – /bɔːr/ – /bɔːrn/",
+      "answer": "bore – borne · chịu đựng, mang",
+      "explanation": "V1: bear · V2: bore · V3: borne\nShe has borne a lot of pain.\n→ Cô ấy đã chịu đựng nhiều đau khổ."
+    },
+    {
+      "question": "hurt",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/hɜːrt/ – /hɜːrt/ – /hɜːrt/",
+      "answer": "hurt – hurt · làm đau, bị đau",
+      "explanation": "V1: hurt · V2: hurt · V3: hurt\nI hurt my back at the gym.\n→ Tôi bị đau lưng ở phòng gym."
+    },
+    {
+      "question": "freeze",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/friːz/ – /froʊz/ – /ˈfroʊzən/",
+      "answer": "froze – frozen · đóng băng, treo (máy)",
+      "explanation": "V1: freeze · V2: froze · V3: frozen\nMy computer froze again.\n→ Máy tính của tôi lại bị treo."
+    },
+    {
+      "question": "bite",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/baɪt/ – /bɪt/ – /ˈbɪtən/",
+      "answer": "bit – bitten · cắn",
+      "explanation": "V1: bite · V2: bit · V3: bitten\nA dog bit him on the leg.\n→ Một con chó cắn vào chân anh ấy."
+    },
+    {
+      "question": "blow",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bloʊ/ – /bluː/ – /bloʊn/",
+      "answer": "blew – blown · thổi",
+      "explanation": "V1: blow · V2: blew · V3: blown\nThe wind blew all night.\n→ Gió thổi suốt đêm."
+    },
+    {
+      "question": "dig",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/dɪɡ/ – /dʌɡ/ – /dʌɡ/",
+      "answer": "dug – dug · đào",
+      "explanation": "V1: dig · V2: dug · V3: dug\nThey dug a hole in the garden.\n→ Họ đào một cái hố trong vườn."
+    },
+    {
+      "question": "bend",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bend/ – /bent/ – /bent/",
+      "answer": "bent – bent · uốn cong, cúi",
+      "explanation": "V1: bend · V2: bent · V3: bent\nHe bent down to pick it up.\n→ Anh ấy cúi xuống nhặt nó lên."
+    },
+    {
+      "question": "tear",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/ter/ – /tɔːr/ – /tɔːrn/",
+      "answer": "tore – torn · xé, rách",
+      "explanation": "V1: tear · V2: tore · V3: torn\nShe tore the letter into pieces.\n→ Cô ấy xé lá thư thành từng mảnh."
+    },
+    {
+      "question": "lend",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/lend/ – /lent/ – /lent/",
+      "answer": "lent – lent · cho mượn",
+      "explanation": "V1: lend · V2: lent · V3: lent\nCan you lend me your charger?\n→ Bạn cho tôi mượn sạc được không?"
+    },
+    {
+      "question": "quit",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/kwɪt/ – /kwɪt/ – /kwɪt/",
+      "answer": "quit – quit · bỏ, nghỉ (việc)",
+      "explanation": "V1: quit · V2: quit · V3: quit\nHe quit his job last month.\n→ Anh ấy nghỉ việc tháng trước."
+    },
+    {
+      "question": "bet",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/bet/ – /bet/ – /bet/",
+      "answer": "bet – bet · cá cược",
+      "explanation": "V1: bet · V2: bet · V3: bet\nI bet you can't do it.\n→ Tôi cá là bạn không làm được."
+    },
+    {
+      "question": "dream",
+      "partOfSpeech": "verb (irregular)",
+      "phonetic": "/driːm/ – /driːmd, dremt/ – /driːmd, dremt/",
+      "answer": "dreamed/dreamt – dreamed/dreamt · mơ",
+      "explanation": "V1: dream · V2: dreamed/dreamt · V3: dreamed/dreamt\nI dreamt about my old school.\n→ Tôi mơ thấy ngôi trường cũ."
+    }
+  ]
+}

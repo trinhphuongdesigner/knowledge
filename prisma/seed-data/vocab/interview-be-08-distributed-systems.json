@@ -1,0 +1,85 @@
+{
+  "slug": "interview-be-08-distributed-systems",
+  "order": 208,
+  "title": "Phỏng vấn Backend · Microservices & Distributed Systems",
+  "description": "Câu hỏi phỏng vấn về microservices, CAP, consistency, resilience pattern (circuit breaker, retry, timeout), service discovery, API gateway. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "Monolith vs microservices — when should you choose each? / Monolith hay microservices — khi nào chọn cái nào?",
+      "answer": "- **Monolith** (nhất là **modular monolith**): mặc định cho team nhỏ, sản phẩm mới. Deploy, debug, transaction đơn giản.\n- **Microservices**: khi tổ chức lớn, nhiều team cần **deploy độc lập**, các phần có nhu cầu scale/công nghệ khác nhau.\n- Chi phí microservices: mạng không tin cậy, nhất quán dữ liệu, observability, hạ tầng, DevOps phức tạp.\n- \"Đừng bắt đầu bằng microservices\" — tách khi ranh giới domain đã rõ.",
+      "explanation": "A **(modular) monolith** is the right default for small teams and new products — simple deploys, debugging and transactions. **Microservices** pay off when many teams need **independent deployment** and parts scale differently, but they add network failures, data consistency issues, observability and ops overhead. Split once domain boundaries are clear."
+    },
+    {
+      "question": "Explain the CAP theorem. / Giải thích định lý CAP.",
+      "answer": "Khi có **phân vùng mạng (P)** — điều không tránh khỏi — hệ phân tán phải chọn:\n- **CP**: từ chối/chờ để giữ **nhất quán** (ZooKeeper, etcd, HBase).\n- **AP**: vẫn phục vụ nhưng có thể trả **dữ liệu cũ** (Cassandra, DynamoDB mặc định).\nKhi không có phân vùng, mở rộng bằng **PACELC**: \"Else\" phải đánh đổi **Latency vs Consistency**.",
+      "explanation": "During a **network partition**, which you can't avoid, a distributed system must choose **consistency** (refuse or wait — CP: etcd, ZooKeeper) or **availability** (serve possibly stale data — AP: Cassandra, DynamoDB defaults). **PACELC** adds that even without partitions you trade **latency vs consistency**."
+    },
+    {
+      "question": "What is eventual consistency? How do you deal with it in UX? / Eventual consistency là gì? Xử lý ở UX thế nào?",
+      "answer": "Các bản sao sẽ **hội tụ** về cùng giá trị nếu không có ghi mới, nhưng tạm thời có thể khác nhau.\n**UX**:\n- **Optimistic UI**: hiển thị ngay kết quả dự kiến.\n- **Read-your-writes**: đọc từ primary/cache sau khi ghi.\n- Trạng thái trung gian rõ ràng: \"Đang xử lý thanh toán…\".\n- Polling/WebSocket để cập nhật khi xong.",
+      "explanation": "Replicas **converge** if writes stop but may diverge briefly. In UX, use optimistic updates, guarantee **read-your-writes**, show explicit pending states like \"Processing payment…\", and push or poll for completion."
+    },
+    {
+      "question": "What is a circuit breaker? / Circuit breaker là gì?",
+      "answer": "Bảo vệ hệ thống khỏi dependency đang lỗi:\n- **Closed**: gọi bình thường, đếm lỗi.\n- Lỗi vượt ngưỡng → **Open**: **fail fast** (trả lỗi/fallback ngay) trong một khoảng thời gian, không gọi dependency.\n- **Half-open**: cho vài request thử; thành công → Closed, lỗi → Open lại.\nLợi ích: tránh **cascading failure**, không dồn thread/connection chờ service chết, cho dependency thời gian hồi phục.",
+      "explanation": "A circuit breaker guards calls to a failing dependency: **closed** counts errors; past a threshold it goes **open** and fails fast or falls back for a cooldown; then **half-open** lets trial requests through to decide whether to close again. It prevents cascading failures and gives the dependency time to recover."
+    },
+    {
+      "question": "How should you implement retries? / Nên triển khai retry thế nào?",
+      "answer": "- Chỉ retry lỗi **tạm thời** (timeout, 503, 429, connection reset), không retry 400/401/422.\n- Chỉ retry thao tác **idempotent** (hoặc có idempotency key).\n- **Exponential backoff + jitter** (vd. 100ms, 200ms, 400ms ± ngẫu nhiên) để tránh retry storm.\n- Giới hạn số lần, tôn trọng `Retry-After`, đặt **retry budget**.\n- Tránh retry **ở nhiều tầng** cùng lúc (3 tầng × 3 lần = 27 request).",
+      "explanation": "Retry only **transient** errors and only **idempotent** operations; use **exponential backoff with jitter**, cap attempts, honor `Retry-After`, and use a retry budget. Avoid stacking retries across layers, which multiplies load (3 layers × 3 attempts = 27 calls)."
+    },
+    {
+      "question": "Why are timeouts critical in distributed systems? / Tại sao timeout quan trọng trong hệ phân tán?",
+      "answer": "Không có timeout → request chờ **vô hạn**, giữ thread/connection/memory, dần làm cạn tài nguyên và sập cả service gọi.\n- Đặt timeout cho **mọi** lời gọi mạng: connect timeout + request timeout.\n- **Deadline propagation**: truyền thời hạn còn lại xuống service con (gRPC deadline) để không làm việc vô ích.\n- Timeout phía trên phải **lớn hơn** tổng timeout + retry phía dưới.",
+      "explanation": "Without timeouts, calls can hang forever, holding threads, connections and memory until the caller collapses. Set connect and request timeouts on **every** network call, propagate **deadlines** downstream, and make upstream timeouts exceed downstream timeout-plus-retry budgets."
+    },
+    {
+      "question": "What is the bulkhead pattern? / Bulkhead pattern là gì?",
+      "answer": "Giống vách ngăn tàu thuỷ: **cô lập tài nguyên** (thread pool, connection pool, concurrency limit) cho từng dependency hoặc loại request. Một dependency chậm chỉ chiếm hết pool riêng của nó, **không kéo sập** toàn bộ service.\nVí dụ: pool riêng cho payment API và recommendation API; tách worker cho job nặng và job nhẹ.",
+      "explanation": "Like a ship's compartments, bulkheads **isolate resources** — thread pools, connection pools, concurrency limits — per dependency or workload, so one slow dependency exhausts only its own pool instead of sinking the whole service."
+    },
+    {
+      "question": "What does an API gateway do? / API gateway làm gì?",
+      "answer": "Điểm vào duy nhất cho client:\n- **Routing** tới service phù hợp.\n- **Auth** (verify token), **rate limiting**, quota.\n- TLS termination, CORS, nén, cache.\n- Chuyển đổi giao thức, gộp response (hoặc dùng **BFF** cho từng loại client).\n- Logging, metrics, tracing tập trung.\nVí dụ: Kong, AWS API Gateway, Envoy, Nginx. Cẩn thận để gateway không chứa **logic nghiệp vụ**.",
+      "explanation": "A gateway is the single entry point: routing, token verification, rate limiting, TLS termination, CORS, compression, caching, protocol translation or aggregation (or per-client **BFFs**), and central logs, metrics and tracing. Keep business logic out of it."
+    },
+    {
+      "question": "How do services discover each other? / Các service tìm thấy nhau thế nào (service discovery)?",
+      "answer": "- **Client-side**: service hỏi registry (Consul, Eureka) rồi tự load balance.\n- **Server-side**: gọi qua load balancer/DNS cố định.\n- **Kubernetes**: `Service` có DNS ổn định (`orders.default.svc.cluster.local`), kube-proxy cân bằng tải tới pod sẵn sàng.\n- **Service mesh** (Istio, Linkerd): sidecar lo discovery, mTLS, retry, traffic splitting.",
+      "explanation": "Client-side discovery queries a registry like Consul and balances itself; server-side discovery goes through a load balancer or DNS. In Kubernetes, a `Service` gives a stable DNS name balanced across ready pods. A service mesh adds mTLS, retries and traffic splitting via sidecars."
+    },
+    {
+      "question": "Should each microservice have its own database? / Mỗi microservice có nên có database riêng không?",
+      "answer": "Có — **database per service** để giữ tự chủ: thay schema mà không ảnh hưởng service khác. Dùng chung DB tạo **coupling ẩn** (distributed monolith).\nHệ quả:\n- Không JOIN xuyên service → gọi API hoặc **sao chép dữ liệu** qua event (read model cục bộ).\n- Không transaction xuyên service → **Saga** + outbox.\n- Có thể dùng chung một **server** DB nhưng tách schema/quyền.",
+      "explanation": "Yes — **database per service** preserves autonomy; a shared database creates hidden coupling (a distributed monolith). Consequences: no cross-service joins (call APIs or replicate data via events) and no cross-service transactions (use Sagas and outboxes). Sharing a physical server with separate schemas and permissions is fine."
+    },
+    {
+      "question": "How do you do distributed tracing? / Distributed tracing hoạt động thế nào?",
+      "answer": "Mỗi request có **trace ID**; mỗi bước (gọi HTTP, query DB, publish message) là một **span** có parent. Context được **truyền qua header** (`traceparent` chuẩn W3C) và qua message metadata.\n- Chuẩn: **OpenTelemetry** (SDK + collector) → backend như Jaeger, Tempo, Datadog, Honeycomb.\n- Dùng để: tìm service gây chậm, xem waterfall, liên kết log với trace (ghi trace ID vào log).\n- Dùng **sampling** (head/tail-based) để giảm chi phí.",
+      "explanation": "Each request carries a **trace ID**; each operation is a **span** with a parent, propagated via the W3C `traceparent` header and message metadata. **OpenTelemetry** exports to Jaeger, Tempo or vendors. It reveals where latency lives and links logs via trace IDs; sample to control cost."
+    },
+    {
+      "question": "What is idempotency and why does it matter so much in distributed systems? / Idempotency là gì và tại sao rất quan trọng trong hệ phân tán?",
+      "answer": "Thao tác thực hiện nhiều lần cho **kết quả như một lần**. Trong hệ phân tán, timeout không cho biết request **đã thành công hay chưa** → buộc phải retry → nếu không idempotent sẽ **trừ tiền 2 lần, gửi email 2 lần**.\nKỹ thuật: idempotency key, unique constraint, upsert, ghi nhận event ID đã xử lý, thao tác dạng \"set trạng thái\" thay vì \"cộng dồn\".",
+      "explanation": "An operation is idempotent if repeating it has the **same effect as doing it once**. A timeout never tells you whether the request succeeded, so retries are inevitable — without idempotency you double-charge or double-email. Tools: idempotency keys, unique constraints, upserts, processed-event records, and setting state rather than incrementing."
+    },
+    {
+      "question": "What is the strangler fig pattern? / Strangler fig pattern là gì?",
+      "answer": "Cách **di chuyển dần** từ hệ thống cũ sang mới: đặt một lớp routing (proxy/gateway) trước hệ cũ, lần lượt chuyển từng tính năng/endpoint sang service mới, cho đến khi hệ cũ không còn traffic thì tắt.\n- Tránh \"big bang rewrite\" rủi ro cao.\n- Kết hợp **feature flag**, chạy song song và so sánh kết quả (shadow traffic).",
+      "explanation": "The strangler fig pattern migrates a legacy system **incrementally**: put a routing layer in front, move features or endpoints one by one to the new system, and retire the old one once it gets no traffic. It avoids risky big-bang rewrites; pair it with feature flags and shadow traffic."
+    },
+    {
+      "question": "How do you generate unique IDs in a distributed system? / Sinh ID duy nhất trong hệ phân tán thế nào?",
+      "answer": "- **Auto-increment** của DB: đơn giản nhưng phụ thuộc một DB, lộ số lượng.\n- **UUIDv4**: ngẫu nhiên, không cần phối hợp, nhưng **phân mảnh index B-tree** (insert ngẫu nhiên).\n- **UUIDv7 / ULID**: có tiền tố thời gian → **sắp xếp theo thời gian**, index thân thiện. Lựa chọn tốt hiện nay.\n- **Snowflake** (64-bit: timestamp + machine id + sequence): gọn, có thứ tự, cần cấp machine id.",
+      "explanation": "DB auto-increment is simple but centralized and leaks counts. UUIDv4 needs no coordination but fragments B-tree indexes. **UUIDv7/ULID** add a time prefix, so they sort and index well — a great default. **Snowflake** IDs pack timestamp, machine id and sequence into 64 bits but need machine-id assignment."
+    },
+    {
+      "question": "What is consistent hashing? / Consistent hashing là gì?",
+      "answer": "Băm cả node và key lên một **vòng tròn**; key thuộc về node đầu tiên theo chiều kim đồng hồ.\n- Thêm/bớt node chỉ di chuyển khoảng **1/N** số key (thay vì gần như toàn bộ như `hash % N`).\n- Dùng **virtual node** để phân bố đều.\n- Ứng dụng: phân tán cache (Memcached client), DynamoDB/Cassandra partitioning, load balancing sticky.",
+      "explanation": "Consistent hashing places nodes and keys on a **ring**; a key belongs to the next node clockwise. Adding or removing a node moves only about **1/N** of keys, unlike `hash % N`. Virtual nodes even out the distribution. Used in cache clients, Cassandra and DynamoDB partitioning, and sticky load balancing."
+    }
+  ]
+}

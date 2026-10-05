@@ -1,0 +1,75 @@
+{
+  "slug": "interview-devops-03-kubernetes",
+  "order": 212,
+  "title": "Phỏng vấn DevOps · Kubernetes",
+  "description": "Câu hỏi phỏng vấn về kiến trúc Kubernetes, Pod, Deployment, Service, Ingress, probe, autoscaling, resource, troubleshooting. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "Describe the Kubernetes architecture. / Mô tả kiến trúc Kubernetes.",
+      "answer": "**Control plane**:\n- **kube-apiserver**: cổng duy nhất, mọi thứ đi qua API.\n- **etcd**: lưu trạng thái cluster (key-value, Raft).\n- **scheduler**: chọn node cho Pod.\n- **controller-manager**: các vòng lặp reconcile (Deployment, ReplicaSet, Node…).\n**Worker node**: **kubelet** (chạy Pod qua container runtime như containerd), **kube-proxy** (luật mạng cho Service), CNI plugin.\nMô hình **khai báo**: bạn mô tả trạng thái mong muốn, controller liên tục kéo trạng thái thực về đó.",
+      "explanation": "The control plane has the **API server** (single entry point), **etcd** (cluster state), the **scheduler** (places Pods) and **controllers** (reconcile loops). Worker nodes run **kubelet** with a container runtime, **kube-proxy** and a CNI plugin. Everything is **declarative**: controllers continuously drive actual state toward desired state."
+    },
+    {
+      "question": "Pod vs Deployment vs ReplicaSet vs StatefulSet? / Pod, Deployment, ReplicaSet, StatefulSet khác nhau thế nào?",
+      "answer": "- **Pod**: đơn vị nhỏ nhất, một hoặc vài container chung network/volume; tạm thời.\n- **ReplicaSet**: giữ đúng N bản Pod.\n- **Deployment**: quản lý ReplicaSet → **rolling update**, rollback. Dùng cho app **stateless**.\n- **StatefulSet**: Pod có **tên ổn định** (db-0, db-1), volume riêng bền vững, khởi động theo thứ tự → DB, Kafka.\n- **DaemonSet**: mỗi node một Pod (log agent). **Job/CronJob**: tác vụ chạy xong rồi dừng.",
+      "explanation": "A **Pod** is the smallest unit; a **ReplicaSet** keeps N Pods; a **Deployment** manages ReplicaSets for rolling updates and rollbacks of stateless apps; a **StatefulSet** gives stable identities, per-Pod persistent volumes and ordered startup for databases; **DaemonSets** run one Pod per node; **Jobs/CronJobs** run to completion."
+    },
+    {
+      "question": "Explain Service types in Kubernetes. / Giải thích các loại Service trong Kubernetes.",
+      "answer": "Service cung cấp **IP/DNS ổn định** và cân bằng tải tới các Pod khớp **selector**.\n- **ClusterIP** (mặc định): chỉ truy cập trong cluster.\n- **NodePort**: mở port 30000–32767 trên mọi node.\n- **LoadBalancer**: tạo LB của cloud.\n- **ExternalName**: CNAME tới DNS ngoài.\n- **Headless** (`clusterIP: None`): trả trực tiếp IP Pod (StatefulSet).\nHTTP từ ngoài vào thường đi **Ingress/Gateway API** → Service ClusterIP.",
+      "explanation": "A Service gives a **stable IP/DNS** load-balanced across Pods matching its selector: **ClusterIP** (internal), **NodePort**, **LoadBalancer** (cloud LB), **ExternalName** (CNAME), and **headless** for direct Pod IPs. External HTTP usually enters via Ingress or the Gateway API."
+    },
+    {
+      "question": "Liveness vs readiness vs startup probes? / Liveness, readiness và startup probe khác nhau thế nào?",
+      "answer": "- **Readiness**: Pod **sẵn sàng nhận traffic** chưa? Fail → bị gỡ khỏi endpoint của Service (không restart).\n- **Liveness**: container còn **sống** không (deadlock)? Fail → kubelet **restart** container.\n- **Startup**: cho app khởi động chậm; tạm tắt liveness đến khi startup thành công.\nSai lầm: liveness kiểm tra cả DB → DB chậm làm **restart hàng loạt**. Liveness chỉ nên kiểm tra chính process.",
+      "explanation": "**Readiness** decides whether a Pod receives traffic (failure removes it from endpoints). **Liveness** detects a stuck container and restarts it. **Startup** probes protect slow starters. Don't make liveness depend on downstream services, or a slow DB triggers mass restarts."
+    },
+    {
+      "question": "Requests vs limits for CPU and memory? / Requests và limits cho CPU và memory là gì?",
+      "answer": "- **Requests**: lượng **đảm bảo**, scheduler dùng để xếp Pod lên node.\n- **Limits**: mức **tối đa**. Vượt CPU limit → bị **throttle** (chậm). Vượt memory limit → **OOMKilled**.\n- QoS: Guaranteed (requests = limits), Burstable, BestEffort (bị đuổi đầu tiên).\n- Thực tế: luôn đặt requests; memory limit = requests; nhiều team **bỏ CPU limit** để tránh throttle.",
+      "explanation": "**Requests** are guaranteed amounts used for scheduling; **limits** are ceilings — exceeding CPU throttles, exceeding memory gets **OOMKilled**. QoS classes follow from these. Always set requests, often set memory limit equal to request, and many teams skip CPU limits to avoid throttling."
+    },
+    {
+      "question": "How does a rolling update work and how do you roll back? / Rolling update hoạt động thế nào và rollback ra sao?",
+      "answer": "Deployment tạo ReplicaSet mới, **tăng dần Pod mới, giảm dần Pod cũ** theo `maxSurge` và `maxUnavailable`; chỉ chuyển tiếp khi Pod mới **ready**.\n- Rollback: `kubectl rollout undo deployment/api` (hoặc `--to-revision`), xem `kubectl rollout status/history`.\n- Muốn an toàn hơn: **canary**, **blue-green** (Argo Rollouts, Flagger) theo metric.\n- App cần graceful shutdown + `preStop` để không rớt request.",
+      "explanation": "A Deployment creates a new ReplicaSet and shifts Pods gradually per `maxSurge` and `maxUnavailable`, advancing only when new Pods are ready. Roll back with `kubectl rollout undo`. For safer releases use canary or blue-green with Argo Rollouts or Flagger, and handle graceful shutdown with a `preStop` hook."
+    },
+    {
+      "question": "How do you troubleshoot a Pod in CrashLoopBackOff? / Xử lý Pod bị CrashLoopBackOff thế nào?",
+      "answer": "1. `kubectl describe pod <pod>`: event, exit code, lý do (OOMKilled, probe fail).\n2. `kubectl logs <pod> --previous`: log lần chạy **trước** khi crash.\n3. Nguyên nhân hay gặp: thiếu env/secret/config, không kết nối được DB, sai command, **OOM**, liveness quá gắt, thiếu quyền file.\n4. Debug: `kubectl exec`, `kubectl debug` (ephemeral container), chạy image tạm với `sleep`.\nCác trạng thái khác: `ImagePullBackOff` (sai image/registry auth), `Pending` (thiếu tài nguyên, taint, PVC).",
+      "explanation": "`kubectl describe` shows events and exit reasons; `kubectl logs --previous` shows the crashed run. Common causes: missing config or secrets, unreachable dependencies, wrong command, OOM, harsh liveness probes, permissions. Debug with `exec` or `kubectl debug`. Related states: ImagePullBackOff (image or auth) and Pending (resources, taints, PVCs)."
+    },
+    {
+      "question": "ConfigMap vs Secret? / ConfigMap và Secret khác nhau thế nào?",
+      "answer": "- **ConfigMap**: cấu hình không nhạy cảm.\n- **Secret**: dữ liệu nhạy cảm — nhưng mặc định chỉ **base64**, không mã hoá! Cần bật **encryption at rest** cho etcd, RBAC chặt, hoặc dùng **External Secrets Operator** / Sealed Secrets / Vault.\n- Gắn vào Pod qua env hoặc **mount file** (file tự cập nhật khi đổi; env thì cần restart).",
+      "explanation": "**ConfigMaps** hold non-sensitive config; **Secrets** hold sensitive data but are only base64 by default — enable etcd encryption, tighten RBAC, or use External Secrets, Sealed Secrets or Vault. Mount as files (auto-updated) or env vars (need a restart)."
+    },
+    {
+      "question": "How does autoscaling work in Kubernetes? / Autoscaling trong Kubernetes hoạt động thế nào?",
+      "answer": "- **HPA**: tăng/giảm số Pod theo CPU/memory hoặc **custom metric** (RPS, queue lag). Cần đặt requests.\n- **VPA**: điều chỉnh requests/limits của Pod.\n- **Cluster Autoscaler / Karpenter**: thêm/bớt **node** khi Pod Pending hoặc node thừa.\n- **KEDA**: scale theo event (Kafka lag, SQS), có thể scale về 0.",
+      "explanation": "The **HPA** scales Pod count on CPU, memory or custom metrics; the **VPA** tunes requests; **Cluster Autoscaler** or **Karpenter** add and remove nodes; **KEDA** scales on event sources like queue lag, even to zero."
+    },
+    {
+      "question": "What is an Ingress and Ingress Controller? / Ingress và Ingress Controller là gì?",
+      "answer": "- **Ingress**: tài nguyên khai báo luật routing HTTP(S) từ ngoài vào: host/path → Service, TLS.\n- **Ingress Controller**: phần mềm thực thi luật đó (ingress-nginx, Traefik, AWS Load Balancer Controller). Không có controller thì Ingress không làm gì.\n- **Gateway API** là thế hệ kế tiếp: biểu đạt tốt hơn, tách vai trò (infra vs app team).\n- cert-manager tự cấp chứng chỉ Let's Encrypt.",
+      "explanation": "An **Ingress** declares HTTP routing rules (host/path to Service, TLS); an **Ingress Controller** such as ingress-nginx or Traefik implements them. The **Gateway API** is the more expressive successor with role separation. cert-manager automates certificates."
+    },
+    {
+      "question": "What are namespaces, RBAC, and NetworkPolicy used for? / Namespace, RBAC và NetworkPolicy dùng để làm gì?",
+      "answer": "- **Namespace**: chia cluster logic theo team/môi trường; gắn **ResourceQuota**, LimitRange.\n- **RBAC**: Role/ClusterRole (quyền trên resource) + RoleBinding gắn cho user/ServiceAccount — nguyên tắc quyền tối thiểu.\n- **NetworkPolicy**: firewall giữa Pod (mặc định mọi Pod gọi được nhau) — nên **default deny** rồi mở cái cần. Cần CNI hỗ trợ (Calico, Cilium).",
+      "explanation": "**Namespaces** partition the cluster and carry quotas; **RBAC** binds Roles to users and ServiceAccounts with least privilege; **NetworkPolicies** act as Pod firewalls — start from default-deny, which requires a supporting CNI like Calico or Cilium."
+    },
+    {
+      "question": "How do you handle persistent storage in Kubernetes? / Xử lý lưu trữ bền vững trong Kubernetes thế nào?",
+      "answer": "- **PersistentVolume (PV)**: ổ đĩa thật (EBS, Persistent Disk, NFS).\n- **PersistentVolumeClaim (PVC)**: Pod xin dung lượng; **StorageClass** cấp phát động.\n- Access mode: RWO (một node), RWX (nhiều node, cần NFS/EFS).\n- StatefulSet dùng `volumeClaimTemplates` cho mỗi Pod một PVC.\n- Lời khuyên: DB production thường dùng **dịch vụ managed** (RDS, Cloud SQL) hoặc operator chín muồi (CloudNativePG).",
+      "explanation": "**PVs** represent real storage, **PVCs** request it, and **StorageClasses** provision dynamically. Access modes include RWO and RWX. StatefulSets use `volumeClaimTemplates` for per-Pod volumes. For production databases, prefer managed services or mature operators like CloudNativePG."
+    },
+    {
+      "question": "What is Helm, and Helm vs Kustomize? / Helm là gì, so với Kustomize thế nào?",
+      "answer": "- **Helm**: package manager cho K8s — **chart** gồm template + `values.yaml`, có versioning, release, rollback; nhiều chart cộng đồng.\n- **Kustomize**: không template; **base + overlay** vá YAML theo môi trường; tích hợp sẵn `kubectl -k`.\n- Thường dùng cùng **GitOps** (Argo CD, Flux): Git là nguồn sự thật, controller tự đồng bộ cluster.",
+      "explanation": "**Helm** packages manifests as templated **charts** with values, versioned releases and rollbacks. **Kustomize** avoids templating, patching a base with per-environment overlays. Both pair well with **GitOps** tools like Argo CD or Flux, where Git is the source of truth."
+    }
+  ]
+}

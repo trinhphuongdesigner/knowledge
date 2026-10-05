@@ -1,0 +1,269 @@
+{
+  "slug": "sports-02-gym-fitness",
+  "order": 162,
+  "title": "Sports 2 · Gym & Fitness",
+  "description": "Từ vựng tập gym, thể hình và dinh dưỡng (CEFR A2–B2). Phù hợp cho dân văn phòng muốn giữ sức khoẻ.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "work out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/wɜːrk aʊt/",
+      "answer": "tập luyện",
+      "explanation": "I work out three times a week.\n→ Tôi tập luyện ba buổi mỗi tuần."
+    },
+    {
+      "question": "workout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɜːrkaʊt/",
+      "answer": "buổi tập",
+      "explanation": "That was a tough workout.\n→ Buổi tập đó thật vất vả."
+    },
+    {
+      "question": "warm up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/wɔːrm ʌp/",
+      "answer": "khởi động",
+      "explanation": "Always warm up before lifting.\n→ Luôn khởi động trước khi nâng tạ."
+    },
+    {
+      "question": "cool down",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/kuːl daʊn/",
+      "answer": "thả lỏng sau tập",
+      "explanation": "Stretch to cool down after running.\n→ Giãn cơ để thả lỏng sau khi chạy."
+    },
+    {
+      "question": "stretch",
+      "partOfSpeech": "verb",
+      "phonetic": "/stretʃ/",
+      "answer": "giãn cơ",
+      "explanation": "Stretch your back every hour at work.\n→ Giãn lưng mỗi giờ khi làm việc."
+    },
+    {
+      "question": "personal trainer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɜːrsənəl ˈtreɪnər/",
+      "answer": "huấn luyện viên cá nhân",
+      "explanation": "My personal trainer pushes me hard.\n→ Huấn luyện viên cá nhân bắt tôi tập rất nặng."
+    },
+    {
+      "question": "membership",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmembərʃɪp/",
+      "answer": "thẻ hội viên",
+      "explanation": "A gym membership costs 500,000 dong a month.\n→ Thẻ tập gym giá 500.000 đồng mỗi tháng."
+    },
+    {
+      "question": "dumbbell",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʌmbel/",
+      "answer": "tạ tay",
+      "explanation": "Grab a pair of 10 kg dumbbells.\n→ Lấy một cặp tạ tay 10 kg."
+    },
+    {
+      "question": "barbell",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːrbel/",
+      "answer": "tạ đòn",
+      "explanation": "Load the barbell carefully.\n→ Lắp tạ đòn cẩn thận."
+    },
+    {
+      "question": "treadmill",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtredmɪl/",
+      "answer": "máy chạy bộ",
+      "explanation": "I run on the treadmill when it rains.\n→ Trời mưa thì tôi chạy máy."
+    },
+    {
+      "question": "rep",
+      "partOfSpeech": "noun",
+      "phonetic": "/rep/",
+      "answer": "lần lặp (một động tác)",
+      "explanation": "Do 12 reps.\n→ Làm 12 lần."
+    },
+    {
+      "question": "set",
+      "partOfSpeech": "noun",
+      "phonetic": "/set/",
+      "answer": "hiệp (nhóm lần lặp)",
+      "explanation": "Do three sets of 12 reps.\n→ Làm ba hiệp, mỗi hiệp 12 lần."
+    },
+    {
+      "question": "squat",
+      "partOfSpeech": "noun",
+      "phonetic": "/skwɑːt/",
+      "answer": "động tác gánh đùi",
+      "explanation": "Squats build strong legs.\n→ Squat giúp chân khoẻ."
+    },
+    {
+      "question": "push-up",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʊʃ ʌp/",
+      "answer": "chống đẩy",
+      "explanation": "Can you do 50 push-ups?\n→ Bạn chống đẩy được 50 cái không?"
+    },
+    {
+      "question": "pull-up",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʊl ʌp/",
+      "answer": "hít xà",
+      "explanation": "Pull-ups are hard for beginners.\n→ Hít xà rất khó với người mới."
+    },
+    {
+      "question": "plank",
+      "partOfSpeech": "noun",
+      "phonetic": "/plæŋk/",
+      "answer": "tư thế plank",
+      "explanation": "Hold the plank for one minute.\n→ Giữ plank một phút."
+    },
+    {
+      "question": "cardio",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːrdioʊ/",
+      "answer": "bài tập tim mạch",
+      "explanation": "I do 20 minutes of cardio after weights.\n→ Tôi tập cardio 20 phút sau khi tập tạ."
+    },
+    {
+      "question": "muscle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmʌsəl/",
+      "answer": "cơ bắp",
+      "explanation": "You need protein to build muscle.\n→ Cần protein để phát triển cơ."
+    },
+    {
+      "question": "sore",
+      "partOfSpeech": "adjective",
+      "phonetic": "/sɔːr/",
+      "answer": "đau nhức",
+      "explanation": "My legs are sore after yesterday's workout.\n→ Chân tôi đau nhức sau buổi tập hôm qua."
+    },
+    {
+      "question": "strength",
+      "partOfSpeech": "noun",
+      "phonetic": "/streŋθ/",
+      "answer": "sức mạnh",
+      "explanation": "Strength training is good for your bones.\n→ Tập sức mạnh tốt cho xương."
+    },
+    {
+      "question": "endurance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈdʊrəns/",
+      "answer": "sức bền",
+      "explanation": "Running improves endurance.\n→ Chạy bộ cải thiện sức bền."
+    },
+    {
+      "question": "flexibility",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌfleksəˈbɪləti/",
+      "answer": "độ dẻo dai",
+      "explanation": "Yoga improves flexibility.\n→ Yoga giúp tăng độ dẻo dai."
+    },
+    {
+      "question": "posture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːstʃər/",
+      "answer": "tư thế",
+      "explanation": "Sitting all day ruins your posture.\n→ Ngồi cả ngày làm hỏng tư thế."
+    },
+    {
+      "question": "lose weight",
+      "partOfSpeech": "phrase",
+      "phonetic": "/luːz weɪt/",
+      "answer": "giảm cân",
+      "explanation": "I want to lose 5 kg before summer.\n→ Tôi muốn giảm 5 kg trước mùa hè."
+    },
+    {
+      "question": "gain muscle",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡeɪn ˈmʌsəl/",
+      "answer": "tăng cơ",
+      "explanation": "Eat more protein to gain muscle.\n→ Ăn nhiều protein để tăng cơ."
+    },
+    {
+      "question": "calorie",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæləri/",
+      "answer": "calo",
+      "explanation": "How many calories did you burn?\n→ Bạn đốt được bao nhiêu calo?"
+    },
+    {
+      "question": "protein",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈproʊtiːn/",
+      "answer": "chất đạm",
+      "explanation": "Eggs are a cheap source of protein.\n→ Trứng là nguồn đạm rẻ."
+    },
+    {
+      "question": "supplement",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌplɪmənt/",
+      "answer": "thực phẩm bổ sung",
+      "explanation": "I don't take any supplements.\n→ Tôi không dùng thực phẩm bổ sung nào."
+    },
+    {
+      "question": "diet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdaɪət/",
+      "answer": "chế độ ăn",
+      "explanation": "A healthy diet matters more than exercise.\n→ Chế độ ăn lành mạnh quan trọng hơn tập luyện."
+    },
+    {
+      "question": "body fat",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːdi fæt/",
+      "answer": "mỡ cơ thể",
+      "explanation": "My body fat dropped to 18%.\n→ Mỡ cơ thể tôi giảm xuống 18%."
+    },
+    {
+      "question": "routine",
+      "partOfSpeech": "noun",
+      "phonetic": "/ruːˈtiːn/",
+      "answer": "lịch tập cố định",
+      "explanation": "Stick to your routine.\n→ Hãy kiên trì với lịch tập."
+    },
+    {
+      "question": "progress",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːɡres/",
+      "answer": "sự tiến bộ",
+      "explanation": "Track your progress every week.\n→ Theo dõi tiến bộ mỗi tuần."
+    },
+    {
+      "question": "rest day",
+      "partOfSpeech": "noun",
+      "phonetic": "/rest deɪ/",
+      "answer": "ngày nghỉ",
+      "explanation": "Rest days help your muscles recover.\n→ Ngày nghỉ giúp cơ hồi phục."
+    },
+    {
+      "question": "recover",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈkʌvər/",
+      "answer": "hồi phục",
+      "explanation": "Sleep helps your body recover.\n→ Giấc ngủ giúp cơ thể hồi phục."
+    },
+    {
+      "question": "injury",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪndʒəri/",
+      "answer": "chấn thương",
+      "explanation": "Bad form causes injuries.\n→ Sai tư thế gây chấn thương."
+    },
+    {
+      "question": "fit",
+      "partOfSpeech": "adjective",
+      "phonetic": "/fɪt/",
+      "answer": "cân đối, khoẻ mạnh",
+      "explanation": "She's very fit for her age.\n→ Cô ấy rất khoẻ so với tuổi."
+    },
+    {
+      "question": "no pain, no gain",
+      "partOfSpeech": "idiom",
+      "phonetic": "/noʊ peɪn noʊ ɡeɪn/",
+      "answer": "có khổ mới có thành quả",
+      "explanation": "Learning English is hard, but no pain, no gain.\n→ Học tiếng Anh khó, nhưng có khổ mới có thành công."
+    }
+  ]
+}

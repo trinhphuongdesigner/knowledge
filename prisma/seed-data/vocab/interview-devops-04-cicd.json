@@ -1,0 +1,70 @@
+{
+  "slug": "interview-devops-04-cicd",
+  "order": 213,
+  "title": "Phỏng vấn DevOps · CI/CD & Release Strategies",
+  "description": "Câu hỏi phỏng vấn về CI/CD pipeline, chiến lược deploy (blue-green, canary), feature flag, GitOps, migration không downtime. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "What is the difference between CI, continuous delivery and continuous deployment? / CI, continuous delivery và continuous deployment khác nhau thế nào?",
+      "answer": "- **CI**: merge code thường xuyên vào nhánh chính, mỗi lần đều **build + test tự động**.\n- **Continuous Delivery**: mọi commit qua pipeline đều **sẵn sàng release**; deploy production cần **bấm duyệt**.\n- **Continuous Deployment**: tự động deploy lên production nếu pipeline xanh, không cần người duyệt.",
+      "explanation": "**CI** merges frequently with automated build and tests on every change. **Continuous delivery** keeps every passing build releasable, with a manual production approval. **Continuous deployment** ships every green build to production automatically."
+    },
+    {
+      "question": "What stages does a typical CI/CD pipeline have? / Một pipeline CI/CD điển hình có những bước nào?",
+      "answer": "1. Checkout, cài dependency (có **cache**).\n2. Lint, type-check, format.\n3. **Unit test**, coverage.\n4. Build artifact / Docker image (gắn tag = git SHA).\n5. **Quét bảo mật**: dependency (npm audit, Snyk), SAST, image scan, secret scan.\n6. Integration/E2E test với service thật (container).\n7. Push image lên registry → deploy staging → smoke test → (duyệt) → production → giám sát, tự rollback.",
+      "explanation": "Checkout and cached install; lint and type-check; unit tests; build an artifact or image tagged with the commit SHA; dependency, SAST, image and secret scans; integration/E2E tests; push to a registry; deploy to staging, smoke test, promote to production and monitor with automatic rollback."
+    },
+    {
+      "question": "Blue-green vs canary vs rolling deployment? / Blue-green, canary và rolling deployment khác nhau thế nào?",
+      "answer": "- **Rolling**: thay dần từng instance; tiết kiệm tài nguyên; hai phiên bản cùng chạy một lúc.\n- **Blue-green**: dựng toàn bộ môi trường mới (green), chuyển traffic **một lần**; rollback tức thì bằng cách chuyển lại; tốn gấp đôi tài nguyên.\n- **Canary**: đưa **một phần nhỏ traffic** (1% → 10% → 50% → 100%) sang bản mới, theo dõi error rate/latency, tự động dừng nếu xấu → rủi ro thấp nhất.",
+      "explanation": "**Rolling** replaces instances gradually and cheaply, with two versions live briefly. **Blue-green** stands up a full new environment and switches all traffic at once — instant rollback but double capacity. **Canary** routes a small, growing share of traffic to the new version and halts automatically on bad metrics — the lowest-risk option."
+    },
+    {
+      "question": "What are feature flags and why use them? / Feature flag là gì và dùng để làm gì?",
+      "answer": "Bật/tắt tính năng **lúc runtime** mà không cần deploy.\n- **Tách deploy khỏi release**: merge code chưa xong vào main (trunk-based) nhưng ẩn đi.\n- Release dần theo % user, theo nhóm (beta), A/B test.\n- **Kill switch** tắt nhanh tính năng lỗi.\n- Công cụ: LaunchDarkly, Unleash, GrowthBook, Flagsmith.\n- Nhược: **nợ kỹ thuật** nếu không dọn flag cũ; tăng số tổ hợp cần test.",
+      "explanation": "Feature flags toggle behavior at runtime, **decoupling deploy from release**: ship unfinished code dark, roll out by percentage or cohort, run A/B tests, and keep kill switches. Tools include LaunchDarkly, Unleash and GrowthBook. Clean up stale flags to avoid debt."
+    },
+    {
+      "question": "How do you run database migrations with zero downtime? / Chạy migration DB không downtime thế nào?",
+      "answer": "Dùng mẫu **expand → migrate → contract**, vì code cũ và mới chạy song song khi deploy:\n1. **Expand**: thêm cột/bảng mới (nullable), không xoá gì; code ghi cả hai chỗ.\n2. **Backfill** dữ liệu theo batch.\n3. Chuyển code sang đọc cột mới.\n4. **Contract**: deploy sau mới xoá cột cũ.\nLưu ý: tránh khoá bảng lâu (`CREATE INDEX CONCURRENTLY`, đặt `lock_timeout`), không đổi tên cột trực tiếp.",
+      "explanation": "Use **expand → migrate → contract**, because old and new code run simultaneously: add nullable columns or tables, dual-write, backfill in batches, switch reads, and drop old columns in a later release. Avoid long locks (`CREATE INDEX CONCURRENTLY`, `lock_timeout`) and never rename columns in one step."
+    },
+    {
+      "question": "What is GitOps? / GitOps là gì?",
+      "answer": "**Git là nguồn sự thật** cho trạng thái hạ tầng/ứng dụng mong muốn (manifest K8s, Helm values).\n- Một agent trong cluster (**Argo CD, Flux**) **kéo (pull)** và đồng bộ liên tục, phát hiện **drift**.\n- Deploy = merge PR; rollback = revert commit; có audit trail và review.\n- CI không cần credential vào cluster (bảo mật hơn mô hình push).",
+      "explanation": "In GitOps, **Git holds the desired state**; an in-cluster agent like Argo CD or Flux pulls and continuously reconciles it, detecting drift. Deploying is merging a PR, rollback is a revert, and CI needs no cluster credentials."
+    },
+    {
+      "question": "Trunk-based development vs GitFlow? / Trunk-based development và GitFlow khác nhau thế nào?",
+      "answer": "- **GitFlow**: nhiều nhánh dài (develop, release, hotfix, feature) → hợp phần mềm release theo phiên bản, nhưng **merge conflict** và tích hợp muộn.\n- **Trunk-based**: nhánh ngắn (≤1–2 ngày), merge vào main liên tục, dùng **feature flag** để ẩn phần chưa xong → hợp CI/CD, deploy nhiều lần/ngày. Được DORA khuyến nghị.",
+      "explanation": "**GitFlow** uses long-lived develop, release and hotfix branches — suits versioned releases but causes painful merges and late integration. **Trunk-based development** uses short-lived branches merged to main continuously with feature flags — the model that best supports CI/CD, as DORA research shows."
+    },
+    {
+      "question": "What are the DORA metrics? / DORA metrics là gì?",
+      "answer": "Bốn chỉ số đo hiệu quả delivery:\n- **Deployment frequency**: tần suất deploy production.\n- **Lead time for changes**: từ commit tới production.\n- **Change failure rate**: % deploy gây sự cố.\n- **Time to restore service (MTTR)**: thời gian khôi phục.\nĐội tốt nhất: deploy nhiều lần/ngày, lead time < 1 ngày, tỷ lệ lỗi thấp, khôi phục < 1 giờ — tốc độ và ổn định **đi cùng nhau**.",
+      "explanation": "The four DORA metrics are **deployment frequency**, **lead time for changes**, **change failure rate** and **time to restore service**. Elite teams deploy many times a day with sub-day lead times, low failure rates and recovery under an hour — speed and stability go together."
+    },
+    {
+      "question": "How do you speed up a slow CI pipeline? / Tăng tốc pipeline CI chậm thế nào?",
+      "answer": "- **Cache** dependency và build (npm/pnpm store, Docker layer cache, Turborepo/Nx remote cache).\n- **Song song hoá**: tách job, **sharding** test.\n- Chỉ chạy những gì bị ảnh hưởng (**affected**) trong monorepo.\n- Runner mạnh hơn, image dựng sẵn công cụ.\n- Đưa test chậm (E2E) sang sau merge hoặc chạy theo lịch; sửa/cách ly **flaky test**.",
+      "explanation": "Cache dependencies and builds (package stores, Docker layers, remote build caches), parallelize and shard tests, run only affected projects in monorepos, use faster runners and prebuilt images, move slow E2E suites later, and fix or quarantine flaky tests."
+    },
+    {
+      "question": "How do you manage artifact versioning and promotion between environments? / Quản lý version artifact và promote giữa các môi trường thế nào?",
+      "answer": "- **Build once, deploy many**: build một lần, cùng một image (định danh bằng **digest/git SHA**) đi qua dev → staging → prod; chỉ cấu hình khác nhau.\n- Không build lại cho từng môi trường (dễ sai khác).\n- Tag dễ đọc theo semver cho release; không dùng `latest` ở production.\n- Ký và tạo **SBOM** cho artifact (supply chain security).",
+      "explanation": "**Build once, deploy many**: promote the same immutable artifact, identified by digest or commit SHA, through every environment with only config changing. Never rebuild per environment, avoid `latest` in production, and sign artifacts with an SBOM for supply-chain security."
+    },
+    {
+      "question": "How do you secure a CI/CD pipeline? / Bảo mật pipeline CI/CD thế nào?",
+      "answer": "- Dùng **OIDC federation** tới cloud thay vì key tĩnh lưu trong CI.\n- Quyền tối thiểu cho token pipeline; secret theo môi trường, có **approval** cho production.\n- **Pin** action/plugin bên thứ ba theo commit SHA.\n- Không chạy workflow có secret cho PR từ **fork** chưa tin cậy.\n- Branch protection, review bắt buộc, commit ký.\n- Quét dependency, SBOM, ký artifact (Sigstore), SLSA provenance.",
+      "explanation": "Use **OIDC federation** instead of static cloud keys, least-privilege tokens, environment-scoped secrets with production approvals, third-party actions pinned to SHAs, no secrets for untrusted fork PRs, branch protection and required reviews, plus dependency scanning, SBOMs, signing and provenance."
+    },
+    {
+      "question": "What is the difference between a smoke test, an integration test and an E2E test? / Smoke test, integration test và E2E test khác nhau thế nào?",
+      "answer": "- **Smoke test**: kiểm tra nhanh vài luồng chính sau deploy (\"app có lên không, login được không\").\n- **Integration test**: kiểm tra các thành phần **phối hợp** (service + DB thật trong container, Testcontainers).\n- **E2E test**: mô phỏng **người dùng thật** qua UI toàn hệ thống (Playwright, Cypress) — chậm, dễ flaky, nên ít.\n- **Test pyramid**: nhiều unit, vừa integration, ít E2E.",
+      "explanation": "**Smoke tests** quickly verify critical paths after deploy; **integration tests** exercise components together with real dependencies (Testcontainers); **E2E tests** drive the whole system like a user (Playwright) — slow and flaky, so keep them few. Follow the test pyramid."
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "slug": "tech-07-code-review-documentation",
+  "order": 107,
+  "title": "Tech English 7 · Code Review & Technical Writing",
+  "description": "Cụm từ dùng khi review code, viết PR, tài liệu kỹ thuật và trao đổi bất đồng bộ (CEFR B1–B2). Giúp viết comment lịch sự, rõ ràng như kỹ sư bản xứ.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "pull request",
+      "partOfSpeech": "noun",
+      "phonetic": "/pʊl rɪˈkwest/",
+      "answer": "yêu cầu hợp nhất code (PR)",
+      "explanation": "I opened a pull request for the login fix.\n→ Tôi đã mở PR cho bản sửa lỗi đăng nhập."
+    },
+    {
+      "question": "reviewer",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈvjuːər/",
+      "answer": "người review",
+      "explanation": "Please add two reviewers to your PR.\n→ Vui lòng thêm hai người review vào PR của bạn."
+    },
+    {
+      "question": "approve",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈpruːv/",
+      "answer": "phê duyệt",
+      "explanation": "The PR needs one more approval before merging.\n→ PR cần thêm một phê duyệt trước khi merge."
+    },
+    {
+      "question": "request changes",
+      "partOfSpeech": "phrase",
+      "phonetic": "/rɪˈkwest ˈtʃeɪndʒɪz/",
+      "answer": "yêu cầu chỉnh sửa",
+      "explanation": "She requested changes because the tests were missing.\n→ Cô ấy yêu cầu sửa vì thiếu test."
+    },
+    {
+      "question": "nit",
+      "partOfSpeech": "noun",
+      "phonetic": "/nɪt/",
+      "answer": "góp ý nhỏ, không bắt buộc",
+      "explanation": "Nit: this variable name could be clearer.\n→ Góp ý nhỏ: tên biến này có thể rõ hơn."
+    },
+    {
+      "question": "LGTM",
+      "partOfSpeech": "abbreviation",
+      "phonetic": "/ˌel dʒiː tiː ˈem/",
+      "answer": "trông ổn (Looks Good To Me)",
+      "explanation": "LGTM, feel free to merge.\n→ Ổn rồi, cứ merge nhé."
+    },
+    {
+      "question": "address",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈdres/",
+      "answer": "xử lý (góp ý, vấn đề)",
+      "explanation": "I've addressed all your comments.\n→ Tôi đã xử lý hết các góp ý của bạn."
+    },
+    {
+      "question": "resolve",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈzɑːlv/",
+      "answer": "đánh dấu đã giải quyết",
+      "explanation": "Resolve the thread once the fix is pushed.\n→ Đánh dấu luồng đã xong khi đã đẩy bản sửa."
+    },
+    {
+      "question": "suggestion",
+      "partOfSpeech": "noun",
+      "phonetic": "/səɡˈdʒestʃən/",
+      "answer": "đề xuất",
+      "explanation": "Just a suggestion: we could reuse the existing helper.\n→ Chỉ là đề xuất: ta có thể dùng lại hàm helper có sẵn."
+    },
+    {
+      "question": "readability",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌriːdəˈbɪləti/",
+      "answer": "tính dễ đọc",
+      "explanation": "Split this function to improve readability.\n→ Tách hàm này để dễ đọc hơn."
+    },
+    {
+      "question": "maintainability",
+      "partOfSpeech": "noun",
+      "phonetic": "/meɪnˌteɪnəˈbɪləti/",
+      "answer": "tính dễ bảo trì",
+      "explanation": "Hard-coded values hurt maintainability.\n→ Giá trị gán cứng làm giảm tính dễ bảo trì."
+    },
+    {
+      "question": "edge case",
+      "partOfSpeech": "noun",
+      "phonetic": "/edʒ keɪs/",
+      "answer": "trường hợp biên",
+      "explanation": "What happens in the edge case where the list is empty?\n→ Chuyện gì xảy ra ở trường hợp biên khi danh sách rỗng?"
+    },
+    {
+      "question": "side effect",
+      "partOfSpeech": "noun",
+      "phonetic": "/saɪd ɪˈfekt/",
+      "answer": "tác dụng phụ",
+      "explanation": "This function has a hidden side effect: it changes the input.\n→ Hàm này có tác dụng phụ ẩn: nó thay đổi dữ liệu đầu vào."
+    },
+    {
+      "question": "naming",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈneɪmɪŋ/",
+      "answer": "cách đặt tên",
+      "explanation": "Good naming removes the need for most comments.\n→ Đặt tên tốt sẽ bớt được phần lớn comment."
+    },
+    {
+      "question": "dead code",
+      "partOfSpeech": "noun",
+      "phonetic": "/ded koʊd/",
+      "answer": "code thừa không dùng",
+      "explanation": "Please remove the dead code before merging.\n→ Vui lòng xoá code thừa trước khi merge."
+    },
+    {
+      "question": "duplication",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌduːplɪˈkeɪʃən/",
+      "answer": "trùng lặp",
+      "explanation": "There is some duplication between these two services.\n→ Có một chút trùng lặp giữa hai service này."
+    },
+    {
+      "question": "out of scope",
+      "partOfSpeech": "phrase",
+      "phonetic": "/aʊt əv skoʊp/",
+      "answer": "ngoài phạm vi",
+      "explanation": "That refactor is out of scope for this PR.\n→ Việc refactor đó nằm ngoài phạm vi PR này."
+    },
+    {
+      "question": "follow-up",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɑːloʊ ʌp/",
+      "answer": "việc làm tiếp sau",
+      "explanation": "Let's handle that in a follow-up PR.\n→ Mình xử lý việc đó ở một PR tiếp theo nhé."
+    },
+    {
+      "question": "blocking",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈblɑːkɪŋ/",
+      "answer": "chặn (phải sửa mới được merge)",
+      "explanation": "This is non-blocking, but worth fixing later.\n→ Cái này không chặn merge nhưng nên sửa sau."
+    },
+    {
+      "question": "rationale",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌræʃəˈnæl/",
+      "answer": "lý do, cơ sở",
+      "explanation": "Can you explain the rationale behind this approach?\n→ Bạn giải thích lý do chọn cách làm này được không?"
+    },
+    {
+      "question": "clarify",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈklerəfaɪ/",
+      "answer": "làm rõ",
+      "explanation": "Could you clarify what this flag does?\n→ Bạn làm rõ cờ này dùng để làm gì được không?"
+    },
+    {
+      "question": "I'm not sure I follow",
+      "partOfSpeech": "phrase",
+      "phonetic": "/aɪm nɑːt ʃʊr aɪ ˈfɑːloʊ/",
+      "answer": "tôi chưa hiểu ý lắm",
+      "explanation": "I'm not sure I follow. Why do we need a second cache?\n→ Tôi chưa hiểu lắm. Sao ta cần thêm cache thứ hai?"
+    },
+    {
+      "question": "what do you think about",
+      "partOfSpeech": "phrase",
+      "phonetic": "/wʌt də juː θɪŋk əˈbaʊt/",
+      "answer": "bạn nghĩ sao về (góp ý mềm mỏng)",
+      "explanation": "What do you think about moving this logic to the service layer?\n→ Bạn nghĩ sao về việc chuyển logic này sang tầng service?"
+    },
+    {
+      "question": "documentation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdɑːkjumenˈteɪʃən/",
+      "answer": "tài liệu",
+      "explanation": "The documentation is out of date.\n→ Tài liệu đã lỗi thời."
+    },
+    {
+      "question": "README",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈriːd miː/",
+      "answer": "tệp hướng dẫn dự án",
+      "explanation": "Update the README with the new setup steps.\n→ Cập nhật README với các bước cài đặt mới."
+    },
+    {
+      "question": "changelog",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃeɪndʒlɔːɡ/",
+      "answer": "nhật ký thay đổi",
+      "explanation": "Add an entry to the changelog for this fix.\n→ Thêm một mục vào changelog cho bản sửa này."
+    },
+    {
+      "question": "inline comment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnlaɪn ˈkɑːment/",
+      "answer": "chú thích trong dòng code",
+      "explanation": "Leave an inline comment explaining the magic number.\n→ Để một chú thích giải thích con số đặc biệt này."
+    },
+    {
+      "question": "docstring",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɑːkstrɪŋ/",
+      "answer": "chú thích mô tả hàm",
+      "explanation": "Every public function should have a docstring.\n→ Mọi hàm public nên có chú thích mô tả."
+    },
+    {
+      "question": "specification",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌspesɪfɪˈkeɪʃən/",
+      "answer": "đặc tả",
+      "explanation": "The API specification is written in OpenAPI.\n→ Đặc tả API được viết bằng OpenAPI."
+    },
+    {
+      "question": "RFC",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɑːr ef ˈsiː/",
+      "answer": "tài liệu đề xuất thiết kế",
+      "explanation": "Write an RFC before changing the database schema.\n→ Hãy viết tài liệu đề xuất trước khi thay đổi schema CSDL."
+    },
+    {
+      "question": "proposal",
+      "partOfSpeech": "noun",
+      "phonetic": "/prəˈpoʊzəl/",
+      "answer": "bản đề xuất",
+      "explanation": "Your proposal looks solid, but let's discuss the cost.\n→ Đề xuất của bạn khá chắc nhưng mình bàn thêm về chi phí."
+    },
+    {
+      "question": "diagram",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdaɪəɡræm/",
+      "answer": "sơ đồ",
+      "explanation": "A sequence diagram would make this flow easier to understand.\n→ Một sơ đồ tuần tự sẽ giúp luồng này dễ hiểu hơn."
+    },
+    {
+      "question": "step-by-step",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌstep baɪ ˈstep/",
+      "answer": "từng bước",
+      "explanation": "Write step-by-step instructions for the deployment.\n→ Viết hướng dẫn triển khai từng bước."
+    },
+    {
+      "question": "concise",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kənˈsaɪs/",
+      "answer": "ngắn gọn, súc tích",
+      "explanation": "Keep commit messages concise.\n→ Giữ thông điệp commit ngắn gọn."
+    },
+    {
+      "question": "TL;DR",
+      "partOfSpeech": "abbreviation",
+      "phonetic": "/ˌtiː el diː ˈɑːr/",
+      "answer": "tóm tắt nhanh (Too Long; Didn't Read)",
+      "explanation": "TL;DR: the bug was caused by a wrong time zone.\n→ Tóm tắt: lỗi do sai múi giờ."
+    },
+    {
+      "question": "heads-up",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedz ʌp/",
+      "answer": "báo trước",
+      "explanation": "Just a heads-up: staging will be down tonight.\n→ Báo trước: tối nay staging sẽ tạm ngừng."
+    },
+    {
+      "question": "FYI",
+      "partOfSpeech": "abbreviation",
+      "phonetic": "/ˌef waɪ ˈaɪ/",
+      "answer": "để bạn biết (For Your Information)",
+      "explanation": "FYI, the client moved the demo to Thursday.\n→ Để bạn biết, khách hàng dời demo sang thứ Năm."
+    },
+    {
+      "question": "ETA",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌiː tiː ˈeɪ/",
+      "answer": "thời gian dự kiến hoàn thành",
+      "explanation": "What's the ETA for the hotfix?\n→ Bản hotfix dự kiến khi nào xong?"
+    },
+    {
+      "question": "blocker",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈblɑːkər/",
+      "answer": "trở ngại chặn tiến độ",
+      "explanation": "My only blocker is access to the staging database.\n→ Trở ngại duy nhất của tôi là quyền truy cập CSDL staging."
+    },
+    {
+      "question": "async",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈeɪsɪŋk/",
+      "answer": "trao đổi không đồng thời",
+      "explanation": "Let's discuss this async in the thread instead of a meeting.\n→ Mình trao đổi qua thread thay vì họp nhé."
+    },
+    {
+      "question": "loop in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/luːp ɪn/",
+      "answer": "kéo ai vào cuộc trao đổi",
+      "explanation": "Let me loop in the security team.\n→ Để tôi kéo đội bảo mật vào cùng."
+    },
+    {
+      "question": "sync up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/sɪŋk ʌp/",
+      "answer": "trao đổi nhanh để thống nhất",
+      "explanation": "Can we sync up for ten minutes after lunch?\n→ Mình trao đổi mười phút sau bữa trưa được không?"
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "slug": "tech-02-internet-social-media",
+  "order": 102,
+  "title": "Tech English 2 · Internet & Social Media",
+  "description": "Từ vựng về mạng xã hội, nội dung số và đời sống online (CEFR A2–B2). Dùng khi đọc tin tức công nghệ, bình luận hoặc nói về thói quen dùng mạng.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "social media",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsoʊʃəl ˈmiːdiə/",
+      "answer": "mạng xã hội",
+      "explanation": "I spend too much time on social media.\n→ Tôi dành quá nhiều thời gian cho mạng xã hội."
+    },
+    {
+      "question": "post",
+      "partOfSpeech": "verb",
+      "phonetic": "/poʊst/",
+      "answer": "đăng bài",
+      "explanation": "She posted a photo of her new apartment.\n→ Cô ấy đăng ảnh căn hộ mới của mình."
+    },
+    {
+      "question": "share",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʃer/",
+      "answer": "chia sẻ",
+      "explanation": "Please share this article if you find it useful.\n→ Hãy chia sẻ bài viết nếu bạn thấy nó hữu ích."
+    },
+    {
+      "question": "comment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːment/",
+      "answer": "bình luận",
+      "explanation": "The comments under the video were really funny.\n→ Phần bình luận dưới video thật sự rất hài hước."
+    },
+    {
+      "question": "follower",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɑːloʊər/",
+      "answer": "người theo dõi",
+      "explanation": "His channel reached one million followers.\n→ Kênh của anh ấy đạt một triệu người theo dõi."
+    },
+    {
+      "question": "follow",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈfɑːloʊ/",
+      "answer": "theo dõi",
+      "explanation": "I follow a few developers who post great tips.\n→ Tôi theo dõi vài lập trình viên hay đăng mẹo hay."
+    },
+    {
+      "question": "unfollow",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʌnˈfɑːloʊ/",
+      "answer": "bỏ theo dõi",
+      "explanation": "I unfollowed accounts that made me feel stressed.\n→ Tôi bỏ theo dõi những tài khoản khiến tôi căng thẳng."
+    },
+    {
+      "question": "feed",
+      "partOfSpeech": "noun",
+      "phonetic": "/fiːd/",
+      "answer": "bảng tin",
+      "explanation": "My feed is full of ads these days.\n→ Bảng tin của tôi dạo này toàn quảng cáo."
+    },
+    {
+      "question": "hashtag",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhæʃtæɡ/",
+      "answer": "thẻ hashtag",
+      "explanation": "Use a hashtag so people can find your post.\n→ Dùng hashtag để mọi người tìm thấy bài của bạn."
+    },
+    {
+      "question": "trending",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈtrendɪŋ/",
+      "answer": "đang thịnh hành",
+      "explanation": "This song is trending on TikTok right now.\n→ Bài hát này đang thịnh hành trên TikTok."
+    },
+    {
+      "question": "go viral",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡoʊ ˈvaɪrəl/",
+      "answer": "lan truyền mạnh, nổi đình đám",
+      "explanation": "Her video went viral overnight.\n→ Video của cô ấy nổi tiếng chỉ sau một đêm."
+    },
+    {
+      "question": "influencer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnfluənsər/",
+      "answer": "người có sức ảnh hưởng",
+      "explanation": "Many brands pay influencers to promote their products.\n→ Nhiều thương hiệu trả tiền cho người có ảnh hưởng để quảng bá sản phẩm."
+    },
+    {
+      "question": "content creator",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːntent kriˈeɪtər/",
+      "answer": "nhà sáng tạo nội dung",
+      "explanation": "He quit his job to become a full-time content creator.\n→ Anh ấy nghỉ việc để làm nhà sáng tạo nội dung toàn thời gian."
+    },
+    {
+      "question": "livestream",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪvstriːm/",
+      "answer": "phát trực tiếp",
+      "explanation": "The shop sells clothes through a livestream every night.\n→ Cửa hàng bán quần áo qua livestream mỗi tối."
+    },
+    {
+      "question": "subscribe",
+      "partOfSpeech": "verb",
+      "phonetic": "/səbˈskraɪb/",
+      "answer": "đăng ký theo dõi, đăng ký gói",
+      "explanation": "Subscribe to the channel to get new videos.\n→ Đăng ký kênh để nhận video mới."
+    },
+    {
+      "question": "subscription",
+      "partOfSpeech": "noun",
+      "phonetic": "/səbˈskrɪpʃən/",
+      "answer": "gói đăng ký (trả phí)",
+      "explanation": "I cancelled my music subscription to save money.\n→ Tôi huỷ gói nghe nhạc để tiết kiệm tiền."
+    },
+    {
+      "question": "direct message",
+      "partOfSpeech": "noun",
+      "phonetic": "/dəˈrekt ˈmesɪdʒ/",
+      "answer": "tin nhắn riêng (DM)",
+      "explanation": "Send me a direct message with the details.\n→ Nhắn riêng cho tôi chi tiết nhé."
+    },
+    {
+      "question": "tag",
+      "partOfSpeech": "verb",
+      "phonetic": "/tæɡ/",
+      "answer": "gắn thẻ (ai đó)",
+      "explanation": "Don't tag me in that embarrassing photo!\n→ Đừng gắn thẻ tôi vào bức ảnh ngại ngùng đó!"
+    },
+    {
+      "question": "profile picture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈproʊfaɪl ˈpɪktʃər/",
+      "answer": "ảnh đại diện",
+      "explanation": "You should use a professional profile picture on LinkedIn.\n→ Bạn nên dùng ảnh đại diện chuyên nghiệp trên LinkedIn."
+    },
+    {
+      "question": "privacy settings",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpraɪvəsi ˈsetɪŋz/",
+      "answer": "cài đặt quyền riêng tư",
+      "explanation": "Check your privacy settings so strangers can't see your posts.\n→ Kiểm tra cài đặt quyền riêng tư để người lạ không xem được bài của bạn."
+    },
+    {
+      "question": "block",
+      "partOfSpeech": "verb",
+      "phonetic": "/blɑːk/",
+      "answer": "chặn",
+      "explanation": "I blocked him after he kept sending spam.\n→ Tôi đã chặn anh ta sau khi anh ta liên tục gửi tin rác."
+    },
+    {
+      "question": "report",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈpɔːrt/",
+      "answer": "báo cáo (vi phạm)",
+      "explanation": "You can report fake accounts to the platform.\n→ Bạn có thể báo cáo tài khoản giả với nền tảng."
+    },
+    {
+      "question": "fake news",
+      "partOfSpeech": "noun",
+      "phonetic": "/feɪk nuːz/",
+      "answer": "tin giả",
+      "explanation": "Always check the source before sharing fake news by accident.\n→ Luôn kiểm tra nguồn để tránh vô tình chia sẻ tin giả."
+    },
+    {
+      "question": "scam",
+      "partOfSpeech": "noun",
+      "phonetic": "/skæm/",
+      "answer": "lừa đảo",
+      "explanation": "That message saying you won a prize is a scam.\n→ Tin nhắn báo bạn trúng thưởng là lừa đảo."
+    },
+    {
+      "question": "clickbait",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈklɪkbeɪt/",
+      "answer": "tiêu đề câu view",
+      "explanation": "The title was pure clickbait; the video had nothing new.\n→ Tiêu đề chỉ là câu view, video chẳng có gì mới."
+    },
+    {
+      "question": "algorithm",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈælɡərɪðəm/",
+      "answer": "thuật toán (đề xuất nội dung)",
+      "explanation": "The algorithm keeps showing me cooking videos.\n→ Thuật toán cứ đề xuất cho tôi video nấu ăn."
+    },
+    {
+      "question": "screen time",
+      "partOfSpeech": "noun",
+      "phonetic": "/skriːn taɪm/",
+      "answer": "thời gian dùng màn hình",
+      "explanation": "I try to limit my screen time before bed.\n→ Tôi cố hạn chế thời gian dùng màn hình trước khi ngủ."
+    },
+    {
+      "question": "scroll",
+      "partOfSpeech": "verb",
+      "phonetic": "/skroʊl/",
+      "answer": "lướt, cuộn",
+      "explanation": "I scrolled through my phone for an hour without noticing.\n→ Tôi lướt điện thoại cả tiếng mà không để ý."
+    },
+    {
+      "question": "browse",
+      "partOfSpeech": "verb",
+      "phonetic": "/braʊz/",
+      "answer": "duyệt web, xem lướt",
+      "explanation": "I was just browsing online stores, not buying anything.\n→ Tôi chỉ xem lướt cửa hàng online, không mua gì."
+    },
+    {
+      "question": "search engine",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɜːrtʃ ˈendʒɪn/",
+      "answer": "công cụ tìm kiếm",
+      "explanation": "Google is the most popular search engine.\n→ Google là công cụ tìm kiếm phổ biến nhất."
+    },
+    {
+      "question": "bookmark",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈbʊkmɑːrk/",
+      "answer": "đánh dấu trang",
+      "explanation": "Bookmark this page so you can read it later.\n→ Đánh dấu trang này để đọc sau."
+    },
+    {
+      "question": "download",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌdaʊnˈloʊd/",
+      "answer": "tải xuống",
+      "explanation": "Download the file before the link expires.\n→ Tải tệp xuống trước khi liên kết hết hạn."
+    },
+    {
+      "question": "upload",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌʌpˈloʊd/",
+      "answer": "tải lên",
+      "explanation": "It took forever to upload the video.\n→ Tải video lên mất cả buổi."
+    },
+    {
+      "question": "log in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/lɔːɡ ɪn/",
+      "answer": "đăng nhập",
+      "explanation": "I can't log in because I forgot my password.\n→ Tôi không đăng nhập được vì quên mật khẩu."
+    },
+    {
+      "question": "sign up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/saɪn ʌp/",
+      "answer": "đăng ký tài khoản",
+      "explanation": "Sign up with your email to get a free trial.\n→ Đăng ký bằng email để dùng thử miễn phí."
+    },
+    {
+      "question": "password",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpæswɜːrd/",
+      "answer": "mật khẩu",
+      "explanation": "Use a different password for every account.\n→ Hãy dùng mật khẩu khác nhau cho mỗi tài khoản."
+    },
+    {
+      "question": "two-factor authentication",
+      "partOfSpeech": "noun",
+      "phonetic": "/tuː ˈfæktər ɔːˌθentɪˈkeɪʃən/",
+      "answer": "xác thực hai lớp",
+      "explanation": "Turn on two-factor authentication to protect your account.\n→ Bật xác thực hai lớp để bảo vệ tài khoản."
+    },
+    {
+      "question": "online presence",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːnlaɪn ˈprezəns/",
+      "answer": "sự hiện diện trên mạng",
+      "explanation": "A good portfolio site improves your online presence.\n→ Một trang portfolio tốt giúp tăng sự hiện diện online của bạn."
+    },
+    {
+      "question": "digital footprint",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɪdʒɪtəl ˈfʊtprɪnt/",
+      "answer": "dấu vết số",
+      "explanation": "Everything you post becomes part of your digital footprint.\n→ Mọi thứ bạn đăng đều thành dấu vết số của bạn."
+    },
+    {
+      "question": "troll",
+      "partOfSpeech": "noun",
+      "phonetic": "/troʊl/",
+      "answer": "kẻ chuyên gây rối trên mạng",
+      "explanation": "Don't reply to trolls; it only makes them louder.\n→ Đừng trả lời những kẻ gây rối, chỉ khiến họ hăng hơn."
+    },
+    {
+      "question": "meme",
+      "partOfSpeech": "noun",
+      "phonetic": "/miːm/",
+      "answer": "ảnh chế, meme",
+      "explanation": "My team shares programming memes every Friday.\n→ Nhóm tôi chia sẻ meme lập trình mỗi thứ Sáu."
+    },
+    {
+      "question": "emoji",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈmoʊdʒi/",
+      "answer": "biểu tượng cảm xúc",
+      "explanation": "She replied with a laughing emoji.\n→ Cô ấy trả lời bằng biểu tượng cười."
+    },
+    {
+      "question": "offline",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌɔːfˈlaɪn/",
+      "answer": "ngoại tuyến, không kết nối",
+      "explanation": "I go offline every Sunday to rest.\n→ Chủ nhật nào tôi cũng ngắt mạng để nghỉ ngơi."
+    },
+    {
+      "question": "digital detox",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɪdʒɪtəl ˈdiːtɑːks/",
+      "answer": "cai nghiện thiết bị số",
+      "explanation": "I'm doing a digital detox this weekend.\n→ Cuối tuần này tôi sẽ cai thiết bị số."
+    }
+  ]
+}

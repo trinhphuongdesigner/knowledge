@@ -1,0 +1,297 @@
+{
+  "slug": "careers-05-law-legal",
+  "order": 135,
+  "title": "Careers 5 · Law & Contracts",
+  "description": "Từ vựng pháp lý và hợp đồng (CEFR B2–C1). Hữu ích khi đọc hợp đồng lao động, NDA, điều khoản dịch vụ hoặc làm việc với khách hàng nước ngoài.",
+  "category": "ENGLISH",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "lawyer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɔːjər/",
+      "answer": "luật sư",
+      "explanation": "We hired a lawyer to review the contract.\n→ Chúng tôi thuê luật sư rà soát hợp đồng."
+    },
+    {
+      "question": "attorney",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈtɜːrni/",
+      "answer": "luật sư (Mỹ)",
+      "explanation": "Her attorney advised her not to sign.\n→ Luật sư khuyên cô ấy không ký."
+    },
+    {
+      "question": "legal",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈliːɡəl/",
+      "answer": "hợp pháp, thuộc pháp lý",
+      "explanation": "Is it legal to use this font commercially?\n→ Dùng phông chữ này cho mục đích thương mại có hợp pháp không?"
+    },
+    {
+      "question": "illegal",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪˈliːɡəl/",
+      "answer": "bất hợp pháp",
+      "explanation": "Scraping personal data may be illegal.\n→ Thu thập dữ liệu cá nhân có thể là bất hợp pháp."
+    },
+    {
+      "question": "contract",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːntrækt/",
+      "answer": "hợp đồng",
+      "explanation": "Read the contract carefully before signing.\n→ Đọc kỹ hợp đồng trước khi ký."
+    },
+    {
+      "question": "clause",
+      "partOfSpeech": "noun",
+      "phonetic": "/klɔːz/",
+      "answer": "điều khoản",
+      "explanation": "There's a non-compete clause in my contract.\n→ Hợp đồng của tôi có điều khoản không cạnh tranh."
+    },
+    {
+      "question": "terms and conditions",
+      "partOfSpeech": "noun",
+      "phonetic": "/tɜːrmz ən kənˈdɪʃənz/",
+      "answer": "điều khoản và điều kiện",
+      "explanation": "Nobody reads the terms and conditions.\n→ Chẳng ai đọc điều khoản và điều kiện cả."
+    },
+    {
+      "question": "sign",
+      "partOfSpeech": "verb",
+      "phonetic": "/saɪn/",
+      "answer": "ký",
+      "explanation": "Both parties signed the agreement.\n→ Hai bên đã ký thoả thuận."
+    },
+    {
+      "question": "party",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːrti/",
+      "answer": "bên (trong hợp đồng)",
+      "explanation": "The contract is between two parties.\n→ Hợp đồng giữa hai bên."
+    },
+    {
+      "question": "agreement",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈɡriːmənt/",
+      "answer": "thoả thuận",
+      "explanation": "We reached an agreement after long talks.\n→ Chúng tôi đạt thoả thuận sau thời gian đàm phán dài."
+    },
+    {
+      "question": "NDA",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌen diː ˈeɪ/",
+      "answer": "thoả thuận bảo mật",
+      "explanation": "You must sign an NDA before seeing the code.\n→ Bạn phải ký NDA trước khi xem code."
+    },
+    {
+      "question": "confidential",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌkɑːnfɪˈdenʃəl/",
+      "answer": "bảo mật, mật",
+      "explanation": "This information is strictly confidential.\n→ Thông tin này tuyệt đối bảo mật."
+    },
+    {
+      "question": "breach",
+      "partOfSpeech": "noun",
+      "phonetic": "/briːtʃ/",
+      "answer": "vi phạm",
+      "explanation": "Sharing client data is a breach of contract.\n→ Chia sẻ dữ liệu khách hàng là vi phạm hợp đồng."
+    },
+    {
+      "question": "terminate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈtɜːrmɪneɪt/",
+      "answer": "chấm dứt",
+      "explanation": "Either party can terminate the contract with 30 days' notice.\n→ Mỗi bên có thể chấm dứt hợp đồng với thông báo trước 30 ngày."
+    },
+    {
+      "question": "notice period",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈnoʊtɪs ˈpɪriəd/",
+      "answer": "thời gian báo trước",
+      "explanation": "My notice period is one month.\n→ Thời gian báo trước của tôi là một tháng."
+    },
+    {
+      "question": "liable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈlaɪəbəl/",
+      "answer": "chịu trách nhiệm pháp lý",
+      "explanation": "The company is liable for any data leaks.\n→ Công ty chịu trách nhiệm cho mọi vụ rò rỉ dữ liệu."
+    },
+    {
+      "question": "indemnify",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈdemnɪfaɪ/",
+      "answer": "bồi thường",
+      "explanation": "The vendor agrees to indemnify us against any claims.\n→ Nhà cung cấp đồng ý bồi thường cho chúng tôi trước mọi khiếu nại."
+    },
+    {
+      "question": "intellectual property",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɪntəˈlektʃuəl ˈprɑːpərti/",
+      "answer": "sở hữu trí tuệ",
+      "explanation": "All code you write belongs to the company's intellectual property.\n→ Mọi code bạn viết thuộc sở hữu trí tuệ của công ty."
+    },
+    {
+      "question": "copyright",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːpiraɪt/",
+      "answer": "bản quyền",
+      "explanation": "The photo is protected by copyright.\n→ Bức ảnh được bảo vệ bản quyền."
+    },
+    {
+      "question": "trademark",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtreɪdmɑːrk/",
+      "answer": "nhãn hiệu",
+      "explanation": "They registered the logo as a trademark.\n→ Họ đăng ký logo làm nhãn hiệu."
+    },
+    {
+      "question": "patent",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpætənt/",
+      "answer": "bằng sáng chế",
+      "explanation": "The company holds a patent on this technology.\n→ Công ty nắm bằng sáng chế công nghệ này."
+    },
+    {
+      "question": "license",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪsəns/",
+      "answer": "giấy phép (sử dụng)",
+      "explanation": "Check the license before using an open source library.\n→ Kiểm tra giấy phép trước khi dùng thư viện mã nguồn mở."
+    },
+    {
+      "question": "lawsuit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɔːsuːt/",
+      "answer": "vụ kiện",
+      "explanation": "The company faces a lawsuit over user privacy.\n→ Công ty đối mặt vụ kiện về quyền riêng tư người dùng."
+    },
+    {
+      "question": "sue",
+      "partOfSpeech": "verb",
+      "phonetic": "/suː/",
+      "answer": "kiện",
+      "explanation": "They sued the competitor for copying their design.\n→ Họ kiện đối thủ vì sao chép thiết kế."
+    },
+    {
+      "question": "court",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɔːrt/",
+      "answer": "toà án",
+      "explanation": "The case went to court.\n→ Vụ việc được đưa ra toà."
+    },
+    {
+      "question": "judge",
+      "partOfSpeech": "noun",
+      "phonetic": "/dʒʌdʒ/",
+      "answer": "thẩm phán",
+      "explanation": "The judge ruled in our favor.\n→ Thẩm phán phán quyết có lợi cho chúng tôi."
+    },
+    {
+      "question": "settle",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈsetəl/",
+      "answer": "dàn xếp, hoà giải",
+      "explanation": "They settled out of court.\n→ Họ dàn xếp ngoài toà."
+    },
+    {
+      "question": "dispute",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈspjuːt/",
+      "answer": "tranh chấp",
+      "explanation": "The dispute was about unpaid invoices.\n→ Tranh chấp liên quan đến hoá đơn chưa thanh toán."
+    },
+    {
+      "question": "regulation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌreɡjəˈleɪʃən/",
+      "answer": "quy định",
+      "explanation": "New regulations require data to be stored locally.\n→ Quy định mới yêu cầu lưu dữ liệu trong nước."
+    },
+    {
+      "question": "comply with",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/kəmˈplaɪ wɪð/",
+      "answer": "tuân thủ",
+      "explanation": "Our app must comply with GDPR.\n→ Ứng dụng của chúng tôi phải tuân thủ GDPR."
+    },
+    {
+      "question": "GDPR",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdʒiː diː piː ˈɑːr/",
+      "answer": "quy định bảo vệ dữ liệu của EU",
+      "explanation": "Under GDPR, users can ask to delete their data.\n→ Theo GDPR, người dùng có thể yêu cầu xoá dữ liệu."
+    },
+    {
+      "question": "consent",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈsent/",
+      "answer": "sự đồng ý",
+      "explanation": "We need the user's consent to send marketing emails.\n→ Cần sự đồng ý của người dùng để gửi email marketing."
+    },
+    {
+      "question": "privacy policy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpraɪvəsi ˈpɑːləsi/",
+      "answer": "chính sách quyền riêng tư",
+      "explanation": "Update the privacy policy before launch.\n→ Cập nhật chính sách quyền riêng tư trước khi ra mắt."
+    },
+    {
+      "question": "penalty",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpenəlti/",
+      "answer": "hình phạt, tiền phạt",
+      "explanation": "Late delivery has a penalty of 1% per day.\n→ Giao trễ bị phạt 1% mỗi ngày."
+    },
+    {
+      "question": "enforce",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈfɔːrs/",
+      "answer": "thực thi",
+      "explanation": "The rule is hard to enforce.\n→ Quy định này khó thực thi."
+    },
+    {
+      "question": "witness",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɪtnəs/",
+      "answer": "nhân chứng",
+      "explanation": "Two witnesses signed the document.\n→ Hai nhân chứng đã ký văn bản."
+    },
+    {
+      "question": "evidence",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈevɪdəns/",
+      "answer": "bằng chứng",
+      "explanation": "The logs were used as evidence.\n→ Log được dùng làm bằng chứng."
+    },
+    {
+      "question": "amendment",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈmendmənt/",
+      "answer": "bản sửa đổi",
+      "explanation": "We signed an amendment to extend the contract.\n→ Chúng tôi ký phụ lục sửa đổi để gia hạn hợp đồng."
+    },
+    {
+      "question": "fine print",
+      "partOfSpeech": "noun",
+      "phonetic": "/faɪn prɪnt/",
+      "answer": "điều khoản in nhỏ",
+      "explanation": "Always read the fine print.\n→ Luôn đọc các điều khoản in nhỏ."
+    },
+    {
+      "question": "binding",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈbaɪndɪŋ/",
+      "answer": "có tính ràng buộc",
+      "explanation": "A verbal agreement may not be legally binding.\n→ Thoả thuận miệng có thể không ràng buộc pháp lý."
+    },
+    {
+      "question": "in good faith",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɪn ɡʊd feɪθ/",
+      "answer": "thiện chí",
+      "explanation": "Both sides negotiated in good faith.\n→ Hai bên đàm phán thiện chí."
+    }
+  ]
+}

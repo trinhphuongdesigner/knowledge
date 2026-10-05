@@ -1,0 +1,75 @@
+{
+  "slug": "interview-algo-01-complexity-data-structures",
+  "order": 216,
+  "title": "Phỏng vấn Thuật toán · Độ phức tạp & Cấu trúc dữ liệu",
+  "description": "Câu hỏi phỏng vấn về Big-O, array, hash table, linked list, stack/queue, heap, tree, graph, trie và khi nào dùng cấu trúc nào. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "What is Big-O notation? List common complexities. / Big-O là gì? Kể các độ phức tạp phổ biến.",
+      "answer": "Big-O mô tả **tốc độ tăng** của thời gian/bộ nhớ theo kích thước input n trong trường hợp xấu nhất, bỏ hằng số.\n- **O(1)**: truy cập mảng theo index, tra hash.\n- **O(log n)**: binary search, thao tác trên cây cân bằng/heap.\n- **O(n)**: duyệt mảng. **O(n log n)**: sort tốt (merge, heap, quick trung bình).\n- **O(n²)**: hai vòng lặp lồng nhau. **O(2ⁿ)**: tập con, đệ quy không nhớ. **O(n!)**: hoán vị.\nVới n = 10⁶: O(n log n) ≈ 2×10⁷ phép tính (nhanh), O(n²) = 10¹² (không chạy nổi).",
+      "explanation": "Big-O describes how time or space **grows** with input size in the worst case, ignoring constants: O(1) index or hash lookup, O(log n) binary search and heaps, O(n) scans, O(n log n) good sorts, O(n²) nested loops, O(2ⁿ) subsets, O(n!) permutations. At n = 10⁶, n log n is fast while n² is infeasible."
+    },
+    {
+      "question": "What is amortized complexity? Example? / Độ phức tạp khấu hao (amortized) là gì? Ví dụ?",
+      "answer": "Chi phí **trung bình trên một chuỗi thao tác**, dù đôi lúc một thao tác đắt.\nVí dụ **dynamic array** (`push` của JS array, `ArrayList`): khi đầy thì cấp phát gấp đôi và copy O(n), nhưng việc này hiếm → tính trung bình mỗi `push` là **O(1) amortized**.\nVí dụ khác: hash table resize, union-find với path compression.",
+      "explanation": "Amortized complexity is the average cost per operation over a sequence, even if some operations are expensive. A **dynamic array** doubles and copies when full — O(n) occasionally — but `push` is **O(1) amortized**. Hash-table resizing works the same way."
+    },
+    {
+      "question": "How does a hash table work? What about collisions? / Hash table hoạt động thế nào? Xử lý va chạm ra sao?",
+      "answer": "Hàm băm biến key thành **index** trong mảng bucket → tra/ghi/xoá trung bình **O(1)**.\n**Va chạm** (hai key cùng index):\n- **Chaining**: mỗi bucket là danh sách/cây (Java 8 chuyển sang cây đỏ-đen khi dài).\n- **Open addressing**: dò ô kế tiếp (linear/quadratic probing, Robin Hood).\nKhi **load factor** vượt ngưỡng (~0.75) → resize, rehash. Xấu nhất O(n) nếu hàm băm kém hoặc bị tấn công (hash flooding → dùng hash có seed).",
+      "explanation": "A hash function maps keys to bucket indexes for **O(1) average** operations. Collisions are handled by **chaining** (lists, or trees in Java 8+) or **open addressing** (probing). Past a load factor around 0.75 the table resizes and rehashes. Worst case is O(n) with poor or attacked hashing, hence seeded hashes."
+    },
+    {
+      "question": "Array vs linked list? / Array và linked list khác nhau thế nào?",
+      "answer": "| | Array | Linked list |\n|---|---|---|\n| Truy cập theo index | **O(1)** | O(n) |\n| Chèn/xoá đầu | O(n) | **O(1)** |\n| Chèn/xoá giữa (đã có node) | O(n) | **O(1)** |\n| Bộ nhớ | liên tục, **thân thiện cache CPU** | rải rác, thêm con trỏ |\nThực tế, array/dynamic array **nhanh hơn trong đa số trường hợp** nhờ cache locality. Linked list hữu ích cho LRU cache (kết hợp hash map), deque.",
+      "explanation": "Arrays give O(1) indexing and contiguous, cache-friendly memory but O(n) inserts at the front or middle. Linked lists give O(1) insertion or removal at a known node but O(n) access and poor locality. In practice arrays usually win; linked lists shine in structures like LRU caches."
+    },
+    {
+      "question": "Stack vs queue — and where are they used? / Stack và queue khác nhau thế nào, dùng ở đâu?",
+      "answer": "- **Stack (LIFO)**: vào sau ra trước. Dùng: call stack, undo, kiểm tra ngoặc hợp lệ, **DFS**, đánh giá biểu thức, **monotonic stack** (phần tử lớn hơn kế tiếp).\n- **Queue (FIFO)**: vào trước ra trước. Dùng: **BFS**, hàng đợi tác vụ, buffer.\n- **Deque**: thêm/bớt hai đầu — dùng cho sliding window maximum.",
+      "explanation": "A **stack** is LIFO — call stacks, undo, bracket matching, DFS, monotonic-stack problems. A **queue** is FIFO — BFS, task queues, buffers. A **deque** supports both ends, e.g. sliding-window maximum."
+    },
+    {
+      "question": "What is a heap / priority queue? / Heap / priority queue là gì?",
+      "answer": "**Binary heap**: cây nhị phân hoàn chỉnh lưu trong mảng, cha ≤ con (min-heap).\n- Lấy min: **O(1)**; thêm/xoá min: **O(log n)**; dựng heap từ mảng: **O(n)**.\n- Dùng cho: **top-K** (giữ heap kích thước K → O(n log K)), merge K danh sách đã sort, **Dijkstra**, lập lịch, median động (hai heap).",
+      "explanation": "A **binary heap** is a complete tree stored in an array where parents are ≤ children (min-heap): peek O(1), push and pop O(log n), heapify O(n). Uses: **top-K** with a size-K heap in O(n log K), merging K sorted lists, Dijkstra, scheduling and running medians with two heaps."
+    },
+    {
+      "question": "What is a binary search tree and why must it be balanced? / Cây nhị phân tìm kiếm (BST) là gì và tại sao cần cân bằng?",
+      "answer": "BST: mọi node bên trái < node < bên phải → tìm/chèn/xoá **O(h)** với h là chiều cao; duyệt **in-order** cho dãy đã sắp xếp.\n- Chèn dữ liệu đã sort vào BST thường → thành **danh sách**, h = n → O(n).\n- **Cây tự cân bằng** (AVL, đỏ-đen) giữ h = O(log n). Dùng trong `TreeMap`, `std::map`.\n- Database dùng **B-tree/B+tree** (nhiều nhánh, tối ưu cho đọc đĩa theo trang).",
+      "explanation": "In a BST, left < node < right, so operations cost O(height) and in-order traversal yields sorted output. Inserting sorted data degenerates it into a list (O(n)), so **self-balancing** trees (AVL, red-black) keep height O(log n). Databases use **B-trees/B+trees**, wide nodes optimized for page-based disk reads."
+    },
+    {
+      "question": "How do you represent a graph, and BFS vs DFS? / Biểu diễn đồ thị thế nào, BFS và DFS khác nhau ra sao?",
+      "answer": "**Biểu diễn**: danh sách kề (adjacency list — O(V+E) bộ nhớ, hợp đồ thị thưa) hoặc ma trận kề (O(V²), tra cạnh O(1), hợp đồ thị dày).\n- **BFS** (queue): duyệt theo lớp → **đường đi ngắn nhất** trên đồ thị không trọng số.\n- **DFS** (stack/đệ quy): đi sâu → phát hiện chu trình, **topological sort**, thành phần liên thông, backtracking.\nCả hai O(V + E); nhớ đánh dấu **visited**.",
+      "explanation": "Graphs are stored as adjacency lists (O(V+E), sparse graphs) or matrices (O(V²), dense graphs). **BFS** uses a queue and finds shortest paths in unweighted graphs; **DFS** uses a stack or recursion for cycle detection, topological sort, components and backtracking. Both run in O(V+E) with a visited set."
+    },
+    {
+      "question": "What is a trie and when do you use it? / Trie là gì và khi nào dùng?",
+      "answer": "Cây tiền tố: mỗi cạnh là một ký tự, đường từ gốc tạo thành chuỗi.\n- Tìm/chèn từ: **O(L)** với L là độ dài từ, không phụ thuộc số từ.\n- Dùng cho: **autocomplete**, kiểm tra tiền tố, từ điển, word search trên lưới, IP routing (longest prefix match).\n- Nhược: tốn bộ nhớ → radix tree/compressed trie.",
+      "explanation": "A trie is a prefix tree where each edge is a character; lookups and inserts cost O(word length) regardless of dictionary size. It suits autocomplete, prefix queries, word-search grids and longest-prefix IP routing. Compressed (radix) tries save memory."
+    },
+    {
+      "question": "What is union-find (disjoint set union)? / Union-find (disjoint set union) là gì?",
+      "answer": "Cấu trúc quản lý các **tập rời nhau** với hai thao tác: `find(x)` (đại diện của tập) và `union(a, b)` (gộp hai tập).\n- Với **path compression + union by rank**, mỗi thao tác gần như **O(1)** (α(n) — hàm Ackermann ngược).\n- Dùng cho: số thành phần liên thông, phát hiện chu trình trong đồ thị vô hướng, **thuật toán Kruskal** (cây khung nhỏ nhất), gom nhóm tài khoản.",
+      "explanation": "Union-find tracks disjoint sets with `find` and `union`; with path compression and union by rank each operation is nearly constant (inverse Ackermann). It counts connected components, detects cycles in undirected graphs, powers Kruskal's MST and merges equivalent entities."
+    },
+    {
+      "question": "Compare common sorting algorithms. / So sánh các thuật toán sắp xếp phổ biến.",
+      "answer": "- **Quick sort**: TB O(n log n), xấu nhất O(n²) (chọn pivot ngẫu nhiên giảm rủi ro), in-place, **không ổn định**, nhanh thực tế.\n- **Merge sort**: luôn O(n log n), **ổn định**, cần O(n) bộ nhớ phụ; hợp linked list, sort ngoài (dữ liệu lớn hơn RAM).\n- **Heap sort**: O(n log n), O(1) bộ nhớ, không ổn định.\n- **Counting/Radix sort**: O(n + k) khi khoá là số nguyên phạm vi nhỏ.\n- Thư viện chuẩn thường dùng **Timsort** (Python, JS V8, Java object) hoặc **introsort** (C++).",
+      "explanation": "**Quicksort** averages O(n log n) in place but can hit O(n²) and isn't stable. **Merge sort** is always O(n log n) and stable but needs O(n) extra space — good for linked lists and external sorting. **Heap sort** is O(n log n) with O(1) space. **Counting/radix** sort run in O(n + k) for small integer keys. Standard libraries use Timsort or introsort."
+    },
+    {
+      "question": "How would you implement an LRU cache with O(1) operations? / Cài đặt LRU cache với các thao tác O(1) thế nào?",
+      "answer": "Kết hợp **hash map** (key → node) + **doubly linked list** (thứ tự sử dụng, mới nhất ở đầu).\n- `get`: tra map → chuyển node lên đầu → O(1).\n- `put`: nếu có thì cập nhật + đưa lên đầu; nếu chưa có thì thêm vào đầu; vượt dung lượng → **xoá node cuối** và key trong map.\nTrong JS có thể dùng `Map` (giữ thứ tự chèn): `delete` rồi `set` lại để \"làm mới\", xoá `map.keys().next().value` khi đầy.",
+      "explanation": "Combine a **hash map** from key to node with a **doubly linked list** ordered by recency: `get` looks up and moves the node to the front; `put` updates or inserts at the front and evicts the tail when over capacity — all O(1). In JavaScript, an insertion-ordered `Map` can do the same by deleting and re-setting keys."
+    },
+    {
+      "question": "What is a Bloom filter? / Bloom filter là gì?",
+      "answer": "Cấu trúc xác suất **tiết kiệm bộ nhớ** để kiểm tra phần tử **có thể có** trong tập hay **chắc chắn không có**.\n- Mảng bit + k hàm băm; thêm phần tử → bật k bit; kiểm tra → cả k bit đều bật thì \"có thể có\".\n- **Có false positive, không có false negative**; không xoá được (trừ counting Bloom filter).\n- Dùng cho: tránh tra đĩa vô ích (Cassandra, RocksDB), kiểm tra username đã tồn tại, crawler đã thăm URL, chống cache penetration.",
+      "explanation": "A Bloom filter is a compact probabilistic set using a bit array and k hashes: it answers \"definitely not present\" or \"possibly present\" — **false positives but no false negatives**, and no deletion in its basic form. Used to skip disk lookups (Cassandra, RocksDB), check seen URLs and block cache penetration."
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "slug": "careers-10-logistics-ecommerce",
+  "order": 140,
+  "title": "Careers 10 · Logistics, Supply Chain & E-commerce",
+  "description": "Từ vựng logistics, chuỗi cung ứng và thương mại điện tử (CEFR B1–B2). Hữu ích khi làm hệ thống quản lý kho, giao vận hoặc sàn thương mại điện tử.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "supply chain",
+      "partOfSpeech": "noun",
+      "phonetic": "/səˈplaɪ tʃeɪn/",
+      "answer": "chuỗi cung ứng",
+      "explanation": "The pandemic disrupted global supply chains.\n→ Đại dịch làm gián đoạn chuỗi cung ứng toàn cầu."
+    },
+    {
+      "question": "logistics",
+      "partOfSpeech": "noun",
+      "phonetic": "/ləˈdʒɪstɪks/",
+      "answer": "hậu cần, logistics",
+      "explanation": "Our logistics team handles all deliveries.\n→ Đội logistics phụ trách mọi đơn giao hàng."
+    },
+    {
+      "question": "supplier",
+      "partOfSpeech": "noun",
+      "phonetic": "/səˈplaɪər/",
+      "answer": "nhà cung cấp",
+      "explanation": "We switched to a cheaper supplier.\n→ Chúng tôi chuyển sang nhà cung cấp rẻ hơn."
+    },
+    {
+      "question": "distributor",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈstrɪbjətər/",
+      "answer": "nhà phân phối",
+      "explanation": "The distributor sells to shops nationwide.\n→ Nhà phân phối bán cho các cửa hàng toàn quốc."
+    },
+    {
+      "question": "inventory",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnvəntɔːri/",
+      "answer": "hàng tồn kho",
+      "explanation": "Keep inventory low to reduce costs.\n→ Giữ tồn kho thấp để giảm chi phí."
+    },
+    {
+      "question": "stock level",
+      "partOfSpeech": "noun",
+      "phonetic": "/stɑːk ˈlevəl/",
+      "answer": "mức tồn kho",
+      "explanation": "The system alerts us when stock levels are low.\n→ Hệ thống cảnh báo khi mức tồn kho thấp."
+    },
+    {
+      "question": "SKU",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes keɪ ˈjuː/",
+      "answer": "mã hàng (đơn vị lưu kho)",
+      "explanation": "Each color and size has its own SKU.\n→ Mỗi màu và cỡ có mã hàng riêng."
+    },
+    {
+      "question": "fulfillment",
+      "partOfSpeech": "noun",
+      "phonetic": "/fʊlˈfɪlmənt/",
+      "answer": "xử lý đơn hàng (đóng gói, giao)",
+      "explanation": "Fulfillment takes one day on average.\n→ Xử lý đơn mất trung bình một ngày."
+    },
+    {
+      "question": "shipment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃɪpmənt/",
+      "answer": "lô hàng",
+      "explanation": "The shipment arrived at the port yesterday.\n→ Lô hàng đến cảng hôm qua."
+    },
+    {
+      "question": "freight",
+      "partOfSpeech": "noun",
+      "phonetic": "/freɪt/",
+      "answer": "hàng hoá vận chuyển; cước vận chuyển",
+      "explanation": "Air freight is fast but expensive.\n→ Vận chuyển hàng không nhanh nhưng đắt."
+    },
+    {
+      "question": "container",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈteɪnər/",
+      "answer": "công-te-nơ",
+      "explanation": "The goods were shipped in two containers.\n→ Hàng được vận chuyển trong hai công-te-nơ."
+    },
+    {
+      "question": "port",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɔːrt/",
+      "answer": "cảng",
+      "explanation": "Hai Phong is a major port in the north.\n→ Hải Phòng là cảng lớn ở miền Bắc."
+    },
+    {
+      "question": "customs clearance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌstəmz ˈklɪrəns/",
+      "answer": "thông quan",
+      "explanation": "Customs clearance took three days.\n→ Thủ tục thông quan mất ba ngày."
+    },
+    {
+      "question": "import",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪmˈpɔːrt/",
+      "answer": "nhập khẩu",
+      "explanation": "We import coffee machines from Italy.\n→ Chúng tôi nhập máy pha cà phê từ Ý."
+    },
+    {
+      "question": "export",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪkˈspɔːrt/",
+      "answer": "xuất khẩu",
+      "explanation": "Vietnam exports rice to many countries.\n→ Việt Nam xuất khẩu gạo sang nhiều nước."
+    },
+    {
+      "question": "lead time",
+      "partOfSpeech": "noun",
+      "phonetic": "/liːd taɪm/",
+      "answer": "thời gian chờ giao hàng",
+      "explanation": "The lead time for this part is six weeks.\n→ Thời gian chờ linh kiện này là sáu tuần."
+    },
+    {
+      "question": "last-mile delivery",
+      "partOfSpeech": "noun",
+      "phonetic": "/læst maɪl dɪˈlɪvəri/",
+      "answer": "giao hàng chặng cuối",
+      "explanation": "Last-mile delivery is the most expensive part.\n→ Giao hàng chặng cuối là phần tốn kém nhất."
+    },
+    {
+      "question": "courier",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʊriər/",
+      "answer": "người giao hàng, công ty chuyển phát",
+      "explanation": "The courier will call before delivery.\n→ Người giao hàng sẽ gọi trước khi giao."
+    },
+    {
+      "question": "cash on delivery",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæʃ ɑːn dɪˈlɪvəri/",
+      "answer": "thanh toán khi nhận hàng (COD)",
+      "explanation": "Most online orders here are cash on delivery.\n→ Phần lớn đơn online ở đây là thanh toán khi nhận hàng."
+    },
+    {
+      "question": "order tracking",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːrdər ˈtrækɪŋ/",
+      "answer": "theo dõi đơn hàng",
+      "explanation": "Order tracking reduces customer support calls.\n→ Theo dõi đơn hàng giúp giảm cuộc gọi hỗ trợ."
+    },
+    {
+      "question": "dispatch",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪˈspætʃ/",
+      "answer": "gửi đi, xuất kho",
+      "explanation": "Orders placed before noon are dispatched the same day.\n→ Đơn đặt trước trưa được xuất kho trong ngày."
+    },
+    {
+      "question": "return",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈtɜːrn/",
+      "answer": "hàng trả lại",
+      "explanation": "Returns are free within 7 days.\n→ Trả hàng miễn phí trong 7 ngày."
+    },
+    {
+      "question": "damaged",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdæmɪdʒd/",
+      "answer": "bị hư hỏng",
+      "explanation": "The package arrived damaged.\n→ Kiện hàng đến nơi bị hư hỏng."
+    },
+    {
+      "question": "marketplace",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːrkɪtpleɪs/",
+      "answer": "sàn thương mại điện tử",
+      "explanation": "We sell on three online marketplaces.\n→ Chúng tôi bán trên ba sàn thương mại điện tử."
+    },
+    {
+      "question": "seller",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈselər/",
+      "answer": "người bán",
+      "explanation": "Top sellers get a special badge.\n→ Người bán hàng đầu nhận huy hiệu đặc biệt."
+    },
+    {
+      "question": "listing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɪstɪŋ/",
+      "answer": "tin đăng sản phẩm",
+      "explanation": "Add more photos to your product listing.\n→ Thêm ảnh vào tin đăng sản phẩm."
+    },
+    {
+      "question": "flash sale",
+      "partOfSpeech": "noun",
+      "phonetic": "/flæʃ seɪl/",
+      "answer": "giảm giá chớp nhoáng",
+      "explanation": "The flash sale crashed the website.\n→ Đợt flash sale làm sập website."
+    },
+    {
+      "question": "voucher",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvaʊtʃər/",
+      "answer": "phiếu giảm giá",
+      "explanation": "Use this voucher to get 50,000 dong off.\n→ Dùng phiếu này để được giảm 50.000 đồng."
+    },
+    {
+      "question": "wholesale",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈhoʊlseɪl/",
+      "answer": "bán sỉ",
+      "explanation": "Wholesale prices are 30% lower.\n→ Giá sỉ thấp hơn 30%."
+    },
+    {
+      "question": "retail",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈriːteɪl/",
+      "answer": "bán lẻ",
+      "explanation": "Retail stores are competing with online shops.\n→ Cửa hàng bán lẻ đang cạnh tranh với shop online."
+    },
+    {
+      "question": "demand",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈmænd/",
+      "answer": "nhu cầu",
+      "explanation": "Demand for air purifiers rose sharply.\n→ Nhu cầu máy lọc không khí tăng mạnh."
+    },
+    {
+      "question": "shortage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃɔːrtɪdʒ/",
+      "answer": "sự thiếu hụt",
+      "explanation": "A chip shortage delayed car production.\n→ Thiếu chip làm chậm sản xuất ô tô."
+    },
+    {
+      "question": "bulk order",
+      "partOfSpeech": "noun",
+      "phonetic": "/bʌlk ˈɔːrdər/",
+      "answer": "đơn hàng số lượng lớn",
+      "explanation": "We offer discounts on bulk orders.\n→ Chúng tôi giảm giá cho đơn hàng số lượng lớn."
+    },
+    {
+      "question": "route optimization",
+      "partOfSpeech": "noun",
+      "phonetic": "/ruːt ˌɑːptɪmaɪˈzeɪʃən/",
+      "answer": "tối ưu tuyến đường",
+      "explanation": "Route optimization saved 15% on fuel.\n→ Tối ưu tuyến đường tiết kiệm 15% nhiên liệu."
+    },
+    {
+      "question": "barcode",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːrkoʊd/",
+      "answer": "mã vạch",
+      "explanation": "Scan the barcode to check the item in.\n→ Quét mã vạch để nhập hàng."
+    },
+    {
+      "question": "pallet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpælɪt/",
+      "answer": "pallet (tấm kê hàng)",
+      "explanation": "The truck carries 20 pallets.\n→ Xe tải chở 20 pallet."
+    },
+    {
+      "question": "cross-border",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌkrɔːs ˈbɔːrdər/",
+      "answer": "xuyên biên giới",
+      "explanation": "Cross-border e-commerce is growing fast.\n→ Thương mại điện tử xuyên biên giới đang tăng nhanh."
+    },
+    {
+      "question": "procurement",
+      "partOfSpeech": "noun",
+      "phonetic": "/prəˈkjʊrmənt/",
+      "answer": "thu mua",
+      "explanation": "The procurement team negotiates with suppliers.\n→ Đội thu mua đàm phán với nhà cung cấp."
+    },
+    {
+      "question": "bottleneck",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːtəlnek/",
+      "answer": "điểm nghẽn",
+      "explanation": "Packing is the bottleneck during sales events.\n→ Khâu đóng gói là điểm nghẽn trong các đợt sale."
+    },
+    {
+      "question": "same-day delivery",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌseɪm deɪ dɪˈlɪvəri/",
+      "answer": "giao trong ngày",
+      "explanation": "Same-day delivery is available in Hanoi.\n→ Ở Hà Nội có giao hàng trong ngày."
+    }
+  ]
+}

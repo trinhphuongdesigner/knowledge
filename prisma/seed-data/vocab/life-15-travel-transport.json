@@ -1,0 +1,304 @@
+{
+  "slug": "life-15-travel-transport",
+  "order": 115,
+  "title": "Daily Life 5 · Travel & Transport",
+  "description": "Từ vựng du lịch, sân bay, khách sạn và phương tiện đi lại (CEFR A2–B1). Dùng khi đi công tác, du lịch nước ngoài hoặc hướng dẫn khách đến Việt Nam.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "passport",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpæspɔːrt/",
+      "answer": "hộ chiếu",
+      "explanation": "Make sure your passport is valid for six more months.\n→ Đảm bảo hộ chiếu còn hạn ít nhất sáu tháng."
+    },
+    {
+      "question": "visa",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈviːzə/",
+      "answer": "thị thực",
+      "explanation": "I applied for a business visa to Japan.\n→ Tôi xin visa công tác đi Nhật."
+    },
+    {
+      "question": "boarding pass",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɔːrdɪŋ pæs/",
+      "answer": "thẻ lên máy bay",
+      "explanation": "Show your boarding pass at the gate.\n→ Xuất trình thẻ lên máy bay ở cửa ra."
+    },
+    {
+      "question": "check in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/tʃek ɪn/",
+      "answer": "làm thủ tục (chuyến bay, khách sạn)",
+      "explanation": "You can check in online 24 hours before the flight.\n→ Bạn có thể làm thủ tục trực tuyến trước chuyến bay 24 giờ."
+    },
+    {
+      "question": "check out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/tʃek aʊt/",
+      "answer": "trả phòng",
+      "explanation": "We have to check out by noon.\n→ Chúng tôi phải trả phòng trước trưa."
+    },
+    {
+      "question": "luggage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlʌɡɪdʒ/",
+      "answer": "hành lý",
+      "explanation": "My luggage didn't arrive with me.\n→ Hành lý của tôi không đến cùng tôi."
+    },
+    {
+      "question": "carry-on",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæri ɑːn/",
+      "answer": "hành lý xách tay",
+      "explanation": "You can bring one carry-on bag.\n→ Bạn được mang một túi hành lý xách tay."
+    },
+    {
+      "question": "gate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡeɪt/",
+      "answer": "cửa ra máy bay",
+      "explanation": "The flight to Da Nang leaves from gate 12.\n→ Chuyến bay đi Đà Nẵng khởi hành ở cửa 12."
+    },
+    {
+      "question": "delay",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈleɪ/",
+      "answer": "sự chậm trễ",
+      "explanation": "There's a two-hour delay because of the storm.\n→ Chuyến bay trễ hai tiếng do bão."
+    },
+    {
+      "question": "cancel",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈkænsəl/",
+      "answer": "huỷ",
+      "explanation": "Our flight was cancelled at the last minute.\n→ Chuyến bay bị huỷ vào phút chót."
+    },
+    {
+      "question": "layover",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈleɪoʊvər/",
+      "answer": "quá cảnh",
+      "explanation": "We have a three-hour layover in Bangkok.\n→ Chúng tôi quá cảnh ba tiếng ở Bangkok."
+    },
+    {
+      "question": "jet lag",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʒet læɡ/",
+      "answer": "mệt mỏi do lệch múi giờ",
+      "explanation": "I'm still suffering from jet lag.\n→ Tôi vẫn còn mệt vì lệch múi giờ."
+    },
+    {
+      "question": "customs",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌstəmz/",
+      "answer": "hải quan",
+      "explanation": "We went through customs quickly.\n→ Chúng tôi qua hải quan khá nhanh."
+    },
+    {
+      "question": "round trip",
+      "partOfSpeech": "noun",
+      "phonetic": "/raʊnd trɪp/",
+      "answer": "khứ hồi",
+      "explanation": "A round trip ticket is cheaper.\n→ Vé khứ hồi rẻ hơn."
+    },
+    {
+      "question": "one-way",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌwʌn ˈweɪ/",
+      "answer": "một chiều",
+      "explanation": "I only bought a one-way ticket.\n→ Tôi chỉ mua vé một chiều."
+    },
+    {
+      "question": "reservation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌrezərˈveɪʃən/",
+      "answer": "sự đặt chỗ",
+      "explanation": "I have a reservation under the name Nguyen.\n→ Tôi có đặt phòng dưới tên Nguyễn."
+    },
+    {
+      "question": "accommodation",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˌkɑːməˈdeɪʃən/",
+      "answer": "chỗ ở",
+      "explanation": "The company pays for accommodation.\n→ Công ty chi trả chỗ ở."
+    },
+    {
+      "question": "hostel",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːstəl/",
+      "answer": "nhà nghỉ giá rẻ",
+      "explanation": "Backpackers often stay in hostels.\n→ Dân phượt thường ở nhà nghỉ giá rẻ."
+    },
+    {
+      "question": "sightseeing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaɪtsiːɪŋ/",
+      "answer": "tham quan",
+      "explanation": "We spent the day sightseeing in Hue.\n→ Chúng tôi dành cả ngày tham quan Huế."
+    },
+    {
+      "question": "landmark",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlændmɑːrk/",
+      "answer": "địa danh nổi tiếng",
+      "explanation": "The Opera House is a famous landmark.\n→ Nhà hát Lớn là địa danh nổi tiếng."
+    },
+    {
+      "question": "tourist trap",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʊrɪst træp/",
+      "answer": "nơi bẫy khách du lịch",
+      "explanation": "That restaurant is a tourist trap; the food is overpriced.\n→ Nhà hàng đó là chỗ bẫy khách, đồ ăn đắt mà dở."
+    },
+    {
+      "question": "souvenir",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsuːvəˈnɪr/",
+      "answer": "quà lưu niệm",
+      "explanation": "I bought some coffee as a souvenir.\n→ Tôi mua cà phê làm quà lưu niệm."
+    },
+    {
+      "question": "itinerary",
+      "partOfSpeech": "noun",
+      "phonetic": "/aɪˈtɪnəreri/",
+      "answer": "lịch trình",
+      "explanation": "Here's the itinerary for our five-day trip.\n→ Đây là lịch trình chuyến đi năm ngày."
+    },
+    {
+      "question": "backpacking",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækpækɪŋ/",
+      "answer": "du lịch bụi",
+      "explanation": "He went backpacking around Southeast Asia.\n→ Anh ấy đi du lịch bụi vòng quanh Đông Nam Á."
+    },
+    {
+      "question": "public transport",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʌblɪk ˈtrænspɔːrt/",
+      "answer": "phương tiện công cộng",
+      "explanation": "Public transport in Singapore is excellent.\n→ Giao thông công cộng ở Singapore rất tuyệt."
+    },
+    {
+      "question": "commute",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəˈmjuːt/",
+      "answer": "đi lại (đi làm hằng ngày)",
+      "explanation": "I commute by motorbike every day.\n→ Tôi đi làm bằng xe máy hằng ngày."
+    },
+    {
+      "question": "traffic jam",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtræfɪk dʒæm/",
+      "answer": "tắc đường",
+      "explanation": "I was stuck in a traffic jam for an hour.\n→ Tôi bị kẹt xe cả tiếng."
+    },
+    {
+      "question": "rush hour",
+      "partOfSpeech": "noun",
+      "phonetic": "/rʌʃ aʊər/",
+      "answer": "giờ cao điểm",
+      "explanation": "Avoid driving during rush hour.\n→ Tránh lái xe vào giờ cao điểm."
+    },
+    {
+      "question": "ride-hailing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈraɪd ˌheɪlɪŋ/",
+      "answer": "gọi xe công nghệ",
+      "explanation": "I use a ride-hailing app to get to the airport.\n→ Tôi dùng ứng dụng gọi xe để ra sân bay."
+    },
+    {
+      "question": "fare",
+      "partOfSpeech": "noun",
+      "phonetic": "/fer/",
+      "answer": "giá vé, cước xe",
+      "explanation": "The taxi fare was higher than I expected.\n→ Cước taxi cao hơn tôi nghĩ."
+    },
+    {
+      "question": "platform",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈplætfɔːrm/",
+      "answer": "sân ga",
+      "explanation": "The train leaves from platform 3.\n→ Tàu khởi hành từ sân ga số 3."
+    },
+    {
+      "question": "subway",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌbweɪ/",
+      "answer": "tàu điện ngầm",
+      "explanation": "Take the subway, it's faster than a taxi.\n→ Đi tàu điện ngầm đi, nhanh hơn taxi."
+    },
+    {
+      "question": "get lost",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡet lɔːst/",
+      "answer": "bị lạc",
+      "explanation": "We got lost in the old quarter.\n→ Chúng tôi bị lạc ở phố cổ."
+    },
+    {
+      "question": "directions",
+      "partOfSpeech": "noun",
+      "phonetic": "/dəˈrekʃənz/",
+      "answer": "sự chỉ đường",
+      "explanation": "Could you give me directions to the station?\n→ Bạn chỉ đường giúp tôi đến nhà ga được không?"
+    },
+    {
+      "question": "turn left",
+      "partOfSpeech": "phrase",
+      "phonetic": "/tɜːrn left/",
+      "answer": "rẽ trái",
+      "explanation": "Turn left at the traffic lights.\n→ Rẽ trái ở đèn giao thông."
+    },
+    {
+      "question": "go straight",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡoʊ streɪt/",
+      "answer": "đi thẳng",
+      "explanation": "Go straight for two blocks.\n→ Đi thẳng hai dãy nhà."
+    },
+    {
+      "question": "intersection",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɪntərˈsekʃən/",
+      "answer": "ngã tư",
+      "explanation": "The hotel is near the big intersection.\n→ Khách sạn gần ngã tư lớn."
+    },
+    {
+      "question": "rent a motorbike",
+      "partOfSpeech": "phrase",
+      "phonetic": "/rent ə ˈmoʊtərbaɪk/",
+      "answer": "thuê xe máy",
+      "explanation": "You can rent a motorbike to explore Ha Giang.\n→ Bạn có thể thuê xe máy để khám phá Hà Giang."
+    },
+    {
+      "question": "travel insurance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtrævəl ɪnˈʃʊrəns/",
+      "answer": "bảo hiểm du lịch",
+      "explanation": "Always buy travel insurance for long trips.\n→ Luôn mua bảo hiểm du lịch cho chuyến đi dài."
+    },
+    {
+      "question": "off the beaten track",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɔːf ðə ˈbiːtən træk/",
+      "answer": "nơi ít người biết, hoang sơ",
+      "explanation": "We prefer places off the beaten track.\n→ Chúng tôi thích những nơi hoang sơ, ít khách."
+    },
+    {
+      "question": "local",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈloʊkəl/",
+      "answer": "người dân địa phương",
+      "explanation": "Ask the locals where to eat.\n→ Hỏi dân địa phương chỗ nào ăn ngon."
+    },
+    {
+      "question": "exchange rate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪksˈtʃeɪndʒ reɪt/",
+      "answer": "tỉ giá",
+      "explanation": "What's the exchange rate for US dollars today?\n→ Hôm nay tỉ giá đô la Mỹ là bao nhiêu?"
+    }
+  ]
+}

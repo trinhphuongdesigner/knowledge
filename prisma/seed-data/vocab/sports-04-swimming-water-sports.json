@@ -1,0 +1,248 @@
+{
+  "slug": "sports-04-swimming-water-sports",
+  "order": 164,
+  "title": "Sports 4 · Swimming & Water Sports",
+  "description": "Từ vựng bơi lội, biển và thể thao dưới nước (CEFR A2–B1).",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "swimming pool",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈswɪmɪŋ puːl/",
+      "answer": "bể bơi",
+      "explanation": "The hotel has a rooftop swimming pool.\n→ Khách sạn có bể bơi trên sân thượng."
+    },
+    {
+      "question": "lane",
+      "partOfSpeech": "noun",
+      "phonetic": "/leɪn/",
+      "answer": "làn bơi",
+      "explanation": "Stay in your lane.\n→ Bơi đúng làn của bạn."
+    },
+    {
+      "question": "shallow end",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃæloʊ end/",
+      "answer": "phía nước nông",
+      "explanation": "Kids should stay in the shallow end.\n→ Trẻ em nên ở phía nước nông."
+    },
+    {
+      "question": "deep end",
+      "partOfSpeech": "noun",
+      "phonetic": "/diːp end/",
+      "answer": "phía nước sâu",
+      "explanation": "Don't jump into the deep end if you can't swim.\n→ Đừng nhảy vào chỗ sâu nếu không biết bơi."
+    },
+    {
+      "question": "lifeguard",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪfɡɑːrd/",
+      "answer": "nhân viên cứu hộ",
+      "explanation": "The lifeguard blew his whistle.\n→ Nhân viên cứu hộ thổi còi."
+    },
+    {
+      "question": "freestyle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfriːstaɪl/",
+      "answer": "bơi sải",
+      "explanation": "Freestyle is the fastest stroke.\n→ Bơi sải là kiểu bơi nhanh nhất."
+    },
+    {
+      "question": "breaststroke",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbreststroʊk/",
+      "answer": "bơi ếch",
+      "explanation": "I can only do breaststroke.\n→ Tôi chỉ biết bơi ếch."
+    },
+    {
+      "question": "backstroke",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækstroʊk/",
+      "answer": "bơi ngửa",
+      "explanation": "Backstroke is good for your back.\n→ Bơi ngửa tốt cho lưng."
+    },
+    {
+      "question": "butterfly",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbʌtərflaɪ/",
+      "answer": "bơi bướm",
+      "explanation": "Butterfly is the hardest stroke.\n→ Bơi bướm là kiểu khó nhất."
+    },
+    {
+      "question": "stroke",
+      "partOfSpeech": "noun",
+      "phonetic": "/stroʊk/",
+      "answer": "kiểu bơi; sải tay",
+      "explanation": "Improve your stroke technique.\n→ Cải thiện kỹ thuật sải tay."
+    },
+    {
+      "question": "dive",
+      "partOfSpeech": "verb",
+      "phonetic": "/daɪv/",
+      "answer": "lặn; nhảy cắm đầu",
+      "explanation": "He dived into the pool.\n→ Anh ấy nhảy cắm đầu xuống bể."
+    },
+    {
+      "question": "float",
+      "partOfSpeech": "verb",
+      "phonetic": "/floʊt/",
+      "answer": "nổi",
+      "explanation": "Relax and you will float.\n→ Thả lỏng là bạn sẽ nổi."
+    },
+    {
+      "question": "tread water",
+      "partOfSpeech": "phrase",
+      "phonetic": "/tred ˈwɔːtər/",
+      "answer": "đứng nước",
+      "explanation": "Learn to tread water for safety.\n→ Học cách đứng nước để an toàn."
+    },
+    {
+      "question": "goggles",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡɑːɡəlz/",
+      "answer": "kính bơi",
+      "explanation": "My goggles keep fogging up.\n→ Kính bơi của tôi cứ bị mờ."
+    },
+    {
+      "question": "swimsuit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈswɪmsuːt/",
+      "answer": "đồ bơi",
+      "explanation": "Don't forget your swimsuit.\n→ Đừng quên đồ bơi."
+    },
+    {
+      "question": "swimming cap",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈswɪmɪŋ kæp/",
+      "answer": "mũ bơi",
+      "explanation": "A swimming cap is required here.\n→ Ở đây bắt buộc đội mũ bơi."
+    },
+    {
+      "question": "lap",
+      "partOfSpeech": "noun",
+      "phonetic": "/læp/",
+      "answer": "vòng bơi (một lượt bể)",
+      "explanation": "I swim 20 laps every morning.\n→ Mỗi sáng tôi bơi 20 vòng."
+    },
+    {
+      "question": "drown",
+      "partOfSpeech": "verb",
+      "phonetic": "/draʊn/",
+      "answer": "chết đuối",
+      "explanation": "Every child should learn to swim so they don't drown.\n→ Trẻ em nào cũng nên học bơi để không bị đuối nước."
+    },
+    {
+      "question": "life jacket",
+      "partOfSpeech": "noun",
+      "phonetic": "/laɪf ˈdʒækɪt/",
+      "answer": "áo phao",
+      "explanation": "Wear a life jacket on the boat.\n→ Mặc áo phao khi đi thuyền."
+    },
+    {
+      "question": "wave",
+      "partOfSpeech": "noun",
+      "phonetic": "/weɪv/",
+      "answer": "sóng",
+      "explanation": "The waves are too big today.\n→ Hôm nay sóng quá lớn."
+    },
+    {
+      "question": "current",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɜːrənt/",
+      "answer": "dòng chảy",
+      "explanation": "Strong currents make this beach dangerous.\n→ Dòng chảy mạnh khiến bãi biển này nguy hiểm."
+    },
+    {
+      "question": "tide",
+      "partOfSpeech": "noun",
+      "phonetic": "/taɪd/",
+      "answer": "thuỷ triều",
+      "explanation": "The tide is coming in.\n→ Thuỷ triều đang lên."
+    },
+    {
+      "question": "snorkeling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsnɔːrkəlɪŋ/",
+      "answer": "lặn ống thở",
+      "explanation": "We went snorkeling in Nha Trang.\n→ Chúng tôi đi lặn ống thở ở Nha Trang."
+    },
+    {
+      "question": "scuba diving",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskuːbə ˈdaɪvɪŋ/",
+      "answer": "lặn bình dưỡng khí",
+      "explanation": "Scuba diving requires a license.\n→ Lặn bình cần có chứng chỉ."
+    },
+    {
+      "question": "coral reef",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɔːrəl riːf/",
+      "answer": "rạn san hô",
+      "explanation": "The coral reef is full of colorful fish.\n→ Rạn san hô đầy cá sặc sỡ."
+    },
+    {
+      "question": "surfing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrfɪŋ/",
+      "answer": "lướt sóng",
+      "explanation": "Da Nang is a good place to learn surfing.\n→ Đà Nẵng là nơi tốt để học lướt sóng."
+    },
+    {
+      "question": "kayak",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkaɪæk/",
+      "answer": "thuyền kayak",
+      "explanation": "We rented a kayak in Ha Long Bay.\n→ Chúng tôi thuê thuyền kayak ở vịnh Hạ Long."
+    },
+    {
+      "question": "paddle",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈpædəl/",
+      "answer": "chèo",
+      "explanation": "Paddle slowly near the caves.\n→ Chèo chậm khi gần hang động."
+    },
+    {
+      "question": "sunscreen",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌnskriːn/",
+      "answer": "kem chống nắng",
+      "explanation": "Put on waterproof sunscreen.\n→ Bôi kem chống nắng chống nước."
+    },
+    {
+      "question": "sunburn",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌnbɜːrn/",
+      "answer": "cháy nắng",
+      "explanation": "I got a bad sunburn at the beach.\n→ Tôi bị cháy nắng nặng ở biển."
+    },
+    {
+      "question": "waterproof",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈwɔːtərpruːf/",
+      "answer": "chống nước",
+      "explanation": "Is your phone waterproof?\n→ Điện thoại của bạn có chống nước không?"
+    },
+    {
+      "question": "sink or swim",
+      "partOfSpeech": "idiom",
+      "phonetic": "/sɪŋk ɔːr swɪm/",
+      "answer": "tự bơi hoặc chìm (tự xoay xở)",
+      "explanation": "New hires here have to sink or swim.\n→ Nhân viên mới ở đây phải tự xoay xở."
+    },
+    {
+      "question": "dive in",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/daɪv ɪn/",
+      "answer": "bắt tay ngay vào",
+      "explanation": "Let's dive in and look at the code.\n→ Hãy bắt tay vào xem code luôn."
+    },
+    {
+      "question": "in deep water",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɪn diːp ˈwɔːtər/",
+      "answer": "gặp rắc rối lớn",
+      "explanation": "We'll be in deep water if we miss the deadline.\n→ Trễ deadline là chúng ta gặp rắc rối to."
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "slug": "life-19-city-services",
+  "order": 119,
+  "title": "Daily Life 9 · City Life & Public Services",
+  "description": "Từ vựng đời sống đô thị: ngân hàng, bưu điện, thủ tục hành chính, khẩn cấp (CEFR A2–B2). Dùng khi làm giấy tờ, báo sự cố hoặc sinh sống ở nước ngoài.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "open an account",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ˈoʊpən ən əˈkaʊnt/",
+      "answer": "mở tài khoản",
+      "explanation": "I need my ID card to open a bank account.\n→ Tôi cần căn cước để mở tài khoản ngân hàng."
+    },
+    {
+      "question": "withdraw",
+      "partOfSpeech": "verb",
+      "phonetic": "/wɪðˈdrɔː/",
+      "answer": "rút tiền",
+      "explanation": "I withdrew some cash from the ATM.\n→ Tôi rút ít tiền mặt ở cây ATM."
+    },
+    {
+      "question": "balance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbæləns/",
+      "answer": "số dư",
+      "explanation": "Check your balance in the app.\n→ Kiểm tra số dư trong ứng dụng."
+    },
+    {
+      "question": "PIN",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɪn/",
+      "answer": "mã PIN",
+      "explanation": "Never share your PIN with anyone.\n→ Đừng bao giờ chia sẻ mã PIN với ai."
+    },
+    {
+      "question": "post office",
+      "partOfSpeech": "noun",
+      "phonetic": "/poʊst ˈɔːfɪs/",
+      "answer": "bưu điện",
+      "explanation": "I sent the documents from the post office.\n→ Tôi gửi giấy tờ ở bưu điện."
+    },
+    {
+      "question": "parcel",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːrsəl/",
+      "answer": "bưu kiện",
+      "explanation": "A parcel arrived for you this morning.\n→ Sáng nay có bưu kiện của bạn."
+    },
+    {
+      "question": "tracking number",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtrækɪŋ ˈnʌmbər/",
+      "answer": "mã vận đơn",
+      "explanation": "Use the tracking number to see where your order is.\n→ Dùng mã vận đơn để xem đơn hàng ở đâu."
+    },
+    {
+      "question": "ID card",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌaɪ ˈdiː kɑːrd/",
+      "answer": "căn cước công dân",
+      "explanation": "Please bring your ID card.\n→ Vui lòng mang theo căn cước."
+    },
+    {
+      "question": "fill in a form",
+      "partOfSpeech": "phrase",
+      "phonetic": "/fɪl ɪn ə fɔːrm/",
+      "answer": "điền đơn",
+      "explanation": "Fill in this form and sign at the bottom.\n→ Điền vào mẫu này và ký ở cuối."
+    },
+    {
+      "question": "apply for",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/əˈplaɪ fɔːr/",
+      "answer": "nộp đơn xin",
+      "explanation": "I applied for a new passport.\n→ Tôi đã nộp đơn xin hộ chiếu mới."
+    },
+    {
+      "question": "paperwork",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪpərwɜːrk/",
+      "answer": "giấy tờ thủ tục",
+      "explanation": "There's a lot of paperwork to register a company.\n→ Thành lập công ty cần rất nhiều giấy tờ."
+    },
+    {
+      "question": "queue",
+      "partOfSpeech": "noun",
+      "phonetic": "/kjuː/",
+      "answer": "hàng người chờ",
+      "explanation": "There was a long queue at the immigration office.\n→ Có hàng dài người chờ ở phòng xuất nhập cảnh."
+    },
+    {
+      "question": "take a number",
+      "partOfSpeech": "phrase",
+      "phonetic": "/teɪk ə ˈnʌmbər/",
+      "answer": "lấy số thứ tự",
+      "explanation": "Take a number and wait to be called.\n→ Lấy số thứ tự và chờ được gọi."
+    },
+    {
+      "question": "residence permit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrezɪdəns ˈpɜːrmɪt/",
+      "answer": "giấy phép cư trú",
+      "explanation": "Foreign employees need a residence permit.\n→ Nhân viên nước ngoài cần giấy phép cư trú."
+    },
+    {
+      "question": "register",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈredʒɪstər/",
+      "answer": "đăng ký",
+      "explanation": "You must register your address with the local police.\n→ Bạn phải đăng ký địa chỉ với công an địa phương."
+    },
+    {
+      "question": "fine",
+      "partOfSpeech": "noun",
+      "phonetic": "/faɪn/",
+      "answer": "tiền phạt",
+      "explanation": "I got a fine for parking on the sidewalk.\n→ Tôi bị phạt vì đỗ xe trên vỉa hè."
+    },
+    {
+      "question": "driver's license",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdraɪvərz ˈlaɪsəns/",
+      "answer": "bằng lái xe",
+      "explanation": "Do you have an international driver's license?\n→ Bạn có bằng lái quốc tế không?"
+    },
+    {
+      "question": "emergency",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈmɜːrdʒənsi/",
+      "answer": "trường hợp khẩn cấp",
+      "explanation": "In an emergency, call 115 for an ambulance.\n→ Trường hợp khẩn cấp, gọi 115 để có xe cứu thương."
+    },
+    {
+      "question": "ambulance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæmbjələns/",
+      "answer": "xe cứu thương",
+      "explanation": "The ambulance arrived in ten minutes.\n→ Xe cứu thương đến sau mười phút."
+    },
+    {
+      "question": "fire brigade",
+      "partOfSpeech": "noun",
+      "phonetic": "/faɪər brɪˈɡeɪd/",
+      "answer": "đội cứu hoả",
+      "explanation": "The fire brigade put out the fire quickly.\n→ Đội cứu hoả dập lửa nhanh chóng."
+    },
+    {
+      "question": "police station",
+      "partOfSpeech": "noun",
+      "phonetic": "/pəˈliːs ˈsteɪʃən/",
+      "answer": "đồn công an",
+      "explanation": "Report the stolen phone at the police station.\n→ Trình báo mất điện thoại ở đồn công an."
+    },
+    {
+      "question": "stolen",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈstoʊlən/",
+      "answer": "bị đánh cắp",
+      "explanation": "My wallet was stolen on the bus.\n→ Ví tôi bị móc trên xe buýt."
+    },
+    {
+      "question": "lost and found",
+      "partOfSpeech": "noun",
+      "phonetic": "/lɔːst ən faʊnd/",
+      "answer": "nơi giữ đồ thất lạc",
+      "explanation": "Check the lost and found at the station.\n→ Kiểm tra quầy đồ thất lạc ở nhà ga."
+    },
+    {
+      "question": "pedestrian",
+      "partOfSpeech": "noun",
+      "phonetic": "/pəˈdestriən/",
+      "answer": "người đi bộ",
+      "explanation": "Pedestrians should use the crosswalk.\n→ Người đi bộ nên dùng vạch qua đường."
+    },
+    {
+      "question": "crosswalk",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkrɔːswɔːk/",
+      "answer": "vạch qua đường",
+      "explanation": "Cross the street at the crosswalk.\n→ Qua đường ở vạch dành cho người đi bộ."
+    },
+    {
+      "question": "sidewalk",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaɪdwɔːk/",
+      "answer": "vỉa hè",
+      "explanation": "Motorbikes are parked all over the sidewalk.\n→ Xe máy đỗ kín vỉa hè."
+    },
+    {
+      "question": "parking lot",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːrkɪŋ lɑːt/",
+      "answer": "bãi đỗ xe",
+      "explanation": "The parking lot is full on weekends.\n→ Bãi đỗ xe kín chỗ vào cuối tuần."
+    },
+    {
+      "question": "construction site",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈstrʌkʃən saɪt/",
+      "answer": "công trường",
+      "explanation": "There's a construction site next to our building.\n→ Có một công trường cạnh toà nhà chúng tôi."
+    },
+    {
+      "question": "noise",
+      "partOfSpeech": "noun",
+      "phonetic": "/nɔɪz/",
+      "answer": "tiếng ồn",
+      "explanation": "The noise from the karaoke next door is unbearable.\n→ Tiếng karaoke nhà bên ồn không chịu nổi."
+    },
+    {
+      "question": "complain",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəmˈpleɪn/",
+      "answer": "phàn nàn, khiếu nại",
+      "explanation": "We complained to the building manager.\n→ Chúng tôi phàn nàn với ban quản lý toà nhà."
+    },
+    {
+      "question": "building manager",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɪldɪŋ ˈmænɪdʒər/",
+      "answer": "ban quản lý toà nhà",
+      "explanation": "Ask the building manager for a parking card.\n→ Xin thẻ gửi xe ở ban quản lý toà nhà."
+    },
+    {
+      "question": "security guard",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɪˈkjʊrəti ɡɑːrd/",
+      "answer": "bảo vệ",
+      "explanation": "The security guard checks everyone's ID.\n→ Bảo vệ kiểm tra giấy tờ mọi người."
+    },
+    {
+      "question": "gym membership",
+      "partOfSpeech": "noun",
+      "phonetic": "/dʒɪm ˈmembərʃɪp/",
+      "answer": "thẻ hội viên phòng gym",
+      "explanation": "I signed up for a yearly gym membership.\n→ Tôi đăng ký thẻ tập gym một năm."
+    },
+    {
+      "question": "library card",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪbreri kɑːrd/",
+      "answer": "thẻ thư viện",
+      "explanation": "You need a library card to borrow books.\n→ Bạn cần thẻ thư viện để mượn sách."
+    },
+    {
+      "question": "convenience store",
+      "partOfSpeech": "noun",
+      "phonetic": "/kənˈviːniəns stɔːr/",
+      "answer": "cửa hàng tiện lợi",
+      "explanation": "There's a convenience store open 24 hours.\n→ Có một cửa hàng tiện lợi mở 24 giờ."
+    },
+    {
+      "question": "neighborhood",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈneɪbərhʊd/",
+      "answer": "khu phố",
+      "explanation": "It's a quiet neighborhood with lots of trees.\n→ Đó là một khu phố yên tĩnh, nhiều cây xanh."
+    },
+    {
+      "question": "downtown",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdaʊnˈtaʊn/",
+      "answer": "trung tâm thành phố",
+      "explanation": "Our office is downtown.\n→ Văn phòng chúng tôi ở trung tâm."
+    },
+    {
+      "question": "suburb",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌbɜːrb/",
+      "answer": "ngoại ô",
+      "explanation": "Many families move to the suburbs for more space.\n→ Nhiều gia đình chuyển ra ngoại ô để rộng rãi hơn."
+    },
+    {
+      "question": "crowded",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkraʊdɪd/",
+      "answer": "đông đúc",
+      "explanation": "The market is always crowded before Tet.\n→ Chợ lúc nào cũng đông trước Tết."
+    },
+    {
+      "question": "public holiday",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʌblɪk ˈhɑːlədeɪ/",
+      "answer": "ngày nghỉ lễ",
+      "explanation": "Banks are closed on public holidays.\n→ Ngân hàng đóng cửa vào ngày lễ."
+    },
+    {
+      "question": "opening hours",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈoʊpənɪŋ aʊərz/",
+      "answer": "giờ mở cửa",
+      "explanation": "Check the opening hours before you go.\n→ Kiểm tra giờ mở cửa trước khi đi."
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "slug": "careers-01-healthcare",
+  "order": 131,
+  "title": "Careers 1 · Healthcare & Medicine",
+  "description": "Từ vựng nghề y và chăm sóc sức khoẻ (CEFR B1–B2): bệnh viện, chuyên khoa, điều trị. Hữu ích khi làm sản phẩm HealthTech hoặc giao tiếp ở bệnh viện.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "physician",
+      "partOfSpeech": "noun",
+      "phonetic": "/fɪˈzɪʃən/",
+      "answer": "bác sĩ (nội khoa)",
+      "explanation": "The physician ordered some blood tests.\n→ Bác sĩ chỉ định làm vài xét nghiệm máu."
+    },
+    {
+      "question": "surgeon",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrdʒən/",
+      "answer": "bác sĩ phẫu thuật",
+      "explanation": "The surgeon performed a six-hour operation.\n→ Bác sĩ phẫu thuật thực hiện ca mổ sáu tiếng."
+    },
+    {
+      "question": "nurse",
+      "partOfSpeech": "noun",
+      "phonetic": "/nɜːrs/",
+      "answer": "y tá, điều dưỡng",
+      "explanation": "The nurse changed the bandage every morning.\n→ Y tá thay băng mỗi sáng."
+    },
+    {
+      "question": "pharmacist",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɑːrməsɪst/",
+      "answer": "dược sĩ",
+      "explanation": "Ask the pharmacist how to take this medicine.\n→ Hỏi dược sĩ cách uống thuốc này."
+    },
+    {
+      "question": "dentist",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdentɪst/",
+      "answer": "nha sĩ",
+      "explanation": "I see the dentist every six months.\n→ Tôi đi nha sĩ sáu tháng một lần."
+    },
+    {
+      "question": "pediatrician",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpiːdiəˈtrɪʃən/",
+      "answer": "bác sĩ nhi",
+      "explanation": "The pediatrician said the baby is healthy.\n→ Bác sĩ nhi nói em bé khoẻ mạnh."
+    },
+    {
+      "question": "psychologist",
+      "partOfSpeech": "noun",
+      "phonetic": "/saɪˈkɑːlədʒɪst/",
+      "answer": "nhà tâm lý học",
+      "explanation": "Talking to a psychologist helped me manage stress.\n→ Nói chuyện với chuyên gia tâm lý giúp tôi kiểm soát căng thẳng."
+    },
+    {
+      "question": "paramedic",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌpærəˈmedɪk/",
+      "answer": "nhân viên cấp cứu",
+      "explanation": "Paramedics arrived within minutes.\n→ Nhân viên cấp cứu đến trong vài phút."
+    },
+    {
+      "question": "specialist",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈspeʃəlɪst/",
+      "answer": "bác sĩ chuyên khoa",
+      "explanation": "My doctor referred me to a heart specialist.\n→ Bác sĩ chuyển tôi đến chuyên gia tim mạch."
+    },
+    {
+      "question": "general practitioner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdʒenərəl prækˈtɪʃənər/",
+      "answer": "bác sĩ đa khoa",
+      "explanation": "See a general practitioner first for common problems.\n→ Với bệnh thông thường, hãy khám bác sĩ đa khoa trước."
+    },
+    {
+      "question": "patient",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪʃənt/",
+      "answer": "bệnh nhân",
+      "explanation": "The hospital treats over 3,000 patients a day.\n→ Bệnh viện điều trị hơn 3.000 bệnh nhân mỗi ngày."
+    },
+    {
+      "question": "ward",
+      "partOfSpeech": "noun",
+      "phonetic": "/wɔːrd/",
+      "answer": "khu điều trị, phòng bệnh",
+      "explanation": "She was moved to the children's ward.\n→ Cô bé được chuyển sang khoa nhi."
+    },
+    {
+      "question": "outpatient",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈaʊtpeɪʃənt/",
+      "answer": "bệnh nhân ngoại trú",
+      "explanation": "Outpatients can go home on the same day.\n→ Bệnh nhân ngoại trú có thể về trong ngày."
+    },
+    {
+      "question": "admit",
+      "partOfSpeech": "verb",
+      "phonetic": "/ədˈmɪt/",
+      "answer": "nhập viện",
+      "explanation": "He was admitted to hospital with pneumonia.\n→ Anh ấy nhập viện vì viêm phổi."
+    },
+    {
+      "question": "discharge",
+      "partOfSpeech": "verb",
+      "phonetic": "/dɪsˈtʃɑːrdʒ/",
+      "answer": "cho xuất viện",
+      "explanation": "She will be discharged tomorrow.\n→ Mai cô ấy sẽ được xuất viện."
+    },
+    {
+      "question": "diagnosis",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdaɪəɡˈnoʊsɪs/",
+      "answer": "chẩn đoán",
+      "explanation": "Early diagnosis saves lives.\n→ Chẩn đoán sớm cứu sống nhiều người."
+    },
+    {
+      "question": "diagnose",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌdaɪəɡˈnoʊs/",
+      "answer": "chẩn đoán",
+      "explanation": "He was diagnosed with diabetes.\n→ Anh ấy được chẩn đoán mắc tiểu đường."
+    },
+    {
+      "question": "treatment",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtriːtmənt/",
+      "answer": "điều trị",
+      "explanation": "The treatment lasts three months.\n→ Đợt điều trị kéo dài ba tháng."
+    },
+    {
+      "question": "therapy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈθerəpi/",
+      "answer": "liệu pháp",
+      "explanation": "Physical therapy helped him walk again.\n→ Vật lý trị liệu giúp anh ấy đi lại được."
+    },
+    {
+      "question": "medication",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmedɪˈkeɪʃən/",
+      "answer": "thuốc men",
+      "explanation": "Are you taking any medication?\n→ Anh có đang dùng thuốc gì không?"
+    },
+    {
+      "question": "dose",
+      "partOfSpeech": "noun",
+      "phonetic": "/doʊs/",
+      "answer": "liều lượng",
+      "explanation": "Take one dose every eight hours.\n→ Uống một liều mỗi tám tiếng."
+    },
+    {
+      "question": "chronic",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkrɑːnɪk/",
+      "answer": "mãn tính",
+      "explanation": "Chronic back pain is common among office workers.\n→ Đau lưng mãn tính phổ biến ở dân văn phòng."
+    },
+    {
+      "question": "acute",
+      "partOfSpeech": "adjective",
+      "phonetic": "/əˈkjuːt/",
+      "answer": "cấp tính",
+      "explanation": "He was rushed in with acute appendicitis.\n→ Anh ấy được đưa gấp vào viện vì viêm ruột thừa cấp."
+    },
+    {
+      "question": "infection",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈfekʃən/",
+      "answer": "nhiễm trùng",
+      "explanation": "The wound got an infection.\n→ Vết thương bị nhiễm trùng."
+    },
+    {
+      "question": "contagious",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kənˈteɪdʒəs/",
+      "answer": "dễ lây",
+      "explanation": "The flu is very contagious.\n→ Cúm rất dễ lây."
+    },
+    {
+      "question": "X-ray",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈeks reɪ/",
+      "answer": "chụp X-quang",
+      "explanation": "The X-ray showed a broken bone.\n→ Phim X-quang cho thấy xương bị gãy."
+    },
+    {
+      "question": "scan",
+      "partOfSpeech": "noun",
+      "phonetic": "/skæn/",
+      "answer": "chụp chiếu (CT, MRI)",
+      "explanation": "The doctor ordered a brain scan.\n→ Bác sĩ chỉ định chụp não."
+    },
+    {
+      "question": "blood test",
+      "partOfSpeech": "noun",
+      "phonetic": "/blʌd test/",
+      "answer": "xét nghiệm máu",
+      "explanation": "You must not eat before the blood test.\n→ Bạn không được ăn trước khi xét nghiệm máu."
+    },
+    {
+      "question": "medical record",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmedɪkəl ˈrekərd/",
+      "answer": "hồ sơ bệnh án",
+      "explanation": "Electronic medical records are replacing paper files.\n→ Hồ sơ bệnh án điện tử đang thay thế hồ sơ giấy."
+    },
+    {
+      "question": "consultation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkɑːnsəlˈteɪʃən/",
+      "answer": "buổi khám tư vấn",
+      "explanation": "The online consultation costs 200,000 dong.\n→ Một buổi tư vấn online giá 200.000 đồng."
+    },
+    {
+      "question": "telemedicine",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌteliˈmedɪsɪn/",
+      "answer": "khám chữa bệnh từ xa",
+      "explanation": "Telemedicine became popular during the pandemic.\n→ Khám bệnh từ xa trở nên phổ biến trong đại dịch."
+    },
+    {
+      "question": "pandemic",
+      "partOfSpeech": "noun",
+      "phonetic": "/pænˈdemɪk/",
+      "answer": "đại dịch",
+      "explanation": "The pandemic changed how we work.\n→ Đại dịch đã thay đổi cách chúng ta làm việc."
+    },
+    {
+      "question": "side effect",
+      "partOfSpeech": "noun",
+      "phonetic": "/saɪd ɪˈfekt/",
+      "answer": "tác dụng phụ",
+      "explanation": "Nausea is a common side effect.\n→ Buồn nôn là tác dụng phụ thường gặp."
+    },
+    {
+      "question": "recovery",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɪˈkʌvəri/",
+      "answer": "sự hồi phục",
+      "explanation": "She made a full recovery.\n→ Cô ấy đã hồi phục hoàn toàn."
+    },
+    {
+      "question": "operating room",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːpəreɪtɪŋ ruːm/",
+      "answer": "phòng mổ",
+      "explanation": "Only medical staff can enter the operating room.\n→ Chỉ nhân viên y tế được vào phòng mổ."
+    },
+    {
+      "question": "intensive care",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈtensɪv ker/",
+      "answer": "chăm sóc đặc biệt (ICU)",
+      "explanation": "He spent two days in intensive care.\n→ Anh ấy nằm phòng hồi sức tích cực hai ngày."
+    },
+    {
+      "question": "on call",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɑːn kɔːl/",
+      "answer": "trực (sẵn sàng khi được gọi)",
+      "explanation": "Doctors are on call every other weekend.\n→ Bác sĩ trực cách tuần một lần vào cuối tuần."
+    },
+    {
+      "question": "night shift",
+      "partOfSpeech": "noun",
+      "phonetic": "/naɪt ʃɪft/",
+      "answer": "ca đêm",
+      "explanation": "Nurses often work the night shift.\n→ Y tá thường làm ca đêm."
+    },
+    {
+      "question": "caregiver",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkerɡɪvər/",
+      "answer": "người chăm sóc",
+      "explanation": "She works as a caregiver for elderly people.\n→ Cô ấy làm người chăm sóc người già."
+    },
+    {
+      "question": "public health",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpʌblɪk helθ/",
+      "answer": "y tế công cộng",
+      "explanation": "Clean water is a public health priority.\n→ Nước sạch là ưu tiên của y tế công cộng."
+    },
+    {
+      "question": "medical school",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmedɪkəl skuːl/",
+      "answer": "trường y",
+      "explanation": "Medical school takes six years in Vietnam.\n→ Ở Việt Nam học trường y mất sáu năm."
+    }
+  ]
+}

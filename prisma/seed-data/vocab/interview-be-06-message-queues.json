@@ -1,0 +1,70 @@
+{
+  "slug": "interview-be-06-message-queues",
+  "order": 206,
+  "title": "Phỏng vấn Backend · Message Queues & Event-Driven",
+  "description": "Câu hỏi phỏng vấn về message queue, Kafka, RabbitMQ, delivery guarantees, idempotent consumer, DLQ, event sourcing. Đáp án song ngữ.",
+  "category": "IT",
+  "level": "ADVANCED",
+  "cards": [
+    {
+      "question": "Why use a message queue? / Tại sao dùng message queue?",
+      "answer": "- **Tách rời (decoupling)** producer và consumer.\n- **Xử lý bất đồng bộ**: trả response nhanh, việc nặng (gửi email, xử lý video) làm sau.\n- **Hấp thụ đột biến tải** (buffer), consumer xử lý theo năng lực.\n- **Retry** và độ bền khi consumer lỗi.\n- **Fan-out**: một event cho nhiều service.\nĐánh đổi: thêm hạ tầng, nhất quán cuối (eventual consistency), debug khó hơn.",
+      "explanation": "Queues **decouple** producers and consumers, enable **async processing** for slow work, **absorb traffic spikes**, provide **retries** and durability, and support **fan-out** to many services. Costs: more infrastructure, eventual consistency and harder debugging."
+    },
+    {
+      "question": "Kafka vs RabbitMQ — what are the differences? / Kafka và RabbitMQ khác nhau thế nào?",
+      "answer": "- **RabbitMQ**: message broker truyền thống (AMQP), **push** tới consumer, message bị **xoá sau khi ack**, routing linh hoạt (exchange: direct/topic/fanout). Hợp task queue, RPC, routing phức tạp.\n- **Kafka**: **distributed commit log**, consumer **pull** theo offset, message **được giữ lại** theo thời gian → replay được, throughput cực cao, thứ tự trong partition. Hợp event streaming, analytics, event sourcing, CDC.",
+      "explanation": "**RabbitMQ** is a traditional AMQP broker: pushes to consumers, deletes messages after ack, and offers flexible routing — great for task queues. **Kafka** is a distributed commit log: consumers pull by offset, messages are retained for replay, throughput is huge and ordering holds per partition — great for event streaming and CDC."
+    },
+    {
+      "question": "Explain at-most-once, at-least-once and exactly-once delivery. / Giải thích at-most-once, at-least-once và exactly-once.",
+      "answer": "- **At-most-once**: ack trước khi xử lý → không trùng nhưng **có thể mất**.\n- **At-least-once**: xử lý xong mới ack → **không mất nhưng có thể trùng** (crash sau xử lý, trước ack). Phổ biến nhất.\n- **Exactly-once**: khó trong hệ phân tán; Kafka hỗ trợ trong phạm vi Kafka (idempotent producer + transactions). Thực tế: **at-least-once + consumer idempotent = effectively-once**.",
+      "explanation": "**At-most-once** acks before processing — no duplicates but possible loss. **At-least-once** acks after processing — no loss but possible duplicates; the common choice. **Exactly-once** is hard end to end; Kafka offers it within Kafka via idempotent producers and transactions. In practice: at-least-once plus idempotent consumers."
+    },
+    {
+      "question": "How do you make a consumer idempotent? / Làm consumer idempotent thế nào?",
+      "answer": "- Mỗi message có **event ID duy nhất**.\n- Bảng `processed_events(event_id PRIMARY KEY)`: trong **cùng transaction** với nghiệp vụ, INSERT event_id; nếu trùng khoá → bỏ qua.\n- Hoặc thiết kế thao tác tự nhiên idempotent: `UPSERT`, `SET status = 'paid'` thay vì `balance += x`.\n- Kiểm tra trạng thái/phiên bản: chỉ áp dụng nếu `version` mới hơn.",
+      "explanation": "Give every message a unique **event ID** and record it in a `processed_events` table with a primary key in the **same transaction** as the business change, skipping duplicates. Or make operations naturally idempotent — upserts and state assignments instead of increments — and apply only newer versions."
+    },
+    {
+      "question": "How does Kafka guarantee ordering? / Kafka đảm bảo thứ tự thế nào?",
+      "answer": "Thứ tự chỉ được đảm bảo **trong một partition**. Producer gửi message với **key** (vd. `orderId`) → cùng key luôn vào cùng partition → mọi event của một đơn hàng có thứ tự.\n- Mỗi partition chỉ được **một consumer trong một consumer group** đọc.\n- Số partition = giới hạn song song tối đa của group.\n- Bật `enable.idempotence=true` để retry không làm đảo thứ tự/trùng.",
+      "explanation": "Ordering is guaranteed **only within a partition**. Messages with the same **key** (e.g. orderId) go to the same partition, so one entity's events stay ordered. Each partition is read by one consumer per group, so partition count caps parallelism. Enable idempotent producers so retries don't reorder or duplicate."
+    },
+    {
+      "question": "What is a consumer group and rebalancing in Kafka? / Consumer group và rebalancing trong Kafka là gì?",
+      "answer": "- **Consumer group**: nhóm consumer chia nhau partition của topic; mỗi partition giao cho đúng một consumer. Các group khác nhau đọc độc lập (pub/sub).\n- **Rebalancing**: khi consumer vào/ra/chết, partition được phân lại. Trong lúc rebalance (eager), cả group tạm dừng. Dùng **cooperative sticky assignor** và **static membership** để giảm gián đoạn.\n- Offset được commit vào topic `__consumer_offsets`.",
+      "explanation": "A **consumer group** shares a topic's partitions, one consumer per partition; separate groups read independently. **Rebalancing** reassigns partitions when members join or leave; eager rebalances pause the group, so use the cooperative sticky assignor and static membership. Offsets are committed to `__consumer_offsets`."
+    },
+    {
+      "question": "What is a dead letter queue (DLQ)? / Dead letter queue (DLQ) là gì?",
+      "answer": "Hàng đợi chứa message **xử lý thất bại nhiều lần** (vượt số retry) hoặc không parse được (\"poison message\").\n- Mục đích: không để một message lỗi **chặn cả hàng đợi**.\n- Quy trình: retry với **exponential backoff** → chuyển DLQ → cảnh báo → điều tra, sửa bug → **replay** từ DLQ.\n- Lưu kèm metadata: lỗi, số lần thử, thời gian.",
+      "explanation": "A DLQ holds messages that **failed repeatedly** or can't be parsed (poison messages), so they don't **block the queue**. Flow: retry with exponential backoff, move to the DLQ, alert, fix, then **replay**. Store the error, attempt count and timestamps with each message."
+    },
+    {
+      "question": "How do you handle backpressure when consumers are slower than producers? / Xử lý backpressure khi consumer chậm hơn producer thế nào?",
+      "answer": "- **Scale consumer** ngang (Kafka: tăng partition + consumer; dùng KEDA autoscale theo **consumer lag**).\n- Xử lý theo **batch**, tối ưu phần chậm (DB bulk insert).\n- Giới hạn **prefetch** (RabbitMQ `basic.qos`) để consumer không ôm quá nhiều.\n- Phía producer: rate limit, trả `429`/`503`, bỏ bớt message không quan trọng (load shedding).\n- Giám sát **queue depth / lag** và cảnh báo.",
+      "explanation": "Scale consumers horizontally (autoscale on **lag**), batch work and speed up slow steps, cap **prefetch** so consumers don't hoard, and on the producer side rate-limit or shed low-priority load. Always monitor queue depth and lag."
+    },
+    {
+      "question": "What is event sourcing? Pros and cons? / Event sourcing là gì? Ưu nhược điểm?",
+      "answer": "Lưu **chuỗi sự kiện** (`OrderPlaced`, `ItemAdded`, `OrderPaid`) làm nguồn sự thật thay vì trạng thái hiện tại; trạng thái = replay các event (có snapshot để nhanh).\n- **Ưu**: audit trail đầy đủ, \"time travel\", dựng nhiều read model mới từ lịch sử, hợp domain tài chính.\n- **Nhược**: phức tạp, **schema event phải versioning**, truy vấn cần projection (thường đi kèm **CQRS**), eventual consistency, khó xoá dữ liệu cá nhân.",
+      "explanation": "Event sourcing stores the **sequence of events** as the source of truth and rebuilds state by replaying them, with snapshots for speed. Pros: full audit trail, time travel, new read models from history. Cons: complexity, event schema versioning, projections (usually with CQRS), eventual consistency and harder data erasure."
+    },
+    {
+      "question": "What is CQRS? / CQRS là gì?",
+      "answer": "**Command Query Responsibility Segregation**: tách **mô hình ghi** (command — validate, nghiệp vụ) và **mô hình đọc** (query — tối ưu cho hiển thị, có thể denormalize, lưu ở store khác như Elasticsearch).\n- Đồng bộ read model qua event → **eventual consistency**.\n- Dùng khi đọc/ghi có yêu cầu rất khác nhau, tải đọc lớn. Với CRUD đơn giản thì **quá mức cần thiết**.",
+      "explanation": "CQRS separates the **write model** (commands, validation, business rules) from the **read model** (queries optimized for display, often denormalized or in another store like Elasticsearch), synced via events with eventual consistency. Worth it when read and write needs diverge sharply; overkill for plain CRUD."
+    },
+    {
+      "question": "How do you schedule delayed or recurring jobs reliably? / Lên lịch job trễ hoặc định kỳ một cách tin cậy thế nào?",
+      "answer": "- Thư viện queue có hỗ trợ delay: **BullMQ** (Redis), pg-boss, Sidekiq, Celery beat.\n- Cron trên nhiều instance → chạy trùng → dùng **leader election/lock** hoặc K8s **CronJob** (`concurrencyPolicy: Forbid`).\n- Job phải **idempotent** và có thể chạy lại; lưu trạng thái lần chạy cuối.\n- Workflow nhiều bước dài: **Temporal**/Step Functions.",
+      "explanation": "Use queues with delayed jobs (BullMQ, pg-boss, Sidekiq, Celery beat). Cron on many instances runs duplicates, so use a lock or leader election, or a Kubernetes CronJob with `concurrencyPolicy: Forbid`. Make jobs idempotent and track the last run; use Temporal or Step Functions for long multi-step workflows."
+    },
+    {
+      "question": "Pub/Sub vs point-to-point queue? / Pub/Sub khác point-to-point queue thế nào?",
+      "answer": "- **Point-to-point (queue)**: mỗi message được **một consumer** xử lý (chia việc — work queue).\n- **Pub/Sub (topic)**: mỗi message được gửi tới **mọi subscriber** (mỗi service nhận một bản).\n- Kafka làm được cả hai: trong một group = chia việc; nhiều group = pub/sub. RabbitMQ: fanout exchange + nhiều queue.",
+      "explanation": "In **point-to-point**, each message goes to **one** consumer (work distribution). In **pub/sub**, each message goes to **every** subscriber. Kafka does both — one group splits work, multiple groups each get a copy; RabbitMQ uses a fanout exchange with several queues."
+    }
+  ]
+}

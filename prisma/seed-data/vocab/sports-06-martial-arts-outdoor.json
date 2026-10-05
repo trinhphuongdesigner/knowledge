@@ -1,0 +1,241 @@
+{
+  "slug": "sports-06-martial-arts-outdoor",
+  "order": 166,
+  "title": "Sports 6 · Martial Arts, Yoga & Outdoor",
+  "description": "Từ vựng võ thuật, yoga, leo núi, cắm trại và trekking (CEFR B1–B2).",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "martial arts",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmɑːrʃəl ɑːrts/",
+      "answer": "võ thuật",
+      "explanation": "Vovinam is a Vietnamese martial art.\n→ Vovinam là môn võ của Việt Nam."
+    },
+    {
+      "question": "punch",
+      "partOfSpeech": "noun",
+      "phonetic": "/pʌntʃ/",
+      "answer": "cú đấm",
+      "explanation": "He threw a fast punch.\n→ Anh ấy tung cú đấm nhanh."
+    },
+    {
+      "question": "kick",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɪk/",
+      "answer": "cú đá",
+      "explanation": "A roundhouse kick is hard to learn.\n→ Đá vòng cầu rất khó học."
+    },
+    {
+      "question": "block",
+      "partOfSpeech": "verb",
+      "phonetic": "/blɑːk/",
+      "answer": "đỡ, chặn",
+      "explanation": "Block with your left arm.\n→ Đỡ bằng tay trái."
+    },
+    {
+      "question": "sparring",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈspɑːrɪŋ/",
+      "answer": "đấu tập",
+      "explanation": "We do sparring on Fridays.\n→ Chúng tôi đấu tập vào thứ Sáu."
+    },
+    {
+      "question": "belt",
+      "partOfSpeech": "noun",
+      "phonetic": "/belt/",
+      "answer": "đai (võ)",
+      "explanation": "She just got her black belt.\n→ Cô ấy vừa lên đai đen."
+    },
+    {
+      "question": "self-defense",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌself dɪˈfens/",
+      "answer": "tự vệ",
+      "explanation": "Every woman should learn self-defense.\n→ Phụ nữ nên học tự vệ."
+    },
+    {
+      "question": "boxing",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɑːksɪŋ/",
+      "answer": "quyền anh",
+      "explanation": "Boxing is a great workout.\n→ Quyền anh là bài tập tuyệt vời."
+    },
+    {
+      "question": "discipline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɪsəplɪn/",
+      "answer": "kỷ luật",
+      "explanation": "Martial arts teach discipline.\n→ Võ thuật dạy tính kỷ luật."
+    },
+    {
+      "question": "yoga mat",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈjoʊɡə mæt/",
+      "answer": "thảm yoga",
+      "explanation": "Bring your own yoga mat.\n→ Mang thảm yoga riêng."
+    },
+    {
+      "question": "pose",
+      "partOfSpeech": "noun",
+      "phonetic": "/poʊz/",
+      "answer": "tư thế",
+      "explanation": "Hold the pose for five breaths.\n→ Giữ tư thế trong năm nhịp thở."
+    },
+    {
+      "question": "breathe",
+      "partOfSpeech": "verb",
+      "phonetic": "/briːð/",
+      "answer": "thở",
+      "explanation": "Breathe in slowly through your nose.\n→ Hít vào chậm bằng mũi."
+    },
+    {
+      "question": "meditation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌmedɪˈteɪʃən/",
+      "answer": "thiền",
+      "explanation": "Ten minutes of meditation clears my mind.\n→ Mười phút thiền giúp đầu óc tôi thông suốt."
+    },
+    {
+      "question": "balance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbæləns/",
+      "answer": "thăng bằng",
+      "explanation": "Yoga improves your balance.\n→ Yoga cải thiện khả năng giữ thăng bằng."
+    },
+    {
+      "question": "hiking",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhaɪkɪŋ/",
+      "answer": "đi bộ đường dài",
+      "explanation": "We went hiking in Ba Vi.\n→ Chúng tôi đi bộ đường dài ở Ba Vì."
+    },
+    {
+      "question": "trekking",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtrekɪŋ/",
+      "answer": "leo núi đi bộ nhiều ngày",
+      "explanation": "Trekking to Fansipan takes two days.\n→ Trekking lên Fansipan mất hai ngày."
+    },
+    {
+      "question": "trail",
+      "partOfSpeech": "noun",
+      "phonetic": "/treɪl/",
+      "answer": "đường mòn",
+      "explanation": "Stay on the marked trail.\n→ Đi đúng đường mòn được đánh dấu."
+    },
+    {
+      "question": "summit",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌmɪt/",
+      "answer": "đỉnh núi",
+      "explanation": "We reached the summit at sunrise.\n→ Chúng tôi lên đỉnh lúc bình minh."
+    },
+    {
+      "question": "peak",
+      "partOfSpeech": "noun",
+      "phonetic": "/piːk/",
+      "answer": "đỉnh",
+      "explanation": "Fansipan is the highest peak in Indochina.\n→ Fansipan là đỉnh cao nhất Đông Dương."
+    },
+    {
+      "question": "backpack",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækpæk/",
+      "answer": "ba lô",
+      "explanation": "Pack light — your backpack gets heavy fast.\n→ Mang đồ gọn — ba lô nặng lên rất nhanh."
+    },
+    {
+      "question": "camping",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæmpɪŋ/",
+      "answer": "cắm trại",
+      "explanation": "Camping by the lake is so peaceful.\n→ Cắm trại bên hồ thật yên bình."
+    },
+    {
+      "question": "tent",
+      "partOfSpeech": "noun",
+      "phonetic": "/tent/",
+      "answer": "lều",
+      "explanation": "It took us an hour to set up the tent.\n→ Mất một tiếng chúng tôi mới dựng được lều."
+    },
+    {
+      "question": "sleeping bag",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsliːpɪŋ bæɡ/",
+      "answer": "túi ngủ",
+      "explanation": "Bring a warm sleeping bag.\n→ Mang theo túi ngủ ấm."
+    },
+    {
+      "question": "campfire",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæmpfaɪər/",
+      "answer": "lửa trại",
+      "explanation": "We sang songs around the campfire.\n→ Chúng tôi hát quanh lửa trại."
+    },
+    {
+      "question": "rock climbing",
+      "partOfSpeech": "noun",
+      "phonetic": "/rɑːk ˈklaɪmɪŋ/",
+      "answer": "leo núi đá",
+      "explanation": "Indoor rock climbing is fun for beginners.\n→ Leo núi trong nhà rất vui cho người mới."
+    },
+    {
+      "question": "harness",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːrnɪs/",
+      "answer": "đai an toàn (leo núi)",
+      "explanation": "Check your harness before climbing.\n→ Kiểm tra đai an toàn trước khi leo."
+    },
+    {
+      "question": "altitude",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæltɪtuːd/",
+      "answer": "độ cao",
+      "explanation": "Some people get sick at high altitude.\n→ Một số người bị say độ cao."
+    },
+    {
+      "question": "steep",
+      "partOfSpeech": "adjective",
+      "phonetic": "/stiːp/",
+      "answer": "dốc",
+      "explanation": "The last part of the trail is very steep.\n→ Đoạn cuối của đường mòn rất dốc."
+    },
+    {
+      "question": "slippery",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈslɪpəri/",
+      "answer": "trơn trượt",
+      "explanation": "The rocks are slippery after rain.\n→ Đá trơn trượt sau mưa."
+    },
+    {
+      "question": "exhausted",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪɡˈzɔːstɪd/",
+      "answer": "kiệt sức",
+      "explanation": "We were exhausted but happy.\n→ Chúng tôi kiệt sức nhưng vui."
+    },
+    {
+      "question": "breathtaking",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈbreθteɪkɪŋ/",
+      "answer": "đẹp ngoạn mục",
+      "explanation": "The view from the top is breathtaking.\n→ Cảnh từ trên đỉnh đẹp ngoạn mục."
+    },
+    {
+      "question": "off the beaten track",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɔːf ðə ˈbiːtən træk/",
+      "answer": "nơi ít người biết",
+      "explanation": "We love places off the beaten track.\n→ Chúng tôi thích những nơi ít người đến."
+    },
+    {
+      "question": "learning curve",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɜːrnɪŋ kɜːrv/",
+      "answer": "độ khó khi học",
+      "explanation": "Climbing has a steep learning curve.\n→ Leo núi khá khó để làm quen."
+    }
+  ]
+}

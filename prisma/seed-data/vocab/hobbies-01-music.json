@@ -1,0 +1,276 @@
+{
+  "slug": "hobbies-01-music",
+  "order": 151,
+  "title": "Hobbies 1 · Music",
+  "description": "Từ vựng âm nhạc: nhạc cụ, thể loại, biểu diễn và nghe nhạc (CEFR A2–B2).",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "musician",
+      "partOfSpeech": "noun",
+      "phonetic": "/mjuˈzɪʃən/",
+      "answer": "nhạc sĩ, nhạc công",
+      "explanation": "He is a talented musician.\n→ Anh ấy là một nhạc công tài năng."
+    },
+    {
+      "question": "singer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪŋər/",
+      "answer": "ca sĩ",
+      "explanation": "My favorite singer is releasing a new album.\n→ Ca sĩ yêu thích của tôi sắp ra album mới."
+    },
+    {
+      "question": "band",
+      "partOfSpeech": "noun",
+      "phonetic": "/bænd/",
+      "answer": "ban nhạc",
+      "explanation": "They formed a band in college.\n→ Họ lập ban nhạc từ thời đại học."
+    },
+    {
+      "question": "lyrics",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɪrɪks/",
+      "answer": "lời bài hát",
+      "explanation": "I can't remember the lyrics.\n→ Tôi không nhớ lời bài hát."
+    },
+    {
+      "question": "melody",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmelədi/",
+      "answer": "giai điệu",
+      "explanation": "The melody is simple but beautiful.\n→ Giai điệu đơn giản mà hay."
+    },
+    {
+      "question": "rhythm",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrɪðəm/",
+      "answer": "nhịp điệu",
+      "explanation": "Clap along to the rhythm.\n→ Vỗ tay theo nhịp."
+    },
+    {
+      "question": "beat",
+      "partOfSpeech": "noun",
+      "phonetic": "/biːt/",
+      "answer": "nhịp, phách",
+      "explanation": "This song has a strong beat.\n→ Bài này có nhịp rất mạnh."
+    },
+    {
+      "question": "tune",
+      "partOfSpeech": "noun",
+      "phonetic": "/tuːn/",
+      "answer": "giai điệu, bản nhạc",
+      "explanation": "She hummed a happy tune.\n→ Cô ấy ngân nga một giai điệu vui."
+    },
+    {
+      "question": "chorus",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɔːrəs/",
+      "answer": "điệp khúc",
+      "explanation": "Everyone sang the chorus together.\n→ Mọi người cùng hát điệp khúc."
+    },
+    {
+      "question": "verse",
+      "partOfSpeech": "noun",
+      "phonetic": "/vɜːrs/",
+      "answer": "đoạn (lời bài hát)",
+      "explanation": "The second verse is my favorite.\n→ Đoạn hai là đoạn tôi thích nhất."
+    },
+    {
+      "question": "genre",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʒɑːnrə/",
+      "answer": "thể loại",
+      "explanation": "What genre of music do you like?\n→ Bạn thích thể loại nhạc nào?"
+    },
+    {
+      "question": "instrument",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪnstrəmənt/",
+      "answer": "nhạc cụ",
+      "explanation": "Do you play any instruments?\n→ Bạn có chơi nhạc cụ nào không?"
+    },
+    {
+      "question": "guitar",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡɪˈtɑːr/",
+      "answer": "đàn ghi-ta",
+      "explanation": "I'm learning to play the guitar.\n→ Tôi đang học chơi ghi-ta."
+    },
+    {
+      "question": "piano",
+      "partOfSpeech": "noun",
+      "phonetic": "/piˈænoʊ/",
+      "answer": "đàn piano",
+      "explanation": "She has played the piano since she was five.\n→ Cô ấy chơi piano từ năm năm tuổi."
+    },
+    {
+      "question": "drums",
+      "partOfSpeech": "noun",
+      "phonetic": "/drʌmz/",
+      "answer": "trống (bộ trống)",
+      "explanation": "My neighbor plays the drums every night.\n→ Hàng xóm tôi chơi trống mỗi tối."
+    },
+    {
+      "question": "violin",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌvaɪəˈlɪn/",
+      "answer": "đàn vi-ô-lông",
+      "explanation": "The violin solo was amazing.\n→ Đoạn độc tấu vi-ô-lông thật tuyệt."
+    },
+    {
+      "question": "chord",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɔːrd/",
+      "answer": "hợp âm",
+      "explanation": "Learn these four chords and you can play hundreds of songs.\n→ Học bốn hợp âm này là bạn chơi được hàng trăm bài."
+    },
+    {
+      "question": "practice",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈpræktɪs/",
+      "answer": "luyện tập",
+      "explanation": "I practice guitar for 30 minutes a day.\n→ Tôi tập ghi-ta 30 phút mỗi ngày."
+    },
+    {
+      "question": "perform",
+      "partOfSpeech": "verb",
+      "phonetic": "/pərˈfɔːrm/",
+      "answer": "biểu diễn",
+      "explanation": "The band will perform live tonight.\n→ Ban nhạc sẽ biểu diễn trực tiếp tối nay."
+    },
+    {
+      "question": "concert",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːnsərt/",
+      "answer": "buổi hoà nhạc",
+      "explanation": "We went to a rock concert last weekend.\n→ Cuối tuần trước chúng tôi đi xem hoà nhạc rock."
+    },
+    {
+      "question": "gig",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡɪɡ/",
+      "answer": "buổi diễn nhỏ",
+      "explanation": "The band has a gig at a café on Friday.\n→ Ban nhạc có buổi diễn ở quán cà phê thứ Sáu."
+    },
+    {
+      "question": "live",
+      "partOfSpeech": "adjective",
+      "phonetic": "/laɪv/",
+      "answer": "trực tiếp",
+      "explanation": "I prefer live music to recordings.\n→ Tôi thích nhạc sống hơn bản thu."
+    },
+    {
+      "question": "album",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈælbəm/",
+      "answer": "album",
+      "explanation": "Their new album sold a million copies.\n→ Album mới của họ bán được một triệu bản."
+    },
+    {
+      "question": "track",
+      "partOfSpeech": "noun",
+      "phonetic": "/træk/",
+      "answer": "bài (trong album)",
+      "explanation": "The third track is the best.\n→ Bài thứ ba hay nhất."
+    },
+    {
+      "question": "playlist",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpleɪlɪst/",
+      "answer": "danh sách phát",
+      "explanation": "I made a playlist for coding.\n→ Tôi tạo một playlist để nghe khi code."
+    },
+    {
+      "question": "stream",
+      "partOfSpeech": "verb",
+      "phonetic": "/striːm/",
+      "answer": "nghe/xem trực tuyến",
+      "explanation": "Most people stream music now.\n→ Giờ hầu hết mọi người nghe nhạc trực tuyến."
+    },
+    {
+      "question": "catchy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkætʃi/",
+      "answer": "dễ nhớ, bắt tai",
+      "explanation": "The song is so catchy that I can't stop singing it.\n→ Bài hát bắt tai đến mức tôi hát mãi không thôi."
+    },
+    {
+      "question": "in tune",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɪn tuːn/",
+      "answer": "đúng tông",
+      "explanation": "Your guitar isn't in tune.\n→ Đàn ghi-ta của bạn chưa đúng tông."
+    },
+    {
+      "question": "out of tune",
+      "partOfSpeech": "phrase",
+      "phonetic": "/aʊt əv tuːn/",
+      "answer": "lạc tông",
+      "explanation": "He sings out of tune but he loves it.\n→ Anh ấy hát lạc tông nhưng rất thích hát."
+    },
+    {
+      "question": "karaoke",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkæriˈoʊki/",
+      "answer": "hát karaoke",
+      "explanation": "We go to karaoke after every team dinner.\n→ Sau mỗi bữa ăn của đội là chúng tôi đi karaoke."
+    },
+    {
+      "question": "audience",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɔːdiəns/",
+      "answer": "khán giả",
+      "explanation": "The audience cheered loudly.\n→ Khán giả reo hò ầm ĩ."
+    },
+    {
+      "question": "composer",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəmˈpoʊzər/",
+      "answer": "nhà soạn nhạc",
+      "explanation": "Trinh Cong Son is a famous Vietnamese composer.\n→ Trịnh Công Sơn là nhạc sĩ nổi tiếng của Việt Nam."
+    },
+    {
+      "question": "compose",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəmˈpoʊz/",
+      "answer": "sáng tác",
+      "explanation": "He composed this song for his wife.\n→ Anh ấy sáng tác bài này tặng vợ."
+    },
+    {
+      "question": "cover",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkʌvər/",
+      "answer": "bản hát lại",
+      "explanation": "Her cover is better than the original.\n→ Bản cover của cô ấy hay hơn bản gốc."
+    },
+    {
+      "question": "headphones",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedfoʊnz/",
+      "answer": "tai nghe chụp",
+      "explanation": "I wear headphones to focus at work.\n→ Tôi đeo tai nghe để tập trung khi làm việc."
+    },
+    {
+      "question": "volume",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvɑːljuːm/",
+      "answer": "âm lượng",
+      "explanation": "Could you turn the volume down?\n→ Bạn vặn nhỏ âm lượng được không?"
+    },
+    {
+      "question": "tone-deaf",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌtoʊn ˈdef/",
+      "answer": "không cảm âm được, mù nhạc",
+      "explanation": "I'm completely tone-deaf.\n→ Tôi hoàn toàn mù nhạc."
+    },
+    {
+      "question": "music to my ears",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˈmjuːzɪk tə maɪ ɪrz/",
+      "answer": "tin rất vui",
+      "explanation": "\"The bug is fixed\" — that's music to my ears!\n→ \"Bug đã được sửa\" — nghe thật sướng tai!"
+    }
+  ]
+}

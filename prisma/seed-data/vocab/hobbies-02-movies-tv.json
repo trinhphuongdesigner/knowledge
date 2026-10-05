@@ -1,0 +1,283 @@
+{
+  "slug": "hobbies-02-movies-tv",
+  "order": 152,
+  "title": "Hobbies 2 · Movies & TV Series",
+  "description": "Từ vựng phim ảnh, truyền hình và streaming (CEFR A2–B2). Dùng khi bàn luận phim, review hoặc xem phim không phụ đề.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "movie",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmuːvi/",
+      "answer": "bộ phim",
+      "explanation": "Let's watch a movie tonight.\n→ Tối nay xem phim nhé."
+    },
+    {
+      "question": "series",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪriːz/",
+      "answer": "phim bộ",
+      "explanation": "I finished the whole series in a week.\n→ Tôi xem hết cả bộ phim trong một tuần."
+    },
+    {
+      "question": "episode",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈepɪsoʊd/",
+      "answer": "tập phim",
+      "explanation": "The last episode was shocking.\n→ Tập cuối gây sốc."
+    },
+    {
+      "question": "season",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsiːzən/",
+      "answer": "mùa (phim)",
+      "explanation": "Season two is coming out next year.\n→ Mùa hai sẽ ra mắt năm sau."
+    },
+    {
+      "question": "binge-watch",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈbɪndʒ wɑːtʃ/",
+      "answer": "xem liền một mạch",
+      "explanation": "We binge-watched the show all weekend.\n→ Chúng tôi cày phim suốt cuối tuần."
+    },
+    {
+      "question": "plot",
+      "partOfSpeech": "noun",
+      "phonetic": "/plɑːt/",
+      "answer": "cốt truyện",
+      "explanation": "The plot is hard to follow.\n→ Cốt truyện khó theo dõi."
+    },
+    {
+      "question": "character",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkærəktər/",
+      "answer": "nhân vật",
+      "explanation": "Who is your favorite character?\n→ Nhân vật yêu thích của bạn là ai?"
+    },
+    {
+      "question": "main character",
+      "partOfSpeech": "noun",
+      "phonetic": "/meɪn ˈkærəktər/",
+      "answer": "nhân vật chính",
+      "explanation": "The main character is a young hacker.\n→ Nhân vật chính là một hacker trẻ."
+    },
+    {
+      "question": "villain",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈvɪlən/",
+      "answer": "phản diện",
+      "explanation": "The villain was more interesting than the hero.\n→ Phản diện thú vị hơn cả anh hùng."
+    },
+    {
+      "question": "cast",
+      "partOfSpeech": "noun",
+      "phonetic": "/kæst/",
+      "answer": "dàn diễn viên",
+      "explanation": "The film has an amazing cast.\n→ Phim có dàn diễn viên tuyệt vời."
+    },
+    {
+      "question": "actor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæktər/",
+      "answer": "diễn viên nam",
+      "explanation": "He won an award for best actor.\n→ Anh ấy đoạt giải nam diễn viên xuất sắc."
+    },
+    {
+      "question": "actress",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæktrəs/",
+      "answer": "diễn viên nữ",
+      "explanation": "The actress started her career on TV.\n→ Nữ diễn viên bắt đầu sự nghiệp trên truyền hình."
+    },
+    {
+      "question": "director",
+      "partOfSpeech": "noun",
+      "phonetic": "/dəˈrektər/",
+      "answer": "đạo diễn",
+      "explanation": "The director also wrote the script.\n→ Đạo diễn cũng viết kịch bản."
+    },
+    {
+      "question": "script",
+      "partOfSpeech": "noun",
+      "phonetic": "/skrɪpt/",
+      "answer": "kịch bản",
+      "explanation": "The script was rewritten many times.\n→ Kịch bản được viết lại nhiều lần."
+    },
+    {
+      "question": "scene",
+      "partOfSpeech": "noun",
+      "phonetic": "/siːn/",
+      "answer": "cảnh phim",
+      "explanation": "The opening scene is unforgettable.\n→ Cảnh mở đầu thật khó quên."
+    },
+    {
+      "question": "trailer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtreɪlər/",
+      "answer": "đoạn giới thiệu phim",
+      "explanation": "The trailer gives away too much.\n→ Trailer tiết lộ quá nhiều."
+    },
+    {
+      "question": "spoiler",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈspɔɪlər/",
+      "answer": "tiết lộ nội dung",
+      "explanation": "No spoilers, please! I haven't seen it yet.\n→ Đừng spoil nhé! Tôi chưa xem."
+    },
+    {
+      "question": "subtitles",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsʌbtaɪtəlz/",
+      "answer": "phụ đề",
+      "explanation": "I watch English movies with English subtitles.\n→ Tôi xem phim tiếng Anh với phụ đề tiếng Anh."
+    },
+    {
+      "question": "dubbed",
+      "partOfSpeech": "adjective",
+      "phonetic": "/dʌbd/",
+      "answer": "lồng tiếng",
+      "explanation": "I hate watching dubbed movies.\n→ Tôi ghét xem phim lồng tiếng."
+    },
+    {
+      "question": "sequel",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsiːkwəl/",
+      "answer": "phần tiếp theo",
+      "explanation": "The sequel was disappointing.\n→ Phần tiếp theo gây thất vọng."
+    },
+    {
+      "question": "remake",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈriːmeɪk/",
+      "answer": "bản làm lại",
+      "explanation": "It's a remake of a Korean film.\n→ Đây là bản làm lại của một phim Hàn."
+    },
+    {
+      "question": "documentary",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdɑːkjəˈmentəri/",
+      "answer": "phim tài liệu",
+      "explanation": "We watched a documentary about the ocean.\n→ Chúng tôi xem phim tài liệu về đại dương."
+    },
+    {
+      "question": "comedy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɑːmədi/",
+      "answer": "phim hài",
+      "explanation": "I need a light comedy after a long day.\n→ Sau một ngày dài tôi cần phim hài nhẹ nhàng."
+    },
+    {
+      "question": "thriller",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈθrɪlər/",
+      "answer": "phim ly kỳ, giật gân",
+      "explanation": "The thriller kept me on the edge of my seat.\n→ Phim giật gân khiến tôi nín thở."
+    },
+    {
+      "question": "horror",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɔːrər/",
+      "answer": "phim kinh dị",
+      "explanation": "I can't watch horror movies alone.\n→ Tôi không dám xem phim kinh dị một mình."
+    },
+    {
+      "question": "sci-fi",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaɪ faɪ/",
+      "answer": "khoa học viễn tưởng",
+      "explanation": "Sci-fi movies often predict new technology.\n→ Phim viễn tưởng thường dự đoán công nghệ mới."
+    },
+    {
+      "question": "animated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈænɪmeɪtɪd/",
+      "answer": "hoạt hình",
+      "explanation": "Animated films aren't just for kids.\n→ Phim hoạt hình không chỉ dành cho trẻ em."
+    },
+    {
+      "question": "box office",
+      "partOfSpeech": "noun",
+      "phonetic": "/bɑːks ˈɔːfɪs/",
+      "answer": "doanh thu phòng vé",
+      "explanation": "The film was a box-office hit.\n→ Bộ phim là cú hit phòng vé."
+    },
+    {
+      "question": "blockbuster",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈblɑːkbʌstər/",
+      "answer": "phim bom tấn",
+      "explanation": "Summer is the season for blockbusters.\n→ Mùa hè là mùa phim bom tấn."
+    },
+    {
+      "question": "special effects",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈspeʃəl ɪˈfekts/",
+      "answer": "kỹ xảo",
+      "explanation": "The special effects look so real.\n→ Kỹ xảo trông rất thật."
+    },
+    {
+      "question": "soundtrack",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaʊndtræk/",
+      "answer": "nhạc phim",
+      "explanation": "I listen to the soundtrack while working.\n→ Tôi nghe nhạc phim trong lúc làm việc."
+    },
+    {
+      "question": "ending",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈendɪŋ/",
+      "answer": "cái kết",
+      "explanation": "The ending was open.\n→ Phim có kết mở."
+    },
+    {
+      "question": "twist",
+      "partOfSpeech": "noun",
+      "phonetic": "/twɪst/",
+      "answer": "tình tiết bất ngờ",
+      "explanation": "I didn't see that twist coming!\n→ Tôi không ngờ tới cú twist đó!"
+    },
+    {
+      "question": "overrated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌoʊvərˈreɪtɪd/",
+      "answer": "được đánh giá quá cao",
+      "explanation": "Honestly, I think that movie is overrated.\n→ Thật lòng thì tôi thấy phim đó được khen quá lời."
+    },
+    {
+      "question": "underrated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌʌndərˈreɪtɪd/",
+      "answer": "bị đánh giá thấp",
+      "explanation": "It's an underrated gem.\n→ Đó là viên ngọc bị đánh giá thấp."
+    },
+    {
+      "question": "gripping",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈɡrɪpɪŋ/",
+      "answer": "lôi cuốn",
+      "explanation": "The story is gripping from start to finish.\n→ Câu chuyện lôi cuốn từ đầu đến cuối."
+    },
+    {
+      "question": "predictable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/prɪˈdɪktəbəl/",
+      "answer": "dễ đoán",
+      "explanation": "The plot was too predictable.\n→ Cốt truyện quá dễ đoán."
+    },
+    {
+      "question": "streaming service",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstriːmɪŋ ˈsɜːrvɪs/",
+      "answer": "dịch vụ xem trực tuyến",
+      "explanation": "Which streaming service do you use?\n→ Bạn dùng dịch vụ xem phim trực tuyến nào?"
+    },
+    {
+      "question": "based on a true story",
+      "partOfSpeech": "phrase",
+      "phonetic": "/beɪst ɑːn ə truː ˈstɔːri/",
+      "answer": "dựa trên chuyện có thật",
+      "explanation": "The movie is based on a true story.\n→ Bộ phim dựa trên chuyện có thật."
+    }
+  ]
+}

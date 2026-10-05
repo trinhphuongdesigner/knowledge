@@ -1,0 +1,318 @@
+{
+  "slug": "tech-01-smartphones-gadgets",
+  "order": 101,
+  "title": "Tech English 1 · Smartphones & Gadgets",
+  "description": "Từ vựng về điện thoại, thiết bị cá nhân và phụ kiện (CEFR A2–B1). Dùng khi mua sắm đồ công nghệ, đọc review sản phẩm hoặc nói chuyện hằng ngày.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "smartphone",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsmɑːrtfoʊn/",
+      "answer": "điện thoại thông minh",
+      "explanation": "I check my smartphone first thing in the morning.\n→ Tôi kiểm tra điện thoại ngay khi thức dậy."
+    },
+    {
+      "question": "screen",
+      "partOfSpeech": "noun",
+      "phonetic": "/skriːn/",
+      "answer": "màn hình",
+      "explanation": "The screen cracked when I dropped my phone.\n→ Màn hình bị nứt khi tôi làm rơi điện thoại."
+    },
+    {
+      "question": "touchscreen",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʌtʃskriːn/",
+      "answer": "màn hình cảm ứng",
+      "explanation": "The touchscreen does not respond when my hands are wet.\n→ Màn hình cảm ứng không phản hồi khi tay tôi bị ướt."
+    },
+    {
+      "question": "battery life",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbætəri laɪf/",
+      "answer": "thời lượng pin",
+      "explanation": "This laptop has a battery life of about ten hours.\n→ Chiếc laptop này có thời lượng pin khoảng mười tiếng."
+    },
+    {
+      "question": "charger",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃɑːrdʒər/",
+      "answer": "bộ sạc",
+      "explanation": "Can I borrow your charger? My phone is almost dead.\n→ Cho mình mượn sạc được không? Điện thoại mình sắp hết pin."
+    },
+    {
+      "question": "charging cable",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃɑːrdʒɪŋ ˈkeɪbəl/",
+      "answer": "dây sạc",
+      "explanation": "I always carry a spare charging cable in my bag.\n→ Tôi luôn mang theo một dây sạc dự phòng trong túi."
+    },
+    {
+      "question": "power bank",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpaʊər bæŋk/",
+      "answer": "sạc dự phòng",
+      "explanation": "A power bank is a must when you travel.\n→ Sạc dự phòng là thứ không thể thiếu khi đi du lịch."
+    },
+    {
+      "question": "wireless charging",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwaɪərləs ˈtʃɑːrdʒɪŋ/",
+      "answer": "sạc không dây",
+      "explanation": "My new phone supports wireless charging.\n→ Điện thoại mới của tôi hỗ trợ sạc không dây."
+    },
+    {
+      "question": "earbuds",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪrbʌdz/",
+      "answer": "tai nghe nhét tai",
+      "explanation": "I lost one of my wireless earbuds on the bus.\n→ Tôi làm mất một bên tai nghe không dây trên xe buýt."
+    },
+    {
+      "question": "headphones",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedfoʊnz/",
+      "answer": "tai nghe chụp tai",
+      "explanation": "I wear noise-cancelling headphones when I work.\n→ Tôi đeo tai nghe chống ồn khi làm việc."
+    },
+    {
+      "question": "smartwatch",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsmɑːrtwɑːtʃ/",
+      "answer": "đồng hồ thông minh",
+      "explanation": "My smartwatch tracks my steps and heart rate.\n→ Đồng hồ thông minh theo dõi số bước chân và nhịp tim của tôi."
+    },
+    {
+      "question": "tablet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtæblət/",
+      "answer": "máy tính bảng",
+      "explanation": "My kids watch cartoons on the tablet.\n→ Các con tôi xem phim hoạt hình trên máy tính bảng."
+    },
+    {
+      "question": "laptop",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlæptɑːp/",
+      "answer": "máy tính xách tay",
+      "explanation": "I need a light laptop for business trips.\n→ Tôi cần một chiếc laptop nhẹ cho các chuyến công tác."
+    },
+    {
+      "question": "storage",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstɔːrɪdʒ/",
+      "answer": "dung lượng lưu trữ",
+      "explanation": "My phone is running out of storage because of all the photos.\n→ Điện thoại tôi sắp hết dung lượng vì quá nhiều ảnh."
+    },
+    {
+      "question": "memory card",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmeməri kɑːrd/",
+      "answer": "thẻ nhớ",
+      "explanation": "Put a bigger memory card in the camera.\n→ Hãy lắp thẻ nhớ lớn hơn vào máy ảnh."
+    },
+    {
+      "question": "case",
+      "partOfSpeech": "noun",
+      "phonetic": "/keɪs/",
+      "answer": "ốp lưng, vỏ bảo vệ",
+      "explanation": "A good case can save your phone from a bad fall.\n→ Một chiếc ốp tốt có thể cứu điện thoại khỏi cú rơi mạnh."
+    },
+    {
+      "question": "screen protector",
+      "partOfSpeech": "noun",
+      "phonetic": "/skriːn prəˈtektər/",
+      "answer": "miếng dán màn hình",
+      "explanation": "The shop put a screen protector on my phone for free.\n→ Cửa hàng dán miếng bảo vệ màn hình cho tôi miễn phí."
+    },
+    {
+      "question": "camera lens",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæmərə lenz/",
+      "answer": "ống kính máy ảnh",
+      "explanation": "Wipe the camera lens before you take a photo.\n→ Lau ống kính camera trước khi chụp ảnh."
+    },
+    {
+      "question": "selfie",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈselfi/",
+      "answer": "ảnh tự sướng",
+      "explanation": "We took a selfie in front of the cathedral.\n→ Chúng tôi chụp ảnh selfie trước nhà thờ lớn."
+    },
+    {
+      "question": "notification",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌnoʊtɪfɪˈkeɪʃən/",
+      "answer": "thông báo",
+      "explanation": "I turn off notifications when I need to focus.\n→ Tôi tắt thông báo khi cần tập trung."
+    },
+    {
+      "question": "ringtone",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrɪŋtoʊn/",
+      "answer": "nhạc chuông",
+      "explanation": "Everyone on the train has the same ringtone as me.\n→ Ai trên tàu cũng có nhạc chuông giống tôi."
+    },
+    {
+      "question": "silent mode",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsaɪlənt moʊd/",
+      "answer": "chế độ im lặng",
+      "explanation": "Please put your phone on silent mode during the meeting.\n→ Vui lòng để điện thoại ở chế độ im lặng trong cuộc họp."
+    },
+    {
+      "question": "airplane mode",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈermpleɪn moʊd/",
+      "answer": "chế độ máy bay",
+      "explanation": "Switch to airplane mode to save battery.\n→ Chuyển sang chế độ máy bay để tiết kiệm pin."
+    },
+    {
+      "question": "unlock",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʌnˈlɑːk/",
+      "answer": "mở khoá",
+      "explanation": "You can unlock the phone with your face.\n→ Bạn có thể mở khoá điện thoại bằng khuôn mặt."
+    },
+    {
+      "question": "fingerprint sensor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪŋɡərprɪnt ˈsensər/",
+      "answer": "cảm biến vân tay",
+      "explanation": "The fingerprint sensor is under the screen.\n→ Cảm biến vân tay nằm dưới màn hình."
+    },
+    {
+      "question": "face recognition",
+      "partOfSpeech": "noun",
+      "phonetic": "/feɪs ˌrekəɡˈnɪʃən/",
+      "answer": "nhận diện khuôn mặt",
+      "explanation": "Face recognition does not work well in the dark.\n→ Nhận diện khuôn mặt không hoạt động tốt trong bóng tối."
+    },
+    {
+      "question": "update",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʌpˈdeɪt/",
+      "answer": "cập nhật",
+      "explanation": "Update your phone to get the latest security fixes.\n→ Hãy cập nhật điện thoại để có các bản vá bảo mật mới nhất."
+    },
+    {
+      "question": "install",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈstɔːl/",
+      "answer": "cài đặt",
+      "explanation": "I installed a new banking app yesterday.\n→ Hôm qua tôi đã cài một ứng dụng ngân hàng mới."
+    },
+    {
+      "question": "uninstall",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌʌnɪnˈstɔːl/",
+      "answer": "gỡ cài đặt",
+      "explanation": "Uninstall the apps you never use.\n→ Hãy gỡ những ứng dụng bạn không bao giờ dùng."
+    },
+    {
+      "question": "back up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/bæk ʌp/",
+      "answer": "sao lưu",
+      "explanation": "Back up your photos before you reset the phone.\n→ Hãy sao lưu ảnh trước khi khôi phục cài đặt điện thoại."
+    },
+    {
+      "question": "factory reset",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfæktəri ˌriːˈset/",
+      "answer": "khôi phục cài đặt gốc",
+      "explanation": "A factory reset deletes everything on the device.\n→ Khôi phục cài đặt gốc sẽ xoá mọi thứ trên thiết bị."
+    },
+    {
+      "question": "freeze",
+      "partOfSpeech": "verb",
+      "phonetic": "/friːz/",
+      "answer": "bị đơ, treo máy",
+      "explanation": "My laptop keeps freezing when I open too many tabs.\n→ Laptop của tôi cứ bị đơ khi mở quá nhiều tab."
+    },
+    {
+      "question": "restart",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈstɑːrt/",
+      "answer": "khởi động lại",
+      "explanation": "Have you tried restarting it?\n→ Bạn đã thử khởi động lại chưa?"
+    },
+    {
+      "question": "overheat",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌoʊvərˈhiːt/",
+      "answer": "quá nóng",
+      "explanation": "The phone overheats when I play games for too long.\n→ Điện thoại bị nóng khi tôi chơi game quá lâu."
+    },
+    {
+      "question": "drain",
+      "partOfSpeech": "verb",
+      "phonetic": "/dreɪn/",
+      "answer": "làm hao (pin)",
+      "explanation": "GPS apps drain the battery quickly.\n→ Các ứng dụng GPS làm hao pin rất nhanh."
+    },
+    {
+      "question": "signal",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪɡnəl/",
+      "answer": "sóng, tín hiệu",
+      "explanation": "There is no signal in the basement.\n→ Dưới tầng hầm không có sóng."
+    },
+    {
+      "question": "mobile data",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmoʊbəl ˈdeɪtə/",
+      "answer": "dữ liệu di động (3G/4G/5G)",
+      "explanation": "I used up all my mobile data watching videos.\n→ Tôi đã dùng hết dữ liệu di động vì xem video."
+    },
+    {
+      "question": "hotspot",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhɑːtspɑːt/",
+      "answer": "điểm phát Wi-Fi",
+      "explanation": "Can you turn on your hotspot so I can check my email?\n→ Bạn bật điểm phát Wi-Fi để mình kiểm tra email được không?"
+    },
+    {
+      "question": "Bluetooth",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbluːtuːθ/",
+      "answer": "kết nối Bluetooth",
+      "explanation": "Turn on Bluetooth to connect the speaker.\n→ Bật Bluetooth để kết nối loa."
+    },
+    {
+      "question": "pair",
+      "partOfSpeech": "verb",
+      "phonetic": "/per/",
+      "answer": "ghép nối (thiết bị)",
+      "explanation": "Hold the button for five seconds to pair the earbuds.\n→ Giữ nút năm giây để ghép nối tai nghe."
+    },
+    {
+      "question": "warranty",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɔːrənti/",
+      "answer": "bảo hành",
+      "explanation": "The laptop is still under warranty, so the repair is free.\n→ Laptop vẫn còn bảo hành nên sửa miễn phí."
+    },
+    {
+      "question": "second-hand",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌsekənd ˈhænd/",
+      "answer": "đã qua sử dụng",
+      "explanation": "I bought a second-hand camera to save money.\n→ Tôi mua một chiếc máy ảnh cũ để tiết kiệm tiền."
+    },
+    {
+      "question": "spec",
+      "partOfSpeech": "noun",
+      "phonetic": "/spek/",
+      "answer": "thông số kỹ thuật",
+      "explanation": "Compare the specs before you decide which phone to buy.\n→ Hãy so sánh thông số trước khi quyết định mua điện thoại nào."
+    },
+    {
+      "question": "upgrade",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʌpˈɡreɪd/",
+      "answer": "nâng cấp",
+      "explanation": "I want to upgrade to a phone with a better camera.\n→ Tôi muốn nâng cấp lên điện thoại có camera tốt hơn."
+    }
+  ]
+}

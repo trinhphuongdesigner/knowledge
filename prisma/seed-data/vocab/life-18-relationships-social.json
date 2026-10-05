@@ -1,0 +1,297 @@
+{
+  "slug": "life-18-relationships-social",
+  "order": 118,
+  "title": "Daily Life 8 · Relationships & Social Life",
+  "description": "Từ vựng về bạn bè, hẹn hò, gia đình và các dịp gặp gỡ (CEFR A2–B2). Dùng khi kể chuyện cá nhân, mời bạn bè hoặc trò chuyện xã giao.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "acquaintance",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈkweɪntəns/",
+      "answer": "người quen",
+      "explanation": "He's not a close friend, just an acquaintance.\n→ Anh ấy không phải bạn thân, chỉ là người quen."
+    },
+    {
+      "question": "close friend",
+      "partOfSpeech": "noun",
+      "phonetic": "/kloʊs frend/",
+      "answer": "bạn thân",
+      "explanation": "She's been my close friend since high school.\n→ Cô ấy là bạn thân của tôi từ cấp ba."
+    },
+    {
+      "question": "get along with",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ɡet əˈlɔːŋ wɪð/",
+      "answer": "hoà hợp với",
+      "explanation": "I get along well with my coworkers.\n→ Tôi hoà hợp với đồng nghiệp."
+    },
+    {
+      "question": "hang out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/hæŋ aʊt/",
+      "answer": "đi chơi, tụ tập",
+      "explanation": "We usually hang out at a café near the lake.\n→ Chúng tôi thường tụ tập ở quán cà phê gần hồ."
+    },
+    {
+      "question": "catch up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/kætʃ ʌp/",
+      "answer": "gặp để hàn huyên",
+      "explanation": "Let's grab coffee and catch up soon.\n→ Hôm nào cà phê hàn huyên nhé."
+    },
+    {
+      "question": "keep in touch",
+      "partOfSpeech": "phrase",
+      "phonetic": "/kiːp ɪn tʌtʃ/",
+      "answer": "giữ liên lạc",
+      "explanation": "We still keep in touch after ten years.\n→ Sau mười năm chúng tôi vẫn giữ liên lạc."
+    },
+    {
+      "question": "lose touch",
+      "partOfSpeech": "phrase",
+      "phonetic": "/luːz tʌtʃ/",
+      "answer": "mất liên lạc",
+      "explanation": "I lost touch with most of my classmates.\n→ Tôi mất liên lạc với phần lớn bạn học."
+    },
+    {
+      "question": "drift apart",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/drɪft əˈpɑːrt/",
+      "answer": "dần xa cách",
+      "explanation": "We drifted apart after university.\n→ Chúng tôi dần xa cách sau đại học."
+    },
+    {
+      "question": "make friends",
+      "partOfSpeech": "phrase",
+      "phonetic": "/meɪk frendz/",
+      "answer": "kết bạn",
+      "explanation": "It's hard to make friends in a new city.\n→ Kết bạn ở thành phố mới thật khó."
+    },
+    {
+      "question": "go out with",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/ɡoʊ aʊt wɪð/",
+      "answer": "hẹn hò với",
+      "explanation": "How long have you been going out with him?\n→ Bạn hẹn hò với anh ấy bao lâu rồi?"
+    },
+    {
+      "question": "date",
+      "partOfSpeech": "noun",
+      "phonetic": "/deɪt/",
+      "answer": "buổi hẹn hò",
+      "explanation": "We had our first date at a rooftop bar.\n→ Buổi hẹn đầu tiên của chúng tôi ở một quán bar sân thượng."
+    },
+    {
+      "question": "partner",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːrtnər/",
+      "answer": "người yêu, bạn đời",
+      "explanation": "My partner works in marketing.\n→ Người yêu tôi làm marketing."
+    },
+    {
+      "question": "break up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/breɪk ʌp/",
+      "answer": "chia tay",
+      "explanation": "They broke up after three years.\n→ Họ chia tay sau ba năm."
+    },
+    {
+      "question": "fall in love",
+      "partOfSpeech": "phrase",
+      "phonetic": "/fɔːl ɪn lʌv/",
+      "answer": "phải lòng",
+      "explanation": "They fell in love while studying abroad.\n→ Họ yêu nhau khi đi du học."
+    },
+    {
+      "question": "engaged",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪnˈɡeɪdʒd/",
+      "answer": "đã đính hôn",
+      "explanation": "My sister just got engaged.\n→ Chị tôi vừa đính hôn."
+    },
+    {
+      "question": "wedding",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwedɪŋ/",
+      "answer": "đám cưới",
+      "explanation": "Are you going to Lan's wedding on Saturday?\n→ Bạn có đi đám cưới Lan thứ Bảy không?"
+    },
+    {
+      "question": "get married",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡet ˈmærid/",
+      "answer": "kết hôn",
+      "explanation": "They plan to get married next spring.\n→ Họ dự định kết hôn mùa xuân tới."
+    },
+    {
+      "question": "in-laws",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪn lɔːz/",
+      "answer": "gia đình bên chồng/vợ",
+      "explanation": "We visit my in-laws every Tet.\n→ Tết nào chúng tôi cũng về nhà nội/ngoại bên kia."
+    },
+    {
+      "question": "relative",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrelətɪv/",
+      "answer": "họ hàng",
+      "explanation": "All my relatives gather at my grandmother's house.\n→ Họ hàng tụ họp ở nhà bà tôi."
+    },
+    {
+      "question": "sibling",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪblɪŋ/",
+      "answer": "anh chị em ruột",
+      "explanation": "Do you have any siblings?\n→ Bạn có anh chị em không?"
+    },
+    {
+      "question": "raise",
+      "partOfSpeech": "verb",
+      "phonetic": "/reɪz/",
+      "answer": "nuôi nấng",
+      "explanation": "My grandparents raised me while my parents worked.\n→ Ông bà nuôi tôi khi bố mẹ đi làm."
+    },
+    {
+      "question": "take after",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/teɪk ˈæftər/",
+      "answer": "giống (người thân)",
+      "explanation": "She takes after her mother.\n→ Cô ấy giống mẹ."
+    },
+    {
+      "question": "look up to",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/lʊk ʌp tuː/",
+      "answer": "ngưỡng mộ, kính trọng",
+      "explanation": "I've always looked up to my older brother.\n→ Tôi luôn ngưỡng mộ anh trai."
+    },
+    {
+      "question": "rely on",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/rɪˈlaɪ ɑːn/",
+      "answer": "dựa vào",
+      "explanation": "You can always rely on her.\n→ Bạn luôn có thể dựa vào cô ấy."
+    },
+    {
+      "question": "trust",
+      "partOfSpeech": "verb",
+      "phonetic": "/trʌst/",
+      "answer": "tin tưởng",
+      "explanation": "It takes time to trust new people.\n→ Cần thời gian để tin người mới."
+    },
+    {
+      "question": "argue",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈɑːrɡjuː/",
+      "answer": "cãi nhau",
+      "explanation": "They argue about money all the time.\n→ Họ suốt ngày cãi nhau về tiền."
+    },
+    {
+      "question": "make up",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/meɪk ʌp/",
+      "answer": "làm lành",
+      "explanation": "They had a fight but made up the next day.\n→ Họ cãi nhau nhưng hôm sau làm lành."
+    },
+    {
+      "question": "apologize",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈpɑːlədʒaɪz/",
+      "answer": "xin lỗi",
+      "explanation": "You should apologize for being late.\n→ Bạn nên xin lỗi vì đến muộn."
+    },
+    {
+      "question": "invite",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈvaɪt/",
+      "answer": "mời",
+      "explanation": "We invited the whole team to the housewarming.\n→ Chúng tôi mời cả đội đến tân gia."
+    },
+    {
+      "question": "housewarming",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhaʊswɔːrmɪŋ/",
+      "answer": "tiệc tân gia",
+      "explanation": "They're having a housewarming party on Sunday.\n→ Chủ nhật họ tổ chức tiệc tân gia."
+    },
+    {
+      "question": "get-together",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡet təˌɡeðər/",
+      "answer": "buổi họp mặt",
+      "explanation": "We have a small get-together every Friday night.\n→ Tối thứ Sáu nào chúng tôi cũng có buổi họp mặt nhỏ."
+    },
+    {
+      "question": "reunion",
+      "partOfSpeech": "noun",
+      "phonetic": "/riˈjuːnjən/",
+      "answer": "buổi họp lớp, đoàn tụ",
+      "explanation": "Our class reunion is in December.\n→ Buổi họp lớp của chúng tôi vào tháng Mười Hai."
+    },
+    {
+      "question": "RSVP",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌɑːr es viː ˈpiː/",
+      "answer": "phản hồi lời mời",
+      "explanation": "Please RSVP by Friday.\n→ Vui lòng phản hồi lời mời trước thứ Sáu."
+    },
+    {
+      "question": "host",
+      "partOfSpeech": "verb",
+      "phonetic": "/hoʊst/",
+      "answer": "làm chủ tiệc, tổ chức",
+      "explanation": "We're hosting dinner for my parents tonight.\n→ Tối nay chúng tôi tổ chức bữa tối mời bố mẹ."
+    },
+    {
+      "question": "small talk",
+      "partOfSpeech": "noun",
+      "phonetic": "/smɔːl tɔːk/",
+      "answer": "nói chuyện xã giao",
+      "explanation": "I'm not good at small talk with strangers.\n→ Tôi không giỏi nói chuyện xã giao với người lạ."
+    },
+    {
+      "question": "introvert",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪntrəvɜːrt/",
+      "answer": "người hướng nội",
+      "explanation": "As an introvert, I need quiet time after parties.\n→ Là người hướng nội, tôi cần yên tĩnh sau những bữa tiệc."
+    },
+    {
+      "question": "extrovert",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈekstrəvɜːrt/",
+      "answer": "người hướng ngoại",
+      "explanation": "Extroverts get energy from being with people.\n→ Người hướng ngoại có năng lượng khi ở cạnh người khác."
+    },
+    {
+      "question": "peer pressure",
+      "partOfSpeech": "noun",
+      "phonetic": "/pɪr ˈpreʃər/",
+      "answer": "áp lực đồng trang lứa",
+      "explanation": "Peer pressure made him start smoking.\n→ Áp lực bạn bè khiến anh ấy bắt đầu hút thuốc."
+    },
+    {
+      "question": "supportive",
+      "partOfSpeech": "adjective",
+      "phonetic": "/səˈpɔːrtɪv/",
+      "answer": "luôn ủng hộ",
+      "explanation": "My family is very supportive of my career change.\n→ Gia đình rất ủng hộ việc tôi đổi nghề."
+    },
+    {
+      "question": "have a lot in common",
+      "partOfSpeech": "phrase",
+      "phonetic": "/hæv ə lɑːt ɪn ˈkɑːmən/",
+      "answer": "có nhiều điểm chung",
+      "explanation": "We have a lot in common, like music and hiking.\n→ Chúng tôi có nhiều điểm chung, như âm nhạc và leo núi."
+    },
+    {
+      "question": "see eye to eye",
+      "partOfSpeech": "idiom",
+      "phonetic": "/siː aɪ tə aɪ/",
+      "answer": "đồng quan điểm",
+      "explanation": "My dad and I don't always see eye to eye.\n→ Bố và tôi không phải lúc nào cũng đồng quan điểm."
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "slug": "sports-03-running-cycling",
+  "order": 163,
+  "title": "Sports 3 · Running & Cycling",
+  "description": "Từ vựng chạy bộ, marathon và đạp xe (CEFR B1–B2).",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "jog",
+      "partOfSpeech": "verb",
+      "phonetic": "/dʒɑːɡ/",
+      "answer": "chạy bộ chậm",
+      "explanation": "I jog around the lake every morning.\n→ Sáng nào tôi cũng chạy bộ quanh hồ."
+    },
+    {
+      "question": "sprint",
+      "partOfSpeech": "verb",
+      "phonetic": "/sprɪnt/",
+      "answer": "chạy nước rút",
+      "explanation": "He sprinted to catch the bus.\n→ Anh ấy chạy nước rút để bắt xe buýt."
+    },
+    {
+      "question": "pace",
+      "partOfSpeech": "noun",
+      "phonetic": "/peɪs/",
+      "answer": "tốc độ (phút/km)",
+      "explanation": "My average pace is 6 minutes per kilometer.\n→ Tốc độ trung bình của tôi là 6 phút mỗi km."
+    },
+    {
+      "question": "distance",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɪstəns/",
+      "answer": "quãng đường",
+      "explanation": "What distance are you running today?\n→ Hôm nay bạn chạy bao xa?"
+    },
+    {
+      "question": "marathon",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmærəθɑːn/",
+      "answer": "chạy marathon (42 km)",
+      "explanation": "She finished her first marathon in 4 hours.\n→ Cô ấy hoàn thành marathon đầu tiên trong 4 giờ."
+    },
+    {
+      "question": "half marathon",
+      "partOfSpeech": "noun",
+      "phonetic": "/hæf ˈmærəθɑːn/",
+      "answer": "bán marathon (21 km)",
+      "explanation": "I'm training for a half marathon.\n→ Tôi đang tập cho cự ly bán marathon."
+    },
+    {
+      "question": "race",
+      "partOfSpeech": "noun",
+      "phonetic": "/reɪs/",
+      "answer": "cuộc đua",
+      "explanation": "The race starts at 5 a.m.\n→ Cuộc đua bắt đầu lúc 5 giờ sáng."
+    },
+    {
+      "question": "finish line",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪnɪʃ laɪn/",
+      "answer": "vạch đích",
+      "explanation": "I cried when I crossed the finish line.\n→ Tôi đã khóc khi về đích."
+    },
+    {
+      "question": "personal best",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɜːrsənəl best/",
+      "answer": "thành tích tốt nhất cá nhân (PB)",
+      "explanation": "I set a new personal best today.\n→ Hôm nay tôi lập kỷ lục cá nhân mới."
+    },
+    {
+      "question": "stamina",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstæmɪnə/",
+      "answer": "sức bền",
+      "explanation": "Long runs build stamina.\n→ Chạy dài giúp tăng sức bền."
+    },
+    {
+      "question": "out of breath",
+      "partOfSpeech": "phrase",
+      "phonetic": "/aʊt əv breθ/",
+      "answer": "hụt hơi",
+      "explanation": "I was out of breath after two kilometers.\n→ Chạy được hai km là tôi hụt hơi."
+    },
+    {
+      "question": "cramp",
+      "partOfSpeech": "noun",
+      "phonetic": "/kræmp/",
+      "answer": "chuột rút",
+      "explanation": "I got a cramp in my leg.\n→ Tôi bị chuột rút ở chân."
+    },
+    {
+      "question": "hydrate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈhaɪdreɪt/",
+      "answer": "bổ sung nước",
+      "explanation": "Hydrate well before a long run.\n→ Uống đủ nước trước khi chạy dài."
+    },
+    {
+      "question": "running shoes",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrʌnɪŋ ʃuːz/",
+      "answer": "giày chạy bộ",
+      "explanation": "Good running shoes prevent injuries.\n→ Giày chạy tốt giúp tránh chấn thương."
+    },
+    {
+      "question": "track",
+      "partOfSpeech": "noun",
+      "phonetic": "/træk/",
+      "answer": "đường chạy",
+      "explanation": "We do speed work on the track.\n→ Chúng tôi tập tốc độ trên đường chạy."
+    },
+    {
+      "question": "trail running",
+      "partOfSpeech": "noun",
+      "phonetic": "/treɪl ˈrʌnɪŋ/",
+      "answer": "chạy địa hình",
+      "explanation": "Trail running in Da Lat is beautiful.\n→ Chạy địa hình ở Đà Lạt rất đẹp."
+    },
+    {
+      "question": "uphill",
+      "partOfSpeech": "adverb",
+      "phonetic": "/ˌʌpˈhɪl/",
+      "answer": "lên dốc",
+      "explanation": "Running uphill is exhausting.\n→ Chạy lên dốc rất mệt."
+    },
+    {
+      "question": "downhill",
+      "partOfSpeech": "adverb",
+      "phonetic": "/ˌdaʊnˈhɪl/",
+      "answer": "xuống dốc",
+      "explanation": "Be careful when cycling downhill.\n→ Cẩn thận khi đạp xe xuống dốc."
+    },
+    {
+      "question": "bicycle",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbaɪsɪkəl/",
+      "answer": "xe đạp",
+      "explanation": "I ride my bicycle to work.\n→ Tôi đạp xe đi làm."
+    },
+    {
+      "question": "road bike",
+      "partOfSpeech": "noun",
+      "phonetic": "/roʊd baɪk/",
+      "answer": "xe đạp đua đường trường",
+      "explanation": "Road bikes are light and fast.\n→ Xe đạp đường trường nhẹ và nhanh."
+    },
+    {
+      "question": "mountain bike",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmaʊntən baɪk/",
+      "answer": "xe đạp địa hình",
+      "explanation": "You need a mountain bike for that trail.\n→ Bạn cần xe địa hình cho cung đường đó."
+    },
+    {
+      "question": "helmet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhelmɪt/",
+      "answer": "mũ bảo hiểm",
+      "explanation": "Always wear a helmet when cycling.\n→ Luôn đội mũ bảo hiểm khi đạp xe."
+    },
+    {
+      "question": "gear",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡɪr/",
+      "answer": "số (xe đạp); đồ nghề",
+      "explanation": "Shift to a lower gear on hills.\n→ Chuyển về số nhẹ khi lên dốc."
+    },
+    {
+      "question": "pedal",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈpedəl/",
+      "answer": "đạp",
+      "explanation": "Pedal faster!\n→ Đạp nhanh lên!"
+    },
+    {
+      "question": "flat tire",
+      "partOfSpeech": "noun",
+      "phonetic": "/flæt taɪər/",
+      "answer": "xịt lốp",
+      "explanation": "I got a flat tire halfway home.\n→ Tôi bị xịt lốp giữa đường về nhà."
+    },
+    {
+      "question": "pump",
+      "partOfSpeech": "noun",
+      "phonetic": "/pʌmp/",
+      "answer": "bơm",
+      "explanation": "Carry a small pump on long rides.\n→ Mang theo bơm nhỏ khi đi xa."
+    },
+    {
+      "question": "bike lane",
+      "partOfSpeech": "noun",
+      "phonetic": "/baɪk leɪn/",
+      "answer": "làn xe đạp",
+      "explanation": "The city needs more bike lanes.\n→ Thành phố cần thêm làn xe đạp."
+    },
+    {
+      "question": "ride",
+      "partOfSpeech": "noun",
+      "phonetic": "/raɪd/",
+      "answer": "chuyến đạp xe",
+      "explanation": "We went on a 50 km ride on Sunday.\n→ Chủ nhật chúng tôi đạp 50 km."
+    },
+    {
+      "question": "fitness tracker",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪtnəs ˈtrækər/",
+      "answer": "thiết bị theo dõi vận động",
+      "explanation": "My fitness tracker counts my steps.\n→ Thiết bị theo dõi đếm số bước chân của tôi."
+    },
+    {
+      "question": "heart rate",
+      "partOfSpeech": "noun",
+      "phonetic": "/hɑːrt reɪt/",
+      "answer": "nhịp tim",
+      "explanation": "Keep your heart rate in zone 2.\n→ Giữ nhịp tim ở vùng 2."
+    },
+    {
+      "question": "interval training",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪntərvəl ˈtreɪnɪŋ/",
+      "answer": "tập ngắt quãng",
+      "explanation": "Interval training improves speed.\n→ Tập ngắt quãng giúp tăng tốc độ."
+    },
+    {
+      "question": "long run",
+      "partOfSpeech": "noun",
+      "phonetic": "/lɔːŋ rʌn/",
+      "answer": "buổi chạy dài",
+      "explanation": "I do my long run on Sundays.\n→ Tôi chạy dài vào Chủ nhật."
+    },
+    {
+      "question": "hit the wall",
+      "partOfSpeech": "idiom",
+      "phonetic": "/hɪt ðə wɔːl/",
+      "answer": "kiệt sức, đuối hẳn",
+      "explanation": "I hit the wall at kilometer 30.\n→ Tôi kiệt sức ở km 30."
+    },
+    {
+      "question": "second wind",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˈsekənd wɪnd/",
+      "answer": "lấy lại sức",
+      "explanation": "After lunch I got my second wind and finished the feature.\n→ Sau bữa trưa tôi lấy lại sức và làm xong tính năng."
+    },
+    {
+      "question": "it's a marathon, not a sprint",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ɪts ə ˈmærəθɑːn nɑːt ə sprɪnt/",
+      "answer": "việc dài hơi, cần bền bỉ",
+      "explanation": "Learning to code is a marathon, not a sprint.\n→ Học lập trình là chặng đường dài, không phải chạy nước rút."
+    }
+  ]
+}

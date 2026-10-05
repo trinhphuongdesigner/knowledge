@@ -1,0 +1,304 @@
+{
+  "slug": "careers-04-education",
+  "order": 134,
+  "title": "Careers 4 · Education & Learning",
+  "description": "Từ vựng giáo dục, trường lớp và việc học (CEFR A2–B2). Dùng khi nói về quá trình học tập, làm EdTech hoặc giao tiếp với giáo viên, phụ huynh.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "teacher",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtiːtʃər/",
+      "answer": "giáo viên",
+      "explanation": "My English teacher is from Canada.\n→ Giáo viên tiếng Anh của tôi đến từ Canada."
+    },
+    {
+      "question": "lecturer",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlektʃərər/",
+      "answer": "giảng viên",
+      "explanation": "The lecturer speaks too fast.\n→ Giảng viên nói quá nhanh."
+    },
+    {
+      "question": "tutor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtuːtər/",
+      "answer": "gia sư",
+      "explanation": "I hired a tutor to help with math.\n→ Tôi thuê gia sư dạy toán."
+    },
+    {
+      "question": "principal",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɪnsəpəl/",
+      "answer": "hiệu trưởng",
+      "explanation": "The principal gave a speech on the first day.\n→ Hiệu trưởng phát biểu trong ngày khai giảng."
+    },
+    {
+      "question": "curriculum",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈrɪkjələm/",
+      "answer": "chương trình học",
+      "explanation": "The new curriculum includes coding classes.\n→ Chương trình học mới có lớp lập trình."
+    },
+    {
+      "question": "syllabus",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪləbəs/",
+      "answer": "đề cương môn học",
+      "explanation": "Read the syllabus before the first class.\n→ Đọc đề cương trước buổi học đầu."
+    },
+    {
+      "question": "semester",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɪˈmestər/",
+      "answer": "học kỳ",
+      "explanation": "I'm taking five courses this semester.\n→ Học kỳ này tôi học năm môn."
+    },
+    {
+      "question": "major",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmeɪdʒər/",
+      "answer": "chuyên ngành",
+      "explanation": "My major was computer science.\n→ Chuyên ngành của tôi là khoa học máy tính."
+    },
+    {
+      "question": "degree",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈɡriː/",
+      "answer": "bằng cấp",
+      "explanation": "She has a master's degree in economics.\n→ Cô ấy có bằng thạc sĩ kinh tế."
+    },
+    {
+      "question": "bachelor's degree",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbætʃələrz dɪˈɡriː/",
+      "answer": "bằng cử nhân",
+      "explanation": "A bachelor's degree takes four years.\n→ Bằng cử nhân mất bốn năm."
+    },
+    {
+      "question": "scholarship",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskɑːlərʃɪp/",
+      "answer": "học bổng",
+      "explanation": "He won a full scholarship to study abroad.\n→ Anh ấy giành học bổng toàn phần đi du học."
+    },
+    {
+      "question": "tuition fee",
+      "partOfSpeech": "noun",
+      "phonetic": "/tuˈɪʃən fiː/",
+      "answer": "học phí",
+      "explanation": "Tuition fees keep going up every year.\n→ Học phí năm nào cũng tăng."
+    },
+    {
+      "question": "enroll",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɪnˈroʊl/",
+      "answer": "ghi danh",
+      "explanation": "I enrolled in an online data science course.\n→ Tôi ghi danh một khoá khoa học dữ liệu online."
+    },
+    {
+      "question": "attend",
+      "partOfSpeech": "verb",
+      "phonetic": "/əˈtend/",
+      "answer": "tham dự (lớp)",
+      "explanation": "Students must attend 80% of the classes.\n→ Sinh viên phải tham dự 80% số buổi học."
+    },
+    {
+      "question": "assignment",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈsaɪnmənt/",
+      "answer": "bài tập",
+      "explanation": "The assignment is due on Friday.\n→ Bài tập phải nộp vào thứ Sáu."
+    },
+    {
+      "question": "deadline",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdedlaɪn/",
+      "answer": "hạn chót",
+      "explanation": "I always finish assignments right before the deadline.\n→ Tôi luôn làm bài sát hạn chót."
+    },
+    {
+      "question": "homework",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhoʊmwɜːrk/",
+      "answer": "bài tập về nhà",
+      "explanation": "Kids today have too much homework.\n→ Trẻ con bây giờ có quá nhiều bài tập về nhà."
+    },
+    {
+      "question": "exam",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪɡˈzæm/",
+      "answer": "kỳ thi",
+      "explanation": "The final exam is worth 50% of the grade.\n→ Bài thi cuối kỳ chiếm 50% điểm."
+    },
+    {
+      "question": "pass",
+      "partOfSpeech": "verb",
+      "phonetic": "/pæs/",
+      "answer": "đỗ, qua",
+      "explanation": "She passed the IELTS exam with a 7.5.\n→ Cô ấy đạt IELTS 7.5."
+    },
+    {
+      "question": "fail",
+      "partOfSpeech": "verb",
+      "phonetic": "/feɪl/",
+      "answer": "trượt",
+      "explanation": "He failed the driving test twice.\n→ Anh ấy trượt thi lái xe hai lần."
+    },
+    {
+      "question": "retake",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈteɪk/",
+      "answer": "thi lại",
+      "explanation": "I had to retake the statistics exam.\n→ Tôi phải thi lại môn thống kê."
+    },
+    {
+      "question": "grade",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɡreɪd/",
+      "answer": "điểm số",
+      "explanation": "What grade did you get?\n→ Bạn được điểm mấy?"
+    },
+    {
+      "question": "GPA",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌdʒiː piː ˈeɪ/",
+      "answer": "điểm trung bình tích luỹ",
+      "explanation": "Some companies still ask for your GPA.\n→ Một số công ty vẫn hỏi điểm trung bình."
+    },
+    {
+      "question": "cram",
+      "partOfSpeech": "verb",
+      "phonetic": "/kræm/",
+      "answer": "học nhồi, học gạo",
+      "explanation": "I crammed all night before the exam.\n→ Tôi học nhồi cả đêm trước kỳ thi."
+    },
+    {
+      "question": "revise",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈvaɪz/",
+      "answer": "ôn tập",
+      "explanation": "Revise a little every day instead of cramming.\n→ Ôn mỗi ngày một ít thay vì học dồn."
+    },
+    {
+      "question": "memorize",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈmeməraɪz/",
+      "answer": "học thuộc",
+      "explanation": "Flashcards help you memorize vocabulary.\n→ Thẻ học giúp bạn ghi nhớ từ vựng."
+    },
+    {
+      "question": "take notes",
+      "partOfSpeech": "phrase",
+      "phonetic": "/teɪk noʊts/",
+      "answer": "ghi chép",
+      "explanation": "Take notes during the lecture.\n→ Ghi chép trong lúc nghe giảng."
+    },
+    {
+      "question": "thesis",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈθiːsɪs/",
+      "answer": "luận văn",
+      "explanation": "I wrote my thesis on machine learning.\n→ Tôi viết luận văn về học máy."
+    },
+    {
+      "question": "graduate",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈɡrædʒueɪt/",
+      "answer": "tốt nghiệp",
+      "explanation": "She graduated from university in 2020.\n→ Cô ấy tốt nghiệp đại học năm 2020."
+    },
+    {
+      "question": "graduation",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌɡrædʒuˈeɪʃən/",
+      "answer": "lễ tốt nghiệp",
+      "explanation": "My parents came to my graduation.\n→ Bố mẹ đến dự lễ tốt nghiệp của tôi."
+    },
+    {
+      "question": "alumni",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈlʌmnaɪ/",
+      "answer": "cựu sinh viên",
+      "explanation": "The alumni network helped me find a job.\n→ Mạng lưới cựu sinh viên giúp tôi tìm việc."
+    },
+    {
+      "question": "online course",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːnlaɪn kɔːrs/",
+      "answer": "khoá học trực tuyến",
+      "explanation": "I learned React from an online course.\n→ Tôi học React qua một khoá online."
+    },
+    {
+      "question": "self-taught",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌself ˈtɔːt/",
+      "answer": "tự học",
+      "explanation": "Many great developers are self-taught.\n→ Nhiều lập trình viên giỏi là người tự học."
+    },
+    {
+      "question": "lifelong learning",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlaɪflɔːŋ ˈlɜːrnɪŋ/",
+      "answer": "học tập suốt đời",
+      "explanation": "In tech, lifelong learning is a must.\n→ Trong ngành công nghệ, học tập suốt đời là bắt buộc."
+    },
+    {
+      "question": "spaced repetition",
+      "partOfSpeech": "noun",
+      "phonetic": "/speɪst ˌrepəˈtɪʃən/",
+      "answer": "lặp lại ngắt quãng",
+      "explanation": "Spaced repetition helps you remember words for years.\n→ Lặp lại ngắt quãng giúp bạn nhớ từ nhiều năm."
+    },
+    {
+      "question": "learning curve",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlɜːrnɪŋ kɜːrv/",
+      "answer": "độ khó khi học cái mới",
+      "explanation": "Rust has a steep learning curve.\n→ Rust khá khó học lúc đầu."
+    },
+    {
+      "question": "fluent",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈfluːənt/",
+      "answer": "lưu loát",
+      "explanation": "She is fluent in English and Japanese.\n→ Cô ấy nói lưu loát tiếng Anh và tiếng Nhật."
+    },
+    {
+      "question": "certificate",
+      "partOfSpeech": "noun",
+      "phonetic": "/sərˈtɪfɪkət/",
+      "answer": "chứng chỉ",
+      "explanation": "You get a certificate after finishing the course.\n→ Bạn nhận chứng chỉ sau khi hoàn thành khoá học."
+    },
+    {
+      "question": "classmate",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈklæsmeɪt/",
+      "answer": "bạn cùng lớp",
+      "explanation": "I still meet my classmates every year.\n→ Năm nào tôi cũng gặp bạn cùng lớp."
+    },
+    {
+      "question": "skip class",
+      "partOfSpeech": "phrase",
+      "phonetic": "/skɪp klæs/",
+      "answer": "trốn học",
+      "explanation": "He skipped class to play games.\n→ Anh ấy trốn học đi chơi game."
+    },
+    {
+      "question": "extracurricular",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌekstrəkəˈrɪkjələr/",
+      "answer": "ngoại khoá",
+      "explanation": "Extracurricular activities build soft skills.\n→ Hoạt động ngoại khoá giúp xây dựng kỹ năng mềm."
+    },
+    {
+      "question": "plagiarism",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpleɪdʒərɪzəm/",
+      "answer": "đạo văn",
+      "explanation": "Plagiarism can get you expelled.\n→ Đạo văn có thể khiến bạn bị đuổi học."
+    }
+  ]
+}

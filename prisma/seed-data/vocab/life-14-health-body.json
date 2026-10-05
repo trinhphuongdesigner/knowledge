@@ -1,0 +1,297 @@
+{
+  "slug": "life-14-health-body",
+  "order": 114,
+  "title": "Daily Life 4 · Health, Body & Doctor Visits",
+  "description": "Từ vựng sức khoẻ, cơ thể, triệu chứng và đi khám bệnh (CEFR A2–B1). Dùng khi xin nghỉ ốm, mô tả triệu chứng với bác sĩ hoặc nói về lối sống lành mạnh.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "headache",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈhedeɪk/",
+      "answer": "đau đầu",
+      "explanation": "Staring at the screen all day gives me a headache.\n→ Nhìn màn hình cả ngày làm tôi đau đầu."
+    },
+    {
+      "question": "stomachache",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstʌməkeɪk/",
+      "answer": "đau bụng",
+      "explanation": "I had a stomachache after eating street food.\n→ Tôi bị đau bụng sau khi ăn đồ vỉa hè."
+    },
+    {
+      "question": "sore throat",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɔːr θroʊt/",
+      "answer": "đau họng",
+      "explanation": "I have a sore throat and can't talk much.\n→ Tôi bị đau họng nên không nói nhiều được."
+    },
+    {
+      "question": "fever",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfiːvər/",
+      "answer": "sốt",
+      "explanation": "She has had a fever since last night.\n→ Cô ấy bị sốt từ tối qua."
+    },
+    {
+      "question": "cough",
+      "partOfSpeech": "noun",
+      "phonetic": "/kɔːf/",
+      "answer": "ho",
+      "explanation": "This cough won't go away.\n→ Cơn ho này mãi không khỏi."
+    },
+    {
+      "question": "runny nose",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈrʌni noʊz/",
+      "answer": "sổ mũi",
+      "explanation": "I've got a runny nose because of the weather.\n→ Tôi bị sổ mũi vì thời tiết."
+    },
+    {
+      "question": "flu",
+      "partOfSpeech": "noun",
+      "phonetic": "/fluː/",
+      "answer": "cúm",
+      "explanation": "Half of the team is off with the flu.\n→ Một nửa đội phải nghỉ vì cúm."
+    },
+    {
+      "question": "dizzy",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈdɪzi/",
+      "answer": "chóng mặt",
+      "explanation": "I feel dizzy when I stand up quickly.\n→ Tôi thấy chóng mặt khi đứng dậy nhanh."
+    },
+    {
+      "question": "exhausted",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪɡˈzɔːstɪd/",
+      "answer": "kiệt sức",
+      "explanation": "I was exhausted after the release week.\n→ Tôi kiệt sức sau tuần phát hành."
+    },
+    {
+      "question": "backache",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbækeɪk/",
+      "answer": "đau lưng",
+      "explanation": "Sitting all day gives me a backache.\n→ Ngồi cả ngày khiến tôi đau lưng."
+    },
+    {
+      "question": "eye strain",
+      "partOfSpeech": "noun",
+      "phonetic": "/aɪ streɪn/",
+      "answer": "mỏi mắt",
+      "explanation": "Take breaks to avoid eye strain.\n→ Hãy nghỉ giải lao để tránh mỏi mắt."
+    },
+    {
+      "question": "injury",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɪndʒəri/",
+      "answer": "chấn thương",
+      "explanation": "He got a knee injury playing football.\n→ Anh ấy bị chấn thương đầu gối khi đá bóng."
+    },
+    {
+      "question": "sprain",
+      "partOfSpeech": "verb",
+      "phonetic": "/spreɪn/",
+      "answer": "bong gân",
+      "explanation": "I sprained my ankle while running.\n→ Tôi bị bong gân mắt cá khi chạy."
+    },
+    {
+      "question": "symptom",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪmptəm/",
+      "answer": "triệu chứng",
+      "explanation": "What are your symptoms?\n→ Anh có những triệu chứng gì?"
+    },
+    {
+      "question": "appointment",
+      "partOfSpeech": "noun",
+      "phonetic": "/əˈpɔɪntmənt/",
+      "answer": "cuộc hẹn (khám bệnh)",
+      "explanation": "I made an appointment with the dentist.\n→ Tôi đã đặt lịch hẹn với nha sĩ."
+    },
+    {
+      "question": "check-up",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtʃek ʌp/",
+      "answer": "khám sức khoẻ định kỳ",
+      "explanation": "The company offers a free annual check-up.\n→ Công ty khám sức khoẻ định kỳ miễn phí hằng năm."
+    },
+    {
+      "question": "prescription",
+      "partOfSpeech": "noun",
+      "phonetic": "/prɪˈskrɪpʃən/",
+      "answer": "đơn thuốc",
+      "explanation": "You need a prescription for this medicine.\n→ Thuốc này cần có đơn của bác sĩ."
+    },
+    {
+      "question": "pharmacy",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɑːrməsi/",
+      "answer": "hiệu thuốc",
+      "explanation": "There's a pharmacy on the corner.\n→ Có một hiệu thuốc ở góc phố."
+    },
+    {
+      "question": "painkiller",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪnkɪlər/",
+      "answer": "thuốc giảm đau",
+      "explanation": "Take a painkiller if the headache gets worse.\n→ Uống thuốc giảm đau nếu đau đầu nặng hơn."
+    },
+    {
+      "question": "side effect",
+      "partOfSpeech": "noun",
+      "phonetic": "/saɪd ɪˈfekt/",
+      "answer": "tác dụng phụ",
+      "explanation": "This medicine may cause drowsiness as a side effect.\n→ Thuốc này có thể gây buồn ngủ như tác dụng phụ."
+    },
+    {
+      "question": "recover",
+      "partOfSpeech": "verb",
+      "phonetic": "/rɪˈkʌvər/",
+      "answer": "hồi phục",
+      "explanation": "It took me a week to recover from the flu.\n→ Tôi mất một tuần để khỏi cúm."
+    },
+    {
+      "question": "sick leave",
+      "partOfSpeech": "noun",
+      "phonetic": "/sɪk liːv/",
+      "answer": "nghỉ ốm",
+      "explanation": "I'm taking sick leave today.\n→ Hôm nay tôi xin nghỉ ốm."
+    },
+    {
+      "question": "under the weather",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ˈʌndər ðə ˈweðər/",
+      "answer": "thấy không khoẻ",
+      "explanation": "I'm feeling a bit under the weather today.\n→ Hôm nay tôi thấy hơi mệt trong người."
+    },
+    {
+      "question": "health insurance",
+      "partOfSpeech": "noun",
+      "phonetic": "/helθ ɪnˈʃʊrəns/",
+      "answer": "bảo hiểm y tế",
+      "explanation": "Our health insurance covers dental care.\n→ Bảo hiểm y tế của chúng tôi chi trả cả nha khoa."
+    },
+    {
+      "question": "blood pressure",
+      "partOfSpeech": "noun",
+      "phonetic": "/blʌd ˈpreʃər/",
+      "answer": "huyết áp",
+      "explanation": "The nurse checked my blood pressure.\n→ Y tá đo huyết áp cho tôi."
+    },
+    {
+      "question": "diet",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdaɪət/",
+      "answer": "chế độ ăn",
+      "explanation": "A balanced diet keeps you healthy.\n→ Chế độ ăn cân bằng giúp bạn khoẻ mạnh."
+    },
+    {
+      "question": "work out",
+      "partOfSpeech": "phrasal verb",
+      "phonetic": "/wɜːrk aʊt/",
+      "answer": "tập thể dục",
+      "explanation": "I work out three times a week.\n→ Tôi tập thể dục ba lần một tuần."
+    },
+    {
+      "question": "lose weight",
+      "partOfSpeech": "phrase",
+      "phonetic": "/luːz weɪt/",
+      "answer": "giảm cân",
+      "explanation": "He lost five kilos by cutting sugar.\n→ Anh ấy giảm năm cân nhờ bỏ đường."
+    },
+    {
+      "question": "put on weight",
+      "partOfSpeech": "phrase",
+      "phonetic": "/pʊt ɑːn weɪt/",
+      "answer": "tăng cân",
+      "explanation": "I put on weight during Tet.\n→ Tôi tăng cân trong dịp Tết."
+    },
+    {
+      "question": "sleep deprivation",
+      "partOfSpeech": "noun",
+      "phonetic": "/sliːp ˌdeprɪˈveɪʃən/",
+      "answer": "thiếu ngủ",
+      "explanation": "Sleep deprivation hurts your focus and memory.\n→ Thiếu ngủ ảnh hưởng đến khả năng tập trung và trí nhớ."
+    },
+    {
+      "question": "insomnia",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈsɑːmniə/",
+      "answer": "mất ngủ",
+      "explanation": "Too much coffee gave me insomnia.\n→ Uống quá nhiều cà phê khiến tôi mất ngủ."
+    },
+    {
+      "question": "stress",
+      "partOfSpeech": "noun",
+      "phonetic": "/stres/",
+      "answer": "căng thẳng",
+      "explanation": "Deadlines cause a lot of stress.\n→ Hạn chót gây rất nhiều căng thẳng."
+    },
+    {
+      "question": "burnout",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈbɜːrnaʊt/",
+      "answer": "kiệt quệ vì làm việc quá sức",
+      "explanation": "Working weekends for months led to burnout.\n→ Làm cả cuối tuần nhiều tháng liền dẫn đến kiệt sức."
+    },
+    {
+      "question": "mental health",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmentəl helθ/",
+      "answer": "sức khoẻ tinh thần",
+      "explanation": "Taking care of your mental health is just as important.\n→ Chăm sóc sức khoẻ tinh thần cũng quan trọng không kém."
+    },
+    {
+      "question": "posture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːstʃər/",
+      "answer": "tư thế",
+      "explanation": "Good posture helps prevent back pain.\n→ Tư thế đúng giúp phòng đau lưng."
+    },
+    {
+      "question": "stretch",
+      "partOfSpeech": "verb",
+      "phonetic": "/stretʃ/",
+      "answer": "giãn cơ",
+      "explanation": "Stand up and stretch every hour.\n→ Đứng dậy và giãn cơ mỗi giờ."
+    },
+    {
+      "question": "hydrated",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈhaɪdreɪtɪd/",
+      "answer": "đủ nước",
+      "explanation": "Stay hydrated, especially in hot weather.\n→ Uống đủ nước, nhất là khi trời nóng."
+    },
+    {
+      "question": "vaccine",
+      "partOfSpeech": "noun",
+      "phonetic": "/vækˈsiːn/",
+      "answer": "vắc-xin",
+      "explanation": "Have you had your flu vaccine this year?\n→ Năm nay bạn tiêm vắc-xin cúm chưa?"
+    },
+    {
+      "question": "emergency room",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪˈmɜːrdʒənsi ruːm/",
+      "answer": "phòng cấp cứu",
+      "explanation": "We took him to the emergency room after the accident.\n→ Chúng tôi đưa anh ấy vào phòng cấp cứu sau tai nạn."
+    },
+    {
+      "question": "surgery",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrdʒəri/",
+      "answer": "phẫu thuật",
+      "explanation": "My father had knee surgery last year.\n→ Bố tôi phẫu thuật đầu gối năm ngoái."
+    },
+    {
+      "question": "get well soon",
+      "partOfSpeech": "phrase",
+      "phonetic": "/ɡet wel suːn/",
+      "answer": "chúc mau khoẻ",
+      "explanation": "Get well soon! We miss you at the office.\n→ Mau khoẻ nhé! Cả văn phòng nhớ bạn."
+    }
+  ]
+}

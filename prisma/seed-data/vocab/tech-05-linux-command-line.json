@@ -1,0 +1,304 @@
+{
+  "slug": "tech-05-linux-command-line",
+  "order": 105,
+  "title": "Tech English 5 · Linux & Command Line",
+  "description": "Từ vựng khi làm việc với Linux, terminal và server (CEFR B1–B2). Dùng khi đọc hướng dẫn cài đặt, viết runbook và hỗ trợ đồng nghiệp qua chat.",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "terminal",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtɜːrmɪnəl/",
+      "answer": "cửa sổ dòng lệnh",
+      "explanation": "Open a terminal and run the install script.\n→ Mở terminal và chạy script cài đặt."
+    },
+    {
+      "question": "shell",
+      "partOfSpeech": "noun",
+      "phonetic": "/ʃel/",
+      "answer": "trình thông dịch lệnh (shell)",
+      "explanation": "I use Zsh as my default shell.\n→ Tôi dùng Zsh làm shell mặc định."
+    },
+    {
+      "question": "command",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈmænd/",
+      "answer": "câu lệnh",
+      "explanation": "Type this command to see the running processes.\n→ Gõ lệnh này để xem các tiến trình đang chạy."
+    },
+    {
+      "question": "prompt",
+      "partOfSpeech": "noun",
+      "phonetic": "/prɑːmpt/",
+      "answer": "dấu nhắc lệnh",
+      "explanation": "Wait until the prompt appears before typing.\n→ Đợi dấu nhắc lệnh xuất hiện rồi mới gõ."
+    },
+    {
+      "question": "directory",
+      "partOfSpeech": "noun",
+      "phonetic": "/dəˈrektəri/",
+      "answer": "thư mục",
+      "explanation": "Change to the project directory first.\n→ Chuyển vào thư mục dự án trước."
+    },
+    {
+      "question": "path",
+      "partOfSpeech": "noun",
+      "phonetic": "/pæθ/",
+      "answer": "đường dẫn",
+      "explanation": "Use the absolute path to avoid confusion.\n→ Dùng đường dẫn tuyệt đối để tránh nhầm lẫn."
+    },
+    {
+      "question": "home directory",
+      "partOfSpeech": "noun",
+      "phonetic": "/hoʊm dəˈrektəri/",
+      "answer": "thư mục người dùng",
+      "explanation": "Config files are usually in your home directory.\n→ File cấu hình thường nằm trong thư mục home của bạn."
+    },
+    {
+      "question": "root",
+      "partOfSpeech": "noun",
+      "phonetic": "/ruːt/",
+      "answer": "tài khoản quản trị cao nhất; thư mục gốc",
+      "explanation": "Never run the app as root.\n→ Đừng bao giờ chạy ứng dụng bằng tài khoản root."
+    },
+    {
+      "question": "sudo",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsuːduː/",
+      "answer": "chạy lệnh với quyền quản trị",
+      "explanation": "You need sudo to install system packages.\n→ Bạn cần sudo để cài gói hệ thống."
+    },
+    {
+      "question": "permission",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈmɪʃən/",
+      "answer": "quyền truy cập",
+      "explanation": "Permission denied: you can't write to this folder.\n→ Không có quyền: bạn không ghi được vào thư mục này."
+    },
+    {
+      "question": "executable",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ɪɡˈzekjətəbəl/",
+      "answer": "có thể thực thi",
+      "explanation": "Make the script executable with chmod +x.\n→ Cấp quyền thực thi cho script bằng chmod +x."
+    },
+    {
+      "question": "package manager",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpækɪdʒ ˈmænɪdʒər/",
+      "answer": "trình quản lý gói",
+      "explanation": "Use the package manager instead of downloading files by hand.\n→ Dùng trình quản lý gói thay vì tự tải file."
+    },
+    {
+      "question": "dependency",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪˈpendənsi/",
+      "answer": "thư viện phụ thuộc",
+      "explanation": "The build failed because of a missing dependency.\n→ Build lỗi vì thiếu một thư viện phụ thuộc."
+    },
+    {
+      "question": "environment variable",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪnˈvaɪrənmənt ˈveriəbəl/",
+      "answer": "biến môi trường",
+      "explanation": "Store the API key in an environment variable.\n→ Lưu API key trong biến môi trường."
+    },
+    {
+      "question": "process",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈprɑːses/",
+      "answer": "tiến trình",
+      "explanation": "Find the process that is using port 3000.\n→ Tìm tiến trình đang chiếm cổng 3000."
+    },
+    {
+      "question": "kill",
+      "partOfSpeech": "verb",
+      "phonetic": "/kɪl/",
+      "answer": "dừng (tiến trình)",
+      "explanation": "Kill the old process before starting a new one.\n→ Dừng tiến trình cũ trước khi chạy cái mới."
+    },
+    {
+      "question": "daemon",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdiːmən/",
+      "answer": "tiến trình chạy nền",
+      "explanation": "The Docker daemon is not running.\n→ Docker daemon đang không chạy."
+    },
+    {
+      "question": "service",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɜːrvɪs/",
+      "answer": "dịch vụ hệ thống",
+      "explanation": "Restart the nginx service after changing the config.\n→ Khởi động lại dịch vụ nginx sau khi đổi cấu hình."
+    },
+    {
+      "question": "log file",
+      "partOfSpeech": "noun",
+      "phonetic": "/lɔːɡ faɪl/",
+      "answer": "tệp nhật ký",
+      "explanation": "Check the log file to see what went wrong.\n→ Xem tệp log để biết lỗi gì đã xảy ra."
+    },
+    {
+      "question": "tail",
+      "partOfSpeech": "verb",
+      "phonetic": "/teɪl/",
+      "answer": "xem cuối tệp (theo dõi log)",
+      "explanation": "Tail the logs while you reproduce the bug.\n→ Theo dõi cuối log trong khi tái hiện lỗi."
+    },
+    {
+      "question": "grep",
+      "partOfSpeech": "verb",
+      "phonetic": "/ɡrep/",
+      "answer": "tìm chuỗi trong văn bản",
+      "explanation": "Grep the logs for the request ID.\n→ Tìm request ID trong log bằng grep."
+    },
+    {
+      "question": "pipe",
+      "partOfSpeech": "verb",
+      "phonetic": "/paɪp/",
+      "answer": "chuyển đầu ra sang lệnh khác",
+      "explanation": "Pipe the output into grep to filter it.\n→ Chuyển đầu ra sang grep để lọc."
+    },
+    {
+      "question": "redirect",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːdəˈrekt/",
+      "answer": "chuyển hướng đầu ra",
+      "explanation": "Redirect the output to a file.\n→ Chuyển hướng đầu ra vào một tệp."
+    },
+    {
+      "question": "script",
+      "partOfSpeech": "noun",
+      "phonetic": "/skrɪpt/",
+      "answer": "kịch bản lệnh",
+      "explanation": "I wrote a script to clean up old backups.\n→ Tôi viết một script để dọn các bản sao lưu cũ."
+    },
+    {
+      "question": "cron job",
+      "partOfSpeech": "noun",
+      "phonetic": "/krɑːn dʒɑːb/",
+      "answer": "tác vụ chạy theo lịch",
+      "explanation": "A cron job sends the report every morning at 7.\n→ Một cron job gửi báo cáo lúc 7 giờ mỗi sáng."
+    },
+    {
+      "question": "SSH",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes es ˈeɪtʃ/",
+      "answer": "giao thức đăng nhập từ xa an toàn",
+      "explanation": "SSH into the server and check the disk.\n→ SSH vào máy chủ và kiểm tra ổ đĩa."
+    },
+    {
+      "question": "SSH key",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌes es ˈeɪtʃ kiː/",
+      "answer": "khoá SSH",
+      "explanation": "Add your public SSH key to the server.\n→ Thêm khoá SSH công khai của bạn vào máy chủ."
+    },
+    {
+      "question": "disk space",
+      "partOfSpeech": "noun",
+      "phonetic": "/dɪsk speɪs/",
+      "answer": "dung lượng ổ đĩa",
+      "explanation": "The server ran out of disk space because of old logs.\n→ Máy chủ hết dung lượng ổ đĩa vì log cũ."
+    },
+    {
+      "question": "mount",
+      "partOfSpeech": "verb",
+      "phonetic": "/maʊnt/",
+      "answer": "gắn (ổ đĩa, volume)",
+      "explanation": "Mount the volume at /data.\n→ Gắn volume vào /data."
+    },
+    {
+      "question": "archive",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːrkaɪv/",
+      "answer": "tệp nén lưu trữ",
+      "explanation": "Extract the archive into the current folder.\n→ Giải nén tệp lưu trữ vào thư mục hiện tại."
+    },
+    {
+      "question": "compress",
+      "partOfSpeech": "verb",
+      "phonetic": "/kəmˈpres/",
+      "answer": "nén",
+      "explanation": "Compress the logs before uploading them.\n→ Nén log trước khi tải lên."
+    },
+    {
+      "question": "symlink",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsɪmlɪŋk/",
+      "answer": "liên kết tượng trưng",
+      "explanation": "Create a symlink to the latest release.\n→ Tạo symlink tới bản phát hành mới nhất."
+    },
+    {
+      "question": "flag",
+      "partOfSpeech": "noun",
+      "phonetic": "/flæɡ/",
+      "answer": "tuỳ chọn dòng lệnh",
+      "explanation": "Add the -v flag to see more details.\n→ Thêm cờ -v để xem chi tiết hơn."
+    },
+    {
+      "question": "argument",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɑːrɡjumənt/",
+      "answer": "tham số",
+      "explanation": "The script takes the file name as its first argument.\n→ Script nhận tên tệp làm tham số đầu tiên."
+    },
+    {
+      "question": "standard output",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈstændərd ˈaʊtpʊt/",
+      "answer": "đầu ra chuẩn (stdout)",
+      "explanation": "Errors go to standard error, not standard output.\n→ Lỗi được ghi ra stderr, không phải stdout."
+    },
+    {
+      "question": "exit code",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈeksɪt koʊd/",
+      "answer": "mã thoát",
+      "explanation": "An exit code of zero means success.\n→ Mã thoát bằng 0 nghĩa là thành công."
+    },
+    {
+      "question": "hang",
+      "partOfSpeech": "verb",
+      "phonetic": "/hæŋ/",
+      "answer": "bị treo (không phản hồi)",
+      "explanation": "The command hangs when the network is down.\n→ Lệnh bị treo khi mất mạng."
+    },
+    {
+      "question": "run out of memory",
+      "partOfSpeech": "phrase",
+      "phonetic": "/rʌn aʊt əv ˈmeməri/",
+      "answer": "hết bộ nhớ",
+      "explanation": "The job ran out of memory and was killed.\n→ Job hết bộ nhớ và bị dừng."
+    },
+    {
+      "question": "reboot",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˌriːˈbuːt/",
+      "answer": "khởi động lại máy",
+      "explanation": "We have to reboot the server to apply the kernel update.\n→ Phải khởi động lại máy chủ để áp dụng bản cập nhật kernel."
+    },
+    {
+      "question": "kernel",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkɜːrnəl/",
+      "answer": "nhân hệ điều hành",
+      "explanation": "The container shares the host's kernel.\n→ Container dùng chung nhân với máy chủ."
+    },
+    {
+      "question": "distro",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈdɪstroʊ/",
+      "answer": "bản phân phối Linux",
+      "explanation": "Ubuntu is the most common distro on our servers.\n→ Ubuntu là bản phân phối phổ biến nhất trên máy chủ của chúng tôi."
+    },
+    {
+      "question": "open source",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈoʊpən sɔːrs/",
+      "answer": "mã nguồn mở",
+      "explanation": "Linux is an open source operating system.\n→ Linux là hệ điều hành mã nguồn mở."
+    }
+  ]
+}

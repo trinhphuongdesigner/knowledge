@@ -1,0 +1,269 @@
+{
+  "slug": "hobbies-04-photography-art",
+  "order": 154,
+  "title": "Hobbies 4 · Photography & Art",
+  "description": "Từ vựng nhiếp ảnh, hội hoạ và thủ công (CEFR B1–B2).",
+  "category": "ENGLISH",
+  "level": "INTERMEDIATE",
+  "cards": [
+    {
+      "question": "camera",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkæmərə/",
+      "answer": "máy ảnh",
+      "explanation": "I bought a second-hand camera.\n→ Tôi mua một chiếc máy ảnh cũ."
+    },
+    {
+      "question": "lens",
+      "partOfSpeech": "noun",
+      "phonetic": "/lenz/",
+      "answer": "ống kính",
+      "explanation": "A wide-angle lens is great for landscapes.\n→ Ống kính góc rộng rất hợp chụp phong cảnh."
+    },
+    {
+      "question": "shutter speed",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈʃʌtər spiːd/",
+      "answer": "tốc độ màn trập",
+      "explanation": "Use a fast shutter speed for moving objects.\n→ Dùng tốc độ màn trập nhanh khi chụp vật chuyển động."
+    },
+    {
+      "question": "aperture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈæpərtʃər/",
+      "answer": "khẩu độ",
+      "explanation": "A wide aperture blurs the background.\n→ Khẩu độ lớn làm mờ hậu cảnh."
+    },
+    {
+      "question": "exposure",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɪkˈspoʊʒər/",
+      "answer": "độ phơi sáng",
+      "explanation": "The photo is overexposed.\n→ Ảnh bị dư sáng."
+    },
+    {
+      "question": "focus",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfoʊkəs/",
+      "answer": "tiêu điểm, lấy nét",
+      "explanation": "The face is out of focus.\n→ Khuôn mặt bị mất nét."
+    },
+    {
+      "question": "tripod",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈtraɪpɑːd/",
+      "answer": "chân máy ba chân",
+      "explanation": "Use a tripod for night photos.\n→ Dùng chân máy khi chụp đêm."
+    },
+    {
+      "question": "portrait",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɔːrtrət/",
+      "answer": "ảnh chân dung",
+      "explanation": "She takes beautiful portraits.\n→ Cô ấy chụp ảnh chân dung rất đẹp."
+    },
+    {
+      "question": "landscape",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlændskeɪp/",
+      "answer": "phong cảnh",
+      "explanation": "Sapa is perfect for landscape photography.\n→ Sa Pa rất hợp chụp ảnh phong cảnh."
+    },
+    {
+      "question": "composition",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌkɑːmpəˈzɪʃən/",
+      "answer": "bố cục",
+      "explanation": "The rule of thirds improves composition.\n→ Quy tắc một phần ba giúp bố cục đẹp hơn."
+    },
+    {
+      "question": "golden hour",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡoʊldən aʊr/",
+      "answer": "giờ vàng (bình minh, hoàng hôn)",
+      "explanation": "The light is softest during golden hour.\n→ Ánh sáng dịu nhất vào giờ vàng."
+    },
+    {
+      "question": "silhouette",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌsɪluˈet/",
+      "answer": "hình bóng (ngược sáng)",
+      "explanation": "We took a silhouette shot at sunset.\n→ Chúng tôi chụp ảnh bóng ngược sáng lúc hoàng hôn."
+    },
+    {
+      "question": "candid",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈkændɪd/",
+      "answer": "tự nhiên, chụp lén",
+      "explanation": "I prefer candid photos to posed ones.\n→ Tôi thích ảnh tự nhiên hơn ảnh tạo dáng."
+    },
+    {
+      "question": "edit",
+      "partOfSpeech": "verb",
+      "phonetic": "/ˈedɪt/",
+      "answer": "chỉnh sửa (ảnh)",
+      "explanation": "I edit my photos in Lightroom.\n→ Tôi chỉnh ảnh bằng Lightroom."
+    },
+    {
+      "question": "filter",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈfɪltər/",
+      "answer": "bộ lọc",
+      "explanation": "Don't use too many filters.\n→ Đừng dùng quá nhiều bộ lọc."
+    },
+    {
+      "question": "gallery",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈɡæləri/",
+      "answer": "phòng trưng bày",
+      "explanation": "We visited an art gallery downtown.\n→ Chúng tôi đến một phòng tranh ở trung tâm."
+    },
+    {
+      "question": "exhibition",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˌeksɪˈbɪʃən/",
+      "answer": "triển lãm",
+      "explanation": "Her photos are in an exhibition this month.\n→ Ảnh của cô ấy được triển lãm tháng này."
+    },
+    {
+      "question": "painting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpeɪntɪŋ/",
+      "answer": "bức tranh; hội hoạ",
+      "explanation": "This painting is worth a fortune.\n→ Bức tranh này đáng giá cả gia tài."
+    },
+    {
+      "question": "canvas",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈkænvəs/",
+      "answer": "vải bố vẽ tranh",
+      "explanation": "She paints on large canvases.\n→ Cô ấy vẽ trên những tấm toan lớn."
+    },
+    {
+      "question": "brush",
+      "partOfSpeech": "noun",
+      "phonetic": "/brʌʃ/",
+      "answer": "cọ vẽ",
+      "explanation": "Clean your brushes after painting.\n→ Rửa cọ sau khi vẽ."
+    },
+    {
+      "question": "watercolor",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈwɔːtərkʌlər/",
+      "answer": "màu nước",
+      "explanation": "Watercolor is hard to control.\n→ Màu nước khó kiểm soát."
+    },
+    {
+      "question": "oil painting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ɔɪl ˈpeɪntɪŋ/",
+      "answer": "tranh sơn dầu",
+      "explanation": "Oil paintings take weeks to dry.\n→ Tranh sơn dầu mất vài tuần mới khô."
+    },
+    {
+      "question": "lacquer painting",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈlækər ˈpeɪntɪŋ/",
+      "answer": "tranh sơn mài",
+      "explanation": "Lacquer painting is a traditional Vietnamese art.\n→ Tranh sơn mài là nghệ thuật truyền thống Việt Nam."
+    },
+    {
+      "question": "sketchbook",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈsketʃbʊk/",
+      "answer": "sổ phác thảo",
+      "explanation": "I always carry a sketchbook.\n→ Tôi luôn mang theo sổ phác thảo."
+    },
+    {
+      "question": "draw",
+      "partOfSpeech": "verb",
+      "phonetic": "/drɔː/",
+      "answer": "vẽ (bằng bút)",
+      "explanation": "Can you draw a simple diagram?\n→ Bạn vẽ một sơ đồ đơn giản được không?"
+    },
+    {
+      "question": "shade",
+      "partOfSpeech": "verb",
+      "phonetic": "/ʃeɪd/",
+      "answer": "tô bóng",
+      "explanation": "Shade the left side to add depth.\n→ Tô bóng bên trái để tạo chiều sâu."
+    },
+    {
+      "question": "perspective",
+      "partOfSpeech": "noun",
+      "phonetic": "/pərˈspektɪv/",
+      "answer": "phối cảnh",
+      "explanation": "The perspective in this drawing is wrong.\n→ Phối cảnh trong bức vẽ này bị sai."
+    },
+    {
+      "question": "sculpture",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈskʌlptʃər/",
+      "answer": "điêu khắc, tượng",
+      "explanation": "There's a bronze sculpture in the park.\n→ Trong công viên có một bức tượng đồng."
+    },
+    {
+      "question": "pottery",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈpɑːtəri/",
+      "answer": "đồ gốm; làm gốm",
+      "explanation": "We took a pottery class in Bat Trang.\n→ Chúng tôi học làm gốm ở Bát Tràng."
+    },
+    {
+      "question": "calligraphy",
+      "partOfSpeech": "noun",
+      "phonetic": "/kəˈlɪɡrəfi/",
+      "answer": "thư pháp",
+      "explanation": "Calligraphy is popular during Tet.\n→ Thư pháp rất phổ biến dịp Tết."
+    },
+    {
+      "question": "craft",
+      "partOfSpeech": "noun",
+      "phonetic": "/kræft/",
+      "answer": "đồ thủ công",
+      "explanation": "She sells handmade crafts online.\n→ Cô ấy bán đồ thủ công trên mạng."
+    },
+    {
+      "question": "handmade",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌhændˈmeɪd/",
+      "answer": "làm thủ công",
+      "explanation": "This bag is handmade.\n→ Chiếc túi này làm thủ công."
+    },
+    {
+      "question": "masterpiece",
+      "partOfSpeech": "noun",
+      "phonetic": "/ˈmæstərpiːs/",
+      "answer": "kiệt tác",
+      "explanation": "The Mona Lisa is a masterpiece.\n→ Mona Lisa là một kiệt tác."
+    },
+    {
+      "question": "abstract",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˈæbstrækt/",
+      "answer": "trừu tượng",
+      "explanation": "I don't understand abstract art.\n→ Tôi không hiểu nghệ thuật trừu tượng."
+    },
+    {
+      "question": "realistic",
+      "partOfSpeech": "adjective",
+      "phonetic": "/ˌriːəˈlɪstɪk/",
+      "answer": "chân thực",
+      "explanation": "His drawings are incredibly realistic.\n→ Tranh của anh ấy chân thực đến khó tin."
+    },
+    {
+      "question": "creative",
+      "partOfSpeech": "adjective",
+      "phonetic": "/kriˈeɪtɪv/",
+      "answer": "sáng tạo",
+      "explanation": "Art helps me feel creative after coding.\n→ Vẽ giúp tôi thấy sáng tạo sau giờ code."
+    },
+    {
+      "question": "a picture is worth a thousand words",
+      "partOfSpeech": "idiom",
+      "phonetic": "/ə ˈpɪktʃər ɪz wɜːrθ ə ˈθaʊzənd wɜːrdz/",
+      "answer": "một hình ảnh bằng ngàn lời nói",
+      "explanation": "Add a screenshot — a picture is worth a thousand words.\n→ Thêm ảnh chụp màn hình đi — một hình ảnh bằng ngàn lời nói."
+    }
+  ]
+}
