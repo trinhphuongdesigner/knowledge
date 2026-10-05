@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "칠판 열기",
+    title: "칠판",
+    hasContent: "칠판에 내용이 있습니다",
+    tool: "도구",
+    chalk: "분필",
+    eraser: "칠판지우개",
+    colors: "분필 색",
+    color: { white: "흰색", yellow: "노란색", pink: "분홍색", dark: "검은색" },
+    size: "선 굵기",
+    sizes: { xs: "아주 가늘게", s: "가늘게", m: "보통", l: "굵게" },
+    eraserSize: "지우개 크기",
+    background: "칠판 색",
+    bg: { green: "초록", black: "검정", white: "흰색" },
+    undo: "실행 취소 (Ctrl+Z)",
+    clear: "모두 지우기",
+    download: "PNG 다운로드",
+    canvasAria: "그리기 칠판 — 마우스, 손가락 또는 펜으로 쓰세요",
+  },
 };
 
 export default layout;

@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "ボードを開く",
+    title: "ボード",
+    hasContent: "ボードに内容があります",
+    tool: "ツール",
+    chalk: "チョーク",
+    eraser: "黒板消し",
+    colors: "チョークの色",
+    color: { white: "白", yellow: "黄", pink: "ピンク", dark: "黒" },
+    size: "線の太さ",
+    sizes: { xs: "極細", s: "細", m: "中", l: "太" },
+    eraserSize: "黒板消しの大きさ",
+    background: "ボードの色",
+    bg: { green: "緑", black: "黒", white: "白" },
+    undo: "元に戻す (Ctrl+Z)",
+    clear: "すべて消去",
+    download: "PNG をダウンロード",
+    canvasAria: "描画ボード — マウス、指、ペンで書けます",
+  },
 };
 
 export default layout;

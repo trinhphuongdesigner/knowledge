@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "เปิดกระดาน",
+    title: "กระดาน",
+    hasContent: "กระดานมีเนื้อหาอยู่",
+    tool: "เครื่องมือ",
+    chalk: "ชอล์ก",
+    eraser: "แปรงลบกระดาน",
+    colors: "สีชอล์ก",
+    color: { white: "ขาว", yellow: "เหลือง", pink: "ชมพู", dark: "ดำ" },
+    size: "ขนาดเส้น",
+    sizes: { xs: "บางมาก", s: "บาง", m: "กลาง", l: "หนา" },
+    eraserSize: "ขนาดแปรงลบ",
+    background: "สีกระดาน",
+    bg: { green: "เขียว", black: "ดำ", white: "ขาว" },
+    undo: "เลิกทำ (Ctrl+Z)",
+    clear: "ลบทั้งหมด",
+    download: "ดาวน์โหลด PNG",
+    canvasAria: "กระดานวาด — เขียนด้วยเมาส์ นิ้ว หรือปากกา",
+  },
 };
 
 export default layout;

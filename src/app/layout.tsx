@@ -4,6 +4,7 @@ import { Be_Vietnam_Pro, Lexend } from "next/font/google";
 import { I18nProvider } from "@/i18n/client";
 import { OG_LOCALES } from "@/i18n/format";
 import { getLocale, getMessages, getT } from "@/i18n/server";
+import { BoardMount } from "@/components/board/BoardMount";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { OfflineBanner } from "@/components/pwa/OfflineBanner";
@@ -76,6 +77,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
           {children}
           <Footer />
+          <BoardMount />
           <ServiceWorkerRegister />
         </I18nProvider>
       </body>

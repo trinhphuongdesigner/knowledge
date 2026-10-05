@@ -416,47 +416,49 @@ html {
   justify-content: center;
   width: 76px;
   height: 76px;
-  filter: drop-shadow(0 4px 14px rgba(15, 124, 102, 0.25));
 }
+/*
+ * Mọi toạ độ là số nguyên px: border 1px nằm lệch nửa pixel sẽ bị khử răng cưa thành vệt mờ
+ * (nhất là màn hình scale 125% / 150%). Không dùng overflow: hidden — trang lật có skewY
+ * nhô ra vài px, bị cắt sẽ mất border trên/dưới. Không dùng filter: drop-shadow ở khung ngoài
+ * vì nó raster lại cả khối 3D mỗi khung hình làm nét viền nhoè.
+ */
 .book-loader-flip {
   width: 72px;
   height: 50px;
   position: relative;
   perspective: 220px;
   /* Vanishing point sits on the page's rotation axis (spine's right edge). */
-  perspective-origin: calc(50% + 2.5px) 50%;
-  /* Spine is centered on purpose: pages land flat on the left half. */
-  overflow: hidden;
+  perspective-origin: 38px 50%;
 }
+/* Gáy sách ở giữa (34–38px), luôn nằm trên các trang đang lật. */
 .book-loader-flip-spine {
   position: absolute;
-  left: 50%;
+  left: 34px;
   top: 1px;
   bottom: 1px;
-  width: 5px;
-  transform: translateX(-50%);
+  width: 4px;
+  z-index: 4;
   background: linear-gradient(180deg, #1d977c, #0c6454);
-  border-radius: 3px;
+  border-radius: 2px;
 }
-.book-loader-flip-base {
+/* Nền và các trang trùng khít một hộp → border chồng đúng lên nhau, không thành viền đôi mờ. */
+.book-loader-flip-base,
+.book-loader-flip-page {
   position: absolute;
-  left: calc(50% + 2.5px);
+  left: 38px;
   right: 0;
   top: 0;
   bottom: 0;
-  background: var(--loader-base);
   border: 1px solid #74cfb7;
   border-radius: 0 6px 6px 0;
 }
+.book-loader-flip-base {
+  background: var(--loader-base);
+  box-shadow: 0 4px 14px rgba(15, 124, 102, 0.25);
+}
 .book-loader-flip-page {
-  position: absolute;
-  left: calc(50% + 2.5px);
-  right: 0.5px;
-  top: 0.5px;
-  bottom: 0.5px;
   background: var(--loader-page);
-  border: 1px solid #74cfb7;
-  border-radius: 0 6px 6px 0;
   transform-origin: left center;
   box-shadow: 1px 0 4px rgba(15, 124, 102, 0.15);
   animation: book-loader-page-turn 2.6s infinite cubic-bezier(0.5, 0.05, 0.4, 0.95);

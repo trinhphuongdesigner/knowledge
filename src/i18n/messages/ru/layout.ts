@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "Открыть доску",
+    title: "Доска",
+    hasContent: "На доске есть записи",
+    tool: "Инструмент",
+    chalk: "Мел",
+    eraser: "Губка",
+    colors: "Цвет мела",
+    color: { white: "Белый", yellow: "Жёлтый", pink: "Розовый", dark: "Чёрный" },
+    size: "Толщина линии",
+    sizes: { xs: "Очень тонкая", s: "Тонкая", m: "Средняя", l: "Толстая" },
+    eraserSize: "Размер губки",
+    background: "Цвет доски",
+    bg: { green: "Зелёная", black: "Чёрная", white: "Белая" },
+    undo: "Отменить (Ctrl+Z)",
+    clear: "Стереть всё",
+    download: "Скачать PNG",
+    canvasAria: "Доска для рисования — пишите мышью, пальцем или стилусом",
+  },
 };
 
 export default layout;

@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "Mở bảng",
+    title: "Bảng",
+    hasContent: "Bảng đang có nội dung",
+    tool: "Công cụ",
+    chalk: "Phấn",
+    eraser: "Khăn lau",
+    colors: "Màu phấn",
+    color: { white: "Trắng", yellow: "Vàng", pink: "Hồng", dark: "Đen" },
+    size: "Cỡ nét",
+    sizes: { xs: "Rất mảnh", s: "Mảnh", m: "Vừa", l: "Đậm" },
+    eraserSize: "Cỡ khăn lau",
+    background: "Màu bảng",
+    bg: { green: "Xanh", black: "Đen", white: "Trắng" },
+    undo: "Hoàn tác (Ctrl+Z)",
+    clear: "Xoá hết",
+    download: "Tải ảnh PNG",
+    canvasAria: "Bảng vẽ — viết bằng chuột, ngón tay hoặc bút",
+  },
 };
 
 export default layout;

@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "Open board",
+    title: "Board",
+    hasContent: "The board has notes",
+    tool: "Tool",
+    chalk: "Chalk",
+    eraser: "Eraser",
+    colors: "Chalk colour",
+    color: { white: "White", yellow: "Yellow", pink: "Pink", dark: "Black" },
+    size: "Stroke size",
+    sizes: { xs: "Extra thin", s: "Thin", m: "Medium", l: "Thick" },
+    eraserSize: "Eraser size",
+    background: "Board colour",
+    bg: { green: "Green", black: "Black", white: "White" },
+    undo: "Undo (Ctrl+Z)",
+    clear: "Clear all",
+    download: "Download PNG",
+    canvasAria: "Drawing board — draw with a mouse, finger or stylus",
+  },
 };
 
 export default layout;

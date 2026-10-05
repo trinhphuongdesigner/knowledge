@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "Ouvrir le tableau",
+    title: "Tableau",
+    hasContent: "Le tableau contient des notes",
+    tool: "Outil",
+    chalk: "Craie",
+    eraser: "Brosse",
+    colors: "Couleur de craie",
+    color: { white: "Blanc", yellow: "Jaune", pink: "Rose", dark: "Noir" },
+    size: "Épaisseur du trait",
+    sizes: { xs: "Très fin", s: "Fin", m: "Moyen", l: "Épais" },
+    eraserSize: "Taille de la brosse",
+    background: "Couleur du tableau",
+    bg: { green: "Vert", black: "Noir", white: "Blanc" },
+    undo: "Annuler (Ctrl+Z)",
+    clear: "Tout effacer",
+    download: "Télécharger en PNG",
+    canvasAria: "Tableau de dessin — écrivez à la souris, au doigt ou au stylet",
+  },
 };
 
 export default layout;

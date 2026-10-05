@@ -118,6 +118,25 @@ const layout = {
       },
     },
   },
+  board: {
+    open: "打开黑板",
+    title: "黑板",
+    hasContent: "黑板上有内容",
+    tool: "工具",
+    chalk: "粉笔",
+    eraser: "板擦",
+    colors: "粉笔颜色",
+    color: { white: "白色", yellow: "黄色", pink: "粉色", dark: "黑色" },
+    size: "笔画粗细",
+    sizes: { xs: "极细", s: "细", m: "中", l: "粗" },
+    eraserSize: "板擦大小",
+    background: "黑板颜色",
+    bg: { green: "绿色", black: "黑色", white: "白色" },
+    undo: "撤销 (Ctrl+Z)",
+    clear: "全部清除",
+    download: "下载 PNG",
+    canvasAria: "绘图板——可用鼠标、手指或触控笔书写",
+  },
 };
 
 export default layout;
