@@ -1,0 +1,178 @@
+{
+  "slug": "ipa-03-consonants",
+  "order": 233,
+  "title": "Phát âm IPA 3 · 24 phụ âm",
+  "description": "44 âm IPA chuẩn, phần 3/3: 24 phụ âm, phần lớn đi theo cặp vô thanh – hữu thanh (/p/–/b/, /s/–/z/…). Theo bảng IPA Anh-Anh (Cambridge, Oxford). Mặt trước: 3 từ ví dụ kèm phiên âm — bấm loa để nghe. Mặt sau: ký hiệu IPA, cách đặt môi lưỡi, mẹo phân biệt và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "pen, happy, stop",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/pen/ · /ˈhæpi/ · /stɒp/",
+      "answer": "/p/ · p",
+      "explanation": "Cách phát âm: mím hai môi, giữ hơi rồi bật mạnh ra — đặt tay trước miệng sẽ thấy luồng hơi.\nPhân biệt: là cặp với /b/. Khác \"p\" tiếng Việt (gần như không bật hơi); cuối từ vẫn phải bật nhẹ.\nVí dụ: Please pass the pepper.\n→ Làm ơn đưa giúp lọ tiêu."
+    },
+    {
+      "question": "bag, rabbit, job",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/bæɡ/ · /ˈræbɪt/ · /dʒɒb/",
+      "answer": "/b/ · b",
+      "explanation": "Cách phát âm: mím môi như /p/ nhưng rung dây thanh (đặt tay lên cổ thấy rung), ít hơi.\nLưu ý: cuối từ phải đọc rõ /b/: job, cab.\nVí dụ: Bob bought a big blue bag.\n→ Bob đã mua một cái túi to màu xanh."
+    },
+    {
+      "question": "tea, water, cat",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/tiː/ · /ˈwɔːtə/ · /kæt/",
+      "answer": "/t/ · t",
+      "explanation": "Cách phát âm: đầu lưỡi chạm lợi trên (ngay sau răng cửa) rồi bật hơi mạnh.\nPhân biệt: khác \"t\" tiếng Việt (lưỡi chạm răng, không bật hơi). Anh-Mỹ đọc t giữa hai nguyên âm như \"đ\" nhẹ: water /ˈwɑːt̬ɚ/.\nVí dụ: Tom wants two cups of tea.\n→ Tom muốn hai tách trà."
+    },
+    {
+      "question": "dog, ladder, bed",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/dɒɡ/ · /ˈlædə/ · /bed/",
+      "answer": "/d/ · d",
+      "explanation": "Cách phát âm: như /t/ nhưng rung dây thanh và không bật hơi.\nPhân biệt: khác \"đ\" tiếng Việt — lưỡi chạm lợi, không chạm răng. Cuối từ phải đọc: bed ≠ bet.\nVí dụ: Dad did a good deed today.\n→ Hôm nay bố đã làm một việc tốt."
+    },
+    {
+      "question": "chair, teacher, watch",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/tʃeə/ · /ˈtiːtʃə/ · /wɒtʃ/",
+      "answer": "/tʃ/ · ch",
+      "explanation": "Cách phát âm: đầu lưỡi chạm lợi trên, môi hơi chu ra, bật hơi kèm tiếng xì — \"ch\" bật hơi.\nPhân biệt: là cặp với /dʒ/. Hay gặp ở chữ ch, tch, t(ure) (picture).\nVí dụ: Which chair did Charles choose?\n→ Charles đã chọn cái ghế nào?"
+    },
+    {
+      "question": "job, jump, age",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/dʒɒb/ · /dʒʌmp/ · /eɪdʒ/",
+      "answer": "/dʒ/ · dʒ",
+      "explanation": "Cách phát âm: đặt lưỡi và môi như /tʃ/ nhưng rung dây thanh.\nPhân biệt: khác \"gi\" tiếng Việt — môi chu ra, lưỡi chạm lợi rồi bật. Chữ j, g(e/i), dge.\nVí dụ: John enjoys orange juice.\n→ John thích nước cam."
+    },
+    {
+      "question": "key, school, back",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/kiː/ · /skuːl/ · /bæk/",
+      "answer": "/k/ · k",
+      "explanation": "Cách phát âm: cuống lưỡi chạm ngạc mềm, giữ hơi rồi bật mạnh.\nMẹo: viết bằng c, k, ck, ch, q (cat, kit, back, school, queen).\nVí dụ: Can you keep the keys in the kitchen?\n→ Bạn để chìa khoá trong bếp được không?"
+    },
+    {
+      "question": "go, bigger, bag",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/ɡəʊ/ · /ˈbɪɡə/ · /bæɡ/",
+      "answer": "/ɡ/ · g",
+      "explanation": "Cách phát âm: như /k/ nhưng rung dây thanh, ít hơi.\nLưu ý: cuối từ phải đọc rõ: bag ≠ back.\nVí dụ: Greg gave the girl a gift.\n→ Greg tặng cô gái một món quà."
+    },
+    {
+      "question": "fish, coffee, laugh",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/fɪʃ/ · /ˈkɒfi/ · /lɑːf/",
+      "answer": "/f/ · f",
+      "explanation": "Cách phát âm: răng trên chạm nhẹ môi dưới, thổi hơi qua khe.\nMẹo: viết bằng f, ff, ph, gh (phone, enough).\nVí dụ: My friend found five photos.\n→ Bạn tôi tìm thấy năm tấm ảnh."
+    },
+    {
+      "question": "van, very, love",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/væn/ · /ˈveri/ · /lʌv/",
+      "answer": "/v/ · v",
+      "explanation": "Cách phát âm: răng trên chạm môi dưới như /f/ nhưng rung dây thanh.\nPhân biệt: không đọc thành /w/ hay /b/: vet ≠ wet ≠ bet. Cuối từ đừng bỏ: love, five.\nVí dụ: Victor has a very lovely voice.\n→ Victor có giọng hát rất hay."
+    },
+    {
+      "question": "think, three, bath",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/θɪŋk/ · /θriː/ · /bɑːθ/",
+      "answer": "/θ/ · th vô thanh",
+      "explanation": "Cách phát âm: đặt đầu lưỡi giữa hai hàm răng (thè nhẹ ra), thổi hơi qua — không rung.\nPhân biệt: không đọc thành \"th\" Việt, /t/ hay /s/: think ≠ sink, three ≠ tree.\nVí dụ: Thank you for the thirty birthday cards.\n→ Cảm ơn bạn vì ba mươi tấm thiệp sinh nhật."
+    },
+    {
+      "question": "this, mother, with",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/ðɪs/ · /ˈmʌðə/ · /wɪð/",
+      "answer": "/ð/ · th hữu thanh",
+      "explanation": "Cách phát âm: đầu lưỡi giữa hai hàm răng như /θ/ nhưng rung dây thanh.\nPhân biệt: không đọc thành \"d\" hay \"z\": they ≠ day. Hay gặp ở từ nhỏ: the, this, that, they.\nVí dụ: My mother and brother are there.\n→ Mẹ và anh trai tôi ở đó."
+    },
+    {
+      "question": "see, city, bus",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/siː/ · /ˈsɪti/ · /bʌs/",
+      "answer": "/s/ · s",
+      "explanation": "Cách phát âm: đầu lưỡi gần lợi trên, hai hàm răng gần khít, xì hơi ra — như \"x\" tiếng Việt.\nLưu ý: s cuối từ phải đọc rõ (bus, books, it's) — lỗi rất hay gặp của người Việt.\nVí dụ: Sally sees six small snakes.\n→ Sally nhìn thấy sáu con rắn nhỏ."
+    },
+    {
+      "question": "zoo, busy, dogs",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/zuː/ · /ˈbɪzi/ · /dɒɡz/",
+      "answer": "/z/ · z",
+      "explanation": "Cách phát âm: như /s/ nhưng rung dây thanh — tiếng \"zzz\" như ong bay.\nMẹo: s ở giữa hai nguyên âm và -s sau âm hữu thanh thường đọc /z/ (rose, dogs, plays).\nVí dụ: The zoo is busy on Tuesdays.\n→ Sở thú đông người vào các ngày thứ Ba."
+    },
+    {
+      "question": "she, ocean, wash",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/ʃiː/ · /ˈəʊʃn/ · /wɒʃ/",
+      "answer": "/ʃ/ · s nặng",
+      "explanation": "Cách phát âm: môi chu tròn ra trước, lưỡi nâng gần vòm miệng, thổi hơi như tiếng \"suỵt\".\nPhân biệt: she /ʃiː/ ≠ see /siː/. Viết bằng sh, ti, ci, ss (nation, special).\nVí dụ: She sells shoes in the shop.\n→ Cô ấy bán giày trong cửa hàng."
+    },
+    {
+      "question": "vision, measure, usually",
+      "partOfSpeech": "phụ âm hữu thanh",
+      "phonetic": "/ˈvɪʒn/ · /ˈmeʒə/ · /ˈjuːʒuəli/",
+      "answer": "/ʒ/ · ʒ",
+      "explanation": "Cách phát âm: đặt môi và lưỡi như /ʃ/ nhưng rung dây thanh.\nMẹo: âm hiếm, thường ở giữa từ: -sion, -sure (decision, pleasure).\nVí dụ: I usually watch TV for pleasure.\n→ Tôi thường xem TV để giải trí."
+    },
+    {
+      "question": "man, summer, come",
+      "partOfSpeech": "âm mũi",
+      "phonetic": "/mæn/ · /ˈsʌmə/ · /kʌm/",
+      "answer": "/m/ · m",
+      "explanation": "Cách phát âm: mím hai môi, rung dây thanh, hơi đi ra qua mũi.\nLưu ý: cuối từ phải khép môi: come, time.\nVí dụ: My mum makes milk tea every morning.\n→ Mẹ tôi pha trà sữa mỗi sáng."
+    },
+    {
+      "question": "no, dinner, sun",
+      "partOfSpeech": "âm mũi",
+      "phonetic": "/nəʊ/ · /ˈdɪnə/ · /sʌn/",
+      "answer": "/n/ · n",
+      "explanation": "Cách phát âm: đầu lưỡi chạm lợi trên, hơi đi ra qua mũi.\nPhân biệt: n cuối ≠ ng cuối: thin /θɪn/ ≠ thing /θɪŋ/.\nVí dụ: Nancy needs a new phone.\n→ Nancy cần một chiếc điện thoại mới."
+    },
+    {
+      "question": "sing, think, long",
+      "partOfSpeech": "âm mũi",
+      "phonetic": "/sɪŋ/ · /θɪŋk/ · /lɒŋ/",
+      "answer": "/ŋ/ · ng",
+      "explanation": "Cách phát âm: cuống lưỡi chạm ngạc mềm, hơi đi qua mũi — như \"ng\" tiếng Việt.\nLưu ý: -ng cuối từ không đọc thêm /ɡ/: sing /sɪŋ/ (nhưng finger /ˈfɪŋɡə/).\nVí dụ: The king is singing a long song.\n→ Nhà vua đang hát một bài hát dài."
+    },
+    {
+      "question": "hat, hello, behind",
+      "partOfSpeech": "phụ âm vô thanh",
+      "phonetic": "/hæt/ · /həˈləʊ/ · /bɪˈhaɪnd/",
+      "answer": "/h/ · h",
+      "explanation": "Cách phát âm: mở sẵn miệng cho nguyên âm sau, đẩy hơi nhẹ ra từ cổ họng.\nLưu ý: h câm trong hour, honest, honour.\nVí dụ: Harry has a huge house on the hill.\n→ Harry có một ngôi nhà lớn trên đồi."
+    },
+    {
+      "question": "leg, yellow, ball",
+      "partOfSpeech": "âm lỏng",
+      "phonetic": "/leɡ/ · /ˈjeləʊ/ · /bɔːl/",
+      "answer": "/l/ · l",
+      "explanation": "Cách phát âm: đầu lưỡi chạm lợi trên, hơi thoát ra hai bên lưỡi.\nLưu ý: l cuối từ (\"l tối\") vẫn phải chạm lưỡi, đừng bỏ hay đọc thành \"u\": ball, feel.\nVí dụ: Lily likes the little yellow ball.\n→ Lily thích quả bóng nhỏ màu vàng."
+    },
+    {
+      "question": "red, sorry, very",
+      "partOfSpeech": "âm lỏng",
+      "phonetic": "/red/ · /ˈsɒri/ · /ˈveri/",
+      "answer": "/r/ · r",
+      "explanation": "Cách phát âm: cong đầu lưỡi lên nhưng không chạm vòm miệng, môi hơi tròn — không rung lưỡi như \"r\" tiếng Việt.\nLưu ý: Anh-Anh không đọc r cuối (car /kɑː/), Anh-Mỹ có đọc (car /kɑːr/).\nVí dụ: Rachel writes really great reports.\n→ Rachel viết báo cáo rất hay."
+    },
+    {
+      "question": "we, window, away",
+      "partOfSpeech": "bán nguyên âm",
+      "phonetic": "/wiː/ · /ˈwɪndəʊ/ · /əˈweɪ/",
+      "answer": "/w/ · w",
+      "explanation": "Cách phát âm: chu tròn môi rồi mở nhanh sang nguyên âm phía sau — gần \"qu\"/\"oa\" tiếng Việt.\nPhân biệt: không đọc thành /v/: wet ≠ vet, west ≠ vest.\nVí dụ: We will walk with William on Wednesday.\n→ Chúng tôi sẽ đi bộ với William vào thứ Tư."
+    },
+    {
+      "question": "yes, you, music",
+      "partOfSpeech": "bán nguyên âm",
+      "phonetic": "/jes/ · /juː/ · /ˈmjuːzɪk/",
+      "answer": "/j/ · y",
+      "explanation": "Cách phát âm: lưỡi nâng gần vòm miệng như khi đọc \"i\" rồi lướt nhanh sang nguyên âm sau.\nLưu ý: ký hiệu /j/ là âm \"y\", không phải chữ j (âm j là /dʒ/). Có ẩn trong u: music, use.\nVí dụ: Yes, your new uniform is yellow.\n→ Đúng rồi, đồng phục mới của bạn màu vàng."
+    }
+  ]
+}

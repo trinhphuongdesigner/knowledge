@@ -1,0 +1,66 @@
+{
+  "slug": "ipa-02-diphthongs",
+  "order": 232,
+  "title": "Phát âm IPA 2 · 8 nguyên âm đôi",
+  "description": "44 âm IPA chuẩn, phần 2/3: 8 nguyên âm đôi — lướt từ âm này sang âm kia trong một nhịp. Theo bảng IPA Anh-Anh (Cambridge, Oxford). Mặt trước: 3 từ ví dụ kèm phiên âm — bấm loa để nghe. Mặt sau: ký hiệu IPA, cách đặt môi lưỡi, mẹo phân biệt và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "ear, here, near",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/ɪə/ · /hɪə/ · /nɪə/",
+      "answer": "/ɪə/ · ia",
+      "explanation": "Cách phát âm: bắt đầu ở /ɪ/ rồi lướt nhẹ sang /ə/ — gần \"ia\" tiếng Việt.\nLưu ý: Anh-Mỹ đọc /ɪr/: here /hɪr/.\nVí dụ: The deer is near here.\n→ Con hươu ở gần đây."
+    },
+    {
+      "question": "day, name, rain",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/deɪ/ · /neɪm/ · /reɪn/",
+      "answer": "/eɪ/ · ây",
+      "explanation": "Cách phát âm: bắt đầu ở /e/ rồi lướt lên /ɪ/ — gần \"ây\" tiếng Việt.\nMẹo: chữ a_e, ai, ay thường đọc /eɪ/ (make, wait, play).\nVí dụ: They play games in the rain.\n→ Họ chơi trò chơi dưới mưa."
+    },
+    {
+      "question": "tour, pure, cure",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/tʊə/ · /pjʊə/ · /kjʊə/",
+      "answer": "/ʊə/ · ua",
+      "explanation": "Cách phát âm: bắt đầu ở /ʊ/ rồi lướt sang /ə/ — gần \"ua\" tiếng Việt.\nLưu ý: nhiều người Anh nay đọc thành /ɔː/ (sure /ʃɔː/); Anh-Mỹ đọc /ʊr/.\nVí dụ: I'm sure the tourists will enjoy it.\n→ Tôi chắc khách du lịch sẽ thích."
+    },
+    {
+      "question": "boy, coin, enjoy",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/bɔɪ/ · /kɔɪn/ · /ɪnˈdʒɔɪ/",
+      "answer": "/ɔɪ/ · oi",
+      "explanation": "Cách phát âm: bắt đầu ở /ɔː/ (môi tròn) rồi lướt sang /ɪ/ — như \"oi\" tiếng Việt.\nMẹo: chữ oi, oy hầu như luôn đọc /ɔɪ/.\nVí dụ: The boy enjoys his noisy toys.\n→ Cậu bé thích những món đồ chơi ồn ào."
+    },
+    {
+      "question": "go, home, phone",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/ɡəʊ/ · /həʊm/ · /fəʊn/",
+      "answer": "/əʊ/ · âu",
+      "explanation": "Cách phát âm: bắt đầu ở /ə/ rồi lướt sang /ʊ/, môi tròn dần — gần \"âu\" tiếng Việt.\nLưu ý: Anh-Mỹ ghi và đọc /oʊ/ (go /ɡoʊ/) — các bộ từ vựng khác trong app dùng cách ghi này.\nVí dụ: Don't go home alone.\n→ Đừng về nhà một mình."
+    },
+    {
+      "question": "hair, care, where",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/heə/ · /keə/ · /weə/",
+      "answer": "/eə/ · e-ơ",
+      "explanation": "Cách phát âm: bắt đầu ở /e/ rồi lướt sang /ə/ — như \"e-ơ\" nói liền.\nLưu ý: Anh-Mỹ đọc /er/: hair /her/.\nVí dụ: Please take care on the stairs.\n→ Đi cầu thang cẩn thận nhé."
+    },
+    {
+      "question": "my, time, light",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/maɪ/ · /taɪm/ · /laɪt/",
+      "answer": "/aɪ/ · ai",
+      "explanation": "Cách phát âm: bắt đầu ở /a/ (miệng mở) rồi lướt lên /ɪ/ — như \"ai\" tiếng Việt.\nMẹo: chữ i_e, igh, y cuối từ thường đọc /aɪ/ (bike, night, fly).\nVí dụ: I like to ride my bike at night.\n→ Tôi thích đạp xe vào ban đêm."
+    },
+    {
+      "question": "now, house, cloud",
+      "partOfSpeech": "nguyên âm đôi",
+      "phonetic": "/naʊ/ · /haʊs/ · /klaʊd/",
+      "answer": "/aʊ/ · ao",
+      "explanation": "Cách phát âm: bắt đầu ở /a/ rồi lướt sang /ʊ/, môi tròn dần — như \"ao\" tiếng Việt.\nMẹo: chữ ou, ow thường đọc /aʊ/ (out, town) — nhưng không phải luôn luôn (show /ʃəʊ/).\nVí dụ: How about a brown house in town?\n→ Một ngôi nhà nâu trong thị trấn thì sao?"
+    }
+  ]
+}

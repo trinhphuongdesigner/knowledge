@@ -1,0 +1,94 @@
+{
+  "slug": "ipa-01-monophthongs",
+  "order": 231,
+  "title": "Phát âm IPA 1 · 12 nguyên âm đơn",
+  "description": "44 âm IPA chuẩn, phần 1/3: 12 nguyên âm đơn (7 ngắn, 5 dài). Theo bảng IPA Anh-Anh (Cambridge, Oxford). Mặt trước: 3 từ ví dụ kèm phiên âm — bấm loa để nghe. Mặt sau: ký hiệu IPA, cách đặt môi lưỡi, mẹo phân biệt và câu ví dụ.",
+  "category": "ENGLISH",
+  "level": "BASIC",
+  "cards": [
+    {
+      "question": "see, sheep, eat",
+      "partOfSpeech": "nguyên âm dài",
+      "phonetic": "/siː/ · /ʃiːp/ · /iːt/",
+      "answer": "/iː/ · i dài",
+      "explanation": "Cách phát âm: môi kéo sang hai bên như đang cười, lưỡi nâng cao và đẩy ra trước, kéo dài âm \"i\".\nPhân biệt: sheep /ʃiːp/ (con cừu) ≠ ship /ʃɪp/ (con tàu).\nVí dụ: Please keep the green key.\n→ Hãy giữ chiếc chìa khoá màu xanh lá."
+    },
+    {
+      "question": "sit, ship, big",
+      "partOfSpeech": "nguyên âm ngắn",
+      "phonetic": "/sɪt/ · /ʃɪp/ · /bɪɡ/",
+      "answer": "/ɪ/ · i ngắn",
+      "explanation": "Cách phát âm: âm \"i\" ngắn và dứt khoát, môi hơi mở, lưỡi thấp hơn /iː/ một chút — nghe lai giữa \"i\" và \"ê\".\nPhân biệt: live /lɪv/ (sống) ≠ leave /liːv/ (rời đi).\nVí dụ: This little fish is in the river.\n→ Con cá nhỏ này ở dưới sông."
+    },
+    {
+      "question": "book, put, good",
+      "partOfSpeech": "nguyên âm ngắn",
+      "phonetic": "/bʊk/ · /pʊt/ · /ɡʊd/",
+      "answer": "/ʊ/ · u ngắn",
+      "explanation": "Cách phát âm: môi hơi tròn nhưng không chu nhiều, lưỡi lùi về sau, bật \"u\" thật ngắn.\nPhân biệt: full /fʊl/ (đầy) ≠ fool /fuːl/ (kẻ ngốc).\nVí dụ: Could you look at this good book?\n→ Bạn xem giúp cuốn sách hay này được không?"
+    },
+    {
+      "question": "food, blue, two",
+      "partOfSpeech": "nguyên âm dài",
+      "phonetic": "/fuːd/ · /bluː/ · /tuː/",
+      "answer": "/uː/ · u dài",
+      "explanation": "Cách phát âm: môi tròn và chu ra trước, lưỡi nâng cao phía sau, kéo dài âm \"u\".\nMẹo: chữ oo, ue, ew, o thường đọc /uː/ (food, blue, new, do).\nVí dụ: Sue moved to a new room in June.\n→ Sue chuyển sang phòng mới vào tháng Sáu."
+    },
+    {
+      "question": "bed, pen, red",
+      "partOfSpeech": "nguyên âm ngắn",
+      "phonetic": "/bed/ · /pen/ · /red/",
+      "answer": "/e/ · e",
+      "explanation": "Cách phát âm: miệng mở vừa, môi dẹt sang hai bên, lưỡi ở giữa — giống \"e\" tiếng Việt nhưng ngắn hơn.\nLưu ý: từ điển Mỹ ghi âm này là /ɛ/.\nVí dụ: Ben left his red pen on the desk.\n→ Ben để quên cây bút đỏ trên bàn."
+    },
+    {
+      "question": "about, teacher, banana",
+      "partOfSpeech": "nguyên âm ngắn",
+      "phonetic": "/əˈbaʊt/ · /ˈtiːtʃə/ · /bəˈnɑːnə/",
+      "answer": "/ə/ · ơ ngắn (schwa)",
+      "explanation": "Cách phát âm: âm \"ơ\" rất ngắn và nhẹ, miệng, môi, lưỡi đều thả lỏng.\nMẹo: âm phổ biến nhất tiếng Anh, chỉ xuất hiện ở âm tiết KHÔNG nhấn. Đọc đúng /ə/ giúp nói tự nhiên hơn hẳn.\nVí dụ: A banana for the teacher.\n→ Một quả chuối cho thầy cô."
+    },
+    {
+      "question": "bird, word, learn",
+      "partOfSpeech": "nguyên âm dài",
+      "phonetic": "/bɜːd/ · /wɜːd/ · /lɜːn/",
+      "answer": "/ɜː/ · ơ dài",
+      "explanation": "Cách phát âm: \"ơ\" kéo dài, miệng mở vừa, môi thả lỏng, lưỡi ở giữa; luôn nằm ở âm tiết được nhấn.\nLưu ý: Anh-Mỹ cong lưỡi thêm âm r: bird /bɝːd/.\nVí dụ: The girl learned thirty words first.\n→ Cô bé học ba mươi từ trước tiên."
+    },
+    {
+      "question": "door, saw, walk",
+      "partOfSpeech": "nguyên âm dài",
+      "phonetic": "/dɔː/ · /sɔː/ · /wɔːk/",
+      "answer": "/ɔː/ · o dài",
+      "explanation": "Cách phát âm: môi tròn, mở rộng hơn /uː/, lưỡi lùi về sau, kéo dài âm \"o\".\nMẹo: hay gặp ở chữ or, aw, al, au (short, law, talk, August).\nVí dụ: Paul walked through the door at four.\n→ Paul bước qua cửa lúc bốn giờ."
+    },
+    {
+      "question": "cat, bad, apple",
+      "partOfSpeech": "nguyên âm ngắn",
+      "phonetic": "/kæt/ · /bæd/ · /ˈæpl/",
+      "answer": "/æ/ · e bẹt",
+      "explanation": "Cách phát âm: hạ hàm xuống, miệng mở rộng, môi kéo sang hai bên — nghe lai giữa \"a\" và \"e\".\nPhân biệt: bad /bæd/ (tệ) ≠ bed /bed/ (giường).\nVí dụ: The black cat sat on Pat's hat.\n→ Con mèo đen ngồi lên mũ của Pat."
+    },
+    {
+      "question": "cup, love, money",
+      "partOfSpeech": "nguyên âm ngắn",
+      "phonetic": "/kʌp/ · /lʌv/ · /ˈmʌni/",
+      "answer": "/ʌ/ · ă",
+      "explanation": "Cách phát âm: giống \"ă\" tiếng Việt: ngắn, miệng mở vừa, lưỡi ở giữa, môi thả lỏng.\nMẹo: chữ u và o trong nhiều từ đọc /ʌ/ (sun, come, mother).\nVí dụ: My younger brother loves the sun.\n→ Em trai tôi thích ánh nắng."
+    },
+    {
+      "question": "car, father, start",
+      "partOfSpeech": "nguyên âm dài",
+      "phonetic": "/kɑː/ · /ˈfɑːðə/ · /stɑːt/",
+      "answer": "/ɑː/ · a dài",
+      "explanation": "Cách phát âm: miệng mở rộng, lưỡi hạ thấp và lùi sau, kéo dài âm \"a\".\nLưu ý: Anh-Mỹ đọc thêm r cuối: car /kɑːr/.\nVí dụ: My father parked the car in the dark.\n→ Bố tôi đỗ xe trong bóng tối."
+    },
+    {
+      "question": "hot, dog, stop",
+      "partOfSpeech": "nguyên âm ngắn",
+      "phonetic": "/hɒt/ · /dɒɡ/ · /stɒp/",
+      "answer": "/ɒ/ · o ngắn",
+      "explanation": "Cách phát âm: môi hơi tròn, miệng mở rộng, bật \"o\" ngắn và dứt khoát.\nLưu ý: Anh-Mỹ đọc gần /ɑː/: hot /hɑːt/ (giọng đọc của nút loa là Anh-Mỹ).\nVí dụ: Tom's dog got lost in the fog.\n→ Con chó của Tom bị lạc trong sương mù."
+    }
+  ]
+}
