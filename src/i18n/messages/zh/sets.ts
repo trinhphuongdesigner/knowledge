@@ -77,6 +77,11 @@ const sets = {
     levelNone: "无",
     saveChanges: "保存更改",
   },
+  progress: {
+    known: "已掌握 {known}/{total}",
+    needsQuiz: "已全部掌握 · 去测验吧",
+    quizNotPassed: "测验 {pct}% · 未通过",
+  },
   groups: {
     setCount: { other: "{count} 个卡组" },
     emptyCategory: "此分类下还没有卡组。",

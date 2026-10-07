@@ -77,6 +77,11 @@ const sets = {
     levelNone: "Aucun",
     saveChanges: "Enregistrer les modifications",
   },
+  progress: {
+    known: "Maîtrisées {known}/{total}",
+    needsQuiz: "Tout maîtrisé · passez le quiz",
+    quizNotPassed: "Quiz {pct} % · pas encore réussi",
+  },
   groups: {
     setCount: { one: "{count} paquet", other: "{count} paquets" },
     emptyCategory: "Cette catégorie ne contient encore aucun paquet.",

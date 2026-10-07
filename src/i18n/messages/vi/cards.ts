@@ -53,6 +53,14 @@ const cards = {
     deleteBody: "Thẻ này sẽ bị xoá vĩnh viễn và không thể hoàn tác.",
     deleteConfirm: "Xoá",
   },
+  view: {
+    label: "Chế độ xem",
+    list: "Danh sách",
+    grid: "Thẻ",
+    tapToFlip: "Chạm để lật",
+    showAnswer: "Thẻ {n}: xem đáp án",
+    showQuestion: "Thẻ {n}: xem câu hỏi",
+  },
   list: {
     starFailed: "Không thể cập nhật đánh sao, hãy thử lại.",
     lookingUp: "Đang tra phiên âm…",

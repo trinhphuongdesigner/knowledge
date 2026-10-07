@@ -45,9 +45,21 @@ describe("nextReview", () => {
 
 describe("isHard / gradeFromCorrect", () => {
   it("flags lapses >= 2 or ease < 2", () => {
-    expect(isHard({ ease: 2.5, lapses: 2 })).toBe(true);
-    expect(isHard({ ease: 1.9, lapses: 0 })).toBe(true);
-    expect(isHard({ ease: 2.0, lapses: 1 })).toBe(false);
+    expect(isHard({ ease: 2.5, lapses: 2, reps: 0 })).toBe(true);
+    expect(isHard({ ease: 1.9, lapses: 0, reps: 2 })).toBe(true);
+    expect(isHard({ ease: 2.0, lapses: 1, reps: 0 })).toBe(false);
+  });
+  it("stops flagging once recalled 3 times in a row", () => {
+    expect(isHard({ ease: 1.5, lapses: 5, reps: 3 })).toBe(false);
+  });
+  it("a hard card recovers after correct answers and turns hard again on a new lapse", () => {
+    let s: SrsState = INITIAL_SRS_STATE;
+    for (let i = 0; i < 3; i++) s = nextReview(s, 0, now);
+    expect(isHard(s)).toBe(true);
+    for (let i = 0; i < 3; i++) s = nextReview(s, 2, now);
+    expect(isHard(s)).toBe(false);
+    s = nextReview(s, 0, now);
+    expect(isHard(s)).toBe(true);
   });
   it("maps correctness to grade", () => {
     expect(gradeFromCorrect(true)).toBe(2);

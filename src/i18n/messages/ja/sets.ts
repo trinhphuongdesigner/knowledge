@@ -77,6 +77,11 @@ const sets = {
     levelNone: "なし",
     saveChanges: "変更を保存",
   },
+  progress: {
+    known: "習得済み {known}/{total}",
+    needsQuiz: "すべて習得 · テストを受けましょう",
+    quizNotPassed: "テスト {pct}% · 未合格",
+  },
   groups: {
     setCount: { other: "{count} デッキ" },
     emptyCategory: "このカテゴリにはまだデッキがありません。",

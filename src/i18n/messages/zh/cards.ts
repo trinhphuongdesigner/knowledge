@@ -53,6 +53,14 @@ const cards = {
     deleteBody: "此卡片将被永久删除，无法恢复。",
     deleteConfirm: "删除",
   },
+  view: {
+    label: "视图",
+    list: "列表",
+    grid: "卡片",
+    tapToFlip: "点击翻面",
+    showAnswer: "卡片 {n}：查看答案",
+    showQuestion: "卡片 {n}：查看问题",
+  },
   list: {
     starFailed: "无法更新星标，请重试。",
     lookingUp: "正在查询音标…",

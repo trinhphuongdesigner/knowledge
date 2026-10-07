@@ -1,4 +1,4 @@
-import { BadgeCheck, Layers, Trophy, type LucideIcon } from "lucide-react";
+import { BadgeCheck, Layers, ListChecks, Trophy, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { CategoryBadge } from "@/components/categories/CategoryBadge";
 import { Card } from "@/components/ui";
@@ -67,8 +67,42 @@ export async function SetCard({
         </div>
         <h2 className="line-clamp-2 break-words text-base font-semibold text-ink-900 group-hover/card:text-accent-strong">{set.title}</h2>
         {set.description && <p className="line-clamp-3 break-words text-sm text-ink-600">{set.description}</p>}
+        {status?.inProgress && (
+          <div className="mt-auto pt-1">
+            {status.mastered ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-sun-200 px-2.5 py-0.5 text-xs font-medium text-ink-800">
+                <ListChecks className="size-3.5" aria-hidden />
+                {status.quizBestPct === null
+                  ? t("progress.needsQuiz")
+                  : t("progress.quizNotPassed", { pct: status.quizBestPct })}
+              </span>
+            ) : (
+              <>
+                <div className="mb-1 flex items-center justify-between text-xs">
+                  <span className="font-medium text-ink-600">
+                    {t("progress.known", { known: status.knownCount, total: status.cardCount })}
+                  </span>
+                  <span className="text-ink-400">{Math.round((status.knownCount / status.cardCount) * 100)}%</span>
+                </div>
+                <div
+                  role="progressbar"
+                  aria-valuemin={0}
+                  aria-valuemax={status.cardCount}
+                  aria-valuenow={status.knownCount}
+                  aria-label={t("progress.known", { known: status.knownCount, total: status.cardCount })}
+                  className="h-1.5 overflow-hidden rounded-full bg-ink-100"
+                >
+                  <div
+                    className="h-full rounded-full bg-brand-600"
+                    style={{ width: `${(status.knownCount / status.cardCount) * 100}%` }}
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        )}
         {!set.isOwner && (
-          <p className="mt-auto flex items-center gap-1.5 text-xs text-ink-500">
+          <p className={`${status?.inProgress ? "" : "mt-auto "}flex items-center gap-1.5 text-xs text-ink-500`}>
             <span className="rounded-full bg-ink-100 px-2 py-0.5 font-medium text-ink-600">{t("detail.readOnly")}</span>
             {t("detail.by", { name: set.ownerName ?? t("detail.anotherUser") })}
           </p>

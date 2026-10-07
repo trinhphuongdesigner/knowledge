@@ -2,7 +2,7 @@ import type { Prisma } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
 import { todayVN } from "@/lib/dates";
 import { toCardDTO } from "@/lib/dto";
-import { isHard, type SrsState } from "@/lib/srs";
+import { HARD_MAX_EASE, HARD_MIN_LAPSES, HARD_RECOVERED_REPS, isHard, type SrsState } from "@/lib/srs";
 import type { CardDTO, DueSummaryDTO } from "@/lib/validators";
 import { buildSession, type ReviewOnly } from "./session";
 
@@ -111,14 +111,19 @@ export async function getReviewQueue(userId: string, only?: ReviewOnly): Promise
 }
 
 function onlyWhere(only: ReviewOnly): Prisma.CardReviewWhereInput {
-  return only === "starred" ? { starred: true } : { OR: [{ lapses: { gte: 2 } }, { ease: { lt: 2 } }] };
+  if (only === "starred") return { starred: true };
+  // Khớp isHard().
+  return {
+    reps: { lt: HARD_RECOVERED_REPS },
+    OR: [{ lapses: { gte: HARD_MIN_LAPSES } }, { ease: { lt: HARD_MAX_EASE } }],
+  };
 }
 
 /** Props cho CardList: id thẻ đã gắn sao / bị coi là khó của user trong một bộ. */
 export async function getReviewFlags(userId: string, setId: string) {
   const rows = await db.cardReview.findMany({
     where: { userId, setId },
-    select: { cardId: true, starred: true, ease: true, lapses: true },
+    select: { cardId: true, starred: true, ease: true, lapses: true, reps: true },
   });
   return {
     starredIds: rows.filter((r) => r.starred).map((r) => r.cardId),

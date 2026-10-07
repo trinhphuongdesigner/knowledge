@@ -1,15 +1,51 @@
 "use client";
 
-import { FileUp, Languages, Layers, Plus } from "lucide-react";
+import { FileUp, Languages, Layers, LayoutGrid, List, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, useSyncExternalStore, type ReactNode } from "react";
 import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
 import { useT } from "@/i18n/client";
 import { api, enrichSetFully } from "@/lib/api";
 import type { CardDTO } from "@/lib/validators";
 import { CardForm } from "./CardForm";
 import { CardItem } from "./CardItem";
+import { CardTile } from "./CardTile";
+
+type CardView = "list" | "grid";
+const VIEW_STORAGE_KEY = "knowledge:card-view";
+
+// Store nhỏ cho chế độ xem: server luôn trả "list", client đọc localStorage sau hydrate (không lệch markup).
+const viewListeners = new Set<() => void>();
+function subscribeView(cb: () => void) {
+  viewListeners.add(cb);
+  window.addEventListener("storage", cb);
+  return () => {
+    viewListeners.delete(cb);
+    window.removeEventListener("storage", cb);
+  };
+}
+function readView(): CardView {
+  try {
+    return localStorage.getItem(VIEW_STORAGE_KEY) === "grid" ? "grid" : "list";
+  } catch {
+    return "list";
+  }
+}
+const serverView = (): CardView => "list";
+function writeView(next: CardView) {
+  try {
+    localStorage.setItem(VIEW_STORAGE_KEY, next);
+  } catch {
+    // storage blocked
+  }
+  viewListeners.forEach((cb) => cb());
+}
+
+const VIEW_OPTIONS = [
+  { value: "list", labelKey: "view.list", Icon: List },
+  { value: "grid", labelKey: "view.grid", Icon: LayoutGrid },
+] as const satisfies readonly { value: CardView; labelKey: string; Icon: typeof List }[];
 
 export function CardList({
   setId,
@@ -49,6 +85,7 @@ export function CardList({
   const [starredSet, setStarredSet] = useState(() => new Set(starredIds));
   const hard = useMemo(() => new Set(hardIds), [hardIds]);
   const [filter, setFilter] = useState<"all" | "starred" | "hard">("all");
+  const view = useSyncExternalStore(subscribeView, readView, serverView);
   const [starError, setStarError] = useState("");
   const hardCount = cards.filter((c) => hard.has(c.id)).length;
   const starCount = cards.filter((c) => starredSet.has(c.id)).length;
@@ -136,12 +173,34 @@ export function CardList({
               <span className="ml-2 text-sm font-medium text-green-700">· {t("list.knownCount", { count: knownCount })}</span>
             )}
           </h2>
-          {!readOnly && english && cards.length > 0 && (
-            <Button variant="secondary" size="sm" onClick={() => void enrich()} loading={enriching}>
-              <Languages className="size-4" aria-hidden />
-              {t("list.lookup")}
-            </Button>
-          )}
+          <div className="flex flex-wrap items-center gap-2">
+            {!readOnly && english && cards.length > 0 && (
+              <Button variant="secondary" size="sm" onClick={() => void enrich()} loading={enriching}>
+                <Languages className="size-4" aria-hidden />
+                {t("list.lookup")}
+              </Button>
+            )}
+            {cards.length > 0 && (
+              <div role="group" aria-label={t("view.label")} className="flex rounded-xl border border-ink-200 bg-surface p-0.5">
+                {VIEW_OPTIONS.map(({ value, labelKey, Icon }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => writeView(value)}
+                    aria-pressed={view === value}
+                    title={t(labelKey)}
+                    className={cn(
+                      "flex min-h-10 items-center gap-1.5 rounded-[0.6rem] px-3 text-sm font-medium",
+                      view === value ? "bg-brand-600 text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
+                    )}
+                  >
+                    <Icon className="size-4" aria-hidden />
+                    <span className="sr-only sm:not-sr-only">{t(labelKey)}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         {(starCount > 0 || hardCount > 0) && (
           <div role="group" aria-label={t("list.filter")} className="-mt-1 flex flex-wrap gap-2">
@@ -201,6 +260,24 @@ export function CardList({
               )
             }
           />
+        ) : view === "grid" ? (
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {visible.map((card) => (
+              <li key={card.id}>
+                <CardTile
+                  card={card}
+                  index={cards.indexOf(card) + 1}
+                  english={english}
+                  known={known.has(card.id)}
+                  starred={starredSet.has(card.id)}
+                  hard={hard.has(card.id)}
+                  readOnly={readOnly}
+                  onToggleStar={toggleStar}
+                  onEdit={(c) => setModal({ card: c })}
+                />
+              </li>
+            ))}
+          </ul>
         ) : (
           <ul className="flex flex-col gap-3">
             {visible.map((card) => (

@@ -77,6 +77,11 @@ const sets = {
     levelNone: "Не указан",
     saveChanges: "Сохранить изменения",
   },
+  progress: {
+    known: "Выучено {known}/{total}",
+    needsQuiz: "Всё выучено · пройдите тест",
+    quizNotPassed: "Тест {pct}% · не пройден",
+  },
   groups: {
     setCount: { one: "{count} набор", few: "{count} набора", many: "{count} наборов", other: "{count} набора" },
     emptyCategory: "В этой категории пока нет наборов.",

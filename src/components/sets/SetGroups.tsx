@@ -17,22 +17,31 @@ function Chevron() {
   );
 }
 
-/** Nhóm thẻ hiển thị theo danh mục (thu gọn được), trong mỗi danh mục chia theo cấp độ. */
+/**
+ * Nhóm thẻ hiển thị theo danh mục (thu gọn được), trong mỗi danh mục chia theo cấp độ.
+ * pinnedIds: bộ đã hiện ở mục "Đang học dở" phía trên → không lặp lại ở đây.
+ */
 export async function SetGroups({
   categories,
   sets,
   showEmpty,
   statuses,
+  pinnedIds,
 }: {
   categories: CategoryDTO[];
   sets: StudySetDTO[];
   showEmpty: boolean;
   statuses?: Record<string, SetStatus>;
+  pinnedIds?: ReadonlySet<string>;
 }) {
   const t = await getT("sets");
   const groups = categories
-    .map((category) => ({ category, items: sets.filter((s) => s.category.id === category.id) }))
-    .filter((g) => g.items.length > 0 || showEmpty);
+    .map((category) => {
+      const all = sets.filter((s) => s.category.id === category.id);
+      return { category, all, items: pinnedIds ? all.filter((s) => !pinnedIds.has(s.id)) : all };
+    })
+    // Danh mục chỉ có bộ đang học dở thì ẩn (không báo "chưa có nhóm thẻ" sai).
+    .filter((g) => g.items.length > 0 || (showEmpty && g.all.length === 0));
 
   return (
     <div className="flex flex-col gap-4">

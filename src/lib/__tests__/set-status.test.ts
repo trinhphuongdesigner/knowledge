@@ -14,6 +14,23 @@ describe("computeSetStatus", () => {
     expect(computeSetStatus({ cardIds: ["a"], known: [], quizBestPct: QUIZ_PASS_PCT - 1 }).quizPassed).toBe(false);
     expect(computeSetStatus({ cardIds: ["a"], known: [], quizBestPct: null }).quizPassed).toBe(false);
   });
+  it("counts only known ids that still exist", () => {
+    const s = computeSetStatus({ cardIds: ["a", "b", "c"], known: ["a", "x"], quizBestPct: null });
+    expect([s.knownCount, s.cardCount]).toEqual([1, 3]);
+  });
+  it("inProgress: started with unknown cards, or mastered without a passing quiz", () => {
+    const base = { cardIds: ["a", "b"], started: true };
+    expect(computeSetStatus({ ...base, known: [], quizBestPct: null, started: false }).inProgress).toBe(false);
+    expect(computeSetStatus({ ...base, known: ["a"], quizBestPct: null }).inProgress).toBe(true);
+    expect(computeSetStatus({ ...base, known: ["a", "b"], quizBestPct: null }).inProgress).toBe(true);
+    expect(computeSetStatus({ ...base, known: ["a", "b"], quizBestPct: QUIZ_PASS_PCT - 1 }).inProgress).toBe(true);
+    expect(computeSetStatus({ ...base, known: ["a", "b"], quizBestPct: QUIZ_PASS_PCT }).inProgress).toBe(false);
+    // Passing the quiz alone is not enough while cards are still unknown.
+    expect(computeSetStatus({ ...base, known: ["a"], quizBestPct: 100 }).inProgress).toBe(true);
+  });
+  it("a 1-card set (no quiz possible) is done once mastered", () => {
+    expect(computeSetStatus({ cardIds: ["a"], known: ["a"], quizBestPct: null, started: true }).inProgress).toBe(false);
+  });
 });
 
 describe("quizRunPct", () => {

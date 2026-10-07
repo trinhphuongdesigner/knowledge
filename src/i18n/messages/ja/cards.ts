@@ -53,6 +53,14 @@ const cards = {
     deleteBody: "このカードは完全に削除され、元に戻せません。",
     deleteConfirm: "削除",
   },
+  view: {
+    label: "表示",
+    list: "リスト",
+    grid: "カード",
+    tapToFlip: "タップしてめくる",
+    showAnswer: "カード {n}：答えを表示",
+    showQuestion: "カード {n}：問題を表示",
+  },
   list: {
     starFailed: "スターを更新できませんでした。もう一度お試しください。",
     lookingUp: "発音記号を検索中…",

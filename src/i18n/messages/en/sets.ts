@@ -77,6 +77,11 @@ const sets = {
     levelNone: "None",
     saveChanges: "Save changes",
   },
+  progress: {
+    known: "Mastered {known}/{total}",
+    needsQuiz: "All mastered · take the quiz",
+    quizNotPassed: "Quiz {pct}% · not passed yet",
+  },
   groups: {
     setCount: { one: "{count} set", other: "{count} sets" },
     emptyCategory: "There are no sets in this category yet.",

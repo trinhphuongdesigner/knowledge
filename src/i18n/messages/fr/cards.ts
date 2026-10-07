@@ -53,6 +53,14 @@ const cards = {
     deleteBody: "Cette carte sera définitivement supprimée et cette action est irréversible.",
     deleteConfirm: "Supprimer",
   },
+  view: {
+    label: "Affichage",
+    list: "Liste",
+    grid: "Cartes",
+    tapToFlip: "Touchez pour retourner",
+    showAnswer: "Carte {n} : voir la réponse",
+    showQuestion: "Carte {n} : voir la question",
+  },
   list: {
     starFailed: "Impossible de mettre à jour l’étoile, veuillez réessayer.",
     lookingUp: "Recherche des transcriptions phonétiques…",

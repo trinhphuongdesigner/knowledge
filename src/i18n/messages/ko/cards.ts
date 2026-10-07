@@ -53,6 +53,14 @@ const cards = {
     deleteBody: "이 카드는 영구적으로 삭제되며 되돌릴 수 없어요.",
     deleteConfirm: "삭제",
   },
+  view: {
+    label: "보기",
+    list: "목록",
+    grid: "카드",
+    tapToFlip: "탭하여 뒤집기",
+    showAnswer: "카드 {n}: 답 보기",
+    showQuestion: "카드 {n}: 질문 보기",
+  },
   list: {
     starFailed: "별표를 변경하지 못했어요. 다시 시도해 주세요.",
     lookingUp: "발음 기호를 검색하는 중…",

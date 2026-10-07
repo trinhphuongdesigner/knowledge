@@ -77,6 +77,11 @@ const sets = {
     levelNone: "없음",
     saveChanges: "변경 사항 저장",
   },
+  progress: {
+    known: "마스터 {known}/{total}",
+    needsQuiz: "모두 마스터 · 퀴즈를 풀어 보세요",
+    quizNotPassed: "퀴즈 {pct}% · 아직 통과 못 함",
+  },
   groups: {
     setCount: { other: "세트 {count}개" },
     emptyCategory: "이 카테고리에는 아직 세트가 없어요.",

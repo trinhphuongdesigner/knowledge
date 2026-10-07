@@ -77,6 +77,11 @@ const sets = {
     levelNone: "ไม่ระบุ",
     saveChanges: "บันทึกการเปลี่ยนแปลง",
   },
+  progress: {
+    known: "จำได้แล้ว {known}/{total}",
+    needsQuiz: "จำได้ครบแล้ว · ทำแบบทดสอบ",
+    quizNotPassed: "แบบทดสอบ {pct}% · ยังไม่ผ่าน",
+  },
   groups: {
     setCount: { other: "{count} ชุด" },
     emptyCategory: "หมวดหมู่นี้ยังไม่มีชุดการ์ด",

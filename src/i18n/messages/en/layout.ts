@@ -50,11 +50,12 @@ const layout = {
     emptyFilteredDescription: "Try a different keyword or filter.",
     emptyDescription: "Create your first deck to start learning with flashcards.",
     saved: "Saved library",
+    inProgress: "Continue learning",
   },
   about: {
     metaTitle: "About — Knowledge",
     metaDescription:
-      "Knowledge is a flashcard learning app: flip cards, spaced repetition, quizzes, a shared library and offline study.",
+      "Knowledge is a flashcard learning app: flip cards, spaced repetition, quizzes, a handwriting board, a shared library and offline study.",
     badge: "About",
     heroTitle: "Remember more with Knowledge",
     heroBody:
@@ -64,15 +65,20 @@ const layout = {
     ctaStart: "Get started for free",
     ctaLogin: "Sign in",
     featuresTitle: "Key features",
+    newBadge: "New",
     stepsTitle: "How to get started",
     features: {
       cards: {
         title: "Flashcards & decks",
-        body: "Create decks by category and level. Each card has a question, an answer and an explanation; Markdown is supported, hard cards can be starred and mastered cards are tracked.",
+        body: "Create decks by category and level. Each card has a question, an answer and an explanation (Markdown supported). View a deck as a detailed list or as flip cards, and star the cards that need attention.",
+      },
+      progress: {
+        title: "Pick up where you left off",
+        body: "Decks you are partway through sit at the top of your home page, with a progress bar and a reminder to take the quiz once every card is known. After each round, the app suggests the right next step.",
       },
       srs: {
         title: "Spaced repetition (SRS)",
-        body: "The system schedules each card's review based on how well you remember it. Daily goals, streaks and statistics help you stay consistent.",
+        body: "The system schedules each card's review based on how well you remember it; review by flipping cards or typing the word. Words you keep forgetting are marked “hard” and cleared once you recall them reliably. Set your own daily goal and track streaks and statistics.",
       },
       modes: {
         title: "Many practice modes",
@@ -80,7 +86,11 @@ const layout = {
       },
       vocab: {
         title: "Learn English vocabulary",
-        body: "English categories suggest pronunciation, part of speech, meaning and examples, with a pronunciation button. You can also use AI for quick suggestions when adding words.",
+        body: "English categories suggest pronunciation, part of speech, meaning and examples, with a pronunciation button and quick AI suggestions when adding words. Ready-made IPA chart decks cover monophthongs, diphthongs and consonants.",
+      },
+      board: {
+        title: "Handwriting board",
+        body: "Open a floating chalkboard on any page to sketch, practise writing or take notes with a mouse, finger or pen. Pick colours and stroke sizes, erase, undo and download a PNG.",
       },
       importExport: {
         title: "Import & export",
@@ -96,7 +106,11 @@ const layout = {
       },
       share: {
         title: "Share with a link",
-        body: "Each deck can be private, shared by link, or published to the library after an admin approves it.",
+        body: "Each deck can be private, shared by link, or published to the library after an admin approves it. Links shared on social media show a preview image with the logo.",
+      },
+      reminders: {
+        title: "Daily study reminders",
+        body: "Turn on push notifications: on days you haven't studied and cards are due, the app reminds you once in the evening. Switch it on or off anytime in account settings.",
       },
       offline: {
         title: "Install as an app, learn offline",
@@ -110,7 +124,7 @@ const layout = {
       },
       study: {
         title: "Learn & practice",
-        body: "Flip cards, take quizzes, type answers — pick the mode that suits you.",
+        body: "Flip cards, mark the ones you know, then take a quiz to lock in what you learned.",
       },
       review: {
         title: "Review at the right time",

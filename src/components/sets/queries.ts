@@ -1,13 +1,15 @@
 import { db } from "@/lib/db";
 import { computeSetStatus, type SetStatus } from "@/lib/set-status";
 
-/** Trạng thái "đã thuộc hết" / "đạt kiểm tra" của user trên từng bộ thẻ. */
-export async function getSetStatuses(userId: string, setIds: string[]): Promise<Record<string, SetStatus>> {
+/** Trạng thái học của user trên từng bộ thẻ. studiedAt: lần cuối lưu tiến trình (xếp "đang học dở" mới nhất trước). */
+export type SetStatusWithTime = SetStatus & { studiedAt: Date | null };
+
+export async function getSetStatuses(userId: string, setIds: string[]): Promise<Record<string, SetStatusWithTime>> {
   if (setIds.length === 0) return {};
   const [progress, cards] = await Promise.all([
     db.studyProgress.findMany({
       where: { userId, setId: { in: setIds } },
-      select: { setId: true, known: true, quizBestPct: true },
+      select: { setId: true, known: true, unknown: true, index: true, completedAt: true, quizBestPct: true, updatedAt: true },
     }),
     db.card.findMany({ where: { setId: { in: setIds } }, select: { id: true, setId: true } }),
   ]);
@@ -18,12 +20,21 @@ export async function getSetStatuses(userId: string, setIds: string[]): Promise<
     else cardIds.set(c.setId, [c.id]);
   }
   const progressBySet = new Map(progress.map((p) => [p.setId, p]));
-  const out: Record<string, SetStatus> = {};
+  const out: Record<string, SetStatusWithTime> = {};
   for (const setId of setIds) {
     const p = progressBySet.get(setId);
-    out[setId] = p
-      ? computeSetStatus({ cardIds: cardIds.get(setId) ?? [], known: p.known, quizBestPct: p.quizBestPct })
-      : { mastered: false, quizBestPct: null, quizPassed: false };
+    // Mở trang học rồi thoát ngay vẫn tạo dòng progress: chỉ tính là "đã bắt đầu" khi có lật / chấm thẻ.
+    const started =
+      !!p && (p.known.length > 0 || p.unknown.length > 0 || p.index > 0 || p.completedAt !== null || p.quizBestPct !== null);
+    out[setId] = {
+      ...computeSetStatus({
+        cardIds: cardIds.get(setId) ?? [],
+        known: p?.known ?? [],
+        quizBestPct: p?.quizBestPct ?? null,
+        started,
+      }),
+      studiedAt: p?.updatedAt ?? null,
+    };
   }
   return out;
 }

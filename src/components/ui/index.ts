@@ -12,3 +12,4 @@ export { Spinner } from "./Spinner";
 export { Textarea, type TextareaProps } from "./Textarea";
 export { LanguageCombobox } from "./LanguageCombobox";
 export { Breadcrumbs, type Crumb } from "./Breadcrumbs";
+export { Tooltip } from "./Tooltip";

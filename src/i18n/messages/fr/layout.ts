@@ -50,11 +50,12 @@ const layout = {
     emptyFilteredDescription: "Essayez un autre mot-clé ou un autre filtre.",
     emptyDescription: "Créez votre premier paquet pour commencer à apprendre avec des flashcards.",
     saved: "Bibliothèque enregistrée",
+    inProgress: "Continuer l’apprentissage",
   },
   about: {
     metaTitle: "À propos — Knowledge",
     metaDescription:
-      "Knowledge est une application d’apprentissage par flashcards : retournement de cartes, répétition espacée, quiz, bibliothèque partagée et étude hors ligne.",
+      "Knowledge est une application de cartes mémoire : cartes à retourner, répétition espacée, quiz, tableau d'écriture, bibliothèque partagée et étude hors ligne.",
     badge: "À propos",
     heroTitle: "Retenez plus avec Knowledge",
     heroBody:
@@ -64,15 +65,20 @@ const layout = {
     ctaStart: "Commencer gratuitement",
     ctaLogin: "Se connecter",
     featuresTitle: "Fonctionnalités clés",
+    newBadge: "Nouveau",
     stepsTitle: "Pour bien démarrer",
     features: {
       cards: {
         title: "Flashcards et paquets",
-        body: "Créez des paquets par catégorie et par niveau. Chaque carte comporte une question, une réponse et une explication ; Markdown est pris en charge, les cartes difficiles peuvent être marquées d’une étoile et les cartes maîtrisées sont suivies.",
+        body: "Créez des paquets par catégorie et par niveau. Chaque carte a une question, une réponse et une explication (Markdown pris en charge). Affichez un paquet en liste détaillée ou en cartes à retourner, et marquez d'une étoile les cartes à surveiller.",
+      },
+      progress: {
+        title: "Reprenez là où vous en étiez",
+        body: "Les paquets en cours apparaissent en haut de l'accueil, avec une barre de progression et un rappel de passer le quiz une fois toutes les cartes connues. Après chaque tour, l'application propose l'étape suivante adaptée.",
       },
       srs: {
         title: "Répétition espacée (SRS)",
-        body: "Le système planifie la révision de chaque carte selon la façon dont vous vous en souvenez. Objectifs quotidiens, séries et statistiques vous aident à rester régulier.",
+        body: "Le système planifie la révision de chaque carte selon votre mémorisation ; révisez en retournant les cartes ou en tapant le mot. Les mots souvent oubliés sont marqués « difficiles » puis retirés quand vous les retenez durablement. Fixez votre objectif quotidien et suivez séries et statistiques.",
       },
       modes: {
         title: "De nombreux modes d’entraînement",
@@ -80,7 +86,11 @@ const layout = {
       },
       vocab: {
         title: "Apprendre le vocabulaire anglais",
-        body: "Les catégories d’anglais proposent la prononciation, la nature du mot, le sens et des exemples, avec un bouton de lecture audio. Vous pouvez aussi utiliser l’IA pour obtenir rapidement des suggestions lors de l’ajout de mots.",
+        body: "Les catégories d'anglais proposent prononciation, nature du mot, sens et exemples, avec un bouton de prononciation et des suggestions IA rapides à l'ajout. Des paquets prêts à l'emploi couvrent l'alphabet phonétique (API) : monophtongues, diphtongues et consonnes.",
+      },
+      board: {
+        title: "Tableau d'écriture",
+        body: "Ouvrez un tableau flottant sur n'importe quelle page pour griffonner, vous entraîner à écrire ou prendre des notes à la souris, au doigt ou au stylet. Choisissez couleurs et épaisseurs, effacez, annulez et téléchargez en PNG.",
       },
       importExport: {
         title: "Import et export",
@@ -96,7 +106,11 @@ const layout = {
       },
       share: {
         title: "Partager avec un lien",
-        body: "Chaque paquet peut être privé, partagé par lien, ou publié dans la bibliothèque après validation par un administrateur.",
+        body: "Chaque paquet peut être privé, partagé par lien ou publié dans la bibliothèque après validation d'un administrateur. Les liens partagés sur les réseaux sociaux affichent un aperçu avec le logo.",
+      },
+      reminders: {
+        title: "Rappels quotidiens",
+        body: "Activez les notifications push : les jours où vous n'avez pas étudié et où des cartes sont à réviser, l'application vous le rappelle une fois en soirée. Activez-les ou désactivez-les à tout moment dans les paramètres du compte.",
       },
       offline: {
         title: "Installer comme application, apprendre hors ligne",
@@ -110,7 +124,7 @@ const layout = {
       },
       study: {
         title: "Apprenez et entraînez-vous",
-        body: "Retournez les cartes, faites des quiz, saisissez vos réponses — choisissez le mode qui vous convient.",
+        body: "Retournez les cartes, marquez celles que vous connaissez, puis passez un quiz pour consolider vos acquis.",
       },
       review: {
         title: "Révisez au bon moment",

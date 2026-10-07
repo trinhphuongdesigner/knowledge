@@ -1,19 +1,42 @@
 export const QUIZ_PASS_PCT = 75;
 
-export type SetStatus = { mastered: boolean; quizBestPct: number | null; quizPassed: boolean };
+/** Bộ dưới 2 thẻ không làm kiểm tra được (khớp canQuiz ở trang chi tiết). */
+export const QUIZ_MIN_CARDS = 2;
 
-/** mastered: set has ≥1 card and every card id is in known. quizPassed: quizBestPct >= QUIZ_PASS_PCT. */
+export type SetStatus = {
+  mastered: boolean;
+  quizBestPct: number | null;
+  quizPassed: boolean;
+  /** Số thẻ (còn tồn tại) đã thuộc / tổng số thẻ. */
+  knownCount: number;
+  cardCount: number;
+  /** Đã bắt đầu học nhưng chưa xong: còn thẻ chưa thuộc, hoặc thuộc hết mà chưa đạt kiểm tra. */
+  inProgress: boolean;
+};
+
+/**
+ * mastered: set has ≥1 card and every card id is in known. quizPassed: quizBestPct >= QUIZ_PASS_PCT.
+ * started: the user has touched the set (flashcards or quiz); an untouched set is "chưa học", not in progress.
+ */
 export function computeSetStatus(input: {
   cardIds: readonly string[];
   known: readonly string[];
   quizBestPct: number | null;
+  started?: boolean;
 }): SetStatus {
   const known = new Set(input.known);
-  const mastered = input.cardIds.length > 0 && input.cardIds.every((id) => known.has(id));
+  const cardCount = input.cardIds.length;
+  const knownCount = input.cardIds.filter((id) => known.has(id)).length;
+  const mastered = cardCount > 0 && knownCount === cardCount;
+  const quizPassed = input.quizBestPct !== null && input.quizBestPct >= QUIZ_PASS_PCT;
+  const done = mastered && (quizPassed || cardCount < QUIZ_MIN_CARDS);
   return {
     mastered,
     quizBestPct: input.quizBestPct,
-    quizPassed: input.quizBestPct !== null && input.quizBestPct >= QUIZ_PASS_PCT,
+    quizPassed,
+    knownCount,
+    cardCount,
+    inProgress: !!input.started && cardCount > 0 && !done,
   };
 }
 

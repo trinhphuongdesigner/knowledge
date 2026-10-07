@@ -77,6 +77,11 @@ const sets = {
     levelNone: "Không chọn",
     saveChanges: "Lưu thay đổi",
   },
+  progress: {
+    known: "Đã thuộc {known}/{total}",
+    needsQuiz: "Đã thuộc hết · cần kiểm tra",
+    quizNotPassed: "Kiểm tra {pct}% · chưa đạt",
+  },
   groups: {
     setCount: { one: "{count} nhóm thẻ", other: "{count} nhóm thẻ" },
     emptyCategory: "Chưa có nhóm thẻ nào trong danh mục này.",

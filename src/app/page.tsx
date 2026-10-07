@@ -1,4 +1,4 @@
-import { BookOpen, Library } from "lucide-react";
+import { BookOpen, CirclePlay, Library } from "lucide-react";
 import { Suspense, type CSSProperties } from "react";
 import { Container } from "@/components/layout/Container";
 import { DueTodayCard } from "@/components/review/DueTodayCard";
@@ -77,6 +77,12 @@ export default async function Home({ searchParams }: PageProps<"/">) {
   );
 
   const statuses = await getSetStatuses(user.id, [...sets.map((s) => s.id), ...savedSets.map((s) => s.id)]);
+  // Bộ đang học dở (còn thẻ chưa thuộc / thuộc hết mà chưa đạt kiểm tra) lên đầu, học gần nhất trước.
+  const inProgress = [...sets, ...savedSets]
+    .filter((s) => statuses[s.id]?.inProgress)
+    .sort((a, b) => (statuses[b.id].studiedAt?.getTime() ?? 0) - (statuses[a.id].studiedAt?.getTime() ?? 0));
+  const pinnedIds = new Set(inProgress.map((s) => s.id));
+  const restSaved = savedSets.filter((s) => !pinnedIds.has(s.id));
 
   return (
     <Container className="py-6 sm:py-8">
@@ -114,6 +120,21 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           />
         </Suspense>
       </div>
+      {inProgress.length > 0 && (
+        <section aria-labelledby="in-progress-heading" className="mb-8">
+          <h2 id="in-progress-heading" className="mb-4 flex items-center gap-2 text-lg font-semibold text-ink-900">
+            <CirclePlay className="size-5 text-accent-strong" aria-hidden />
+            {t("home.inProgress")} <span className="text-sm font-normal text-ink-500">· {inProgress.length}</span>
+          </h2>
+          <div className="stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {inProgress.map((s, i) => (
+              <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
+                <SetCard set={s} status={statuses[s.id]} />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       {sets.length === 0 && savedSets.length > 0 ? null : sets.length === 0 ? (
         <EmptyState
           icon={BookOpen}
@@ -124,15 +145,21 @@ export default async function Home({ searchParams }: PageProps<"/">) {
           action={filtering ? undefined : <CreateSetButton categories={categories} canManageCategories={user.role === "ADMIN"} />}
         />
       ) : (
-        <SetGroups categories={categories} sets={sets} showEmpty={!filtering && savedSets.length === 0} statuses={statuses} />
+        <SetGroups
+          categories={categories}
+          sets={sets}
+          showEmpty={!filtering && savedSets.length === 0}
+          statuses={statuses}
+          pinnedIds={pinnedIds}
+        />
       )}
-      {savedSets.length > 0 && (
+      {restSaved.length > 0 && (
         <section aria-labelledby="saved-heading" className="mt-10">
           <h2 id="saved-heading" className="mb-4 text-lg font-semibold text-ink-900">
-            {t("home.saved")} <span className="text-sm font-normal text-ink-500">· {savedSets.length}</span>
+            {t("home.saved")} <span className="text-sm font-normal text-ink-500">· {restSaved.length}</span>
           </h2>
           <div className="stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {savedSets.map((s, i) => (
+            {restSaved.map((s, i) => (
               <div key={s.id} className="h-full" style={{ "--i": i } as CSSProperties}>
                 <SetCard set={s} status={statuses[s.id]} />
               </div>

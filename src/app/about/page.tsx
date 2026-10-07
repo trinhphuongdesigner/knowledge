@@ -1,11 +1,14 @@
 import {
+  BellRing,
   BookOpen,
   CalendarCheck,
+  CirclePlay,
   Copy,
   FileUp,
   Gamepad2,
   Languages,
   Library,
+  PenLine,
   Share2,
   Sparkles,
   WifiOff,
@@ -22,17 +25,21 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("about.metaTitle"), description: t("about.metaDescription") };
 }
 
+// isNew: tính năng mới thêm gần đây — gắn nhãn "Mới" để người dùng cũ nhận ra.
 const FEATURES = [
   { icon: BookOpen, id: "cards" },
+  { icon: CirclePlay, id: "progress", isNew: true },
   { icon: CalendarCheck, id: "srs" },
   { icon: Gamepad2, id: "modes" },
   { icon: Languages, id: "vocab" },
+  { icon: PenLine, id: "board", isNew: true },
   { icon: FileUp, id: "importExport" },
   { icon: Library, id: "library" },
   { icon: Copy, id: "saveCopy" },
   { icon: Share2, id: "share" },
+  { icon: BellRing, id: "reminders", isNew: true },
   { icon: WifiOff, id: "offline" },
-] as const;
+] as const satisfies readonly { icon: typeof BookOpen; id: string; isNew?: boolean }[];
 
 const STEPS = ["create", "study", "review"] as const;
 
@@ -74,14 +81,21 @@ export default async function AboutPage() {
           {t("about.featuresTitle")}
         </h2>
         <ul className="stagger grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map(({ icon: Icon, id }, i) => (
-            <li key={id} style={{ "--i": i } as CSSProperties}>
+          {FEATURES.map((f, i) => (
+            <li key={f.id} style={{ "--i": i } as CSSProperties}>
               <Card className="h-full">
-                <span className="mb-3 flex size-10 items-center justify-center rounded-xl bg-brand-50 text-accent-strong">
-                  <Icon className="size-5" aria-hidden />
-                </span>
-                <h3 className="text-base font-semibold text-ink-900">{t(`about.features.${id}.title`)}</h3>
-                <p className="mt-1 text-sm text-ink-600">{t(`about.features.${id}.body`)}</p>
+                <div className="mb-3 flex items-start justify-between gap-2">
+                  <span className="flex size-10 items-center justify-center rounded-xl bg-brand-50 text-accent-strong">
+                    <f.icon className="size-5" aria-hidden />
+                  </span>
+                  {"isNew" in f && (
+                    <span className="rounded-md bg-sun-200 px-2 py-0.5 text-[11px] font-semibold text-ink-900">
+                      {t("about.newBadge")}
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-base font-semibold text-ink-900">{t(`about.features.${f.id}.title`)}</h3>
+                <p className="mt-1 text-sm text-ink-600">{t(`about.features.${f.id}.body`)}</p>
               </Card>
             </li>
           ))}

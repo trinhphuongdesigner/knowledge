@@ -53,6 +53,14 @@ const cards = {
     deleteBody: "This card will be permanently deleted and this cannot be undone.",
     deleteConfirm: "Delete",
   },
+  view: {
+    label: "View",
+    list: "List",
+    grid: "Cards",
+    tapToFlip: "Tap to flip",
+    showAnswer: "Card {n}: show answer",
+    showQuestion: "Card {n}: show question",
+  },
   list: {
     starFailed: "Could not update the star, please try again.",
     lookingUp: "Looking up phonetics…",

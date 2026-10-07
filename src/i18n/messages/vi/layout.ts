@@ -50,11 +50,12 @@ const layout = {
     emptyFilteredDescription: "Thử đổi từ khoá hoặc bộ lọc khác.",
     emptyDescription: "Tạo nhóm thẻ đầu tiên để bắt đầu học bằng flashcard.",
     saved: "Thư viện đã lưu",
+    inProgress: "Đang học dở",
   },
   about: {
     metaTitle: "Giới thiệu — Knowledge",
     metaDescription:
-      "Knowledge là ứng dụng học bằng thẻ ghi nhớ: lật thẻ, ôn tập ngắt quãng, quiz, thư viện chung và học offline.",
+      "Knowledge là ứng dụng học bằng thẻ ghi nhớ: lật thẻ, ôn tập ngắt quãng, bài kiểm tra, bảng viết tay, thư viện chung và học offline.",
     badge: "Giới thiệu",
     heroTitle: "Học nhớ lâu hơn với Knowledge",
     heroBody:
@@ -64,15 +65,20 @@ const layout = {
     ctaStart: "Bắt đầu miễn phí",
     ctaLogin: "Đăng nhập",
     featuresTitle: "Tính năng chính",
+    newBadge: "Mới",
     stepsTitle: "Bắt đầu như thế nào?",
     features: {
       cards: {
         title: "Thẻ ghi nhớ & nhóm thẻ",
-        body: "Tạo nhóm thẻ theo danh mục và cấp độ. Mỗi thẻ có câu hỏi, đáp án, giải thích; hỗ trợ Markdown, đánh sao thẻ khó và theo dõi thẻ đã thuộc.",
+        body: "Tạo nhóm thẻ theo danh mục và cấp độ. Mỗi thẻ có câu hỏi, đáp án, giải thích (hỗ trợ Markdown). Xem dạng danh sách chi tiết hoặc dạng thẻ lật, đánh sao thẻ cần chú ý.",
+      },
+      progress: {
+        title: "Học tiếp đúng chỗ",
+        body: "Nhóm thẻ đang học dở được đưa lên đầu trang chủ, kèm thanh tiến độ và lời nhắc làm bài kiểm tra khi đã thuộc hết. Học xong một lượt, app gợi ý bước tiếp theo phù hợp.",
       },
       srs: {
         title: "Ôn tập ngắt quãng (SRS)",
-        body: "Hệ thống tự xếp lịch ôn từng thẻ theo mức độ nhớ của bạn. Mục tiêu mỗi ngày, chuỗi ngày học (streak) và thống kê giúp giữ nhịp đều đặn.",
+        body: "Hệ thống tự xếp lịch ôn từng thẻ theo mức độ nhớ của bạn, ôn bằng lật thẻ hoặc gõ từ. Từ hay quên được đánh dấu “từ khó” và tự gỡ khi bạn đã nhớ ổn định. Tự đặt mục tiêu mỗi ngày, theo dõi chuỗi ngày học và thống kê.",
       },
       modes: {
         title: "Nhiều chế độ luyện tập",
@@ -80,7 +86,11 @@ const layout = {
       },
       vocab: {
         title: "Học từ vựng tiếng Anh",
-        body: "Danh mục tiếng Anh tự gợi ý phiên âm, từ loại, nghĩa và ví dụ; có nút phát âm. Có thể dùng AI để gợi ý nhanh khi thêm từ.",
+        body: "Danh mục tiếng Anh tự gợi ý phiên âm, từ loại, nghĩa và ví dụ; có nút phát âm và AI gợi ý nhanh khi thêm từ. Có sẵn bộ thẻ bảng phiên âm IPA: nguyên âm đơn, nguyên âm đôi và phụ âm.",
+      },
+      board: {
+        title: "Bảng viết tay",
+        body: "Mở bảng phấn nổi ở bất kỳ trang nào để nháp, luyện viết hay ghi chú bằng chuột, ngón tay hoặc bút. Chọn màu, cỡ nét, khăn lau, hoàn tác và tải về ảnh PNG.",
       },
       importExport: {
         title: "Import & export",
@@ -96,7 +106,11 @@ const layout = {
       },
       share: {
         title: "Chia sẻ bằng liên kết",
-        body: "Mỗi nhóm thẻ có thể để riêng tư, chia sẻ bằng link, hoặc công khai lên thư viện sau khi quản trị viên duyệt.",
+        body: "Mỗi nhóm thẻ có thể để riêng tư, chia sẻ bằng link, hoặc công khai lên thư viện sau khi quản trị viên duyệt. Link gửi qua mạng xã hội hiện ảnh xem trước kèm logo.",
+      },
+      reminders: {
+        title: "Nhắc học mỗi ngày",
+        body: "Bật thông báo đẩy: hôm nào bạn chưa học mà còn thẻ cần ôn, app nhắc một lần vào buổi tối. Bật hoặc tắt bất cứ lúc nào trong cài đặt tài khoản.",
       },
       offline: {
         title: "Cài như app, học offline",
@@ -110,7 +124,7 @@ const layout = {
       },
       study: {
         title: "Học & luyện tập",
-        body: "Lật thẻ, làm quiz, gõ đáp án — chọn chế độ hợp với bạn.",
+        body: "Lật thẻ, đánh dấu thẻ đã thuộc, rồi làm bài kiểm tra để chốt lại kiến thức.",
       },
       review: {
         title: "Ôn đúng lúc",

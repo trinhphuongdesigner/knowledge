@@ -41,9 +41,18 @@ export function nextReview(state: SrsState, grade: Grade, now: Date = new Date()
   };
 }
 
-/** Thẻ "khó": quên nhiều lần hoặc ease thấp. */
-export function isHard(state: Pick<SrsState, "ease" | "lapses">): boolean {
-  return state.lapses >= 2 || state.ease < 2.0;
+/** Đúng liên tiếp chừng này lần (reps reset về 0 mỗi lần quên) thì thẻ hết "khó". */
+export const HARD_RECOVERED_REPS = 3;
+export const HARD_MIN_LAPSES = 2;
+export const HARD_MAX_EASE = 2.0;
+
+/**
+ * Thẻ "khó": quên nhiều lần hoặc ease thấp, VÀ chưa nhớ lại ổn định.
+ * lapses chỉ tăng và lật thẻ / kiểm tra chỉ chấm 0|2 (không bao giờ kéo ease lên), nên thiếu điều kiện reps
+ * thì thẻ đã khó sẽ khó mãi dù đã trả lời đúng nhiều lần.
+ */
+export function isHard(state: Pick<SrsState, "ease" | "lapses" | "reps">): boolean {
+  return (state.lapses >= HARD_MIN_LAPSES || state.ease < HARD_MAX_EASE) && state.reps < HARD_RECOVERED_REPS;
 }
 
 export function gradeFromCorrect(correct: boolean): Grade {

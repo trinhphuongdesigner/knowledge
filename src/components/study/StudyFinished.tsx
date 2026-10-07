@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { PartyPopper } from "lucide-react";
-import { Button, ButtonLink } from "@/components/ui";
+import { ArrowLeft, ListChecks, PartyPopper, Repeat, RotateCcw } from "lucide-react";
+import { Button, ButtonLink, Tooltip } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { useT } from "@/i18n/client";
 
@@ -46,6 +46,7 @@ export function StudyFinished({
   }, []);
 
   const guard = !armed ? { "aria-disabled": true, tabIndex: -1 } : {};
+  const hasRemaining = remainingCount > 0;
 
   return (
     <div className="index-card flex animate-rise flex-col items-center rounded-3xl border border-ink-200 px-6 pt-16 pb-10 text-center shadow-[0_2px_0_var(--color-ink-200),0_20px_40px_-20px_rgb(70_63_53/0.35)] motion-reduce:animate-none">
@@ -72,37 +73,58 @@ export function StudyFinished({
           </div>
         )}
       </dl>
-      <div className="mt-6 flex w-full max-w-xs flex-col gap-2">
+      {/*
+        Thứ bậc theo bước học tiếp theo: còn thẻ chưa thuộc → học lại chúng trước (chính), kiểm tra là bước sau (phụ);
+        thuộc hết → kiểm tra là bước chính. "Học lại tất cả" / "Quay lại" là lối thoát, xếp thành hàng chữ ở cuối.
+      */}
+      <div className="mt-8 flex w-full max-w-xs flex-col gap-3">
+        {hasRemaining && (
+          <Button size="lg" disabled={!armed} onClick={onRestartUnknown}>
+            <RotateCcw className="size-4" aria-hidden />
+            {t("finished.restartUnknown")}
+            <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs tabular-nums">{remainingCount}</span>
+          </Button>
+        )}
         {canQuiz && (
-          <>
+          <Tooltip content={t("finished.quizHint")} className="w-full">
             <ButtonLink
               href={`/sets/${setId}/quiz`}
+              variant={hasRemaining ? "secondary" : "primary"}
+              size="lg"
               className={cn(!armed && "pointer-events-none opacity-50")}
               {...guard}
             >
+              <ListChecks className="size-4" aria-hidden />
               {t("finished.quiz")}
             </ButtonLink>
-            <p className="-mt-1 mb-1 text-xs text-ink-500">{t("finished.quizHint")}</p>
-          </>
+          </Tooltip>
         )}
-        {remainingCount > 0 && (
-          <Button variant={canQuiz ? "secondary" : "primary"} disabled={!armed} onClick={onRestartUnknown}>
-            {t("finished.restartUnknown")}
+        {!hasRemaining && !canQuiz && (
+          <Button size="lg" disabled={!armed} onClick={onRestartAll}>
+            <Repeat className="size-4" aria-hidden />
+            {t("finished.restartAll")}
           </Button>
         )}
-        <Button variant="ghost" disabled={!armed} onClick={onRestartAll}>
-          {t("finished.restartAll")}
-        </Button>
+      </div>
+      <div className="mt-6 flex w-full max-w-xs items-center justify-between gap-2 border-t border-dashed border-ink-200 pt-3">
         <Link
           href={`/sets/${setId}`}
           className={cn(
-            "inline-flex min-h-11 items-center justify-center rounded-xl text-sm font-medium text-accent hover:underline",
+            "-ml-2 inline-flex min-h-11 items-center gap-1.5 rounded-xl px-2 text-sm font-medium text-accent-strong hover:bg-ink-100",
+            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
             !armed && "pointer-events-none opacity-50",
           )}
           {...guard}
         >
+          <ArrowLeft className="size-4" aria-hidden />
           {t("finished.back")}
         </Link>
+        {(hasRemaining || canQuiz) && (
+          <Button variant="ghost" className="-mr-2 px-2" disabled={!armed} onClick={onRestartAll}>
+            <Repeat className="size-4" aria-hidden />
+            {t("finished.restartAll")}
+          </Button>
+        )}
       </div>
     </div>
   );

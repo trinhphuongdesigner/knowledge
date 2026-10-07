@@ -53,6 +53,14 @@ const cards = {
     deleteBody: "การ์ดนี้จะถูกลบถาวรและไม่สามารถกู้คืนได้",
     deleteConfirm: "ลบ",
   },
+  view: {
+    label: "มุมมอง",
+    list: "รายการ",
+    grid: "การ์ด",
+    tapToFlip: "แตะเพื่อพลิก",
+    showAnswer: "การ์ด {n}: ดูคำตอบ",
+    showQuestion: "การ์ด {n}: ดูคำถาม",
+  },
   list: {
     starFailed: "ไม่สามารถอัปเดตดาวได้ โปรดลองอีกครั้ง",
     lookingUp: "กำลังค้นหาสัทอักษร…",
