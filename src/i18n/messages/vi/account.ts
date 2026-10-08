@@ -43,6 +43,10 @@ const account = {
     saveFailed: "Không đổi được ngôn ngữ hiển thị",
     invalid: "Ngôn ngữ không được hỗ trợ",
   },
+  sound: {
+    label: "Âm thanh khi làm bài kiểm tra",
+    hint: "Trả lời đúng: phát tiếng “ting”; riêng Điền từ và Điền vào chỗ trống (bộ thẻ tiếng Anh) sẽ đọc lại từ trước rồi mới “ting”. Trả lời sai có tiếng báo. Chỉ áp dụng trên thiết bị này.",
+  },
   avatar: {
     male: "Ảnh đại diện mặc định — nam",
     female: "Ảnh đại diện mặc định — nữ",

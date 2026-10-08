@@ -8,6 +8,7 @@ import { buildRounds, buildTiles, formatTime, isMatch, type QuizTile } from "@/l
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
 import { useT } from "@/i18n/client";
+import { playSfx } from "@/lib/sfx";
 
 type Game = { rounds: CardDTO[][]; round: number; tiles: QuizTile[] };
 
@@ -90,9 +91,11 @@ export function MatchingGame({
     if (!first) return setSelected(tile.key);
     if (first.side === tile.side) return setSelected(tile.key); // same side: just switch selection
     if (isMatch(first, tile)) {
+      playSfx("correct");
       setMatched((m) => [...m, tile.cardId]);
       setSelected(null);
     } else {
+      playSfx("wrong");
       setMistakes((n) => n + 1);
       missed.current.add(first.cardId).add(tile.cardId);
       setWrong([first.key, tile.key]);

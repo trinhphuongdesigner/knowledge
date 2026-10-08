@@ -2,6 +2,7 @@ import { Download } from "lucide-react";
 import type { Metadata } from "next";
 import { ACCOUNT_TABS, AccountTabs, type AccountTab } from "@/components/account/AccountTabs";
 import { ProfileForm } from "@/components/account/ProfileForm";
+import { SoundEffectsToggle } from "@/components/account/SoundEffectsToggle";
 import { StudyHistory } from "@/components/account/StudyHistory";
 import { StudySettingsForm } from "@/components/account/StudySettingsForm";
 import { UiLanguageSelect } from "@/components/account/UiLanguageSelect";
@@ -41,8 +42,11 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
       {active === "settings" && <SettingsTab userId={user.id} />}
       {active === "profile" && (
         <div className="space-y-4">
-          <Card>
+          <Card className="space-y-4">
             <UiLanguageSelect value={locale} />
+            <div className="border-t border-ink-200 pt-4">
+              <SoundEffectsToggle />
+            </div>
           </Card>
           <Card>
             <ProfileTab userId={user.id} email={user.email} />

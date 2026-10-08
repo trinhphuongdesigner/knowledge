@@ -4,23 +4,35 @@ import { Check, Lightbulb, SkipForward, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { shuffleArray } from "@/components/study/utils";
 import { Button, buttonStyles } from "@/components/ui";
-import { CLOZE_BLANK, hintText, isClozeCorrect, stripMarkdown, type Cloze } from "@/lib/quiz";
+import { CLOZE_BLANK, hintText, isClozeCorrect, normalizeAnswer, stripMarkdown, type Cloze } from "@/lib/quiz";
 import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
 import { RoundResult } from "./RoundResult";
 import { useT } from "@/i18n/client";
+import { playSfx } from "@/lib/sfx";
+import { scheduleAfterCorrect, startCorrectReading } from "./correctFeedback";
+import { playTerm } from "./speech";
 
-const AUTO_NEXT_MS = 1500;
 
 export type ClozeItem = { card: CardDTO; cloze: Cloze };
 type Result = { card: CardDTO; correct: boolean };
 
+/** Đọc từ vừa điền. Câu ví dụ có thể chia khác (run → running): khi đó đọc đúng dạng trong câu bằng TTS. */
+function readClozeAnswer(card: CardDTO, cloze: Cloze) {
+  const term = stripMarkdown(card.question);
+  const same = normalizeAnswer(term) === normalizeAnswer(cloze.answer);
+  return playTerm(same ? term : cloze.answer, { audioUrl: same ? card.audioUrl : null, english: true });
+}
+
 export function ClozeGame({
   items,
+  english = false,
   onComplete,
 }: {
   /** Cards that have a usable example sentence (see buildClozeItems). */
   items: ClozeItem[];
+  /** English set: read the filled word aloud after a correct answer. */
+  english?: boolean;
   onComplete?: (passedIds: string[], failedIds: string[]) => void;
 }) {
   const [run, setRun] = useState<{ id: number; items: ClozeItem[] }>(() => ({ id: 0, items: shuffleArray(items) }));
@@ -48,6 +60,7 @@ export function ClozeGame({
     <ClozeRun
       key={run.id}
       items={run.items}
+      english={english}
       onFinish={(r) => {
         onComplete?.(
           r.filter((x) => x.correct).map((x) => x.card.id),
@@ -59,7 +72,15 @@ export function ClozeGame({
   );
 }
 
-function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results: Result[]) => void }) {
+function ClozeRun({
+  items,
+  english,
+  onFinish,
+}: {
+  items: ClozeItem[];
+  english: boolean;
+  onFinish: (results: Result[]) => void;
+}) {
   const t = useT("quiz");
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
@@ -68,6 +89,7 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
   const [results, setResults] = useState<Result[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+  const reading = useRef<Promise<void> | null>(null);
 
   const { card, cloze } = items[index];
   const answerLength = [...cloze.answer].length;
@@ -77,14 +99,17 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
     else inputRef.current?.focus();
   }, [checked, index]);
 
+  // Đúng: đọc lại từ → "ting" → tự sang câu tiếp. Sai thì chờ để người dùng đọc đáp án.
   useEffect(() => {
     if (!checked?.correct) return;
-    const timer = setTimeout(next, AUTO_NEXT_MS);
-    return () => clearTimeout(timer);
+    return scheduleAfterCorrect(reading.current, next);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- `next` is fresh whenever `checked`/`index` change
   }, [checked, index]);
 
-  function check(correct: boolean) {
+  /** answered=false: bỏ qua (không biết) → không phát âm báo sai. */
+  function check(correct: boolean, answered = true) {
+    if (correct) reading.current = startCorrectReading(english ? () => readClozeAnswer(card, cloze) : null);
+    else if (answered) playSfx("wrong");
     setChecked({ correct });
     setResults((r) => [...r, { card, correct }]);
   }
@@ -211,7 +236,7 @@ function ClozeRun({ items, onFinish }: { items: ClozeItem[]; onFinish: (results:
               <Lightbulb className="size-4" aria-hidden />
               {t("play.hintButton")}
             </Button>
-            <Button variant="ghost" onClick={() => check(false)}>
+            <Button variant="ghost" onClick={() => check(false, false)}>
               <SkipForward className="size-4" aria-hidden />
               {t("play.skip")}
             </Button>

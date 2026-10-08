@@ -43,6 +43,10 @@ const account = {
     saveFailed: "Couldn't change the display language",
     invalid: "Unsupported language",
   },
+  sound: {
+    label: "Quiz sound effects",
+    hint: "Correct answers play a “ding”; in Fill in the word and Fill in the blank (English decks) the word is read aloud first, then the ding. Wrong answers play a low tone. Applies to this device only.",
+  },
   avatar: {
     male: "Default avatar — male",
     female: "Default avatar — female",

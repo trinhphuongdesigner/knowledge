@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { RoundResult } from "./RoundResult";
 import { NORMAL_RATE, playTerm, SLOW_RATE, stopSpeech } from "./speech";
 import { useT } from "@/i18n/client";
+import { playSfx } from "@/lib/sfx";
 
 const AUTO_NEXT_MS = 1500;
 const OPTION_COUNT = 4;
@@ -162,7 +163,9 @@ function ListenRun({
     return () => window.removeEventListener("keydown", onKey);
   });
 
-  function check(correct: boolean) {
+  /** answered=false: bỏ qua (không biết) → không phát âm báo sai. */
+  function check(correct: boolean, answered = true) {
+    if (answered) playSfx(correct ? "correct" : "wrong");
     setChecked({ correct });
     setResults((r) => [...r, { card, correct }]);
   }
@@ -311,7 +314,7 @@ function ListenRun({
                 {t("play.check")}
               </Button>
             )}
-            <Button variant="ghost" onClick={() => check(false)}>
+            <Button variant="ghost" onClick={() => check(false, false)}>
               {t("play.skip")}
             </Button>
           </>

@@ -82,7 +82,7 @@ const layout = {
       },
       modes: {
         title: "Nhiều chế độ luyện tập",
-        body: "Trắc nghiệm, gõ đáp án, ghép cặp, nghe – chọn và điền chỗ trống. Mỗi chế độ phù hợp một kiểu ghi nhớ khác nhau.",
+        body: "Trắc nghiệm, gõ đáp án, ghép cặp, nghe – chọn và điền vào chỗ trống. Mỗi chế độ phù hợp một kiểu ghi nhớ khác nhau.",
       },
       vocab: {
         title: "Học từ vựng tiếng Anh",

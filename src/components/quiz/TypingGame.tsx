@@ -10,8 +10,10 @@ import type { CardDTO } from "@/lib/validators";
 import { cn } from "@/lib/utils";
 import { RoundResult } from "./RoundResult";
 import { useT } from "@/i18n/client";
+import { playSfx } from "@/lib/sfx";
+import { scheduleAfterCorrect, startCorrectReading } from "./correctFeedback";
+import { playTerm } from "./speech";
 
-const AUTO_NEXT_MS = 1500;
 
 type Result ={ card: CardDTO; correct: boolean };
 
@@ -82,6 +84,7 @@ function TypingRun({
   const [results, setResults] = useState<Result[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+  const reading = useRef<Promise<void> | null>(null);
 
   const card = cards[index];
   const expected = stripMarkdown(card.question);
@@ -93,15 +96,20 @@ function TypingRun({
     else inputRef.current?.focus();
   }, [checked, index]);
 
-  // Correct answers move on by themselves; wrong ones wait so the user can read the expected answer.
+  // Đúng: đọc lại từ → "ting" → tự sang câu tiếp. Sai thì chờ để người dùng đọc đáp án.
   useEffect(() => {
     if (!checked?.correct) return;
-    const timer = setTimeout(next, AUTO_NEXT_MS);
-    return () => clearTimeout(timer);
+    return scheduleAfterCorrect(reading.current, next);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- `next` is fresh whenever `checked`/`index` change
   }, [checked, index]);
 
-  function check(correct: boolean) {
+  /** answered=false: bỏ qua (không biết) → không phát âm báo sai. */
+  function check(correct: boolean, answered = true) {
+    if (correct) {
+      reading.current = startCorrectReading(
+        english ? () => playTerm(expected, { audioUrl: card.audioUrl, english }) : null,
+      );
+    } else if (answered) playSfx("wrong");
     setChecked({ correct });
     setResults((r) => [...r, { card, correct }]);
   }
@@ -209,7 +217,7 @@ function TypingRun({
               <Lightbulb className="size-4" aria-hidden />
               {t("play.hintButton")}
             </Button>
-            <Button variant="ghost" onClick={() => check(false)}>
+            <Button variant="ghost" onClick={() => check(false, false)}>
               <SkipForward className="size-4" aria-hidden />
               {t("play.skip")}
             </Button>

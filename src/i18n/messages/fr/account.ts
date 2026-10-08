@@ -43,6 +43,10 @@ const account = {
     saveFailed: "Impossible de changer la langue d’affichage",
     invalid: "Langue non prise en charge",
   },
+  sound: {
+    label: "Sons pendant les quiz",
+    hint: "Une bonne réponse joue un « ding » ; dans Saisir le mot et Texte à trous (paquets d’anglais), le mot est d’abord prononcé, puis le ding. Une erreur joue un son grave. S’applique à cet appareil uniquement.",
+  },
   avatar: {
     male: "Avatar par défaut — homme",
     female: "Avatar par défaut — femme",

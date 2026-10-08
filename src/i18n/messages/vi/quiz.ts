@@ -16,7 +16,7 @@ const quiz = {
     modeMatching: "Ghép từ – nghĩa",
     modeTyping: "Điền từ",
     modeListen: "Nghe",
-    modeCloze: "Chỗ trống",
+    modeCloze: "Điền vào chỗ trống",
     modesAria: "Chế độ kiểm tra",
     skipKnown: "Bỏ qua thẻ đã thuộc",
     clozeNeeds: { one: "Chế độ này cần ít nhất {min} thẻ có câu ví dụ chứa từ cần học (ở phần giải thích của thẻ). Hiện có {count} thẻ phù hợp.", other: "Chế độ này cần ít nhất {min} thẻ có câu ví dụ chứa từ cần học (ở phần giải thích của thẻ). Hiện có {count} thẻ phù hợp." },

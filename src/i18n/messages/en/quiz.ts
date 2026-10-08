@@ -16,7 +16,7 @@ const quiz = {
     modeMatching: "Match words & meanings",
     modeTyping: "Fill in the word",
     modeListen: "Listen",
-    modeCloze: "Fill the blank",
+    modeCloze: "Fill in the blank",
     modesAria: "Quiz mode",
     skipKnown: "Skip known cards",
     clozeNeeds: { one: "This mode needs at least {min} cards with an example sentence containing the target word (in the card explanation). {count} matching card so far.", other: "This mode needs at least {min} cards with an example sentence containing the target word (in the card explanation). {count} matching cards so far." },

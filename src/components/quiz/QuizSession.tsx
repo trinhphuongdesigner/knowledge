@@ -179,6 +179,7 @@ export function QuizSession({
                 <ClozeGame
                   key={`cloze-${clozeItems.length}`}
                   items={clozeItems}
+                  english={english}
                   onComplete={report("CLOZE")}
                 />
               ) : (
