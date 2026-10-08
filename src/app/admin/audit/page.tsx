@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { AdminPagerSkeleton, AdminRegion, AdminTableSkeleton } from "@/components/admin/AdminSkeletons";
 import { Badge, ButtonLink, Card, Breadcrumbs } from "@/components/ui";
 import { formatDate, formatNumber } from "@/i18n/format";
 import { getLocale, getT } from "@/i18n/server";
@@ -34,33 +36,12 @@ function href(prefix: string, page: number) {
 
 export default async function AdminAuditPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   await requireAdmin();
-  const [t, locale] = await Promise.all([getT("admin"), getLocale()]);
+  const t = await getT("admin");
   const sp = await searchParams;
   const rawAction = typeof sp.action === "string" ? sp.action : "";
   const prefix = FILTERS.some((f) => f.key === rawAction) ? rawAction : "";
   const rawPage = Number(typeof sp.page === "string" ? sp.page : 1);
   const page = Number.isInteger(rawPage) && rawPage > 0 ? rawPage : 1;
-
-  const where = prefix ? { action: { startsWith: `${prefix}.` } } : {};
-  const [total, logs] = await Promise.all([
-    db.adminAuditLog.count({ where }),
-    db.adminAuditLog.findMany({
-      where,
-      orderBy: [{ createdAt: "desc" }, { id: "desc" }],
-      skip: (page - 1) * PAGE_SIZE,
-      take: PAGE_SIZE,
-      select: {
-        id: true,
-        action: true,
-        targetType: true,
-        targetId: true,
-        summary: true,
-        createdAt: true,
-        admin: { select: { email: true } },
-      },
-    }),
-  ]);
-  const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
   return (
     <div className="space-y-6">
@@ -83,6 +64,47 @@ export default async function AdminAuditPage({ searchParams }: { searchParams: P
         ))}
       </div>
 
+      <Suspense
+        key={`${prefix}:${page}`}
+        fallback={
+          <AdminRegion className="space-y-6">
+            <AdminTableSkeleton rows={12} cols={4} />
+            <AdminPagerSkeleton />
+          </AdminRegion>
+        }
+      >
+        <AuditResults prefix={prefix} page={page} />
+      </Suspense>
+    </div>
+  );
+}
+
+/** Phần chậm (truy vấn nhật ký) tách ra để tiêu đề và bộ lọc hiện ngay. */
+async function AuditResults({ prefix, page }: { prefix: string; page: number }) {
+  const [t, locale] = await Promise.all([getT("admin"), getLocale()]);
+  const where = prefix ? { action: { startsWith: `${prefix}.` } } : {};
+  const [total, logs] = await Promise.all([
+    db.adminAuditLog.count({ where }),
+    db.adminAuditLog.findMany({
+      where,
+      orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+      skip: (page - 1) * PAGE_SIZE,
+      take: PAGE_SIZE,
+      select: {
+        id: true,
+        action: true,
+        targetType: true,
+        targetId: true,
+        summary: true,
+        createdAt: true,
+        admin: { select: { email: true } },
+      },
+    }),
+  ]);
+  const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+  return (
+    <>
       <Card>
         {logs.length === 0 ? (
           <p className="text-sm text-ink-600">{t("audit.empty")}</p>
@@ -141,6 +163,6 @@ export default async function AdminAuditPage({ searchParams }: { searchParams: P
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }

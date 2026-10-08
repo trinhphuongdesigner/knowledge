@@ -1,9 +1,10 @@
 import { Library, Search, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { Suspense, type CSSProperties } from "react";
 import { CategoryBadge } from "@/components/categories/CategoryBadge";
 import { Container } from "@/components/layout/Container";
+import { CategorySelectSkeleton, LibraryListSkeleton } from "@/components/library/LibrarySkeleton";
 import { SetSaveButtons } from "@/components/library/SetSaveButtons";
 import { LevelBadge } from "@/components/sets/LevelBadge";
 import { Badge, Button, ButtonLink, Card, EmptyState, Breadcrumbs } from "@/components/ui";
@@ -26,33 +27,11 @@ export default async function LibraryPage({
 }) {
   const user = await requireUser();
   const t = await getT("library");
-  const locale = await getLocale();
   const sp = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
   const q = one(sp.q)?.trim() ?? "";
   const category = one(sp.category)?.trim() ?? "";
   const page = Math.max(1, Number(one(sp.page)) || 1);
-
-  const [{ sets, hasMore }, categories] = await Promise.all([
-    listLibrary({ q, category, page }),
-    listLibraryCategories(),
-  ]);
-  const ids = sets.map((s) => s.id);
-  const [subs, mineRows] = await Promise.all([
-    db.setSubscription.findMany({ where: { userId: user.id, setId: { in: ids } }, select: { setId: true } }),
-    db.studySet.findMany({ where: { userId: user.id, id: { in: ids } }, select: { id: true } }),
-  ]);
-  const subscribed = new Set(subs.map((s) => s.setId));
-  const owned = new Set(mineRows.map((s) => s.id));
-
-  const href = (p: number) => {
-    const u = new URLSearchParams();
-    if (q) u.set("q", q);
-    if (category) u.set("category", category);
-    if (p > 1) u.set("page", String(p));
-    const s = u.toString();
-    return `/library${s ? `?${s}` : ""}`;
-  };
 
   return (
     <Container className="py-6 sm:py-8">
@@ -76,22 +55,73 @@ export default async function LibraryPage({
             className="min-h-11 w-full rounded-xl border border-ink-200 bg-surface pl-9 pr-3 text-sm text-ink-900 focus-visible:outline-2 focus-visible:outline-brand-600"
           />
         </div>
-        <select
-          name="category"
-          defaultValue={category}
-          aria-label={t("categoryAria")}
-          className="min-h-11 rounded-xl border border-ink-200 bg-surface px-3 text-sm text-ink-900 focus-visible:outline-2 focus-visible:outline-brand-600"
-        >
-          <option value="">{t("allCategories")}</option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
+        <Suspense fallback={<CategorySelectSkeleton />}>
+          <CategorySelect category={category} />
+        </Suspense>
         <Button type="submit">{t("searchButton")}</Button>
       </form>
 
+      <Suspense key={`${q}|${category}|${page}`} fallback={<LibraryListSkeleton label={t("loading")} />}>
+        <LibraryResults userId={user.id} q={q} category={category} page={page} />
+      </Suspense>
+    </Container>
+  );
+}
+
+async function CategorySelect({ category }: { category: string }) {
+  const [t, categories] = await Promise.all([getT("library"), listLibraryCategories()]);
+  return (
+    <select
+      name="category"
+      defaultValue={category}
+      aria-label={t("categoryAria")}
+      className="min-h-11 rounded-xl border border-ink-200 bg-surface px-3 text-sm text-ink-900 focus-visible:outline-2 focus-visible:outline-brand-600"
+    >
+      <option value="">{t("allCategories")}</option>
+      {categories.map((c) => (
+        <option key={c.id} value={c.id}>
+          {c.name}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+async function LibraryResults({
+  userId,
+  q,
+  category,
+  page,
+}: {
+  userId: string;
+  q: string;
+  category: string;
+  page: number;
+}) {
+  const [t, locale, { sets, hasMore }] = await Promise.all([
+    getT("library"),
+    getLocale(),
+    listLibrary({ q, category, page }),
+  ]);
+  const ids = sets.map((s) => s.id);
+  const [subs, mineRows] = await Promise.all([
+    db.setSubscription.findMany({ where: { userId, setId: { in: ids } }, select: { setId: true } }),
+    db.studySet.findMany({ where: { userId, id: { in: ids } }, select: { id: true } }),
+  ]);
+  const subscribed = new Set(subs.map((s) => s.setId));
+  const owned = new Set(mineRows.map((s) => s.id));
+
+  const href = (p: number) => {
+    const u = new URLSearchParams();
+    if (q) u.set("q", q);
+    if (category) u.set("category", category);
+    if (p > 1) u.set("page", String(p));
+    const s = u.toString();
+    return `/library${s ? `?${s}` : ""}`;
+  };
+
+  return (
+    <>
       {sets.length === 0 ? (
         <EmptyState
           icon={Library}
@@ -169,6 +199,6 @@ export default async function LibraryPage({
           )}
         </nav>
       )}
-    </Container>
+    </>
   );
 }

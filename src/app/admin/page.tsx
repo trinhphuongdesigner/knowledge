@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { AdminRegion, DashboardBodySkeleton } from "@/components/admin/AdminSkeletons";
 import { BarChart } from "@/components/admin/charts";
 import { StatCard } from "@/components/admin/dashboard/StatCard";
 import { Card, Breadcrumbs } from "@/components/ui";
@@ -26,13 +28,31 @@ const quickLinks = [
 
 export default async function AdminPage() {
   await requireAdmin();
-  const [s, t, locale] = await Promise.all([getDashboardStats(), getT("admin"), getLocale()]);
+  const t = await getT("admin");
 
   return (
     <div className="space-y-6">
       <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("admin") }]} className="mb-0" />
       <h1 className="text-2xl font-bold text-ink-900">{t("nav.overview")}</h1>
+      <Suspense
+        fallback={
+          <AdminRegion>
+            <DashboardBodySkeleton />
+          </AdminRegion>
+        }
+      >
+        <DashboardBody />
+      </Suspense>
+    </div>
+  );
+}
 
+/** Phần chậm (truy vấn thống kê) tách ra để tiêu đề hiện ngay. */
+async function DashboardBody() {
+  const [s, t, locale] = await Promise.all([getDashboardStats(), getT("admin"), getLocale()]);
+
+  return (
+    <div className="space-y-6">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         <StatCard locale={locale} label={t("dashboard.users")} value={s.users} hint={t("dashboard.usersHint", { n7: s.new7, n30: s.new30 })} href="/admin/users" />
         <StatCard locale={locale} label={t("dashboard.active7")} value={s.active7} hint={t("dashboard.reviewedHint")} />

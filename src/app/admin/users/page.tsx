@@ -1,9 +1,11 @@
 import { ArrowDown, ArrowUp, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { AdminRegion, AdminTableSkeleton } from "@/components/admin/AdminSkeletons";
 import { UserAvatar } from "@/components/avatar";
 import { displayName, fmtDate, fmtDateTime, fmtDayOnly } from "@/components/admin/users/format";
-import { Badge, Button, Card, EmptyState, Breadcrumbs } from "@/components/ui";
+import { Badge, Button, Card, EmptyState, Breadcrumbs, Skeleton } from "@/components/ui";
 import { fieldClass } from "@/components/ui/fieldStyles";
 import { getLocale, getT } from "@/i18n/server";
 import { requireAdmin } from "@/lib/auth/dal";
@@ -29,34 +31,13 @@ function pctClass(pct: number) {
 
 export default async function AdminUsersPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   await requireAdmin();
-  const [t, locale] = await Promise.all([getT("admin"), getLocale()]);
+  const t = await getT("admin");
   const q = parseUserListQuery(await searchParams);
-  const { rows, total, pageSize } = await listUsers(q);
-  const pages = Math.max(1, Math.ceil(total / pageSize));
-  const page = Math.min(q.page, pages);
-
-  const sortHeader = (key: UserSort, label: string) => {
-    const active = q.sort === key;
-    const nextDir = active && q.dir === "desc" ? "asc" : "desc";
-    return (
-      <Link
-        href={userListHref(q, { sort: key, dir: nextDir, page: 1 })}
-        className={cn("inline-flex items-center gap-1 hover:text-accent", active && "text-ink-900")}
-        aria-label={t("users.sortBy", { label })}
-      >
-        {label}
-        {active && (q.dir === "desc" ? <ArrowDown className="size-3" aria-hidden /> : <ArrowUp className="size-3" aria-hidden />)}
-      </Link>
-    );
-  };
 
   return (
     <div className="flex flex-col gap-4">
       <Breadcrumbs items={[{ label: t("home"), href: "/" }, { label: t("admin"), href: "/admin" }, { label: t("users.title") }]} className="mb-0" />
-      <div>
-        <h1 className="text-2xl font-bold text-ink-900">{t("users.title")}</h1>
-        <p className="text-sm text-ink-600">{t(q.q || q.filter ? "users.countFiltered" : "users.count", { count: total })}</p>
-      </div>
+      <h1 className="text-2xl font-bold text-ink-900">{t("users.title")}</h1>
 
       <Card>
         <form method="get" action="/admin/users" className="flex flex-col gap-3 sm:flex-row sm:items-end">
@@ -104,6 +85,47 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
           )}
         </form>
       </Card>
+
+      <Suspense
+        key={JSON.stringify(q)}
+        fallback={
+          <AdminRegion className="flex flex-col gap-4">
+            <Skeleton className="h-5 w-32" />
+            <AdminTableSkeleton rows={10} cols={7} />
+          </AdminRegion>
+        }
+      >
+        <UsersResults q={q} />
+      </Suspense>
+    </div>
+  );
+}
+
+/** Phần chậm (truy vấn danh sách) tách ra để tiêu đề và bộ lọc hiện ngay. */
+async function UsersResults({ q }: { q: ReturnType<typeof parseUserListQuery> }) {
+  const [t, locale] = await Promise.all([getT("admin"), getLocale()]);
+  const { rows, total, pageSize } = await listUsers(q);
+  const pages = Math.max(1, Math.ceil(total / pageSize));
+  const page = Math.min(q.page, pages);
+
+  const sortHeader = (key: UserSort, label: string) => {
+    const active = q.sort === key;
+    const nextDir = active && q.dir === "desc" ? "asc" : "desc";
+    return (
+      <Link
+        href={userListHref(q, { sort: key, dir: nextDir, page: 1 })}
+        className={cn("inline-flex items-center gap-1 hover:text-accent", active && "text-ink-900")}
+        aria-label={t("users.sortBy", { label })}
+      >
+        {label}
+        {active && (q.dir === "desc" ? <ArrowDown className="size-3" aria-hidden /> : <ArrowUp className="size-3" aria-hidden />)}
+      </Link>
+    );
+  };
+
+  return (
+    <>
+      <p className="text-sm text-ink-600">{t(q.q || q.filter ? "users.countFiltered" : "users.count", { count: total })}</p>
 
       {rows.length === 0 ? (
         <EmptyState title={t("users.emptyTitle")} description={t("users.emptyDesc")} />
@@ -184,6 +206,6 @@ export default async function AdminUsersPage({ searchParams }: { searchParams: P
           )}
         </nav>
       )}
-    </div>
+    </>
   );
 }

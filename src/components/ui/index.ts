@@ -5,6 +5,7 @@ export { EmptyState } from "./EmptyState";
 export { Input, type InputProps } from "./Input";
 export { Markdown } from "./Markdown";
 export { PageLoader } from "./PageLoader";
+export { Skeleton, SkeletonRegion, SkeletonText } from "./Skeleton";
 export { Modal, type ModalProps } from "./Modal";
 export { Select, type SelectProps } from "./Select";
 export { RichText } from "./RichText";

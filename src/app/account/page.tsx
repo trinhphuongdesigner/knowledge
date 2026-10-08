@@ -1,5 +1,7 @@
 import { Download } from "lucide-react";
+import { Suspense } from "react";
 import type { Metadata } from "next";
+import { AccountTabSkeleton, ProfileFormSkeleton } from "@/components/account/AccountSkeleton";
 import { ACCOUNT_TABS, AccountTabs, type AccountTab } from "@/components/account/AccountTabs";
 import { ProfileForm } from "@/components/account/ProfileForm";
 import { SoundEffectsToggle } from "@/components/account/SoundEffectsToggle";
@@ -37,9 +39,13 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
         </div>
       </div>
       <AccountTabs active={active} />
-      {active === "history" && <StudyHistory userId={user.id} />}
-      {active === "stats" && <StatsPanel userId={user.id} />}
-      {active === "settings" && <SettingsTab userId={user.id} />}
+      {active !== "profile" && (
+        <Suspense key={active} fallback={<AccountTabSkeleton tab={active} label={t("loading")} />}>
+          {active === "history" && <StudyHistory userId={user.id} />}
+          {active === "stats" && <StatsPanel userId={user.id} />}
+          {active === "settings" && <SettingsTab userId={user.id} />}
+        </Suspense>
+      )}
       {active === "profile" && (
         <div className="space-y-4">
           <Card className="space-y-4">
@@ -49,7 +55,9 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
             </div>
           </Card>
           <Card>
-            <ProfileTab userId={user.id} email={user.email} />
+            <Suspense fallback={<ProfileFormSkeleton label={t("loading")} />}>
+              <ProfileTab userId={user.id} email={user.email} />
+            </Suspense>
           </Card>
           <Card className="flex flex-wrap items-center justify-between gap-3">
             <div>
