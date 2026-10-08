@@ -2,7 +2,7 @@ const stats = {
   panel: {
     emptyTitle: "No stats yet",
     emptyDescription: "Review cards to start a study streak and see your progress.",
-    reviewToday: "Review today",
+    reviewToday: "Start studying",
     streak: "Current streak",
     longest: "Longest streak",
     total: "Total reviews",

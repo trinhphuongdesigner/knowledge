@@ -44,6 +44,7 @@ const study = {
     quiz: "Faire un quiz",
     quizHint: "Saisissez les mots pour les retenir plus longtemps",
     restartUnknown: "Étudier les cartes à revoir",
+    restartUnmarked: "Étudier les cartes non marquées",
     restartAll: "Tout étudier à nouveau",
     back: "Retour au paquet",
   },

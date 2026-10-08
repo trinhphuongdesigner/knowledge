@@ -2,7 +2,7 @@ const stats = {
   panel: {
     emptyTitle: "Chưa có thống kê",
     emptyDescription: "Ôn thẻ để bắt đầu chuỗi ngày học và xem tiến độ của bạn.",
-    reviewToday: "Ôn hôm nay",
+    reviewToday: "Bắt đầu học",
     streak: "Chuỗi hiện tại",
     longest: "Chuỗi dài nhất",
     total: "Tổng lượt ôn",

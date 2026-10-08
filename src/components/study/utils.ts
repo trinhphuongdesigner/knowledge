@@ -51,3 +51,19 @@ export function parseStudyState(data: unknown, validIds: readonly string[]): Sto
     swap: d.swap === true,
   };
 }
+
+/**
+ * Thẻ cho "học lại" sau khi xong một lượt, theo đúng con số hiển thị trên màn hình kết thúc:
+ * "unknown" = chỉ thẻ đã bấm Chưa thuộc; "unmarked" = thẻ đã lướt qua mà chưa đánh dấu.
+ * Hai nhóm tách riêng để thẻ chưa từng được đánh dấu không lẫn vào lượt học lại thẻ chưa thuộc.
+ */
+export function idsToRestudy(
+  allIds: readonly string[],
+  known: ReadonlySet<string>,
+  unknown: ReadonlySet<string>,
+  kind: "unknown" | "unmarked",
+): string[] {
+  return kind === "unknown"
+    ? allIds.filter((id) => unknown.has(id) && !known.has(id))
+    : allIds.filter((id) => !known.has(id) && !unknown.has(id));
+}

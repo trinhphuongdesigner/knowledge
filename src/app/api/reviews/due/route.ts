@@ -8,8 +8,8 @@ export async function GET(req: Request) {
   try {
     const user = await requireApiUser(req);
     if (user instanceof Response) return user;
-    const { dueCount, newCount, goal, doneToday } = await getDueSummary(user.id);
-    return json({ dueCount, newCount, goal, doneToday });
+    const { dueCount, goal, doneToday } = await getDueSummary(user.id);
+    return json({ dueCount, goal, doneToday });
   } catch (e) {
     return serverError(e);
   }

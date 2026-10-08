@@ -2,7 +2,7 @@ const stats = {
   panel: {
     emptyTitle: "还没有统计数据",
     emptyDescription: "复习卡片后，即可开始累计连续学习天数并查看你的进度。",
-    reviewToday: "今日复习",
+    reviewToday: "开始学习",
     streak: "当前连续天数",
     longest: "最长连续天数",
     total: "总复习次数",

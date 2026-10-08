@@ -44,6 +44,7 @@ const study = {
     quiz: "Làm bài kiểm tra",
     quizHint: "Gõ lại từ để nhớ lâu hơn",
     restartUnknown: "Học lại thẻ chưa thuộc",
+    restartUnmarked: "Học các thẻ chưa đánh dấu",
     restartAll: "Học lại tất cả",
     back: "Quay lại nhóm thẻ",
   },

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseStudyState } from "../utils";
+import { idsToRestudy, parseStudyState } from "../utils";
 
 describe("parseStudyState", () => {
   const ids = ["a", "b", "c"];
@@ -31,5 +31,24 @@ describe("parseStudyState", () => {
     );
     // "c" was never seen by the saved progress, so it is queued after the old order.
     expect(s).toEqual({ order: ["a", "b", "c"], known: ["a"], unknown: ["b"], index: 2, shuffle: true, swap: false });
+  });
+});
+
+describe("idsToRestudy", () => {
+  // 100 thẻ: 50 thuộc, 20 chưa thuộc, 30 lướt qua chưa đánh dấu.
+  const all = Array.from({ length: 100 }, (_, i) => `c${i}`);
+  const known = new Set(all.slice(0, 50));
+  const unknown = new Set(all.slice(50, 70));
+
+  it("restudies only the cards marked unknown, matching the count shown", () => {
+    expect(idsToRestudy(all, known, unknown, "unknown")).toEqual(all.slice(50, 70));
+  });
+
+  it("keeps unmarked cards in their own group", () => {
+    expect(idsToRestudy(all, known, unknown, "unmarked")).toEqual(all.slice(70));
+  });
+
+  it("never returns a known card even if it is also listed as unknown", () => {
+    expect(idsToRestudy(["a", "b"], new Set(["a"]), new Set(["a", "b"]), "unknown")).toEqual(["b"]);
   });
 });

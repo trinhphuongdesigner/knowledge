@@ -2,7 +2,7 @@ const stats = {
   panel: {
     emptyTitle: "아직 통계가 없어요",
     emptyDescription: "카드를 복습하면 연속 학습이 시작되고 진도를 확인할 수 있어요.",
-    reviewToday: "오늘의 복습",
+    reviewToday: "학습 시작하기",
     streak: "현재 연속 학습",
     longest: "최장 연속 학습",
     total: "총 복습 횟수",

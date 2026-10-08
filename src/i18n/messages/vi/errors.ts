@@ -71,7 +71,6 @@ const errors = {
   notify: {
     reminderTitle: "Đến giờ ôn bài rồi",
     reminderDue: "Hôm nay bạn có {count} thẻ đến hạn ôn. Dành vài phút để giữ chuỗi ngày học nhé!",
-    reminderIdle: "Hôm nay bạn chưa học thẻ nào. Mục tiêu của bạn là {goal} thẻ — bắt đầu thôi!",
     setUnpublishedTitle: "Bộ thẻ đã bị gỡ khỏi thư viện",
     setUnpublishedBody: '"{title}" đã được gỡ khỏi thư viện công khai; bộ thẻ vẫn chia sẻ được bằng link.',
     setApprovedTitle: "Bộ thẻ đã được duyệt",

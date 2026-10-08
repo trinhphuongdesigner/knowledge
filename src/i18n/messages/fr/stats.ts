@@ -2,7 +2,7 @@ const stats = {
   panel: {
     emptyTitle: "Aucune statistique pour le moment",
     emptyDescription: "Révisez des cartes pour démarrer une série d’étude et suivre vos progrès.",
-    reviewToday: "Réviser aujourd’hui",
+    reviewToday: "Commencer à étudier",
     streak: "Série en cours",
     longest: "Plus longue série",
     total: "Total des révisions",

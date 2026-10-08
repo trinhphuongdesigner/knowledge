@@ -203,7 +203,7 @@ export type AiSuggestInput = z.infer<typeof aiSuggestInputSchema>;
 export const searchQuerySchema = z.object({ q: z.string().trim().min(1).max(100) });
 
 export type ReviewStateDTO = { cardId: string; due: string; interval: number; starred: boolean; hard: boolean };
-export type DueSummaryDTO = { dueCount: number; newCount: number; goal: number; doneToday: number };
+export type DueSummaryDTO = { dueCount: number; goal: number; doneToday: number };
 export type StudyStatsDTO = {
   streak: number;
   longestStreak: number;

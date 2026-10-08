@@ -8,6 +8,11 @@ export function todayVN(now: Date = new Date()): Date {
   return new Date(Date.UTC(vn.getUTCFullYear(), vn.getUTCMonth(), vn.getUTCDate()));
 }
 
+/** Thời điểm thật lúc 00:00 giờ VN của hôm nay + `days` ngày (days = 1 → 0:00 ngày mai). */
+export function startOfDayVN(now: Date = new Date(), days = 0): Date {
+  return new Date(todayVN(now).getTime() - VN_OFFSET_MS + days * DAY_MS);
+}
+
 /** Cộng `days` ngày (có thể âm) vào một mốc thời gian. */
 export function addDays(date: Date, days: number): Date {
   return new Date(date.getTime() + days * DAY_MS);
@@ -16,4 +21,9 @@ export function addDays(date: Date, days: number): Date {
 /** "YYYY-MM-DD" của phần ngày UTC (dùng cho giá trị `@db.Date`). */
 export function dayKey(date: Date): string {
   return date.toISOString().slice(0, 10);
+}
+
+/** Số ngày lịch (giờ VN) từ ngày của `from` đến ngày của `to`; âm nếu `to` sớm hơn. */
+export function daysBetweenVN(from: Date, to: Date): number {
+  return Math.round((todayVN(to).getTime() - todayVN(from).getTime()) / DAY_MS);
 }

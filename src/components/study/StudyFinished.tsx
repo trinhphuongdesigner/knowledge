@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ListChecks, PartyPopper, Repeat, RotateCcw } from "lucide-react";
+import { ArrowLeft, ListChecks, PartyPopper, Repeat, RotateCcw, SkipForward } from "lucide-react";
 import { Button, ButtonLink, Tooltip } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { useT } from "@/i18n/client";
@@ -14,11 +14,12 @@ type Props = {
   knownCount: number;
   unknownCount: number;
   unmarkedCount: number;
-  /** Cards that are not marked known (what "study again" would reopen). */
-  remainingCount: number;
   /** The quiz needs at least 2 cards. */
   canQuiz: boolean;
+  /** Reopens exactly the `unknownCount` cards. */
   onRestartUnknown: () => void;
+  /** Reopens exactly the `unmarkedCount` cards (skipped without a mark). */
+  onRestartUnmarked: () => void;
   onRestartAll: () => void;
 };
 
@@ -32,9 +33,9 @@ export function StudyFinished({
   knownCount,
   unknownCount,
   unmarkedCount,
-  remainingCount,
   canQuiz,
   onRestartUnknown,
+  onRestartUnmarked,
   onRestartAll,
 }: Props) {
   const t = useT("study");
@@ -46,7 +47,7 @@ export function StudyFinished({
   }, []);
 
   const guard = !armed ? { "aria-disabled": true, tabIndex: -1 } : {};
-  const hasRemaining = remainingCount > 0;
+  const hasRemaining = unknownCount > 0 || unmarkedCount > 0;
 
   return (
     <div className="index-card flex animate-rise flex-col items-center rounded-3xl border border-ink-200 px-6 pt-16 pb-10 text-center shadow-[0_2px_0_var(--color-ink-200),0_20px_40px_-20px_rgb(70_63_53/0.35)] motion-reduce:animate-none">
@@ -76,13 +77,33 @@ export function StudyFinished({
       {/*
         Thứ bậc theo bước học tiếp theo: còn thẻ chưa thuộc → học lại chúng trước (chính), kiểm tra là bước sau (phụ);
         thuộc hết → kiểm tra là bước chính. "Học lại tất cả" / "Quay lại" là lối thoát, xếp thành hàng chữ ở cuối.
+        Số trên mỗi nút đúng bằng số thẻ của lượt đó: thẻ chưa thuộc và thẻ chưa đánh dấu là hai nút riêng.
       */}
       <div className="mt-8 flex w-full max-w-xs flex-col gap-3">
-        {hasRemaining && (
+        {unknownCount > 0 && (
           <Button size="lg" disabled={!armed} onClick={onRestartUnknown}>
             <RotateCcw className="size-4" aria-hidden />
             {t("finished.restartUnknown")}
-            <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs tabular-nums">{remainingCount}</span>
+            <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs tabular-nums">{unknownCount}</span>
+          </Button>
+        )}
+        {unmarkedCount > 0 && (
+          <Button
+            size="lg"
+            variant={unknownCount > 0 ? "secondary" : "primary"}
+            disabled={!armed}
+            onClick={onRestartUnmarked}
+          >
+            <SkipForward className="size-4" aria-hidden />
+            {t("finished.restartUnmarked")}
+            <span
+              className={cn(
+                "rounded-full px-2 py-0.5 text-xs tabular-nums",
+                unknownCount > 0 ? "bg-ink-100" : "bg-white/20",
+              )}
+            >
+              {unmarkedCount}
+            </span>
           </Button>
         )}
         {canQuiz && (

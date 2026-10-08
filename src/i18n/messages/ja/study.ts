@@ -44,6 +44,7 @@ const study = {
     quiz: "クイズに挑戦",
     quizHint: "単語を入力すると、より長く記憶に残ります",
     restartUnknown: "まだ覚えていないカードを学習",
+    restartUnmarked: "未選択のカードを学習",
     restartAll: "すべてもう一度学習",
     back: "デッキに戻る",
   },

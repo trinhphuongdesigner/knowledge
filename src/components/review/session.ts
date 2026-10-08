@@ -1,6 +1,6 @@
 /** Logic thuần cho phiên ôn hằng ngày (không phụ thuộc DB / React). */
 import type { TFunction } from "../../i18n/translate";
-import { nextReview, type Grade, type SrsState } from "../../lib/srs";
+import { LAPSE_DELAY_MS, nextReview, type Grade, type SrsState } from "../../lib/srs";
 
 export type ReviewT = TFunction<"review">;
 
@@ -21,23 +21,27 @@ export function formatDelay(ms: number, t: ReviewT): string {
 /** Translation keys (namespace "review") of the grade button labels. */
 export const GRADE_KEYS = { 0: "grade.again", 1: "grade.hard", 2: "grade.good", 3: "grade.easy" } as const satisfies Record<Grade, string>;
 
-/** Nhãn khoảng cách đến lần ôn kế tiếp cho từng nút bấm. */
-export function previewLabels(state: SrsState, t: ReviewT, now: Date = new Date()): Record<Grade, string> {
+/**
+ * Nhãn khoảng cách đến lần ôn kế tiếp cho từng nút bấm. Tính theo `interval` (số ngày lịch),
+ * không theo `due - now`: hạn rơi vào 0:00 nên học lúc 21:00 thì "1 ngày" chỉ còn 3 giờ.
+ * `due` = hạn hiện tại của thẻ, để tính cả phần cộng thêm khi ôn trễ giống server. Không tính fuzz (±5%).
+ */
+export function previewLabels(state: SrsState, t: ReviewT, now: Date = new Date(), due?: Date): Record<Grade, string> {
   const out = {} as Record<Grade, string>;
   for (const g of [0, 1, 2, 3] as const) {
-    out[g] = formatDelay(nextReview(state, g, now).due.getTime() - now.getTime(), t);
+    out[g] = formatDelay(g === 0 ? LAPSE_DELAY_MS : nextReview(state, g, now, due).interval * DAY_MS, t);
   }
   return out;
 }
 
 /**
- * Phiên ôn: toàn bộ thẻ đến hạn (đã sắp từ cũ → mới), rồi thêm thẻ mới cho đến khi
- * tổng số thẻ đã ôn hôm nay + trong phiên đạt `goal`. Thẻ đến hạn luôn được giữ đủ.
+ * Thẻ bấm "Lại" được đưa xuống cuối phiên (với trạng thái sau khi quên): phiên hôm nay chỉ xong
+ * khi mọi thẻ đến hạn đã được nhớ lại ít nhất một lần.
  */
-export function buildSession<T>(due: T[], fresh: T[], opts: { goal: number; doneToday: number }): T[] {
-  const remaining = Math.max(0, opts.goal - opts.doneToday);
-  const room = Math.max(0, remaining - due.length);
-  return [...due, ...fresh.slice(0, room)];
+export function requeueLapse<T extends { state: SrsState }>(queue: readonly T[], index: number, grade: Grade): T[] {
+  const item = queue[index];
+  if (grade !== 0 || !item) return [...queue];
+  return [...queue, { ...item, state: nextReview(item.state, 0) }];
 }
 
 export type ReviewOnly = "starred" | "hard";

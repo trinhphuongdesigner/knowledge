@@ -2,7 +2,7 @@ const stats = {
   panel: {
     emptyTitle: "統計はまだありません",
     emptyDescription: "カードを復習すると、連続学習の記録が始まり、進捗を確認できます。",
-    reviewToday: "今日の復習",
+    reviewToday: "学習を始める",
     streak: "現在の連続記録",
     longest: "最長の連続記録",
     total: "復習の合計回数",

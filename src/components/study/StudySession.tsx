@@ -3,14 +3,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { Plus } from "lucide-react";
 import { Button, ButtonLink, EmptyState, Modal } from "@/components/ui";
-import { api, saveStudyProgress } from "@/lib/api";
+import { saveStudyProgress } from "@/lib/api";
+import { useReviewSaveQueue } from "@/components/review/useReviewSaveQueue";
 import type { Grade } from "@/lib/srs";
 import type { CardDTO } from "@/lib/validators";
 import { Flashcard } from "./Flashcard";
 import { StudyControls, StudyToolbar } from "./StudyControls";
 import { StudyFinished } from "./StudyFinished";
 import { StudyProgress } from "./StudyProgress";
-import { parseStudyState, shuffleArray, type StoredStudyState } from "./utils";
+import { idsToRestudy, parseStudyState, shuffleArray, type StoredStudyState } from "./utils";
 import { useT } from "@/i18n/client";
 
 type Props = {
@@ -27,7 +28,6 @@ type Props = {
 const SWIPE_THRESHOLD = 60;
 const SAVE_DEBOUNCE_MS = 800;
 const REVIEW_DEBOUNCE_MS = 2000;
-const REVIEW_MAX_BATCH = 50;
 
 export function StudySession({ setId, title, cards, english = false, initialProgress = null, persist = true }: Props) {
   const t = useT("study");
@@ -69,40 +69,12 @@ export function StudySession({ setId, title, cards, english = false, initialProg
     [setId, persist],
   );
 
-  // SRS: queue grade 2 (Đã thuộc) / 0 (Chưa thuộc), sent fire-and-forget in small batches.
-  const reviewQueue = useRef<{ cardId: string; grade: Grade }[]>([]);
-  const reviewTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const flushReviews = useCallback(
-    (opts: { keepalive?: boolean } = {}) => {
-      clearTimeout(reviewTimer.current);
-      while (reviewQueue.current.length > 0) {
-        const items = reviewQueue.current.splice(0, REVIEW_MAX_BATCH);
-        const body = { setId, mode: "FLASHCARD" as const, items };
-        const done = opts.keepalive
-          ? fetch("/api/reviews", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body),
-              keepalive: true,
-            }).then((r) => {
-              if (!r.ok) throw new Error("review failed");
-            })
-          : api.recordReviews(body);
-        done.catch(() => {
-          reviewQueue.current.unshift(...items); // retry with the next flush
-        });
-      }
-    },
-    [setId],
-  );
+  // SRS: grade 2 (Đã thuộc) / 0 (Chưa thuộc), lưu tuần tự theo thứ tự bấm (một thẻ có thể được bấm
+  // nhiều lần) — keepalive khi ẩn trang/unmount nằm trong hook.
+  const reviews = useReviewSaveQueue("FLASHCARD", { delayMs: REVIEW_DEBOUNCE_MS });
   const queueReview = useCallback(
-    (cardId: string, grade: Grade) => {
-      reviewQueue.current.push({ cardId, grade });
-      clearTimeout(reviewTimer.current);
-      if (reviewQueue.current.length >= REVIEW_MAX_BATCH) flushReviews();
-      else reviewTimer.current = setTimeout(() => flushReviews(), REVIEW_DEBOUNCE_MS);
-    },
-    [flushReviews],
+    (cardId: string, grade: Grade) => reviews.add({ setId, cardId, grade }),
+    [reviews, setId],
   );
 
   const total = order.length;
@@ -130,14 +102,13 @@ export function StudySession({ setId, title, cards, english = false, initialProg
   }, [known, unknown, order, index, shuffle, swap, finished, cards.length, flush]);
 
   useEffect(() => {
-    if (finished) flushReviews();
-  }, [finished, flushReviews]);
+    if (finished) void reviews.flush();
+  }, [finished, reviews]);
 
   // Flush pending changes when the page is hidden or closed.
   useEffect(() => {
     const onHide = () => {
       flush({ keepalive: true });
-      flushReviews({ keepalive: true });
     };
     const onVisibility = () => {
       if (document.visibilityState === "hidden") onHide();
@@ -148,9 +119,8 @@ export function StudySession({ setId, title, cards, english = false, initialProg
       window.removeEventListener("pagehide", onHide);
       document.removeEventListener("visibilitychange", onVisibility);
       flush({ keepalive: true });
-      flushReviews({ keepalive: true });
     };
-  }, [flush, flushReviews]);
+  }, [flush]);
 
   const card = !finished ? byId.get(order[index]) : undefined;
 
@@ -200,8 +170,8 @@ export function StudySession({ setId, title, cards, english = false, initialProg
     goTo(0, true);
   }
 
-  function restartUnknown() {
-    const ids = allIds.filter((id) => !known.has(id));
+  function restartGroup(kind: "unknown" | "unmarked") {
+    const ids = idsToRestudy(allIds, known, unknown, kind);
     setOrder(shuffle ? shuffleArray(ids) : ids);
     goTo(0, true);
   }
@@ -309,9 +279,9 @@ export function StudySession({ setId, title, cards, english = false, initialProg
           knownCount={knownCount}
           unknownCount={unknownCount}
           unmarkedCount={unmarkedCount}
-          remainingCount={allIds.length - knownCount}
           canQuiz={allIds.length >= 2}
-          onRestartUnknown={restartUnknown}
+          onRestartUnknown={() => restartGroup("unknown")}
+          onRestartUnmarked={() => restartGroup("unmarked")}
           onRestartAll={restartAll}
         />
         {restartModal}

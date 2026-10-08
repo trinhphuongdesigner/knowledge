@@ -10,7 +10,7 @@ export async function DueTodayCard({ userId }: { userId: string }) {
   if (!s.hasCards) return null;
 
   const pct = Math.min(100, Math.round((s.doneToday / Math.max(1, s.goal)) * 100));
-  const nothing = s.dueCount === 0 && s.newCount === 0;
+  const nothing = s.dueCount === 0;
 
   return (
     <Card className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -23,7 +23,7 @@ export async function DueTodayCard({ userId }: { userId: string }) {
             {nothing ? (
               t("card.done")
             ) : (
-              t("card.due", { due: s.dueCount, new: s.newCount })
+              t("card.due", { due: s.dueCount })
             )}
           </p>
           <p className="text-xs text-ink-600">

@@ -44,6 +44,7 @@ const study = {
     quiz: "参加测验",
     quizHint: "输入单词，记得更久",
     restartUnknown: "学习还没掌握的卡片",
+    restartUnmarked: "学习未标记的卡片",
     restartAll: "全部重新学习",
     back: "返回卡组",
   },

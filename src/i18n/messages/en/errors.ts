@@ -71,7 +71,6 @@ const errors = {
   notify: {
     reminderTitle: "Time to review",
     reminderDue: "You have {count} cards due for review today. Spend a few minutes to keep your streak going!",
-    reminderIdle: "You have not studied any cards today. Your goal is {goal} cards — let's get started!",
     setUnpublishedTitle: "Your set was removed from the library",
     setUnpublishedBody: '"{title}" was removed from the public library; the set can still be shared by link.',
     setApprovedTitle: "Your set was approved",

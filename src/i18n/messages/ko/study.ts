@@ -44,6 +44,7 @@ const study = {
     quiz: "퀴즈 풀기",
     quizHint: "단어를 직접 입력하면 더 오래 기억해요",
     restartUnknown: "학습 중인 카드 다시 학습",
+    restartUnmarked: "표시 안 한 카드 학습",
     restartAll: "전체 다시 학습",
     back: "세트로 돌아가기",
   },

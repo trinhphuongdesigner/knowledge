@@ -71,7 +71,6 @@ const errors = {
   notify: {
     reminderTitle: "復習の時間です",
     reminderDue: "今日は復習期限のカードが {count} 枚あります。数分だけ時間を取って、連続記録を続けましょう！",
-    reminderIdle: "今日はまだカードを学習していません。目標は {goal} 枚です。さっそく始めましょう！",
     setUnpublishedTitle: "あなたのデッキがライブラリから外されました",
     setUnpublishedBody: "「{title}」は公開ライブラリから外されました。リンクでの共有は引き続き可能です。",
     setApprovedTitle: "あなたのデッキが承認されました",

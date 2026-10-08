@@ -1,16 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, useTransition } from "react";
 import { Keyboard, PartyPopper, RotateCw, Star } from "lucide-react";
-import { Button, ButtonLink } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { Flashcard } from "@/components/study/Flashcard";
 import { api } from "@/lib/api";
 import type { Grade, SrsState } from "@/lib/srs";
 import { cn } from "@/lib/utils";
 import type { CardDTO } from "@/lib/validators";
 import { ReviewTypingCard } from "./ReviewTypingCard";
-import { GRADE_KEYS, parseReviewMode, previewLabels, REVIEW_MODE_STORAGE_KEY, type ReviewMode } from "./session";
+import { GRADE_KEYS, parseReviewMode, previewLabels, requeueLapse, REVIEW_MODE_STORAGE_KEY, type ReviewMode } from "./session";
+import { useReviewSaveQueue } from "./useReviewSaveQueue";
 import { useT } from "@/i18n/client";
 
 export type ReviewSessionItem = {
@@ -20,10 +22,9 @@ export type ReviewSessionItem = {
   english: boolean;
   state: SrsState;
   starred: boolean;
+  /** Hạn ôn (ISO). */
+  due: string;
 };
-
-const FLUSH_MS = 800;
-const MAX_BATCH = 50;
 
 const GRADE_STYLES: Record<Grade, string> = {
   0: "border-red-300 text-red-700 shadow-[0_3px_0_var(--color-red-300)] hover:border-red-400 hover:bg-red-50",
@@ -31,8 +32,6 @@ const GRADE_STYLES: Record<Grade, string> = {
   2: "border-green-300 text-green-700 shadow-[0_3px_0_var(--color-green-300)] hover:border-green-400 hover:bg-green-50",
   3: "border-brand-300 text-accent-strong shadow-[0_3px_0_var(--color-brand-300)] hover:border-brand-400 hover:bg-brand-50",
 };
-
-type Pending = { cardId: string; grade: Grade };
 
 const MODE_OPTIONS = [
   { value: "typing", labelKey: "session.modeTyping", Icon: Keyboard },
@@ -66,8 +65,15 @@ function writeMode(next: ReviewMode) {
   modeListeners.forEach((cb) => cb());
 }
 
-export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; only?: "starred" | "hard" }) {
+/**
+ * Một lượt ôn. `totalDue` = tổng số thẻ đến hạn hôm nay; lớn hơn `items.length` thì còn lượt sau
+ * (trang cha đặt key theo lượt nên state được làm mới khi router.refresh() trả về lượt mới).
+ */
+export function ReviewSession({ items, totalDue = items.length }: { items: ReviewSessionItem[]; totalDue?: number }) {
   const t = useT("review");
+  const router = useRouter();
+  // Hàng đợi = thẻ đến hạn, cộng thêm các lượt làm lại của thẻ bấm "Lại" (xem requeueLapse).
+  const [queue, setQueue] = useState(items);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [counts, setCounts] = useState<[number, number, number, number]>([0, 0, 0, 0]);
@@ -78,80 +84,56 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
   const mode = useSyncExternalStore(subscribeMode, readMode, serverMode);
   const hasEnglish = useMemo(() => items.some((i) => i.english), [items]);
 
-  const pending = useRef(new Map<string, Pending[]>());
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  // Lưu tuần tự theo thứ tự trả lời: lượt làm lại sau "Lại" không thể tới server trước lượt "Lại".
+  const saves = useReviewSaveQueue("REVIEW", { onStatus: setSaveFailed });
+  // Bảng tổng kết chỉ tính lần trả lời đầu tiên của mỗi thẻ; lượt làm lại không cộng thêm.
+  const graded = useRef(new Set<string>());
+  // "Ôn tiếp": chờ lưu xong (saving) rồi tải lượt mới (refreshing).
+  const [saving, setSaving] = useState(false);
+  const [refreshing, startRefresh] = useTransition();
 
-  const flush = useCallback((keepalive = false) => {
-    clearTimeout(timer.current);
-    for (const [setId, list] of [...pending.current]) {
-      pending.current.delete(setId);
-      while (list.length > 0) {
-        const batch = list.splice(0, MAX_BATCH);
-        const body = { setId, mode: "REVIEW" as const, items: batch };
-        const done = keepalive
-          ? fetch("/api/reviews", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body),
-              keepalive: true,
-            }).then((r) => {
-              if (!r.ok) throw new Error("review failed");
-            })
-          : api.recordReviews(body);
-        done
-          .then(() => setSaveFailed(false))
-          .catch(() => {
-            const cur = pending.current.get(setId) ?? [];
-            pending.current.set(setId, [...batch, ...cur]);
-            setSaveFailed(true);
-          });
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    const onHide = () => flush(true);
-    const onVisibility = () => {
-      if (document.visibilityState === "hidden") onHide();
-    };
-    window.addEventListener("pagehide", onHide);
-    document.addEventListener("visibilitychange", onVisibility);
-    return () => {
-      window.removeEventListener("pagehide", onHide);
-      document.removeEventListener("visibilitychange", onVisibility);
-      flush(true);
-    };
-  }, [flush]);
-
-  const total = items.length;
+  const total = queue.length;
   const finished = index >= total;
-  const current = finished ? undefined : items[index];
-  const previews = useMemo(() => (current ? previewLabels(current.state, t) : null), [current, t]);
+  const current = finished ? undefined : queue[index];
+  const previews = useMemo(
+    () => (current ? previewLabels(current.state, t, undefined, new Date(current.due)) : null),
+    [current, t],
+  );
 
   const answer = useCallback(
     (grade: Grade) => {
-      const item = items[index];
+      const item = queue[index];
       if (!item) return;
-      const list = pending.current.get(item.setId) ?? [];
-      list.push({ cardId: item.card.id, grade });
-      pending.current.set(item.setId, list);
-      clearTimeout(timer.current);
-      if (list.length >= MAX_BATCH) flush();
-      else timer.current = setTimeout(() => flush(), FLUSH_MS);
-      setCounts((c) => {
-        const n: [number, number, number, number] = [...c];
-        n[grade] += 1;
-        return n;
-      });
+      saves.add({ setId: item.setId, cardId: item.card.id, grade });
+      if (!graded.current.has(item.card.id)) {
+        graded.current.add(item.card.id);
+        setCounts((c) => {
+          const n: [number, number, number, number] = [...c];
+          n[grade] += 1;
+          return n;
+        });
+      }
+      setQueue((q) => requeueLapse(q, index, grade));
       setFlipped(false);
       setIndex(index + 1);
     },
-    [items, index, flush],
+    [queue, index, saves],
   );
 
   useEffect(() => {
-    if (finished) flush();
-  }, [finished, flush]);
+    if (finished) void saves.flush();
+  }, [finished, saves]);
+
+  // Còn thẻ đến hạn ngoài lượt này. Thẻ của lượt đã được nhớ lại (đúng ít nhất một lần) nên hết hạn hôm nay.
+  const remaining = Math.max(0, totalDue - items.length);
+
+  async function continueNext() {
+    setSaving(true);
+    // Phải lưu hết trước: tải lại sớm thì lượt mới còn chứa thẻ vừa ôn.
+    const saved = await saves.flush();
+    setSaving(false);
+    if (saved) startRefresh(() => router.refresh());
+  }
 
   const flip = useCallback(() => setFlipped((f) => !f), []);
   const typing = mode === "typing" && !!current?.english;
@@ -187,7 +169,7 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
   if (finished) {
     const [again, hard, good, easy] = counts;
     const correct = good + easy;
-    const pct = total === 0 ? 0 : Math.round((correct / total) * 100);
+    const pct = items.length === 0 ? 0 : Math.round((correct / items.length) * 100);
     return (
       <div className="index-card flex animate-rise flex-col items-center rounded-3xl border border-ink-200 px-6 pt-16 pb-10 text-center shadow-[0_2px_0_var(--color-ink-200),0_20px_40px_-20px_rgb(70_63_53/0.35)] motion-reduce:animate-none">
         <div className="mb-4 flex size-16 -rotate-6 items-center justify-center rounded-2xl bg-sun-300 text-ink-900 shadow-[0_4px_0_var(--color-sun-400)]">
@@ -195,7 +177,7 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
         </div>
         <h2 className="text-xl font-semibold text-ink-900">{t("session.doneTitle")}</h2>
         <p className="mt-1 text-sm text-ink-600">
-          {t("session.doneSummary", { count: total, pct })}
+          {t("session.doneSummary", { count: items.length, pct })}
         </p>
         <dl className="mt-6 grid w-full max-w-sm grid-cols-4 gap-2">
           {([0, 1, 2, 3] as const).map((g) => (
@@ -211,17 +193,22 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           </p>
         )}
         <div className="mt-6 flex w-full max-w-xs flex-col gap-2">
-          <Link
-            href={only ? "/review" : "/"}
-            className="inline-flex min-h-11 items-center justify-center rounded-xl bg-brand-600 px-4 text-sm font-semibold text-white shadow-[0_3px_0_var(--color-brand-800)] hover:bg-brand-500"
-          >
-            {only ? t("session.backDaily") : t("session.backHome")}
-          </Link>
-          {only && (
-            <ButtonLink href="/" variant="secondary">
-              {t("session.backHome")}
-            </ButtonLink>
+          {remaining > 0 && (
+            <Button onClick={continueNext} loading={saving || refreshing}>
+              {saving || refreshing ? t("session.continueLoading") : t("session.continueNext", { count: remaining })}
+            </Button>
           )}
+          <Link
+            href="/"
+            className={cn(
+              "inline-flex min-h-11 items-center justify-center rounded-xl px-4 text-sm font-semibold",
+              remaining > 0
+                ? "text-ink-700 hover:bg-ink-100"
+                : "bg-brand-600 text-white shadow-[0_3px_0_var(--color-brand-800)] hover:bg-brand-500",
+            )}
+          >
+            {t("session.backHome")}
+          </Link>
         </div>
       </div>
     );
@@ -240,6 +227,9 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
           </span>
           <span className="min-w-0 truncate text-xs text-ink-600">{current.setTitle}</span>
         </div>
+        {remaining > 0 && (
+          <p className="mt-0.5 text-xs text-ink-600">{t("session.roundInfo", { count: items.length, total: totalDue })}</p>
+        )}
         {hasEnglish && (
           <div role="group" aria-label={t("session.modeAria")} className="mt-3 flex gap-2">
             {MODE_OPTIONS.map(({ value, labelKey, Icon }) => (
@@ -277,10 +267,10 @@ export function ReviewSession({ items, only }: { items: ReviewSessionItem[]; onl
       </div>
 
       {typing ? (
-        <ReviewTypingCard key={current.card.id} card={current.card} previews={previews} onAnswer={answer} />
+        <ReviewTypingCard key={`${current.card.id}-${index}`} card={current.card} previews={previews} onAnswer={answer} />
       ) : (
         <Flashcard
-          key={current.card.id}
+          key={`${current.card.id}-${index}`}
           front={current.card.question}
           back={current.card.answer}
           explanation={current.card.explanation}

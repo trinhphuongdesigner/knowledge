@@ -71,7 +71,6 @@ const errors = {
   notify: {
     reminderTitle: "복습할 시간이에요",
     reminderDue: "오늘 복습할 카드가 {count}장 있어요. 몇 분만 투자해 연속 학습을 이어 가세요!",
-    reminderIdle: "오늘은 아직 카드를 학습하지 않았어요. 목표는 {goal}장이에요. 시작해 볼까요?",
     setUnpublishedTitle: "내 세트가 라이브러리에서 제외되었어요",
     setUnpublishedBody: '"{title}"이(가) 공개 라이브러리에서 제외되었어요. 링크로는 계속 공유할 수 있어요.',
     setApprovedTitle: "내 세트가 승인되었어요",

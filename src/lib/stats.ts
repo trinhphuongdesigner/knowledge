@@ -78,10 +78,9 @@ export function buildStats(rows: readonly StudyDayRow[], today: Date): StudyStat
 }
 
 /**
- * Có nên gửi email nhắc học hôm nay không: chưa học thẻ nào hôm nay
- * và (đang có thẻ đến hạn hoặc ít nhất có bộ thẻ để học).
+ * Có nên nhắc ôn hôm nay không: chỉ khi có thẻ đến hạn và hôm nay chưa học thẻ nào.
+ * Không có thẻ đến hạn → không nhắc (muốn học thêm thì người dùng tự mở nhóm thẻ).
  */
-export function needsReminder(s: { doneToday: number; dueCount: number; hasCards: boolean; goal: number }): boolean {
-  if (s.doneToday > 0 || s.doneToday >= s.goal) return false;
-  return s.dueCount > 0 || s.hasCards;
+export function needsReminder(s: { doneToday: number; dueCount: number }): boolean {
+  return s.doneToday === 0 && s.dueCount > 0;
 }

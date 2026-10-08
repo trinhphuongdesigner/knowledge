@@ -44,6 +44,7 @@ const study = {
     quiz: "Take a quiz",
     quizHint: "Type the words to remember them longer",
     restartUnknown: "Study the cards still learning",
+    restartUnmarked: "Study the unmarked cards",
     restartAll: "Study all again",
     back: "Back to the set",
   },

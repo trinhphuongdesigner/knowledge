@@ -29,7 +29,7 @@ export async function StatsPanel({ userId }: { userId: string }) {
         icon={BarChart3}
         title={t("panel.emptyTitle")}
         description={t("panel.emptyDescription")}
-        action={<ButtonLink href="/review">{t("panel.reviewToday")}</ButtonLink>}
+        action={<ButtonLink href="/">{t("panel.reviewToday")}</ButtonLink>}
       />
     );
   }

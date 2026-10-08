@@ -71,7 +71,6 @@ const errors = {
   notify: {
     reminderTitle: "该复习了",
     reminderDue: "你今天有 {count} 张卡片需要复习。花几分钟时间，保持你的连续学习天数吧！",
-    reminderIdle: "你今天还没有学习任何卡片。你的目标是 {goal} 张卡片——开始吧！",
     setUnpublishedTitle: "你的卡组已从资源库下架",
     setUnpublishedBody: "“{title}”已从公开资源库下架；该卡组仍可通过链接分享。",
     setApprovedTitle: "你的卡组已通过审核",

@@ -1,10 +1,10 @@
 import type { Prisma } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
-import { todayVN } from "@/lib/dates";
+import { startOfDayVN, todayVN } from "@/lib/dates";
 import { toCardDTO } from "@/lib/dto";
 import { HARD_MAX_EASE, HARD_MIN_LAPSES, HARD_RECOVERED_REPS, isHard, type SrsState } from "@/lib/srs";
 import type { CardDTO, DueSummaryDTO } from "@/lib/validators";
-import { buildSession, type ReviewOnly } from "./session";
+import type { ReviewOnly } from "./session";
 
 /** Bộ thẻ user được đọc: của mình, hoặc đã subscribe một bộ LINK / PUBLIC đã duyệt. */
 export function readableSetWhere(userId: string): Prisma.StudySetWhereInput {
@@ -19,31 +19,34 @@ export function readableSetWhere(userId: string): Prisma.StudySetWhereInput {
   };
 }
 
-const MAX_DUE = 500;
-const MAX_PRACTICE = 100;
+/**
+ * Số thẻ tối đa của một lượt ôn. Đến hạn nhiều hơn thì ôn theo lượt: xong lượt này bấm "Ôn tiếp" để
+ * lấy lượt kế (thẻ vừa ôn đúng đã hết hạn nên không lặp lại). 200 thẻ ≈ 15–20 phút: đủ một buổi,
+ * trang tải nhẹ hơn, và kết quả có điểm dừng để lưu hết trước khi lấy lượt mới.
+ */
+export const REVIEW_ROUND_SIZE = 200;
 
-/** Thẻ đã thực sự được ôn (dòng CardReview chỉ do đánh sao tạo ra có lastReviewedAt = null). */
-const reviewedFilter = { lastReviewedAt: { not: null } } as const;
-
-async function getGoalAndDone(userId: string) {
-  const [user, day] = await Promise.all([
-    db.user.findUnique({ where: { id: userId }, select: { dailyGoal: true } }),
-    db.studyDay.findUnique({ where: { userId_day: { userId, day: todayVN() } }, select: { reviewed: true } }),
-  ]);
-  return { goal: user?.dailyGoal ?? 20, doneToday: day?.reviewed ?? 0 };
+/**
+ * Danh sách ôn hôm nay = chỉ thẻ ĐÃ HỌC và ĐẾN HẠN hôm nay (khớp isDueToday). Thẻ mới không vào đây:
+ * học trong từng nhóm thẻ. Dòng CardReview chỉ do đánh sao tạo ra có lastReviewedAt = null → bị loại.
+ */
+export function dueTodayWhere(userId: string, now: Date = new Date()): Prisma.CardReviewWhereInput {
+  return {
+    userId,
+    lastReviewedAt: { not: null },
+    set: readableSetWhere(userId),
+    OR: [{ due: { lt: startOfDayVN(now, 1) } }, { interval: 0 }],
+  };
 }
 
 export async function getDueSummary(userId: string): Promise<DueSummaryDTO & { hasCards: boolean }> {
-  const setWhere = readableSetWhere(userId);
-  const [dueCount, newCount, totalCards, gd] = await Promise.all([
-    db.cardReview.count({ where: { userId, due: { lte: new Date() }, ...reviewedFilter, set: setWhere } }),
-    db.card.count({ where: { set: setWhere, reviews: { none: { userId, ...reviewedFilter } } } }),
-    db.card.count({ where: { set: setWhere } }),
-    getGoalAndDone(userId),
+  const [dueCount, totalCards, user, day] = await Promise.all([
+    db.cardReview.count({ where: dueTodayWhere(userId) }),
+    db.card.count({ where: { set: readableSetWhere(userId) } }),
+    db.user.findUnique({ where: { id: userId }, select: { dailyGoal: true } }),
+    db.studyDay.findUnique({ where: { userId_day: { userId, day: todayVN() } }, select: { reviewed: true } }),
   ]);
-  // Thẻ mới chỉ được thêm tới khi đủ mục tiêu ngày (khớp với getReviewQueue).
-  const room = Math.max(0, gd.goal - gd.doneToday - dueCount);
-  return { dueCount, newCount: Math.min(newCount, room), goal: gd.goal, doneToday: gd.doneToday, hasCards: totalCards > 0 };
+  return { dueCount, goal: user?.dailyGoal ?? 20, doneToday: day?.reviewed ?? 0, hasCards: totalCards > 0 };
 }
 
 export type ReviewItem = {
@@ -53,61 +56,53 @@ export type ReviewItem = {
   english: boolean;
   state: SrsState;
   starred: boolean;
+  /** Hạn ôn (ISO) — để nhãn "ôn lại sau" tính cả phần thưởng ôn trễ. */
+  due: string;
 };
 
-export type ReviewQueue = { items: ReviewItem[]; goal: number; doneToday: number; only?: ReviewOnly };
+export type ReviewQueue = {
+  /** Thẻ của lượt này (tối đa REVIEW_ROUND_SIZE). */
+  items: ReviewItem[];
+  /** Tổng số thẻ đến hạn hôm nay, cùng điều kiện với getDueSummary → khớp số trên trang chủ. */
+  totalDue: number;
+};
 
 const setSelect = { select: { title: true, category: { select: { isEnglish: true } } } } as const;
 
-export async function getReviewQueue(userId: string, only?: ReviewOnly): Promise<ReviewQueue> {
-  const setWhere = readableSetWhere(userId);
-  const { goal, doneToday } = await getGoalAndDone(userId);
-
-  type Row = Prisma.CardReviewGetPayload<{ include: { card: true; set: typeof setSelect } }>;
-  const toItem = (r: Row): ReviewItem => ({
+/** Một lượt thẻ đến hạn hôm nay (quá hạn lâu nhất trước) + tổng số thẻ đến hạn. */
+export async function getReviewQueue(userId: string): Promise<ReviewQueue> {
+  const where = dueTodayWhere(userId);
+  const [rows, totalDue] = await Promise.all([
+    db.cardReview.findMany({
+      where,
+      include: { card: true, set: setSelect },
+      // cardId phụ: thứ tự ổn định khi nhiều thẻ trùng hạn.
+      orderBy: [{ due: "asc" }, { cardId: "asc" }],
+      take: REVIEW_ROUND_SIZE,
+    }),
+    db.cardReview.count({ where }),
+  ]);
+  const items = rows.map((r) => ({
     card: toCardDTO(r.card),
     setId: r.setId,
     setTitle: r.set.title,
     english: r.set.category.isEnglish,
     state: { ease: r.ease, interval: r.interval, reps: r.reps, lapses: r.lapses },
     starred: r.starred,
-  });
-
-  if (only) {
-    const rows = await db.cardReview.findMany({
-      where: { userId, set: setWhere, ...onlyWhere(only) },
-      include: { card: true, set: setSelect },
-      orderBy: { due: "asc" },
-      take: MAX_PRACTICE,
-    });
-    return { items: rows.map(toItem), goal, doneToday, only };
-  }
-
-  const dueRows = await db.cardReview.findMany({
-    where: { userId, due: { lte: new Date() }, ...reviewedFilter, set: setWhere },
-    include: { card: true, set: setSelect },
-    orderBy: { due: "asc" },
-    take: MAX_DUE,
-  });
-  const room = Math.max(0, goal - doneToday - dueRows.length);
-  const freshRows =
-    room > 0
-      ? await db.card.findMany({
-          where: { set: setWhere, reviews: { none: { userId, ...reviewedFilter } } },
-          include: { set: setSelect, reviews: { where: { userId }, select: { starred: true } } },
-          orderBy: [{ setId: "asc" }, { position: "asc" }, { createdAt: "asc" }],
-          take: room,
-        })
-      : [];
-  const fresh: ReviewItem[] = freshRows.map((c) => ({
-    card: toCardDTO(c),
-    setId: c.setId,
-    setTitle: c.set.title,
-    english: c.set.category.isEnglish,
-    state: { ease: 2.5, interval: 0, reps: 0, lapses: 0 },
-    starred: c.reviews[0]?.starred ?? false,
+    due: r.due.toISOString(),
   }));
-  return { items: buildSession(dueRows.map(toItem), fresh, { goal, doneToday }), goal, doneToday };
+  // Hai câu truy vấn chạy song song có thể lệch nhau chút ít: tổng không được nhỏ hơn số thẻ của lượt.
+  return { items, totalDue: Math.max(totalDue, items.length) };
+}
+
+/** Khóa của một lượt (băm id thẻ): đổi lượt → ReviewSession mount lại với state mới. */
+export function reviewRoundKey(items: readonly ReviewItem[]): string {
+  let h = 0x811c9dc5;
+  for (const { card } of items) {
+    for (let i = 0; i < card.id.length; i++) h = Math.imul(h ^ card.id.charCodeAt(i), 0x01000193);
+    h = Math.imul(h ^ 44, 0x01000193);
+  }
+  return `${items.length}-${(h >>> 0).toString(36)}`;
 }
 
 function onlyWhere(only: ReviewOnly): Prisma.CardReviewWhereInput {

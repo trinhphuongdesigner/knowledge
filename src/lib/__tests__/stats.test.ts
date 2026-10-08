@@ -128,15 +128,12 @@ import { needsReminder } from "../stats";
 
 describe("needsReminder", () => {
   it("reminds users with due cards who have not studied", () => {
-    expect(needsReminder({ doneToday: 0, dueCount: 5, hasCards: true, goal: 20 })).toBe(true);
+    expect(needsReminder({ doneToday: 0, dueCount: 5 })).toBe(true);
   });
-  it("reminds users with cards but nothing due (daily goal not hit)", () => {
-    expect(needsReminder({ doneToday: 0, dueCount: 0, hasCards: true, goal: 20 })).toBe(true);
+  it("skips users with nothing due", () => {
+    expect(needsReminder({ doneToday: 0, dueCount: 0 })).toBe(false);
   });
   it("skips users who already studied today", () => {
-    expect(needsReminder({ doneToday: 3, dueCount: 5, hasCards: true, goal: 20 })).toBe(false);
-  });
-  it("skips users without any cards", () => {
-    expect(needsReminder({ doneToday: 0, dueCount: 0, hasCards: false, goal: 20 })).toBe(false);
+    expect(needsReminder({ doneToday: 3, dueCount: 5 })).toBe(false);
   });
 });

@@ -71,7 +71,6 @@ const errors = {
   notify: {
     reminderTitle: "C’est l’heure de réviser",
     reminderDue: "Vous avez {count} cartes à réviser aujourd’hui. Prenez quelques minutes pour maintenir votre série !",
-    reminderIdle: "Vous n’avez étudié aucune carte aujourd’hui. Votre objectif est de {goal} cartes — c’est parti !",
     setUnpublishedTitle: "Votre paquet a été retiré de la bibliothèque",
     setUnpublishedBody: "« {title} » a été retiré de la bibliothèque publique ; le paquet reste partageable par lien.",
     setApprovedTitle: "Votre paquet a été approuvé",
